@@ -3,13 +3,17 @@
 package sdkkonnectgointernal
 
 import (
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/Kong/sdk-konnect-go-internal/internal/hooks"
 	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
+	"github.com/Kong/sdk-konnect-go-internal/models/sdkerrors"
 	"github.com/Kong/sdk-konnect-go-internal/retry"
 	"net/http"
+	"net/url"
 	"time"
 )
 
@@ -70,10 +74,139 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// SDK - Konnect API - Go SDK: The Konnect platform API
+// SDK - Konnect API - Go Internal SDK: The Konnect platform API
+//
+// https://docs.konghq.com - Documentation for Kong Gateway and its APIs
 type SDK struct {
-	ControlPlanes      *ControlPlanes
-	ControlPlaneGroups *ControlPlaneGroups
+	ControlPlanes                *ControlPlanes
+	ControlPlaneGroups           *ControlPlaneGroups
+	SSOAuth0                     *SSOAuth0
+	DeviceAuthorizationGrant     *DeviceAuthorizationGrant
+	ImpersonationSettings        *ImpersonationSettings
+	AuthSettings                 *AuthSettings
+	Invites                      *Invites
+	Roles                        *Roles
+	Teams                        *Teams
+	TeamMembership               *TeamMembership
+	Users                        *Users
+	SystemAccounts               *SystemAccounts
+	SystemAccountsAccessTokens   *SystemAccountsAccessTokens
+	ManagedSystemAccountsRoles   *ManagedSystemAccountsRoles
+	SystemAccountsRoles          *SystemAccountsRoles
+	SystemAccountsTeamMembership *SystemAccountsTeamMembership
+	Me                           *Me
+	Authentication               *Authentication
+	Aws                          *Aws
+	CloudGateways                *CloudGateways
+	Networks                     *Networks
+	ResourceQuotas               *ResourceQuotas
+	ResourceConfigurations       *ResourceConfigurations
+	CustomReports                *CustomReports
+	// DP Nodes
+	DPNodes *DPNodes
+	// DP Certificates
+	DPCertificates *DPCertificates
+	// Custom Plugin Schemas
+	CustomPluginSchemas *CustomPluginSchemas
+	// Config Stores
+	ConfigStores *ConfigStores
+	// Config Store Secrets
+	ConfigStoreSecrets *ConfigStoreSecrets
+	// Debug Sessions
+	DebugSessions        *DebugSessions
+	ACLs                 *ACLs
+	BasicAuthCredentials *BasicAuthCredentials
+	// A CA certificate object represents a trusted certificate authority.
+	// These objects are used by Kong Gateway to verify the validity of a client or server certificate.
+	CACertificates *CACertificates
+	// A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong Gateway to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service.
+	// <br><br>
+	// Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames.
+	// <br><br>
+	// If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string.
+	//
+	Certificates *Certificates
+	// An SNI object represents a many-to-one mapping of hostnames to a certificate.
+	// <br><br>
+	// A certificate object can have many hostnames associated with it. When Kong Gateway receives an SSL request, it uses the SNI field in the Client Hello to look up the certificate object based on the SNI associated with the certificate.
+	SNIs *SNIs
+	// Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem.
+	// By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
+	ConsumerGroups *ConsumerGroups
+	// A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.
+	// You can find more information about available plugins and which values each plugin accepts at the [Plugin Hub](https://docs.konghq.com/hub/).
+	// <br><br>
+	// When adding a plugin configuration to a service, the plugin will run on every request made by a client to that service. If a plugin needs to be tuned to different values for some specific consumers, you can do so by creating a separate plugin instance that specifies both the service and the consumer, through the service and consumer fields.
+	// <br><br>
+	// Plugins can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
+	//
+	Plugins *Plugins
+	// The consumer object represents a consumer - or a user - of a service.
+	// You can either rely on Kong Gateway as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong Gateway and your existing primary datastore.
+	//
+	Consumers           *Consumers
+	HMACAuthCredentials *HMACAuthCredentials
+	JWTs                *JWTs
+	APIKeys             *APIKeys
+	MTLSAuthCredentials *MTLSAuthCredentials
+	CustomPlugins       *CustomPlugins
+	// A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
+	//
+	KeySets *KeySets
+	// A key object holds a representation of asymmetric keys in various formats. When Kong Gateway or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
+	//
+	Keys *Keys
+	// Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the route.
+	// <br><br>
+	// The combination of routes and services, and the separation of concerns between them, offers a powerful routing mechanism with which it is possible to define fine-grained entrypoints in Kong Gateway leading to different upstream services of your infrastructure.
+	// <br><br>
+	// Depending on the protocol, one of the following attributes must be set:
+	// <br>
+	//
+	// - `http`: At least one of `methods`, `hosts`, `headers`, or `paths`
+	// - `https`: At least one of `methods`, `hosts`, `headers`, `paths`, or `snis`
+	// - `tcp`: At least one of `sources` or `destinations`
+	// - `tls`: at least one of `sources`, `destinations`, or `snis`
+	// - `tls_passthrough`: set `snis`
+	// - `grpc`: At least one of `hosts`, `headers`, or `paths`
+	// - `grpcs`: At least one of `hosts`, `headers`, `paths`, or `snis`
+	// - `ws`: At least one of `hosts`, `headers`, or `paths`
+	// - `wss`: At least one of `hosts`, `headers`, `paths`, or `snis`
+	//
+	//
+	//
+	//   <br>
+	//   A route can't have both `tls` and `tls_passthrough` protocols at same time.
+	//   <br><br>
+	//   Learn more about the router:
+	// - [Configure routes using expressions](https://docs.konghq.com/gateway/latest/key-concepts/routes/expressions)
+	// - [Router Expressions language reference](https://docs.konghq.com/gateway/latest/reference/router-expressions-language/)
+	//
+	Routes *Routes
+	// Service entities are abstractions of your microservice interfaces or formal APIs. For example, a service could be a data transformation microservice or a billing API.
+	// <br><br>
+	// The main attribute of a service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually.
+	// <br><br>
+	// Services are associated to routes, and a single service can have many routes associated with it. Routes are entrypoints in Kong Gateway which define rules to match client requests. Once a route is matched, Kong Gateway proxies the request to its associated service. See the [Proxy Reference](https://docs.konghq.com/gateway/latest/how-kong-works/routing-traffic/) for a detailed explanation of how Kong proxies traffic.
+	// <br><br>
+	// Services can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
+	//
+	Services *Services
+	// The upstream object represents a virtual hostname and can be used to load balance incoming requests over multiple services (targets).
+	// <br><br>
+	// An upstream also includes a [health checker](https://docs.konghq.com/gateway/latest/how-kong-works/health-checks/), which can enable and disable targets based on their ability or inability to serve requests.
+	// The configuration for the health checker is stored in the upstream object, and applies to all of its targets.
+	Upstreams *Upstreams
+	Targets   *Targets
+	// Vault objects are used to configure different vault connectors for [managing secrets](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/).
+	// Configuring a vault lets you reference secrets from other entities.
+	// This allows for a proper separation of secrets and configuration and prevents secret sprawl.
+	// <br><br>
+	// For example, you could store a certificate and a key in a vault, then reference them from a certificate entity. This way, the certificate and key are not stored in the entity directly and are more secure.
+	// <br><br>
+	// Secrets rotation can be managed using [TTLs](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
+	//
+	Vaults *Vaults
 
 	sdkConfiguration sdkConfiguration
 }
@@ -150,10 +283,10 @@ func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
-			OpenAPIDocVersion: "2.0.0",
+			OpenAPIDocVersion: "0.0.1",
 			SDKVersion:        "0.0.1",
-			GenVersion:        "2.488.4",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.488.4 2.0.0 github.com/Kong/sdk-konnect-go-internal",
+			GenVersion:        "2.498.4",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.498.4 0.0.1 github.com/Kong/sdk-konnect-go-internal",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -177,5 +310,329 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.ControlPlaneGroups = newControlPlaneGroups(sdk.sdkConfiguration)
 
+	sdk.SSOAuth0 = newSSOAuth0(sdk.sdkConfiguration)
+
+	sdk.DeviceAuthorizationGrant = newDeviceAuthorizationGrant(sdk.sdkConfiguration)
+
+	sdk.ImpersonationSettings = newImpersonationSettings(sdk.sdkConfiguration)
+
+	sdk.AuthSettings = newAuthSettings(sdk.sdkConfiguration)
+
+	sdk.Invites = newInvites(sdk.sdkConfiguration)
+
+	sdk.Roles = newRoles(sdk.sdkConfiguration)
+
+	sdk.Teams = newTeams(sdk.sdkConfiguration)
+
+	sdk.TeamMembership = newTeamMembership(sdk.sdkConfiguration)
+
+	sdk.Users = newUsers(sdk.sdkConfiguration)
+
+	sdk.SystemAccounts = newSystemAccounts(sdk.sdkConfiguration)
+
+	sdk.SystemAccountsAccessTokens = newSystemAccountsAccessTokens(sdk.sdkConfiguration)
+
+	sdk.ManagedSystemAccountsRoles = newManagedSystemAccountsRoles(sdk.sdkConfiguration)
+
+	sdk.SystemAccountsRoles = newSystemAccountsRoles(sdk.sdkConfiguration)
+
+	sdk.SystemAccountsTeamMembership = newSystemAccountsTeamMembership(sdk.sdkConfiguration)
+
+	sdk.Me = newMe(sdk.sdkConfiguration)
+
+	sdk.Authentication = newAuthentication(sdk.sdkConfiguration)
+
+	sdk.Aws = newAws(sdk.sdkConfiguration)
+
+	sdk.CloudGateways = newCloudGateways(sdk.sdkConfiguration)
+
+	sdk.Networks = newNetworks(sdk.sdkConfiguration)
+
+	sdk.ResourceQuotas = newResourceQuotas(sdk.sdkConfiguration)
+
+	sdk.ResourceConfigurations = newResourceConfigurations(sdk.sdkConfiguration)
+
+	sdk.CustomReports = newCustomReports(sdk.sdkConfiguration)
+
+	sdk.DPNodes = newDPNodes(sdk.sdkConfiguration)
+
+	sdk.DPCertificates = newDPCertificates(sdk.sdkConfiguration)
+
+	sdk.CustomPluginSchemas = newCustomPluginSchemas(sdk.sdkConfiguration)
+
+	sdk.ConfigStores = newConfigStores(sdk.sdkConfiguration)
+
+	sdk.ConfigStoreSecrets = newConfigStoreSecrets(sdk.sdkConfiguration)
+
+	sdk.DebugSessions = newDebugSessions(sdk.sdkConfiguration)
+
+	sdk.ACLs = newACLs(sdk.sdkConfiguration)
+
+	sdk.BasicAuthCredentials = newBasicAuthCredentials(sdk.sdkConfiguration)
+
+	sdk.CACertificates = newCACertificates(sdk.sdkConfiguration)
+
+	sdk.Certificates = newCertificates(sdk.sdkConfiguration)
+
+	sdk.SNIs = newSNIs(sdk.sdkConfiguration)
+
+	sdk.ConsumerGroups = newConsumerGroups(sdk.sdkConfiguration)
+
+	sdk.Plugins = newPlugins(sdk.sdkConfiguration)
+
+	sdk.Consumers = newConsumers(sdk.sdkConfiguration)
+
+	sdk.HMACAuthCredentials = newHMACAuthCredentials(sdk.sdkConfiguration)
+
+	sdk.JWTs = newJWTs(sdk.sdkConfiguration)
+
+	sdk.APIKeys = newAPIKeys(sdk.sdkConfiguration)
+
+	sdk.MTLSAuthCredentials = newMTLSAuthCredentials(sdk.sdkConfiguration)
+
+	sdk.CustomPlugins = newCustomPlugins(sdk.sdkConfiguration)
+
+	sdk.KeySets = newKeySets(sdk.sdkConfiguration)
+
+	sdk.Keys = newKeys(sdk.sdkConfiguration)
+
+	sdk.Routes = newRoutes(sdk.sdkConfiguration)
+
+	sdk.Services = newServices(sdk.sdkConfiguration)
+
+	sdk.Upstreams = newUpstreams(sdk.sdkConfiguration)
+
+	sdk.Targets = newTargets(sdk.sdkConfiguration)
+
+	sdk.Vaults = newVaults(sdk.sdkConfiguration)
+
 	return sdk
+}
+
+// GetUsersInternal - Retrieves users matching a provided auth0 subject and email.
+// The response contains user ids and (non-deleted, non-deleting) organization ids for users associated with provided auth0 user subject.
+func (s *SDK) GetUsersInternal(ctx context.Context, aid *string, opts ...operations.Option) (*operations.GetUsersInternalResponse, error) {
+	hookCtx := hooks.HookContext{
+		Context:        ctx,
+		OperationID:    "get-users-internal",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	request := operations.GetUsersInternalRequest{
+		Aid: aid,
+	}
+
+	o := operations.Options{}
+	supportedOptions := []string{
+		operations.SupportedOptionRetries,
+		operations.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	baseURL := utils.ReplaceParameters(operations.GetUsersInternalServerList[0], map[string]string{})
+	if o.ServerURL != nil {
+		baseURL = *o.ServerURL
+	}
+
+	opURL, err := url.JoinPath(baseURL, "/v3/internal/users")
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"429",
+				"500",
+				"502",
+				"503",
+				"504",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil {
+				copyBody, err := req.GetBody()
+				if err != nil {
+					return nil, err
+				}
+				req.Body = copyBody
+			}
+
+			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{"400", "4XX", "5XX"}, httpRes.StatusCode) {
+			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &operations.GetUsersInternalResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: httpRes.Header.Get("Content-Type"),
+		RawResponse: httpRes,
+	}
+
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.InternalUsers
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.InternalUsers = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out sdkerrors.BadRequestError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
 }

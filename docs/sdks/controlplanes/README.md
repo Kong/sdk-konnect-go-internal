@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [List](#list) - List Control Planes
-* [Create](#create) - Create Control Plane
-* [Get](#get) - Fetch Control Plane
-* [Update](#update) - Update Control Plane
-* [Delete](#delete) - Delete Control Plane
+* [ListControlPlanes](#listcontrolplanes) - List Control Planes
+* [CreateControlPlane](#createcontrolplane) - Create Control Plane
+* [GetControlPlane](#getcontrolplane) - Fetch Control Plane
+* [UpdateControlPlane](#updatecontrolplane) - Update Control Plane
+* [DeleteControlPlane](#deletecontrolplane) - Delete Control Plane
 
-## List
+## ListControlPlanes
 
 Returns an array of control plane objects containing information about the Konnect Control Planes.
 
@@ -37,18 +37,14 @@ func main() {
         }),
     )
 
-    res, err := s.ControlPlanes.List(ctx, operations.ListControlPlanesRequest{
-        FilterNameEq: sdkkonnectgointernal.String("test"),
-        FilterName: sdkkonnectgointernal.String("test"),
-        FilterNameContains: sdkkonnectgointernal.String("test"),
-        FilterNameNeq: sdkkonnectgointernal.String("test"),
-        FilterIDEq: sdkkonnectgointernal.String("7f9fd312-a987-4628-b4c5-bb4f4fddd5f7"),
-        FilterID: sdkkonnectgointernal.String("7f9fd312-a987-4628-b4c5-bb4f4fddd5f7"),
-        FilterIDOeq: sdkkonnectgointernal.String("some-value,some-other-value"),
-        FilterClusterTypeEq: sdkkonnectgointernal.String("CLUSTER_TYPE_CONTROL_PLANE"),
-        FilterClusterType: sdkkonnectgointernal.String("CLUSTER_TYPE_CONTROL_PLANE"),
-        FilterClusterTypeNeq: sdkkonnectgointernal.String("test"),
+    res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+        PageSize: sdkkonnectgointernal.Int64(10),
+        PageNumber: sdkkonnectgointernal.Int64(2),
+        Filter: &components.ControlPlaneFilterParameters{
+            CloudGateway: sdkkonnectgointernal.Bool(true),
+        },
         Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+        Sort: sdkkonnectgointernal.String("name,created_at desc"),
     })
     if err != nil {
         log.Fatal(err)
@@ -81,7 +77,7 @@ func main() {
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
-## Create
+## CreateControlPlane
 
 Create a control plane in the Konnect Organization.
 
@@ -106,10 +102,11 @@ func main() {
         }),
     )
 
-    res, err := s.ControlPlanes.Create(ctx, components.CreateControlPlaneRequest{
+    res, err := s.ControlPlanes.CreateControlPlane(ctx, components.CreateControlPlaneRequest{
         Name: "Test Control Plane",
         Description: sdkkonnectgointernal.String("A test control plane for exploration."),
-        ClusterType: components.ClusterTypeClusterTypeK8SIngressController.ToPointer(),
+        ClusterType: components.CreateControlPlaneRequestClusterTypeClusterTypeControlPlane.ToPointer(),
+        AuthType: components.AuthTypePinnedClientCerts.ToPointer(),
         CloudGateway: sdkkonnectgointernal.Bool(false),
         ProxyUrls: []components.ProxyURL{
             components.ProxyURL{
@@ -155,9 +152,9 @@ func main() {
 | sdkerrors.ServiceUnavailable  | 503                           | application/problem+json      |
 | sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
-## Get
+## GetControlPlane
 
-Returns information about a team from a given team ID.
+Returns information about an individual control plane.
 
 ### Example Usage
 
@@ -180,7 +177,7 @@ func main() {
         }),
     )
 
-    res, err := s.ControlPlanes.Get(ctx, "d32d905a-ed33-46a3-a093-d8f536af9a8a")
+    res, err := s.ControlPlanes.GetControlPlane(ctx, "d32d905a-ed33-46a3-a093-d8f536af9a8a")
     if err != nil {
         log.Fatal(err)
     }
@@ -213,7 +210,7 @@ func main() {
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
-## Update
+## UpdateControlPlane
 
 Update an individual control plane.
 
@@ -238,9 +235,10 @@ func main() {
         }),
     )
 
-    res, err := s.ControlPlanes.Update(ctx, "d32d905a-ed33-46a3-a093-d8f536af9a8a", components.UpdateControlPlaneRequest{
+    res, err := s.ControlPlanes.UpdateControlPlane(ctx, "d32d905a-ed33-46a3-a093-d8f536af9a8a", components.UpdateControlPlaneRequest{
         Name: sdkkonnectgointernal.String("Test Control Plane"),
         Description: sdkkonnectgointernal.String("A test control plane for exploration."),
+        AuthType: components.UpdateControlPlaneRequestAuthTypePinnedClientCerts.ToPointer(),
         ProxyUrls: []components.ProxyURL{
             components.ProxyURL{
                 Host: "example.com",
@@ -249,7 +247,7 @@ func main() {
             },
         },
         Labels: map[string]string{
-            "env": "development",
+            "env": "test",
         },
     })
     if err != nil {
@@ -286,7 +284,7 @@ func main() {
 | sdkerrors.ServiceUnavailable  | 503                           | application/problem+json      |
 | sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
-## Delete
+## DeleteControlPlane
 
 Delete an individual control plane.
 
@@ -311,7 +309,7 @@ func main() {
         }),
     )
 
-    res, err := s.ControlPlanes.Delete(ctx, "d32d905a-ed33-46a3-a093-d8f536af9a8a")
+    res, err := s.ControlPlanes.DeleteControlPlane(ctx, "d32d905a-ed33-46a3-a093-d8f536af9a8a")
     if err != nil {
         log.Fatal(err)
     }

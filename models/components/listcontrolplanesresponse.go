@@ -4,7 +4,7 @@ package components
 
 // ListControlPlanesResponse - A paginated list response for a collection of control planes.
 type ListControlPlanesResponse struct {
-	// returns the pagination information
+	// Returns pagination information
 	Meta PaginatedMeta  `json:"meta"`
 	Data []ControlPlane `json:"data"`
 }

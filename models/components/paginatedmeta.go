@@ -2,7 +2,7 @@
 
 package components
 
-// PaginatedMeta - returns the pagination information
+// PaginatedMeta - Returns pagination information
 type PaginatedMeta struct {
 	// Contains pagination query parameters and the total number of objects returned.
 	Page PageMeta `json:"page"`

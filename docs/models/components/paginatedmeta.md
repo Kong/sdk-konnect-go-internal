@@ -1,6 +1,6 @@
 # PaginatedMeta
 
-returns the pagination information
+Returns pagination information
 
 
 ## Fields
