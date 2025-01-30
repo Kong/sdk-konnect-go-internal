@@ -27,7 +27,7 @@ For more information about the API: [Documentation for Kong Gateway and its APIs
 
 To add the SDK as a dependency to your project:
 ```bash
-go get github.com/Kong/sdk-konnect-go-internal
+go get github.com/Kong/sdk-konnect-go
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -41,17 +41,17 @@ package main
 
 import (
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
@@ -86,17 +86,17 @@ package main
 
 import (
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
@@ -595,9 +595,9 @@ package main
 
 import (
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
-	"github.com/Kong/sdk-konnect-go-internal/retry"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	"github.com/Kong/sdk-konnect-go/retry"
 	"log"
 	"models/operations"
 )
@@ -605,9 +605,9 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
@@ -638,17 +638,17 @@ package main
 
 import (
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
-	"github.com/Kong/sdk-konnect-go-internal/retry"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	"github.com/Kong/sdk-konnect-go/retry"
 	"log"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithRetryConfig(
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithRetryConfig(
 			retry.Config{
 				Strategy: "backoff",
 				Backoff: &retry.BackoffStrategy{
@@ -659,8 +659,8 @@ func main() {
 				},
 				RetryConnectionErrors: false,
 			}),
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
@@ -698,18 +698,18 @@ package main
 import (
 	"context"
 	"errors"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
-	"github.com/Kong/sdk-konnect-go-internal/models/sdkerrors"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	"github.com/Kong/sdk-konnect-go/models/sdkerrors"
 	"log"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
@@ -754,18 +754,18 @@ package main
 
 import (
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithServerIndex(3),
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithServerIndex(3),
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
@@ -788,18 +788,18 @@ package main
 
 import (
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithServerURL("https://global.api.konghq.com"),
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithServerURL("https://global.api.konghq.com"),
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
@@ -822,18 +822,18 @@ package main
 
 import (
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
-	"github.com/Kong/sdk-konnect-go-internal/models/operations"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
 func main() {
 	ctx := context.Background()
 
-	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithSecurity(components.Security{
-			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+	s := sdkkonnectgo.New(
+		sdkkonnectgo.WithSecurity(components.Security{
+			PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 

@@ -22,29 +22,29 @@ package main
 
 import(
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
-	"github.com/Kong/sdk-konnect-go-internal/models/operations"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgointernal.New(
-        sdkkonnectgointernal.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-        PageSize: sdkkonnectgointernal.Int64(10),
-        PageNumber: sdkkonnectgointernal.Int64(2),
+        PageSize: sdkkonnectgo.Int64(10),
+        PageNumber: sdkkonnectgo.Int64(2),
         Filter: &components.ControlPlaneFilterParameters{
-            CloudGateway: sdkkonnectgointernal.Bool(true),
+            CloudGateway: sdkkonnectgo.Bool(true),
         },
-        Labels: sdkkonnectgointernal.String("key:value,existCheck"),
-        Sort: sdkkonnectgointernal.String("name,created_at desc"),
+        Labels: sdkkonnectgo.String("key:value,existCheck"),
+        Sort: sdkkonnectgo.String("name,created_at desc"),
     })
     if err != nil {
         log.Fatal(err)
@@ -88,26 +88,26 @@ package main
 
 import(
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgointernal.New(
-        sdkkonnectgointernal.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.ControlPlanes.CreateControlPlane(ctx, components.CreateControlPlaneRequest{
         Name: "Test Control Plane",
-        Description: sdkkonnectgointernal.String("A test control plane for exploration."),
+        Description: sdkkonnectgo.String("A test control plane for exploration."),
         ClusterType: components.CreateControlPlaneRequestClusterTypeClusterTypeControlPlane.ToPointer(),
         AuthType: components.AuthTypePinnedClientCerts.ToPointer(),
-        CloudGateway: sdkkonnectgointernal.Bool(false),
+        CloudGateway: sdkkonnectgo.Bool(false),
         ProxyUrls: []components.ProxyURL{
             components.ProxyURL{
                 Host: "example.com",
@@ -163,17 +163,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgointernal.New(
-        sdkkonnectgointernal.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -221,23 +221,23 @@ package main
 
 import(
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgointernal.New(
-        sdkkonnectgointernal.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.ControlPlanes.UpdateControlPlane(ctx, "d32d905a-ed33-46a3-a093-d8f536af9a8a", components.UpdateControlPlaneRequest{
-        Name: sdkkonnectgointernal.String("Test Control Plane"),
-        Description: sdkkonnectgointernal.String("A test control plane for exploration."),
+        Name: sdkkonnectgo.String("Test Control Plane"),
+        Description: sdkkonnectgo.String("A test control plane for exploration."),
         AuthType: components.UpdateControlPlaneRequestAuthTypePinnedClientCerts.ToPointer(),
         ProxyUrls: []components.ProxyURL{
             components.ProxyURL{
@@ -295,17 +295,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
-	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgointernal.New(
-        sdkkonnectgointernal.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 

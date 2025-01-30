@@ -3,10 +3,10 @@ id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
   docChecksum: e5683c2697930ba9dd393c7311117492
   docVersion: 0.0.1
-  speakeasyVersion: 1.478.0
+  speakeasyVersion: 1.478.1
   generationVersion: 2.498.4
   releaseVersion: 0.0.1
-  configChecksum: 8f6372903a8a29333a40a171297cf08a
+  configChecksum: 2075760d566144c793f47dad3a105f97
 features:
   go:
     additionalDependencies: 0.1.0
@@ -4431,6 +4431,7 @@ examples:
       responses:
         "401":
           application/json: {"message": "<value>", "status": 463382}
+        "200": {}
   create-consumer_group:
     speakeasy-default-create-consumer-group:
       parameters:
@@ -4461,6 +4462,7 @@ examples:
       responses:
         "401":
           application/json: {"message": "<value>", "status": 945866}
+        "200": {}
   upsert-consumer_group:
     "":
       parameters:
