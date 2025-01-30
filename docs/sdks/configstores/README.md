@@ -24,25 +24,25 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.ConfigStores.ListConfigStores(ctx, operations.ListConfigStoresRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        PageSize: sdkkonnectgo.Int64(10),
-        PageAfter: sdkkonnectgo.String("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+        PageSize: sdkkonnectgointernal.Int64(10),
+        PageAfter: sdkkonnectgointernal.String("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
     })
     if err != nil {
         log.Fatal(err)
@@ -85,22 +85,22 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.ConfigStores.CreateConfigStore(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.CreateConfigStore{
-        Name: sdkkonnectgo.String("Config Store"),
+        Name: sdkkonnectgointernal.String("Config Store"),
     })
     if err != nil {
         log.Fatal(err)
@@ -145,17 +145,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -201,18 +201,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -220,7 +220,7 @@ func main() {
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConfigStoreID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
         UpdateConfigStore: components.UpdateConfigStore{
-            Name: sdkkonnectgo.String("Config Store"),
+            Name: sdkkonnectgointernal.String("Config Store"),
         },
     })
     if err != nil {
@@ -266,18 +266,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 

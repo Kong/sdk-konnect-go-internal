@@ -24,26 +24,26 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.HMACAuthCredentials.ListHmacAuthWithConsumer(ctx, operations.ListHmacAuthWithConsumerRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConsumerIDForNestedEntities: "f28acbfa-c866-4587-b688-0208ac24df21",
-        Size: sdkkonnectgo.Int64(100),
-        Tags: sdkkonnectgo.String("tag1,tag2"),
+        Size: sdkkonnectgointernal.Int64(100),
+        Tags: sdkkonnectgointernal.String("tag1,tag2"),
     })
     if err != nil {
         log.Fatal(err)
@@ -83,18 +83,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -102,8 +102,8 @@ func main() {
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConsumerIDForNestedEntities: "f28acbfa-c866-4587-b688-0208ac24df21",
         HMACAuthWithoutParents: components.HMACAuthWithoutParents{
-            ID: sdkkonnectgo.String("75695322-e8a0-4109-aed4-5416b0308d85"),
-            Secret: sdkkonnectgo.String("wQazJ304DW5huJklHgUfjfiSyCyTAEDZ"),
+            ID: sdkkonnectgointernal.String("75695322-e8a0-4109-aed4-5416b0308d85"),
+            Secret: sdkkonnectgointernal.String("wQazJ304DW5huJklHgUfjfiSyCyTAEDZ"),
             Username: "xerxes",
         },
     })
@@ -145,18 +145,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -203,18 +203,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -261,18 +261,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -281,8 +281,8 @@ func main() {
         ConsumerIDForNestedEntities: "f28acbfa-c866-4587-b688-0208ac24df21",
         HMACAuthID: "70e7b00b-72f2-471b-a5ce-9c4171775360",
         HMACAuthWithoutParents: components.HMACAuthWithoutParents{
-            ID: sdkkonnectgo.String("75695322-e8a0-4109-aed4-5416b0308d85"),
-            Secret: sdkkonnectgo.String("wQazJ304DW5huJklHgUfjfiSyCyTAEDZ"),
+            ID: sdkkonnectgointernal.String("75695322-e8a0-4109-aed4-5416b0308d85"),
+            Secret: sdkkonnectgointernal.String("wQazJ304DW5huJklHgUfjfiSyCyTAEDZ"),
             Username: "xerxes",
         },
     })
@@ -324,25 +324,25 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.HMACAuthCredentials.ListHmacAuth(ctx, operations.ListHmacAuthRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Size: sdkkonnectgo.Int64(100),
-        Tags: sdkkonnectgo.String("tag1,tag2"),
+        Size: sdkkonnectgointernal.Int64(100),
+        Tags: sdkkonnectgointernal.String("tag1,tag2"),
     })
     if err != nil {
         log.Fatal(err)
@@ -383,17 +383,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 

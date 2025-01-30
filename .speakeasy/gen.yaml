@@ -31,5 +31,5 @@ go:
   maxMethodParams: 2
   methodArguments: require-security-and-request
   outputModelSuffix: output
-  packageName: github.com/Kong/sdk-konnect-go
+  packageName: github.com/Kong/sdk-konnect-go-internal
   responseFormat: envelope

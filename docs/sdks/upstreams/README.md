@@ -27,25 +27,25 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.Upstreams.ListUpstream(ctx, operations.ListUpstreamRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Size: sdkkonnectgo.Int64(100),
-        Tags: sdkkonnectgo.String("tag1,tag2"),
+        Size: sdkkonnectgointernal.Int64(100),
+        Tags: sdkkonnectgointernal.String("tag1,tag2"),
     })
     if err != nil {
         log.Fatal(err)
@@ -86,17 +86,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -104,24 +104,24 @@ func main() {
         Algorithm: components.UpstreamAlgorithmRoundRobin.ToPointer(),
         HashFallback: components.HashFallbackNone.ToPointer(),
         HashOn: components.HashOnNone.ToPointer(),
-        HashOnCookiePath: sdkkonnectgo.String("/"),
+        HashOnCookiePath: sdkkonnectgointernal.String("/"),
         Healthchecks: &components.Healthchecks{
             Active: &components.Active{
-                Concurrency: sdkkonnectgo.Int64(10),
+                Concurrency: sdkkonnectgointernal.Int64(10),
                 Healthy: &components.Healthy{
                     HTTPStatuses: []int64{
                         200,
                         302,
                     },
-                    Interval: sdkkonnectgo.Float64(0),
-                    Successes: sdkkonnectgo.Int64(0),
+                    Interval: sdkkonnectgointernal.Float64(0),
+                    Successes: sdkkonnectgointernal.Int64(0),
                 },
-                HTTPPath: sdkkonnectgo.String("/"),
-                HTTPSVerifyCertificate: sdkkonnectgo.Bool(true),
-                Timeout: sdkkonnectgo.Float64(1),
+                HTTPPath: sdkkonnectgointernal.String("/"),
+                HTTPSVerifyCertificate: sdkkonnectgointernal.Bool(true),
+                Timeout: sdkkonnectgointernal.Float64(1),
                 Type: components.UpstreamTypeHTTP.ToPointer(),
                 Unhealthy: &components.Unhealthy{
-                    HTTPFailures: sdkkonnectgo.Int64(0),
+                    HTTPFailures: sdkkonnectgointernal.Int64(0),
                     HTTPStatuses: []int64{
                         429,
                         404,
@@ -132,9 +132,9 @@ func main() {
                         504,
                         505,
                     },
-                    Interval: sdkkonnectgo.Float64(0),
-                    TCPFailures: sdkkonnectgo.Int64(0),
-                    Timeouts: sdkkonnectgo.Int64(0),
+                    Interval: sdkkonnectgointernal.Float64(0),
+                    TCPFailures: sdkkonnectgointernal.Int64(0),
+                    Timeouts: sdkkonnectgointernal.Int64(0),
                 },
             },
             Passive: &components.Passive{
@@ -160,25 +160,25 @@ func main() {
                         307,
                         308,
                     },
-                    Successes: sdkkonnectgo.Int64(0),
+                    Successes: sdkkonnectgointernal.Int64(0),
                 },
                 Type: components.UpstreamHealthchecksTypeHTTP.ToPointer(),
                 Unhealthy: &components.UpstreamUnhealthy{
-                    HTTPFailures: sdkkonnectgo.Int64(0),
+                    HTTPFailures: sdkkonnectgointernal.Int64(0),
                     HTTPStatuses: []int64{
                         429,
                         500,
                         503,
                     },
-                    TCPFailures: sdkkonnectgo.Int64(0),
-                    Timeouts: sdkkonnectgo.Int64(0),
+                    TCPFailures: sdkkonnectgointernal.Int64(0),
+                    Timeouts: sdkkonnectgointernal.Int64(0),
                 },
             },
-            Threshold: sdkkonnectgo.Float64(0),
+            Threshold: sdkkonnectgointernal.Float64(0),
         },
-        ID: sdkkonnectgo.String("6eed5e9c-5398-4026-9a4c-d48f18a2431e"),
+        ID: sdkkonnectgointernal.String("6eed5e9c-5398-4026-9a4c-d48f18a2431e"),
         Name: "api.example.internal",
-        Slots: sdkkonnectgo.Int64(10000),
+        Slots: sdkkonnectgointernal.Int64(10000),
     })
     if err != nil {
         log.Fatal(err)
@@ -220,17 +220,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -275,17 +275,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -330,18 +330,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -352,24 +352,24 @@ func main() {
             Algorithm: components.UpstreamAlgorithmRoundRobin.ToPointer(),
             HashFallback: components.HashFallbackNone.ToPointer(),
             HashOn: components.HashOnNone.ToPointer(),
-            HashOnCookiePath: sdkkonnectgo.String("/"),
+            HashOnCookiePath: sdkkonnectgointernal.String("/"),
             Healthchecks: &components.Healthchecks{
                 Active: &components.Active{
-                    Concurrency: sdkkonnectgo.Int64(10),
+                    Concurrency: sdkkonnectgointernal.Int64(10),
                     Healthy: &components.Healthy{
                         HTTPStatuses: []int64{
                             200,
                             302,
                         },
-                        Interval: sdkkonnectgo.Float64(0),
-                        Successes: sdkkonnectgo.Int64(0),
+                        Interval: sdkkonnectgointernal.Float64(0),
+                        Successes: sdkkonnectgointernal.Int64(0),
                     },
-                    HTTPPath: sdkkonnectgo.String("/"),
-                    HTTPSVerifyCertificate: sdkkonnectgo.Bool(true),
-                    Timeout: sdkkonnectgo.Float64(1),
+                    HTTPPath: sdkkonnectgointernal.String("/"),
+                    HTTPSVerifyCertificate: sdkkonnectgointernal.Bool(true),
+                    Timeout: sdkkonnectgointernal.Float64(1),
                     Type: components.UpstreamTypeHTTP.ToPointer(),
                     Unhealthy: &components.Unhealthy{
-                        HTTPFailures: sdkkonnectgo.Int64(0),
+                        HTTPFailures: sdkkonnectgointernal.Int64(0),
                         HTTPStatuses: []int64{
                             429,
                             404,
@@ -380,9 +380,9 @@ func main() {
                             504,
                             505,
                         },
-                        Interval: sdkkonnectgo.Float64(0),
-                        TCPFailures: sdkkonnectgo.Int64(0),
-                        Timeouts: sdkkonnectgo.Int64(0),
+                        Interval: sdkkonnectgointernal.Float64(0),
+                        TCPFailures: sdkkonnectgointernal.Int64(0),
+                        Timeouts: sdkkonnectgointernal.Int64(0),
                     },
                 },
                 Passive: &components.Passive{
@@ -408,25 +408,25 @@ func main() {
                             307,
                             308,
                         },
-                        Successes: sdkkonnectgo.Int64(0),
+                        Successes: sdkkonnectgointernal.Int64(0),
                     },
                     Type: components.UpstreamHealthchecksTypeHTTP.ToPointer(),
                     Unhealthy: &components.UpstreamUnhealthy{
-                        HTTPFailures: sdkkonnectgo.Int64(0),
+                        HTTPFailures: sdkkonnectgointernal.Int64(0),
                         HTTPStatuses: []int64{
                             429,
                             500,
                             503,
                         },
-                        TCPFailures: sdkkonnectgo.Int64(0),
-                        Timeouts: sdkkonnectgo.Int64(0),
+                        TCPFailures: sdkkonnectgointernal.Int64(0),
+                        Timeouts: sdkkonnectgointernal.Int64(0),
                     },
                 },
-                Threshold: sdkkonnectgo.Float64(0),
+                Threshold: sdkkonnectgointernal.Float64(0),
             },
-            ID: sdkkonnectgo.String("6eed5e9c-5398-4026-9a4c-d48f18a2431e"),
+            ID: sdkkonnectgointernal.String("6eed5e9c-5398-4026-9a4c-d48f18a2431e"),
             Name: "api.example.internal",
-            Slots: sdkkonnectgo.Int64(10000),
+            Slots: sdkkonnectgointernal.Int64(10000),
         },
     })
     if err != nil {

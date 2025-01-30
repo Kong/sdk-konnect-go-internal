@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/Kong/sdk-konnect-go/internal/utils"
+	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
 )
 
 // DeviceAuthorizationGrantTokenBadRequestDeviceAuthorizationGrantTokenBadRequestError - A single error code from the following enum.

@@ -3,7 +3,7 @@
 package components
 
 import (
-	"github.com/Kong/sdk-konnect-go/internal/utils"
+	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
 )
 
 // CreateConfigurationRequest - Request schema for creating a configuration.

@@ -1,4 +1,4 @@
-module github.com/Kong/sdk-konnect-go
+module github.com/Kong/sdk-konnect-go-internal
 
 go 1.20
 

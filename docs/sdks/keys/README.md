@@ -30,26 +30,26 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.Keys.ListKeyWithKeySet(ctx, operations.ListKeyWithKeySetRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         KeySetID: "6cc34248-50b4-4a81-9201-3bdf7a83f712",
-        Size: sdkkonnectgo.Int64(100),
-        Tags: sdkkonnectgo.String("tag1,tag2"),
+        Size: sdkkonnectgointernal.Int64(100),
+        Tags: sdkkonnectgointernal.String("tag1,tag2"),
     })
     if err != nil {
         log.Fatal(err)
@@ -89,18 +89,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -108,16 +108,16 @@ func main() {
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         KeySetID: "6cc34248-50b4-4a81-9201-3bdf7a83f712",
         KeyWithoutParents: components.KeyWithoutParents{
-            ID: sdkkonnectgo.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
-            Jwk: sdkkonnectgo.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
+            ID: sdkkonnectgointernal.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
+            Jwk: sdkkonnectgointernal.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
             Kid: "42",
-            Name: sdkkonnectgo.String("a-key"),
+            Name: sdkkonnectgointernal.String("a-key"),
             Pem: &components.KeyWithoutParentsPem{
-                PrivateKey: sdkkonnectgo.String("-----BEGIN"),
-                PublicKey: sdkkonnectgo.String("-----BEGIN"),
+                PrivateKey: sdkkonnectgointernal.String("-----BEGIN"),
+                PublicKey: sdkkonnectgointernal.String("-----BEGIN"),
             },
             Set: &components.KeyWithoutParentsSet{
-                ID: sdkkonnectgo.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
+                ID: sdkkonnectgointernal.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
             },
         },
     })
@@ -159,18 +159,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -217,18 +217,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -275,18 +275,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -295,16 +295,16 @@ func main() {
         KeySetID: "6cc34248-50b4-4a81-9201-3bdf7a83f712",
         KeyID: "bba22c06-a632-42be-a018-1b9ff357b5b9",
         KeyWithoutParents: components.KeyWithoutParents{
-            ID: sdkkonnectgo.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
-            Jwk: sdkkonnectgo.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
+            ID: sdkkonnectgointernal.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
+            Jwk: sdkkonnectgointernal.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
             Kid: "42",
-            Name: sdkkonnectgo.String("a-key"),
+            Name: sdkkonnectgointernal.String("a-key"),
             Pem: &components.KeyWithoutParentsPem{
-                PrivateKey: sdkkonnectgo.String("-----BEGIN"),
-                PublicKey: sdkkonnectgo.String("-----BEGIN"),
+                PrivateKey: sdkkonnectgointernal.String("-----BEGIN"),
+                PublicKey: sdkkonnectgointernal.String("-----BEGIN"),
             },
             Set: &components.KeyWithoutParentsSet{
-                ID: sdkkonnectgo.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
+                ID: sdkkonnectgointernal.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
             },
         },
     })
@@ -346,25 +346,25 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.Keys.ListKey(ctx, operations.ListKeyRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Size: sdkkonnectgo.Int64(100),
-        Tags: sdkkonnectgo.String("tag1,tag2"),
+        Size: sdkkonnectgointernal.Int64(100),
+        Tags: sdkkonnectgointernal.String("tag1,tag2"),
     })
     if err != nil {
         log.Fatal(err)
@@ -405,31 +405,31 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
     res, err := s.Keys.CreateKey(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.KeyInput{
-        ID: sdkkonnectgo.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
-        Jwk: sdkkonnectgo.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
+        ID: sdkkonnectgointernal.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
+        Jwk: sdkkonnectgointernal.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
         Kid: "42",
-        Name: sdkkonnectgo.String("a-key"),
+        Name: sdkkonnectgointernal.String("a-key"),
         Pem: &components.Pem{
-            PrivateKey: sdkkonnectgo.String("-----BEGIN"),
-            PublicKey: sdkkonnectgo.String("-----BEGIN"),
+            PrivateKey: sdkkonnectgointernal.String("-----BEGIN"),
+            PublicKey: sdkkonnectgointernal.String("-----BEGIN"),
         },
         Set: &components.Set{
-            ID: sdkkonnectgo.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
+            ID: sdkkonnectgointernal.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
         },
     })
     if err != nil {
@@ -472,17 +472,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -527,17 +527,17 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -582,18 +582,18 @@ package main
 
 import(
 	"context"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
     
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.String("<YOUR_BEARER_TOKEN_HERE>"),
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
@@ -601,16 +601,16 @@ func main() {
         KeyID: "bba22c06-a632-42be-a018-1b9ff357b5b9",
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         Key: components.KeyInput{
-            ID: sdkkonnectgo.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
-            Jwk: sdkkonnectgo.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
+            ID: sdkkonnectgointernal.String("d958f66b-8e99-44d2-b0b4-edd5bbf24658"),
+            Jwk: sdkkonnectgointernal.String("{\"alg\":\"RSA\",  \"kid\": \"42\",  ...}"),
             Kid: "42",
-            Name: sdkkonnectgo.String("a-key"),
+            Name: sdkkonnectgointernal.String("a-key"),
             Pem: &components.Pem{
-                PrivateKey: sdkkonnectgo.String("-----BEGIN"),
-                PublicKey: sdkkonnectgo.String("-----BEGIN"),
+                PrivateKey: sdkkonnectgointernal.String("-----BEGIN"),
+                PublicKey: sdkkonnectgointernal.String("-----BEGIN"),
             },
             Set: &components.Set{
-                ID: sdkkonnectgo.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
+                ID: sdkkonnectgointernal.String("b86b331c-dcd0-4b3e-97ce-47c5a9543031"),
             },
         },
     })

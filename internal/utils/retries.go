@@ -6,7 +6,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/Kong/sdk-konnect-go/retry"
+	"github.com/Kong/sdk-konnect-go-internal/retry"
 	"math"
 	"math/rand"
 	"net/http"

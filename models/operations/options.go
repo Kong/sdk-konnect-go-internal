@@ -4,8 +4,8 @@ package operations
 
 import (
 	"errors"
-	"github.com/Kong/sdk-konnect-go/internal/utils"
-	"github.com/Kong/sdk-konnect-go/retry"
+	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
+	"github.com/Kong/sdk-konnect-go-internal/retry"
 	"time"
 )
 

@@ -6,7 +6,7 @@ management:
   speakeasyVersion: 1.478.1
   generationVersion: 2.498.4
   releaseVersion: 0.0.1
-  configChecksum: 2075760d566144c793f47dad3a105f97
+  configChecksum: 8f6372903a8a29333a40a171297cf08a
 features:
   go:
     additionalDependencies: 0.1.0

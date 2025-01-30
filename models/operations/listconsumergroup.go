@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/Kong/sdk-konnect-go/internal/utils"
-	"github.com/Kong/sdk-konnect-go/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
 	"net/http"
 )
 

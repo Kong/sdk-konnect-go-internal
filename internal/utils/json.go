@@ -13,7 +13,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/Kong/sdk-konnect-go/types"
+	"github.com/Kong/sdk-konnect-go-internal/types"
 
 	"github.com/ericlagergren/decimal"
 )
