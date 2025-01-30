@@ -1,0 +1,11 @@
+# SystemAccountAccessTokenCollection
+
+A paginated list response for a collection of system accounts access tokens.
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `Meta`                                                                                       | [*components.PaginatedMeta](../../models/components/paginatedmeta.md)                        | :heavy_minus_sign:                                                                           | Returns pagination information                                                               | {<br/>"page": {<br/>"number": 2,<br/>"size": 10,<br/>"total": 100<br/>}<br/>}                |
+| `Data`                                                                                       | [][components.SystemAccountAccessToken](../../models/components/systemaccountaccesstoken.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
