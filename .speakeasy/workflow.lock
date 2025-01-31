@@ -1,9 +1,9 @@
-speakeasyVersion: 1.478.1
+speakeasyVersion: 1.480.0
 sources:
     konnect:
         sourceNamespace: konnect
-        sourceRevisionDigest: sha256:f80882c9f516e356966f894658c582c19f1af1bc065178d2a4d615516ad787d9
-        sourceBlobDigest: sha256:ee4c21e3c1d517d8801d2e48795b768eeb68b14a89b914fa3271625d702d22a2
+        sourceRevisionDigest: sha256:fb9c8e8e5ac3937cadbd3fb4acffbbc868deb7893b668b3a31d8b817866d4a4d
+        sourceBlobDigest: sha256:e8b404b963ef96d80fab73ef437ddc319293bfdb35756393140a4a02d63fed00
         tags:
             - latest
             - 0.0.1
@@ -11,10 +11,10 @@ targets:
     go:
         source: konnect
         sourceNamespace: konnect
-        sourceRevisionDigest: sha256:f80882c9f516e356966f894658c582c19f1af1bc065178d2a4d615516ad787d9
-        sourceBlobDigest: sha256:ee4c21e3c1d517d8801d2e48795b768eeb68b14a89b914fa3271625d702d22a2
+        sourceRevisionDigest: sha256:fb9c8e8e5ac3937cadbd3fb4acffbbc868deb7893b668b3a31d8b817866d4a4d
+        sourceBlobDigest: sha256:e8b404b963ef96d80fab73ef437ddc319293bfdb35756393140a4a02d63fed00
         codeSamplesNamespace: konnect-go-code-samples
-        codeSamplesRevisionDigest: sha256:0e5084b6bd480faf9dda9b3d92ef40a4f614664651148cdf3874ffeed5fffc05
+        codeSamplesRevisionDigest: sha256:771f2947c20407a0939f1df3fc9a5aa8f1db3a1e648e87e6b55df1c104fb4608
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

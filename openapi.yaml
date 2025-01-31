@@ -11511,6 +11511,11 @@ components:
       type: string
       example: YOUR_CLIENT_ID
       description: The client ID assigned to your application by the identity provider.
+    OIDCIdentityProviderClientSecret:
+      title: OIDC Identity Provider Client Secret Property
+      type: string
+      example: YOUR_CLIENT_SECRET
+      description: The client secret assigned to your application by the identity provider.
     OIDCIdentityProviderScopes:
       title: OIDC Identity Provider Scopes Property
       type: array
@@ -11630,6 +11635,8 @@ components:
           $ref: '#/components/schemas/OIDCIdentityProviderIssuer'
         client_id:
           $ref: '#/components/schemas/OIDCIdentityProviderClientId'
+        client_secret:
+          $ref: '#/components/schemas/OIDCIdentityProviderClientSecret'
         scopes:
           $ref: '#/components/schemas/OIDCIdentityProviderScopes'
         claim_mappings:
