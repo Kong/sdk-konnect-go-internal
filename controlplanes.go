@@ -26,9 +26,9 @@ func newControlPlanes(sdkConfig sdkConfiguration) *ControlPlanes {
 	}
 }
 
-// List Control Planes
+// ListControlPlanes - List Control Planes
 // Returns an array of control plane objects containing information about the Konnect Control Planes.
-func (s *ControlPlanes) List(ctx context.Context, request operations.ListControlPlanesRequest, opts ...operations.Option) (*operations.ListControlPlanesResponse, error) {
+func (s *ControlPlanes) ListControlPlanes(ctx context.Context, request operations.ListControlPlanesRequest, opts ...operations.Option) (*operations.ListControlPlanesResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "list-control-planes",
@@ -291,7 +291,11 @@ func (s *ControlPlanes) List(ctx context.Context, request operations.ListControl
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -310,9 +314,9 @@ func (s *ControlPlanes) List(ctx context.Context, request operations.ListControl
 
 }
 
-// Create Control Plane
+// CreateControlPlane - Create Control Plane
 // Create a control plane in the Konnect Organization.
-func (s *ControlPlanes) Create(ctx context.Context, request components.CreateControlPlaneRequest, opts ...operations.Option) (*operations.CreateControlPlaneResponse, error) {
+func (s *ControlPlanes) CreateControlPlane(ctx context.Context, request components.CreateControlPlaneRequest, opts ...operations.Option) (*operations.CreateControlPlaneResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "create-control-plane",
@@ -365,7 +369,9 @@ func (s *ControlPlanes) Create(ctx context.Context, request components.CreateCon
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -619,7 +625,11 @@ func (s *ControlPlanes) Create(ctx context.Context, request components.CreateCon
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -638,9 +648,9 @@ func (s *ControlPlanes) Create(ctx context.Context, request components.CreateCon
 
 }
 
-// Get - Fetch Control Plane
-// Returns information about a team from a given team ID.
-func (s *ControlPlanes) Get(ctx context.Context, id string, opts ...operations.Option) (*operations.GetControlPlaneResponse, error) {
+// GetControlPlane - Fetch Control Plane
+// Returns information about an individual control plane.
+func (s *ControlPlanes) GetControlPlane(ctx context.Context, id string, opts ...operations.Option) (*operations.GetControlPlaneResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "get-control-plane",
@@ -924,7 +934,11 @@ func (s *ControlPlanes) Get(ctx context.Context, id string, opts ...operations.O
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -943,9 +957,9 @@ func (s *ControlPlanes) Get(ctx context.Context, id string, opts ...operations.O
 
 }
 
-// Update Control Plane
+// UpdateControlPlane - Update Control Plane
 // Update an individual control plane.
-func (s *ControlPlanes) Update(ctx context.Context, id string, updateControlPlaneRequest components.UpdateControlPlaneRequest, opts ...operations.Option) (*operations.UpdateControlPlaneResponse, error) {
+func (s *ControlPlanes) UpdateControlPlane(ctx context.Context, id string, updateControlPlaneRequest components.UpdateControlPlaneRequest, opts ...operations.Option) (*operations.UpdateControlPlaneResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "update-control-plane",
@@ -1003,7 +1017,9 @@ func (s *ControlPlanes) Update(ctx context.Context, id string, updateControlPlan
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	req.Header.Set("Content-Type", reqContentType)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1257,7 +1273,11 @@ func (s *ControlPlanes) Update(ctx context.Context, id string, updateControlPlan
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -1276,9 +1296,9 @@ func (s *ControlPlanes) Update(ctx context.Context, id string, updateControlPlan
 
 }
 
-// Delete Control Plane
+// DeleteControlPlane - Delete Control Plane
 // Delete an individual control plane.
-func (s *ControlPlanes) Delete(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteControlPlaneResponse, error) {
+func (s *ControlPlanes) DeleteControlPlane(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteControlPlaneResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "delete-control-plane",
@@ -1563,7 +1583,11 @@ func (s *ControlPlanes) Delete(ctx context.Context, id string, opts ...operation
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		fallthrough
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {

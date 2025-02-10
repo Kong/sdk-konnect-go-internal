@@ -1,0 +1,9 @@
+# Admin
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `Name`                                                                               | [components.PortalsRolesRolesName](../../models/components/portalsrolesrolesname.md) | :heavy_check_mark:                                                                   | N/A                                                                                  |                                                                                      |
+| `Description`                                                                        | [components.Description](../../models/components/description.md)                     | :heavy_check_mark:                                                                   | N/A                                                                                  | This role grants full write access to portal configurations and entities.            |
