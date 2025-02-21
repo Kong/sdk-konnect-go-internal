@@ -1,0 +1,12 @@
+# APIPublicationFilterParameters
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `PortalID`                                                                    | [*components.UUIDFieldFilter](../../models/components/uuidfieldfilter.md)     | :heavy_minus_sign:                                                            | Filters on the given UUID field value by exact match.                         |
+| `PortalName`                                                                  | [*components.StringFieldFilter](../../models/components/stringfieldfilter.md) | :heavy_minus_sign:                                                            | Filters on the given string field value by either exact or fuzzy match.       |
+| `APIID`                                                                       | [*components.UUIDFieldFilter](../../models/components/uuidfieldfilter.md)     | :heavy_minus_sign:                                                            | Filters on the given UUID field value by exact match.                         |
+| `APIName`                                                                     | [*components.StringFieldFilter](../../models/components/stringfieldfilter.md) | :heavy_minus_sign:                                                            | Filters on the given string field value by either exact or fuzzy match.       |
+| `AuthStrategyID`                                                              | [*components.UUIDFieldFilter](../../models/components/uuidfieldfilter.md)     | :heavy_minus_sign:                                                            | Filters on the given UUID field value by exact match.                         |

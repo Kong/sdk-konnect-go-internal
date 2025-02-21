@@ -19,18 +19,14 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.List(ctx, operations.ListControlPlanesRequest{
-		FilterNameEq:         sdkkonnectgointernal.String("test"),
-		FilterName:           sdkkonnectgointernal.String("test"),
-		FilterNameContains:   sdkkonnectgointernal.String("test"),
-		FilterNameNeq:        sdkkonnectgointernal.String("test"),
-		FilterIDEq:           sdkkonnectgointernal.String("7f9fd312-a987-4628-b4c5-bb4f4fddd5f7"),
-		FilterID:             sdkkonnectgointernal.String("7f9fd312-a987-4628-b4c5-bb4f4fddd5f7"),
-		FilterIDOeq:          sdkkonnectgointernal.String("some-value,some-other-value"),
-		FilterClusterTypeEq:  sdkkonnectgointernal.String("CLUSTER_TYPE_CONTROL_PLANE"),
-		FilterClusterType:    sdkkonnectgointernal.String("CLUSTER_TYPE_CONTROL_PLANE"),
-		FilterClusterTypeNeq: sdkkonnectgointernal.String("test"),
-		Labels:               sdkkonnectgointernal.String("key:value,existCheck"),
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("name,created_at desc"),
 	})
 	if err != nil {
 		log.Fatal(err)
