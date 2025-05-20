@@ -12,6 +12,7 @@ type ResourceConfigurationQualifier string
 
 const (
 	ResourceConfigurationQualifierDataPlaneGroupIdleTimeoutMinutes ResourceConfigurationQualifier = "data-plane-group-idle-timeout-minutes"
+	ResourceConfigurationQualifierAutoPilotBaseRpsMaxValue         ResourceConfigurationQualifier = "auto-pilot-base-rps-max-value"
 )
 
 func (e ResourceConfigurationQualifier) ToPointer() *ResourceConfigurationQualifier {
@@ -24,6 +25,8 @@ func (e *ResourceConfigurationQualifier) UnmarshalJSON(data []byte) error {
 	}
 	switch v {
 	case "data-plane-group-idle-timeout-minutes":
+		fallthrough
+	case "auto-pilot-base-rps-max-value":
 		*e = ResourceConfigurationQualifier(v)
 		return nil
 	default:

@@ -9,9 +9,12 @@ import (
 
 // APIPublicationResponse - An API publication in a portal
 type APIPublicationResponse struct {
+	// Whether the application registration auto approval on this portal for the api is enabled. If set to false, fallbacks on portal's auto_approve_applications value.
+	AutoApproveRegistrations *bool `json:"auto_approve_registrations,omitempty"`
 	// The auth strategy the API enforces for applications in the portal.
 	// Omitting this property means the portal's default application auth strategy will be used.
 	// Setting to null means the API will not require application authentication.
+	// DCR support for application registration is currently in development.
 	//
 	AuthStrategyIds []string `json:"auth_strategy_ids"`
 	// The visibility of the API in the portal.
@@ -34,6 +37,13 @@ func (a *APIPublicationResponse) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *APIPublicationResponse) GetAutoApproveRegistrations() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AutoApproveRegistrations
 }
 
 func (o *APIPublicationResponse) GetAuthStrategyIds() []string {

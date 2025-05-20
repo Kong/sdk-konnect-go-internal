@@ -169,20 +169,20 @@ func (o *Healthy) GetSuccesses() *int64 {
 	return o.Successes
 }
 
-type UpstreamType string
+type Type string
 
 const (
-	UpstreamTypeTCP   UpstreamType = "tcp"
-	UpstreamTypeHTTP  UpstreamType = "http"
-	UpstreamTypeHTTPS UpstreamType = "https"
-	UpstreamTypeGrpc  UpstreamType = "grpc"
-	UpstreamTypeGrpcs UpstreamType = "grpcs"
+	TypeTCP   Type = "tcp"
+	TypeHTTP  Type = "http"
+	TypeHTTPS Type = "https"
+	TypeGrpc  Type = "grpc"
+	TypeGrpcs Type = "grpcs"
 )
 
-func (e UpstreamType) ToPointer() *UpstreamType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
-func (e *UpstreamType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -197,10 +197,10 @@ func (e *UpstreamType) UnmarshalJSON(data []byte) error {
 	case "grpc":
 		fallthrough
 	case "grpcs":
-		*e = UpstreamType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpstreamType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
@@ -255,7 +255,7 @@ type Active struct {
 	HTTPSSni               *string           `json:"https_sni,omitempty"`
 	HTTPSVerifyCertificate *bool             `json:"https_verify_certificate,omitempty"`
 	Timeout                *float64          `json:"timeout,omitempty"`
-	Type                   *UpstreamType     `json:"type,omitempty"`
+	Type                   *Type             `json:"type,omitempty"`
 	Unhealthy              *Unhealthy        `json:"unhealthy,omitempty"`
 }
 
@@ -308,7 +308,7 @@ func (o *Active) GetTimeout() *float64 {
 	return o.Timeout
 }
 
-func (o *Active) GetType() *UpstreamType {
+func (o *Active) GetType() *Type {
 	if o == nil {
 		return nil
 	}
@@ -341,20 +341,20 @@ func (o *UpstreamHealthy) GetSuccesses() *int64 {
 	return o.Successes
 }
 
-type UpstreamHealthchecksType string
+type UpstreamType string
 
 const (
-	UpstreamHealthchecksTypeTCP   UpstreamHealthchecksType = "tcp"
-	UpstreamHealthchecksTypeHTTP  UpstreamHealthchecksType = "http"
-	UpstreamHealthchecksTypeHTTPS UpstreamHealthchecksType = "https"
-	UpstreamHealthchecksTypeGrpc  UpstreamHealthchecksType = "grpc"
-	UpstreamHealthchecksTypeGrpcs UpstreamHealthchecksType = "grpcs"
+	UpstreamTypeTCP   UpstreamType = "tcp"
+	UpstreamTypeHTTP  UpstreamType = "http"
+	UpstreamTypeHTTPS UpstreamType = "https"
+	UpstreamTypeGrpc  UpstreamType = "grpc"
+	UpstreamTypeGrpcs UpstreamType = "grpcs"
 )
 
-func (e UpstreamHealthchecksType) ToPointer() *UpstreamHealthchecksType {
+func (e UpstreamType) ToPointer() *UpstreamType {
 	return &e
 }
-func (e *UpstreamHealthchecksType) UnmarshalJSON(data []byte) error {
+func (e *UpstreamType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -369,10 +369,10 @@ func (e *UpstreamHealthchecksType) UnmarshalJSON(data []byte) error {
 	case "grpc":
 		fallthrough
 	case "grpcs":
-		*e = UpstreamHealthchecksType(v)
+		*e = UpstreamType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpstreamHealthchecksType: %v", v)
+		return fmt.Errorf("invalid value for UpstreamType: %v", v)
 	}
 }
 
@@ -412,9 +412,9 @@ func (o *UpstreamUnhealthy) GetTimeouts() *int64 {
 }
 
 type Passive struct {
-	Healthy   *UpstreamHealthy          `json:"healthy,omitempty"`
-	Type      *UpstreamHealthchecksType `json:"type,omitempty"`
-	Unhealthy *UpstreamUnhealthy        `json:"unhealthy,omitempty"`
+	Healthy   *UpstreamHealthy   `json:"healthy,omitempty"`
+	Type      *UpstreamType      `json:"type,omitempty"`
+	Unhealthy *UpstreamUnhealthy `json:"unhealthy,omitempty"`
 }
 
 func (o *Passive) GetHealthy() *UpstreamHealthy {
@@ -424,7 +424,7 @@ func (o *Passive) GetHealthy() *UpstreamHealthy {
 	return o.Healthy
 }
 
-func (o *Passive) GetType() *UpstreamHealthchecksType {
+func (o *Passive) GetType() *UpstreamType {
 	if o == nil {
 		return nil
 	}
@@ -650,179 +650,6 @@ func (o *Upstream) GetUpdatedAt() *int64 {
 }
 
 func (o *Upstream) GetUseSrvName() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.UseSrvName
-}
-
-// UpstreamInput - The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets). So for example an upstream named `service.v1.xyz` for a Service object whose `host` is `service.v1.xyz`. Requests for this Service would be proxied to the targets defined within the upstream. An upstream also includes a [health checker][healthchecks], which is able to enable and disable targets based on their ability or inability to serve requests. The configuration for the health checker is stored in the upstream object, and applies to all of its targets.
-type UpstreamInput struct {
-	// Which load balancing algorithm to use.
-	Algorithm *UpstreamAlgorithm `json:"algorithm,omitempty"`
-	// If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.
-	ClientCertificate *UpstreamClientCertificate `json:"client_certificate,omitempty"`
-	// What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`.
-	HashFallback *HashFallback `json:"hash_fallback,omitempty"`
-	// The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
-	HashFallbackHeader *string `json:"hash_fallback_header,omitempty"`
-	// The name of the query string argument to take the value from as hash input. Only required when `hash_fallback` is set to `query_arg`.
-	HashFallbackQueryArg *string `json:"hash_fallback_query_arg,omitempty"`
-	// The name of the route URI capture to take the value from as hash input. Only required when `hash_fallback` is set to `uri_capture`.
-	HashFallbackURICapture *string `json:"hash_fallback_uri_capture,omitempty"`
-	// What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing.
-	HashOn *HashOn `json:"hash_on,omitempty"`
-	// The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
-	HashOnCookie *string `json:"hash_on_cookie,omitempty"`
-	// The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`.
-	HashOnCookiePath *string `json:"hash_on_cookie_path,omitempty"`
-	// The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
-	HashOnHeader *string `json:"hash_on_header,omitempty"`
-	// The name of the query string argument to take the value from as hash input. Only required when `hash_on` is set to `query_arg`.
-	HashOnQueryArg *string `json:"hash_on_query_arg,omitempty"`
-	// The name of the route URI capture to take the value from as hash input. Only required when `hash_on` is set to `uri_capture`.
-	HashOnURICapture *string       `json:"hash_on_uri_capture,omitempty"`
-	Healthchecks     *Healthchecks `json:"healthchecks,omitempty"`
-	// The hostname to be used as `Host` header when proxying requests through Kong.
-	HostHeader *string `json:"host_header,omitempty"`
-	ID         *string `json:"id,omitempty"`
-	// This is a hostname, which must be equal to the `host` of a Service.
-	Name string `json:"name"`
-	// The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`.
-	Slots *int64 `json:"slots,omitempty"`
-	// An optional set of strings associated with the Upstream for grouping and filtering.
-	Tags []string `json:"tags,omitempty"`
-	// If set, the balancer will use SRV hostname(if DNS Answer has SRV record) as the proxy upstream `Host`.
-	UseSrvName *bool `json:"use_srv_name,omitempty"`
-}
-
-func (o *UpstreamInput) GetAlgorithm() *UpstreamAlgorithm {
-	if o == nil {
-		return nil
-	}
-	return o.Algorithm
-}
-
-func (o *UpstreamInput) GetClientCertificate() *UpstreamClientCertificate {
-	if o == nil {
-		return nil
-	}
-	return o.ClientCertificate
-}
-
-func (o *UpstreamInput) GetHashFallback() *HashFallback {
-	if o == nil {
-		return nil
-	}
-	return o.HashFallback
-}
-
-func (o *UpstreamInput) GetHashFallbackHeader() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashFallbackHeader
-}
-
-func (o *UpstreamInput) GetHashFallbackQueryArg() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashFallbackQueryArg
-}
-
-func (o *UpstreamInput) GetHashFallbackURICapture() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashFallbackURICapture
-}
-
-func (o *UpstreamInput) GetHashOn() *HashOn {
-	if o == nil {
-		return nil
-	}
-	return o.HashOn
-}
-
-func (o *UpstreamInput) GetHashOnCookie() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashOnCookie
-}
-
-func (o *UpstreamInput) GetHashOnCookiePath() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashOnCookiePath
-}
-
-func (o *UpstreamInput) GetHashOnHeader() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashOnHeader
-}
-
-func (o *UpstreamInput) GetHashOnQueryArg() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashOnQueryArg
-}
-
-func (o *UpstreamInput) GetHashOnURICapture() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HashOnURICapture
-}
-
-func (o *UpstreamInput) GetHealthchecks() *Healthchecks {
-	if o == nil {
-		return nil
-	}
-	return o.Healthchecks
-}
-
-func (o *UpstreamInput) GetHostHeader() *string {
-	if o == nil {
-		return nil
-	}
-	return o.HostHeader
-}
-
-func (o *UpstreamInput) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
-func (o *UpstreamInput) GetName() string {
-	if o == nil {
-		return ""
-	}
-	return o.Name
-}
-
-func (o *UpstreamInput) GetSlots() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.Slots
-}
-
-func (o *UpstreamInput) GetTags() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Tags
-}
-
-func (o *UpstreamInput) GetUseSrvName() *bool {
 	if o == nil {
 		return nil
 	}

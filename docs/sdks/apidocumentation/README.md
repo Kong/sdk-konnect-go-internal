@@ -8,16 +8,18 @@
 * [CreateAPIDocument](#createapidocument) - Create API Document
 * [ListAPIDocuments](#listapidocuments) - List API Documents
 * [FetchAPIDocument](#fetchapidocument) - Fetch API Document
-* [UpdateAPIDocument](#updateapidocument) - Update an API Document
+* [UpdateAPIDocument](#updateapidocument) - Update API Document
 * [DeleteAPIDocument](#deleteapidocument) - Delete API Documentation
 * [MoveAPIDocument](#moveapidocument) - Move API Documentation
 
 ## CreateAPIDocument
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Publish a new document attached to an API.
 
 All configuration options may be provided in the frontmatter section of `content`. If you set values in both the `POST` request _and_ in the frontmatter, the values in the `POST` request will take precedence.
-
 
 ### Example Usage
 
@@ -33,7 +35,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -85,6 +87,9 @@ func main() {
 
 ## ListAPIDocuments
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Returns a collection of all documents for an API.
 
 ### Example Usage
@@ -102,7 +107,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -147,6 +152,9 @@ func main() {
 
 ## FetchAPIDocument
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Returns a document for the API.
 
 ### Example Usage
@@ -163,7 +171,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -204,6 +212,9 @@ func main() {
 
 ## UpdateAPIDocument
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Updates a document for an API.
 
 ### Example Usage
@@ -221,7 +232,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -275,6 +286,9 @@ func main() {
 
 ## DeleteAPIDocument
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Removes a document from an API.
 
 ### Example Usage
@@ -291,7 +305,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -332,6 +346,9 @@ func main() {
 
 ## MoveAPIDocument
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 This api allows the user to move a document within the document tree using the parameters parent_document_id and index. If parent_document_id is not provided, the document will be placed at the top level of the document tree. index represents a zero-indexed document order relative to its siblings under the same parent. For example, if we want to put the document at top level in first position we would send parent_document_id: null and index: 0. This api also supports using a negative index to count backwards from the end of the document list, which means you can put the document in last position by using index: -1.
 
 ### Example Usage
@@ -349,7 +366,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),

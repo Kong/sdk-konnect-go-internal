@@ -3,14 +3,14 @@
 package components
 
 type APIFilterParameters struct {
-	// Filters on the given UUID field value by exact match.
+	// Filters on the given string field value by exact match inequality.
 	ID *UUIDFieldFilter `queryParam:"name=id"`
-	// Filters on the given string field value by either exact or fuzzy match.
+	// Filters on the given string field value by exact match inequality.
 	Name *StringFieldFilter `queryParam:"name=name"`
-	// Filters on the given string field value by either exact or fuzzy match.
-	Version      *StringFieldFilter       `queryParam:"name=version"`
-	Labels       *LabelsFieldFilter       `queryParam:"name=labels"`
-	PublicLabels *PublicLabelsFieldFilter `queryParam:"name=public_labels"`
+	// Filters on the given string field value by exact match inequality.
+	Version    *StringFieldFilter     `queryParam:"name=version"`
+	Labels     *LabelsFieldFilter     `queryParam:"name=labels"`
+	Attributes *AttributesFieldFilter `queryParam:"name=attributes"`
 	// Filter by a boolean value (true/false).
 	Deprecated *bool `queryParam:"name=deprecated"`
 	// Filters on the given datetime (RFC-3339) field value.
@@ -47,11 +47,11 @@ func (o *APIFilterParameters) GetLabels() *LabelsFieldFilter {
 	return o.Labels
 }
 
-func (o *APIFilterParameters) GetPublicLabels() *PublicLabelsFieldFilter {
+func (o *APIFilterParameters) GetAttributes() *AttributesFieldFilter {
 	if o == nil {
 		return nil
 	}
-	return o.PublicLabels
+	return o.Attributes
 }
 
 func (o *APIFilterParameters) GetDeprecated() *bool {

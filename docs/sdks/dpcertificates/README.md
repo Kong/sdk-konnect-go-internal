@@ -30,7 +30,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -83,7 +83,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -94,7 +94,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DataPlaneClientCertificate != nil {
+    if res.DataPlaneClientCertificateResponse != nil {
         // handle response
     }
 }
@@ -137,7 +137,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -148,7 +148,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DataPlaneClientCertificate != nil {
+    if res.DataPlaneClientCertificateResponse != nil {
         // handle response
     }
 }
@@ -191,7 +191,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),

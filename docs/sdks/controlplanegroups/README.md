@@ -31,7 +31,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -72,6 +72,7 @@ func main() {
 | sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
 | sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
 | sdkerrors.NotFoundError      | 404                          | application/problem+json     |
+| sdkerrors.BaseError          | 500                          | application/problem+json     |
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
@@ -93,7 +94,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -131,6 +132,7 @@ func main() {
 | sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
 | sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
 | sdkerrors.NotFoundError      | 404                          | application/problem+json     |
+| sdkerrors.BaseError          | 500                          | application/problem+json     |
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
@@ -152,7 +154,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -190,6 +192,7 @@ func main() {
 | sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
 | sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
 | sdkerrors.NotFoundError      | 404                          | application/problem+json     |
+| sdkerrors.BaseError          | 500                          | application/problem+json     |
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
@@ -211,7 +214,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -249,6 +252,7 @@ func main() {
 | sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
 | sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
 | sdkerrors.NotFoundError      | 404                          | application/problem+json     |
+| sdkerrors.BaseError          | 500                          | application/problem+json     |
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
@@ -270,7 +274,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -307,6 +311,7 @@ func main() {
 | sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
 | sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
 | sdkerrors.NotFoundError      | 404                          | application/problem+json     |
+| sdkerrors.BaseError          | 500                          | application/problem+json     |
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
@@ -328,7 +333,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -365,5 +370,6 @@ func main() {
 | sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
 | sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
 | sdkerrors.NotFoundError      | 404                          | application/problem+json     |
+| sdkerrors.BaseError          | 500                          | application/problem+json     |
 | sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
 | sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |

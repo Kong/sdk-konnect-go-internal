@@ -12,8 +12,10 @@
 
 ## PublishAPIToPortal
 
-Publish an API to a portal.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
+Publish an API to a portal.
 
 ### Example Usage
 
@@ -30,7 +32,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -75,9 +77,11 @@ func main() {
 
 ## FetchPublication
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Retrieve an API's publication in a portal.
 If the API is not published to the portal, a 404 response is returned.
-
 
 ### Example Usage
 
@@ -93,7 +97,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -134,6 +138,9 @@ func main() {
 
 ## DeletePublication
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Unpublish an API from a portal.
 
 ### Example Usage
@@ -150,7 +157,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -191,6 +198,9 @@ func main() {
 
 ## ListAPIPublications
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Returns a collection of all API Publications.
 
 ### Example Usage
@@ -208,7 +218,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -218,7 +228,7 @@ func main() {
     res, err := s.APIPublication.ListAPIPublications(ctx, operations.ListAPIPublicationsRequest{
         PageSize: sdkkonnectgointernal.Int64(10),
         PageNumber: sdkkonnectgointernal.Int64(1),
-        Sort: sdkkonnectgointernal.String("name,created_at desc"),
+        Sort: sdkkonnectgointernal.String("created_at desc"),
     })
     if err != nil {
         log.Fatal(err)

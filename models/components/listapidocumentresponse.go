@@ -4,14 +4,14 @@ package components
 
 // ListAPIDocumentResponse - List of API documents
 type ListAPIDocumentResponse struct {
-	Data []APIDocumentSummary `json:"data"`
+	Data []APIDocumentSummaryWithChildren `json:"data"`
 	// returns the pagination information
 	Meta PaginatedMeta `json:"meta"`
 }
 
-func (o *ListAPIDocumentResponse) GetData() []APIDocumentSummary {
+func (o *ListAPIDocumentResponse) GetData() []APIDocumentSummaryWithChildren {
 	if o == nil {
-		return []APIDocumentSummary{}
+		return []APIDocumentSummaryWithChildren{}
 	}
 	return o.Data
 }

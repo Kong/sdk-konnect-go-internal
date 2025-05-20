@@ -29,13 +29,6 @@ func newAws(sdkConfig sdkConfiguration) *Aws {
 // ResolveCustomer - Resolves an AWS Customer.
 // This call the aws marketplace resolve customer api.
 func (s *Aws) ResolveCustomer(ctx context.Context, request *components.AWSResolveCustomerRequest, opts ...operations.Option) (*operations.ResolveCustomerResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "resolveCustomer",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,13 @@ func (s *Aws) ResolveCustomer(ctx context.Context, request *components.AWSResolv
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "resolveCustomer",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

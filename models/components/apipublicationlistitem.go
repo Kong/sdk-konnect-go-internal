@@ -21,6 +21,7 @@ type APIPublicationListItem struct {
 	// The auth strategy the API enforces for applications in the portal.
 	// Omitting this property means the portal's default application auth strategy will be used.
 	// Setting to null means the API will not require application authentication.
+	// DCR support for application registration is currently in development.
 	//
 	AuthStrategyIds []string `json:"auth_strategy_ids"`
 	// An ISO-8601 timestamp representation of entity creation date.

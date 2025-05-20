@@ -54,7 +54,7 @@ type UpdateApplicationRegistrationResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Details about the application registration being updated.
-	UpdateApplicationRegistrationResponse *components.UpdateApplicationRegistrationResponse
+	GetApplicationRegistrationResponse *components.GetApplicationRegistrationResponse
 }
 
 func (o *UpdateApplicationRegistrationResponse) GetContentType() string {
@@ -78,9 +78,9 @@ func (o *UpdateApplicationRegistrationResponse) GetRawResponse() *http.Response 
 	return o.RawResponse
 }
 
-func (o *UpdateApplicationRegistrationResponse) GetUpdateApplicationRegistrationResponse() *components.UpdateApplicationRegistrationResponse {
+func (o *UpdateApplicationRegistrationResponse) GetGetApplicationRegistrationResponse() *components.GetApplicationRegistrationResponse {
 	if o == nil {
 		return nil
 	}
-	return o.UpdateApplicationRegistrationResponse
+	return o.GetApplicationRegistrationResponse
 }

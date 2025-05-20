@@ -26,12 +26,15 @@ type GetPortalAssetLogoResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Logo of the portal. Can be either png or jpeg
+	// Logo of the portal. Can be either png, jpeg or svg
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
-	TwoHundredImagePngPortalImageAssetV3 io.ReadCloser
-	// Logo of the portal. Can be either png or jpeg
+	TwoHundredImagePngPortalImageAsset io.ReadCloser
+	// Logo of the portal. Can be either png, jpeg or svg
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
-	TwoHundredImageJpegPortalImageAssetV3 io.ReadCloser
+	TwoHundredImageJpegPortalImageAsset io.ReadCloser
+	// Logo of the portal. Can be either png, jpeg or svg
+	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
+	TwoHundredImageSvgPlusXMLPortalImageAsset io.ReadCloser
 }
 
 func (o *GetPortalAssetLogoResponse) GetContentType() string {
@@ -55,16 +58,23 @@ func (o *GetPortalAssetLogoResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetPortalAssetLogoResponse) GetTwoHundredImagePngPortalImageAssetV3() io.ReadCloser {
+func (o *GetPortalAssetLogoResponse) GetTwoHundredImagePngPortalImageAsset() io.ReadCloser {
 	if o == nil {
 		return nil
 	}
-	return o.TwoHundredImagePngPortalImageAssetV3
+	return o.TwoHundredImagePngPortalImageAsset
 }
 
-func (o *GetPortalAssetLogoResponse) GetTwoHundredImageJpegPortalImageAssetV3() io.ReadCloser {
+func (o *GetPortalAssetLogoResponse) GetTwoHundredImageJpegPortalImageAsset() io.ReadCloser {
 	if o == nil {
 		return nil
 	}
-	return o.TwoHundredImageJpegPortalImageAssetV3
+	return o.TwoHundredImageJpegPortalImageAsset
+}
+
+func (o *GetPortalAssetLogoResponse) GetTwoHundredImageSvgPlusXMLPortalImageAsset() io.ReadCloser {
+	if o == nil {
+		return nil
+	}
+	return o.TwoHundredImageSvgPlusXMLPortalImageAsset
 }

@@ -30,13 +30,6 @@ func newDeviceAuthorizationGrant(sdkConfig sdkConfiguration) *DeviceAuthorizatio
 // Initiates a device authorization workflow, generating and returning a unique device verification code.
 // See https://www.rfc-editor.org/rfc/rfc8628#section-3.1 for details.
 func (s *DeviceAuthorizationGrant) PostOauthDeviceAuthorize(ctx context.Context, request operations.PostOauthDeviceAuthorizeRequestBody, opts ...operations.Option) (*operations.PostOauthDeviceAuthorizeResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "post-oauth-device-authorize",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -59,6 +52,13 @@ func (s *DeviceAuthorizationGrant) PostOauthDeviceAuthorize(ctx context.Context,
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "post-oauth-device-authorize",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "form", `request:"mediaType=application/x-www-form-urlencoded"`)
 	if err != nil {
 		return nil, err
@@ -256,13 +256,6 @@ func (s *DeviceAuthorizationGrant) PostOauthDeviceAuthorize(ctx context.Context,
 // It is expected for the client to try the access token request repeatedly in a polling fashion based on the error code in the response.
 // See https://www.rfc-editor.org/rfc/rfc8628#section-3.4 for details.
 func (s *DeviceAuthorizationGrant) PostOauthDeviceToken(ctx context.Context, request operations.PostOauthDeviceTokenRequestBody, opts ...operations.Option) (*operations.PostOauthDeviceTokenResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "post-oauth-device-token",
-		OAuth2Scopes:   []string{},
-		SecuritySource: nil,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -285,6 +278,13 @@ func (s *DeviceAuthorizationGrant) PostOauthDeviceToken(ctx context.Context, req
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "post-oauth-device-token",
+		OAuth2Scopes:   []string{},
+		SecuritySource: nil,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "form", `request:"mediaType=application/x-www-form-urlencoded"`)
 	if err != nil {
 		return nil, err
@@ -480,13 +480,6 @@ func (s *DeviceAuthorizationGrant) PostOauthDeviceToken(ctx context.Context, req
 // PostOauthDeviceAuthorizeUser - User device authorization request
 // Marks the device code as authorized and is a means to provide the interactive UI flow with the necessary request metadata for the user to confirm the request.
 func (s *DeviceAuthorizationGrant) PostOauthDeviceAuthorizeUser(ctx context.Context, request components.DeviceAuthorizationUserRequest, opts ...operations.Option) (*operations.PostOauthDeviceAuthorizeUserResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "post-oauth-device-authorize-user",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -509,6 +502,13 @@ func (s *DeviceAuthorizationGrant) PostOauthDeviceAuthorizeUser(ctx context.Cont
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "post-oauth-device-authorize-user",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -731,13 +731,6 @@ func (s *DeviceAuthorizationGrant) PostOauthDeviceAuthorizeUser(ctx context.Cont
 // PatchOauthDeviceConfirm - Device confirmation request
 // Confirms the authorization request by marking the device code as confirmed.
 func (s *DeviceAuthorizationGrant) PatchOauthDeviceConfirm(ctx context.Context, request components.DeviceConfirmationRequest, opts ...operations.Option) (*operations.PatchOauthDeviceConfirmResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "patch-oauth-device-confirm",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -760,6 +753,13 @@ func (s *DeviceAuthorizationGrant) PatchOauthDeviceConfirm(ctx context.Context, 
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "patch-oauth-device-confirm",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

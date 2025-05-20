@@ -4,7 +4,8 @@ package components
 
 // DefaultContent - Summary of created default content
 type DefaultContent struct {
-	Pages []string `json:"pages"`
+	Pages    []string `json:"pages"`
+	Snippets []string `json:"snippets"`
 }
 
 func (o *DefaultContent) GetPages() []string {
@@ -12,4 +13,11 @@ func (o *DefaultContent) GetPages() []string {
 		return []string{}
 	}
 	return o.Pages
+}
+
+func (o *DefaultContent) GetSnippets() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Snippets
 }

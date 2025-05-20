@@ -29,13 +29,6 @@ func newSSOAuth0(sdkConfig sdkConfiguration) *SSOAuth0 {
 // PostAuth0RegisterInternal - Register a new organization with an Auth0 authenticated user.
 // Create a new organization with Auth0 authentication. The Auth0 user will be the organization owner.
 func (s *SSOAuth0) PostAuth0RegisterInternal(ctx context.Context, request *components.Auth0Registration, opts ...operations.Option) (*operations.PostAuth0RegisterInternalResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "post-auth0-register-internal",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,13 @@ func (s *SSOAuth0) PostAuth0RegisterInternal(ctx context.Context, request *compo
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "post-auth0-register-internal",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -278,13 +278,6 @@ func (s *SSOAuth0) PostAuth0RegisterInternal(ctx context.Context, request *compo
 // GetAuth0OrganizationsInternal - Retrieves the list of organizations available to the given user.
 // Retrieves the list of organizations available to the given user.
 func (s *SSOAuth0) GetAuth0OrganizationsInternal(ctx context.Context, opts ...operations.Option) (*operations.GetAuth0OrganizationsInternalResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-auth0-organizations-internal",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -305,6 +298,14 @@ func (s *SSOAuth0) GetAuth0OrganizationsInternal(ctx context.Context, opts ...op
 	opURL, err := url.JoinPath(baseURL, "/v3/internal/auth0/organizations")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-auth0-organizations-internal",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

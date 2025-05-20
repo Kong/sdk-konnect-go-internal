@@ -11,7 +11,7 @@ type UpdatePortalRequest struct {
 	// ID of the portal.
 	PortalID string `pathParam:"style=simple,explode=false,name=portalId"`
 	// Update a portal's settings.
-	UpdatePortalV3 components.UpdatePortalV3 `request:"mediaType=application/json"`
+	UpdatePortal components.UpdatePortal `request:"mediaType=application/json"`
 }
 
 func (o *UpdatePortalRequest) GetPortalID() string {
@@ -21,11 +21,11 @@ func (o *UpdatePortalRequest) GetPortalID() string {
 	return o.PortalID
 }
 
-func (o *UpdatePortalRequest) GetUpdatePortalV3() components.UpdatePortalV3 {
+func (o *UpdatePortalRequest) GetUpdatePortal() components.UpdatePortal {
 	if o == nil {
-		return components.UpdatePortalV3{}
+		return components.UpdatePortal{}
 	}
-	return o.UpdatePortalV3
+	return o.UpdatePortal
 }
 
 type UpdatePortalResponse struct {
@@ -36,7 +36,7 @@ type UpdatePortalResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Details about a portal.
-	PortalResponseV3 *components.PortalResponseV3
+	PortalResponse *components.PortalResponse
 }
 
 func (o *UpdatePortalResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (o *UpdatePortalResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *UpdatePortalResponse) GetPortalResponseV3() *components.PortalResponseV3 {
+func (o *UpdatePortalResponse) GetPortalResponse() *components.PortalResponse {
 	if o == nil {
 		return nil
 	}
-	return o.PortalResponseV3
+	return o.PortalResponse
 }

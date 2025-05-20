@@ -28,13 +28,6 @@ func newManagedSystemAccountsRoles(sdkConfig sdkConfiguration) *ManagedSystemAcc
 // GetSystemAccountsAssignedRolesInternal - Fetch assigned roles for a managed system account.
 // Lists the roles belonging to a managed system account.  Returns 400 if any filter parameters are invalid.
 func (s *ManagedSystemAccountsRoles) GetSystemAccountsAssignedRolesInternal(ctx context.Context, accountID string, filter *operations.GetSystemAccountsAssignedRolesInternalQueryParamFilter, opts ...operations.Option) (*operations.GetSystemAccountsAssignedRolesInternalResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-system-accounts-assigned-roles-internal",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetSystemAccountsAssignedRolesInternalRequest{
 		AccountID: accountID,
 		Filter:    filter,
@@ -60,6 +53,14 @@ func (s *ManagedSystemAccountsRoles) GetSystemAccountsAssignedRolesInternal(ctx 
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/internal/system-accounts/{accountId}/assigned-roles", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-system-accounts-assigned-roles-internal",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -301,13 +302,6 @@ func (s *ManagedSystemAccountsRoles) GetSystemAccountsAssignedRolesInternal(ctx 
 // CreateSystemAccountsAssignedRolesInternal - Assign a role to a managed System Account.
 // Assigns a role to a managed system account. Returns 409 if role is already assigned.
 func (s *ManagedSystemAccountsRoles) CreateSystemAccountsAssignedRolesInternal(ctx context.Context, accountID string, assignParameterizedRole *components.AssignParameterizedRole, opts ...operations.Option) (*operations.CreateSystemAccountsAssignedRolesInternalResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "create-system-accounts-assigned-roles-internal",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.CreateSystemAccountsAssignedRolesInternalRequest{
 		AccountID:               accountID,
 		AssignParameterizedRole: assignParameterizedRole,
@@ -335,6 +329,13 @@ func (s *ManagedSystemAccountsRoles) CreateSystemAccountsAssignedRolesInternal(c
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "create-system-accounts-assigned-roles-internal",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "AssignParameterizedRole", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

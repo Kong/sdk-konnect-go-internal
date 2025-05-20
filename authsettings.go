@@ -29,13 +29,6 @@ func newAuthSettings(sdkConfig sdkConfiguration) *AuthSettings {
 // GetAuthenticationSettings - Get Auth Settings
 // Returns authentication configuration, which determines how users can log in and how they are assigned to teams.
 func (s *AuthSettings) GetAuthenticationSettings(ctx context.Context, opts ...operations.Option) (*operations.GetAuthenticationSettingsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-authentication-settings",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *AuthSettings) GetAuthenticationSettings(ctx context.Context, opts ...op
 	opURL, err := url.JoinPath(baseURL, "/v3/authentication-settings")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-authentication-settings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -249,13 +250,6 @@ func (s *AuthSettings) GetAuthenticationSettings(ctx context.Context, opts ...op
 // UpdateAuthenticationSettings - Update Auth Settings
 // Updates authentication configuration.
 func (s *AuthSettings) UpdateAuthenticationSettings(ctx context.Context, request *components.UpdateAuthenticationSettings, opts ...operations.Option) (*operations.UpdateAuthenticationSettingsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "update-authentication-settings",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -278,6 +272,13 @@ func (s *AuthSettings) UpdateAuthenticationSettings(ctx context.Context, request
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "update-authentication-settings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -501,13 +502,6 @@ func (s *AuthSettings) UpdateAuthenticationSettings(ctx context.Context, request
 // Retrieves the identity providers available within the organization. This operation provides information about
 // various identity providers for SAML or OIDC authentication integrations.
 func (s *AuthSettings) GetIdentityProviders(ctx context.Context, filter *operations.Filter, opts ...operations.Option) (*operations.GetIdentityProvidersResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-identity-providers",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetIdentityProvidersRequest{
 		Filter: filter,
 	}
@@ -532,6 +526,14 @@ func (s *AuthSettings) GetIdentityProviders(ctx context.Context, filter *operati
 	opURL, err := url.JoinPath(baseURL, "/v3/identity-providers")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-identity-providers",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -751,13 +753,6 @@ func (s *AuthSettings) GetIdentityProviders(ctx context.Context, filter *operati
 // Creates a new identity provider. This operation allows the creation of a new identity provider for
 // authentication purposes.
 func (s *AuthSettings) CreateIdentityProvider(ctx context.Context, request components.CreateIdentityProvider, opts ...operations.Option) (*operations.CreateIdentityProviderResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "create-identity-provider",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -780,6 +775,13 @@ func (s *AuthSettings) CreateIdentityProvider(ctx context.Context, request compo
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "create-identity-provider",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1022,13 +1024,6 @@ func (s *AuthSettings) CreateIdentityProvider(ctx context.Context, request compo
 // Retrieves the configuration of a single identity provider. This operation returns information about a
 // specific identity provider's settings and authentication integration details.
 func (s *AuthSettings) GetIdentityProvider(ctx context.Context, id string, opts ...operations.Option) (*operations.GetIdentityProviderResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-identity-provider",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetIdentityProviderRequest{
 		ID: id,
 	}
@@ -1053,6 +1048,14 @@ func (s *AuthSettings) GetIdentityProvider(ctx context.Context, id string, opts 
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/identity-providers/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-identity-provider",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1310,13 +1313,6 @@ func (s *AuthSettings) GetIdentityProvider(ctx context.Context, id string, opts 
 // Updates the configuration of an existing identity provider. This operation allows modifications to be made
 // to an existing identity provider's configuration.
 func (s *AuthSettings) UpdateIdentityProvider(ctx context.Context, id string, updateIdentityProvider components.UpdateIdentityProvider, opts ...operations.Option) (*operations.UpdateIdentityProviderResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "update-identity-provider",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdateIdentityProviderRequest{
 		ID:                     id,
 		UpdateIdentityProvider: updateIdentityProvider,
@@ -1344,6 +1340,13 @@ func (s *AuthSettings) UpdateIdentityProvider(ctx context.Context, id string, up
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "update-identity-provider",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "UpdateIdentityProvider", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1607,13 +1610,6 @@ func (s *AuthSettings) UpdateIdentityProvider(ctx context.Context, id string, up
 // Deletes an existing identity provider configuration. This operation removes a specific identity provider
 // from the organization.
 func (s *AuthSettings) DeleteIdentityProvider(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteIdentityProviderResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "delete-identity-provider",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteIdentityProviderRequest{
 		ID: id,
 	}
@@ -1638,6 +1634,14 @@ func (s *AuthSettings) DeleteIdentityProvider(ctx context.Context, id string, op
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/identity-providers/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "delete-identity-provider",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1874,13 +1878,6 @@ func (s *AuthSettings) DeleteIdentityProvider(ctx context.Context, id string, op
 // GetIdpConfiguration - Fetch IdP Configuration
 // Fetch the IdP configuration.
 func (s *AuthSettings) GetIdpConfiguration(ctx context.Context, opts ...operations.Option) (*operations.GetIdpConfigurationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-idp-configuration",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1901,6 +1898,14 @@ func (s *AuthSettings) GetIdpConfiguration(ctx context.Context, opts ...operatio
 	opURL, err := url.JoinPath(baseURL, "/v3/identity-provider")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-idp-configuration",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2157,13 +2162,6 @@ func (s *AuthSettings) GetIdpConfiguration(ctx context.Context, opts ...operatio
 // UpdateIdpConfiguration - Update IdP Configuration
 // Update the IdP configuration.
 func (s *AuthSettings) UpdateIdpConfiguration(ctx context.Context, request *components.UpdateIDPConfiguration, opts ...operations.Option) (*operations.UpdateIdpConfigurationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "update-idp-configuration",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2186,6 +2184,13 @@ func (s *AuthSettings) UpdateIdpConfiguration(ctx context.Context, request *comp
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "update-idp-configuration",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2408,13 +2413,6 @@ func (s *AuthSettings) UpdateIdpConfiguration(ctx context.Context, request *comp
 // UpdateIdpTeamMappings - Update Team Mappings
 // Updates the IdP group to Konnect team mapping.
 func (s *AuthSettings) UpdateIdpTeamMappings(ctx context.Context, request *components.UpdateTeamMappings, opts ...operations.Option) (*operations.UpdateIdpTeamMappingsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "update-idp-team-mappings",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2437,6 +2435,13 @@ func (s *AuthSettings) UpdateIdpTeamMappings(ctx context.Context, request *compo
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "update-idp-team-mappings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2699,13 +2704,6 @@ func (s *AuthSettings) UpdateIdpTeamMappings(ctx context.Context, request *compo
 // GetIdpTeamMappings - Fetch Team Mapping
 // Fetch the IdP group to Konnect team mapping.
 func (s *AuthSettings) GetIdpTeamMappings(ctx context.Context, pageSize *int64, pageNumber *int64, opts ...operations.Option) (*operations.GetIdpTeamMappingsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-idp-team-mappings",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetIdpTeamMappingsRequest{
 		PageSize:   pageSize,
 		PageNumber: pageNumber,
@@ -2731,6 +2729,14 @@ func (s *AuthSettings) GetIdpTeamMappings(ctx context.Context, pageSize *int64, 
 	opURL, err := url.JoinPath(baseURL, "/v3/identity-provider/team-mappings")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-idp-team-mappings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2992,13 +2998,6 @@ func (s *AuthSettings) GetIdpTeamMappings(ctx context.Context, pageSize *int64, 
 // Retrieves the mappings between Konnect Teams and Identity Provider Groups.
 // Returns a 400 error if an Identity Provider has not yet been configured.
 func (s *AuthSettings) GetTeamGroupMappings(ctx context.Context, pageSize *int64, pageNumber *int64, opts ...operations.Option) (*operations.GetTeamGroupMappingsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-team-group-mappings",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetTeamGroupMappingsRequest{
 		PageSize:   pageSize,
 		PageNumber: pageNumber,
@@ -3024,6 +3023,14 @@ func (s *AuthSettings) GetTeamGroupMappings(ctx context.Context, pageSize *int64
 	opURL, err := url.JoinPath(baseURL, "/v3/identity-provider/team-group-mappings")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-team-group-mappings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -3268,13 +3275,6 @@ func (s *AuthSettings) GetTeamGroupMappings(ctx context.Context, pageSize *int64
 // Returns a 400 error if an Identity Provider has not yet been configured, or if a team ID in
 // the request body is not found or is not a UUID.
 func (s *AuthSettings) PatchTeamGroupMappings(ctx context.Context, request *components.PatchTeamGroupMappings, opts ...operations.Option) (*operations.PatchTeamGroupMappingsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "patch-team-group-mappings",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -3297,6 +3297,13 @@ func (s *AuthSettings) PatchTeamGroupMappings(ctx context.Context, request *comp
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "patch-team-group-mappings",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

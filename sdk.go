@@ -3,17 +3,13 @@
 package sdkkonnectgointernal
 
 import (
-	"bytes"
 	"context"
 	"fmt"
 	"github.com/Kong/sdk-konnect-go-internal/internal/hooks"
 	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
-	"github.com/Kong/sdk-konnect-go-internal/models/operations"
-	"github.com/Kong/sdk-konnect-go-internal/models/sdkerrors"
 	"github.com/Kong/sdk-konnect-go-internal/retry"
 	"net/http"
-	"net/url"
 	"time"
 )
 
@@ -76,11 +72,13 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 
 // SDK - Konnect API - Go Internal SDK: The Konnect platform API
 //
-// https://docs.konghq.com - Documentation for Kong Gateway and its APIs
+// https://developer.konghq.com - Documentation for Kong Gateway and its APIs
 type SDK struct {
 	ControlPlanes                *ControlPlanes
 	ControlPlaneGroups           *ControlPlaneGroups
+	ControlPlaneResourceQuotas   *ControlPlaneResourceQuotas
 	SSOAuth0                     *SSOAuth0
+	Users                        *Users
 	DeviceAuthorizationGrant     *DeviceAuthorizationGrant
 	ImpersonationSettings        *ImpersonationSettings
 	AuthSettings                 *AuthSettings
@@ -88,7 +86,6 @@ type SDK struct {
 	Roles                        *Roles
 	Teams                        *Teams
 	TeamMembership               *TeamMembership
-	Users                        *Users
 	SystemAccounts               *SystemAccounts
 	SystemAccountsAccessTokens   *SystemAccountsAccessTokens
 	ManagedSystemAccountsRoles   *ManagedSystemAccountsRoles
@@ -97,29 +94,50 @@ type SDK struct {
 	Me                           *Me
 	Authentication               *Authentication
 	Aws                          *Aws
+	PersonalAccessTokens         *PersonalAccessTokens
 	CloudGateways                *CloudGateways
-	CustomReports                *CustomReports
-	API                          *API
-	APIDocumentation             *APIDocumentation
-	APISpecification             *APISpecification
-	APIPublication               *APIPublication
-	APIImplementation            *APIImplementation
+	// Operations related to notifications
+	Notifications     *Notifications
+	API               *API
+	APISpecification  *APISpecification
+	APIDocumentation  *APIDocumentation
+	APIPublication    *APIPublication
+	APIImplementation *APIImplementation
+	APIAttributes     *APIAttributes
 	// APIs related to configuration of Konnect Developer Portals.
-	V3Portals             *V3Portals
-	V3PortalCustomDomains *V3PortalCustomDomains
+	Portals *Portals
+	// APIs related to configuration of Konnect Developer Portals custom domains.
+	PortalCustomDomains *PortalCustomDomains
 	// APIs for managing static assets for Konnect Developer Portals.
-	V3PortalAssets      *V3PortalAssets
+	Assets *Assets
+	// APIs related to customization of Konnect Developer Portals.
 	PortalCustomization *PortalCustomization
 	// APIs related to Konnect Developer Portal Custom Pages.
-	V3PortalPages *V3PortalPages
+	Pages *Pages
 	// APIs related to Konnect Developer Portal Custom Snippets.
-	V3PortalSnippets               *V3PortalSnippets
-	PortalApplications             *PortalApplications
-	PortalApplicationRegistrations *PortalApplicationRegistrations
+	Snippets *Snippets
+	// APIs related to Konnect Developer Portal Applications.
+	Applications *Applications
+	// APIs related to Konnect Developer Portal Application Registrations.
+	ApplicationRegistrations *ApplicationRegistrations
+	// APIs related to configuration of Konnect Developer Portal auth settings.
+	PortalAuthSettings *PortalAuthSettings
+	// APIs related to configuration of Konnect Developer Portal developer teams.
+	PortalTeams *PortalTeams
+	// APIs related to Konnect Developer Portal developer team membership.
+	PortalTeamMembership *PortalTeamMembership
+	// APIs related to Konnect Developer Portal developer team roles.
+	PortalTeamRoles *PortalTeamRoles
+	// APIs related to Konnect Developer Portal developers.
+	PortalDevelopers *PortalDevelopers
+	PortalAuditLogs  *PortalAuditLogs
+	// APIs related to Konnect Developer Portal Emails.
+	PortalEmails *PortalEmails
 	// DP Nodes
 	DPNodes *DPNodes
 	// DP Certificates
 	DPCertificates *DPCertificates
+	Nodes          *Nodes
 	// Custom Plugin Schemas
 	CustomPluginSchemas *CustomPluginSchemas
 	// Config Stores
@@ -127,9 +145,10 @@ type SDK struct {
 	// Config Store Secrets
 	ConfigStoreSecrets *ConfigStoreSecrets
 	// Debug Sessions
-	DebugSessions        *DebugSessions
-	ACLs                 *ACLs
-	BasicAuthCredentials *BasicAuthCredentials
+	DebugSessions            *DebugSessions
+	DeclarativeConfiguration *DeclarativeConfiguration
+	ACLs                     *ACLs
+	BasicAuthCredentials     *BasicAuthCredentials
 	// A CA certificate object represents a trusted certificate authority.
 	// These objects are used by Kong Gateway to verify the validity of a client or server certificate.
 	CACertificates *CACertificates
@@ -164,12 +183,15 @@ type SDK struct {
 	APIKeys             *APIKeys
 	MTLSAuthCredentials *MTLSAuthCredentials
 	CustomPlugins       *CustomPlugins
+	DegraphqlRoutes     *DegraphqlRoutes
 	// A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
 	//
 	KeySets *KeySets
 	// A key object holds a representation of asymmetric keys in various formats. When Kong Gateway or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
 	//
-	Keys *Keys
+	Keys         *Keys
+	Partials     *Partials
+	PartialLinks *PartialLinks
 	// Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the route.
 	// <br><br>
 	// The combination of routes and services, and the separation of concerns between them, offers a powerful routing mechanism with which it is possible to define fine-grained entrypoints in Kong Gateway leading to different upstream services of your infrastructure.
@@ -299,8 +321,8 @@ func New(opts ...SDKOption) *SDK {
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
 			SDKVersion:        "0.0.1",
-			GenVersion:        "2.506.0",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.506.0 0.0.1 github.com/Kong/sdk-konnect-go-internal",
+			GenVersion:        "2.605.6",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.605.6 0.0.1 github.com/Kong/sdk-konnect-go-internal",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -324,7 +346,11 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.ControlPlaneGroups = newControlPlaneGroups(sdk.sdkConfiguration)
 
+	sdk.ControlPlaneResourceQuotas = newControlPlaneResourceQuotas(sdk.sdkConfiguration)
+
 	sdk.SSOAuth0 = newSSOAuth0(sdk.sdkConfiguration)
+
+	sdk.Users = newUsers(sdk.sdkConfiguration)
 
 	sdk.DeviceAuthorizationGrant = newDeviceAuthorizationGrant(sdk.sdkConfiguration)
 
@@ -339,8 +365,6 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Teams = newTeams(sdk.sdkConfiguration)
 
 	sdk.TeamMembership = newTeamMembership(sdk.sdkConfiguration)
-
-	sdk.Users = newUsers(sdk.sdkConfiguration)
 
 	sdk.SystemAccounts = newSystemAccounts(sdk.sdkConfiguration)
 
@@ -358,39 +382,59 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.Aws = newAws(sdk.sdkConfiguration)
 
+	sdk.PersonalAccessTokens = newPersonalAccessTokens(sdk.sdkConfiguration)
+
 	sdk.CloudGateways = newCloudGateways(sdk.sdkConfiguration)
 
-	sdk.CustomReports = newCustomReports(sdk.sdkConfiguration)
+	sdk.Notifications = newNotifications(sdk.sdkConfiguration)
 
 	sdk.API = newAPI(sdk.sdkConfiguration)
 
-	sdk.APIDocumentation = newAPIDocumentation(sdk.sdkConfiguration)
-
 	sdk.APISpecification = newAPISpecification(sdk.sdkConfiguration)
+
+	sdk.APIDocumentation = newAPIDocumentation(sdk.sdkConfiguration)
 
 	sdk.APIPublication = newAPIPublication(sdk.sdkConfiguration)
 
 	sdk.APIImplementation = newAPIImplementation(sdk.sdkConfiguration)
 
-	sdk.V3Portals = newV3Portals(sdk.sdkConfiguration)
+	sdk.APIAttributes = newAPIAttributes(sdk.sdkConfiguration)
 
-	sdk.V3PortalCustomDomains = newV3PortalCustomDomains(sdk.sdkConfiguration)
+	sdk.Portals = newPortals(sdk.sdkConfiguration)
 
-	sdk.V3PortalAssets = newV3PortalAssets(sdk.sdkConfiguration)
+	sdk.PortalCustomDomains = newPortalCustomDomains(sdk.sdkConfiguration)
+
+	sdk.Assets = newAssets(sdk.sdkConfiguration)
 
 	sdk.PortalCustomization = newPortalCustomization(sdk.sdkConfiguration)
 
-	sdk.V3PortalPages = newV3PortalPages(sdk.sdkConfiguration)
+	sdk.Pages = newPages(sdk.sdkConfiguration)
 
-	sdk.V3PortalSnippets = newV3PortalSnippets(sdk.sdkConfiguration)
+	sdk.Snippets = newSnippets(sdk.sdkConfiguration)
 
-	sdk.PortalApplications = newPortalApplications(sdk.sdkConfiguration)
+	sdk.Applications = newApplications(sdk.sdkConfiguration)
 
-	sdk.PortalApplicationRegistrations = newPortalApplicationRegistrations(sdk.sdkConfiguration)
+	sdk.ApplicationRegistrations = newApplicationRegistrations(sdk.sdkConfiguration)
+
+	sdk.PortalAuthSettings = newPortalAuthSettings(sdk.sdkConfiguration)
+
+	sdk.PortalTeams = newPortalTeams(sdk.sdkConfiguration)
+
+	sdk.PortalTeamMembership = newPortalTeamMembership(sdk.sdkConfiguration)
+
+	sdk.PortalTeamRoles = newPortalTeamRoles(sdk.sdkConfiguration)
+
+	sdk.PortalDevelopers = newPortalDevelopers(sdk.sdkConfiguration)
+
+	sdk.PortalAuditLogs = newPortalAuditLogs(sdk.sdkConfiguration)
+
+	sdk.PortalEmails = newPortalEmails(sdk.sdkConfiguration)
 
 	sdk.DPNodes = newDPNodes(sdk.sdkConfiguration)
 
 	sdk.DPCertificates = newDPCertificates(sdk.sdkConfiguration)
+
+	sdk.Nodes = newNodes(sdk.sdkConfiguration)
 
 	sdk.CustomPluginSchemas = newCustomPluginSchemas(sdk.sdkConfiguration)
 
@@ -399,6 +443,8 @@ func New(opts ...SDKOption) *SDK {
 	sdk.ConfigStoreSecrets = newConfigStoreSecrets(sdk.sdkConfiguration)
 
 	sdk.DebugSessions = newDebugSessions(sdk.sdkConfiguration)
+
+	sdk.DeclarativeConfiguration = newDeclarativeConfiguration(sdk.sdkConfiguration)
 
 	sdk.ACLs = newACLs(sdk.sdkConfiguration)
 
@@ -426,9 +472,15 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.CustomPlugins = newCustomPlugins(sdk.sdkConfiguration)
 
+	sdk.DegraphqlRoutes = newDegraphqlRoutes(sdk.sdkConfiguration)
+
 	sdk.KeySets = newKeySets(sdk.sdkConfiguration)
 
 	sdk.Keys = newKeys(sdk.sdkConfiguration)
+
+	sdk.Partials = newPartials(sdk.sdkConfiguration)
+
+	sdk.PartialLinks = newPartialLinks(sdk.sdkConfiguration)
 
 	sdk.Routes = newRoutes(sdk.sdkConfiguration)
 
@@ -441,232 +493,4 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Vaults = newVaults(sdk.sdkConfiguration)
 
 	return sdk
-}
-
-// GetUsersInternal - Retrieves users matching a provided auth0 subject and email.
-// The response contains user ids and (non-deleted, non-deleting) organization ids for users associated with provided auth0 user subject.
-func (s *SDK) GetUsersInternal(ctx context.Context, aid *string, opts ...operations.Option) (*operations.GetUsersInternalResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-users-internal",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.GetUsersInternalRequest{
-		Aid: aid,
-	}
-
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-		operations.SupportedOptionTimeout,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-
-	baseURL := utils.ReplaceParameters(operations.GetUsersInternalServerList[0], map[string]string{})
-	if o.ServerURL != nil {
-		baseURL = *o.ServerURL
-	}
-
-	opURL, err := url.JoinPath(baseURL, "/v3/internal/users")
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	timeout := o.Timeout
-	if timeout == nil {
-		timeout = s.sdkConfiguration.Timeout
-	}
-
-	if timeout != nil {
-		var cancel context.CancelFunc
-		ctx, cancel = context.WithTimeout(ctx, *timeout)
-		defer cancel()
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
-		return nil, err
-	}
-
-	for k, v := range o.SetHeaders {
-		req.Header.Set(k, v)
-	}
-
-	globalRetryConfig := s.sdkConfiguration.RetryConfig
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		if globalRetryConfig != nil {
-			retryConfig = globalRetryConfig
-		}
-	}
-
-	var httpRes *http.Response
-	if retryConfig != nil {
-		httpRes, err = utils.Retry(ctx, utils.Retries{
-			Config: retryConfig,
-			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
-			},
-		}, func() (*http.Response, error) {
-			if req.Body != nil {
-				copyBody, err := req.GetBody()
-				if err != nil {
-					return nil, err
-				}
-				req.Body = copyBody
-			}
-
-			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
-			if err != nil {
-				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
-					return nil, err
-				}
-
-				return nil, retry.Permanent(err)
-			}
-
-			httpRes, err := s.sdkConfiguration.Client.Do(req)
-			if err != nil || httpRes == nil {
-				if err != nil {
-					err = fmt.Errorf("error sending request: %w", err)
-				} else {
-					err = fmt.Errorf("error sending request: no response")
-				}
-
-				_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
-			}
-			return httpRes, err
-		})
-
-		if err != nil {
-			return nil, err
-		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
-			if err != nil {
-				return nil, err
-			}
-		}
-	} else {
-		req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
-		if err != nil {
-			return nil, err
-		}
-
-		httpRes, err = s.sdkConfiguration.Client.Do(req)
-		if err != nil || httpRes == nil {
-			if err != nil {
-				err = fmt.Errorf("error sending request: %w", err)
-			} else {
-				err = fmt.Errorf("error sending request: no response")
-			}
-
-			_, err = s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
-			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "4XX", "5XX"}, httpRes.StatusCode) {
-			_httpRes, err := s.sdkConfiguration.Hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
-			if err != nil {
-				return nil, err
-			} else if _httpRes != nil {
-				httpRes = _httpRes
-			}
-		} else {
-			httpRes, err = s.sdkConfiguration.Hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
-			if err != nil {
-				return nil, err
-			}
-		}
-	}
-
-	res := &operations.GetUsersInternalResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: httpRes.Header.Get("Content-Type"),
-		RawResponse: httpRes,
-	}
-
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out components.InternalUsers
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.InternalUsers = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.BadRequestError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		rawBody, err := utils.ConsumeRawBody(httpRes)
-		if err != nil {
-			return nil, err
-		}
-		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := utils.ConsumeRawBody(httpRes)
-		if err != nil {
-			return nil, err
-		}
-		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	default:
-		rawBody, err := utils.ConsumeRawBody(httpRes)
-		if err != nil {
-			return nil, err
-		}
-		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
-	}
-
-	return res, nil
-
 }

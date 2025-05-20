@@ -13,6 +13,9 @@
 
 ## ListCustomPlugin
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 List all CustomPlugins
 
 ### Example Usage
@@ -30,7 +33,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -71,6 +74,9 @@ func main() {
 
 ## CreateCustomPlugin
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Create a new CustomPlugin
 
 ### Example Usage
@@ -87,14 +93,14 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
-    res, err := s.CustomPlugins.CreateCustomPlugin(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.CustomPluginInput{
+    res, err := s.CustomPlugins.CreateCustomPlugin(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.CustomPlugin{
         Handler: "return { VERSION = '1.0,0', PRIORITY = 500, access = function(self, config) kong.service.request.set_header(config.name, config.value) end }",
         ID: sdkkonnectgointernal.String("868346aa-1105-4b77-8346-aa1105fb77c4"),
         Name: "set-header",
@@ -115,7 +121,7 @@ func main() {
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | The context to use for the request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `controlPlaneID`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | *string*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | The UUID of your control plane. This variable is available in the Konnect manager.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `customPlugin`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [components.CustomPluginInput](../../models/components/customplugininput.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Description of the new CustomPlugin for creation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | {<br/>"handler": "return { VERSION = '1.0,0', PRIORITY = 500, access = function(self, config) kong.service.request.set_header(config.name, config.value) end }",<br/>"id": "868346aa-1105-4b77-8346-aa1105fb77c4",<br/>"name": "set-header",<br/>"schema": "return { name = 'set-header', fields = { { protocols = require('kong.db.schema.typedefs').protocols_http }, { config = { type = 'record', fields = { { name = { description = 'The name of the header to set.', type = 'string', required = true } }, { value = { description = 'The value for the header.', type = 'string', required = true } } } } } } }"<br/>} |
+| `customPlugin`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | [components.CustomPlugin](../../models/components/customplugin.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Description of the new CustomPlugin for creation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | {<br/>"handler": "return { VERSION = '1.0,0', PRIORITY = 500, access = function(self, config) kong.service.request.set_header(config.name, config.value) end }",<br/>"id": "868346aa-1105-4b77-8346-aa1105fb77c4",<br/>"name": "set-header",<br/>"schema": "return { name = 'set-header', fields = { { protocols = require('kong.db.schema.typedefs').protocols_http }, { config = { type = 'record', fields = { { name = { description = 'The name of the header to set.', type = 'string', required = true } }, { value = { description = 'The value for the header.', type = 'string', required = true } } } } } } }"<br/>} |
 | `opts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | The options for this request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
@@ -130,6 +136,9 @@ func main() {
 | sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
 
 ## DeleteCustomPlugin
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Delete a CustomPlugin
 
@@ -147,7 +156,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -186,6 +195,9 @@ func main() {
 
 ## GetCustomPlugin
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Get a CustomPlugin using ID or name.
 
 ### Example Usage
@@ -202,7 +214,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -241,6 +253,9 @@ func main() {
 
 ## UpsertCustomPlugin
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Create or Update CustomPlugin using ID or name.
 
 ### Example Usage
@@ -258,7 +273,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -268,7 +283,7 @@ func main() {
     res, err := s.CustomPlugins.UpsertCustomPlugin(ctx, operations.UpsertCustomPluginRequest{
         CustomPluginID: "",
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        CustomPlugin: components.CustomPluginInput{
+        CustomPlugin: components.CustomPlugin{
             Handler: "return { VERSION = '1.0,0', PRIORITY = 500, access = function(self, config) kong.service.request.set_header(config.name, config.value) end }",
             ID: sdkkonnectgointernal.String("868346aa-1105-4b77-8346-aa1105fb77c4"),
             Name: "set-header",

@@ -12,7 +12,7 @@ type ReplacePortalAssetFaviconRequest struct {
 	// ID of the portal.
 	PortalID string `pathParam:"style=simple,explode=false,name=portalId"`
 	// Update an image asset for the portal.
-	ReplacePortalImageAssetV3 *components.ReplacePortalImageAssetV3 `request:"mediaType=application/json"`
+	ReplacePortalImageAsset *components.ReplacePortalImageAsset `request:"mediaType=application/json"`
 }
 
 func (o *ReplacePortalAssetFaviconRequest) GetPortalID() string {
@@ -22,11 +22,11 @@ func (o *ReplacePortalAssetFaviconRequest) GetPortalID() string {
 	return o.PortalID
 }
 
-func (o *ReplacePortalAssetFaviconRequest) GetReplacePortalImageAssetV3() *components.ReplacePortalImageAssetV3 {
+func (o *ReplacePortalAssetFaviconRequest) GetReplacePortalImageAsset() *components.ReplacePortalImageAsset {
 	if o == nil {
 		return nil
 	}
-	return o.ReplacePortalImageAssetV3
+	return o.ReplacePortalImageAsset
 }
 
 type ReplacePortalAssetFaviconResponse struct {
@@ -36,12 +36,15 @@ type ReplacePortalAssetFaviconResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Logo of the portal. Can be either png or jpeg
+	// Logo of the portal. Can be either png, jpeg or svg
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
-	TwoHundredImagePngPortalImageAssetV3 io.ReadCloser
-	// Logo of the portal. Can be either png or jpeg
+	TwoHundredImagePngPortalImageAsset io.ReadCloser
+	// Logo of the portal. Can be either png, jpeg or svg
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
-	TwoHundredImageJpegPortalImageAssetV3 io.ReadCloser
+	TwoHundredImageJpegPortalImageAsset io.ReadCloser
+	// Logo of the portal. Can be either png, jpeg or svg
+	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
+	TwoHundredImageSvgPlusXMLPortalImageAsset io.ReadCloser
 }
 
 func (o *ReplacePortalAssetFaviconResponse) GetContentType() string {
@@ -65,16 +68,23 @@ func (o *ReplacePortalAssetFaviconResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ReplacePortalAssetFaviconResponse) GetTwoHundredImagePngPortalImageAssetV3() io.ReadCloser {
+func (o *ReplacePortalAssetFaviconResponse) GetTwoHundredImagePngPortalImageAsset() io.ReadCloser {
 	if o == nil {
 		return nil
 	}
-	return o.TwoHundredImagePngPortalImageAssetV3
+	return o.TwoHundredImagePngPortalImageAsset
 }
 
-func (o *ReplacePortalAssetFaviconResponse) GetTwoHundredImageJpegPortalImageAssetV3() io.ReadCloser {
+func (o *ReplacePortalAssetFaviconResponse) GetTwoHundredImageJpegPortalImageAsset() io.ReadCloser {
 	if o == nil {
 		return nil
 	}
-	return o.TwoHundredImageJpegPortalImageAssetV3
+	return o.TwoHundredImageJpegPortalImageAsset
+}
+
+func (o *ReplacePortalAssetFaviconResponse) GetTwoHundredImageSvgPlusXMLPortalImageAsset() io.ReadCloser {
+	if o == nil {
+		return nil
+	}
+	return o.TwoHundredImageSvgPlusXMLPortalImageAsset
 }

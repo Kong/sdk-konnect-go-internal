@@ -11,7 +11,7 @@ type CreateCustomPluginRequest struct {
 	// The UUID of your control plane. This variable is available in the Konnect manager.
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
 	// Description of the new CustomPlugin for creation
-	CustomPlugin components.CustomPluginInput `request:"mediaType=application/json"`
+	CustomPlugin components.CustomPlugin `request:"mediaType=application/json"`
 }
 
 func (o *CreateCustomPluginRequest) GetControlPlaneID() string {
@@ -21,9 +21,9 @@ func (o *CreateCustomPluginRequest) GetControlPlaneID() string {
 	return o.ControlPlaneID
 }
 
-func (o *CreateCustomPluginRequest) GetCustomPlugin() components.CustomPluginInput {
+func (o *CreateCustomPluginRequest) GetCustomPlugin() components.CustomPlugin {
 	if o == nil {
-		return components.CustomPluginInput{}
+		return components.CustomPlugin{}
 	}
 	return o.CustomPlugin
 }

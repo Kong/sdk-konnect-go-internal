@@ -26,15 +26,11 @@ func newCustomPlugins(sdkConfig sdkConfiguration) *CustomPlugins {
 }
 
 // ListCustomPlugin - List all CustomPlugins
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List all CustomPlugins
 func (s *CustomPlugins) ListCustomPlugin(ctx context.Context, request operations.ListCustomPluginRequest, opts ...operations.Option) (*operations.ListCustomPluginResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "list-custom-plugin",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +52,14 @@ func (s *CustomPlugins) ListCustomPlugin(ctx context.Context, request operations
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/custom-plugins", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "list-custom-plugin",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -251,15 +255,11 @@ func (s *CustomPlugins) ListCustomPlugin(ctx context.Context, request operations
 }
 
 // CreateCustomPlugin - Create a new CustomPlugin
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Create a new CustomPlugin
-func (s *CustomPlugins) CreateCustomPlugin(ctx context.Context, controlPlaneID string, customPlugin components.CustomPluginInput, opts ...operations.Option) (*operations.CreateCustomPluginResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "create-custom-plugin",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
+func (s *CustomPlugins) CreateCustomPlugin(ctx context.Context, controlPlaneID string, customPlugin components.CustomPlugin, opts ...operations.Option) (*operations.CreateCustomPluginResponse, error) {
 	request := operations.CreateCustomPluginRequest{
 		ControlPlaneID: controlPlaneID,
 		CustomPlugin:   customPlugin,
@@ -288,6 +288,13 @@ func (s *CustomPlugins) CreateCustomPlugin(ctx context.Context, controlPlaneID s
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "create-custom-plugin",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CustomPlugin", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -485,15 +492,11 @@ func (s *CustomPlugins) CreateCustomPlugin(ctx context.Context, controlPlaneID s
 }
 
 // DeleteCustomPlugin - Delete a CustomPlugin
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Delete a CustomPlugin
 func (s *CustomPlugins) DeleteCustomPlugin(ctx context.Context, controlPlaneID string, customPluginID string, opts ...operations.Option) (*operations.DeleteCustomPluginResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "delete-custom-plugin",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteCustomPluginRequest{
 		ControlPlaneID: controlPlaneID,
 		CustomPluginID: customPluginID,
@@ -520,6 +523,14 @@ func (s *CustomPlugins) DeleteCustomPlugin(ctx context.Context, controlPlaneID s
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/custom-plugins/{CustomPluginId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "delete-custom-plugin",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -691,15 +702,11 @@ func (s *CustomPlugins) DeleteCustomPlugin(ctx context.Context, controlPlaneID s
 }
 
 // GetCustomPlugin - Fetch a CustomPlugin
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Get a CustomPlugin using ID or name.
 func (s *CustomPlugins) GetCustomPlugin(ctx context.Context, customPluginID string, controlPlaneID string, opts ...operations.Option) (*operations.GetCustomPluginResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-custom-plugin",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetCustomPluginRequest{
 		CustomPluginID: customPluginID,
 		ControlPlaneID: controlPlaneID,
@@ -726,6 +733,14 @@ func (s *CustomPlugins) GetCustomPlugin(ctx context.Context, customPluginID stri
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/custom-plugins/{CustomPluginId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-custom-plugin",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -919,15 +934,11 @@ func (s *CustomPlugins) GetCustomPlugin(ctx context.Context, customPluginID stri
 }
 
 // UpsertCustomPlugin - Upsert a CustomPlugin
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Create or Update CustomPlugin using ID or name.
 func (s *CustomPlugins) UpsertCustomPlugin(ctx context.Context, request operations.UpsertCustomPluginRequest, opts ...operations.Option) (*operations.UpsertCustomPluginResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "upsert-custom-plugin",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -951,6 +962,13 @@ func (s *CustomPlugins) UpsertCustomPlugin(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "upsert-custom-plugin",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CustomPlugin", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

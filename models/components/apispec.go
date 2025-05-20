@@ -2,42 +2,8 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// APISpecType - The type of specification being stored. This allows us to render the specification correctly.
-//
-// If this field is not set, it will be autodetected from `content`
-type APISpecType string
-
-const (
-	APISpecTypeOas3     APISpecType = "oas3"
-	APISpecTypeAsyncapi APISpecType = "asyncapi"
-)
-
-func (e APISpecType) ToPointer() *APISpecType {
-	return &e
-}
-func (e *APISpecType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "oas3":
-		fallthrough
-	case "asyncapi":
-		*e = APISpecType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for APISpecType: %v", v)
-	}
-}
-
 type APISpec struct {
-	// The raw content of your API specification.
+	// The raw content of your API specification, in json or yaml format (OpenAPI or AsyncAPI).
 	//
 	Content *string `json:"content,omitempty"`
 	// The type of specification being stored. This allows us to render the specification correctly.

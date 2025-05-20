@@ -20,7 +20,7 @@ type ListPortalsRequest struct {
 	//   - auto_approve_applications
 	//   - auto_approve_developers
 	//   - default_domain
-	//   - custom_domain
+	//   - canonical_domain
 	//   - created_at
 	//   - updated_at
 	//
@@ -65,7 +65,7 @@ type ListPortalsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// A paginated list of portals in the current region of an organization.
-	ListPortalsResponseV3 *components.ListPortalsResponseV3
+	ListPortalsResponse *components.ListPortalsResponse
 }
 
 func (o *ListPortalsResponse) GetContentType() string {
@@ -89,9 +89,9 @@ func (o *ListPortalsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *ListPortalsResponse) GetListPortalsResponseV3() *components.ListPortalsResponseV3 {
+func (o *ListPortalsResponse) GetListPortalsResponse() *components.ListPortalsResponse {
 	if o == nil {
 		return nil
 	}
-	return o.ListPortalsResponseV3
+	return o.ListPortalsResponse
 }

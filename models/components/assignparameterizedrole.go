@@ -2,6 +2,50 @@
 
 package components
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// AssignParameterizedRoleEntityRegion - The region to scope the role assignment to.
+type AssignParameterizedRoleEntityRegion string
+
+const (
+	AssignParameterizedRoleEntityRegionUs       AssignParameterizedRoleEntityRegion = "us"
+	AssignParameterizedRoleEntityRegionEu       AssignParameterizedRoleEntityRegion = "eu"
+	AssignParameterizedRoleEntityRegionAu       AssignParameterizedRoleEntityRegion = "au"
+	AssignParameterizedRoleEntityRegionMe       AssignParameterizedRoleEntityRegion = "me"
+	AssignParameterizedRoleEntityRegionIn       AssignParameterizedRoleEntityRegion = "in"
+	AssignParameterizedRoleEntityRegionWildcard AssignParameterizedRoleEntityRegion = "*"
+)
+
+func (e AssignParameterizedRoleEntityRegion) ToPointer() *AssignParameterizedRoleEntityRegion {
+	return &e
+}
+func (e *AssignParameterizedRoleEntityRegion) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "us":
+		fallthrough
+	case "eu":
+		fallthrough
+	case "au":
+		fallthrough
+	case "me":
+		fallthrough
+	case "in":
+		fallthrough
+	case "*":
+		*e = AssignParameterizedRoleEntityRegion(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AssignParameterizedRoleEntityRegion: %v", v)
+	}
+}
+
 type Parameters struct {
 }
 
@@ -12,9 +56,10 @@ type AssignParameterizedRole struct {
 	// The ID of the entity.
 	EntityID *string `json:"entity_id,omitempty"`
 	// The type of entity.
-	EntityTypeName *string       `json:"entity_type_name,omitempty"`
-	EntityRegion   *EntityRegion `json:"entity_region,omitempty"`
-	Parameters     *Parameters   `json:"parameters,omitempty"`
+	EntityTypeName *string `json:"entity_type_name,omitempty"`
+	// The region to scope the role assignment to.
+	EntityRegion *AssignParameterizedRoleEntityRegion `json:"entity_region,omitempty"`
+	Parameters   *Parameters                          `json:"parameters,omitempty"`
 }
 
 func (o *AssignParameterizedRole) GetRoleName() *string {
@@ -38,7 +83,7 @@ func (o *AssignParameterizedRole) GetEntityTypeName() *string {
 	return o.EntityTypeName
 }
 
-func (o *AssignParameterizedRole) GetEntityRegion() *EntityRegion {
+func (o *AssignParameterizedRole) GetEntityRegion() *AssignParameterizedRoleEntityRegion {
 	if o == nil {
 		return nil
 	}

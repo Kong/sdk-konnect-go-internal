@@ -29,13 +29,6 @@ func newAuthentication(sdkConfig sdkConfiguration) *Authentication {
 // RefreshToken - Refresh Token
 // Issues new tokens. Returns 401 if a) the user is no longer active, b) the token has exceeded its lifetime limit, or c) the token has been revoked.
 func (s *Authentication) RefreshToken(ctx context.Context, opts ...operations.Option) (*operations.RefreshTokenResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "refresh-token",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *Authentication) RefreshToken(ctx context.Context, opts ...operations.Op
 	opURL, err := url.JoinPath(baseURL, "/v3/refresh")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "refresh-token",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -229,13 +230,6 @@ func (s *Authentication) RefreshToken(ctx context.Context, opts ...operations.Op
 // Logout - Log Out
 // Clears the auth cookies.
 func (s *Authentication) Logout(ctx context.Context, opts ...operations.Option) (*operations.LogoutResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "logout",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -256,6 +250,14 @@ func (s *Authentication) Logout(ctx context.Context, opts ...operations.Option) 
 	opURL, err := url.JoinPath(baseURL, "/v3/logout")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "logout",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -428,13 +430,6 @@ func (s *Authentication) Logout(ctx context.Context, opts ...operations.Option) 
 // AuthenticateSso - SSO Callback
 // Callback for authenticating via an organization's IdP
 func (s *Authentication) AuthenticateSso(ctx context.Context, organizationLoginPath string, returnTo *string, opts ...operations.Option) (*operations.AuthenticateSsoResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "authenticate-sso",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.AuthenticateSsoRequest{
 		OrganizationLoginPath: organizationLoginPath,
 		ReturnTo:              returnTo,
@@ -460,6 +455,14 @@ func (s *Authentication) AuthenticateSso(ctx context.Context, organizationLoginP
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/authenticate/{organizationLoginPath}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "authenticate-sso",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

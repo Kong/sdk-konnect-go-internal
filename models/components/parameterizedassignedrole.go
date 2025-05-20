@@ -2,6 +2,50 @@
 
 package components
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// ParameterizedAssignedRoleEntityRegion - Region of the entity.
+type ParameterizedAssignedRoleEntityRegion string
+
+const (
+	ParameterizedAssignedRoleEntityRegionUs       ParameterizedAssignedRoleEntityRegion = "us"
+	ParameterizedAssignedRoleEntityRegionEu       ParameterizedAssignedRoleEntityRegion = "eu"
+	ParameterizedAssignedRoleEntityRegionAu       ParameterizedAssignedRoleEntityRegion = "au"
+	ParameterizedAssignedRoleEntityRegionMe       ParameterizedAssignedRoleEntityRegion = "me"
+	ParameterizedAssignedRoleEntityRegionIn       ParameterizedAssignedRoleEntityRegion = "in"
+	ParameterizedAssignedRoleEntityRegionWildcard ParameterizedAssignedRoleEntityRegion = "*"
+)
+
+func (e ParameterizedAssignedRoleEntityRegion) ToPointer() *ParameterizedAssignedRoleEntityRegion {
+	return &e
+}
+func (e *ParameterizedAssignedRoleEntityRegion) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "us":
+		fallthrough
+	case "eu":
+		fallthrough
+	case "au":
+		fallthrough
+	case "me":
+		fallthrough
+	case "in":
+		fallthrough
+	case "*":
+		*e = ParameterizedAssignedRoleEntityRegion(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ParameterizedAssignedRoleEntityRegion: %v", v)
+	}
+}
+
 // ParameterizedAssignedRole - A parameterized assigned role is a role that has been assigned to a managed system account with additional parameters.
 type ParameterizedAssignedRole struct {
 	// The ID of the role assignment.
@@ -11,8 +55,9 @@ type ParameterizedAssignedRole struct {
 	// A RBAC entity ID.
 	EntityID *string `json:"entity_id,omitempty"`
 	// Name of the entity type the role is being assigned to.
-	EntityTypeName *string       `json:"entity_type_name,omitempty"`
-	EntityRegion   *EntityRegion `json:"entity_region,omitempty"`
+	EntityTypeName *string `json:"entity_type_name,omitempty"`
+	// Region of the entity.
+	EntityRegion *ParameterizedAssignedRoleEntityRegion `json:"entity_region,omitempty"`
 	// Additional parameters for the role assignment.
 	Parameters map[string]any `json:"parameters,omitempty"`
 }
@@ -45,7 +90,7 @@ func (o *ParameterizedAssignedRole) GetEntityTypeName() *string {
 	return o.EntityTypeName
 }
 
-func (o *ParameterizedAssignedRole) GetEntityRegion() *EntityRegion {
+func (o *ParameterizedAssignedRole) GetEntityRegion() *ParameterizedAssignedRoleEntityRegion {
 	if o == nil {
 		return nil
 	}

@@ -34,7 +34,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -91,14 +91,14 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
-    res, err := s.Consumers.CreateConsumer(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.ConsumerInput{
+    res, err := s.Consumers.CreateConsumer(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.Consumer{
         CustomID: sdkkonnectgointernal.String("4200"),
         ID: sdkkonnectgointernal.String("8a388226-80e8-4027-a486-25e4f7db5d21"),
         Tags: []string{
@@ -121,7 +121,7 @@ func main() {
 | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                           | :heavy_check_mark:                                                                                                              | The context to use for the request.                                                                                             |                                                                                                                                 |
 | `controlPlaneID`                                                                                                                | *string*                                                                                                                        | :heavy_check_mark:                                                                                                              | The UUID of your control plane. This variable is available in the Konnect manager.                                              | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                                                                            |
-| `consumer`                                                                                                                      | [components.ConsumerInput](../../models/components/consumerinput.md)                                                            | :heavy_check_mark:                                                                                                              | Description of the new Consumer for creation                                                                                    | {<br/>"custom_id": "4200",<br/>"id": "8a388226-80e8-4027-a486-25e4f7db5d21",<br/>"tags": [<br/>"silver-tier"<br/>],<br/>"username": "bob-the-builder"<br/>} |
+| `consumer`                                                                                                                      | [components.Consumer](../../models/components/consumer.md)                                                                      | :heavy_check_mark:                                                                                                              | Description of the new Consumer for creation                                                                                    | {<br/>"custom_id": "4200",<br/>"id": "8a388226-80e8-4027-a486-25e4f7db5d21",<br/>"tags": [<br/>"silver-tier"<br/>],<br/>"username": "bob-the-builder"<br/>} |
 | `opts`                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                        | :heavy_minus_sign:                                                                                                              | The options for this request.                                                                                                   |                                                                                                                                 |
 
 ### Response
@@ -153,7 +153,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -208,7 +208,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -264,7 +264,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -274,7 +274,7 @@ func main() {
     res, err := s.Consumers.UpsertConsumer(ctx, operations.UpsertConsumerRequest{
         ConsumerID: "c1059869-6fa7-4329-a5f5-5946d14ca2c5",
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Consumer: components.ConsumerInput{
+        Consumer: components.Consumer{
             CustomID: sdkkonnectgointernal.String("4200"),
             ID: sdkkonnectgointernal.String("8a388226-80e8-4027-a486-25e4f7db5d21"),
             Tags: []string{

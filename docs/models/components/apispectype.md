@@ -10,5 +10,6 @@ If this field is not set, it will be autodetected from `content`
 
 | Name                  | Value                 |
 | --------------------- | --------------------- |
+| `APISpecTypeOas2`     | oas2                  |
 | `APISpecTypeOas3`     | oas3                  |
 | `APISpecTypeAsyncapi` | asyncapi              |

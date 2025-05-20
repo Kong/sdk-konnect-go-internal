@@ -3,9 +3,150 @@
 package components
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
 	"time"
 )
+
+type ControlPlaneError string
+
+const (
+	ControlPlaneErrorControlPlaneErrorNoResponse             ControlPlaneError = "control_plane_error_no_response"
+	ControlPlaneErrorControlPlaneErrorInvalidResponse        ControlPlaneError = "control_plane_error_invalid_response"
+	ControlPlaneErrorControlPlaneErrorUnavailable            ControlPlaneError = "control_plane_error_unavailable"
+	ControlPlaneErrorControlPlaneErrorInternalError          ControlPlaneError = "control_plane_error_internal_error"
+	ControlPlaneErrorControlPlaneErrorBadRequest             ControlPlaneError = "control_plane_error_bad_request"
+	ControlPlaneErrorControlPlaneErrorPluginConflict         ControlPlaneError = "control_plane_error_plugin_conflict"
+	ControlPlaneErrorControlPlaneErrorDataConstraintError    ControlPlaneError = "control_plane_error_data_constraint_error"
+	ControlPlaneErrorControlPlaneErrorImplementationNotFound ControlPlaneError = "control_plane_error_implementation_not_found"
+)
+
+func (e ControlPlaneError) ToPointer() *ControlPlaneError {
+	return &e
+}
+func (e *ControlPlaneError) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "control_plane_error_no_response":
+		fallthrough
+	case "control_plane_error_invalid_response":
+		fallthrough
+	case "control_plane_error_unavailable":
+		fallthrough
+	case "control_plane_error_internal_error":
+		fallthrough
+	case "control_plane_error_bad_request":
+		fallthrough
+	case "control_plane_error_plugin_conflict":
+		fallthrough
+	case "control_plane_error_data_constraint_error":
+		fallthrough
+	case "control_plane_error_implementation_not_found":
+		*e = ControlPlaneError(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ControlPlaneError: %v", v)
+	}
+}
+
+type APIResponseSchemaDetails struct {
+	Type                 *string        `json:"type,omitempty"`
+	Message              []string       `json:"message,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+}
+
+func (a APIResponseSchemaDetails) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *APIResponseSchemaDetails) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *APIResponseSchemaDetails) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *APIResponseSchemaDetails) GetMessage() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *APIResponseSchemaDetails) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+type Info struct {
+	Details              []APIResponseSchemaDetails `json:"details,omitempty"`
+	AdditionalProperties map[string]any             `additionalProperties:"true" json:"-"`
+}
+
+func (i Info) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *Info) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Info) GetDetails() []APIResponseSchemaDetails {
+	if o == nil {
+		return nil
+	}
+	return o.Details
+}
+
+func (o *Info) GetAdditionalProperties() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.AdditionalProperties
+}
+
+type AuthStrategySyncError struct {
+	ControlPlaneError *ControlPlaneError `json:"control_plane_error,omitempty"`
+	Message           string             `json:"message"`
+	Info              *Info              `json:"info,omitempty"`
+}
+
+func (o *AuthStrategySyncError) GetControlPlaneError() *ControlPlaneError {
+	if o == nil {
+		return nil
+	}
+	return o.ControlPlaneError
+}
+
+func (o *AuthStrategySyncError) GetMessage() string {
+	if o == nil {
+		return ""
+	}
+	return o.Message
+}
+
+func (o *AuthStrategySyncError) GetInfo() *Info {
+	if o == nil {
+		return nil
+	}
+	return o.Info
+}
 
 type Portals struct {
 	// The portal identifier.
@@ -37,6 +178,7 @@ func (o *Portals) GetDisplayName() string {
 	return o.DisplayName
 }
 
+// APIResponseSchema - API
 type APIResponseSchema struct {
 	// The API identifier.
 	ID string `json:"id"`
@@ -54,6 +196,9 @@ type APIResponseSchema struct {
 	// Defaults to `slugify(name + version)`
 	//
 	Slug *string `json:"slug"`
+	// The list of API specification ids for the API.
+	APISpecIds            []string               `json:"api_spec_ids"`
+	AuthStrategySyncError *AuthStrategySyncError `json:"auth_strategy_sync_error,omitempty"`
 	// The list of portals which this API is published to.
 	Portals []Portals `json:"portals"`
 	// Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types.
@@ -61,13 +206,8 @@ type APIResponseSchema struct {
 	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
 	//
 	Labels map[string]string `json:"labels"`
-	// Public labels store information about an entity that can be used for filtering a list of objects.
-	//
-	// Public labels are intended to store **PUBLIC** metadata.
-	//
-	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
-	//
-	PublicLabels map[string]string `json:"public_labels"`
+	// A set of attributes that describe the API
+	Attributes map[string][]string `json:"attributes,omitempty"`
 	// An ISO-8601 timestamp representation of entity creation date.
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
@@ -127,6 +267,20 @@ func (o *APIResponseSchema) GetSlug() *string {
 	return o.Slug
 }
 
+func (o *APIResponseSchema) GetAPISpecIds() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.APISpecIds
+}
+
+func (o *APIResponseSchema) GetAuthStrategySyncError() *AuthStrategySyncError {
+	if o == nil {
+		return nil
+	}
+	return o.AuthStrategySyncError
+}
+
 func (o *APIResponseSchema) GetPortals() []Portals {
 	if o == nil {
 		return []Portals{}
@@ -141,11 +295,11 @@ func (o *APIResponseSchema) GetLabels() map[string]string {
 	return o.Labels
 }
 
-func (o *APIResponseSchema) GetPublicLabels() map[string]string {
+func (o *APIResponseSchema) GetAttributes() map[string][]string {
 	if o == nil {
-		return map[string]string{}
+		return nil
 	}
-	return o.PublicLabels
+	return o.Attributes
 }
 
 func (o *APIResponseSchema) GetCreatedAt() time.Time {

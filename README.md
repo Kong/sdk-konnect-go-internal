@@ -4,7 +4,7 @@ undefined
 
 Konnect API - Go Internal SDK: The Konnect platform API
 
-For more information about the API: [Documentation for Kong Gateway and its APIs](https://docs.konghq.com)
+For more information about the API: [Documentation for Kong Gateway and its APIs](https://developer.konghq.com)
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -18,7 +18,6 @@ For more information about the API: [Documentation for Kong Gateway and its APIs
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
-  * [Special Types](#special-types)
 
 <!-- End Table of Contents [toc] -->
 
@@ -43,6 +42,7 @@ import (
 	"context"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
@@ -55,11 +55,19 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil)
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.ListControlPlanesResponse != nil {
 		// handle response
 	}
 }
@@ -79,6 +87,8 @@ This SDK supports the following security schemes globally:
 | `PersonalAccessToken`      | http | HTTP Bearer |
 | `SystemAccountAccessToken` | http | HTTP Bearer |
 | `KonnectAccessToken`       | http | HTTP Bearer |
+| `ClientToken`              | http | HTTP Bearer |
+| `ServiceAccessToken`       | http | HTTP Bearer |
 
 You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```go
@@ -88,6 +98,7 @@ import (
 	"context"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
@@ -100,11 +111,19 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil)
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.ListControlPlanesResponse != nil {
 		// handle response
 	}
 }
@@ -135,13 +154,20 @@ func main() {
 * [FetchAPI](docs/sdks/api/README.md#fetchapi) - Fetch API
 * [UpdateAPI](docs/sdks/api/README.md#updateapi) - Update API
 * [DeleteAPI](docs/sdks/api/README.md#deleteapi) - Delete API
+* [ListApisComputed](docs/sdks/api/README.md#listapiscomputed) - List APIs computed
+
+### [APIAttributes](docs/sdks/apiattributes/README.md)
+
+* [ReplaceAPIAttributes](docs/sdks/apiattributes/README.md#replaceapiattributes) - Replace API Attributes
+* [FetchAPIAttributes](docs/sdks/apiattributes/README.md#fetchapiattributes) - Fetch API Attributes
+* [ListAPIAttributes](docs/sdks/apiattributes/README.md#listapiattributes) - List API Attributes
 
 ### [APIDocumentation](docs/sdks/apidocumentation/README.md)
 
 * [CreateAPIDocument](docs/sdks/apidocumentation/README.md#createapidocument) - Create API Document
 * [ListAPIDocuments](docs/sdks/apidocumentation/README.md#listapidocuments) - List API Documents
 * [FetchAPIDocument](docs/sdks/apidocumentation/README.md#fetchapidocument) - Fetch API Document
-* [UpdateAPIDocument](docs/sdks/apidocumentation/README.md#updateapidocument) - Update an API Document
+* [UpdateAPIDocument](docs/sdks/apidocumentation/README.md#updateapidocument) - Update API Document
 * [DeleteAPIDocument](docs/sdks/apidocumentation/README.md#deleteapidocument) - Delete API Documentation
 * [MoveAPIDocument](docs/sdks/apidocumentation/README.md#moveapidocument) - Move API Documentation
 
@@ -171,11 +197,35 @@ func main() {
 
 ### [APISpecification](docs/sdks/apispecification/README.md)
 
+* [ValidateSpecification](docs/sdks/apispecification/README.md#validatespecification) - Validate API Specification
 * [CreateAPISpec](docs/sdks/apispecification/README.md#createapispec) - Create API Specification
 * [ListAPISpecs](docs/sdks/apispecification/README.md#listapispecs) - List API Specifications
 * [FetchAPISpec](docs/sdks/apispecification/README.md#fetchapispec) - Fetch API Specification
 * [UpdateAPISpec](docs/sdks/apispecification/README.md#updateapispec) - Update API Specification
 * [DeleteAPISpec](docs/sdks/apispecification/README.md#deleteapispec) - Delete API Specification
+
+### [ApplicationRegistrations](docs/sdks/applicationregistrations/README.md)
+
+* [ListRegistrations](docs/sdks/applicationregistrations/README.md#listregistrations) - List Registrations by Portal
+* [ListRegistrationsByApplication](docs/sdks/applicationregistrations/README.md#listregistrationsbyapplication) - List Registrations by Application
+* [GetApplicationRegistration](docs/sdks/applicationregistrations/README.md#getapplicationregistration) - Fetch Registration
+* [UpdateApplicationRegistration](docs/sdks/applicationregistrations/README.md#updateapplicationregistration) - Update Registration
+* [DeleteApplicationRegistration](docs/sdks/applicationregistrations/README.md#deleteapplicationregistration) - Delete Registration
+
+### [Applications](docs/sdks/applications/README.md)
+
+* [ListApplications](docs/sdks/applications/README.md#listapplications) - List Applications
+* [GetApplication](docs/sdks/applications/README.md#getapplication) - Fetch Application by Portal
+* [DeleteApplication](docs/sdks/applications/README.md#deleteapplication) - Delete Application by Portal
+* [ListDevelopersByApplication](docs/sdks/applications/README.md#listdevelopersbyapplication) - List Developers by Application
+* [GetApplicationUnscoped](docs/sdks/applications/README.md#getapplicationunscoped) - Fetch Application
+
+### [Assets](docs/sdks/assets/README.md)
+
+* [GetPortalAssetLogo](docs/sdks/assets/README.md#getportalassetlogo) - Get Logo
+* [ReplacePortalAssetLogo](docs/sdks/assets/README.md#replaceportalassetlogo) - Replace Logo
+* [GetPortalAssetFavicon](docs/sdks/assets/README.md#getportalassetfavicon) - Get Favicon
+* [ReplacePortalAssetFavicon](docs/sdks/assets/README.md#replaceportalassetfavicon) - Replace Favicon
 
 ### [Authentication](docs/sdks/authentication/README.md)
 
@@ -244,6 +294,11 @@ func main() {
 * [CreateTransitGateway](docs/sdks/cloudgateways/README.md#createtransitgateway) - Create Transit Gateway
 * [GetTransitGateway](docs/sdks/cloudgateways/README.md#gettransitgateway) - Get Transit Gateway
 * [DeleteTransitGateway](docs/sdks/cloudgateways/README.md#deletetransitgateway) - Delete Transit Gateway
+* [ListPrivateDNS](docs/sdks/cloudgateways/README.md#listprivatedns) - List Private DNS
+* [CreatePrivateDNS](docs/sdks/cloudgateways/README.md#createprivatedns) - Create Private DNS
+* [GetPrivateDNS](docs/sdks/cloudgateways/README.md#getprivatedns) - Get Private DNS
+* [UpdatePrivateDNS](docs/sdks/cloudgateways/README.md#updateprivatedns) - Update Private DNS
+* [DeletePrivateDNS](docs/sdks/cloudgateways/README.md#deleteprivatedns) - Delete Private DNS
 * [ListNetworkConfigurations](docs/sdks/cloudgateways/README.md#listnetworkconfigurations) - Returns a paginated collection of configurations that reference a network.
 
 * [ListProviderAccounts](docs/sdks/cloudgateways/README.md#listprovideraccounts) - List Provider Accounts
@@ -315,6 +370,15 @@ func main() {
 * [GetControlPlanesIDGroupMemberStatus](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupmemberstatus) - Control Plane Group Member Status
 * [GetControlPlanesIDGroupStatus](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupstatus) - Get Control Plane Group Status
 
+### [ControlPlaneResourceQuotas](docs/sdks/controlplaneresourcequotas/README.md)
+
+* [ListControlPlaneDefaultResourceQuotas](docs/sdks/controlplaneresourcequotas/README.md#listcontrolplanedefaultresourcequotas) - List default resource quotas with organisational override
+* [ListControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#listcontrolplaneresourcequota) - List all control plane resource quota overrides
+* [CreateControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#createcontrolplaneresourcequota) - Create a control plane resource quota
+* [GetControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#getcontrolplaneresourcequota) - Get a control plane resource quota value corresponding to the ID
+* [UpdateControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#updatecontrolplaneresourcequota) - Update the control plane resource quota for the corresponding ID
+* [DeleteControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#deletecontrolplaneresourcequota) - Delete the control plane resource quota
+
 ### [ControlPlanes](docs/sdks/controlplanes/README.md)
 
 * [ListControlPlanes](docs/sdks/controlplanes/README.md#listcontrolplanes) - List Control Planes
@@ -339,15 +403,6 @@ func main() {
 * [DeletePluginSchemas](docs/sdks/custompluginschemas/README.md#deletepluginschemas) - Delete custom plugin schema
 * [UpdatePluginSchemas](docs/sdks/custompluginschemas/README.md#updatepluginschemas) - Create or update a custom plugin schema
 
-### [CustomReports](docs/sdks/customreports/README.md)
-
-* [GetReports](docs/sdks/customreports/README.md#getreports) - List Custom Reports
-* [CreateReport](docs/sdks/customreports/README.md#createreport) - New Custom Report
-* [GetReport](docs/sdks/customreports/README.md#getreport) - Fetch Custom Report
-* [UpdateReport](docs/sdks/customreports/README.md#updatereport) - Update Report
-* [DeleteReport](docs/sdks/customreports/README.md#deletereport) - Delete Custom Report
-* [ExportCsv](docs/sdks/customreports/README.md#exportcsv) - Export as CSV
-
 ### [DebugSessions](docs/sdks/debugsessions/README.md)
 
 * [ListDebugSessions](docs/sdks/debugsessions/README.md#listdebugsessions) - List all debug sessions for a control plane
@@ -356,6 +411,25 @@ func main() {
 * [DeleteDebugSession](docs/sdks/debugsessions/README.md#deletedebugsession) - Delete a Debug Session
 * [StopDebugSession](docs/sdks/debugsessions/README.md#stopdebugsession) - Stops an active Debug Session
 * [GetDebugSessionsData](docs/sdks/debugsessions/README.md#getdebugsessionsdata) - Gets data for a debug session (internal only)
+
+### [DeclarativeConfiguration](docs/sdks/declarativeconfiguration/README.md)
+
+* [UpsertDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#upsertdeclarativeconfig) - Create or Update the declarative config
+* [GetDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#getdeclarativeconfig) - Get the declarative configuration
+* [DeleteDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#deletedeclarativeconfig) - Delete the declarative config
+* [GetNativeEventProxyDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#getnativeeventproxydeclarativeconfig) - Get the native event proxy declarative configuration
+* [GetHTTPGatewayDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#gethttpgatewaydeclarativeconfig) - Get the http gateway declarative configuration
+* [GetHoudiniEventGatewayDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#gethoudinieventgatewaydeclarativeconfig) - Get the http gateway declarative configuration for the event gateway.
+
+### [DegraphqlRoutes](docs/sdks/degraphqlroutes/README.md)
+
+* [ListDegraphqlRoute](docs/sdks/degraphqlroutes/README.md#listdegraphqlroute) - List all Degraphql_routes
+* [GetDegraphqlRoute](docs/sdks/degraphqlroutes/README.md#getdegraphqlroute) - Fetch a Degraphql_route
+* [ListDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#listdegraphqlroutewithservice) - List all Degraphql_routes associated with a Service
+* [CreateDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#createdegraphqlroutewithservice) - Create a new Degraphql_route associated with a Service
+* [DeleteDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#deletedegraphqlroutewithservice) - Delete a a Degraphql_route associated with a Service
+* [GetDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#getdegraphqlroutewithservice) - Fetch a Degraphql_route associated with a Service
+* [UpsertDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#upsertdegraphqlroutewithservice) - Upsert a Degraphql_route associated with a Service
 
 ### [DeviceAuthorizationGrant](docs/sdks/deviceauthorizationgrant/README.md)
 
@@ -454,6 +528,54 @@ func main() {
 * [ListMtlsAuth](docs/sdks/mtlsauthcredentials/README.md#listmtlsauth) - List all MTLS-auth credentials
 * [GetMtlsAuth](docs/sdks/mtlsauthcredentials/README.md#getmtlsauth) - Fetch a MTLS-auth credential
 
+### [Nodes](docs/sdks/nodes/README.md)
+
+* [UpsertNode](docs/sdks/nodes/README.md#upsertnode) - Create or update a node
+
+### [Notifications](docs/sdks/notifications/README.md)
+
+* [ListNotifications](docs/sdks/notifications/README.md#listnotifications) - List available notifications.
+* [GetNotificationDetails](docs/sdks/notifications/README.md#getnotificationdetails) - Get notification details.
+* [UpdateNotification](docs/sdks/notifications/README.md#updatenotification) - Update notification.
+* [DeleteNotification](docs/sdks/notifications/README.md#deletenotification) - Delete notification.
+* [BulkNotifications](docs/sdks/notifications/README.md#bulknotifications) - Mark a list of notifications to a status.
+* [ListUserConfigurations](docs/sdks/notifications/README.md#listuserconfigurations) - List available user configurations.
+* [ListEventSubscriptions](docs/sdks/notifications/README.md#listeventsubscriptions) - List event subscriptions.
+* [CreateEventSubscription](docs/sdks/notifications/README.md#createeventsubscription) - Create a new subscription for an event.
+* [GetEventSubscription](docs/sdks/notifications/README.md#geteventsubscription) - Get subscription for an event.
+* [UpdateEventSubscription](docs/sdks/notifications/README.md#updateeventsubscription) - Update subscription for an event.
+* [DeleteEventSubscription](docs/sdks/notifications/README.md#deleteeventsubscription) - Delete subscription associated with event.
+
+### [Pages](docs/sdks/pages/README.md)
+
+* [ListPortalPages](docs/sdks/pages/README.md#listportalpages) - List Pages
+* [CreatePortalPage](docs/sdks/pages/README.md#createportalpage) - Create Page
+* [GetPortalPage](docs/sdks/pages/README.md#getportalpage) - Fetch Page
+* [UpdatePortalPage](docs/sdks/pages/README.md#updateportalpage) - Update Page
+* [DeletePortalPage](docs/sdks/pages/README.md#deleteportalpage) - Delete Page
+* [MovePortalPages](docs/sdks/pages/README.md#moveportalpages) - Move Page
+* [CreateDefaultContent](docs/sdks/pages/README.md#createdefaultcontent) - Creates Default Pages
+
+### [PartialLinks](docs/sdks/partiallinks/README.md)
+
+* [ListPartialLink](docs/sdks/partiallinks/README.md#listpartiallink) - List partial links
+
+### [Partials](docs/sdks/partials/README.md)
+
+* [ListPartial](docs/sdks/partials/README.md#listpartial) - List all Partials
+* [CreatePartial](docs/sdks/partials/README.md#createpartial) - Create a new Partial
+* [DeletePartial](docs/sdks/partials/README.md#deletepartial) - Delete a Partial
+* [GetPartial](docs/sdks/partials/README.md#getpartial) - Fetch a Partial
+* [UpsertPartial](docs/sdks/partials/README.md#upsertpartial) - Upsert a Partial
+
+### [PersonalAccessTokens](docs/sdks/personalaccesstokens/README.md)
+
+* [ListUsersPersonalAccessTokens](docs/sdks/personalaccesstokens/README.md#listuserspersonalaccesstokens) - List a user's personal access tokens for a user.
+* [CreatePersonalAccessToken](docs/sdks/personalaccesstokens/README.md#createpersonalaccesstoken) - Create a new personal access token.
+* [GetPersonalAccessTokenDetails](docs/sdks/personalaccesstokens/README.md#getpersonalaccesstokendetails) - Get Personal Access Token details.
+* [UpdatePersonalAccessTokenDetails](docs/sdks/personalaccesstokens/README.md#updatepersonalaccesstokendetails) - Update personal access token details.
+* [RevokePersonalAccessToken](docs/sdks/personalaccesstokens/README.md#revokepersonalaccesstoken) - Revoke Personal Access Token.
+
 ### [Plugins](docs/sdks/plugins/README.md)
 
 * [ListPluginWithConsumerGroup](docs/sdks/plugins/README.md#listpluginwithconsumergroup) - List all Plugins associated with a Consumer Group
@@ -483,26 +605,96 @@ func main() {
 * [GetPluginWithService](docs/sdks/plugins/README.md#getpluginwithservice) - Fetch a Plugin associated with a Service
 * [UpsertPluginWithService](docs/sdks/plugins/README.md#upsertpluginwithservice) - Upsert a Plugin associated with a Service
 
-### [PortalApplicationRegistrations](docs/sdks/portalapplicationregistrations/README.md)
+### [PortalAuditLogs](docs/sdks/portalauditlogs/README.md)
 
-* [ListRegistrations](docs/sdks/portalapplicationregistrations/README.md#listregistrations) - List Application Registrations by Portal
-* [ListRegistrationsByApplication](docs/sdks/portalapplicationregistrations/README.md#listregistrationsbyapplication) - List Registrations by Application
-* [GetApplicationRegistration](docs/sdks/portalapplicationregistrations/README.md#getapplicationregistration) - Get Application Registration
-* [UpdateApplicationRegistration](docs/sdks/portalapplicationregistrations/README.md#updateapplicationregistration) - Update Application Registration
-* [DeleteApplicationRegistration](docs/sdks/portalapplicationregistrations/README.md#deleteapplicationregistration) - Delete Application Registration
+* [UpdatePortalAuditLogReplayJob](docs/sdks/portalauditlogs/README.md#updateportalauditlogreplayjob) - Update Portal Audit Log Replay Job
+* [GetPortalAuditLogReplayJob](docs/sdks/portalauditlogs/README.md#getportalauditlogreplayjob) - Get Portal Audit Log Replay Job
+* [UpdatePortalAuditLogWebhook](docs/sdks/portalauditlogs/README.md#updateportalauditlogwebhook) - Update Portal Audit Log Webhook
+* [GetPortalAuditLogWebhook](docs/sdks/portalauditlogs/README.md#getportalauditlogwebhook) - Get Portal Audit Log Webhook
+* [GetPortalAuditLogWebhookStatus](docs/sdks/portalauditlogs/README.md#getportalauditlogwebhookstatus) - Get Portal Audit Log Webhook Status
 
-### [PortalApplications](docs/sdks/portalapplications/README.md)
+### [PortalAuthSettings](docs/sdks/portalauthsettings/README.md)
 
-* [ListApplications](docs/sdks/portalapplications/README.md#listapplications) - List Applications
-* [GetApplication](docs/sdks/portalapplications/README.md#getapplication) - Get Application by Portal
-* [DeleteApplication](docs/sdks/portalapplications/README.md#deleteapplication) - Delete Application by Portal
-* [GetApplicationUnscoped](docs/sdks/portalapplications/README.md#getapplicationunscoped) - Get Application
+* [GetPortalAuthenticationSettings](docs/sdks/portalauthsettings/README.md#getportalauthenticationsettings) - Get Auth Settings
+* [UpdatePortalAuthenticationSettings](docs/sdks/portalauthsettings/README.md#updateportalauthenticationsettings) - Update Auth Settings
+* [ListPortalTeamGroupMappings](docs/sdks/portalauthsettings/README.md#listportalteamgroupmappings) - List Team Group Mappings
+* [UpdatePortalTeamGroupMappings](docs/sdks/portalauthsettings/README.md#updateportalteamgroupmappings) - Update Team Group Mappings
+* [GetPortalIdentityProviders](docs/sdks/portalauthsettings/README.md#getportalidentityproviders) - Retrieve Identity Providers
+* [CreatePortalIdentityProvider](docs/sdks/portalauthsettings/README.md#createportalidentityprovider) - Create Identity Provider
+* [GetPortalIdentityProvider](docs/sdks/portalauthsettings/README.md#getportalidentityprovider) - Get Identity Provider
+* [UpdatePortalIdentityProvider](docs/sdks/portalauthsettings/README.md#updateportalidentityprovider) - Update Identity Provider
+* [DeletePortalIdentityProvider](docs/sdks/portalauthsettings/README.md#deleteportalidentityprovider) - Delete Identity Provider
+
+### [PortalCustomDomains](docs/sdks/portalcustomdomains/README.md)
+
+* [GetPortalCustomDomain](docs/sdks/portalcustomdomains/README.md#getportalcustomdomain) - Get Custom Domain
+* [CreatePortalCustomDomain](docs/sdks/portalcustomdomains/README.md#createportalcustomdomain) - Create Custom Domain
+* [UpdatePortalCustomDomain](docs/sdks/portalcustomdomains/README.md#updateportalcustomdomain) - Enable or Disable Domain
+* [DeletePortalCustomDomain](docs/sdks/portalcustomdomains/README.md#deleteportalcustomdomain) - Remove Domain
 
 ### [PortalCustomization](docs/sdks/portalcustomization/README.md)
 
-* [GetPortalCustomizationV3](docs/sdks/portalcustomization/README.md#getportalcustomizationv3) - Get Customization
-* [ReplacePortalCustomizationV3](docs/sdks/portalcustomization/README.md#replaceportalcustomizationv3) - Replace Customization
-* [UpdatePortalCustomizationV3](docs/sdks/portalcustomization/README.md#updateportalcustomizationv3) - Update Portal Customization
+* [GetPortalCustomization](docs/sdks/portalcustomization/README.md#getportalcustomization) - Get Customization
+* [ReplacePortalCustomization](docs/sdks/portalcustomization/README.md#replaceportalcustomization) - Replace Customization
+* [UpdatePortalCustomization](docs/sdks/portalcustomization/README.md#updateportalcustomization) - Update Customization
+
+### [PortalDevelopers](docs/sdks/portaldevelopers/README.md)
+
+* [ListPortalDevelopers](docs/sdks/portaldevelopers/README.md#listportaldevelopers) - List Developers
+* [GetDeveloper](docs/sdks/portaldevelopers/README.md#getdeveloper) - Fetch Developer
+* [UpdateDeveloper](docs/sdks/portaldevelopers/README.md#updatedeveloper) - Update Developer
+* [DeleteDeveloper](docs/sdks/portaldevelopers/README.md#deletedeveloper) - Delete Developer
+
+### [PortalEmails](docs/sdks/portalemails/README.md)
+
+* [ListEmailDomains](docs/sdks/portalemails/README.md#listemaildomains) - List email domains
+* [CreateEmailDomain](docs/sdks/portalemails/README.md#createemaildomain) - Create an email domain
+* [GetEmailDomain](docs/sdks/portalemails/README.md#getemaildomain) - Get an email domain
+* [DeleteEmailDomain](docs/sdks/portalemails/README.md#deleteemaildomain) - Delete an email domain
+* [~~GetEmailDelivery~~](docs/sdks/portalemails/README.md#getemaildelivery) - Retrieve the email delivery for the portal :warning: **Deprecated**
+* [~~UpdateEmailDelivery~~](docs/sdks/portalemails/README.md#updateemaildelivery) - Setup the email delivery for a portal :warning: **Deprecated**
+* [~~DeleteEmailDelivery~~](docs/sdks/portalemails/README.md#deleteemaildelivery) - Delete email delivery :warning: **Deprecated**
+* [GetEmailConfig](docs/sdks/portalemails/README.md#getemailconfig) - Retrieve the email config for the portal
+* [UpdatePortalEmailConfig](docs/sdks/portalemails/README.md#updateportalemailconfig) - Setup the email config for a portal
+* [DeletePortalEmailConfig](docs/sdks/portalemails/README.md#deleteportalemailconfig) - Delete portal email config
+* [ListDefaultEmailTemplates](docs/sdks/portalemails/README.md#listdefaultemailtemplates) - List default email templates
+* [ListEmailTemplateVariables](docs/sdks/portalemails/README.md#listemailtemplatevariables) - List email template variables
+* [GetDefaultEmailTemplate](docs/sdks/portalemails/README.md#getdefaultemailtemplate) - Get default email template
+* [ListPortalCustomEmailTemplates](docs/sdks/portalemails/README.md#listportalcustomemailtemplates) - List custom email templates for a portal
+* [GetPortalCustomEmailTemplate](docs/sdks/portalemails/README.md#getportalcustomemailtemplate) - Get custom email template used in a portal
+* [UpdatePortalCustomEmailTemplate](docs/sdks/portalemails/README.md#updateportalcustomemailtemplate) - Update custom email template for a portal
+* [DeletePortalCustomEmailTemplate](docs/sdks/portalemails/README.md#deleteportalcustomemailtemplate) - Delete custom email template for a portal. This will revert to using the default template
+* [PostPortalCustomEmailTestSend](docs/sdks/portalemails/README.md#postportalcustomemailtestsend) - Send a test email based on the portal's email template
+
+### [Portals](docs/sdks/portals/README.md)
+
+* [ListPortals](docs/sdks/portals/README.md#listportals) - List Portals
+* [CreatePortal](docs/sdks/portals/README.md#createportal) - Create Portal
+* [GetPortal](docs/sdks/portals/README.md#getportal) - Fetch Portal
+* [UpdatePortal](docs/sdks/portals/README.md#updateportal) - Update Portal
+* [DeletePortal](docs/sdks/portals/README.md#deleteportal) - Delete Portal
+
+### [PortalTeamMembership](docs/sdks/portalteammembership/README.md)
+
+* [ListPortalTeamDevelopers](docs/sdks/portalteammembership/README.md#listportalteamdevelopers) - List Team Developers
+* [AddDeveloperToPortalTeam](docs/sdks/portalteammembership/README.md#adddevelopertoportalteam) - Add Developer to Team
+* [RemoveDeveloperFromPortalTeam](docs/sdks/portalteammembership/README.md#removedeveloperfromportalteam) - Remove Developer from Team
+* [ListPortalDeveloperTeams](docs/sdks/portalteammembership/README.md#listportaldeveloperteams) - List Developer Teams
+
+### [PortalTeamRoles](docs/sdks/portalteamroles/README.md)
+
+* [ListPortalTeamRoles](docs/sdks/portalteamroles/README.md#listportalteamroles) - List Team Roles
+* [AssignRoleToPortalTeams](docs/sdks/portalteamroles/README.md#assignroletoportalteams) - Assign Role
+* [RemoveRoleFromPortalTeam](docs/sdks/portalteamroles/README.md#removerolefromportalteam) - Remove Role
+* [ListPortalRoles](docs/sdks/portalteamroles/README.md#listportalroles) - List Portal Roles
+
+### [PortalTeams](docs/sdks/portalteams/README.md)
+
+* [ListPortalTeams](docs/sdks/portalteams/README.md#listportalteams) - List Teams
+* [CreatePortalTeam](docs/sdks/portalteams/README.md#createportalteam) - Create Team
+* [GetPortalTeam](docs/sdks/portalteams/README.md#getportalteam) - Get Team
+* [UpdatePortalTeam](docs/sdks/portalteams/README.md#updateportalteam) - Update Team
+* [DeletePortalTeam](docs/sdks/portalteams/README.md#deleteportalteam) - Delete Team
 
 ### [Roles](docs/sdks/roles/README.md)
 
@@ -527,9 +719,6 @@ func main() {
 * [GetRouteWithService](docs/sdks/routes/README.md#getroutewithservice) - Fetch a Route associated with a Service
 * [UpsertRouteWithService](docs/sdks/routes/README.md#upsertroutewithservice) - Upsert a Route associated with a Service
 
-### [SDK](docs/sdks/sdk/README.md)
-
-* [GetUsersInternal](docs/sdks/sdk/README.md#getusersinternal) - Retrieves users matching a provided auth0 subject and email.
 
 ### [Services](docs/sdks/services/README.md)
 
@@ -538,6 +727,14 @@ func main() {
 * [DeleteService](docs/sdks/services/README.md#deleteservice) - Delete a Service
 * [GetService](docs/sdks/services/README.md#getservice) - Fetch a Service
 * [UpsertService](docs/sdks/services/README.md#upsertservice) - Upsert a Service
+
+### [Snippets](docs/sdks/snippets/README.md)
+
+* [ListPortalSnippets](docs/sdks/snippets/README.md#listportalsnippets) - List Snippets
+* [CreatePortalSnippet](docs/sdks/snippets/README.md#createportalsnippet) - Create Snippet
+* [GetPortalSnippet](docs/sdks/snippets/README.md#getportalsnippet) - Fetch Snippet
+* [UpdatePortalSnippet](docs/sdks/snippets/README.md#updateportalsnippet) - Update Snippet
+* [DeletePortalSnippet](docs/sdks/snippets/README.md#deleteportalsnippet) - Delete Snippet
 
 ### [SNIs](docs/sdks/snis/README.md)
 
@@ -619,51 +816,11 @@ func main() {
 
 ### [Users](docs/sdks/users/README.md)
 
+* [GetUsersInternal](docs/sdks/users/README.md#getusersinternal) - Retrieves users matching a provided auth0 subject and email.
 * [ListUsers](docs/sdks/users/README.md#listusers) - List Users
 * [GetUser](docs/sdks/users/README.md#getuser) - Fetch User
 * [UpdateUser](docs/sdks/users/README.md#updateuser) - Update User
 * [DeleteUser](docs/sdks/users/README.md#deleteuser) - Delete User
-
-### [V3PortalAssets](docs/sdks/v3portalassets/README.md)
-
-* [GetPortalAssetLogo](docs/sdks/v3portalassets/README.md#getportalassetlogo) - Get Portal Logo
-* [ReplacePortalAssetLogo](docs/sdks/v3portalassets/README.md#replaceportalassetlogo) - Replace Portal Logo
-* [GetPortalAssetFavicon](docs/sdks/v3portalassets/README.md#getportalassetfavicon) - Get Portal Favicon
-* [ReplacePortalAssetFavicon](docs/sdks/v3portalassets/README.md#replaceportalassetfavicon) - Replace Portal Favicon
-
-### [V3PortalCustomDomains](docs/sdks/v3portalcustomdomains/README.md)
-
-* [GetPortalCustomDomain](docs/sdks/v3portalcustomdomains/README.md#getportalcustomdomain) - Get portal custom domain
-* [CreatePortalCustomDomain](docs/sdks/v3portalcustomdomains/README.md#createportalcustomdomain) - Create a portal custom domain
-* [UpdatePortalCustomDomain](docs/sdks/v3portalcustomdomains/README.md#updateportalcustomdomain) - update portal custom domain
-* [DeletePortalCustomDomain](docs/sdks/v3portalcustomdomains/README.md#deleteportalcustomdomain) - delete portal custom domain
-
-### [V3PortalPages](docs/sdks/v3portalpages/README.md)
-
-* [ListPortalPages](docs/sdks/v3portalpages/README.md#listportalpages) - List Portal Pages
-* [CreatePortalPage](docs/sdks/v3portalpages/README.md#createportalpage) - Create Portal Page
-* [GetPortalPage](docs/sdks/v3portalpages/README.md#getportalpage) - Get Portal Page
-* [UpdatePortalPage](docs/sdks/v3portalpages/README.md#updateportalpage) - Update Portal Page
-* [DeletePortalPage](docs/sdks/v3portalpages/README.md#deleteportalpage) - Delete Portal Page
-* [MovePortalPages](docs/sdks/v3portalpages/README.md#moveportalpages) - Change page order
-* [CreateDefaultContent](docs/sdks/v3portalpages/README.md#createdefaultcontent) - Creates the default pages for a portal
-
-### [V3Portals](docs/sdks/v3portals/README.md)
-
-* [ListPortals](docs/sdks/v3portals/README.md#listportals) - List V3 Portals
-* [CreatePortal](docs/sdks/v3portals/README.md#createportal) - Create V3 Portal
-* [GetPortal](docs/sdks/v3portals/README.md#getportal) - Get V3 Portal
-* [UpdatePortal](docs/sdks/v3portals/README.md#updateportal) - Update V3 Portal
-* [DeletePortal](docs/sdks/v3portals/README.md#deleteportal) - Delete Portal
-* [VerifyPortalDomain](docs/sdks/v3portals/README.md#verifyportaldomain) - Verify Custom Domain
-
-### [V3PortalSnippets](docs/sdks/v3portalsnippets/README.md)
-
-* [ListPortalSnippets](docs/sdks/v3portalsnippets/README.md#listportalsnippets) - List Portal snippets
-* [CreatePortalSnippet](docs/sdks/v3portalsnippets/README.md#createportalsnippet) - Create Portal Snippet
-* [GetPortalSnippet](docs/sdks/v3portalsnippets/README.md#getportalsnippet) - Get Portal Snippet
-* [UpdatePortalSnippet](docs/sdks/v3portalsnippets/README.md#updateportalsnippet) - Update Portal Snippet
-* [DeletePortalSnippet](docs/sdks/v3portalsnippets/README.md#deleteportalsnippet) - Delete Portal Snippet
 
 ### [Vaults](docs/sdks/vaults/README.md)
 
@@ -689,6 +846,7 @@ import (
 	"context"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"github.com/Kong/sdk-konnect-go-internal/retry"
 	"log"
 	"models/operations"
@@ -703,7 +861,15 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil, operations.WithRetries(
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -717,7 +883,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.ListControlPlanesResponse != nil {
 		// handle response
 	}
 }
@@ -732,6 +898,7 @@ import (
 	"context"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"github.com/Kong/sdk-konnect-go-internal/retry"
 	"log"
 )
@@ -756,11 +923,19 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil)
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.ListControlPlanesResponse != nil {
 		// handle response
 	}
 }
@@ -775,12 +950,16 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `GetUsersInternal` function may return the following errors:
+For example, the `ListControlPlanes` function may return the following errors:
 
-| Error Type                | Status Code | Content Type             |
-| ------------------------- | ----------- | ------------------------ |
-| sdkerrors.BadRequestError | 400         | application/problem+json |
-| sdkerrors.SDKError        | 4XX, 5XX    | \*/\*                    |
+| Error Type                   | Status Code | Content Type             |
+| ---------------------------- | ----------- | ------------------------ |
+| sdkerrors.BadRequestError    | 400         | application/problem+json |
+| sdkerrors.UnauthorizedError  | 401         | application/problem+json |
+| sdkerrors.ForbiddenError     | 403         | application/problem+json |
+| sdkerrors.BaseError          | 500         | application/problem+json |
+| sdkerrors.ServiceUnavailable | 503         | application/problem+json |
+| sdkerrors.SDKError           | 4XX, 5XX    | \*/\*                    |
 
 ### Example
 
@@ -792,6 +971,7 @@ import (
 	"errors"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"github.com/Kong/sdk-konnect-go-internal/models/sdkerrors"
 	"log"
 )
@@ -805,10 +985,42 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil)
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	})
 	if err != nil {
 
 		var e *sdkerrors.BadRequestError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.UnauthorizedError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.ForbiddenError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.BaseError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.ServiceUnavailable
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -832,12 +1044,12 @@ func main() {
 
 You can override the default server globally using the `WithServerIndex(serverIndex int)` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                          |
-| --- | ------------------------------- |
-| 0   | `https://global.api.konghq.com` |
-| 1   | `https://us.api.konghq.com`     |
-| 2   | `https://eu.api.konghq.com`     |
-| 3   | `https://au.api.konghq.com`     |
+| #   | Server                          | Description |
+| --- | ------------------------------- | ----------- |
+| 0   | `https://global.api.konghq.com` |             |
+| 1   | `https://us.api.konghq.com`     |             |
+| 2   | `https://eu.api.konghq.com`     |             |
+| 3   | `https://au.api.konghq.com`     |             |
 
 #### Example
 
@@ -848,6 +1060,7 @@ import (
 	"context"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
@@ -861,11 +1074,19 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil)
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.ListControlPlanesResponse != nil {
 		// handle response
 	}
 }
@@ -882,6 +1103,7 @@ import (
 	"context"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
@@ -889,17 +1111,25 @@ func main() {
 	ctx := context.Background()
 
 	s := sdkkonnectgointernal.New(
-		sdkkonnectgointernal.WithServerURL("https://global.api.konghq.com"),
+		sdkkonnectgointernal.WithServerURL("https://au.api.konghq.com"),
 		sdkkonnectgointernal.WithSecurity(components.Security{
 			PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil)
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.ListControlPlanesResponse != nil {
 		// handle response
 	}
 }
@@ -929,11 +1159,11 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil, operations.WithServerURL("https://global.api.konghq.com/"))
+	res, err := s.SSOAuth0.PostAuth0RegisterInternal(ctx, nil, operations.WithServerURL("https://global.api.konghq.com/"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.Auth0Registration != nil {
 		// handle response
 	}
 }
@@ -969,31 +1199,5 @@ var (
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client [http-client] -->
-
-<!-- Start Special Types [types] -->
-## Special Types
-
-This SDK defines the following custom types to assist with marshalling and unmarshalling data.
-
-### Date
-
-`types.Date` is a wrapper around time.Time that allows for JSON marshaling a date string formatted as "2006-01-02".
-
-#### Usage
-
-```go
-d1 := types.NewDate(time.Now()) // returns *types.Date
-
-d2 := types.DateFromTime(time.Now()) // returns types.Date
-
-d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
-
-d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
-
-d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panics on error
-
-d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
-```
-<!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

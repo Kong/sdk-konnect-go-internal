@@ -14,39 +14,39 @@ var GetUsersMePermissionsServerList = []string{
 // GetUsersMePermissionsQueryParamFilter - Filter permissions returned in the response.
 type GetUsersMePermissionsQueryParamFilter struct {
 	// Filters on the given string field value by exact match.
-	Actions *components.StringFieldEqualsFilter `queryParam:"name=actions"`
+	Actions *string `queryParam:"name=actions"`
 	// Filters on the given string field value by exact match.
-	Region *components.StringFieldEqualsFilter `queryParam:"name=region"`
+	Region *string `queryParam:"name=region"`
 	// Filters on the given string field value by exact match.
-	Resource *components.StringFieldEqualsFilter `queryParam:"name=resource"`
+	Resource *string `queryParam:"name=resource"`
 	// Filters on the given string field value by exact match.
-	Service *components.StringFieldEqualsFilter `queryParam:"name=service"`
+	Service *string `queryParam:"name=service"`
 	// Filter by a boolean value (true/false).
 	TopLevel *bool `queryParam:"name=top_level"`
 }
 
-func (o *GetUsersMePermissionsQueryParamFilter) GetActions() *components.StringFieldEqualsFilter {
+func (o *GetUsersMePermissionsQueryParamFilter) GetActions() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Actions
 }
 
-func (o *GetUsersMePermissionsQueryParamFilter) GetRegion() *components.StringFieldEqualsFilter {
+func (o *GetUsersMePermissionsQueryParamFilter) GetRegion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Region
 }
 
-func (o *GetUsersMePermissionsQueryParamFilter) GetResource() *components.StringFieldEqualsFilter {
+func (o *GetUsersMePermissionsQueryParamFilter) GetResource() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Resource
 }
 
-func (o *GetUsersMePermissionsQueryParamFilter) GetService() *components.StringFieldEqualsFilter {
+func (o *GetUsersMePermissionsQueryParamFilter) GetService() *string {
 	if o == nil {
 		return nil
 	}

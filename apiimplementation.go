@@ -27,16 +27,12 @@ func newAPIImplementation(sdkConfig sdkConfiguration) *APIImplementation {
 }
 
 // CreateAPIImplementation - Create API Implementation
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Creates an implementation for an API.
 // An API can be implemented by a single Gateway Service.
 func (s *APIImplementation) CreateAPIImplementation(ctx context.Context, apiID string, apiImplementation components.APIImplementation, opts ...operations.Option) (*operations.CreateAPIImplementationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "create-api-implementation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.CreateAPIImplementationRequest{
 		APIID:             apiID,
 		APIImplementation: apiImplementation,
@@ -65,6 +61,13 @@ func (s *APIImplementation) CreateAPIImplementation(ctx context.Context, apiID s
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "create-api-implementation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "APIImplementation", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -346,15 +349,11 @@ func (s *APIImplementation) CreateAPIImplementation(ctx context.Context, apiID s
 }
 
 // FetchAPIImplementation - Fetch API Implementation
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Retrieve a gateway implementation for this API
 func (s *APIImplementation) FetchAPIImplementation(ctx context.Context, apiID string, implementationID string, opts ...operations.Option) (*operations.FetchAPIImplementationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "fetch-api-implementation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.FetchAPIImplementationRequest{
 		APIID:            apiID,
 		ImplementationID: implementationID,
@@ -381,6 +380,14 @@ func (s *APIImplementation) FetchAPIImplementation(ctx context.Context, apiID st
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/apis/{apiId}/implementations/{implementationId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "fetch-api-implementation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -614,15 +621,11 @@ func (s *APIImplementation) FetchAPIImplementation(ctx context.Context, apiID st
 }
 
 // DeleteAPIImplementation - Delete API Implementation
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Unlink a gateway implementation from this API
 func (s *APIImplementation) DeleteAPIImplementation(ctx context.Context, apiID string, implementationID string, opts ...operations.Option) (*operations.DeleteAPIImplementationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "delete-api-implementation",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteAPIImplementationRequest{
 		APIID:            apiID,
 		ImplementationID: implementationID,
@@ -649,6 +652,14 @@ func (s *APIImplementation) DeleteAPIImplementation(ctx context.Context, apiID s
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/apis/{apiId}/implementations/{implementationId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "delete-api-implementation",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -862,15 +873,11 @@ func (s *APIImplementation) DeleteAPIImplementation(ctx context.Context, apiID s
 }
 
 // ListAPIImplementations - List API Implementations
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List gateway implementations for this API
 func (s *APIImplementation) ListAPIImplementations(ctx context.Context, request operations.ListAPIImplementationsRequest, opts ...operations.Option) (*operations.ListAPIImplementationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "list-api-implementations",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -892,6 +899,14 @@ func (s *APIImplementation) ListAPIImplementations(ctx context.Context, request 
 	opURL, err := url.JoinPath(baseURL, "/v3/api-implementations")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "list-api-implementations",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

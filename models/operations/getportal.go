@@ -27,7 +27,7 @@ type GetPortalResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Details about a portal.
-	PortalResponseV3 *components.PortalResponseV3
+	PortalResponse *components.PortalResponse
 }
 
 func (o *GetPortalResponse) GetContentType() string {
@@ -51,9 +51,9 @@ func (o *GetPortalResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetPortalResponse) GetPortalResponseV3() *components.PortalResponseV3 {
+func (o *GetPortalResponse) GetPortalResponse() *components.PortalResponse {
 	if o == nil {
 		return nil
 	}
-	return o.PortalResponseV3
+	return o.PortalResponse
 }

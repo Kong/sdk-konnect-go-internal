@@ -28,13 +28,6 @@ func newDebugSessions(sdkConfig sdkConfiguration) *DebugSessions {
 
 // ListDebugSessions - List all debug sessions for a control plane
 func (s *DebugSessions) ListDebugSessions(ctx context.Context, request operations.ListDebugSessionsRequest, opts ...operations.Option) (*operations.ListDebugSessionsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "list-debug-sessions",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *DebugSessions) ListDebugSessions(ctx context.Context, request operation
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/observability/debug-sessions", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "list-debug-sessions",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -295,13 +296,6 @@ func (s *DebugSessions) ListDebugSessions(ctx context.Context, request operation
 // CreateDebugSession - Create Debug Session
 // Create Debug Session
 func (s *DebugSessions) CreateDebugSession(ctx context.Context, controlPlaneID string, debugSession components.DebugSessionInput, opts ...operations.Option) (*operations.CreateDebugSessionResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "create-debug-session",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.CreateDebugSessionRequest{
 		ControlPlaneID: controlPlaneID,
 		DebugSession:   debugSession,
@@ -330,6 +324,13 @@ func (s *DebugSessions) CreateDebugSession(ctx context.Context, controlPlaneID s
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "create-debug-session",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "DebugSession", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -592,13 +593,6 @@ func (s *DebugSessions) CreateDebugSession(ctx context.Context, controlPlaneID s
 // GetDebugSession - Fetch a Debug Session
 // Returns a Debug Session
 func (s *DebugSessions) GetDebugSession(ctx context.Context, controlPlaneID string, debugSessionID string, opts ...operations.Option) (*operations.GetDebugSessionResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-debug-session",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetDebugSessionRequest{
 		ControlPlaneID: controlPlaneID,
 		DebugSessionID: debugSessionID,
@@ -625,6 +619,14 @@ func (s *DebugSessions) GetDebugSession(ctx context.Context, controlPlaneID stri
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/observability/debug-sessions/{debugSessionId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-debug-session",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -839,13 +841,6 @@ func (s *DebugSessions) GetDebugSession(ctx context.Context, controlPlaneID stri
 // DeleteDebugSession - Delete a Debug Session
 // Deletes a Debug Session
 func (s *DebugSessions) DeleteDebugSession(ctx context.Context, controlPlaneID string, debugSessionID string, opts ...operations.Option) (*operations.DeleteDebugSessionResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "delete-debug-session",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteDebugSessionRequest{
 		ControlPlaneID: controlPlaneID,
 		DebugSessionID: debugSessionID,
@@ -872,6 +867,14 @@ func (s *DebugSessions) DeleteDebugSession(ctx context.Context, controlPlaneID s
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/observability/debug-sessions/{debugSessionId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "delete-debug-session",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1066,13 +1069,6 @@ func (s *DebugSessions) DeleteDebugSession(ctx context.Context, controlPlaneID s
 // StopDebugSession - Stops an active Debug Session
 // Stops an active Debug Session
 func (s *DebugSessions) StopDebugSession(ctx context.Context, controlPlaneID string, debugSessionID string, opts ...operations.Option) (*operations.StopDebugSessionResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "stop-debug-session",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.StopDebugSessionRequest{
 		ControlPlaneID: controlPlaneID,
 		DebugSessionID: debugSessionID,
@@ -1099,6 +1095,14 @@ func (s *DebugSessions) StopDebugSession(ctx context.Context, controlPlaneID str
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/observability/debug-sessions/{debugSessionId}/stop", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "stop-debug-session",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1312,13 +1316,6 @@ func (s *DebugSessions) StopDebugSession(ctx context.Context, controlPlaneID str
 
 // GetDebugSessionsData - Gets data for a debug session (internal only)
 func (s *DebugSessions) GetDebugSessionsData(ctx context.Context, controlPlaneID string, opts ...operations.Option) (*operations.GetDebugSessionsDataResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-debug-sessions-data",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.GetDebugSessionsDataRequest{
 		ControlPlaneID: controlPlaneID,
 	}
@@ -1344,6 +1341,14 @@ func (s *DebugSessions) GetDebugSessionsData(ctx context.Context, controlPlaneID
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/observability/debug-sessions/data", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-debug-sessions-data",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

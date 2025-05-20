@@ -6,6 +6,7 @@ import (
 	"context"
 	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
 	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
 	"log"
 )
 
@@ -18,11 +19,19 @@ func main() {
 		}),
 	)
 
-	res, err := s.GetUsersInternal(ctx, nil)
+	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
+		PageSize:   sdkkonnectgointernal.Int64(10),
+		PageNumber: sdkkonnectgointernal.Int64(1),
+		Filter: &components.ControlPlaneFilterParameters{
+			CloudGateway: sdkkonnectgointernal.Bool(true),
+		},
+		Labels: sdkkonnectgointernal.String("key:value,existCheck"),
+		Sort:   sdkkonnectgointernal.String("created_at desc"),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.InternalUsers != nil {
+	if res.ListControlPlanesResponse != nil {
 		// handle response
 	}
 }

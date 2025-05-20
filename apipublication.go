@@ -27,15 +27,11 @@ func newAPIPublication(sdkConfig sdkConfiguration) *APIPublication {
 }
 
 // PublishAPIToPortal - Publish API
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Publish an API to a portal.
 func (s *APIPublication) PublishAPIToPortal(ctx context.Context, request operations.PublishAPIToPortalRequest, opts ...operations.Option) (*operations.PublishAPIToPortalResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "publish-api-to-portal",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -59,6 +55,13 @@ func (s *APIPublication) PublishAPIToPortal(ctx context.Context, request operati
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "publish-api-to-portal",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "APIPublication", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -319,16 +322,12 @@ func (s *APIPublication) PublishAPIToPortal(ctx context.Context, request operati
 }
 
 // FetchPublication - Fetch Publication
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Retrieve an API's publication in a portal.
 // If the API is not published to the portal, a 404 response is returned.
 func (s *APIPublication) FetchPublication(ctx context.Context, apiID string, portalID string, opts ...operations.Option) (*operations.FetchPublicationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "fetch-publication",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.FetchPublicationRequest{
 		APIID:    apiID,
 		PortalID: portalID,
@@ -355,6 +354,14 @@ func (s *APIPublication) FetchPublication(ctx context.Context, apiID string, por
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/apis/{apiId}/publications/{portalId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "fetch-publication",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -588,15 +595,11 @@ func (s *APIPublication) FetchPublication(ctx context.Context, apiID string, por
 }
 
 // DeletePublication - Delete Publication
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Unpublish an API from a portal.
 func (s *APIPublication) DeletePublication(ctx context.Context, apiID string, portalID string, opts ...operations.Option) (*operations.DeletePublicationResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "delete-publication",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeletePublicationRequest{
 		APIID:    apiID,
 		PortalID: portalID,
@@ -623,6 +626,14 @@ func (s *APIPublication) DeletePublication(ctx context.Context, apiID string, po
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/apis/{apiId}/publications/{portalId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "delete-publication",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -836,15 +847,11 @@ func (s *APIPublication) DeletePublication(ctx context.Context, apiID string, po
 }
 
 // ListAPIPublications - List Publications
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Returns a collection of all API Publications.
 func (s *APIPublication) ListAPIPublications(ctx context.Context, request operations.ListAPIPublicationsRequest, opts ...operations.Option) (*operations.ListAPIPublicationsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "list-api-publications",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -866,6 +873,14 @@ func (s *APIPublication) ListAPIPublications(ctx context.Context, request operat
 	opURL, err := url.JoinPath(baseURL, "/v3/api-publications")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "list-api-publications",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

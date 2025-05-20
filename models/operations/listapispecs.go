@@ -53,7 +53,7 @@ type ListAPISpecsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// List of API specifications
+	// List of API specifications (OpenAPI or AsyncAPI)
 	ListAPISpecResponse *components.ListAPISpecResponse
 }
 

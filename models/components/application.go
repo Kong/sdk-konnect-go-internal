@@ -9,13 +9,13 @@ import (
 	"time"
 )
 
-// ApplicationPortal - Information about the portal the application is in.
-type ApplicationPortal struct {
+// Application2Portal - Information about the portal the application is in.
+type Application2Portal struct {
 	// Contains a unique identifier used by the API for this resource.
 	ID string `json:"id"`
 }
 
-func (o *ApplicationPortal) GetID() string {
+func (o *Application2Portal) GetID() string {
 	if o == nil {
 		return ""
 	}
@@ -36,7 +36,7 @@ type KeyAuthApplication struct {
 	// KeyAuth Auth strategy that the application uses.
 	AuthStrategy AuthStrategyKeyAuth `json:"auth_strategy"`
 	// Information about the portal the application is in.
-	Portal ApplicationPortal `json:"portal"`
+	Portal Application2Portal `json:"portal"`
 	// The number of API registrations that are associated with the application. Registrations of any status are included in the count.
 	RegistrationCount float64 `json:"registration_count"`
 	// List of developers that have access to this application.
@@ -96,9 +96,9 @@ func (o *KeyAuthApplication) GetAuthStrategy() AuthStrategyKeyAuth {
 	return o.AuthStrategy
 }
 
-func (o *KeyAuthApplication) GetPortal() ApplicationPortal {
+func (o *KeyAuthApplication) GetPortal() Application2Portal {
 	if o == nil {
-		return ApplicationPortal{}
+		return Application2Portal{}
 	}
 	return o.Portal
 }
@@ -130,13 +130,13 @@ func (o *DcrProvider) GetID() string {
 	return o.ID
 }
 
-// Portal - Information about the portal the application is in.
-type Portal struct {
+// ApplicationPortal - Information about the portal the application is in.
+type ApplicationPortal struct {
 	// Contains a unique identifier used by the API for this resource.
 	ID string `json:"id"`
 }
 
-func (o *Portal) GetID() string {
+func (o *ApplicationPortal) GetID() string {
 	if o == nil {
 		return ""
 	}
@@ -161,7 +161,7 @@ type ClientCredentialsApplication struct {
 	// Information about the DCR provider this application uses, if using DCR.
 	DcrProvider *DcrProvider `json:"dcr_provider"`
 	// Information about the portal the application is in.
-	Portal Portal `json:"portal"`
+	Portal ApplicationPortal `json:"portal"`
 	// Client Credential Auth strategy that the application uses.
 	AuthStrategy AuthStrategyClientCredentials `json:"auth_strategy"`
 	// List of granted scopes for the application. Null if application type does not support returning granted scopes.
@@ -237,9 +237,9 @@ func (o *ClientCredentialsApplication) GetDcrProvider() *DcrProvider {
 	return o.DcrProvider
 }
 
-func (o *ClientCredentialsApplication) GetPortal() Portal {
+func (o *ClientCredentialsApplication) GetPortal() ApplicationPortal {
 	if o == nil {
-		return Portal{}
+		return ApplicationPortal{}
 	}
 	return o.Portal
 }

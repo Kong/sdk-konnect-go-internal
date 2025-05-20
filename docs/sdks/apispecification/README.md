@@ -5,17 +5,16 @@
 
 ### Available Operations
 
+* [ValidateSpecification](#validatespecification) - Validate API Specification
 * [CreateAPISpec](#createapispec) - Create API Specification
 * [ListAPISpecs](#listapispecs) - List API Specifications
 * [FetchAPISpec](#fetchapispec) - Fetch API Specification
 * [UpdateAPISpec](#updateapispec) - Update API Specification
 * [DeleteAPISpec](#deleteapispec) - Delete API Specification
 
-## CreateAPISpec
+## ValidateSpecification
 
-Creates a specification for an API.
-**Note:** You can only have one specification for an API.
-
+Validates the content and type (OpenAPI or AsyncAPI) of a potential API specification without associating it with a specific API.
 
 ### Example Usage
 
@@ -31,7 +30,70 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.APISpecification.ValidateSpecification(ctx, components.ValidateAPISpecRequestPayload{
+        Content: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ValidateAPISpecSuccessResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [components.ValidateAPISpecRequestPayload](../../models/components/validateapispecrequestpayload.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
+
+### Response
+
+**[*operations.ValidateSpecificationResponse](../../models/operations/validatespecificationresponse.md), error**
+
+### Errors
+
+| Error Type                          | Status Code                         | Content Type                        |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- |
+| sdkerrors.BadRequestError           | 400                                 | application/problem+json            |
+| sdkerrors.UnauthorizedError         | 401                                 | application/problem+json            |
+| sdkerrors.ForbiddenError            | 403                                 | application/problem+json            |
+| sdkerrors.UnsupportedMediaTypeError | 415                                 | application/problem+json            |
+| sdkerrors.SDKError                  | 4XX, 5XX                            | \*/\*                               |
+
+## CreateAPISpec
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
+Creates a specification (OpenAPI or AsyncAPI) for an API.
+**Note:** You can only have one specification for an API.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -40,7 +102,7 @@ func main() {
 
     res, err := s.APISpecification.CreateAPISpec(ctx, "9f5061ce-78f6-4452-9108-ad7c02821fd5", components.CreateAPISpecRequest{
         Content: "{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Example API\",\"version\":\"1.0.0\"},\"paths\":{\"/example\":{\"get\":{\"summary\":\"Example endpoint\",\"responses\":{\"200\":{\"description\":\"Successful response\"}}}}}}",
-        Type: components.CreateAPISpecRequestTypeOas3.ToPointer(),
+        Type: components.APISpecTypeOas3.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)
@@ -78,9 +140,11 @@ func main() {
 
 ## ListAPISpecs
 
-Returns a list of specifications for an API.
-**Note:** You can only have one specification for an API.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
+Returns a list of specifications for an API. The specification can be of type OpenAPI or AsyncAPI.
+**Note:** You can only have one specification for an API.
 
 ### Example Usage
 
@@ -97,7 +161,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -141,7 +205,10 @@ func main() {
 
 ## FetchAPISpec
 
-Fetches the specification of an API.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
+Fetches the specification (OpenAPI or AsyncAPI) of an API.
 
 ### Example Usage
 
@@ -157,7 +224,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -198,7 +265,10 @@ func main() {
 
 ## UpdateAPISpec
 
-Updates the specification of an API.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
+Updates the specification (OpenAPI or AsyncAPI) of an API.
 
 ### Example Usage
 
@@ -215,7 +285,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -265,7 +335,10 @@ func main() {
 
 ## DeleteAPISpec
 
-Deletes the specification of an API.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
+Deletes the specification (OpenAPI or AsyncAPI) of an API.
 
 ### Example Usage
 
@@ -281,7 +354,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),

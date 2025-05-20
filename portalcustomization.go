@@ -15,6 +15,7 @@ import (
 	"net/http"
 )
 
+// PortalCustomization - APIs related to customization of Konnect Developer Portals.
 type PortalCustomization struct {
 	sdkConfiguration sdkConfiguration
 }
@@ -25,17 +26,13 @@ func newPortalCustomization(sdkConfig sdkConfiguration) *PortalCustomization {
 	}
 }
 
-// GetPortalCustomizationV3 - Get Customization
+// GetPortalCustomization - Get Customization
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Returns the portal customization options.
-func (s *PortalCustomization) GetPortalCustomizationV3(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalCustomizationV3Response, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "get-portal-customization-v3",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.GetPortalCustomizationV3Request{
+func (s *PortalCustomization) GetPortalCustomization(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalCustomizationResponse, error) {
+	request := operations.GetPortalCustomizationRequest{
 		PortalID: portalID,
 	}
 
@@ -60,6 +57,14 @@ func (s *PortalCustomization) GetPortalCustomizationV3(ctx context.Context, port
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/portals/{portalId}/customization", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "get-portal-customization",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -177,7 +182,7 @@ func (s *PortalCustomization) GetPortalCustomizationV3(ctx context.Context, port
 		}
 	}
 
-	res := &operations.GetPortalCustomizationV3Response{
+	res := &operations.GetPortalCustomizationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -192,12 +197,12 @@ func (s *PortalCustomization) GetPortalCustomizationV3(ctx context.Context, port
 				return nil, err
 			}
 
-			var out components.PortalCustomizationV3
+			var out components.PortalCustomization
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PortalCustomizationV3 = &out
+			res.PortalCustomization = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -292,19 +297,15 @@ func (s *PortalCustomization) GetPortalCustomizationV3(ctx context.Context, port
 
 }
 
-// ReplacePortalCustomizationV3 - Replace Customization
+// ReplacePortalCustomization - Replace Customization
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Replace the portal customization options.
-func (s *PortalCustomization) ReplacePortalCustomizationV3(ctx context.Context, portalID string, portalCustomizationV3 *components.PortalCustomizationV3, opts ...operations.Option) (*operations.ReplacePortalCustomizationV3Response, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "replace-portal-customization-v3",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.ReplacePortalCustomizationV3Request{
-		PortalID:              portalID,
-		PortalCustomizationV3: portalCustomizationV3,
+func (s *PortalCustomization) ReplacePortalCustomization(ctx context.Context, portalID string, portalCustomization *components.PortalCustomization, opts ...operations.Option) (*operations.ReplacePortalCustomizationResponse, error) {
+	request := operations.ReplacePortalCustomizationRequest{
+		PortalID:            portalID,
+		PortalCustomization: portalCustomization,
 	}
 
 	o := operations.Options{}
@@ -330,7 +331,14 @@ func (s *PortalCustomization) ReplacePortalCustomizationV3(ctx context.Context, 
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PortalCustomizationV3", "json", `request:"mediaType=application/json"`)
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "replace-portal-customization",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PortalCustomization", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -453,7 +461,7 @@ func (s *PortalCustomization) ReplacePortalCustomizationV3(ctx context.Context, 
 		}
 	}
 
-	res := &operations.ReplacePortalCustomizationV3Response{
+	res := &operations.ReplacePortalCustomizationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -468,12 +476,12 @@ func (s *PortalCustomization) ReplacePortalCustomizationV3(ctx context.Context, 
 				return nil, err
 			}
 
-			var out components.PortalCustomizationV3
+			var out components.PortalCustomization
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PortalCustomizationV3 = &out
+			res.PortalCustomization = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -589,19 +597,15 @@ func (s *PortalCustomization) ReplacePortalCustomizationV3(ctx context.Context, 
 
 }
 
-// UpdatePortalCustomizationV3 - Update Portal Customization
+// UpdatePortalCustomization - Update Customization
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Update the portal customization options, merging properties.
-func (s *PortalCustomization) UpdatePortalCustomizationV3(ctx context.Context, portalID string, portalCustomizationV3 *components.PortalCustomizationV3, opts ...operations.Option) (*operations.UpdatePortalCustomizationV3Response, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "update-portal-customization-v3",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.UpdatePortalCustomizationV3Request{
-		PortalID:              portalID,
-		PortalCustomizationV3: portalCustomizationV3,
+func (s *PortalCustomization) UpdatePortalCustomization(ctx context.Context, portalID string, portalCustomization *components.PortalCustomization, opts ...operations.Option) (*operations.UpdatePortalCustomizationResponse, error) {
+	request := operations.UpdatePortalCustomizationRequest{
+		PortalID:            portalID,
+		PortalCustomization: portalCustomization,
 	}
 
 	o := operations.Options{}
@@ -627,7 +631,14 @@ func (s *PortalCustomization) UpdatePortalCustomizationV3(ctx context.Context, p
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PortalCustomizationV3", "json", `request:"mediaType=application/json"`)
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "update-portal-customization",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "PortalCustomization", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -750,7 +761,7 @@ func (s *PortalCustomization) UpdatePortalCustomizationV3(ctx context.Context, p
 		}
 	}
 
-	res := &operations.UpdatePortalCustomizationV3Response{
+	res := &operations.UpdatePortalCustomizationResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -765,12 +776,12 @@ func (s *PortalCustomization) UpdatePortalCustomizationV3(ctx context.Context, p
 				return nil, err
 			}
 
-			var out components.PortalCustomizationV3
+			var out components.PortalCustomization
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.PortalCustomizationV3 = &out
+			res.PortalCustomization = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

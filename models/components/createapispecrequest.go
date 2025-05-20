@@ -2,49 +2,15 @@
 
 package components
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// CreateAPISpecRequestType - The type of specification being stored. This allows us to render the specification correctly.
-//
-// If this field is not set, it will be autodetected from `content`
-type CreateAPISpecRequestType string
-
-const (
-	CreateAPISpecRequestTypeOas3     CreateAPISpecRequestType = "oas3"
-	CreateAPISpecRequestTypeAsyncapi CreateAPISpecRequestType = "asyncapi"
-)
-
-func (e CreateAPISpecRequestType) ToPointer() *CreateAPISpecRequestType {
-	return &e
-}
-func (e *CreateAPISpecRequestType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "oas3":
-		fallthrough
-	case "asyncapi":
-		*e = CreateAPISpecRequestType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreateAPISpecRequestType: %v", v)
-	}
-}
-
 type CreateAPISpecRequest struct {
-	// The raw content of your API specification.
+	// The raw content of your API specification, in json or yaml format (OpenAPI or AsyncAPI).
 	//
 	Content string `json:"content"`
 	// The type of specification being stored. This allows us to render the specification correctly.
 	//
 	// If this field is not set, it will be autodetected from `content`
 	//
-	Type *CreateAPISpecRequestType `json:"type,omitempty"`
+	Type *APISpecType `json:"type,omitempty"`
 }
 
 func (o *CreateAPISpecRequest) GetContent() string {
@@ -54,7 +20,7 @@ func (o *CreateAPISpecRequest) GetContent() string {
 	return o.Content
 }
 
-func (o *CreateAPISpecRequest) GetType() *CreateAPISpecRequestType {
+func (o *CreateAPISpecRequest) GetType() *APISpecType {
 	if o == nil {
 		return nil
 	}

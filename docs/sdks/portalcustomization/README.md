@@ -3,13 +3,18 @@
 
 ## Overview
 
+APIs related to customization of Konnect Developer Portals.
+
 ### Available Operations
 
-* [GetPortalCustomizationV3](#getportalcustomizationv3) - Get Customization
-* [ReplacePortalCustomizationV3](#replaceportalcustomizationv3) - Replace Customization
-* [UpdatePortalCustomizationV3](#updateportalcustomizationv3) - Update Portal Customization
+* [GetPortalCustomization](#getportalcustomization) - Get Customization
+* [ReplacePortalCustomization](#replaceportalcustomization) - Replace Customization
+* [UpdatePortalCustomization](#updateportalcustomization) - Update Customization
 
-## GetPortalCustomizationV3
+## GetPortalCustomization
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Returns the portal customization options.
 
@@ -27,18 +32,18 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
-    res, err := s.PortalCustomization.GetPortalCustomizationV3(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a")
+    res, err := s.PortalCustomization.GetPortalCustomization(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a")
     if err != nil {
         log.Fatal(err)
     }
-    if res.PortalCustomizationV3 != nil {
+    if res.PortalCustomization != nil {
         // handle response
     }
 }
@@ -54,7 +59,7 @@ func main() {
 
 ### Response
 
-**[*operations.GetPortalCustomizationV3Response](../../models/operations/getportalcustomizationv3response.md), error**
+**[*operations.GetPortalCustomizationResponse](../../models/operations/getportalcustomizationresponse.md), error**
 
 ### Errors
 
@@ -65,7 +70,10 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## ReplacePortalCustomizationV3
+## ReplacePortalCustomization
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Replace the portal customization options.
 
@@ -83,85 +91,89 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
-    res, err := s.PortalCustomization.ReplacePortalCustomizationV3(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomizationV3{
+    res, err := s.PortalCustomization.ReplacePortalCustomization(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomization{
+        Theme: &components.Theme{
+            Colors: &components.Colors{
+                Primary: sdkkonnectgointernal.String("#000000"),
+            },
+        },
         Menu: &components.Menu{
-            Main: []components.PortalMenuItemV3{
-                components.PortalMenuItemV3{
+            Main: []components.PortalMenuItem{
+                components.PortalMenuItem{
                     Path: "/about/company",
                     Title: "My Page",
                     Visibility: components.VisibilityPublic,
                     External: true,
                 },
-                components.PortalMenuItemV3{
+                components.PortalMenuItem{
                     Path: "/about/company",
                     Title: "My Page",
                     Visibility: components.VisibilityPublic,
-                    External: false,
-                },
-                components.PortalMenuItemV3{
-                    Path: "/about/company",
-                    Title: "My Page",
-                    Visibility: components.VisibilityPublic,
-                    External: false,
+                    External: true,
                 },
             },
-            FooterSections: []components.PortalFooterMenuSectionV3{
-                components.PortalFooterMenuSectionV3{
+            FooterSections: []components.PortalFooterMenuSection{
+                components.PortalFooterMenuSection{
                     Title: "<value>",
-                    Items: []components.PortalMenuItemV3{
-                        components.PortalMenuItemV3{
-                            Path: "/about/company",
-                            Title: "My Page",
-                            Visibility: components.VisibilityPublic,
-                            External: true,
-                        },
-                        components.PortalMenuItemV3{
-                            Path: "/about/company",
-                            Title: "My Page",
-                            Visibility: components.VisibilityPublic,
-                            External: true,
-                        },
-                    },
-                },
-                components.PortalFooterMenuSectionV3{
-                    Title: "<value>",
-                    Items: []components.PortalMenuItemV3{
-                        components.PortalMenuItemV3{
+                    Items: []components.PortalMenuItem{
+                        components.PortalMenuItem{
                             Path: "/about/company",
                             Title: "My Page",
                             Visibility: components.VisibilityPublic,
                             External: false,
                         },
-                        components.PortalMenuItemV3{
+                        components.PortalMenuItem{
                             Path: "/about/company",
                             Title: "My Page",
                             Visibility: components.VisibilityPublic,
-                            External: true,
+                            External: false,
                         },
-                        components.PortalMenuItemV3{
+                    },
+                },
+                components.PortalFooterMenuSection{
+                    Title: "<value>",
+                    Items: []components.PortalMenuItem{
+                        components.PortalMenuItem{
                             Path: "/about/company",
                             Title: "My Page",
                             Visibility: components.VisibilityPublic,
-                            External: true,
+                            External: false,
+                        },
+                        components.PortalMenuItem{
+                            Path: "/about/company",
+                            Title: "My Page",
+                            Visibility: components.VisibilityPublic,
+                            External: false,
+                        },
+                    },
+                },
+                components.PortalFooterMenuSection{
+                    Title: "<value>",
+                    Items: []components.PortalMenuItem{
+                        components.PortalMenuItem{
+                            Path: "/about/company",
+                            Title: "My Page",
+                            Visibility: components.VisibilityPublic,
+                            External: false,
+                        },
+                        components.PortalMenuItem{
+                            Path: "/about/company",
+                            Title: "My Page",
+                            Visibility: components.VisibilityPublic,
+                            External: false,
                         },
                     },
                 },
             },
-            FooterBottom: []components.PortalMenuItemV3{
-                components.PortalMenuItemV3{
-                    Path: "/about/company",
-                    Title: "My Page",
-                    Visibility: components.VisibilityPublic,
-                    External: true,
-                },
-                components.PortalMenuItemV3{
+            FooterBottom: []components.PortalMenuItem{
+                components.PortalMenuItem{
                     Path: "/about/company",
                     Title: "My Page",
                     Visibility: components.VisibilityPublic,
@@ -173,7 +185,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.PortalCustomizationV3 != nil {
+    if res.PortalCustomization != nil {
         // handle response
     }
 }
@@ -181,16 +193,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |                                                                                       |
-| `portalID`                                                                            | *string*                                                                              | :heavy_check_mark:                                                                    | ID of the portal.                                                                     | f32d905a-ed33-46a3-a093-d8f536af9a8a                                                  |
-| `portalCustomizationV3`                                                               | [*components.PortalCustomizationV3](../../models/components/portalcustomizationv3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `opts`                                                                                | [][operations.Option](../../models/operations/option.md)                              | :heavy_minus_sign:                                                                    | The options for this request.                                                         |                                                                                       |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |                                                                                   |
+| `portalID`                                                                        | *string*                                                                          | :heavy_check_mark:                                                                | ID of the portal.                                                                 | f32d905a-ed33-46a3-a093-d8f536af9a8a                                              |
+| `portalCustomization`                                                             | [*components.PortalCustomization](../../models/components/portalcustomization.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
+| `opts`                                                                            | [][operations.Option](../../models/operations/option.md)                          | :heavy_minus_sign:                                                                | The options for this request.                                                     |                                                                                   |
 
 ### Response
 
-**[*operations.ReplacePortalCustomizationV3Response](../../models/operations/replaceportalcustomizationv3response.md), error**
+**[*operations.ReplacePortalCustomizationResponse](../../models/operations/replaceportalcustomizationresponse.md), error**
 
 ### Errors
 
@@ -202,7 +214,10 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## UpdatePortalCustomizationV3
+## UpdatePortalCustomization
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Update the portal customization options, merging properties.
 
@@ -220,72 +235,56 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
         }),
     )
 
-    res, err := s.PortalCustomization.UpdatePortalCustomizationV3(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomizationV3{
+    res, err := s.PortalCustomization.UpdatePortalCustomization(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomization{
+        Theme: &components.Theme{
+            Colors: &components.Colors{
+                Primary: sdkkonnectgointernal.String("#000000"),
+            },
+        },
         Menu: &components.Menu{
-            Main: []components.PortalMenuItemV3{
-                components.PortalMenuItemV3{
-                    Path: "/about/company",
-                    Title: "My Page",
-                    Visibility: components.VisibilityPublic,
-                    External: true,
-                },
-                components.PortalMenuItemV3{
-                    Path: "/about/company",
-                    Title: "My Page",
-                    Visibility: components.VisibilityPublic,
-                    External: true,
-                },
-            },
-            FooterSections: []components.PortalFooterMenuSectionV3{
-                components.PortalFooterMenuSectionV3{
-                    Title: "<value>",
-                    Items: []components.PortalMenuItemV3{
-                        components.PortalMenuItemV3{
-                            Path: "/about/company",
-                            Title: "My Page",
-                            Visibility: components.VisibilityPublic,
-                            External: false,
-                        },
-                        components.PortalMenuItemV3{
-                            Path: "/about/company",
-                            Title: "My Page",
-                            Visibility: components.VisibilityPublic,
-                            External: false,
-                        },
-                        components.PortalMenuItemV3{
-                            Path: "/about/company",
-                            Title: "My Page",
-                            Visibility: components.VisibilityPublic,
-                            External: false,
-                        },
-                    },
-                },
-                components.PortalFooterMenuSectionV3{
-                    Title: "<value>",
-                    Items: []components.PortalMenuItemV3{
-
-                    },
-                },
-            },
-            FooterBottom: []components.PortalMenuItemV3{
-                components.PortalMenuItemV3{
+            Main: []components.PortalMenuItem{
+                components.PortalMenuItem{
                     Path: "/about/company",
                     Title: "My Page",
                     Visibility: components.VisibilityPublic,
                     External: false,
                 },
-                components.PortalMenuItemV3{
+                components.PortalMenuItem{
                     Path: "/about/company",
                     Title: "My Page",
                     Visibility: components.VisibilityPublic,
                     External: false,
+                },
+            },
+            FooterSections: []components.PortalFooterMenuSection{
+                components.PortalFooterMenuSection{
+                    Title: "<value>",
+                    Items: []components.PortalMenuItem{},
+                },
+                components.PortalFooterMenuSection{
+                    Title: "<value>",
+                    Items: []components.PortalMenuItem{},
+                },
+            },
+            FooterBottom: []components.PortalMenuItem{
+                components.PortalMenuItem{
+                    Path: "/about/company",
+                    Title: "My Page",
+                    Visibility: components.VisibilityPublic,
+                    External: true,
+                },
+                components.PortalMenuItem{
+                    Path: "/about/company",
+                    Title: "My Page",
+                    Visibility: components.VisibilityPublic,
+                    External: true,
                 },
             },
         },
@@ -293,7 +292,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.PortalCustomizationV3 != nil {
+    if res.PortalCustomization != nil {
         // handle response
     }
 }
@@ -301,16 +300,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |                                                                                       |
-| `portalID`                                                                            | *string*                                                                              | :heavy_check_mark:                                                                    | ID of the portal.                                                                     | f32d905a-ed33-46a3-a093-d8f536af9a8a                                                  |
-| `portalCustomizationV3`                                                               | [*components.PortalCustomizationV3](../../models/components/portalcustomizationv3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `opts`                                                                                | [][operations.Option](../../models/operations/option.md)                              | :heavy_minus_sign:                                                                    | The options for this request.                                                         |                                                                                       |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |                                                                                   |
+| `portalID`                                                                        | *string*                                                                          | :heavy_check_mark:                                                                | ID of the portal.                                                                 | f32d905a-ed33-46a3-a093-d8f536af9a8a                                              |
+| `portalCustomization`                                                             | [*components.PortalCustomization](../../models/components/portalcustomization.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
+| `opts`                                                                            | [][operations.Option](../../models/operations/option.md)                          | :heavy_minus_sign:                                                                | The options for this request.                                                     |                                                                                   |
 
 ### Response
 
-**[*operations.UpdatePortalCustomizationV3Response](../../models/operations/updateportalcustomizationv3response.md), error**
+**[*operations.UpdatePortalCustomizationResponse](../../models/operations/updateportalcustomizationresponse.md), error**
 
 ### Errors
 

@@ -15,6 +15,7 @@ const (
 	ResourceQuotaQualifierCountNetworksNotOffline           ResourceQuotaQualifier = "count/networks.not-offline"
 	ResourceQuotaQualifierCountDataPlanesEstimate           ResourceQuotaQualifier = "count/data-planes-estimate"
 	ResourceQuotaQualifierCountServerlessDataPlanesEstimate ResourceQuotaQualifier = "count/serverless-data-planes-estimate"
+	ResourceQuotaQualifierCountDataPlaneGroupsEstimate      ResourceQuotaQualifier = "count/data-plane-groups-estimate"
 )
 
 func (e ResourceQuotaQualifier) ToPointer() *ResourceQuotaQualifier {
@@ -33,6 +34,8 @@ func (e *ResourceQuotaQualifier) UnmarshalJSON(data []byte) error {
 	case "count/data-planes-estimate":
 		fallthrough
 	case "count/serverless-data-planes-estimate":
+		fallthrough
+	case "count/data-plane-groups-estimate":
 		*e = ResourceQuotaQualifier(v)
 		return nil
 	default:

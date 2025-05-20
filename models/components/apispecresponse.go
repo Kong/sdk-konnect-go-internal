@@ -3,53 +3,35 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
 	"time"
 )
 
-// APISpecResponseType - The type of specification being stored. This allows us to render the specification correctly.
-//
-// If this field is not set, it will be autodetected from `content`
-type APISpecResponseType string
-
-const (
-	APISpecResponseTypeOas3     APISpecResponseType = "oas3"
-	APISpecResponseTypeAsyncapi APISpecResponseType = "asyncapi"
-)
-
-func (e APISpecResponseType) ToPointer() *APISpecResponseType {
-	return &e
-}
-func (e *APISpecResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "oas3":
-		fallthrough
-	case "asyncapi":
-		*e = APISpecResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for APISpecResponseType: %v", v)
-	}
+type APISpecResponseValidationMessages struct {
+	Message string `json:"message"`
 }
 
-// APISpecResponse - API specification
+func (o *APISpecResponseValidationMessages) GetMessage() string {
+	if o == nil {
+		return ""
+	}
+	return o.Message
+}
+
+// APISpecResponse - API specification (OpenAPI or AsyncAPI)
 type APISpecResponse struct {
 	// The API specification identifier.
 	ID string `json:"id"`
-	// The raw content of your API specification.
+	// The raw content of your API specification, in json or yaml format (OpenAPI or AsyncAPI).
 	//
 	Content string `json:"content"`
+	// The errors that occurred while parsing the API specification.
+	ValidationMessages []APISpecResponseValidationMessages `json:"validation_messages"`
 	// The type of specification being stored. This allows us to render the specification correctly.
 	//
 	// If this field is not set, it will be autodetected from `content`
 	//
-	Type APISpecResponseType `json:"type"`
+	Type APISpecType `json:"type"`
 	// An ISO-8601 timestamp representation of entity creation date.
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
@@ -81,9 +63,16 @@ func (o *APISpecResponse) GetContent() string {
 	return o.Content
 }
 
-func (o *APISpecResponse) GetType() APISpecResponseType {
+func (o *APISpecResponse) GetValidationMessages() []APISpecResponseValidationMessages {
 	if o == nil {
-		return APISpecResponseType("")
+		return []APISpecResponseValidationMessages{}
+	}
+	return o.ValidationMessages
+}
+
+func (o *APISpecResponse) GetType() APISpecType {
+	if o == nil {
+		return APISpecType("")
 	}
 	return o.Type
 }

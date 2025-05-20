@@ -3,40 +3,9 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go-internal/internal/utils"
 	"time"
 )
-
-// ListAPISpecResponseType - The type of specification being stored. This allows us to render the specification correctly.
-//
-// If this field is not set, it will be autodetected from `content`
-type ListAPISpecResponseType string
-
-const (
-	ListAPISpecResponseTypeOas3     ListAPISpecResponseType = "oas3"
-	ListAPISpecResponseTypeAsyncapi ListAPISpecResponseType = "asyncapi"
-)
-
-func (e ListAPISpecResponseType) ToPointer() *ListAPISpecResponseType {
-	return &e
-}
-func (e *ListAPISpecResponseType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "oas3":
-		fallthrough
-	case "asyncapi":
-		*e = ListAPISpecResponseType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListAPISpecResponseType: %v", v)
-	}
-}
 
 type APISpecificationSummary struct {
 	// The API specification identifier.
@@ -45,7 +14,7 @@ type APISpecificationSummary struct {
 	//
 	// If this field is not set, it will be autodetected from `content`
 	//
-	Type ListAPISpecResponseType `json:"type"`
+	Type APISpecType `json:"type"`
 	// An ISO-8601 timestamp representation of entity creation date.
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
@@ -70,9 +39,9 @@ func (o *APISpecificationSummary) GetID() string {
 	return o.ID
 }
 
-func (o *APISpecificationSummary) GetType() ListAPISpecResponseType {
+func (o *APISpecificationSummary) GetType() APISpecType {
 	if o == nil {
-		return ListAPISpecResponseType("")
+		return APISpecType("")
 	}
 	return o.Type
 }
@@ -91,7 +60,7 @@ func (o *APISpecificationSummary) GetUpdatedAt() time.Time {
 	return o.UpdatedAt
 }
 
-// ListAPISpecResponse - List of API specifications
+// ListAPISpecResponse - List of API specifications (OpenAPI or AsyncAPI)
 type ListAPISpecResponse struct {
 	// returns the pagination information
 	Meta PaginatedMeta             `json:"meta"`

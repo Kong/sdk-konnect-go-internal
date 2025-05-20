@@ -18,8 +18,10 @@ type KeyAuth struct {
 	// Unix epoch when the resource was created.
 	CreatedAt *int64   `json:"created_at,omitempty"`
 	ID        *string  `json:"id,omitempty"`
-	Key       string   `json:"key"`
+	Key       *string  `json:"key,omitempty"`
 	Tags      []string `json:"tags,omitempty"`
+	// key-auth ttl in seconds
+	TTL *int64 `json:"ttl,omitempty"`
 }
 
 func (o *KeyAuth) GetConsumer() *KeyAuthConsumer {
@@ -43,9 +45,9 @@ func (o *KeyAuth) GetID() *string {
 	return o.ID
 }
 
-func (o *KeyAuth) GetKey() string {
+func (o *KeyAuth) GetKey() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Key
 }
@@ -55,4 +57,11 @@ func (o *KeyAuth) GetTags() []string {
 		return nil
 	}
 	return o.Tags
+}
+
+func (o *KeyAuth) GetTTL() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.TTL
 }

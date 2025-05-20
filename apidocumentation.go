@@ -26,17 +26,13 @@ func newAPIDocumentation(sdkConfig sdkConfiguration) *APIDocumentation {
 }
 
 // CreateAPIDocument - Create API Document
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Publish a new document attached to an API.
 //
 // All configuration options may be provided in the frontmatter section of `content`. If you set values in both the `POST` request _and_ in the frontmatter, the values in the `POST` request will take precedence.
 func (s *APIDocumentation) CreateAPIDocument(ctx context.Context, apiID string, createAPIDocumentRequest components.CreateAPIDocumentRequest, opts ...operations.Option) (*operations.CreateAPIDocumentResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "create-api-document",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.CreateAPIDocumentRequest{
 		APIID:                    apiID,
 		CreateAPIDocumentRequest: createAPIDocumentRequest,
@@ -65,6 +61,13 @@ func (s *APIDocumentation) CreateAPIDocument(ctx context.Context, apiID string, 
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "create-api-document",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CreateAPIDocumentRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -367,15 +370,11 @@ func (s *APIDocumentation) CreateAPIDocument(ctx context.Context, apiID string, 
 }
 
 // ListAPIDocuments - List API Documents
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Returns a collection of all documents for an API.
 func (s *APIDocumentation) ListAPIDocuments(ctx context.Context, request operations.ListAPIDocumentsRequest, opts ...operations.Option) (*operations.ListAPIDocumentsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "list-api-documents",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -397,6 +396,14 @@ func (s *APIDocumentation) ListAPIDocuments(ctx context.Context, request operati
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/apis/{apiId}/documents", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "list-api-documents",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -655,15 +662,11 @@ func (s *APIDocumentation) ListAPIDocuments(ctx context.Context, request operati
 }
 
 // FetchAPIDocument - Fetch API Document
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Returns a document for the API.
 func (s *APIDocumentation) FetchAPIDocument(ctx context.Context, apiID string, documentID string, opts ...operations.Option) (*operations.FetchAPIDocumentResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "fetch-api-document",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.FetchAPIDocumentRequest{
 		APIID:      apiID,
 		DocumentID: documentID,
@@ -690,6 +693,14 @@ func (s *APIDocumentation) FetchAPIDocument(ctx context.Context, apiID string, d
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/apis/{apiId}/documents/{documentId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "fetch-api-document",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -922,16 +933,12 @@ func (s *APIDocumentation) FetchAPIDocument(ctx context.Context, apiID string, d
 
 }
 
-// UpdateAPIDocument - Update an API Document
+// UpdateAPIDocument - Update API Document
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Updates a document for an API.
 func (s *APIDocumentation) UpdateAPIDocument(ctx context.Context, request operations.UpdateAPIDocumentRequest, opts ...operations.Option) (*operations.UpdateAPIDocumentResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "update-api-document",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -955,6 +962,13 @@ func (s *APIDocumentation) UpdateAPIDocument(ctx context.Context, request operat
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "update-api-document",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "APIDocument", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1257,15 +1271,11 @@ func (s *APIDocumentation) UpdateAPIDocument(ctx context.Context, request operat
 }
 
 // DeleteAPIDocument - Delete API Documentation
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Removes a document from an API.
 func (s *APIDocumentation) DeleteAPIDocument(ctx context.Context, apiID string, documentID string, opts ...operations.Option) (*operations.DeleteAPIDocumentResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "delete-api-document",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteAPIDocumentRequest{
 		APIID:      apiID,
 		DocumentID: documentID,
@@ -1292,6 +1302,14 @@ func (s *APIDocumentation) DeleteAPIDocument(ctx context.Context, apiID string, 
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/v3/apis/{apiId}/documents/{documentId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "delete-api-document",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1505,15 +1523,11 @@ func (s *APIDocumentation) DeleteAPIDocument(ctx context.Context, apiID string, 
 }
 
 // MoveAPIDocument - Move API Documentation
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // This api allows the user to move a document within the document tree using the parameters parent_document_id and index. If parent_document_id is not provided, the document will be placed at the top level of the document tree. index represents a zero-indexed document order relative to its siblings under the same parent. For example, if we want to put the document at top level in first position we would send parent_document_id: null and index: 0. This api also supports using a negative index to count backwards from the end of the document list, which means you can put the document in last position by using index: -1.
 func (s *APIDocumentation) MoveAPIDocument(ctx context.Context, request operations.MoveAPIDocumentRequest, opts ...operations.Option) (*operations.MoveAPIDocumentResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "move-api-document",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1537,6 +1551,13 @@ func (s *APIDocumentation) MoveAPIDocument(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "move-api-document",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "MoveDocumentRequestPayload", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

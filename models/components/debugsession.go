@@ -35,6 +35,32 @@ func (e *CaptureContent) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type CaptureLog string
+
+const (
+	CaptureLogError  CaptureLog = "error"
+	CaptureLogAccess CaptureLog = "access"
+)
+
+func (e CaptureLog) ToPointer() *CaptureLog {
+	return &e
+}
+func (e *CaptureLog) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "error":
+		fallthrough
+	case "access":
+		*e = CaptureLog(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CaptureLog: %v", v)
+	}
+}
+
 type DebugSession struct {
 	// Contains a unique identifier used by the API for this resource.
 	ID *string `json:"id,omitempty"`
@@ -47,6 +73,7 @@ type DebugSession struct {
 	// The duration of the debug session in seconds.
 	DurationSecs   *int64           `json:"duration_secs,omitempty"`
 	CaptureContent []CaptureContent `json:"capture_content,omitempty"`
+	CaptureLog     []CaptureLog     `json:"capture_log,omitempty"`
 	// An ISO-8601 timestamp representation of start date.
 	StartedAt *time.Time `json:"started_at,omitempty"`
 	// An ISO-8601 timestamp representation of stop date.
@@ -116,6 +143,13 @@ func (o *DebugSession) GetCaptureContent() []CaptureContent {
 	return o.CaptureContent
 }
 
+func (o *DebugSession) GetCaptureLog() []CaptureLog {
+	if o == nil {
+		return nil
+	}
+	return o.CaptureLog
+}
+
 func (o *DebugSession) GetStartedAt() *time.Time {
 	if o == nil {
 		return nil
@@ -175,6 +209,7 @@ type DebugSessionInput struct {
 	// The duration of the debug session in seconds.
 	DurationSecs   *int64           `json:"duration_secs,omitempty"`
 	CaptureContent []CaptureContent `json:"capture_content,omitempty"`
+	CaptureLog     []CaptureLog     `json:"capture_log,omitempty"`
 	// The data plane nodes to collect samples from.
 	Targets []string `json:"targets,omitempty"`
 }
@@ -212,6 +247,13 @@ func (o *DebugSessionInput) GetCaptureContent() []CaptureContent {
 		return nil
 	}
 	return o.CaptureContent
+}
+
+func (o *DebugSessionInput) GetCaptureLog() []CaptureLog {
+	if o == nil {
+		return nil
+	}
+	return o.CaptureLog
 }
 
 func (o *DebugSessionInput) GetTargets() []string {

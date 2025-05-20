@@ -10,8 +10,12 @@
 * [FetchAPI](#fetchapi) - Fetch API
 * [UpdateAPI](#updateapi) - Update API
 * [DeleteAPI](#deleteapi) - Delete API
+* [ListApisComputed](#listapiscomputed) - List APIs computed
 
 ## CreateAPI
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Creates an API.
 
@@ -29,7 +33,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -41,9 +45,6 @@ func main() {
         Slug: sdkkonnectgointernal.String("my-api-v1"),
         Labels: map[string]string{
             "env": "test",
-        },
-        PublicLabels: map[string]string{
-            "category": "finance",
         },
     })
     if err != nil {
@@ -80,6 +81,9 @@ func main() {
 
 ## ListApis
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Returns a collection of all APIs.
 
 ### Example Usage
@@ -98,7 +102,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -110,9 +114,9 @@ func main() {
         PageNumber: sdkkonnectgointernal.Int64(1),
         Filter: &components.APIFilterParameters{
             Deprecated: sdkkonnectgointernal.Bool(true),
-            CreatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTFilter(
-                components.DateTimeFieldLTFilter{
-                    Lt: types.MustTimeFromString("2022-03-30T07:20:50Z"),
+            CreatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTEFilter(
+                components.DateTimeFieldLTEFilter{
+                    Lte: types.MustTimeFromString("2022-03-30T07:20:50Z"),
                 },
             )),
             UpdatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTFilter(
@@ -121,7 +125,7 @@ func main() {
                 },
             )),
         },
-        Sort: sdkkonnectgointernal.String("name,created_at desc"),
+        Sort: sdkkonnectgointernal.String("created_at desc"),
     })
     if err != nil {
         log.Fatal(err)
@@ -156,6 +160,9 @@ func main() {
 
 ## FetchAPI
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Fetches an API.
 
 ### Example Usage
@@ -172,7 +179,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -212,6 +219,9 @@ func main() {
 
 ## UpdateAPI
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Updates an API.
 
 ### Example Usage
@@ -228,7 +238,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -238,11 +248,8 @@ func main() {
     res, err := s.API.UpdateAPI(ctx, "9f5061ce-78f6-4452-9108-ad7c02821fd5", components.UpdateAPIRequest{
         Name: sdkkonnectgointernal.String("MyAPI"),
         Slug: sdkkonnectgointernal.String("my-api-v1"),
-        Labels: map[string]string{
-            "env": "test",
-        },
-        PublicLabels: map[string]string{
-            "category": "finance",
+        Labels: map[string]*string{
+            "env": sdkkonnectgointernal.String("test"),
         },
     })
     if err != nil {
@@ -280,6 +287,9 @@ func main() {
 
 ## DeleteAPI
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Deletes an API.
 
 ### Example Usage
@@ -296,7 +306,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -329,6 +339,82 @@ func main() {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## ListApisComputed
+
+Returns a collection of all APIs with computed fields.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	sdkkonnectgointernal "github.com/Kong/sdk-konnect-go-internal"
+	"github.com/Kong/sdk-konnect-go-internal/models/components"
+	"github.com/Kong/sdk-konnect-go-internal/types"
+	"github.com/Kong/sdk-konnect-go-internal/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgointernal.New(
+        sdkkonnectgointernal.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.API.ListApisComputed(ctx, operations.ListApisComputedRequest{
+        PageSize: sdkkonnectgointernal.Int64(10),
+        PageNumber: sdkkonnectgointernal.Int64(1),
+        Filter: &components.APIFilterParameters{
+            Deprecated: sdkkonnectgointernal.Bool(true),
+            CreatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTEFilter(
+                components.DateTimeFieldLTEFilter{
+                    Lte: types.MustTimeFromString("2022-03-30T07:20:50Z"),
+                },
+            )),
+            UpdatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldEqualsFilter(
+                components.DateTimeFieldEqualsFilter{
+                    Eq: types.MustTimeFromString("2022-03-30T07:20:50Z"),
+                },
+            )),
+        },
+        Sort: sdkkonnectgointernal.String("created_at desc"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListAPIComputedResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.ListApisComputedRequest](../../models/operations/listapiscomputedrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+
+### Response
+
+**[*operations.ListApisComputedResponse](../../models/operations/listapiscomputedresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |

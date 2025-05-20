@@ -9,9 +9,10 @@ import (
 
 // PortalCustomDomain - Portal custom domain
 type PortalCustomDomain struct {
-	Hostname string                `json:"hostname"`
-	Enabled  bool                  `json:"enabled"`
-	Ssl      PortalCustomDomainSSL `json:"ssl"`
+	Hostname    string                        `json:"hostname"`
+	Enabled     bool                          `json:"enabled"`
+	Ssl         PortalCustomDomainSSL         `json:"ssl"`
+	CnameStatus PortalCustomDomainCnameStatus `json:"cname_status"`
 	// An ISO-8601 timestamp representation of entity creation date.
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
@@ -48,6 +49,13 @@ func (o *PortalCustomDomain) GetSsl() PortalCustomDomainSSL {
 		return PortalCustomDomainSSL{}
 	}
 	return o.Ssl
+}
+
+func (o *PortalCustomDomain) GetCnameStatus() PortalCustomDomainCnameStatus {
+	if o == nil {
+		return PortalCustomDomainCnameStatus("")
+	}
+	return o.CnameStatus
 }
 
 func (o *PortalCustomDomain) GetCreatedAt() time.Time {

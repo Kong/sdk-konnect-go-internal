@@ -26,7 +26,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -83,7 +83,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -94,7 +94,8 @@ func main() {
         RoleName: sdkkonnectgointernal.String("Connector"),
         EntityID: sdkkonnectgointernal.String("e67490ce-44dc-4cbd-b65e-b52c746fc26a"),
         EntityTypeName: sdkkonnectgointernal.String("Mesh Control Planes"),
-        EntityRegion: components.EntityRegionEu.ToPointer(),
+        EntityRegion: components.AssignParameterizedRoleEntityRegionEu.ToPointer(),
+        Parameters: &components.Parameters{},
     })
     if err != nil {
         log.Fatal(err)

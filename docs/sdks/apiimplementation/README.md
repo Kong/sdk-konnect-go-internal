@@ -12,9 +12,11 @@
 
 ## CreateAPIImplementation
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Creates an implementation for an API.
 An API can be implemented by a single Gateway Service.
-
 
 ### Example Usage
 
@@ -30,7 +32,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -78,6 +80,9 @@ func main() {
 
 ## FetchAPIImplementation
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Retrieve a gateway implementation for this API
 
 ### Example Usage
@@ -94,7 +99,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -135,6 +140,9 @@ func main() {
 
 ## DeleteAPIImplementation
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Unlink a gateway implementation from this API
 
 ### Example Usage
@@ -151,7 +159,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -192,6 +200,9 @@ func main() {
 
 ## ListAPIImplementations
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 List gateway implementations for this API
 
 ### Example Usage
@@ -210,7 +221,7 @@ import(
 
 func main() {
     ctx := context.Background()
-    
+
     s := sdkkonnectgointernal.New(
         sdkkonnectgointernal.WithSecurity(components.Security{
             PersonalAccessToken: sdkkonnectgointernal.String("<YOUR_BEARER_TOKEN_HERE>"),
@@ -221,9 +232,9 @@ func main() {
         PageSize: sdkkonnectgointernal.Int64(10),
         PageNumber: sdkkonnectgointernal.Int64(1),
         Filter: &components.APIImplementationFilterParameters{
-            CreatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTFilter(
-                components.DateTimeFieldLTFilter{
-                    Lt: types.MustTimeFromString("2022-03-30T07:20:50Z"),
+            CreatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTEFilter(
+                components.DateTimeFieldLTEFilter{
+                    Lte: types.MustTimeFromString("2022-03-30T07:20:50Z"),
                 },
             )),
             UpdatedAt: sdkkonnectgointernal.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTFilter(
@@ -232,7 +243,7 @@ func main() {
                 },
             )),
         },
-        Sort: sdkkonnectgointernal.String("name,created_at desc"),
+        Sort: sdkkonnectgointernal.String("created_at desc"),
     })
     if err != nil {
         log.Fatal(err)

@@ -13,7 +13,7 @@ func (o *GetNodeCompatibilityStatus) GetState() *string {
 	return o.State
 }
 
-type GetNodeItem struct {
+type Item struct {
 	ID                  *string                     `json:"id,omitempty"`
 	Version             *string                     `json:"version,omitempty"`
 	Hostname            *string                     `json:"hostname,omitempty"`
@@ -25,63 +25,63 @@ type GetNodeItem struct {
 	CompatibilityStatus *GetNodeCompatibilityStatus `json:"compatibility_status,omitempty"`
 }
 
-func (o *GetNodeItem) GetID() *string {
+func (o *Item) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *GetNodeItem) GetVersion() *string {
+func (o *Item) GetVersion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Version
 }
 
-func (o *GetNodeItem) GetHostname() *string {
+func (o *Item) GetHostname() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Hostname
 }
 
-func (o *GetNodeItem) GetLastPing() *int64 {
+func (o *Item) GetLastPing() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.LastPing
 }
 
-func (o *GetNodeItem) GetType() *string {
+func (o *Item) GetType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Type
 }
 
-func (o *GetNodeItem) GetCreatedAt() *int64 {
+func (o *Item) GetCreatedAt() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.CreatedAt
 }
 
-func (o *GetNodeItem) GetUpdatedAt() *int64 {
+func (o *Item) GetUpdatedAt() *int64 {
 	if o == nil {
 		return nil
 	}
 	return o.UpdatedAt
 }
 
-func (o *GetNodeItem) GetConfigHash() *string {
+func (o *Item) GetConfigHash() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ConfigHash
 }
 
-func (o *GetNodeItem) GetCompatibilityStatus() *GetNodeCompatibilityStatus {
+func (o *Item) GetCompatibilityStatus() *GetNodeCompatibilityStatus {
 	if o == nil {
 		return nil
 	}
@@ -90,10 +90,10 @@ func (o *GetNodeItem) GetCompatibilityStatus() *GetNodeCompatibilityStatus {
 
 // GetNode - Example response
 type GetNode struct {
-	Item *GetNodeItem `json:"item,omitempty"`
+	Item *Item `json:"item,omitempty"`
 }
 
-func (o *GetNode) GetItem() *GetNodeItem {
+func (o *GetNode) GetItem() *Item {
 	if o == nil {
 		return nil
 	}
