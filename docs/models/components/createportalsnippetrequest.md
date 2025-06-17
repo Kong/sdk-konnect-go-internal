@@ -1,0 +1,15 @@
+# CreatePortalSnippetRequest
+
+Create a snippet in a portal.
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `Name`                                                                    | *string*                                                                  | :heavy_check_mark:                                                        | The unique name of a snippet in a portal.                                 | my-snippet                                                                |
+| `Title`                                                                   | **string*                                                                 | :heavy_minus_sign:                                                        | The display title of a snippet in a portal.                               | My Snippet                                                                |
+| `Content`                                                                 | *string*                                                                  | :heavy_check_mark:                                                        | The renderable markdown content of a page in a portal.                    | # Welcome to My Snippet                                                   |
+| `Visibility`                                                              | **string*                                                                 | :heavy_minus_sign:                                                        | Whether a page is publicly accessible to non-authenticated users.         | public                                                                    |
+| `Status`                                                                  | [*components.PublishedStatus](../../models/components/publishedstatus.md) | :heavy_minus_sign:                                                        | Whether the resource is visible on a given portal. Defaults to false.     | published                                                                 |
+| `Description`                                                             | **string*                                                                 | :heavy_minus_sign:                                                        | N/A                                                                       | A custom page about developer portals                                     |

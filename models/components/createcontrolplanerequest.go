@@ -7,20 +7,24 @@ import (
 	"fmt"
 )
 
-// The ClusterType value of the cluster associated with the Control Plane.
-type ClusterType string
+// CreateControlPlaneRequestClusterType - The ClusterType value of the cluster associated with the Control Plane.
+type CreateControlPlaneRequestClusterType string
 
 const (
-	ClusterTypeClusterTypeControlPlane         ClusterType = "CLUSTER_TYPE_CONTROL_PLANE"
-	ClusterTypeClusterTypeHybrid               ClusterType = "CLUSTER_TYPE_HYBRID"
-	ClusterTypeClusterTypeK8SIngressController ClusterType = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
-	ClusterTypeClusterTypeControlPlaneGroup    ClusterType = "CLUSTER_TYPE_CONTROL_PLANE_GROUP"
+	CreateControlPlaneRequestClusterTypeClusterTypeControlPlane          CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_CONTROL_PLANE"
+	CreateControlPlaneRequestClusterTypeClusterTypeK8SIngressController  CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
+	CreateControlPlaneRequestClusterTypeClusterTypeControlPlaneGroup     CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_CONTROL_PLANE_GROUP"
+	CreateControlPlaneRequestClusterTypeClusterTypeServerless            CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_SERVERLESS"
+	CreateControlPlaneRequestClusterTypeClusterTypeHTTPGateway           CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_HTTP_GATEWAY"
+	CreateControlPlaneRequestClusterTypeClusterTypeEventGateway          CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_EVENT_GATEWAY"
+	CreateControlPlaneRequestClusterTypeClusterTypeKafkaNativeEventProxy CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY"
+	CreateControlPlaneRequestClusterTypeClusterTypeCloudAPIGateway       CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_CLOUD_API_GATEWAY"
 )
 
-func (e ClusterType) ToPointer() *ClusterType {
+func (e CreateControlPlaneRequestClusterType) ToPointer() *CreateControlPlaneRequestClusterType {
 	return &e
 }
-func (e *ClusterType) UnmarshalJSON(data []byte) error {
+func (e *CreateControlPlaneRequestClusterType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,15 +32,23 @@ func (e *ClusterType) UnmarshalJSON(data []byte) error {
 	switch v {
 	case "CLUSTER_TYPE_CONTROL_PLANE":
 		fallthrough
-	case "CLUSTER_TYPE_HYBRID":
-		fallthrough
 	case "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER":
 		fallthrough
 	case "CLUSTER_TYPE_CONTROL_PLANE_GROUP":
-		*e = ClusterType(v)
+		fallthrough
+	case "CLUSTER_TYPE_SERVERLESS":
+		fallthrough
+	case "CLUSTER_TYPE_HTTP_GATEWAY":
+		fallthrough
+	case "CLUSTER_TYPE_EVENT_GATEWAY":
+		fallthrough
+	case "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY":
+		fallthrough
+	case "CLUSTER_TYPE_CLOUD_API_GATEWAY":
+		*e = CreateControlPlaneRequestClusterType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ClusterType: %v", v)
+		return fmt.Errorf("invalid value for CreateControlPlaneRequestClusterType: %v", v)
 	}
 }
 
@@ -74,14 +86,17 @@ type CreateControlPlaneRequest struct {
 	// The description of the control plane in Konnect.
 	Description *string `json:"description,omitempty"`
 	// The ClusterType value of the cluster associated with the Control Plane.
-	ClusterType *ClusterType `json:"cluster_type,omitempty"`
+	ClusterType *CreateControlPlaneRequestClusterType `json:"cluster_type,omitempty"`
 	// The auth type value of the cluster associated with the Runtime Group.
 	AuthType *AuthType `json:"auth_type,omitempty"`
 	// Whether this control-plane can be used for cloud-gateways.
 	CloudGateway *bool `json:"cloud_gateway,omitempty"`
 	// Array of proxy URLs associated with reaching the data-planes connected to a control-plane.
 	ProxyUrls []ProxyURL `json:"proxy_urls,omitempty"`
-	// Labels to facilitate tagged search on control planes. Keys must be of length 1-63 characters, and cannot start with 'kong', 'konnect', 'mesh', 'kic', or '_'.
+	// Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types.
+	//
+	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+	//
 	Labels map[string]string `json:"labels,omitempty"`
 }
 
@@ -99,7 +114,7 @@ func (o *CreateControlPlaneRequest) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CreateControlPlaneRequest) GetClusterType() *ClusterType {
+func (o *CreateControlPlaneRequest) GetClusterType() *CreateControlPlaneRequestClusterType {
 	if o == nil {
 		return nil
 	}

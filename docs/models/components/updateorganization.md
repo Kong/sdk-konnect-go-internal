@@ -1,0 +1,11 @@
+# UpdateOrganization
+
+The request schema to update an organization.
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         | Example                                                                                             |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `OwnerID`                                                                                           | **string*                                                                                           | :heavy_minus_sign:                                                                                  | The user id of the new owner of the organization. Must be a member of the Organization Admins team. | d9c56d92-0339-4dfb-be0c-2253162edba9                                                                |
+| `Name`                                                                                              | **string*                                                                                           | :heavy_minus_sign:                                                                                  | The new name of the organization.                                                                   | Kong Inc                                                                                            |
