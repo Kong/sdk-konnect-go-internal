@@ -36,10 +36,10 @@ jobs:
           repo: speakeasy
           cli_name: speakeasy
           package_type: zip
-          version: 1.465.0 # renovate: datasource=github-releases depName=speakeasy-api/speakeasy
+          version: 1.668.0 # renovate: datasource=github-releases depName=speakeasy-api/speakeasy
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.PAT }}
