@@ -105,14 +105,13 @@ func main() {
         components.AIGatewayModelAPI{
             DisplayName: "My GPT 5 model",
             Name: "my-gpt-5-model",
-            Acls: components.AIGatewayACLS{
-                Allow: []string{
-                    "<value 1>",
-                    "<value 2>",
-                    "<value 3>",
+            Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
+                components.AIGatewayAllowACL{
+                    Allow: []string{
+                        "consumer-group-1",
+                    },
                 },
-                Deny: []string{},
-            },
+            )),
             Config: components.AIGatewayModelConfig{
                 Route: components.AIGatewayRouteConfig{
                     Destinations: []components.Destinations{
@@ -310,15 +309,13 @@ func main() {
             components.AIGatewayModelAPI{
                 DisplayName: "My GPT 5 model",
                 Name: "my-gpt-5-model",
-                Acls: components.AIGatewayACLS{
-                    Allow: []string{
-                        "<value 1>",
+                Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
+                    components.AIGatewayAllowACL{
+                        Allow: []string{
+                            "consumer-group-1",
+                        },
                     },
-                    Deny: []string{
-                        "<value 1>",
-                        "<value 2>",
-                    },
-                },
+                )),
                 Config: components.AIGatewayModelConfig{
                     Route: components.AIGatewayRouteConfig{
                         Destinations: []components.Destinations{

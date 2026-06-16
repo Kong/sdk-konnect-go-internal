@@ -63,7 +63,6 @@ func (s *CustomPluginSchemas) ListPluginSchemas(ctx context.Context, request ope
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-plugin-schemas",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -340,7 +339,6 @@ func (s *CustomPluginSchemas) CreatePluginSchemas(ctx context.Context, controlPl
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-plugin-schemas",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "CreatePluginSchemas", "json", `request:"mediaType=application/json"`)
@@ -641,7 +639,6 @@ func (s *CustomPluginSchemas) GetPluginSchema(ctx context.Context, controlPlaneI
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-plugin-schema",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -914,7 +911,6 @@ func (s *CustomPluginSchemas) DeletePluginSchemas(ctx context.Context, controlPl
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-plugin-schemas",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1163,7 +1159,6 @@ func (s *CustomPluginSchemas) UpdatePluginSchemas(ctx context.Context, request o
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-plugin-schemas",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "CreatePluginSchemas", "json", `request:"mediaType=application/json"`)
@@ -1459,7 +1454,6 @@ func (s *CustomPluginSchemas) ListPluginSchemasInWorkspace(ctx context.Context, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-plugin-schemas-in-workspace",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1731,7 +1725,6 @@ func (s *CustomPluginSchemas) CreatePluginSchemasInWorkspace(ctx context.Context
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-plugin-schemas-in-workspace",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "CreatePluginSchemas", "json", `request:"mediaType=application/json"`)
@@ -2027,7 +2020,6 @@ func (s *CustomPluginSchemas) GetPluginSchemaInWorkspace(ctx context.Context, re
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-plugin-schema-in-workspace",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2295,7 +2287,6 @@ func (s *CustomPluginSchemas) DeletePluginSchemasInWorkspace(ctx context.Context
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "delete-plugin-schemas-in-workspace",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2544,7 +2535,6 @@ func (s *CustomPluginSchemas) UpdatePluginSchemasInWorkspace(ctx context.Context
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "update-plugin-schemas-in-workspace",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "CreatePluginSchemas", "json", `request:"mediaType=application/json"`)

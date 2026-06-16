@@ -132,8 +132,9 @@ type CreateAIGatewayAgentRequest struct {
 	// The type of the agent.
 	Type CreateAIGatewayAgentRequestType `json:"type"`
 	// List of policy references.
-	Policies []string      `json:"policies"`
-	Acls     AIGatewayACLS `json:"acls"`
+	Policies []string `json:"policies"`
+	// Access control rules. Configure exactly one of `allow` or `deny`.
+	Acls *AIGatewayACLS `json:"acls,omitempty"`
 	// Configuration for the agent. The structure varies depending on the agent type.
 	Config CreateAIGatewayAgentRequestConfig `json:"config"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
@@ -197,9 +198,9 @@ func (c *CreateAIGatewayAgentRequest) GetPolicies() []string {
 	return c.Policies
 }
 
-func (c *CreateAIGatewayAgentRequest) GetAcls() AIGatewayACLS {
+func (c *CreateAIGatewayAgentRequest) GetAcls() *AIGatewayACLS {
 	if c == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return c.Acls
 }

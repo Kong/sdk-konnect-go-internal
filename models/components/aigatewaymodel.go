@@ -72,7 +72,7 @@ type AIGatewayModelAIGatewayModelModel struct {
 	// Whether the model is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
 	// Access control rules for allowing or denying Consumers, Consumer Groups, or Authenticated Groups to this model.
-	Acls AIGatewayACLS `json:"acls"`
+	Acls *AIGatewayACLS `json:"acls,omitempty"`
 	// Routing, logging, and load balancing configuration for the model.
 	Config AIGatewayModelConfigOutput `json:"config"`
 	// List of request/response formats supported by this model.
@@ -109,7 +109,7 @@ func (a AIGatewayModelAIGatewayModelModel) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayModelAIGatewayModelModel) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "acls", "config", "formats", "target_models", "policies", "type", "capabilities", "id", "created_at", "updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "config", "formats", "target_models", "policies", "type", "capabilities", "id", "created_at", "updated_at"}); err != nil {
 		return err
 	}
 	return nil
@@ -136,9 +136,9 @@ func (a *AIGatewayModelAIGatewayModelModel) GetEnabled() *bool {
 	return a.Enabled
 }
 
-func (a *AIGatewayModelAIGatewayModelModel) GetAcls() AIGatewayACLS {
+func (a *AIGatewayModelAIGatewayModelModel) GetAcls() *AIGatewayACLS {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.Acls
 }
@@ -274,7 +274,7 @@ type AIGatewayModelAIGatewayModelAPI struct {
 	// Whether the model is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
 	// Access control rules for allowing or denying Consumers, Consumer Groups, or Authenticated Groups to this model.
-	Acls AIGatewayACLS `json:"acls"`
+	Acls *AIGatewayACLS `json:"acls,omitempty"`
 	// Routing, logging, and load balancing configuration for the model.
 	Config AIGatewayModelConfigOutput `json:"config"`
 	// List of request/response formats supported by this model.
@@ -311,7 +311,7 @@ func (a AIGatewayModelAIGatewayModelAPI) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayModelAIGatewayModelAPI) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "acls", "config", "formats", "target_models", "policies", "type", "capabilities", "id", "created_at", "updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "config", "formats", "target_models", "policies", "type", "capabilities", "id", "created_at", "updated_at"}); err != nil {
 		return err
 	}
 	return nil
@@ -338,9 +338,9 @@ func (a *AIGatewayModelAIGatewayModelAPI) GetEnabled() *bool {
 	return a.Enabled
 }
 
-func (a *AIGatewayModelAIGatewayModelAPI) GetAcls() AIGatewayACLS {
+func (a *AIGatewayModelAIGatewayModelAPI) GetAcls() *AIGatewayACLS {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.Acls
 }

@@ -63,7 +63,6 @@ func (s *OpenMeterSubscriptions) CreateSubscription(ctx context.Context, request
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "create-subscription",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -379,7 +378,6 @@ func (s *OpenMeterSubscriptions) ListSubscriptions(ctx context.Context, request 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-subscriptions",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -675,7 +673,6 @@ func (s *OpenMeterSubscriptions) GetSubscription(ctx context.Context, subscripti
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-subscription",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -967,7 +964,6 @@ func (s *OpenMeterSubscriptions) ListSubscriptionAddons(ctx context.Context, req
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "list-subscription-addons",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1268,7 +1264,6 @@ func (s *OpenMeterSubscriptions) GetSubscriptionAddon(ctx context.Context, subsc
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "get-subscription-addon",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1563,7 +1558,6 @@ func (s *OpenMeterSubscriptions) CancelSubscription(ctx context.Context, subscri
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "cancel-subscription",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "BillingSubscriptionCancel", "json", `request:"mediaType=application/json"`)
@@ -1886,7 +1880,6 @@ func (s *OpenMeterSubscriptions) ChangeSubscription(ctx context.Context, subscri
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "change-subscription",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "BillingSubscriptionChange", "json", `request:"mediaType=application/json"`)
@@ -2207,7 +2200,6 @@ func (s *OpenMeterSubscriptions) UnscheduleCancelation(ctx context.Context, subs
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "unschedule-cancelation",
-		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

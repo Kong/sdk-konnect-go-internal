@@ -37,7 +37,7 @@ type AIGatewayModelBalancerConfig struct {
 func CreateAIGatewayModelBalancerConfigConsistentHashing(consistentHashing AIGatewayModelBalancerConsistentHashingConfig) AIGatewayModelBalancerConfig {
 	typ := AIGatewayModelBalancerConfigTypeConsistentHashing
 
-	typStr := Algorithm(typ)
+	typStr := AIGatewayModelBalancerConsistentHashingConfigAlgorithm(typ)
 	consistentHashing.Algorithm = typStr
 
 	return AIGatewayModelBalancerConfig{

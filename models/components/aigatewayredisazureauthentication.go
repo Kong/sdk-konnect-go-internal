@@ -41,7 +41,7 @@ type AIGatewayRedisAzureAuthentication struct {
 	// Azure Client Secret.
 	// This field is [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
 	//
-	Secret *string `json:"secret,omitempty"`
+	ClientSecret *string `json:"client_secret,omitempty"`
 	// Azure Tenant ID.
 	// This field is [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
 	//
@@ -73,11 +73,11 @@ func (a *AIGatewayRedisAzureAuthentication) GetClientID() *string {
 	return a.ClientID
 }
 
-func (a *AIGatewayRedisAzureAuthentication) GetSecret() *string {
+func (a *AIGatewayRedisAzureAuthentication) GetClientSecret() *string {
 	if a == nil {
 		return nil
 	}
-	return a.Secret
+	return a.ClientSecret
 }
 
 func (a *AIGatewayRedisAzureAuthentication) GetTenantID() *string {

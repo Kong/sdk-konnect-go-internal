@@ -776,6 +776,13 @@ func main() {
 * [GetControlPlaneGroupSettings](docs/sdks/controlplanegroups/README.md#getcontrolplanegroupsettings) - Get Control Plane Group Settings
 * [PutControlPlaneGroupSettings](docs/sdks/controlplanegroups/README.md#putcontrolplanegroupsettings) - Upsert Control Plane Group Settings
 
+### [ControlPlaneMappings](docs/sdks/controlplanemappings/README.md)
+
+* [ListControlPlaneMappings](docs/sdks/controlplanemappings/README.md#listcontrolplanemappings) - Get a list of CPs mapped to MCP Server
+* [CreateMcpServerControlPlaneMapping](docs/sdks/controlplanemappings/README.md#createmcpservercontrolplanemapping) - Create MCP Server CP Mapping
+* [GetControlPlaneMapping](docs/sdks/controlplanemappings/README.md#getcontrolplanemapping) - Get a mapping between an MCP Server and a CP
+* [DeleteMcpServerControlPlaneMapping](docs/sdks/controlplanemappings/README.md#deletemcpservercontrolplanemapping) - Delete MCP Server Control Plane Mapping
+
 ### [ControlPlaneResourceQuotas](docs/sdks/controlplaneresourcequotas/README.md)
 
 * [ListControlPlaneDefaultResourceQuotas](docs/sdks/controlplaneresourcequotas/README.md#listcontrolplanedefaultresourcequotas) - List Default Quotas
@@ -897,6 +904,143 @@ func main() {
 * [GetNodesEol](docs/sdks/dpnodes/README.md#getnodeseol) - List End-of-Life Data Plane Node Records
 * [GetNodesNodeID](docs/sdks/dpnodes/README.md#getnodesnodeid) - Get a Data Plane Node Record
 * [DeleteNodesNodeID](docs/sdks/dpnodes/README.md#deletenodesnodeid) - Delete Data Plane Node Record
+
+### [EventGatewayBackendClusters](docs/sdks/eventgatewaybackendclusters/README.md)
+
+* [ListEventGatewayBackendClusters](docs/sdks/eventgatewaybackendclusters/README.md#listeventgatewaybackendclusters) - List Backend Clusters
+* [CreateEventGatewayBackendCluster](docs/sdks/eventgatewaybackendclusters/README.md#createeventgatewaybackendcluster) - Create Backend Cluster
+* [GetEventGatewayBackendCluster](docs/sdks/eventgatewaybackendclusters/README.md#geteventgatewaybackendcluster) - Get a Backend Cluster
+* [UpdateEventGatewayBackendCluster](docs/sdks/eventgatewaybackendclusters/README.md#updateeventgatewaybackendcluster) - Update Backend Cluster
+* [DeleteEventGatewayBackendCluster](docs/sdks/eventgatewaybackendclusters/README.md#deleteeventgatewaybackendcluster) - Delete Backend Cluster
+
+### [EventGatewayDataPlaneCertificates](docs/sdks/eventgatewaydataplanecertificates/README.md)
+
+* [ListEventGatewayDataPlaneCertificates](docs/sdks/eventgatewaydataplanecertificates/README.md#listeventgatewaydataplanecertificates) - List Event Gateway DataPlane Certificates
+* [CreateEventGatewayDataPlaneCertificate](docs/sdks/eventgatewaydataplanecertificates/README.md#createeventgatewaydataplanecertificate) - Create a New DataPlane Certificate
+* [GetEventGatewayDataPlaneCertificate](docs/sdks/eventgatewaydataplanecertificates/README.md#geteventgatewaydataplanecertificate) - Get a DataPlane Certificate
+* [UpdateEventGatewayDataPlaneCertificate](docs/sdks/eventgatewaydataplanecertificates/README.md#updateeventgatewaydataplanecertificate) - Update Event Gateway DataPlane Certificate
+* [DeleteEventGatewayDataPlaneCertificate](docs/sdks/eventgatewaydataplanecertificates/README.md#deleteeventgatewaydataplanecertificate) - Delete Event Gateway DataPlane Certificate
+
+### [EventGatewayListenerPolicies](docs/sdks/eventgatewaylistenerpolicies/README.md)
+
+* [ListEventGatewayListenerPolicies](docs/sdks/eventgatewaylistenerpolicies/README.md#listeventgatewaylistenerpolicies) - List Policies for Listener
+* [CreateEventGatewayListenerPolicy](docs/sdks/eventgatewaylistenerpolicies/README.md#createeventgatewaylistenerpolicy) - Create Policy for Listener
+* [GetEventGatewayListenerPolicy](docs/sdks/eventgatewaylistenerpolicies/README.md#geteventgatewaylistenerpolicy) - Get a Policy for Listener
+* [UpdateEventGatewayListenerPolicy](docs/sdks/eventgatewaylistenerpolicies/README.md#updateeventgatewaylistenerpolicy) - Update Policy for Listener
+* [PatchEventGatewayListenerPolicy](docs/sdks/eventgatewaylistenerpolicies/README.md#patcheventgatewaylistenerpolicy) - Partially Update Policy for Listener
+* [DeleteEventGatewayListenerPolicy](docs/sdks/eventgatewaylistenerpolicies/README.md#deleteeventgatewaylistenerpolicy) - Delete Policy for Listener
+* [MoveEventGatewayListenerPolicy](docs/sdks/eventgatewaylistenerpolicies/README.md#moveeventgatewaylistenerpolicy) - Move Policy
+* [GetEventGatewayListenerPolicyChain](docs/sdks/eventgatewaylistenerpolicies/README.md#geteventgatewaylistenerpolicychain) - Get Policy Chain for Listener
+* [UpdateEventGatewayListenerPolicyChain](docs/sdks/eventgatewaylistenerpolicies/README.md#updateeventgatewaylistenerpolicychain) - Update Policy Chain for Listener
+
+### [EventGatewayListeners](docs/sdks/eventgatewaylisteners/README.md)
+
+* [ListEventGatewayListeners](docs/sdks/eventgatewaylisteners/README.md#listeventgatewaylisteners) - List Event Gateway Listeners
+* [CreateEventGatewayListener](docs/sdks/eventgatewaylisteners/README.md#createeventgatewaylistener) - Create Event Gateway Listener
+* [GetEventGatewayListener](docs/sdks/eventgatewaylisteners/README.md#geteventgatewaylistener) - Get an Event Gateway Listener
+* [UpdateEventGatewayListener](docs/sdks/eventgatewaylisteners/README.md#updateeventgatewaylistener) - Update Event Gateway Listener
+* [DeleteEventGatewayListener](docs/sdks/eventgatewaylisteners/README.md#deleteeventgatewaylistener) - Delete Event Gateway Listener
+
+### [EventGatewayNodes](docs/sdks/eventgatewaynodes/README.md)
+
+* [ListEventGatewayNodes](docs/sdks/eventgatewaynodes/README.md#listeventgatewaynodes) - List Nodes
+* [GetEventGatewayNode](docs/sdks/eventgatewaynodes/README.md#geteventgatewaynode) - Get a Node
+* [GetEventGatewayNodeStatus](docs/sdks/eventgatewaynodes/README.md#geteventgatewaynodestatus) - Get Node Status
+* [ListEventGatewayNodeErrors](docs/sdks/eventgatewaynodes/README.md#listeventgatewaynodeerrors) - List Node Errors
+
+### [EventGatewaySchemaRegistries](docs/sdks/eventgatewayschemaregistries/README.md)
+
+* [ListEventGatewaySchemaRegistries](docs/sdks/eventgatewayschemaregistries/README.md#listeventgatewayschemaregistries) - List Schema Registries
+* [CreateEventGatewaySchemaRegistry](docs/sdks/eventgatewayschemaregistries/README.md#createeventgatewayschemaregistry) - Create Schema Registry
+* [GetEventGatewaySchemaRegistry](docs/sdks/eventgatewayschemaregistries/README.md#geteventgatewayschemaregistry) - Get a Schema Registry
+* [UpdateEventGatewaySchemaRegistry](docs/sdks/eventgatewayschemaregistries/README.md#updateeventgatewayschemaregistry) - Update Schema Registry
+* [DeleteEventGatewaySchemaRegistry](docs/sdks/eventgatewayschemaregistries/README.md#deleteeventgatewayschemaregistry) - Delete Schema Registry
+
+### [EventGatewayStaticKeys](docs/sdks/eventgatewaystatickeys/README.md)
+
+* [ListEventGatewayStaticKeys](docs/sdks/eventgatewaystatickeys/README.md#listeventgatewaystatickeys) - List Event Gateway Static Keys
+* [CreateEventGatewayStaticKey](docs/sdks/eventgatewaystatickeys/README.md#createeventgatewaystatickey) - Create a New Static Key
+* [GetEventGatewayStaticKey](docs/sdks/eventgatewaystatickeys/README.md#geteventgatewaystatickey) - Get a Static Key
+* [DeleteEventGatewayStaticKey](docs/sdks/eventgatewaystatickeys/README.md#deleteeventgatewaystatickey) - Delete Event Gateway Static Key
+
+### [EventGatewayTLSTrustBundles](docs/sdks/eventgatewaytlstrustbundles/README.md)
+
+* [ListEventGatewayTLSTrustBundles](docs/sdks/eventgatewaytlstrustbundles/README.md#listeventgatewaytlstrustbundles) - List TLS Trust Bundles
+* [CreateEventGatewayTLSTrustBundle](docs/sdks/eventgatewaytlstrustbundles/README.md#createeventgatewaytlstrustbundle) - Create TLS Trust Bundle
+* [GetEventGatewayTLSTrustBundle](docs/sdks/eventgatewaytlstrustbundles/README.md#geteventgatewaytlstrustbundle) - Get a TLS Trust Bundle
+* [UpdateEventGatewayTLSTrustBundle](docs/sdks/eventgatewaytlstrustbundles/README.md#updateeventgatewaytlstrustbundle) - Update TLS Trust Bundle
+* [DeleteEventGatewayTLSTrustBundle](docs/sdks/eventgatewaytlstrustbundles/README.md#deleteeventgatewaytlstrustbundle) - Delete TLS Trust Bundle
+
+### [EventGatewayVaultSecrets](docs/sdks/eventgatewayvaultsecrets/README.md)
+
+* [ListEventGatewayVaultSecrets](docs/sdks/eventgatewayvaultsecrets/README.md#listeventgatewayvaultsecrets) - List Vault Secrets
+* [CreateEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#createeventgatewayvaultsecret) - Create Vault Secret
+* [GetEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#geteventgatewayvaultsecret) - Get Vault Secret
+* [UpdateEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#updateeventgatewayvaultsecret) - Update Vault Secret
+* [DeleteEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#deleteeventgatewayvaultsecret) - Delete Vault Secret
+
+### [EventGatewayVaults](docs/sdks/eventgatewayvaults/README.md)
+
+* [ListEventGatewayVaults](docs/sdks/eventgatewayvaults/README.md#listeventgatewayvaults) - List Vaults
+* [CreateEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#createeventgatewayvault) - Create Vault
+* [GetEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#geteventgatewayvault) - Get a Vault
+* [UpdateEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#updateeventgatewayvault) - Update Vault
+* [DeleteEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#deleteeventgatewayvault) - Delete Vault
+
+### [EventGatewayVirtualClusterConsumePolicies](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md)
+
+* [ListEventGatewayVirtualClusterConsumePolicies](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#listeventgatewayvirtualclusterconsumepolicies) - List Consume Policies for Virtual Cluster
+* [CreateEventGatewayVirtualClusterConsumePolicy](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#createeventgatewayvirtualclusterconsumepolicy) - Create Consume Policy for Virtual Cluster
+* [GetEventGatewayVirtualClusterConsumePolicy](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#geteventgatewayvirtualclusterconsumepolicy) - Get a Consume Policy for Virtual Cluster
+* [UpdateEventGatewayVirtualClusterConsumePolicy](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#updateeventgatewayvirtualclusterconsumepolicy) - Update Consume Policy for Virtual Cluster
+* [PatchEventGatewayVirtualClusterConsumePolicy](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#patcheventgatewayvirtualclusterconsumepolicy) - Patch Consume Policy for Virtual Cluster
+* [DeleteEventGatewayVirtualClusterConsumePolicy](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#deleteeventgatewayvirtualclusterconsumepolicy) - Delete Consume Policy for Virtual Cluster
+* [MoveEventGatewayVirtualClusterConsumePolicy](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#moveeventgatewayvirtualclusterconsumepolicy) - Move Consume Policy
+* [GetEventGatewayVirtualClusterConsumePolicyChain](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#geteventgatewayvirtualclusterconsumepolicychain) - Get Consume Policy Chain
+* [UpdateEventGatewayVirtualClusterConsumePolicyChain](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#updateeventgatewayvirtualclusterconsumepolicychain) - Update Consume Policy Chain
+
+### [EventGatewayVirtualClusterPolicies](docs/sdks/eventgatewayvirtualclusterpolicies/README.md)
+
+* [ListEventGatewayVirtualClusterClusterLevelPolicies](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#listeventgatewayvirtualclusterclusterlevelpolicies) - List Cluster Policies for Virtual Cluster
+* [CreateEventGatewayVirtualClusterClusterLevelPolicy](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#createeventgatewayvirtualclusterclusterlevelpolicy) - Create Cluster Policy for Virtual Cluster
+* [GetEventGatewayVirtualClusterClusterLevelPolicy](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#geteventgatewayvirtualclusterclusterlevelpolicy) - Get a Cluster Policy for Virtual Cluster
+* [UpdateEventGatewayVirtualClusterClusterLevelPolicy](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#updateeventgatewayvirtualclusterclusterlevelpolicy) - Update Cluster Policy for Virtual Cluster
+* [PatchEventGatewayVirtualClusterClusterLevelPolicy](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#patcheventgatewayvirtualclusterclusterlevelpolicy) - Patch Cluster Policy for Virtual Cluster
+* [DeleteEventGatewayVirtualClusterClusterLevelPolicy](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#deleteeventgatewayvirtualclusterclusterlevelpolicy) - Delete Cluster Policy for Virtual Cluster
+* [MoveEventGatewayVirtualClusterClusterLevelPolicy](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#moveeventgatewayvirtualclusterclusterlevelpolicy) - Move Cluster Policy
+* [GetEventGatewayVirtualClusterClusterLevelPolicyChain](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#geteventgatewayvirtualclusterclusterlevelpolicychain) - Get Cluster Policy Chain for Virtual Cluster
+* [UpdateEventGatewayVirtualClusterClusterLevelPolicyChain](docs/sdks/eventgatewayvirtualclusterpolicies/README.md#updateeventgatewayvirtualclusterclusterlevelpolicychain) - Update Cluster Policy Chain
+
+### [EventGatewayVirtualClusterProducePolicies](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md)
+
+* [ListEventGatewayVirtualClusterProducePolicies](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#listeventgatewayvirtualclusterproducepolicies) - List Produce Policies for Virtual Cluster
+* [CreateEventGatewayVirtualClusterProducePolicy](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#createeventgatewayvirtualclusterproducepolicy) - Create Produce Policy for Virtual Cluster
+* [GetEventGatewayVirtualClusterProducePolicy](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#geteventgatewayvirtualclusterproducepolicy) - Get a Produce Policy for Virtual Cluster
+* [UpdateEventGatewayVirtualClusterProducePolicy](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#updateeventgatewayvirtualclusterproducepolicy) - Update Produce Policy for Virtual Cluster
+* [PatchEventGatewayVirtualClusterProducePolicy](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#patcheventgatewayvirtualclusterproducepolicy) - Patch Produce Policy for Virtual Cluster
+* [DeleteEventGatewayVirtualClusterProducePolicy](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#deleteeventgatewayvirtualclusterproducepolicy) - Delete Produce Policy for Virtual Cluster
+* [MoveEventGatewayVirtualClusterProducePolicy](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#moveeventgatewayvirtualclusterproducepolicy) - Move Produce Policy
+* [GetEventGatewayVirtualClusterProducePolicyChain](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#geteventgatewayvirtualclusterproducepolicychain) - Get Produce Policy Chain for Virtual Cluster
+* [UpdateEventGatewayVirtualClusterProducePolicyChain](docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md#updateeventgatewayvirtualclusterproducepolicychain) - Update Produce Policy Chain
+
+### [EventGatewayVirtualClusters](docs/sdks/eventgatewayvirtualclusters/README.md)
+
+* [ListEventGatewayVirtualClusters](docs/sdks/eventgatewayvirtualclusters/README.md#listeventgatewayvirtualclusters) - List all virtual clusters
+* [CreateEventGatewayVirtualCluster](docs/sdks/eventgatewayvirtualclusters/README.md#createeventgatewayvirtualcluster) - Create Virtual Cluster
+* [GetEventGatewayVirtualCluster](docs/sdks/eventgatewayvirtualclusters/README.md#geteventgatewayvirtualcluster) - Get a Virtual Cluster
+* [UpdateEventGatewayVirtualCluster](docs/sdks/eventgatewayvirtualclusters/README.md#updateeventgatewayvirtualcluster) - Update Virtual Cluster
+* [DeleteEventGatewayVirtualCluster](docs/sdks/eventgatewayvirtualclusters/README.md#deleteeventgatewayvirtualcluster) - Delete Virtual Cluster
+
+### [EventGateways](docs/sdks/eventgateways/README.md)
+
+* [ListEventGatewaysUsage](docs/sdks/eventgateways/README.md#listeventgatewaysusage) - Get Event Gateways Usage
+* [ListEventGatewayVersions](docs/sdks/eventgateways/README.md#listeventgatewayversions) - List Event Gateway API Versions
+* [ListEventGateways](docs/sdks/eventgateways/README.md#listeventgateways) - List all Event Gateways
+* [CreateEventGateway](docs/sdks/eventgateways/README.md#createeventgateway) - Create Event Gateway
+* [GetEventGateway](docs/sdks/eventgateways/README.md#geteventgateway) - Get an Event Gateway
+* [UpdateEventGateway](docs/sdks/eventgateways/README.md#updateeventgateway) - Update Event Gateway
+* [PatchEventGateway](docs/sdks/eventgateways/README.md#patcheventgateway) - Partially Update Event Gateway
+* [DeleteEventGateway](docs/sdks/eventgateways/README.md#deleteeventgateway) - Delete Event Gateway
 
 ### [GraphQLCostDecorations](docs/sdks/graphqlcostdecorations/README.md)
 
@@ -1028,6 +1172,13 @@ func main() {
 
 * [GetSystemAccountsAssignedRolesInternal](docs/sdks/managedsystemaccountsroles/README.md#getsystemaccountsassignedrolesinternal) - List Roles (Internal)
 * [CreateSystemAccountsAssignedRolesInternal](docs/sdks/managedsystemaccountsroles/README.md#createsystemaccountsassignedrolesinternal) - Assign a role to a managed System Account
+
+### [MCPResourceMappings](docs/sdks/mcpresourcemappings/README.md)
+
+* [CreateMcpServerResourceMapping](docs/sdks/mcpresourcemappings/README.md#createmcpserverresourcemapping) - Create MCP Server MCP Resource Mapping
+* [ListMcpServerResourceMappings](docs/sdks/mcpresourcemappings/README.md#listmcpserverresourcemappings) - List MCP Server MCP Resource Mappings
+* [DeleteMcpServerResourceMapping](docs/sdks/mcpresourcemappings/README.md#deletemcpserverresourcemapping) - Delete MCP Server MCP Resource Mapping
+* [GetMcpServerResourceMapping](docs/sdks/mcpresourcemappings/README.md#getmcpserverresourcemapping) - Get MCP Server MCP Resource Mapping
 
 ### [MCPServers](docs/sdks/mcpservers/README.md)
 
@@ -1397,6 +1548,12 @@ func main() {
 * [ListPortalMcpRegistryPublications](docs/sdks/portalmcpregistrypublications/README.md#listportalmcpregistrypublications) - List portal MCP registry publications
 * [ListPortalMcpRegistries](docs/sdks/portalmcpregistrypublications/README.md#listportalmcpregistries) - List MCP Registries
 * [ListPortalComputedMcpRegistries](docs/sdks/portalmcpregistrypublications/README.md#listportalcomputedmcpregistries) - List computed MCP Registries
+
+### [PortalMCPServers](docs/sdks/portalmcpservers/README.md)
+
+* [ListPortalMcpServers](docs/sdks/portalmcpservers/README.md#listportalmcpservers) - List Portal MCP Servers
+* [CreatePortalMcpServer](docs/sdks/portalmcpservers/README.md#createportalmcpserver) - Create Portal MCP Server
+* [DeletePortalMcpServer](docs/sdks/portalmcpservers/README.md#deleteportalmcpserver) - Delete Portal MCP Server
 
 ### [PortalPages](docs/sdks/portalpages/README.md)
 

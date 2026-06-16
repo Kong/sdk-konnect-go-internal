@@ -62,7 +62,7 @@ type AIGatewayModelAPI struct {
 	// Whether the model is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
 	// Access control rules for allowing or denying Consumers, Consumer Groups, or Authenticated Groups to this model.
-	Acls AIGatewayACLS `json:"acls"`
+	Acls *AIGatewayACLS `json:"acls,omitempty"`
 	// Routing, logging, and load balancing configuration for the model.
 	Config AIGatewayModelConfig `json:"config"`
 	// List of request/response formats supported by this model.
@@ -93,7 +93,7 @@ func (a AIGatewayModelAPI) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayModelAPI) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "acls", "config", "formats", "target_models", "policies", "type", "capabilities"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "config", "formats", "target_models", "policies", "type", "capabilities"}); err != nil {
 		return err
 	}
 	return nil
@@ -120,9 +120,9 @@ func (a *AIGatewayModelAPI) GetEnabled() *bool {
 	return a.Enabled
 }
 
-func (a *AIGatewayModelAPI) GetAcls() AIGatewayACLS {
+func (a *AIGatewayModelAPI) GetAcls() *AIGatewayACLS {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.Acls
 }

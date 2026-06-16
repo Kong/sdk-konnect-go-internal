@@ -106,18 +106,20 @@ func main() {
             components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerAIGatewayMCPServerBaseACLPropertiesOauth{
                 ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerACLAttributeTypeOauthAccessToken,
                 AccessTokenClaimField: "<value>",
-                Acls: components.AIGatewayACLS{
-                    Allow: []string{},
-                    Deny: []string{
-                        "<value 1>",
+                Acls: components.CreateAIGatewayACLSAIGatewayDenyACL(
+                    components.AIGatewayDenyACL{
+                        Deny: []string{
+                            "consumer-group-1",
+                        },
                     },
-                },
-                DefaultToolAcls: components.AIGatewayACLS{
-                    Allow: []string{},
-                    Deny: []string{
-                        "<value 1>",
+                ),
+                DefaultToolAcls: components.CreateAIGatewayACLSAIGatewayDenyACL(
+                    components.AIGatewayDenyACL{
+                        Deny: []string{
+                            "consumer-group-1",
+                        },
                     },
-                },
+                ),
                 Type: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerTypeUpstreamServer,
                 Config: components.AIGatewayMCPServerUpstreamServerConfig{
                     Route: &components.AIGatewayRouteConfig{
@@ -307,26 +309,20 @@ func main() {
                 components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerAIGatewayMCPServerBaseACLPropertiesOauth{
                     ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerACLAttributeTypeOauthAccessToken,
                     AccessTokenClaimField: "<value>",
-                    Acls: components.AIGatewayACLS{
-                        Allow: []string{
-                            "<value 1>",
-                            "<value 2>",
-                            "<value 3>",
+                    Acls: components.CreateAIGatewayACLSAIGatewayDenyACL(
+                        components.AIGatewayDenyACL{
+                            Deny: []string{
+                                "consumer-group-1",
+                            },
                         },
-                        Deny: []string{
-                            "<value 1>",
-                            "<value 2>",
+                    ),
+                    DefaultToolAcls: components.CreateAIGatewayACLSAIGatewayDenyACL(
+                        components.AIGatewayDenyACL{
+                            Deny: []string{
+                                "consumer-group-1",
+                            },
                         },
-                    },
-                    DefaultToolAcls: components.AIGatewayACLS{
-                        Allow: []string{
-                            "<value 1>",
-                        },
-                        Deny: []string{
-                            "<value 1>",
-                            "<value 2>",
-                        },
-                    },
+                    ),
                     Type: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerTypeUpstreamServer,
                     Config: components.AIGatewayMCPServerUpstreamServerConfig{
                         Route: &components.AIGatewayRouteConfig{
