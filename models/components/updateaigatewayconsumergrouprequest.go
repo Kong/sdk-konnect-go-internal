@@ -12,7 +12,7 @@ type UpdateAIGatewayConsumerGroupRequest struct {
 	// A user-defined unique identifier for this consumer group, used as a stable human-readable reference.
 	Name string `json:"name"`
 	// List of policy references.
-	Policies []string `json:"policies"`
+	Policies []string `json:"policies,omitempty"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
 	//
 	// Public labels are intended to store **PUBLIC** metadata.
@@ -55,7 +55,7 @@ func (u *UpdateAIGatewayConsumerGroupRequest) GetName() string {
 
 func (u *UpdateAIGatewayConsumerGroupRequest) GetPolicies() []string {
 	if u == nil {
-		return []string{}
+		return nil
 	}
 	return u.Policies
 }

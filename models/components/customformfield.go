@@ -99,9 +99,6 @@ func CreateCustomFormFieldTextarea(textarea CustomFormTextareaField) CustomFormF
 func CreateCustomFormFieldSelect(selectT CustomFormSelectField) CustomFormField {
 	typ := CustomFormFieldTypeSelect
 
-	typStr := CustomFormSelectFieldType(typ)
-	selectT.Type = typStr
-
 	return CustomFormField{
 		CustomFormSelectField: &selectT,
 		Type:                  typ,

@@ -156,6 +156,13 @@ func (e *Embeddings) GetConfigVercel() *AIGatewayVercelEmbeddingsModelConfig {
 	return nil
 }
 
+func (e *Embeddings) GetConfigVertex() *AIGatewayVertexEmbeddingsModelConfig {
+	if v := e.GetConfig(); v != nil {
+		return v.AIGatewayVertexEmbeddingsModelConfig
+	}
+	return nil
+}
+
 type AIGatewayModelBalancerSemanticConfigOutput struct {
 	ConnectTimeout *int64 `default:"60000" json:"connect_timeout"`
 	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
@@ -269,8 +276,8 @@ func (a *AIGatewayModelBalancerSemanticConfigOutput) GetVectordbPgvector() *AIGa
 	return a.GetVectordb().AIGatewayModelVectorDBConfigPgVectorOutput
 }
 
-func (a *AIGatewayModelBalancerSemanticConfigOutput) GetVectordbRedis() *AIGatewayModelVectorDBConfigRedis {
-	return a.GetVectordb().AIGatewayModelVectorDBConfigRedis
+func (a *AIGatewayModelBalancerSemanticConfigOutput) GetVectordbRedis() *AIGatewayModelVectorDBConfigRedisOutput {
+	return a.GetVectordb().AIGatewayModelVectorDBConfigRedisOutput
 }
 
 type AIGatewayModelBalancerSemanticConfig struct {

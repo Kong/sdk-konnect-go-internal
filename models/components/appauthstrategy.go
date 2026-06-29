@@ -168,6 +168,10 @@ type AppAuthStrategyOpenIDConnectResponseAppAuthStrategyOpenIDConnectResponse st
 	// - `false` when not supported for Client Credentials strategies
 	//
 	SupportsMultipleCredentials *bool `json:"supports_multiple_credentials,omitempty"`
+	// Application principal settings for this auth strategy. Runtime effect applies to V3 API Catalog (ACE) portals and
+	// applications; stored values may be set for any auth strategy in the organization.
+	//
+	Principals *AuthStrategyPrincipals `json:"principals,omitempty"`
 }
 
 func (a AppAuthStrategyOpenIDConnectResponseAppAuthStrategyOpenIDConnectResponse) MarshalJSON() ([]byte, error) {
@@ -256,6 +260,13 @@ func (a *AppAuthStrategyOpenIDConnectResponseAppAuthStrategyOpenIDConnectRespons
 		return nil
 	}
 	return a.SupportsMultipleCredentials
+}
+
+func (a *AppAuthStrategyOpenIDConnectResponseAppAuthStrategyOpenIDConnectResponse) GetPrincipals() *AuthStrategyPrincipals {
+	if a == nil {
+		return nil
+	}
+	return a.Principals
 }
 
 type AppAuthStrategyKeyAuthResponseAppAuthStrategyStrategyType string
@@ -414,6 +425,10 @@ type AppAuthStrategyKeyAuthResponseAppAuthStrategyKeyAuthResponse struct {
 	// Always `true` for KEY_AUTH.
 	//
 	SupportsMultipleCredentials *bool `default:"true" json:"supports_multiple_credentials"`
+	// Application principal settings for this auth strategy. Runtime effect applies to V3 API Catalog (ACE) portals and
+	// applications; stored values may be set for any auth strategy in the organization.
+	//
+	Principals *AuthStrategyPrincipals `json:"principals,omitempty"`
 }
 
 func (a AppAuthStrategyKeyAuthResponseAppAuthStrategyKeyAuthResponse) MarshalJSON() ([]byte, error) {
@@ -502,6 +517,13 @@ func (a *AppAuthStrategyKeyAuthResponseAppAuthStrategyKeyAuthResponse) GetSuppor
 		return nil
 	}
 	return a.SupportsMultipleCredentials
+}
+
+func (a *AppAuthStrategyKeyAuthResponseAppAuthStrategyKeyAuthResponse) GetPrincipals() *AuthStrategyPrincipals {
+	if a == nil {
+		return nil
+	}
+	return a.Principals
 }
 
 type AppAuthStrategyType string

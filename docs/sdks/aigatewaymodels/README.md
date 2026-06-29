@@ -105,57 +105,25 @@ func main() {
         components.AIGatewayModelAPI{
             DisplayName: "My GPT 5 model",
             Name: "my-gpt-5-model",
-            Acls: components.AIGatewayACLS{
-                Allow: []string{
-                    "<value 1>",
-                    "<value 2>",
-                    "<value 3>",
-                },
-                Deny: []string{},
-            },
-            Config: components.AIGatewayModelConfig{
-                Route: components.AIGatewayRouteConfig{
-                    Destinations: []components.Destinations{
-                        components.Destinations{
-                            IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                            Port: sdkkonnectgo.Pointer[int64](1234),
-                        },
-                    },
-                    Headers: map[string]any{
-                        "version": []any{
-                            "v1",
-                            "v2",
-                        },
-                    },
-                    Hosts: []string{
-                        "foo.example.com",
-                    },
-                    Sources: []components.Sources{
-                        components.Sources{
-                            IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                            Port: sdkkonnectgo.Pointer[int64](1234),
-                        },
+            Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
+                components.AIGatewayAllowACL{
+                    Allow: []string{
+                        "consumer-group-1",
                     },
                 },
-                Model: components.AIGatewayModelConfigModel{},
-                Balancer: sdkkonnectgo.Pointer(components.CreateAIGatewayModelBalancerConfigLowestUsage(
-                    components.AIGatewayModelBalancerLowestUsageConfig{
-                        Algorithm: components.AIGatewayModelBalancerLowestUsageConfigAlgorithmLowestUsage,
-                    },
-                )),
-            },
+            )),
             Formats: []components.AIGatewayModelFormat{
                 components.AIGatewayModelFormat{
                     Type: components.AIGatewayModelFormatTypeOpenai.ToPointer(),
                 },
             },
-            TargetModels: []components.AIGatewayTargetModel{
-                components.AIGatewayTargetModel{
+            Targets: []components.AIGatewayTarget{
+                components.AIGatewayTarget{
                     Name: "gpt-5-model",
                     Provider: "azure-ai-se",
-                    Config: components.CreateAIGatewayTargetModelConfigLlama2(
-                        components.AIGatewayTargetModelLlama2Config{
-                            Type: components.AIGatewayTargetModelLlama2ConfigTypeLlama2,
+                    Config: components.CreateAIGatewayTargetConfigCohere(
+                        components.AIGatewayTargetCohereConfig{
+                            Type: components.AIGatewayTargetCohereConfigTypeCohere,
                         },
                     ),
                 },
@@ -166,6 +134,27 @@ func main() {
                 "<value 3>",
             },
             Type: components.AIGatewayModelAPITypeAPI,
+            Config: components.AIGatewayModelAPIConfig{
+                Route: components.AIGatewayRouteConfig{
+                    Headers: map[string]any{
+                        "version": []any{
+                            "v1",
+                            "v2",
+                        },
+                    },
+                    Hosts: []string{
+                        "foo.example.com",
+                    },
+                },
+                Balancer: sdkkonnectgo.Pointer(components.CreateAIGatewayModelBalancerConfigLowestUsage(
+                    components.AIGatewayModelBalancerLowestUsageConfig{
+                        Algorithm: components.AIGatewayModelBalancerLowestUsageConfigAlgorithmLowestUsage,
+                    },
+                )),
+                Model: components.AIGatewayModelAPIConfigModel{
+                    Alias: "<value>",
+                },
+            },
             Capabilities: []components.Capabilities{
                 components.CapabilitiesFiles,
             },
@@ -259,7 +248,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `modelID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway model.                   | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `modelID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway model.           | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -310,23 +299,23 @@ func main() {
             components.AIGatewayModelAPI{
                 DisplayName: "My GPT 5 model",
                 Name: "my-gpt-5-model",
-                Acls: components.AIGatewayACLS{
-                    Allow: []string{
-                        "<value 1>",
+                Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
+                    components.AIGatewayAllowACL{
+                        Allow: []string{
+                            "consumer-group-1",
+                        },
                     },
-                    Deny: []string{
-                        "<value 1>",
-                        "<value 2>",
+                )),
+                Formats: []components.AIGatewayModelFormat{
+                    components.AIGatewayModelFormat{
+                        Type: components.AIGatewayModelFormatTypeOpenai.ToPointer(),
                     },
                 },
-                Config: components.AIGatewayModelConfig{
+                Targets: []components.AIGatewayTarget{},
+                Policies: []string{},
+                Type: components.AIGatewayModelAPITypeAPI,
+                Config: components.AIGatewayModelAPIConfig{
                     Route: components.AIGatewayRouteConfig{
-                        Destinations: []components.Destinations{
-                            components.Destinations{
-                                IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                                Port: sdkkonnectgo.Pointer[int64](1234),
-                            },
-                        },
                         Headers: map[string]any{
                             "version": []any{
                                 "v1",
@@ -336,38 +325,16 @@ func main() {
                         Hosts: []string{
                             "foo.example.com",
                         },
-                        Sources: []components.Sources{
-                            components.Sources{
-                                IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                                Port: sdkkonnectgo.Pointer[int64](1234),
-                            },
-                        },
                     },
-                    Model: components.AIGatewayModelConfigModel{},
                     Balancer: sdkkonnectgo.Pointer(components.CreateAIGatewayModelBalancerConfigRoundRobin(
                         components.AIGatewayModelBalancerRoundRobinConfig{
                             Algorithm: components.AIGatewayModelBalancerRoundRobinConfigAlgorithmRoundRobin,
                         },
                     )),
-                },
-                Formats: []components.AIGatewayModelFormat{
-                    components.AIGatewayModelFormat{
-                        Type: components.AIGatewayModelFormatTypeOpenai.ToPointer(),
+                    Model: components.AIGatewayModelAPIConfigModel{
+                        Alias: "<value>",
                     },
                 },
-                TargetModels: []components.AIGatewayTargetModel{
-                    components.AIGatewayTargetModel{
-                        Name: "gpt-5-model",
-                        Provider: "azure-ai-se",
-                        Config: components.CreateAIGatewayTargetModelConfigMistral(
-                            components.AIGatewayTargetModelMistralConfig{
-                                Type: components.AIGatewayTargetModelMistralConfigTypeMistral,
-                            },
-                        ),
-                    },
-                },
-                Policies: []string{},
-                Type: components.AIGatewayModelAPITypeAPI,
                 Capabilities: []components.Capabilities{},
             },
         ),
@@ -452,7 +419,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `modelID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway model.                   | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `modelID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway model.           | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

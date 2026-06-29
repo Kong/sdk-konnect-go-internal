@@ -40,7 +40,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.PortalCustomization != nil {
+    if res.PortalCustomizationV3 != nil {
         // handle response
     }
 }
@@ -93,7 +93,7 @@ func main() {
         }),
     )
 
-    res, err := s.PortalCustomization.ReplacePortalCustomization(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomization{
+    res, err := s.PortalCustomization.ReplacePortalCustomization(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomizationV3{
         Theme: &components.Theme{
             Colors: &components.Colors{
                 Primary: sdkkonnectgo.Pointer("#000000"),
@@ -123,11 +123,16 @@ func main() {
                 },
             },
         },
+        PortalLayout: &components.PortalLayout{
+            Footer: &components.Footer{
+                SnippetName: sdkkonnectgo.Pointer("my-snippet"),
+            },
+        },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.PortalCustomization != nil {
+    if res.PortalCustomizationV3 != nil {
         // handle response
     }
 }
@@ -135,12 +140,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |                                                                                   |
-| `portalID`                                                                        | `string`                                                                          | :heavy_check_mark:                                                                | ID of the portal.                                                                 | f32d905a-ed33-46a3-a093-d8f536af9a8a                                              |
-| `portalCustomization`                                                             | [*components.PortalCustomization](../../models/components/portalcustomization.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
-| `opts`                                                                            | [][operations.Option](../../models/operations/option.md)                          | :heavy_minus_sign:                                                                | The options for this request.                                                     |                                                                                   |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |                                                                                       |
+| `portalID`                                                                            | `string`                                                                              | :heavy_check_mark:                                                                    | ID of the portal.                                                                     | f32d905a-ed33-46a3-a093-d8f536af9a8a                                                  |
+| `portalCustomizationV3`                                                               | [*components.PortalCustomizationV3](../../models/components/portalcustomizationv3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
+| `opts`                                                                                | [][operations.Option](../../models/operations/option.md)                              | :heavy_minus_sign:                                                                    | The options for this request.                                                         |                                                                                       |
 
 ### Response
 
@@ -182,7 +187,7 @@ func main() {
         }),
     )
 
-    res, err := s.PortalCustomization.UpdatePortalCustomization(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomization{
+    res, err := s.PortalCustomization.UpdatePortalCustomization(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCustomizationV3{
         Theme: &components.Theme{
             Colors: &components.Colors{
                 Primary: sdkkonnectgo.Pointer("#000000"),
@@ -219,11 +224,16 @@ func main() {
                 },
             },
         },
+        PortalLayout: &components.PortalLayout{
+            Footer: &components.Footer{
+                SnippetName: sdkkonnectgo.Pointer("my-snippet"),
+            },
+        },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.PortalCustomization != nil {
+    if res.PortalCustomizationV3 != nil {
         // handle response
     }
 }
@@ -231,12 +241,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |                                                                                   |
-| `portalID`                                                                        | `string`                                                                          | :heavy_check_mark:                                                                | ID of the portal.                                                                 | f32d905a-ed33-46a3-a093-d8f536af9a8a                                              |
-| `portalCustomization`                                                             | [*components.PortalCustomization](../../models/components/portalcustomization.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |
-| `opts`                                                                            | [][operations.Option](../../models/operations/option.md)                          | :heavy_minus_sign:                                                                | The options for this request.                                                     |                                                                                   |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |                                                                                       |
+| `portalID`                                                                            | `string`                                                                              | :heavy_check_mark:                                                                    | ID of the portal.                                                                     | f32d905a-ed33-46a3-a093-d8f536af9a8a                                                  |
+| `portalCustomizationV3`                                                               | [*components.PortalCustomizationV3](../../models/components/portalcustomizationv3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
+| `opts`                                                                                | [][operations.Option](../../models/operations/option.md)                              | :heavy_minus_sign:                                                                    | The options for this request.                                                         |                                                                                       |
 
 ### Response
 

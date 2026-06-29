@@ -10,7 +10,7 @@ import (
 type UpdateAiGatewayVaultRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
-	// The unique ID of the AI Gateway Vault.
+	// The unique ID or name of the AI Gateway Vault.
 	VaultID                     string                                 `pathParam:"style=simple,explode=false,name=vaultId"`
 	UpdateAIGatewayVaultRequest components.UpdateAIGatewayVaultRequest `request:"mediaType=application/json"`
 }

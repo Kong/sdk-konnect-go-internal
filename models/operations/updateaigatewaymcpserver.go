@@ -10,7 +10,7 @@ import (
 type UpdateAiGatewayMcpServerRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
-	// The unique ID of the MCP Server.
+	// The unique ID or name of the MCP Server.
 	McpServerID                     string                                     `pathParam:"style=simple,explode=false,name=mcpServerId"`
 	UpdateAIGatewayMCPServerRequest components.UpdateAIGatewayMCPServerRequest `request:"mediaType=application/json"`
 }

@@ -110,7 +110,6 @@ func main() {
         Name: "gregs-dev-consumer",
         Type: components.CreateAIGatewayConsumerRequestTypeOauth,
         CustomID: sdkkonnectgo.Pointer("dev-users"),
-        Policies: []string{},
         Labels: map[string]string{
             "category": "finance",
         },
@@ -193,7 +192,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `consumerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway consumer.                | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `consumerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway consumer.        | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -245,11 +244,6 @@ func main() {
             Name: "gregs-dev-consumer",
             Type: components.UpdateAIGatewayConsumerRequestTypeAPIKey,
             CustomID: sdkkonnectgo.Pointer("dev-users"),
-            Policies: []string{
-                "<value 1>",
-                "<value 2>",
-                "<value 3>",
-            },
             Labels: map[string]string{
                 "category": "finance",
             },
@@ -332,7 +326,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `consumerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway consumer.                | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `consumerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway consumer.        | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

@@ -18,6 +18,7 @@ const (
 	AIGatewayEmbeddingsModelConfigTypeGemini      AIGatewayEmbeddingsModelConfigType = "gemini"
 	AIGatewayEmbeddingsModelConfigTypeHuggingface AIGatewayEmbeddingsModelConfigType = "huggingface"
 	AIGatewayEmbeddingsModelConfigTypeVercel      AIGatewayEmbeddingsModelConfigType = "vercel"
+	AIGatewayEmbeddingsModelConfigTypeVertex      AIGatewayEmbeddingsModelConfigType = "vertex"
 )
 
 // AIGatewayEmbeddingsModelConfig - Configuration for an embeddings model.
@@ -28,6 +29,7 @@ type AIGatewayEmbeddingsModelConfig struct {
 	AIGatewayGeminiEmbeddingsModelConfig      *AIGatewayGeminiEmbeddingsModelConfig      `queryParam:"inline" union:"member"`
 	AIGatewayHuggingfaceEmbeddingsModelConfig *AIGatewayHuggingfaceEmbeddingsModelConfig `queryParam:"inline" union:"member"`
 	AIGatewayVercelEmbeddingsModelConfig      *AIGatewayVercelEmbeddingsModelConfig      `queryParam:"inline" union:"member"`
+	AIGatewayVertexEmbeddingsModelConfig      *AIGatewayVertexEmbeddingsModelConfig      `queryParam:"inline" union:"member"`
 
 	Type AIGatewayEmbeddingsModelConfigType
 }
@@ -104,6 +106,18 @@ func CreateAIGatewayEmbeddingsModelConfigVercel(vercel AIGatewayVercelEmbeddings
 	}
 }
 
+func CreateAIGatewayEmbeddingsModelConfigVertex(vertex AIGatewayVertexEmbeddingsModelConfig) AIGatewayEmbeddingsModelConfig {
+	typ := AIGatewayEmbeddingsModelConfigTypeVertex
+
+	typStr := AIGatewayVertexEmbeddingsModelConfigType(typ)
+	vertex.Type = typStr
+
+	return AIGatewayEmbeddingsModelConfig{
+		AIGatewayVertexEmbeddingsModelConfig: &vertex,
+		Type:                                 typ,
+	}
+}
+
 func (u *AIGatewayEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
 
 	type discriminator struct {
@@ -170,6 +184,15 @@ func (u *AIGatewayEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
 		u.AIGatewayVercelEmbeddingsModelConfig = aiGatewayVercelEmbeddingsModelConfig
 		u.Type = AIGatewayEmbeddingsModelConfigTypeVercel
 		return nil
+	case "vertex":
+		aiGatewayVertexEmbeddingsModelConfig := new(AIGatewayVertexEmbeddingsModelConfig)
+		if err := utils.UnmarshalJSON(data, &aiGatewayVertexEmbeddingsModelConfig, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == vertex) type AIGatewayVertexEmbeddingsModelConfig within AIGatewayEmbeddingsModelConfig: %w", string(data), err)
+		}
+
+		u.AIGatewayVertexEmbeddingsModelConfig = aiGatewayVertexEmbeddingsModelConfig
+		u.Type = AIGatewayEmbeddingsModelConfigTypeVertex
+		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayEmbeddingsModelConfig", string(data))
@@ -198,6 +221,10 @@ func (u AIGatewayEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 
 	if u.AIGatewayVercelEmbeddingsModelConfig != nil {
 		return utils.MarshalJSON(u.AIGatewayVercelEmbeddingsModelConfig, "", true)
+	}
+
+	if u.AIGatewayVertexEmbeddingsModelConfig != nil {
+		return utils.MarshalJSON(u.AIGatewayVertexEmbeddingsModelConfig, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type AIGatewayEmbeddingsModelConfig: all fields are null")

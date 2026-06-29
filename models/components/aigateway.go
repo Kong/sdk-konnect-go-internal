@@ -32,6 +32,8 @@ func (e *Endpoints) GetTelemetry() string {
 type AIGateway struct {
 	// The display name for this AI Gateway.
 	DisplayName string `json:"display_name"`
+	// The name for this AI Gateway.
+	Name string `json:"name"`
 	// The description of the AI Gateway.
 	Description *string `json:"description,omitempty"`
 	// Array of proxy URLs associated with reaching the data-planes connected to a control-plane.
@@ -76,6 +78,13 @@ func (a *AIGateway) GetDisplayName() string {
 		return ""
 	}
 	return a.DisplayName
+}
+
+func (a *AIGateway) GetName() string {
+	if a == nil {
+		return ""
+	}
+	return a.Name
 }
 
 func (a *AIGateway) GetDescription() *string {

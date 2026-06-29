@@ -33,25 +33,27 @@ func (e *MCPResourceInfoType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// MCPResourceInfo - The MCP resource object.
 type MCPResourceInfo struct {
 	// The unique identifier for the MCP resource.
 	ID string `json:"id"`
 	// The unique name of the MCP resource.
 	Name string `json:"name"`
-	// List of MCP server IDs that reference this resource.
-	McpServers []string `json:"mcp_servers"`
+	// The display name of the MCP resource.
+	DisplayName string `json:"display_name"`
+	// Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types.
+	//
+	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+	//
+	Labels map[string]string `json:"labels"`
 	// The type of the MCP resource.
 	Type MCPResourceInfoType `json:"type"`
-	// The source of the MCP resource, indicating how it was created.
-	Source MCPResourceSource `json:"source"`
-	// The version of the MCP resource. In the case of API resources, this corresponds
-	// to the version of the spec (e.g., "3.0.0").
-	//
-	Version string `json:"version"`
-	// An ISO-8601 timestamp representation of entity update date.
-	UpdatedAt time.Time `json:"updated_at"`
+	// The source of the MCP resource, indicating how it originated.
+	Source MCPResourceSourceDetail `json:"source"`
 	// An ISO-8601 timestamp representation of entity creation date.
 	CreatedAt time.Time `json:"created_at"`
+	// An ISO-8601 timestamp representation of entity update date.
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 func (m MCPResourceInfo) MarshalJSON() ([]byte, error) {
@@ -79,11 +81,18 @@ func (m *MCPResourceInfo) GetName() string {
 	return m.Name
 }
 
-func (m *MCPResourceInfo) GetMcpServers() []string {
+func (m *MCPResourceInfo) GetDisplayName() string {
 	if m == nil {
-		return []string{}
+		return ""
 	}
-	return m.McpServers
+	return m.DisplayName
+}
+
+func (m *MCPResourceInfo) GetLabels() map[string]string {
+	if m == nil {
+		return map[string]string{}
+	}
+	return m.Labels
 }
 
 func (m *MCPResourceInfo) GetType() MCPResourceInfoType {
@@ -93,25 +102,19 @@ func (m *MCPResourceInfo) GetType() MCPResourceInfoType {
 	return m.Type
 }
 
-func (m *MCPResourceInfo) GetSource() MCPResourceSource {
+func (m *MCPResourceInfo) GetSource() MCPResourceSourceDetail {
 	if m == nil {
-		return MCPResourceSource("")
+		return MCPResourceSourceDetail{}
 	}
 	return m.Source
 }
 
-func (m *MCPResourceInfo) GetVersion() string {
-	if m == nil {
-		return ""
-	}
-	return m.Version
+func (m *MCPResourceInfo) GetSourceAPICatalog() *MCPResourceSourceAPICatalog {
+	return m.GetSource().MCPResourceSourceAPICatalog
 }
 
-func (m *MCPResourceInfo) GetUpdatedAt() time.Time {
-	if m == nil {
-		return time.Time{}
-	}
-	return m.UpdatedAt
+func (m *MCPResourceInfo) GetSourceRaw() *MCPResourceSourceRaw {
+	return m.GetSource().MCPResourceSourceRaw
 }
 
 func (m *MCPResourceInfo) GetCreatedAt() time.Time {
@@ -119,4 +122,11 @@ func (m *MCPResourceInfo) GetCreatedAt() time.Time {
 		return time.Time{}
 	}
 	return m.CreatedAt
+}
+
+func (m *MCPResourceInfo) GetUpdatedAt() time.Time {
+	if m == nil {
+		return time.Time{}
+	}
+	return m.UpdatedAt
 }

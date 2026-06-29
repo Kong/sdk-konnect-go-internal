@@ -8,26 +8,26 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type Strategy string
+type AIGatewayModelVectorDBConfigPgVectorType string
 
 const (
-	StrategyPgvector Strategy = "pgvector"
+	AIGatewayModelVectorDBConfigPgVectorTypePgvector AIGatewayModelVectorDBConfigPgVectorType = "pgvector"
 )
 
-func (e Strategy) ToPointer() *Strategy {
+func (e AIGatewayModelVectorDBConfigPgVectorType) ToPointer() *AIGatewayModelVectorDBConfigPgVectorType {
 	return &e
 }
-func (e *Strategy) UnmarshalJSON(data []byte) error {
+func (e *AIGatewayModelVectorDBConfigPgVectorType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "pgvector":
-		*e = Strategy(v)
+		*e = AIGatewayModelVectorDBConfigPgVectorType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Strategy: %v", v)
+		return fmt.Errorf("invalid value for AIGatewayModelVectorDBConfigPgVectorType: %v", v)
 	}
 }
 
@@ -147,7 +147,7 @@ func (s *Ssl) GetVersion() *Version {
 }
 
 type AIGatewayModelVectorDBConfigPgVectorOutput struct {
-	Strategy Strategy `json:"strategy"`
+	Type AIGatewayModelVectorDBConfigPgVectorType `json:"type"`
 	// the desired dimensionality for the vectors
 	Dimensions int64 `json:"dimensions"`
 	// the distance metric to use for vector searches
@@ -174,17 +174,17 @@ func (a AIGatewayModelVectorDBConfigPgVectorOutput) MarshalJSON() ([]byte, error
 }
 
 func (a *AIGatewayModelVectorDBConfigPgVectorOutput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"strategy", "dimensions", "distance_metric"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "dimensions", "distance_metric"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayModelVectorDBConfigPgVectorOutput) GetStrategy() Strategy {
+func (a *AIGatewayModelVectorDBConfigPgVectorOutput) GetType() AIGatewayModelVectorDBConfigPgVectorType {
 	if a == nil {
-		return Strategy("")
+		return AIGatewayModelVectorDBConfigPgVectorType("")
 	}
-	return a.Strategy
+	return a.Type
 }
 
 func (a *AIGatewayModelVectorDBConfigPgVectorOutput) GetDimensions() int64 {
@@ -251,7 +251,7 @@ func (a *AIGatewayModelVectorDBConfigPgVectorOutput) GetUser() *string {
 }
 
 type AIGatewayModelVectorDBConfigPgVector struct {
-	Strategy Strategy `json:"strategy"`
+	Type AIGatewayModelVectorDBConfigPgVectorType `json:"type"`
 	// the desired dimensionality for the vectors
 	Dimensions int64 `json:"dimensions"`
 	// the distance metric to use for vector searches
@@ -282,17 +282,17 @@ func (a AIGatewayModelVectorDBConfigPgVector) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayModelVectorDBConfigPgVector) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"strategy", "dimensions", "distance_metric"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "dimensions", "distance_metric"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayModelVectorDBConfigPgVector) GetStrategy() Strategy {
+func (a *AIGatewayModelVectorDBConfigPgVector) GetType() AIGatewayModelVectorDBConfigPgVectorType {
 	if a == nil {
-		return Strategy("")
+		return AIGatewayModelVectorDBConfigPgVectorType("")
 	}
-	return a.Strategy
+	return a.Type
 }
 
 func (a *AIGatewayModelVectorDBConfigPgVector) GetDimensions() int64 {

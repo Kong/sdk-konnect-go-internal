@@ -17,7 +17,6 @@
 * [GetMcpResource](#getmcpresource) - Get an MCP Resource
 * [DeleteMcpResource](#deletemcpresource) - Delete an MCP Resource
 * [UpdateMcpResource](#updatemcpresource) - Update an MCP Resource
-* [GetMcpResourceSpec](#getmcpresourcespec) - Get MCP Resource Spec
 * [GetMcpServerSignals](#getmcpserversignals) - Get MCP Server Signals
 * [ListMcpServersByControlPlane](#listmcpserversbycontrolplane) - List MCP Servers by Control Plane
 * [GetMcpServerByControlPlane](#getmcpserverbycontrolplane) - Get MCP Server by Control Plane
@@ -124,7 +123,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -185,7 +184,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -248,7 +247,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -311,7 +310,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -610,12 +609,17 @@ func main() {
     )
 
     res, err := s.MCPServers.CreateMcpResource(ctx, components.MCPResourceInput{
-        Config: components.CreateMCPResourceInputConfigAPIReference(
-            components.MCPResourceAPIReferenceConfig{
-                Type: components.MCPResourceAPIReferenceConfigTypeAPIReference,
-                APIReference: components.MCPAPIReference{
-                    ID: "df15b4a7-8b73-49eb-9e06-27bff6f14fda",
-                    VersionID: "64337ff7-a4f1-4e51-b433-c77012c08bb4",
+        Name: "my-api-resource",
+        DisplayName: "Richard_Bogisich-Haley",
+        Labels: map[string]string{
+            "env": "test",
+        },
+        Source: components.CreateMCPResourceSourceDetailInputAPICatalog(
+            components.MCPResourceSourceAPICatalog{
+                Type: components.MCPResourceSourceAPICatalogTypeAPICatalog,
+                Config: components.MCPResourceSourceAPICatalogConfig{
+                    APIID: "158a0fc7-479a-4928-8a64-7656c1824f7f",
+                    APIVersionID: "bc0b9df1-67ba-475f-9670-37de3cc2e4f6",
                 },
             },
         ),
@@ -624,7 +628,13 @@ func main() {
         log.Fatal(err)
     }
     if res.MCPResourceInfo != nil {
-        // handle response
+        switch res.MCPResourceInfo.Source.Type {
+            case components.MCPResourceSourceDetailTypeAPICatalog:
+                // res.MCPResourceInfo.Source.MCPResourceSourceAPICatalog is populated
+            case components.MCPResourceSourceDetailTypeRaw:
+                // res.MCPResourceInfo.Source.MCPResourceSourceRaw is populated
+        }
+
     }
 }
 ```
@@ -682,7 +692,13 @@ func main() {
         log.Fatal(err)
     }
     if res.MCPResourceInfo != nil {
-        // handle response
+        switch res.MCPResourceInfo.Source.Type {
+            case components.MCPResourceSourceDetailTypeAPICatalog:
+                // res.MCPResourceInfo.Source.MCPResourceSourceAPICatalog is populated
+            case components.MCPResourceSourceDetailTypeRaw:
+                // res.MCPResourceInfo.Source.MCPResourceSourceRaw is populated
+        }
+
     }
 }
 ```
@@ -794,12 +810,17 @@ func main() {
     )
 
     res, err := s.MCPServers.UpdateMcpResource(ctx, "a71bce83-5516-4e15-9cb9-5b23f30c4c08", components.MCPResourceInput{
-        Config: components.CreateMCPResourceInputConfigAPIReference(
-            components.MCPResourceAPIReferenceConfig{
-                Type: components.MCPResourceAPIReferenceConfigTypeAPIReference,
-                APIReference: components.MCPAPIReference{
-                    ID: "314dc7fe-6ae9-4acf-8eda-6df1e4112aab",
-                    VersionID: "e4e511e1-5324-4103-9a21-b9f5a4090d6b",
+        Name: "my-api-resource",
+        DisplayName: "Daron_Graham",
+        Labels: map[string]string{
+            "env": "test",
+        },
+        Source: components.CreateMCPResourceSourceDetailInputAPICatalog(
+            components.MCPResourceSourceAPICatalog{
+                Type: components.MCPResourceSourceAPICatalogTypeAPICatalog,
+                Config: components.MCPResourceSourceAPICatalogConfig{
+                    APIID: "158a0fc7-479a-4928-8a64-7656c1824f7f",
+                    APIVersionID: "bc0b9df1-67ba-475f-9670-37de3cc2e4f6",
                 },
             },
         ),
@@ -808,7 +829,13 @@ func main() {
         log.Fatal(err)
     }
     if res.MCPResourceInfo != nil {
-        // handle response
+        switch res.MCPResourceInfo.Source.Type {
+            case components.MCPResourceSourceDetailTypeAPICatalog:
+                // res.MCPResourceInfo.Source.MCPResourceSourceAPICatalog is populated
+            case components.MCPResourceSourceDetailTypeRaw:
+                // res.MCPResourceInfo.Source.MCPResourceSourceRaw is populated
+        }
+
     }
 }
 ```
@@ -835,64 +862,6 @@ func main() {
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.ConflictError     | 409                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## GetMcpResourceSpec
-
-Retrieve the raw spec content for an MCP resource.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-mcp-resource-spec" method="get" path="/v1/mcp-resources/{resourceId}/spec" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.MCPServers.GetMcpResourceSpec(ctx, "0652c8f2-dcdf-442e-8d7a-24cf3656b0a9")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.MCPAPISpec != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `resourceID`                                             | `string`                                                 | :heavy_check_mark:                                       | The ID of the MCP resource.                              |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.GetMcpResourceSpecResponse](../../models/operations/getmcpresourcespecresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetMcpServerSignals

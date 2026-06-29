@@ -168,6 +168,10 @@ type AppAuthStrategyOpenIDConnectResponse struct {
 	// - `false` when not supported for Client Credentials strategies
 	//
 	SupportsMultipleCredentials *bool `json:"supports_multiple_credentials,omitempty"`
+	// Application principal settings for this auth strategy. Runtime effect applies to V3 API Catalog (ACE) portals and
+	// applications; stored values may be set for any auth strategy in the organization.
+	//
+	Principals *AuthStrategyPrincipals `json:"principals,omitempty"`
 }
 
 func (a AppAuthStrategyOpenIDConnectResponse) MarshalJSON() ([]byte, error) {
@@ -256,6 +260,13 @@ func (a *AppAuthStrategyOpenIDConnectResponse) GetSupportsMultipleCredentials() 
 		return nil
 	}
 	return a.SupportsMultipleCredentials
+}
+
+func (a *AppAuthStrategyOpenIDConnectResponse) GetPrincipals() *AuthStrategyPrincipals {
+	if a == nil {
+		return nil
+	}
+	return a.Principals
 }
 
 type AppAuthStrategyKeyAuthResponseStrategyType string
@@ -414,6 +425,10 @@ type AppAuthStrategyKeyAuthResponse struct {
 	// Always `true` for KEY_AUTH.
 	//
 	SupportsMultipleCredentials *bool `default:"true" json:"supports_multiple_credentials"`
+	// Application principal settings for this auth strategy. Runtime effect applies to V3 API Catalog (ACE) portals and
+	// applications; stored values may be set for any auth strategy in the organization.
+	//
+	Principals *AuthStrategyPrincipals `json:"principals,omitempty"`
 }
 
 func (a AppAuthStrategyKeyAuthResponse) MarshalJSON() ([]byte, error) {
@@ -502,6 +517,13 @@ func (a *AppAuthStrategyKeyAuthResponse) GetSupportsMultipleCredentials() *bool 
 		return nil
 	}
 	return a.SupportsMultipleCredentials
+}
+
+func (a *AppAuthStrategyKeyAuthResponse) GetPrincipals() *AuthStrategyPrincipals {
+	if a == nil {
+		return nil
+	}
+	return a.Principals
 }
 
 type CreateAppAuthStrategyResponseType string

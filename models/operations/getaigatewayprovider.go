@@ -10,7 +10,7 @@ import (
 type GetAiGatewayProviderRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
-	// The unique ID of the AI Gateway provider.
+	// The unique ID or name of the AI Gateway provider.
 	ProviderID string `pathParam:"style=simple,explode=false,name=providerId"`
 }
 

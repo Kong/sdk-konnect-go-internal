@@ -1,6 +1,6 @@
 # AIGatewayMCPToolBaseMethod
 
-The method of the exported API, which must match the route's methods.
+For conversion-only and conversion-listener modes, the method of the exported API, which must match the route's methods.
 
 ## Example Usage
 

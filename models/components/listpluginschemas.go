@@ -51,14 +51,14 @@ func (l *ListPluginSchemasItems) GetManagedBy() map[string]any {
 }
 
 type ListPluginSchemasPage struct {
-	Total *int64 `json:"total,omitempty"`
+	TotalCount *int64 `json:"total_count,omitempty"`
 }
 
-func (l *ListPluginSchemasPage) GetTotal() *int64 {
+func (l *ListPluginSchemasPage) GetTotalCount() *int64 {
 	if l == nil {
 		return nil
 	}
-	return l.Total
+	return l.TotalCount
 }
 
 // ListPluginSchemas - A paginated list response for a collection of custom plugin schemas.

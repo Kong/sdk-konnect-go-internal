@@ -106,13 +106,13 @@ func main() {
             components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerAIGatewayMCPServerBaseACLPropertiesOauth{
                 ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerACLAttributeTypeOauthAccessToken,
                 AccessTokenClaimField: "<value>",
-                Acls: components.AIGatewayACLS{
+                Acls: &components.AIGatewayMCPACLs{
                     Allow: []string{},
                     Deny: []string{
                         "<value 1>",
                     },
                 },
-                DefaultToolAcls: components.AIGatewayACLS{
+                DefaultToolAcls: &components.AIGatewayMCPACLs{
                     Allow: []string{},
                     Deny: []string{
                         "<value 1>",
@@ -121,12 +121,6 @@ func main() {
                 Type: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerTypeUpstreamServer,
                 Config: components.AIGatewayMCPServerUpstreamServerConfig{
                     Route: &components.AIGatewayRouteConfig{
-                        Destinations: []components.Destinations{
-                            components.Destinations{
-                                IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                                Port: sdkkonnectgo.Pointer[int64](1234),
-                            },
-                        },
                         Headers: map[string]any{
                             "version": []any{
                                 "v1",
@@ -135,12 +129,6 @@ func main() {
                         },
                         Hosts: []string{
                             "foo.example.com",
-                        },
-                        Sources: []components.Sources{
-                            components.Sources{
-                                IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                                Port: sdkkonnectgo.Pointer[int64](1234),
-                            },
                         },
                     },
                     URL: "https://mcp.internal.kongair.com",
@@ -255,7 +243,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `mcpServerID`                                            | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the MCP Server.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `mcpServerID`                                            | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the MCP Server.                 | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -307,7 +295,7 @@ func main() {
                 components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerAIGatewayMCPServerBaseACLPropertiesOauth{
                     ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerACLAttributeTypeOauthAccessToken,
                     AccessTokenClaimField: "<value>",
-                    Acls: components.AIGatewayACLS{
+                    Acls: &components.AIGatewayMCPACLs{
                         Allow: []string{
                             "<value 1>",
                             "<value 2>",
@@ -318,7 +306,7 @@ func main() {
                             "<value 2>",
                         },
                     },
-                    DefaultToolAcls: components.AIGatewayACLS{
+                    DefaultToolAcls: &components.AIGatewayMCPACLs{
                         Allow: []string{
                             "<value 1>",
                         },
@@ -330,12 +318,6 @@ func main() {
                     Type: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerTypeUpstreamServer,
                     Config: components.AIGatewayMCPServerUpstreamServerConfig{
                         Route: &components.AIGatewayRouteConfig{
-                            Destinations: []components.Destinations{
-                                components.Destinations{
-                                    IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                                    Port: sdkkonnectgo.Pointer[int64](1234),
-                                },
-                            },
                             Headers: map[string]any{
                                 "version": []any{
                                     "v1",
@@ -345,12 +327,6 @@ func main() {
                             Hosts: []string{
                                 "foo.example.com",
                             },
-                            Sources: []components.Sources{
-                                components.Sources{
-                                    IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                                    Port: sdkkonnectgo.Pointer[int64](1234),
-                                },
-                            },
                         },
                         URL: "https://mcp.internal.kongair.com",
                         ToolsCacheTTLSeconds: 97975,
@@ -358,7 +334,8 @@ func main() {
                     Tools: []components.AIGatewayMCPUpstreamTool{
                         components.AIGatewayMCPUpstreamTool{
                             Description: "Search for available flights",
-                            Method: components.AIGatewayMCPUpstreamToolMethodGet,
+                            Name: "<value>",
+                            Method: components.AIGatewayMCPUpstreamToolMethodGet.ToPointer(),
                             Parameters: []components.AIGatewayMCPToolParameter{
                                 components.AIGatewayMCPToolParameter{
                                     Name: "origin",
@@ -464,7 +441,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `mcpServerID`                                            | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the MCP Server.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `mcpServerID`                                            | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the MCP Server.                 | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

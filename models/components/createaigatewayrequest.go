@@ -9,6 +9,8 @@ import (
 type CreateAIGatewayRequest struct {
 	// The display name for this AI Gateway.
 	DisplayName string `json:"display_name"`
+	// The name for this AI Gateway.
+	Name string `json:"name"`
 	// The description of the AI Gateway.
 	Description *string `json:"description,omitempty"`
 	// Array of proxy URLs associated with reaching the data-planes connected to a control-plane.
@@ -39,6 +41,13 @@ func (c *CreateAIGatewayRequest) GetDisplayName() string {
 		return ""
 	}
 	return c.DisplayName
+}
+
+func (c *CreateAIGatewayRequest) GetName() string {
+	if c == nil {
+		return ""
+	}
+	return c.Name
 }
 
 func (c *CreateAIGatewayRequest) GetDescription() *string {

@@ -9,7 +9,7 @@ import (
 type DeleteAiGatewayModelRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
-	// The unique ID of the AI Gateway model.
+	// The unique ID or name of the AI Gateway model.
 	ModelID string `pathParam:"style=simple,explode=false,name=modelId"`
 }
 

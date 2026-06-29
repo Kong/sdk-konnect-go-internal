@@ -33,8 +33,6 @@ func (e *AIGatewayBedrockEmbeddingsModelConfigType) UnmarshalJSON(data []byte) e
 
 // AIGatewayBedrockEmbeddingsModelConfig - AWS Bedrock-specific configuration for a model.
 type AIGatewayBedrockEmbeddingsModelConfig struct {
-	// The name of the embeddings model.
-	Name string `json:"name"`
 	// The URL of the embeddings model.
 	UpstreamURL string                                    `json:"upstream_url"`
 	Type        AIGatewayBedrockEmbeddingsModelConfigType `json:"type"`
@@ -53,17 +51,10 @@ func (a AIGatewayBedrockEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayBedrockEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
 		return err
 	}
 	return nil
-}
-
-func (a *AIGatewayBedrockEmbeddingsModelConfig) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
 }
 
 func (a *AIGatewayBedrockEmbeddingsModelConfig) GetUpstreamURL() string {

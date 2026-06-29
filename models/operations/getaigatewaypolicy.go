@@ -10,7 +10,7 @@ import (
 type GetAiGatewayPolicyRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
-	// The unique ID of the AI Gateway policy.
+	// The unique ID or name of the AI Gateway policy.
 	PolicyID string `pathParam:"style=simple,explode=false,name=policyId"`
 }
 

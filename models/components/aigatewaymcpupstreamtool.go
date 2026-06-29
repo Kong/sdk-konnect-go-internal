@@ -6,7 +6,7 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AIGatewayMCPUpstreamToolMethod - The method of the exported API, which must match the route's methods.
+// AIGatewayMCPUpstreamToolMethod - When provided, the method of the exported API, which must match the route's methods.
 type AIGatewayMCPUpstreamToolMethod string
 
 const (
@@ -60,7 +60,7 @@ type AIGatewayMCPUpstreamTool struct {
 	// Access control rules for allowing or denying consumer groups access to this tool.
 	// When configured, these will override the default access control rules defined on the MCP Server.
 	//
-	Acls        *AIGatewayACLS               `json:"acls,omitempty"`
+	Acls        *AIGatewayMCPACLs            `json:"acls,omitempty"`
 	Annotations *AIGatewayMCPToolAnnotations `json:"annotations,omitempty"`
 	// A description of what the tool does.
 	Description string `json:"description"`
@@ -69,9 +69,9 @@ type AIGatewayMCPUpstreamTool struct {
 	// The host of the exported API, which must match the route's hosts. It should be the route's host. By default, Kong will extract the host from API configuration. If the configured host is wildcard, this field is required.
 	Host *string `json:"host,omitempty"`
 	// Tool identifier. In passthrough-listener mode, used to match remote MCP Server tools for ACL enforcement. In other modes, it is also used as the tool name (overrides annotations.title if present).
-	Name *string `json:"name,omitempty"`
-	// The method of the exported API, which must match the route's methods.
-	Method AIGatewayMCPUpstreamToolMethod `json:"method"`
+	Name string `json:"name"`
+	// When provided, the method of the exported API, which must match the route's methods.
+	Method *AIGatewayMCPUpstreamToolMethod `json:"method,omitempty"`
 	// The path of the exported API, which must match the route's paths. Path not starting with '/' are treated as relative path and the route path will be added as the prefix. By default, Kong will extract the path from API configuration.
 	Path *string `json:"path,omitempty"`
 	// The query arguments of the exported API. If the generated query arguments are not exactly matched, this field is required.
@@ -98,13 +98,13 @@ func (a AIGatewayMCPUpstreamTool) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayMCPUpstreamTool) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"description", "method"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"description", "name"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayMCPUpstreamTool) GetAcls() *AIGatewayACLS {
+func (a *AIGatewayMCPUpstreamTool) GetAcls() *AIGatewayMCPACLs {
 	if a == nil {
 		return nil
 	}
@@ -139,16 +139,16 @@ func (a *AIGatewayMCPUpstreamTool) GetHost() *string {
 	return a.Host
 }
 
-func (a *AIGatewayMCPUpstreamTool) GetName() *string {
+func (a *AIGatewayMCPUpstreamTool) GetName() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.Name
 }
 
-func (a *AIGatewayMCPUpstreamTool) GetMethod() AIGatewayMCPUpstreamToolMethod {
+func (a *AIGatewayMCPUpstreamTool) GetMethod() *AIGatewayMCPUpstreamToolMethod {
 	if a == nil {
-		return AIGatewayMCPUpstreamToolMethod("")
+		return nil
 	}
 	return a.Method
 }

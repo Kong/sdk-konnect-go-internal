@@ -53,10 +53,8 @@ type AIGatewayMCPServerNoUpstreamConfigOutput struct {
 	Logging *AIGatewayMCPServerNoUpstreamConfigLogging `json:"logging,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
 	MaxRequestBodySize *int64 `default:"8388608" json:"max_request_body_size"`
-	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
-	Proxy *AIGatewayProxyConfigOutput `json:"proxy,omitempty"`
 	// Server-side configuration for the MCP Server.
-	Server *AIGatewayMCPServerServerConfigBase `json:"server,omitempty"`
+	Server *AIGatewayMCPServerServerConfigBaseOutput `json:"server,omitempty"`
 }
 
 func (a AIGatewayMCPServerNoUpstreamConfigOutput) MarshalJSON() ([]byte, error) {
@@ -91,14 +89,7 @@ func (a *AIGatewayMCPServerNoUpstreamConfigOutput) GetMaxRequestBodySize() *int6
 	return a.MaxRequestBodySize
 }
 
-func (a *AIGatewayMCPServerNoUpstreamConfigOutput) GetProxy() *AIGatewayProxyConfigOutput {
-	if a == nil {
-		return nil
-	}
-	return a.Proxy
-}
-
-func (a *AIGatewayMCPServerNoUpstreamConfigOutput) GetServer() *AIGatewayMCPServerServerConfigBase {
+func (a *AIGatewayMCPServerNoUpstreamConfigOutput) GetServer() *AIGatewayMCPServerServerConfigBaseOutput {
 	if a == nil {
 		return nil
 	}
@@ -113,8 +104,6 @@ type AIGatewayMCPServerNoUpstreamConfig struct {
 	Logging *AIGatewayMCPServerNoUpstreamConfigLogging `json:"logging,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
 	MaxRequestBodySize *int64 `default:"8388608" json:"max_request_body_size"`
-	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
-	Proxy *AIGatewayProxyConfig `json:"proxy,omitempty"`
 	// Server-side configuration for the MCP Server.
 	Server *AIGatewayMCPServerServerConfigBase `json:"server,omitempty"`
 }
@@ -149,13 +138,6 @@ func (a *AIGatewayMCPServerNoUpstreamConfig) GetMaxRequestBodySize() *int64 {
 		return nil
 	}
 	return a.MaxRequestBodySize
-}
-
-func (a *AIGatewayMCPServerNoUpstreamConfig) GetProxy() *AIGatewayProxyConfig {
-	if a == nil {
-		return nil
-	}
-	return a.Proxy
 }
 
 func (a *AIGatewayMCPServerNoUpstreamConfig) GetServer() *AIGatewayMCPServerServerConfigBase {
