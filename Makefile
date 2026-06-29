@@ -3,35 +3,64 @@ SHELL = bash
 
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 TOOLS_VERSIONS_FILE = $(PROJECT_DIR)/.tools_versions.yaml
-export MISE_DATA_DIR = $(PROJECT_DIR)/bin/
-
-MISE := $(shell which mise)
-.PHONY: mise
-mise:
-	@mise -V >/dev/null || (echo "mise - https://github.com/jdx/mise - not found. Please install it." && exit 1)
 
 # Do not store yq's version in .tools_versions.yaml as it is used to get tool versions.
 # renovate: datasource=github-releases depName=mikefarah/yq
 YQ_VERSION = 4.43.1
 YQ = $(PROJECT_DIR)/bin/installs/yq/$(YQ_VERSION)/bin/yq
 .PHONY: yq
-yq: mise # Download yq locally if necessary.
-	@$(MISE) plugin install --yes -q yq
-	@$(MISE) install -q yq@$(YQ_VERSION)
+yq: $(YQ) # Download yq locally if necessary.
+
+$(YQ):
+	@set -euo pipefail; \
+	os="$$(uname | tr '[:upper:]' '[:lower:]')"; \
+	arch="$$(uname -m)"; \
+	case "$$arch" in \
+		x86_64) arch=amd64 ;; \
+		aarch64|arm64) arch=arm64 ;; \
+		armv*) arch=arm ;; \
+		i386|i686|x86) arch=386 ;; \
+		*) echo "Unsupported architecture for yq: $$arch" >&2; exit 1 ;; \
+	esac; \
+	url="https://github.com/mikefarah/yq/releases/download/v$(YQ_VERSION)/yq_$${os}_$${arch}"; \
+	tmp="$@.tmp"; \
+	trap 'rm -f "$$tmp"' EXIT; \
+	mkdir -p "$(@D)"; \
+	echo "Downloading yq $(YQ_VERSION) from $$url"; \
+	curl -fsSL "$$url" -o "$$tmp"; \
+	chmod +x "$$tmp"; \
+	mv "$$tmp" "$@"
 
 CONTROLLER_GEN_VERSION = $(shell $(YQ) -r '.controller-tools' < $(TOOLS_VERSIONS_FILE))
 CONTROLLER_GEN = $(PROJECT_DIR)/bin/installs/kube-controller-tools/$(CONTROLLER_GEN_VERSION)/bin/controller-gen
 .PHONY: controller-gen
-controller-gen: mise yq ## Download controller-gen locally if necessary.
-	@$(MISE) plugin install --yes -q kube-controller-tools
-	@$(MISE) install -q kube-controller-tools@$(CONTROLLER_GEN_VERSION)
+controller-gen: yq ## Download controller-gen locally if necessary.
+	@if [ ! -x "$(CONTROLLER_GEN)" ]; then \
+		mkdir -p "$(dir $(CONTROLLER_GEN))"; \
+		GOBIN="$(dir $(CONTROLLER_GEN))" go install sigs.k8s.io/controller-tools/cmd/controller-gen@v$(CONTROLLER_GEN_VERSION); \
+	fi
 
 MOCKERY_VERSION = $(shell $(YQ) -r '.mockery' < $(TOOLS_VERSIONS_FILE))
 MOCKERY = $(PROJECT_DIR)/bin/installs/mockery/$(MOCKERY_VERSION)/bin/mockery
 .PHONY: mockery
-mockery: mise yq ## Download mockery locally if necessary.
-	@$(MISE) plugin install --yes -q mockery https://github.com/cabify/asdf-mockery.git
-	@$(MISE) install -q mockery@$(MOCKERY_VERSION)
+mockery: yq ## Download mockery locally if necessary.
+	@if [ ! -x "$(MOCKERY)" ]; then \
+		os="$$(uname | tr '[:upper:]' '[:lower:]')"; \
+		arch="$$(uname -m)"; \
+		case "$$arch" in \
+			x86_64) arch=x86_64 ;; \
+			*) echo "Unsupported architecture for mockery: $$arch" >&2; exit 1 ;; \
+		esac; \
+		url="https://github.com/vektra/mockery/releases/download/v$(MOCKERY_VERSION)/mockery_$(MOCKERY_VERSION)_$${os}_$${arch}.tar.gz"; \
+		tmpdir="$$(mktemp -d)"; \
+		trap 'rm -rf "$$tmpdir"' EXIT; \
+		mkdir -p "$(dir $(MOCKERY))"; \
+		echo "Downloading mockery $(MOCKERY_VERSION) from $$url"; \
+		curl -fsSL "$$url" -o "$$tmpdir/mockery.tar.gz"; \
+		tar -xzf "$$tmpdir/mockery.tar.gz" -C "$$tmpdir"; \
+		cp "$$tmpdir/mockery" "$(MOCKERY)"; \
+		chmod +x "$(MOCKERY)"; \
+	fi
 
 IFACEMAKER_VERSION = $(shell $(YQ) -r '.ifacemaker' < $(TOOLS_VERSIONS_FILE))
 IFACEMAKER = $(PROJECT_DIR)/bin/ifacemaker
