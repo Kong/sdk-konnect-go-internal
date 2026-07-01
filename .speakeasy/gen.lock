@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 47be7c04469c272d1e519f2fbc721c1a
+  docChecksum: 42f3d164ce128e7264e517c660a828ba
   docVersion: 3.15.0
   speakeasyVersion: 1.787.0
   generationVersion: 2.914.0
@@ -3040,6 +3040,8 @@ trackedFiles:
     last_write_checksum: sha1:7a65f7b38d92d6011940752f815a064ac2a08816
   docs/models/components/choroplethmapcharttype.md:
     last_write_checksum: sha1:59cbf522f6d6d96a6c9ff24373d5b51f251f6537
+  docs/models/components/claim.md:
+    last_write_checksum: sha1:5eaaa553ef131cfa5ac6ad2c1934411e08c3583d
   docs/models/components/claimmappings.md:
     id: c45bd1338e9d
     last_write_checksum: sha1:02f185663885cea81df741a2ec16bf3298519e2d
@@ -3440,6 +3442,8 @@ trackedFiles:
     pristine_git_object: 4d052df07ed4300242c461a2a675fe7d35e0b29d
   docs/models/components/createbackendclusterrequest.md:
     last_write_checksum: sha1:b82ab72c336086d3783ab51914d0f8308bf115eb
+  docs/models/components/createbasicauthbody.md:
+    last_write_checksum: sha1:942fb52c0cd442c856d7955c988d66e0f9b8e444
   docs/models/components/createbillingprofilerequest.md:
     last_write_checksum: sha1:495fa889f3ebba192453553bcd77c67f11bcc6cb
   docs/models/components/createbillingprofilerequestaddresses.md:
@@ -3690,6 +3694,8 @@ trackedFiles:
     last_write_checksum: sha1:493bb2d4c39cfcc68903c4accf8d0467b196bed5
   docs/models/components/createdeveloperrequestdeveloperstatus.md:
     last_write_checksum: sha1:80abfbccf508a472ee62d91b4dcc05ddf9000fec
+  docs/models/components/createdirectorybody.md:
+    last_write_checksum: sha1:e6be2c4166fc0b91f4a174336ec0551876ce3c43
   docs/models/components/createeventgatewaydataplanecertificaterequest.md:
     last_write_checksum: sha1:4f625ed357f42126e237550ca194410b41dd9033
   docs/models/components/createeventgatewaylistenerrequest.md:
@@ -3784,6 +3790,8 @@ trackedFiles:
     id: 3e3518e00feb
     last_write_checksum: sha1:24d70cfa4caff7d23cfff1c833bb23c79b954a1c
     pristine_git_object: 6c6560bf91a22c2f7255d8cae1351def7c1f1a95
+  docs/models/components/createpasswordbody.md:
+    last_write_checksum: sha1:3da0684b1aa4e4e1c0e91237444dc4e40626d364
   docs/models/components/createplanaddonrequest.md:
     last_write_checksum: sha1:b937bf5ee6e24c05df1e584dd509ba68dcc560b8
   docs/models/components/createplanaddonrequestaddon.md:
@@ -3822,6 +3830,18 @@ trackedFiles:
     pristine_git_object: ba2b9dc9ae5d953a1bf6e19e48f1500929e1933e
   docs/models/components/createportalsourceiprestriction.md:
     last_write_checksum: sha1:3d34579b1321ea46bafa6729e264cf5050a44ede
+  docs/models/components/createprincipalbody.md:
+    last_write_checksum: sha1:b05d035eb615e4d08667f9a482a6eb81eccb9cdc
+  docs/models/components/createprincipalkeybody.md:
+    last_write_checksum: sha1:58db9b6c7d1d54050aa1dcaf4db8304953ece9b5
+  docs/models/components/createprincipalkeybodyimported.md:
+    last_write_checksum: sha1:452995d2e5240a4c910dd360071f3143dcd59e04
+  docs/models/components/createprincipalkeybodyimportedtype.md:
+    last_write_checksum: sha1:139c2197b12adca5671ee1d2e9fd734b91ecc811
+  docs/models/components/createprincipalkeybodyv1.md:
+    last_write_checksum: sha1:695c9102b003e187b82d76cce44e2a7f89f06c1c
+  docs/models/components/createprincipalkeybodyv1type.md:
+    last_write_checksum: sha1:0504ae02fb2df1afdc25e89e5c12ae35b9b0a063
   docs/models/components/createprivatecatalogintegration.md:
     id: 82b1931ac4f0
     last_write_checksum: sha1:c56aa7cc3da08f5a658cadd1e9ab748f382424d1
@@ -5782,8 +5802,64 @@ trackedFiles:
     id: 72cd1832e8b4
     last_write_checksum: sha1:8a5c2a1ada00361f8518415c734fc3ff337e28de
     pristine_git_object: 242cc80b961bdf11077d264e45ca5c19c4bf156a
+  docs/models/components/kongbasicauth.md:
+    last_write_checksum: sha1:3829b6ca8650f3da43be12ab8850f4937eee7a10
+  docs/models/components/kongdirectory.md:
+    last_write_checksum: sha1:6dfd709d4e7f0eba24a3e1f6f1f150a46bdece81
+  docs/models/components/kongdirectoryrealmvalues.md:
+    last_write_checksum: sha1:648b4d12131a218a5ef2d4f9e305cf19e4cc0f59
   docs/models/components/kongentitiesresponse.md:
     last_write_checksum: sha1:e928d6b31749545f3030edb099ba730f7eb2551a
+  docs/models/components/kongidentitymetadata.md:
+    last_write_checksum: sha1:a4421bfff13b4c10734ea08726ac1b476b17d05d
+  docs/models/components/kongpassword.md:
+    last_write_checksum: sha1:f7a7dbfa72d971ece84dd856d2fbef36a5ddadbe
+  docs/models/components/kongpasswordwithsecret.md:
+    last_write_checksum: sha1:fbf8e6f3bb65901684ba20ef034ffbce1fe01616
+  docs/models/components/kongprincipal.md:
+    last_write_checksum: sha1:5b61d4bec261066fff6bbaa45ba274a88fb57b89
+  docs/models/components/kongprincipalidentity.md:
+    last_write_checksum: sha1:26d517320f6d15d196da7b9abb655adf8aa70370
+  docs/models/components/kongprincipalidentityauthserverclient.md:
+    last_write_checksum: sha1:e0a5ebc5480ab15eac553664eb15cb81b203f9ad
+  docs/models/components/kongprincipalidentityauthserverclientresponse.md:
+    last_write_checksum: sha1:0c9bb5fa5bd582d56df3d25c1e31f0530324aa5a
+  docs/models/components/kongprincipalidentityauthserverclientresponsetype.md:
+    last_write_checksum: sha1:42c5e56eb1790f3b1d850171452e0e4e44ce351f
+  docs/models/components/kongprincipalidentityauthserverclienttype.md:
+    last_write_checksum: sha1:1f2e37c58628771cf42bb91e60b4e111a3240b8c
+  docs/models/components/kongprincipalidentitybody.md:
+    last_write_checksum: sha1:db5beb903d671ece6ee7c793eb0b3fb706a5e653
+  docs/models/components/kongprincipalidentitycpconsumer.md:
+    last_write_checksum: sha1:6395bb18a1d6ea397f051615bbf02e005cd23095
+  docs/models/components/kongprincipalidentitycpconsumerresponse.md:
+    last_write_checksum: sha1:629a02927cf9306829adbcc28d4d16fe79f979a0
+  docs/models/components/kongprincipalidentitycpconsumerresponsetype.md:
+    last_write_checksum: sha1:8012cfb30a574d591cf8e437fdaacebe29fa4cc8
+  docs/models/components/kongprincipalidentitycpconsumertype.md:
+    last_write_checksum: sha1:e301bd47225d712e73054bdac658446b889a7a38
+  docs/models/components/kongprincipalidentitycustom.md:
+    last_write_checksum: sha1:93792568bb3824231fe73c602056dc77cd1fdb67
+  docs/models/components/kongprincipalidentitycustomresponse.md:
+    last_write_checksum: sha1:f3a361a80e66b676b6311d758dd84a4e2ebb072c
+  docs/models/components/kongprincipalidentitycustomresponsetype.md:
+    last_write_checksum: sha1:c8e5cd9a01d17ea3feb2439fc27567670009c0f0
+  docs/models/components/kongprincipalidentitycustomtype.md:
+    last_write_checksum: sha1:42a3f69ca6adb4db9d3aadb0b32a70685ab528cf
+  docs/models/components/kongprincipalidentityoidc.md:
+    last_write_checksum: sha1:c5fcf865b104aad2d692ffbf38f2f6823294d6ed
+  docs/models/components/kongprincipalidentityoidcclaim.md:
+    last_write_checksum: sha1:a3e9a6aa1c1fd37cdf40a4fa4cd0678345ef600f
+  docs/models/components/kongprincipalidentityoidcresponse.md:
+    last_write_checksum: sha1:b02ec5fdd84de90d6cb389c4b1e19b900e798ec5
+  docs/models/components/kongprincipalidentityoidcresponsetype.md:
+    last_write_checksum: sha1:c9fb08d3a9c198050a4fb6bf5305bc057499bea2
+  docs/models/components/kongprincipalidentityoidctype.md:
+    last_write_checksum: sha1:ea521df3629e0459e5d5492fc6f0b1044dc7979f
+  docs/models/components/kongprincipalkey.md:
+    last_write_checksum: sha1:6f1e4c754a8e16f49848be935b1c61df719e23f2
+  docs/models/components/kongprincipalkeywithsecret.md:
+    last_write_checksum: sha1:0d99f86be22c098d5872dbac2cce7b1546cf8b50
   docs/models/components/kongroute.md:
     last_write_checksum: sha1:de04fa12460d30b6729d0581e0e563b4716ff6a0
   docs/models/components/kongrouteservice.md:
@@ -6166,6 +6242,18 @@ trackedFiles:
     id: 106f082fb4ba
     last_write_checksum: sha1:3aae31195677528b60a2b8d8a53b6c482daa9d77
     pristine_git_object: a0a6f4fbdec37cc0fc72ae5553c1d9e8e58795de
+  docs/models/components/listkongbasicauths.md:
+    last_write_checksum: sha1:6fc8152f73d39eae6f2f2599d8c51f6454a07070
+  docs/models/components/listkongdirectories.md:
+    last_write_checksum: sha1:305998a807dc9f5f1bee1f2d1f45fe98714ae576
+  docs/models/components/listkongpasswords.md:
+    last_write_checksum: sha1:1079278c801de66650ccfda656f1058c5c2bd72e
+  docs/models/components/listkongprincipalidentities.md:
+    last_write_checksum: sha1:a42052493fcfcd66b4945a6bd534301bf93d0d5b
+  docs/models/components/listkongprincipalkeys.md:
+    last_write_checksum: sha1:aeb10b033f887d1d7793cd3724ffeed61d78c486
+  docs/models/components/listkongprincipals.md:
+    last_write_checksum: sha1:1fd63181ddf05c6a84e0c5efb8e90f0c9328cf74
   docs/models/components/listllmcostpricesparamsfilter.md:
     last_write_checksum: sha1:b5a7fa064dce3b2019469c85dfac78f930cc5699
   docs/models/components/listllmcostpricesparamsfiltercurrencystringfieldneqfilter.md:
@@ -7716,6 +7804,8 @@ trackedFiles:
     id: c0d1b847ffe2
     last_write_checksum: sha1:3c504bf10309b6afc2fc031b4f5c77e9ebc43925
     pristine_git_object: bf7b3599896ab3e43fadba8a88e485512e9eeb77
+  docs/models/components/provisionedby.md:
+    last_write_checksum: sha1:0482776197290c3d7afe7889c63289e189a03046
   docs/models/components/proxyscheme.md:
     last_write_checksum: sha1:a3c01b748c3af4eb9c4c3662ced43ff2a9a3c1cd
   docs/models/components/proxyurl.md:
@@ -7836,8 +7926,14 @@ trackedFiles:
     id: 66294e9b7078
     last_write_checksum: sha1:be5a52a1d8b164b787aeb8bfe3467d698df9d13c
     pristine_git_object: 0b46327e6f6b84d681cac47578a8611066fa60ad
+  docs/models/components/replacebasicauthbody.md:
+    last_write_checksum: sha1:cd8bd4c0cf7e61121bc1f708b3b1ebb63f8ae04f
+  docs/models/components/replacedirectorybody.md:
+    last_write_checksum: sha1:771264b6b59139ce5f8e57a21a34066664e62a11
   docs/models/components/replaceimagerequestschema.md:
     last_write_checksum: sha1:ccbbe2a21e059688a53ed6b3e70a66311c393c7f
+  docs/models/components/replacepasswordbody.md:
+    last_write_checksum: sha1:e1ba274966a7ec7ebc6de3ccf9cbd60350ae5d92
   docs/models/components/replaceportalauditlogreplayjob.md:
     id: 3a683389fb63
     last_write_checksum: sha1:6addbf3f1b04057a067f528c1f7b37332fcfd162
@@ -7846,6 +7942,8 @@ trackedFiles:
     id: 175cee9181aa
     last_write_checksum: sha1:68825ffcc1f6a82263b4f78f6eb1f631fa1cb62c
     pristine_git_object: bfe7ef258e0ecf92c3693bf9c397bb4fefa6118f
+  docs/models/components/replaceprincipalbody.md:
+    last_write_checksum: sha1:9cfc7b77bb7f3ea2734c5051cbc82c53bcb6e72f
   docs/models/components/reports.md:
     last_write_checksum: sha1:6a375fb06863765d1dfe74879eaca0a93c1eb56b
   docs/models/components/required.md:
@@ -8840,6 +8938,8 @@ trackedFiles:
     id: 1cfed6f34173
     last_write_checksum: sha1:d48d3950bc7ced294a7aabccd940af6cf32b3103
     pristine_git_object: c738dd4650daa59a8f7f625efd52ef4de7bd14de
+  docs/models/components/stringfieldoeqfilter.md:
+    last_write_checksum: sha1:3600ef69bf421bc33375f71cd3bc995b6f8a97c3
   docs/models/components/stringfieldselectorparams.md:
     id: 96d00256ff69
     last_write_checksum: sha1:96f57f627306f59bb17c89e4912b20b19e80b51d
@@ -9312,6 +9412,8 @@ trackedFiles:
     pristine_git_object: 6287cd164cdf0d8f87edf57987aeee36b2926af0
   docs/models/components/updatebackendclusterrequest.md:
     last_write_checksum: sha1:437b81b13827b930b3171fb909f653369aab5951
+  docs/models/components/updatebasicauthbody.md:
+    last_write_checksum: sha1:48b2c1f34307cb562163e31b8ae0ac3a14cb0bf3
   docs/models/components/updatecatalogintegration.md:
     id: 80aa8c9397fc
     last_write_checksum: sha1:42d54efd9d77094b996883f05e8b29a3c0c54b9f
@@ -9384,6 +9486,8 @@ trackedFiles:
     id: 82915380918a
     last_write_checksum: sha1:6a876ad2b5fb231527c8ec6e24f795fac26517d5
     pristine_git_object: cf2fb1c1a18f8eccac9164dfc63b2ef7192fb56e
+  docs/models/components/updatedirectorybody.md:
+    last_write_checksum: sha1:a1035bac3aa7bf5da1ac9c0624b66e19620c57db
   docs/models/components/updateequalwebintegration.md:
     last_write_checksum: sha1:ac615ed534d26828a8143c5217185c4b86b86cb9
   docs/models/components/updateequalwebintegrationtype.md:
@@ -9448,6 +9552,8 @@ trackedFiles:
     last_write_checksum: sha1:509806aecc3c58812818f25584472eea146282c2
   docs/models/components/updateorganizationdefaulttaxcodesrequestinvoicingtaxcode.md:
     last_write_checksum: sha1:733bb77c4b6172794afd20b9feb5cf6e14f33902
+  docs/models/components/updatepasswordbody.md:
+    last_write_checksum: sha1:a1b1277282c69a547dfba52736fdeaabc1485c8e
   docs/models/components/updateportal.md:
     id: f2f4e93c99a8
     last_write_checksum: sha1:5abe46104fea9887780c0d090adbc5723d0b3eba
@@ -9486,6 +9592,14 @@ trackedFiles:
     pristine_git_object: 70591e4ed963345966d6d04660e6eb70795552bd
   docs/models/components/updateportalsourceiprestriction.md:
     last_write_checksum: sha1:1dbe8771a28c1da1f68561bd3ec230435d3cd5b1
+  docs/models/components/updateprincipalbody.md:
+    last_write_checksum: sha1:cb1e016ac354aeb0616dd77bc7b20cd2242d26a3
+  docs/models/components/updateprincipalidentitybody.md:
+    last_write_checksum: sha1:2fa089100f0124007c37d73c4aec2e7d3d2a4fac
+  docs/models/components/updateprincipalidentitybodyclaim.md:
+    last_write_checksum: sha1:54f7235cc36e570b102825f6d3620208f9ea50ee
+  docs/models/components/updateprincipalkeybody.md:
+    last_write_checksum: sha1:3f2ce25bbd6bbb1b797dc78905832f3b0377bef5
   docs/models/components/updatequota.md:
     last_write_checksum: sha1:fbff489bf6f29d78beae2901307120f3c3c5811a
   docs/models/components/updateregistrationconsumerrequest.md:
@@ -10522,6 +10636,8 @@ trackedFiles:
     last_write_checksum: sha1:395c8f7ce03c7e42c1f8098e80c69443c60ed155
   docs/models/operations/createdeveloperresponse.md:
     last_write_checksum: sha1:83110b144516b768c63bca3989ae988e25ea8283
+  docs/models/operations/createdirectoryresponse.md:
+    last_write_checksum: sha1:fe8e949a1d60bb2f55f88ab8fa3fa6012bb93477
   docs/models/operations/createemaildomainresponse.md:
     id: 57c3097b58d2
     last_write_checksum: sha1:cc4b1f679e22e753535dce201cb33672c0ef3949
@@ -10614,6 +10730,10 @@ trackedFiles:
     id: 11b82fbe2edc
     last_write_checksum: sha1:3169fb520897938043fbcb6ed956566d471f7bfc
     pristine_git_object: 94e0fa463030072f22d131a2d011e43693b85240
+  docs/models/operations/createidentityrequest.md:
+    last_write_checksum: sha1:3a7bd944415f5a894c0d7336c9324f4e1a21484e
+  docs/models/operations/createidentityresponse.md:
+    last_write_checksum: sha1:f99c1f0f3689eaefe4f3a8c1fe95a82958c8192c
   docs/models/operations/createidpteamgroupmappingrequest.md:
     last_write_checksum: sha1:b89caf17820548bf67352a45a379bfcd3ecb4380
   docs/models/operations/createidpteamgroupmappingresponse.md:
@@ -10750,6 +10870,10 @@ trackedFiles:
     id: a97d48ccab7c
     last_write_checksum: sha1:1ccbb498b15fb1ac6aefd301a1c31234ec1a6ecb
     pristine_git_object: 102d8e764c251a00f7e27d4623d4ca0d0d934b8a
+  docs/models/operations/createpasswordrequest.md:
+    last_write_checksum: sha1:9c6e1b2f0f98be5ef99a1962e219533842c310cb
+  docs/models/operations/createpasswordresponse.md:
+    last_write_checksum: sha1:8b1c4de1a4401f635224817c97086256a4d1b88e
   docs/models/operations/createpersonalaccesstokenrequest.md:
     id: c5c930ed7c19
     last_write_checksum: sha1:2fcc3312b52c80dfa0f9b35613f1ac600e66a7f8
@@ -10900,6 +11024,18 @@ trackedFiles:
     id: 2893b5969bc6
     last_write_checksum: sha1:a1fd11a1a8e538f0a8159ba9916edbade649d3d2
     pristine_git_object: ca97291352eb413d3051a30e764ea24f3dafc46d
+  docs/models/operations/createprincipalbasicauthrequest.md:
+    last_write_checksum: sha1:28eab065d2a9c2b21d672b72823b3621227d6293
+  docs/models/operations/createprincipalbasicauthresponse.md:
+    last_write_checksum: sha1:1a5ce19dcdb758b3d85a4170dac2eb0fbb59cf3b
+  docs/models/operations/createprincipalkeyrequest.md:
+    last_write_checksum: sha1:2746786d1b60bcf34d0711e04249195493e33bdf
+  docs/models/operations/createprincipalkeyresponse.md:
+    last_write_checksum: sha1:1c6b2c6b2ca6c4fe89f71f1611063d77edb667b7
+  docs/models/operations/createprincipalrequest.md:
+    last_write_checksum: sha1:60dc636e1260d3dc075816a18138d07529ab1c44
+  docs/models/operations/createprincipalresponse.md:
+    last_write_checksum: sha1:b7361ca981cc115dd6b4e0df64b4a93acbfe8ab2
   docs/models/operations/createprivatednsrequest.md:
     id: 91c3e46c03a4
     last_write_checksum: sha1:12fbc607933d6f2afcff957ccaff70c05411357e
@@ -11156,6 +11292,10 @@ trackedFiles:
     last_write_checksum: sha1:9f40e019fcae2f92df9d88c98b820eb92787fe7e
   docs/models/operations/deleteaigatewayvaultresponse.md:
     last_write_checksum: sha1:2bac5b0c37881c8d3fd66e97953704f592c3d0f5
+  docs/models/operations/deleteallpasswordsrequest.md:
+    last_write_checksum: sha1:729b1a810db91865333ebd2e26386a10753b5353
+  docs/models/operations/deleteallpasswordsresponse.md:
+    last_write_checksum: sha1:cf00e3704d6e8518f445262e7ac9a1b4cf90aad7
   docs/models/operations/deleteapidocumentrequest.md:
     id: 5739de3b4f12
     last_write_checksum: sha1:6b8e63f6af0408158e1e5b6c6a99e81e41f2b4d2
@@ -11490,6 +11630,12 @@ trackedFiles:
     id: 4b4bb041de30
     last_write_checksum: sha1:744133ed4a83a5853f23c0e93d5d2ceaa794cac9
     pristine_git_object: 7b24de6e862a7eb99a7531b2a87eaa1fb1f0f5bb
+  docs/models/operations/deletedirectoryqueryparamforce.md:
+    last_write_checksum: sha1:ba4c72bbaa2204bbcb8df73a5d28f98c50fd0ffc
+  docs/models/operations/deletedirectoryrequest.md:
+    last_write_checksum: sha1:0fc97553129c2a9663c9d89494f4620f4f4fd06e
+  docs/models/operations/deletedirectoryresponse.md:
+    last_write_checksum: sha1:cfa9e8d38c8a0436e3fe7f34b11491f2c7c7b4a3
   docs/models/operations/deleteemaildeliveryrequest.md:
     id: f463ab1887bf
     last_write_checksum: sha1:f192a4c29c1744dfb791c4c99280aff71bd5da33
@@ -11602,6 +11748,10 @@ trackedFiles:
     id: 87db72585699
     last_write_checksum: sha1:fa8c2ddb72063c4c5d9b4c8b6c7bcb8c0c38f2fe
     pristine_git_object: e765e379674c690b8a6d3c4e915af1d546570975
+  docs/models/operations/deleteidentityrequest.md:
+    last_write_checksum: sha1:1cb22d9f169f987b574ca2eee99601a8e76b481b
+  docs/models/operations/deleteidentityresponse.md:
+    last_write_checksum: sha1:ed19fb7f40dd5643baa3b39c264dcfd58107264e
   docs/models/operations/deleteidpteamgroupmappingrequest.md:
     last_write_checksum: sha1:b4a9897971a286e24e18187410b6430837d28821
   docs/models/operations/deleteidpteamgroupmappingresponse.md:
@@ -11770,6 +11920,10 @@ trackedFiles:
     id: 50c26f26d794
     last_write_checksum: sha1:c1ac952bf69f717792146bb876f30c9dea23e842
     pristine_git_object: f0335ca1d01cf7c8314191ff01bb4113b141f5e5
+  docs/models/operations/deletepasswordrequest.md:
+    last_write_checksum: sha1:b0c2a61611b3dc28bb74e479430aceffeda27fb6
+  docs/models/operations/deletepasswordresponse.md:
+    last_write_checksum: sha1:e280f828fe7530a06603e89d1567dd03dc11ea7e
   docs/models/operations/deletepersonalaccesstokenrequest.md:
     id: aedbabdc2575
     last_write_checksum: sha1:fbbce486fa0105ad4e47fa56f8ccb4841d0df522
@@ -11946,6 +12100,18 @@ trackedFiles:
     id: 92cc08b4463a
     last_write_checksum: sha1:85fd20c4cad72e8cc5e4cf68caf861f9d888816e
     pristine_git_object: f5854d0a6275fa796eb58da8c29d30581d2d8f15
+  docs/models/operations/deleteprincipalbasicauthrequest.md:
+    last_write_checksum: sha1:33d0edc9dbe740adcb50d01114ef817846257243
+  docs/models/operations/deleteprincipalbasicauthresponse.md:
+    last_write_checksum: sha1:a39e1a7e200688e20ed5dccd9b55ecb19e175afd
+  docs/models/operations/deleteprincipalkeyrequest.md:
+    last_write_checksum: sha1:7231d90cc632b36f3b1663e09a384166b1b13952
+  docs/models/operations/deleteprincipalkeyresponse.md:
+    last_write_checksum: sha1:253e4a6010f130df3dfb62129b55beffffc9e241
+  docs/models/operations/deleteprincipalrequest.md:
+    last_write_checksum: sha1:03b91b1ed3ee7a7c3b582b349061f82a3016862a
+  docs/models/operations/deleteprincipalresponse.md:
+    last_write_checksum: sha1:ee00ffcef7e3a6f827f53fc9859c404a264c6ae4
   docs/models/operations/deleteprivatednsrequest.md:
     id: ba0c2d1c7a6f
     last_write_checksum: sha1:e6ff13e9d31578d179709663201c24d773540df2
@@ -12886,6 +13052,10 @@ trackedFiles:
     id: 73a7a6164b8e
     last_write_checksum: sha1:e110af9dada8d9889ea59d996246641a915d97d8
     pristine_git_object: 0e2bb328d0af6e9861fd0a861d33cdbe15a1d75c
+  docs/models/operations/getdirectoryrequest.md:
+    last_write_checksum: sha1:9ececbcba194152358855c96edb14d1f0760454c
+  docs/models/operations/getdirectoryresponse.md:
+    last_write_checksum: sha1:ba37635e63aed6607c9536815b6a5220f431967f
   docs/models/operations/getemailconfigrequest.md:
     id: fa114c5d7c1a
     last_write_checksum: sha1:7f66a90b25846fd1860d25e31eb2bb23575172af
@@ -13074,6 +13244,10 @@ trackedFiles:
     id: dbefbe79e26c
     last_write_checksum: sha1:9c9eaa4affe890b83aff565bf9ddc59aab77c287
     pristine_git_object: 0f68d41911da34d353e0f820926b16462f48a94d
+  docs/models/operations/getidentitykeyrequest.md:
+    last_write_checksum: sha1:c5e23f198c9ba717b509ffed937446c363d872db
+  docs/models/operations/getidentitykeyresponse.md:
+    last_write_checksum: sha1:2f019fabda3d4920a4e62ce31baf935ba4d30257
   docs/models/operations/getidentityproviderrequest.md:
     id: 306f4d7c6253
     last_write_checksum: sha1:c0b7315a8bb22780c348358a4a0f48f76ff6ea90
@@ -13090,6 +13264,10 @@ trackedFiles:
     id: f007664c3e1f
     last_write_checksum: sha1:43c8ef95a54769dff03febed2c90fbb4c1072f57
     pristine_git_object: 5916729f4e99ede03ab352abc6dafa1c06627a9b
+  docs/models/operations/getidentityrequest.md:
+    last_write_checksum: sha1:65e3bd3f4c8b62aac8aec14c6439bc88afe4e04c
+  docs/models/operations/getidentityresponse.md:
+    last_write_checksum: sha1:41ea4dc687a440f6814cd857463a616402125241
   docs/models/operations/getidpconfigurationresponse.md:
     id: 99a8245f37de
     last_write_checksum: sha1:79a707e2f89d1de97c9c27b094412a394d8c9b9f
@@ -13364,6 +13542,10 @@ trackedFiles:
     id: 73a24061bef6
     last_write_checksum: sha1:967bd88c74c7f10e8223c982f68039f21b372b25
     pristine_git_object: 8adcdb5658e6131bc0e784b20bac8897fa031dfa
+  docs/models/operations/getpasswordrequest.md:
+    last_write_checksum: sha1:23c8c489bb16253dd1b1cc3116f6db2645346df7
+  docs/models/operations/getpasswordresponse.md:
+    last_write_checksum: sha1:0a7334d4d08c6c48f5e69f713fbfc7ece4a539c7
   docs/models/operations/getpersonalaccesstokendetailsrequest.md:
     id: 78bd7be679ec
     last_write_checksum: sha1:78a1adb0e4c36c853ed3cb7b049f3e7397e729d1
@@ -13612,6 +13794,14 @@ trackedFiles:
     id: e23309282d23
     last_write_checksum: sha1:e805b88db588beb991552dea570c45a65373ac01
     pristine_git_object: ecf50dfbf86f221070c80778e9ebecb6e9e7b887
+  docs/models/operations/getprincipalbasicauthrequest.md:
+    last_write_checksum: sha1:fbcd7684e57e570702faf0778d84e07fba6de02e
+  docs/models/operations/getprincipalbasicauthresponse.md:
+    last_write_checksum: sha1:79f810694b7ddc9ea9c2ae1a61e143c9bb949c5d
+  docs/models/operations/getprincipalrequest.md:
+    last_write_checksum: sha1:9e158049f3ffaa4ccc473d7529eb391267ae8ea3
+  docs/models/operations/getprincipalresponse.md:
+    last_write_checksum: sha1:11d0047f2bf1200295712980b54fc9ba905933fc
   docs/models/operations/getprivatednsrequest.md:
     id: a961968340e7
     last_write_checksum: sha1:15f34aeed873a1f13c91e2fb5fcf317dd46ae381
@@ -13632,6 +13822,10 @@ trackedFiles:
     id: 39458653ce14
     last_write_checksum: sha1:cdedacaca7adb20aa367c743b46513088f629b92
     pristine_git_object: 0005503bcbf493d599d0a9116f68e2b99f889216
+  docs/models/operations/getrealmconfigrequest.md:
+    last_write_checksum: sha1:fcf3bdd612c6be0c63c4530792684b2369152e43
+  docs/models/operations/getrealmconfigresponse.md:
+    last_write_checksum: sha1:0b061dde481b2c24686bdb6a4252dfbd02ab1668
   docs/models/operations/getresourceconfigurationrequest.md:
     id: e255ca670dc4
     last_write_checksum: sha1:e62a71a31b72f3540aae0177c78ffcbf7f27663e
@@ -14804,6 +14998,12 @@ trackedFiles:
     id: 84107e283572
     last_write_checksum: sha1:aa3829645f59de893da906d9b6d640b9471c2ae7
     pristine_git_object: 06e7a7a194a2876c662463ce785d43a6ec1d00e6
+  docs/models/operations/listidentitiesqueryparamfilter.md:
+    last_write_checksum: sha1:2fdac781d8ae805945e7b5d0c297cc27a39fe2d5
+  docs/models/operations/listidentitiesrequest.md:
+    last_write_checksum: sha1:1113eb4cc786d47e71f619f40b3580ff168e0c9b
+  docs/models/operations/listidentitiesresponse.md:
+    last_write_checksum: sha1:ee6c731b7ea21093460b212e2c8ff25805c11a28
   docs/models/operations/listidpteamgroupmappingsrequest.md:
     last_write_checksum: sha1:b23e8abc99cb8f94cfe02da6a35604da3c4cbe11
   docs/models/operations/listidpteamgroupmappingsresponse.md:
@@ -14958,6 +15158,10 @@ trackedFiles:
     id: cae1601710fb
     last_write_checksum: sha1:972f0ad594f90001042d2b9ccfd181f4fd8c28a0
     pristine_git_object: 50dcbc5853f335852c73b4b28157084184bf4dc8
+  docs/models/operations/listkongdirectoriesrequest.md:
+    last_write_checksum: sha1:4e5b4f42e81ffacbc52c142c2ee410e53c5fe74d
+  docs/models/operations/listkongdirectoriesresponse.md:
+    last_write_checksum: sha1:5580d4239969a84c4f50c080ff8c2acff6b12d97
   docs/models/operations/listllmcostoverridesrequest.md:
     last_write_checksum: sha1:7a67d5d747c47433bc53caf95f73636c10f4ea09
   docs/models/operations/listllmcostoverridesresponse.md:
@@ -15086,6 +15290,10 @@ trackedFiles:
     id: 1d99c858b00b
     last_write_checksum: sha1:0124ee9c4d87db495b9e54343a21f4fe3fc6b5e2
     pristine_git_object: 8cfb098bfe33cf8eedd1e79b69b3eda6b901c81b
+  docs/models/operations/listpasswordsrequest.md:
+    last_write_checksum: sha1:7aa495b905aa931c0fd30ef658c5c1c3e8ebc1cd
+  docs/models/operations/listpasswordsresponse.md:
+    last_write_checksum: sha1:c1042b460b750c056aa50fbf0a38a22f5a28ba85
   docs/models/operations/listplanaddonsrequest.md:
     last_write_checksum: sha1:058b16846092be9e9ac44b7a322fee6ffdf0ce67
   docs/models/operations/listplanaddonsresponse.md:
@@ -15328,6 +15536,20 @@ trackedFiles:
     id: 6e90348c9716
     last_write_checksum: sha1:f87c699fab9f187b4cd08343fff51ab08ccbafe9
     pristine_git_object: ddcc9e2439cc86c3407d62f4fc4886c264fa2589
+  docs/models/operations/listprincipalbasicauthsrequest.md:
+    last_write_checksum: sha1:ab38c1ae4c4a13ae6481c710b9707ebeedbf607e
+  docs/models/operations/listprincipalbasicauthsresponse.md:
+    last_write_checksum: sha1:bdc8e2a8d35777d22e8a020f7d517529c4b1b14b
+  docs/models/operations/listprincipalkeysrequest.md:
+    last_write_checksum: sha1:280cb5321016b76cf3802a860393caa860e5c316
+  docs/models/operations/listprincipalkeysresponse.md:
+    last_write_checksum: sha1:56cc42d7318ad344fc388f59520bb2411aa4ea14
+  docs/models/operations/listprincipalsqueryparamfilter.md:
+    last_write_checksum: sha1:df7362869d335ac6a8ed2a245cbc1f44445822ee
+  docs/models/operations/listprincipalsrequest.md:
+    last_write_checksum: sha1:fdbe1699314f8bc1c36b4a11e794c19ed5bd6e87
+  docs/models/operations/listprincipalsresponse.md:
+    last_write_checksum: sha1:1d91c59c677af36300cc0bfeca9097f24b6fe22f
   docs/models/operations/listprivatednsrequest.md:
     id: bce7a9453cde
     last_write_checksum: sha1:0b822b22cde9398fc5114692a749675b83b5a5a9
@@ -16220,6 +16442,18 @@ trackedFiles:
     id: 1cab862c80ac
     last_write_checksum: sha1:7bfcfb30b91e444345c6be1dc71c37b2f773cbc4
     pristine_git_object: 383eed8ef295b0ff4e2052908e9f3e191e56d5e6
+  docs/models/operations/replacedirectoryrequest.md:
+    last_write_checksum: sha1:6968c212ccf27f7d1fcd14aa92c81946f8410e9a
+  docs/models/operations/replacedirectoryresponse.md:
+    last_write_checksum: sha1:6cc1eedf3632872c1c7a1c5f7978cb7705f1f1bc
+  docs/models/operations/replaceidentityrequest.md:
+    last_write_checksum: sha1:864ded3166e544546bb0e2411e93a59d4b1a1cd8
+  docs/models/operations/replaceidentityresponse.md:
+    last_write_checksum: sha1:e125a7755cc71f0eef4d05e3b531733c3079b57c
+  docs/models/operations/replacepasswordrequest.md:
+    last_write_checksum: sha1:c6517cf2eb350243946dda180638876cd69dd472
+  docs/models/operations/replacepasswordresponse.md:
+    last_write_checksum: sha1:71fcb1002f0f2ebeaa73018c3bd0ebc7709a6056
   docs/models/operations/replaceportalassetfaviconrequest.md:
     id: cc1082e3a898
     last_write_checksum: sha1:dedec297158ddfdceb1afb12fda374b9179c3a01
@@ -16248,6 +16482,18 @@ trackedFiles:
     last_write_checksum: sha1:9b6647adfbd090c326d33b16e64088d1f5365960
   docs/models/operations/replaceportalformresponse.md:
     last_write_checksum: sha1:b0bf603e88280e3b27d32d8451f483d1e1ac4700
+  docs/models/operations/replaceprincipalbasicauthrequest.md:
+    last_write_checksum: sha1:7d49dac59d24e90a9391ea3235d6fff02f7206cf
+  docs/models/operations/replaceprincipalbasicauthresponse.md:
+    last_write_checksum: sha1:cb2b04c1d05fc96a56283e872f1a992e34179de7
+  docs/models/operations/replaceprincipalrequest.md:
+    last_write_checksum: sha1:1195fcaef5242bb7ca7d1f3ef1f167a6d93fb546
+  docs/models/operations/replaceprincipalresponse.md:
+    last_write_checksum: sha1:39e6c6dc473fd406ae65300bd0985f69519fe98f
+  docs/models/operations/replacerealmconfigrequest.md:
+    last_write_checksum: sha1:8e2c766a09eb1003fb354333c4a1ee46367008ea
+  docs/models/operations/replacerealmconfigresponse.md:
+    last_write_checksum: sha1:f983907ee6969fa92976da7927cae79b0f1ab02d
   docs/models/operations/resolvecustomerresponse.md:
     id: 6c1a1d304f52
     last_write_checksum: sha1:72bf527ba0de934c807933f9e102916d081137cd
@@ -16560,6 +16806,10 @@ trackedFiles:
     id: b179640ed12f
     last_write_checksum: sha1:28420feb22a1b4dcd507acba58a326785280b6a2
     pristine_git_object: 0d2de8f6dc4e1076f0a825b3629fcac264533484
+  docs/models/operations/updatedirectoryrequest.md:
+    last_write_checksum: sha1:dde75b9423773ca633526e5170ac54f616cc69f7
+  docs/models/operations/updatedirectoryresponse.md:
+    last_write_checksum: sha1:37b65174abb42c92c9c6acaa7878a68f526ea13f
   docs/models/operations/updateemaildeliveryrequest.md:
     id: 15b4b61e9f3b
     last_write_checksum: sha1:85bac06c5b147ceb1826e1ecf560a6fe0220c043
@@ -16656,6 +16906,10 @@ trackedFiles:
     id: 10af22e9c108
     last_write_checksum: sha1:a3035e3e811aebd79ab7068f714cc763202e7377
     pristine_git_object: 63b7dd3b534ae6ecea26a20ce11fbc98e4efe9d1
+  docs/models/operations/updateidentityrequest.md:
+    last_write_checksum: sha1:30c34be7e2bd28e3411b951772a340c347ef9259
+  docs/models/operations/updateidentityresponse.md:
+    last_write_checksum: sha1:94324510d6e6d2d5312b05cffa6e15433264163f
   docs/models/operations/updateidpconfigurationresponse.md:
     id: "531449186147"
     last_write_checksum: sha1:fc01b75d69a804120a90d0f459a1ab823e097d54
@@ -16718,6 +16972,10 @@ trackedFiles:
     id: 472a83170c52
     last_write_checksum: sha1:9296e78d0bbb4c216c625ec8fbd5708c76db7a42
     pristine_git_object: 3837ebb8326e39af6cedbbb092cd783a3bc36511
+  docs/models/operations/updatepasswordrequest.md:
+    last_write_checksum: sha1:f36d6cee20a81ee1b34bef29df964c06f328f678
+  docs/models/operations/updatepasswordresponse.md:
+    last_write_checksum: sha1:feb772b663d9f54e98dc26f20470d31a110737e1
   docs/models/operations/updatepersonalaccesstokendetailsrequest.md:
     id: 71de84c68045
     last_write_checksum: sha1:9135541eaae8649cd32e0ed526760497278f7db0
@@ -16854,6 +17112,18 @@ trackedFiles:
     id: 491d12e98748
     last_write_checksum: sha1:8e4b77484163e36220871db90ed020e426cf7221
     pristine_git_object: a2a63aa109fd249864ee857ccc98a95318225046
+  docs/models/operations/updateprincipalbasicauthrequest.md:
+    last_write_checksum: sha1:1fda5d887c987567eeecc2e7b8643bdb9952f809
+  docs/models/operations/updateprincipalbasicauthresponse.md:
+    last_write_checksum: sha1:fce63d301c2ceac0e3644f4fb2157c231d0f5a83
+  docs/models/operations/updateprincipalkeyrequest.md:
+    last_write_checksum: sha1:c8d6252ff655b059de664210d07bf1dc256c0f73
+  docs/models/operations/updateprincipalkeyresponse.md:
+    last_write_checksum: sha1:93c4828dd5b9094f31a82010fe951120689421b2
+  docs/models/operations/updateprincipalrequest.md:
+    last_write_checksum: sha1:9359238b6944bdfc663f72298652facccfb91d28
+  docs/models/operations/updateprincipalresponse.md:
+    last_write_checksum: sha1:ec765bfc75c0d0c5e6ac79ecb376dd729d5fd2fc
   docs/models/operations/updateprivatednsrequest.md:
     id: aa9d663bfd91
     last_write_checksum: sha1:a0cc9316bd1a20c1863269bb4ce18c144ce0c1cd
@@ -17848,6 +18118,14 @@ trackedFiles:
     id: b9d1ece85a2a
     last_write_checksum: sha1:7c3b135108fe542ff9c1eaf00b0d3ca5b44232f4
     pristine_git_object: cbce7a17d71b9319c6ebde85717c3c22990ef87e
+  docs/sdks/kongidentitydirectories/README.md:
+    last_write_checksum: sha1:e0fe477e27fcc92ca232b62552b6f87c909901e3
+  docs/sdks/kongprincipal/README.md:
+    last_write_checksum: sha1:9a5b008e6c825647e7685a0a770c3a4cbc1df83d
+  docs/sdks/kongprincipalcredential/README.md:
+    last_write_checksum: sha1:63504f2bd97c365a8fbdfceecd411c19f3673df6
+  docs/sdks/kongprincipalidentity/README.md:
+    last_write_checksum: sha1:5d9490d9e5418e4795eac4fe8374b869d5852ccd
   docs/sdks/managedsystemaccountsroles/README.md:
     id: 42b418e04bfd
     last_write_checksum: sha1:2701b1dad3e49b274f946a11d7917752a1b9ec8f
@@ -18230,6 +18508,14 @@ trackedFiles:
     id: 30ff4d8b4afc
     last_write_checksum: sha1:157da0d9b283b393476d0d2f6b17dd4fd1d41596
     pristine_git_object: 4e116b16ad0908e19181b37308171e2125f0fb2d
+  kongidentitydirectories.go:
+    last_write_checksum: sha1:65fa6ef0006bdd6db4db87817c878ced883546b2
+  kongprincipal.go:
+    last_write_checksum: sha1:7ff3a27ffad8f245601632ab7d60f8b7b5347f51
+  kongprincipalcredential.go:
+    last_write_checksum: sha1:d8fcbba4a172033cd8ee2420e3b3bbe99342a242
+  kongprincipalidentity.go:
+    last_write_checksum: sha1:ec02d61b436de337d05635e66401272f7f29866e
   managedsystemaccountsroles.go:
     id: bb2b8075e954
     last_write_checksum: sha1:16e9f8d5cefdeed8c91541b4e111ba0f5ddbcb73
@@ -19602,6 +19888,8 @@ trackedFiles:
     pristine_git_object: 775eefd00517f24ef7547590d6dbe57d16f9a6f4
   models/components/createbackendclusterrequest.go:
     last_write_checksum: sha1:2c94c00d23b6928a20d28c6478ebf363a3d91de7
+  models/components/createbasicauthbody.go:
+    last_write_checksum: sha1:dc841c5693cd6e2001625ef14610903ad3eca517
   models/components/createbillingprofilerequest.go:
     last_write_checksum: sha1:c328f476729e08d0ed619feab75b11c9916e3533
   models/components/createcatalogintegration.go:
@@ -19728,6 +20016,8 @@ trackedFiles:
     last_write_checksum: sha1:db0b31e80d6ac5a1cb3fa4f4042e91c971c119c6
   models/components/createdeveloperrequest.go:
     last_write_checksum: sha1:f7b53cd436264d195501a8ec6c985329807e4b6a
+  models/components/createdirectorybody.go:
+    last_write_checksum: sha1:44499a5f7fb79ce49dd005a424527f29eb483317
   models/components/createeventgatewaydataplanecertificaterequest.go:
     last_write_checksum: sha1:b1793810a0e8d68e4b7a600a85a8ff4eb115298c
   models/components/createeventgatewaylistenerrequest.go:
@@ -19782,6 +20072,8 @@ trackedFiles:
     id: 99a0fcc595e0
     last_write_checksum: sha1:e70409b16306a38a50cfb06b748d902db1427676
     pristine_git_object: 4b9428f126371fb2b44c04de49d64a4281ecc719
+  models/components/createpasswordbody.go:
+    last_write_checksum: sha1:759e3d2fa6fdfb54e00b6d5c995ec96518817c72
   models/components/createplanaddonrequest.go:
     last_write_checksum: sha1:b22fb2bed0cf06141cd1891327e769b56629f1cd
   models/components/createplanrequest.go:
@@ -19818,6 +20110,10 @@ trackedFiles:
     pristine_git_object: b4ab339ae682b3c958575d6bfa4466407c0314ce
   models/components/createportalsourceiprestriction.go:
     last_write_checksum: sha1:b0d1db3e97e88ac82eefacba7c2a64e3b19866da
+  models/components/createprincipalbody.go:
+    last_write_checksum: sha1:03a14f13c79450bb746fbcadc40343334144858d
+  models/components/createprincipalkeybody.go:
+    last_write_checksum: sha1:0e0ae5d320961b0b126098e07cec1a32ec7ee826
   models/components/createprivatecatalogintegration.go:
     id: 2273be45cf91
     last_write_checksum: sha1:2dde1b3a7169b6dd8860672feee49f32a472c081
@@ -20828,8 +21124,46 @@ trackedFiles:
     id: 05119c79fb7d
     last_write_checksum: sha1:d8905efeeb1a8aeef9445a74e2dbd4c2f3f01879
     pristine_git_object: 7d271a99e0bb21026e1ae57b574de990723565ac
+  models/components/kongbasicauth.go:
+    last_write_checksum: sha1:f426c377953d04bbafd512f5866e2c73c1e0aa37
+  models/components/kongdirectory.go:
+    last_write_checksum: sha1:4398d3b3799552a72c8a4d07a309f373fe72d96c
+  models/components/kongdirectoryrealmvalues.go:
+    last_write_checksum: sha1:1621bdfd3c63dbb8e493c8a60e39ff48b2880861
   models/components/kongentitiesresponse.go:
     last_write_checksum: sha1:389f4cee93105580b75914165b010bfab3c9b581
+  models/components/kongidentitymetadata.go:
+    last_write_checksum: sha1:cad79f9f1cebe363e8b8693c2b61bcb8a2a8c5b1
+  models/components/kongpassword.go:
+    last_write_checksum: sha1:fc69cf19ad61aa996733e3db4c3dbe96969b8204
+  models/components/kongpasswordwithsecret.go:
+    last_write_checksum: sha1:0f71399a812f584ad7f8ce05505a02a088a48918
+  models/components/kongprincipal.go:
+    last_write_checksum: sha1:796ce2903f421f553f94492eff20fec6bf999231
+  models/components/kongprincipalidentity.go:
+    last_write_checksum: sha1:6ca053ea238c905c83d5fb315e6cd06472afd548
+  models/components/kongprincipalidentityauthserverclient.go:
+    last_write_checksum: sha1:2068777b333454db049d61d2527de590d838d025
+  models/components/kongprincipalidentityauthserverclientresponse.go:
+    last_write_checksum: sha1:926d5c24030c4e08a3a2d44b61e09978188b170e
+  models/components/kongprincipalidentitybody.go:
+    last_write_checksum: sha1:6d72baeee8f1eb2f7566f78ca500cbc6f43d2568
+  models/components/kongprincipalidentitycpconsumer.go:
+    last_write_checksum: sha1:64af79c79f3b0256ba2d0f5cf159b5a3152dd0e9
+  models/components/kongprincipalidentitycpconsumerresponse.go:
+    last_write_checksum: sha1:aebcdef41bd1499427d8d6480322031cd0e8c119
+  models/components/kongprincipalidentitycustom.go:
+    last_write_checksum: sha1:4506809ae74c9ca7b4bdfebe582ee48da3d816d8
+  models/components/kongprincipalidentitycustomresponse.go:
+    last_write_checksum: sha1:d18bdd31d2fb85ba5d8c7c33420cb56506871d4c
+  models/components/kongprincipalidentityoidc.go:
+    last_write_checksum: sha1:7e1ba68d7f63cd00f20c42008cbf2b7bed0b9f73
+  models/components/kongprincipalidentityoidcresponse.go:
+    last_write_checksum: sha1:c50c63719f44e1b4fcfa26a1a3700918fb5608c0
+  models/components/kongprincipalkey.go:
+    last_write_checksum: sha1:f32d34b124ca0fb23c4268fac574f771c6800ed0
+  models/components/kongprincipalkeywithsecret.go:
+    last_write_checksum: sha1:bd207ffa90497622a74fd7216c2b44617b9e3f3e
   models/components/kongroute.go:
     last_write_checksum: sha1:6ed0a4d48e02f1d943fcda1033d67c398f39c92a
   models/components/kongservice.go:
@@ -21118,6 +21452,18 @@ trackedFiles:
     id: acf50bb8bfa8
     last_write_checksum: sha1:86756ed9906c1ee7802b7e61cb88702412509e15
     pristine_git_object: ecdfe81ebc172d176a43160121f553934ee444f1
+  models/components/listkongbasicauths.go:
+    last_write_checksum: sha1:bd49bbe00859ae9735ec96ad99c107edf19964b7
+  models/components/listkongdirectories.go:
+    last_write_checksum: sha1:804bc4656c8cbb006adbe01de1895ab6a7dba484
+  models/components/listkongpasswords.go:
+    last_write_checksum: sha1:09cb3fbd629e2b888a9c0bc9d275687c69eb393a
+  models/components/listkongprincipalidentities.go:
+    last_write_checksum: sha1:529a5012394431fe506a84c0de3bf36f268f0706
+  models/components/listkongprincipalkeys.go:
+    last_write_checksum: sha1:39d6a326c2be86cdccea066a0c2641ab1a8f2260
+  models/components/listkongprincipals.go:
+    last_write_checksum: sha1:54521d569e4100bc9420543579b97fd078237084
   models/components/listllmcostpricesparamsfilter.go:
     last_write_checksum: sha1:c29393df424c9a2624571f0aad7cdeebbe9b918f
   models/components/listmcpresourcesresponse.go:
@@ -21980,6 +22326,8 @@ trackedFiles:
     id: 8d5ca88fa249
     last_write_checksum: sha1:79f376e64765aa75cef84fdc5330cbceb02ea0ed
     pristine_git_object: fb95fe4e957347d77c24d10fb7d16c2e002fe137
+  models/components/provisionedby.go:
+    last_write_checksum: sha1:c58742da52ae1b6904a0a001c67d64fafaf83f3c
   models/components/proxyurl.go:
     id: 069a676a35fc
     last_write_checksum: sha1:a15aa30eecd2112edaf2bba3627dfdea34492fad
@@ -22038,8 +22386,14 @@ trackedFiles:
     last_write_checksum: sha1:4a05012206a04a0891203df2b3af96b816c893ef
   models/components/registrylist.go:
     last_write_checksum: sha1:45a6cb584ca5de1108d20f2388f2bf2f44f8af7d
+  models/components/replacebasicauthbody.go:
+    last_write_checksum: sha1:75af4c1cdc7395133d813f6fa31186d238dd816f
+  models/components/replacedirectorybody.go:
+    last_write_checksum: sha1:9ef83b00c6aaf6d25b3cbab7f1780e4d1db122fb
   models/components/replaceimagerequestschema.go:
     last_write_checksum: sha1:8623c198ee737a0af49e31eb9d642db5a1c2d0e9
+  models/components/replacepasswordbody.go:
+    last_write_checksum: sha1:5a0c88521c8c827fb9e9a449f1cc818736969a27
   models/components/replaceportalauditlogreplayjob.go:
     id: 0e95884aee38
     last_write_checksum: sha1:89434e35f16e3f248daa98ddde57c4e932582bc6
@@ -22048,6 +22402,8 @@ trackedFiles:
     id: f12c316156c7
     last_write_checksum: sha1:f90c14e3220ad76ebbac952e08704ddeef6415ce
     pristine_git_object: 1a7a0466b382567b000f2dd106d65602d533e853
+  models/components/replaceprincipalbody.go:
+    last_write_checksum: sha1:4b2c47869ee1cea7de0cd0957c9ab635cffe609c
   models/components/resolvecustomerresponse.go:
     id: ee33040defac
     last_write_checksum: sha1:117d6c9cf07482c4b92297a95b95ee4ec15a3335
@@ -22346,6 +22702,8 @@ trackedFiles:
     id: 2b006172abcc
     last_write_checksum: sha1:20d2503a41b61877e0b357cf706abebfad72871f
     pristine_git_object: 55f0e9e8fbdd032a1691e3d4ffc53e58f4e33931
+  models/components/stringfieldoeqfilter.go:
+    last_write_checksum: sha1:b41c19c0bf84606826e8ebdd6c63ee91b9d2c983
   models/components/stringfieldselectorparams.go:
     id: 8baacc2c14dd
     last_write_checksum: sha1:2516f2a80152fd661eec0ff9a7f4faa9dcacaffa
@@ -22608,6 +22966,8 @@ trackedFiles:
     pristine_git_object: 8b156ea55ef05add994dab98a2deb7f0660be647
   models/components/updatebackendclusterrequest.go:
     last_write_checksum: sha1:c7151cecbfbce49884bbccb4bf5ae953f5340afe
+  models/components/updatebasicauthbody.go:
+    last_write_checksum: sha1:aa22d83047387ec32461042031dc7096b67ad233
   models/components/updatecatalogintegration.go:
     id: f3a6e00dd80e
     last_write_checksum: sha1:5f343139d216ee3b9fdcb67a16d1136ee7c05454
@@ -22668,6 +23028,8 @@ trackedFiles:
     id: 38d1c7618288
     last_write_checksum: sha1:09031635118d4fb7799d6afad668f2e77228b1d1
     pristine_git_object: b0e386b5b2632ea3a0cd9d2e527f0d0d40da6495
+  models/components/updatedirectorybody.go:
+    last_write_checksum: sha1:34ccf79a241c9b7a5fef54f3c7adb407a529f883
   models/components/updateequalwebintegration.go:
     last_write_checksum: sha1:c3663cdd529afc6193cffaf9b45fbe1a61f923ab
   models/components/updateeventgatewaydataplanecertificaterequest.go:
@@ -22712,6 +23074,8 @@ trackedFiles:
     pristine_git_object: 37bbfaa43ce55ce432391d58586e4aee91ab8149
   models/components/updateorganizationdefaulttaxcodesrequest.go:
     last_write_checksum: sha1:0f6c0e169e52dea837ccc50a1c80089eb0ad6834
+  models/components/updatepasswordbody.go:
+    last_write_checksum: sha1:a5ec19a62b6c6a27abc3850b544f87cb4a41bfc4
   models/components/updateportal.go:
     id: 23cc6ded3e89
     last_write_checksum: sha1:dd850950c51464e13b05c715be608cdac629c923
@@ -22742,6 +23106,12 @@ trackedFiles:
     pristine_git_object: caeb14f61647528dbcfd925e598af1a5b8939faa
   models/components/updateportalsourceiprestriction.go:
     last_write_checksum: sha1:9d0e4ce72ed55edae3f3ec50334def1d587bff98
+  models/components/updateprincipalbody.go:
+    last_write_checksum: sha1:5a789195f55b74c3f6a87a8336f564d55c55848a
+  models/components/updateprincipalidentitybody.go:
+    last_write_checksum: sha1:9778b4db56ff8ced2d4aa2d11c1085244635ac6a
+  models/components/updateprincipalkeybody.go:
+    last_write_checksum: sha1:b08456a7d467857fea6f4eacd6fe89fb97f0afc4
   models/components/updatequota.go:
     last_write_checksum: sha1:518195f238082a7e476ce0a197804d9e907c4c31
   models/components/updateregistrationconsumerrequest.go:
@@ -23342,6 +23712,8 @@ trackedFiles:
     last_write_checksum: sha1:c175e95143dbb353f5b2582eae002e5d3b386c06
   models/operations/createdeveloper.go:
     last_write_checksum: sha1:75c7ec844c3d287d1e3c4e53d14567ffdb467e15
+  models/operations/createdirectory.go:
+    last_write_checksum: sha1:bde8d91860d5a80435ee45478685f051e9c2e30f
   models/operations/createemaildomain.go:
     id: 91cd10854a3d
     last_write_checksum: sha1:bff6616de021c13811394f6c4c721c4517ad53a7
@@ -23390,6 +23762,8 @@ trackedFiles:
     pristine_git_object: 0b1df0c5b86eb25ef4cf462d37768c7b8864ca2f
   models/operations/createhmacauthwithconsumerinworkspace.go:
     last_write_checksum: sha1:dc565faa9126f9df3847096797842f26041798c5
+  models/operations/createidentity.go:
+    last_write_checksum: sha1:51f3910a233cb1af67a437cc6f0a8af7331db029
   models/operations/createidentityprovider.go:
     id: 4c38b24235a8
     last_write_checksum: sha1:ad53e0cfa9287cce7ffacff5017af7a1aeb3dcfd
@@ -23470,6 +23844,8 @@ trackedFiles:
     pristine_git_object: 924f24191df861dd5b894b343dc60190b724a062
   models/operations/createpartialinworkspace.go:
     last_write_checksum: sha1:fe505a127bbb1cf376dff707ef98918dacf20147
+  models/operations/createpassword.go:
+    last_write_checksum: sha1:d75172b7cd4d495ce63aebb499b8a91ab25d2832
   models/operations/createpersonalaccesstoken.go:
     id: 84d38a54e609
     last_write_checksum: sha1:a1679a471863ca87fe5758eb21055b1c480c1048
@@ -23548,6 +23924,12 @@ trackedFiles:
     id: 1ee5aa42df33
     last_write_checksum: sha1:b070d0828a7607bfd234253e55b92dd3f567840b
     pristine_git_object: b1477989639eabf70f61105569effa0342ad0172
+  models/operations/createprincipal.go:
+    last_write_checksum: sha1:a5ce687fc5468afeac3c5b625d4c430257d44868
+  models/operations/createprincipalbasicauth.go:
+    last_write_checksum: sha1:28813441ca2686678bb81b70eb7e3f98d6611c6e
+  models/operations/createprincipalkey.go:
+    last_write_checksum: sha1:362e3fd51fe62550faf66a783480bf805e42bd3a
   models/operations/createprivatedns.go:
     id: 8b181bf1ec88
     last_write_checksum: sha1:32ac84e7e3cabba45473d1a60971bef93ab7fd60
@@ -23694,6 +24076,8 @@ trackedFiles:
     last_write_checksum: sha1:329782ca6cf778f3036734a032ac2c76984b44c9
   models/operations/deleteaigatewayvault.go:
     last_write_checksum: sha1:304d53641bf8a99eb75da266b1118a0de44dbe40
+  models/operations/deleteallpasswords.go:
+    last_write_checksum: sha1:93f17c55582816c4a1b584726b4ba269961cb246
   models/operations/deleteapi.go:
     id: 37733108de03
     last_write_checksum: sha1:4cc5aabce9b645351c3cbcc2fb08ab9c6f2e16e6
@@ -23858,6 +24242,8 @@ trackedFiles:
     id: 88cd9ee1700e
     last_write_checksum: sha1:5d2df25e2f3a83e28682152c8807fc6dc0968c5d
     pristine_git_object: b6809f942a376acf69f3edf7e25de0701742d6ed
+  models/operations/deletedirectory.go:
+    last_write_checksum: sha1:1c9544d2657c987556dafbf9e74e648536467455
   models/operations/deleteemaildelivery.go:
     id: 064c00e19898
     last_write_checksum: sha1:dc8fb0e6a49fce7cf4db40dd98712a6d39795c6d
@@ -23910,6 +24296,8 @@ trackedFiles:
     pristine_git_object: f6561b6e148249f29afb640006938a035452759f
   models/operations/deletehmacauthwithconsumerinworkspace.go:
     last_write_checksum: sha1:3d99eac8902a0a6e785b104c7776945df1583be6
+  models/operations/deleteidentity.go:
+    last_write_checksum: sha1:b82dabf5a89f4065b29e117a9cf5760bb521c1ae
   models/operations/deleteidentityprovider.go:
     id: 2d419c6f078a
     last_write_checksum: sha1:581958c41fd84db3f4dcfbc56292d279d677bf3a
@@ -23998,6 +24386,8 @@ trackedFiles:
     pristine_git_object: d45e4f3e98a253e9116ff6a6d9c8cbead5002f1c
   models/operations/deletepartialinworkspace.go:
     last_write_checksum: sha1:358fa0b02e9ebc2c1438850d4382c1b209e2132d
+  models/operations/deletepassword.go:
+    last_write_checksum: sha1:ce4f1afe48a5db4eb23013f2120fad08a04e8e9e
   models/operations/deletepersonalaccesstoken.go:
     id: db5510309b67
     last_write_checksum: sha1:fda26d90df4909bde817291b21d746415d1e2116
@@ -24084,6 +24474,12 @@ trackedFiles:
     id: 93c16a18c608
     last_write_checksum: sha1:381b55c1b06ab355f98e0b0e3525ef506f788978
     pristine_git_object: 059e2d32f74d6348a99c8980dc8507005060cca0
+  models/operations/deleteprincipal.go:
+    last_write_checksum: sha1:7e6fa7a46cd042a259ee0520a3d5785c4b749d16
+  models/operations/deleteprincipalbasicauth.go:
+    last_write_checksum: sha1:13a1f05d3d1aa25110a7f86c1b130af0ac0eafa2
+  models/operations/deleteprincipalkey.go:
+    last_write_checksum: sha1:ae95f00ef10edab83521ce775d334fae4ed8bef2
   models/operations/deleteprivatedns.go:
     id: 9e121219f87f
     last_write_checksum: sha1:cb437b50fd46758d2b91eb6ddabd25e6013a5fe1
@@ -24558,6 +24954,8 @@ trackedFiles:
     id: 7e7a60d68cd8
     last_write_checksum: sha1:2a09e225cab28a7a6d92da2e966c87205edefdd9
     pristine_git_object: 19b1715dcdf08ebd5e789d0e70bbff0d903e1e53
+  models/operations/getdirectory.go:
+    last_write_checksum: sha1:9c9f32d2be462f962d244f7af2ff7b65bd6c0a89
   models/operations/getemailconfig.go:
     id: 54e4871d210e
     last_write_checksum: sha1:5fe18f40a35b5fd1d4147a46ad41076ac02b1bfc
@@ -24652,6 +25050,10 @@ trackedFiles:
     id: c5d060eb49db
     last_write_checksum: sha1:def7728039a171786903dd19e985964a800418e5
     pristine_git_object: b78ece739e675d0d8000d99daf157f27f1afe8ac
+  models/operations/getidentity.go:
+    last_write_checksum: sha1:b69ec7f9c89aba2bf3946c2cfa2fdd1e673ffdb1
+  models/operations/getidentitykey.go:
+    last_write_checksum: sha1:e01c5a70598b92fb8ff79580a3e765a3a9dddc12
   models/operations/getidentityprovider.go:
     id: c31017542d5e
     last_write_checksum: sha1:b432c7b201301bf1b831c007a4d5416abfbd64ba
@@ -24804,6 +25206,8 @@ trackedFiles:
     pristine_git_object: e00a7163ba3357fd872c533b86d51e9378d2cba0
   models/operations/getpartialinworkspace.go:
     last_write_checksum: sha1:6ce51acee8fb8f529a0ecf5aa1187f6669afe4ba
+  models/operations/getpassword.go:
+    last_write_checksum: sha1:996dbecf81042e46780cca73982d8b85898cc2d3
   models/operations/getpersonalaccesstokendetails.go:
     id: 3aba159771bb
     last_write_checksum: sha1:77d6f5340d7a243d4db499bcbb3abb02884a22b2
@@ -24926,6 +25330,10 @@ trackedFiles:
     id: 7f7083c775c3
     last_write_checksum: sha1:14c6383ccd80fd3c4f3a9932aeba3816f97b3b11
     pristine_git_object: f6b2426303990db0e8e14c00282d8bfa0b89a4ab
+  models/operations/getprincipal.go:
+    last_write_checksum: sha1:f1c7e386fc58ef18ea7819287c5bff19c85aacfb
+  models/operations/getprincipalbasicauth.go:
+    last_write_checksum: sha1:9cf39cb9e6a3c146f253a055ce50a82e582b0dbe
   models/operations/getprivatedns.go:
     id: b181451b7786
     last_write_checksum: sha1:9cea864a9d4a687608b8c33192676f8d847a5d87
@@ -24936,6 +25344,8 @@ trackedFiles:
     id: 9bc2026d74c4
     last_write_checksum: sha1:16bfdd718d5b3eaceac24bfd13beb5ac73a4d3bf
     pristine_git_object: 7485cf050ed31d0a379b3a954661a7fc320eaa18
+  models/operations/getrealmconfig.go:
+    last_write_checksum: sha1:3c75d1df78fd24a4565657531defc7d9f23d2a76
   models/operations/getresourceconfiguration.go:
     id: e8a7452668d8
     last_write_checksum: sha1:fda554d73ebf6e0a5c50e744c78614423520eb5e
@@ -25464,6 +25874,8 @@ trackedFiles:
     pristine_git_object: b14134b2ec9e80d8793bf1cdfbfe83ad3dbe06e4
   models/operations/listhmacauthwithconsumerinworkspace.go:
     last_write_checksum: sha1:78fe5e9f469db1ac9cbd5424c07dc7f847334255
+  models/operations/listidentities.go:
+    last_write_checksum: sha1:d80d7c011b58c282648cffc6fa808a2ed87b2cc6
   models/operations/listidpteamgroupmappings.go:
     last_write_checksum: sha1:660a7f7c138025eda95409c0e919138bdff1b653
   models/operations/listintegrationevents.go:
@@ -25520,6 +25932,8 @@ trackedFiles:
     pristine_git_object: 7272ab179d357b9c626fcf95189fb89d5b888b32
   models/operations/listkeywithkeysetinworkspace.go:
     last_write_checksum: sha1:ed253c9e08f7518b7f8183a07fd49eadc11a7f41
+  models/operations/listkongdirectories.go:
+    last_write_checksum: sha1:060c5a9f9237d58adfb56c3ea3a6537039265dcf
   models/operations/listllmcostoverrides.go:
     last_write_checksum: sha1:c02f660163ed774f408679709d6acdbeea0d582e
   models/operations/listllmcostprices.go:
@@ -25572,6 +25986,8 @@ trackedFiles:
     pristine_git_object: 7c618d2a7065e0fcd3f89613545d9ddffeaa1423
   models/operations/listpartiallinkinworkspace.go:
     last_write_checksum: sha1:65aafef161bd5b15694d07b375642a3ef66e98f2
+  models/operations/listpasswords.go:
+    last_write_checksum: sha1:5f0e9194e1162060f3d8a04d0abed91e075578d9
   models/operations/listplanaddons.go:
     last_write_checksum: sha1:a6b8aa305acb0f409ba5effd298683f89e605749
   models/operations/listplans.go:
@@ -25672,6 +26088,12 @@ trackedFiles:
     id: fed9aa39c18e
     last_write_checksum: sha1:ec02debb79d9fcec9d4621ca60df250b5b291430
     pristine_git_object: ac23129c354900dc056b3d583bed3f1eb761a3c9
+  models/operations/listprincipalbasicauths.go:
+    last_write_checksum: sha1:4083aee14c81106d81e936863f558bcbe7425a77
+  models/operations/listprincipalkeys.go:
+    last_write_checksum: sha1:880b6c139508130af38ff0743d9c8c78ec818404
+  models/operations/listprincipals.go:
+    last_write_checksum: sha1:e1c73b75853a427dcf41fff16df74c92e6138e3f
   models/operations/listprivatedns.go:
     id: a5d049fd6774
     last_write_checksum: sha1:231f0fea05a63f348283d9522d9a49c9822ff100
@@ -26098,6 +26520,12 @@ trackedFiles:
     id: b9db44232405
     last_write_checksum: sha1:a87a9035f77397887ac24595a12a73524874683c
     pristine_git_object: 8e01dc575740e9106223ee12f097340e5dd98bd7
+  models/operations/replacedirectory.go:
+    last_write_checksum: sha1:3fb178db21d9d9e24f7c1dda31dbdad5d3a9d3f4
+  models/operations/replaceidentity.go:
+    last_write_checksum: sha1:d917b42e36429c8950f3c5b32ca28936a21c804c
+  models/operations/replacepassword.go:
+    last_write_checksum: sha1:d9d7e99934eb9a131df611cd6ffb19d0d402be92
   models/operations/replaceportalassetfavicon.go:
     id: d2012cf752f4
     last_write_checksum: sha1:684089b230d0d62c17bf877c5e025f7a59fb2cbd
@@ -26112,6 +26540,12 @@ trackedFiles:
     pristine_git_object: 090094123894a891762d0a3bead036e0f137d7b5
   models/operations/replaceportalform.go:
     last_write_checksum: sha1:49d737a0c4f7e5e6161c84cef429aa4083dd05ed
+  models/operations/replaceprincipal.go:
+    last_write_checksum: sha1:2142cfa57248fcfa716fe1a15a28c693d1f49198
+  models/operations/replaceprincipalbasicauth.go:
+    last_write_checksum: sha1:202424e78fd486f387ea18a1166931dc339c23c4
+  models/operations/replacerealmconfig.go:
+    last_write_checksum: sha1:960d82e8d8eb8c1348e8f83861a2a198b30a4658
   models/operations/resolvecustomer.go:
     id: 59a4d09d4bd3
     last_write_checksum: sha1:a05dd9820a02257dfb45274d04907cd96b46c854
@@ -26270,6 +26704,8 @@ trackedFiles:
     id: 28e5ad3bdd18
     last_write_checksum: sha1:e35de9c999f80bd9efa5ce8c8af6e0acb20dba46
     pristine_git_object: 28905f67a481e428047ff72e5deb3415fcc87f51
+  models/operations/updatedirectory.go:
+    last_write_checksum: sha1:becb2201c01b27212bc4a1c84daee4d90701af0a
   models/operations/updateemaildelivery.go:
     id: 888b7d7ffedd
     last_write_checksum: sha1:ae0bfc3255cdd7226cf9c10514dfb282acfef347
@@ -26314,6 +26750,8 @@ trackedFiles:
     pristine_git_object: 51644b9a2db502159eae8be7decb0a9b02b004b5
   models/operations/updatefeature.go:
     last_write_checksum: sha1:d994d1e21b0ab9cf626430509b0a3ad18d792fd0
+  models/operations/updateidentity.go:
+    last_write_checksum: sha1:ede9726c30aebf3d00a0e273931642fc2e904d11
   models/operations/updateidentityprovider.go:
     id: 35ad815c97c3
     last_write_checksum: sha1:b6606bc05eb60c2ae7d77e8c03a74943ba147643
@@ -26358,6 +26796,8 @@ trackedFiles:
     id: 4788f00056ed
     last_write_checksum: sha1:cfcbc5ae70c6da13fbf738e66e7cbf6768f90f09
     pristine_git_object: 837a0ca1d95a50c6bc44ead0b5682135325a70e3
+  models/operations/updatepassword.go:
+    last_write_checksum: sha1:de35699b3cde16d89be5aa544a11c1ca95958a9d
   models/operations/updatepersonalaccesstokendetails.go:
     id: 83f0cc039fd3
     last_write_checksum: sha1:9c34d60fea99a2f6a89e7fa636485fc85cb9e6cc
@@ -26426,6 +26866,12 @@ trackedFiles:
     id: b1bde8cfb629
     last_write_checksum: sha1:1258dc6db22ce6cb023e9867eecebf4c6c1a4d5c
     pristine_git_object: 73298d24adc46c58dd76b5aa2d3b40edb6fe36f2
+  models/operations/updateprincipal.go:
+    last_write_checksum: sha1:5c38c0443478f9981e703de189d1b0ec5ef51c3d
+  models/operations/updateprincipalbasicauth.go:
+    last_write_checksum: sha1:4c379d611ac51fd414a47993ea94e8d1c00ed3d2
+  models/operations/updateprincipalkey.go:
+    last_write_checksum: sha1:7210765cbe09067e14ca1fa2dadc6a5509380d74
   models/operations/updateprivatedns.go:
     id: 182c5a5759b9
     last_write_checksum: sha1:1c49d99345d152fbef741efc8f4144c353e91027
@@ -26944,7 +27390,7 @@ trackedFiles:
     pristine_git_object: 1be235fffe631371adb250e00198f2d18391231a
   sdk.go:
     id: 8db9b9536b0a
-    last_write_checksum: sha1:24b85c02767d41bc673ebed841223315232dd756
+    last_write_checksum: sha1:356cb7b85d6704bfd8f0f6b8120656fe09b27572
     pristine_git_object: 566368ca1d4f1bc59e1f900d435217d705f747d8
   services.go:
     id: a2c8604526d8

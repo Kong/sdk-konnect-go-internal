@@ -1182,6 +1182,56 @@ func main() {
 * [GetKeySet](docs/sdks/keysets/README.md#getkeyset) - Get a KeySet
 * [UpsertKeySet](docs/sdks/keysets/README.md#upsertkeyset) - Upsert a KeySet
 
+### [KongIdentityDirectories](docs/sdks/kongidentitydirectories/README.md)
+
+* [CreateDirectory](docs/sdks/kongidentitydirectories/README.md#createdirectory) - Create a new Directory
+* [ListKongDirectories](docs/sdks/kongidentitydirectories/README.md#listkongdirectories) - List all directories
+* [UpdateDirectory](docs/sdks/kongidentitydirectories/README.md#updatedirectory) - Update a Directory
+* [ReplaceDirectory](docs/sdks/kongidentitydirectories/README.md#replacedirectory) - Replace a Directory
+* [GetDirectory](docs/sdks/kongidentitydirectories/README.md#getdirectory) - Get a Directory
+* [DeleteDirectory](docs/sdks/kongidentitydirectories/README.md#deletedirectory) - Delete a Directory
+* [GetRealmConfig](docs/sdks/kongidentitydirectories/README.md#getrealmconfig) - Get the realm configuration of a Directory
+* [ReplaceRealmConfig](docs/sdks/kongidentitydirectories/README.md#replacerealmconfig) - Replace Directory realm configuration
+
+### [KongPrincipal](docs/sdks/kongprincipal/README.md)
+
+* [CreatePrincipal](docs/sdks/kongprincipal/README.md#createprincipal) - Create a Principal in a Directory
+* [ListPrincipals](docs/sdks/kongprincipal/README.md#listprincipals) - List all the Principals of a Directory
+* [UpdatePrincipal](docs/sdks/kongprincipal/README.md#updateprincipal) - Update a Principal
+* [ReplacePrincipal](docs/sdks/kongprincipal/README.md#replaceprincipal) - Replace a Principal
+* [GetPrincipal](docs/sdks/kongprincipal/README.md#getprincipal) - Get a Principal
+* [DeletePrincipal](docs/sdks/kongprincipal/README.md#deleteprincipal) - Delete a Principal
+
+### [KongPrincipalCredential](docs/sdks/kongprincipalcredential/README.md)
+
+* [ListPrincipalBasicAuths](docs/sdks/kongprincipalcredential/README.md#listprincipalbasicauths) - List all basic auth credentials
+* [CreatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#createprincipalbasicauth) - Create a basic auth credential
+* [GetPrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#getprincipalbasicauth) - Get a basic auth credential
+* [UpdatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#updateprincipalbasicauth) - Update a basic auth credential
+* [ReplacePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#replaceprincipalbasicauth) - Replace a basic auth credential
+* [DeletePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#deleteprincipalbasicauth) - Delete a basic auth credential
+* [ListPasswords](docs/sdks/kongprincipalcredential/README.md#listpasswords) - List all passwords for a basic auth
+* [CreatePassword](docs/sdks/kongprincipalcredential/README.md#createpassword) - Create a password for a basic auth credential
+* [DeleteAllPasswords](docs/sdks/kongprincipalcredential/README.md#deleteallpasswords) - Delete all passwords for a basic auth
+* [GetPassword](docs/sdks/kongprincipalcredential/README.md#getpassword) - Get a password
+* [UpdatePassword](docs/sdks/kongprincipalcredential/README.md#updatepassword) - Update a password
+* [ReplacePassword](docs/sdks/kongprincipalcredential/README.md#replacepassword) - Replace a password
+* [DeletePassword](docs/sdks/kongprincipalcredential/README.md#deletepassword) - Delete a password
+* [CreatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#createprincipalkey) - Create a principal API key
+* [ListPrincipalKeys](docs/sdks/kongprincipalcredential/README.md#listprincipalkeys) - List all API keys for a principal
+* [UpdatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#updateprincipalkey) - Update a principal API key
+* [GetIdentityKey](docs/sdks/kongprincipalcredential/README.md#getidentitykey) - Get a principal API key
+* [DeletePrincipalKey](docs/sdks/kongprincipalcredential/README.md#deleteprincipalkey) - Delete an API key
+
+### [KongPrincipalIdentity](docs/sdks/kongprincipalidentity/README.md)
+
+* [ListIdentities](docs/sdks/kongprincipalidentity/README.md#listidentities) - List all identities for a principal
+* [CreateIdentity](docs/sdks/kongprincipalidentity/README.md#createidentity) - Create an identity for a principal
+* [GetIdentity](docs/sdks/kongprincipalidentity/README.md#getidentity) - Get an identity
+* [ReplaceIdentity](docs/sdks/kongprincipalidentity/README.md#replaceidentity) - Replace an identity
+* [UpdateIdentity](docs/sdks/kongprincipalidentity/README.md#updateidentity) - Update an identity
+* [DeleteIdentity](docs/sdks/kongprincipalidentity/README.md#deleteidentity) - Delete an identity
+
 ### [ManagedSystemAccountsRoles](docs/sdks/managedsystemaccountsroles/README.md)
 
 * [GetSystemAccountsAssignedRolesInternal](docs/sdks/managedsystemaccountsroles/README.md#getsystemaccountsassignedrolesinternal) - List Roles (Internal)
