@@ -51,7 +51,7 @@ type AIGatewayTargetDatabricksConfig struct {
 	UpstreamURL *string                             `json:"upstream_url,omitempty"`
 	Type        AIGatewayTargetDatabricksConfigType `json:"type"`
 	// The Databricks workspace instance ID.
-	WorkspaceInstanceID *string `json:"workspace_instance_id,omitempty"`
+	WorkspaceInstanceID string `json:"workspace_instance_id"`
 }
 
 func (a AIGatewayTargetDatabricksConfig) MarshalJSON() ([]byte, error) {
@@ -59,7 +59,7 @@ func (a AIGatewayTargetDatabricksConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayTargetDatabricksConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "workspace_instance_id"}); err != nil {
 		return err
 	}
 	return nil
@@ -128,9 +128,9 @@ func (a *AIGatewayTargetDatabricksConfig) GetType() AIGatewayTargetDatabricksCon
 	return a.Type
 }
 
-func (a *AIGatewayTargetDatabricksConfig) GetWorkspaceInstanceID() *string {
+func (a *AIGatewayTargetDatabricksConfig) GetWorkspaceInstanceID() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.WorkspaceInstanceID
 }

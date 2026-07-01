@@ -16,7 +16,7 @@ Returns a collection of all secrets for an AI Gateway Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-ai-gateway-config-store-secrets" method="get" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets" -->
+<!-- UsageSnippet language="go" operationID="list-ai-gateway-config-store-secrets" method="get" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets" -->
 ```go
 package main
 
@@ -39,7 +39,7 @@ func main() {
 
     res, err := s.AIGatewayConfigStoreSecrets.ListAiGatewayConfigStoreSecrets(ctx, operations.ListAiGatewayConfigStoreSecretsRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConfigStoreID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConfigStoreIDOrName: "my-entity-name",
         PageSize: sdkkonnectgo.Pointer[int64](10),
         PageAfter: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
     })
@@ -81,7 +81,7 @@ Creates a secret for an AI Gateway Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-ai-gateway-config-store-secret" method="post" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets" -->
+<!-- UsageSnippet language="go" operationID="create-ai-gateway-config-store-secret" method="post" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets" -->
 ```go
 package main
 
@@ -104,7 +104,7 @@ func main() {
 
     res, err := s.AIGatewayConfigStoreSecrets.CreateAiGatewayConfigStoreSecret(ctx, operations.CreateAiGatewayConfigStoreSecretRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConfigStoreID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConfigStoreIDOrName: "my-entity-name",
         CreateAIGatewayConfigStoreSecretRequest: components.CreateAIGatewayConfigStoreSecretRequest{
             Key: "my-secret-key",
             Value: "my-secret-value",
@@ -149,7 +149,7 @@ Returns the secret entity for the Config Store. Secret values once stored cannot
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-config-store-secret" method="get" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets/{key}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-config-store-secret" method="get" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets/{key}" -->
 ```go
 package main
 
@@ -172,7 +172,7 @@ func main() {
 
     res, err := s.AIGatewayConfigStoreSecrets.GetAiGatewayConfigStoreSecret(ctx, operations.GetAiGatewayConfigStoreSecretRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConfigStoreID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConfigStoreIDOrName: "my-entity-name",
         Key: "my-secret-key",
     })
     if err != nil {
@@ -213,7 +213,7 @@ Updates a secret for an AI Gateway Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-config-store-secret" method="put" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets/{key}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-config-store-secret" method="put" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets/{key}" -->
 ```go
 package main
 
@@ -236,7 +236,7 @@ func main() {
 
     res, err := s.AIGatewayConfigStoreSecrets.UpdateAiGatewayConfigStoreSecret(ctx, operations.UpdateAiGatewayConfigStoreSecretRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConfigStoreID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConfigStoreIDOrName: "my-entity-name",
         Key: "my-secret-key",
         UpdateAIGatewayConfigStoreSecretRequest: components.UpdateAIGatewayConfigStoreSecretRequest{
             Value: "my-secret-value",
@@ -280,7 +280,7 @@ Removes a secret from an AI Gateway Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-config-store-secret" method="delete" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets/{key}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-config-store-secret" method="delete" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets/{key}" -->
 ```go
 package main
 
@@ -303,7 +303,7 @@ func main() {
 
     res, err := s.AIGatewayConfigStoreSecrets.DeleteAiGatewayConfigStoreSecret(ctx, operations.DeleteAiGatewayConfigStoreSecretRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConfigStoreID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConfigStoreIDOrName: "my-entity-name",
         Key: "my-secret-key",
     })
     if err != nil {

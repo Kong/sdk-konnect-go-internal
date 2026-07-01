@@ -11,7 +11,7 @@ type UpdateAiGatewayPolicyRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway policy.
-	PolicyID                     string                                  `pathParam:"style=simple,explode=false,name=policyId"`
+	PolicyIDOrName               string                                  `pathParam:"style=simple,explode=false,name=policyIdOrName"`
 	UpdateAIGatewayPolicyRequest components.UpdateAIGatewayPolicyRequest `request:"mediaType=application/json"`
 }
 
@@ -22,11 +22,11 @@ func (u *UpdateAiGatewayPolicyRequest) GetGatewayID() string {
 	return u.GatewayID
 }
 
-func (u *UpdateAiGatewayPolicyRequest) GetPolicyID() string {
+func (u *UpdateAiGatewayPolicyRequest) GetPolicyIDOrName() string {
 	if u == nil {
 		return ""
 	}
-	return u.PolicyID
+	return u.PolicyIDOrName
 }
 
 func (u *UpdateAiGatewayPolicyRequest) GetUpdateAIGatewayPolicyRequest() components.UpdateAIGatewayPolicyRequest {

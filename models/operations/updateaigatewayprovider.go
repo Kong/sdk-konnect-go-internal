@@ -11,7 +11,7 @@ type UpdateAiGatewayProviderRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway provider.
-	ProviderID                     string                                    `pathParam:"style=simple,explode=false,name=providerId"`
+	ProviderIDOrName               string                                    `pathParam:"style=simple,explode=false,name=providerIdOrName"`
 	UpdateAIGatewayProviderRequest components.UpdateAIGatewayProviderRequest `request:"mediaType=application/json"`
 }
 
@@ -22,11 +22,11 @@ func (u *UpdateAiGatewayProviderRequest) GetGatewayID() string {
 	return u.GatewayID
 }
 
-func (u *UpdateAiGatewayProviderRequest) GetProviderID() string {
+func (u *UpdateAiGatewayProviderRequest) GetProviderIDOrName() string {
 	if u == nil {
 		return ""
 	}
-	return u.ProviderID
+	return u.ProviderIDOrName
 }
 
 func (u *UpdateAiGatewayProviderRequest) GetUpdateAIGatewayProviderRequest() components.UpdateAIGatewayProviderRequest {

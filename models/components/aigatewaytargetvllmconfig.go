@@ -48,7 +48,7 @@ type AIGatewayTargetVllmConfig struct {
 	// Nucleus sampling probability mass. Tokens with cumulative probability up to top_p are considered.
 	TopP *float64 `json:"top_p,omitempty"`
 	// The upstream URL for the model endpoint.
-	UpstreamURL *string                       `json:"upstream_url,omitempty"`
+	UpstreamURL string                        `json:"upstream_url"`
 	Type        AIGatewayTargetVllmConfigType `json:"type"`
 }
 
@@ -57,7 +57,7 @@ func (a AIGatewayTargetVllmConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayTargetVllmConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -112,9 +112,9 @@ func (a *AIGatewayTargetVllmConfig) GetTopP() *float64 {
 	return a.TopP
 }
 
-func (a *AIGatewayTargetVllmConfig) GetUpstreamURL() *string {
+func (a *AIGatewayTargetVllmConfig) GetUpstreamURL() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.UpstreamURL
 }

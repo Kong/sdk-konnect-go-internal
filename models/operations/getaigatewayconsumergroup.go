@@ -11,7 +11,7 @@ type GetAiGatewayConsumerGroupRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway Consumer Group.
-	ConsumerGroupID string `pathParam:"style=simple,explode=false,name=consumerGroupId"`
+	ConsumerGroupIDOrName string `pathParam:"style=simple,explode=false,name=consumerGroupIdOrName"`
 }
 
 func (g *GetAiGatewayConsumerGroupRequest) GetGatewayID() string {
@@ -21,11 +21,11 @@ func (g *GetAiGatewayConsumerGroupRequest) GetGatewayID() string {
 	return g.GatewayID
 }
 
-func (g *GetAiGatewayConsumerGroupRequest) GetConsumerGroupID() string {
+func (g *GetAiGatewayConsumerGroupRequest) GetConsumerGroupIDOrName() string {
 	if g == nil {
 		return ""
 	}
-	return g.ConsumerGroupID
+	return g.ConsumerGroupIDOrName
 }
 
 type GetAiGatewayConsumerGroupResponse struct {

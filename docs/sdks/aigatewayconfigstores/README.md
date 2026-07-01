@@ -142,7 +142,7 @@ Returns the details of a specific AI Gateway Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-config-store" method="get" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-config-store" method="get" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}" -->
 ```go
 package main
 
@@ -162,7 +162,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayConfigStores.GetAiGatewayConfigStore(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayConfigStores.GetAiGatewayConfigStore(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -178,7 +178,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `configStoreID`                                          | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway Config Store.    | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
+| `configStoreIDOrName`                                    | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway Config Store.    | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -201,7 +201,7 @@ Updates the configuration of an existing AI Gateway Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-config-store" method="put" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-config-store" method="put" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}" -->
 ```go
 package main
 
@@ -224,7 +224,7 @@ func main() {
 
     res, err := s.AIGatewayConfigStores.UpdateAiGatewayConfigStore(ctx, operations.UpdateAiGatewayConfigStoreRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConfigStoreID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConfigStoreIDOrName: "my-entity-name",
         UpdateAIGatewayConfigStoreRequest: components.UpdateAIGatewayConfigStoreRequest{
             DisplayName: sdkkonnectgo.Pointer("MyConfigStore"),
             Labels: map[string]string{
@@ -273,7 +273,7 @@ Removes a specific AI Gateway Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-config-store" method="delete" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-config-store" method="delete" path="/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}" -->
 ```go
 package main
 
@@ -296,7 +296,7 @@ func main() {
 
     res, err := s.AIGatewayConfigStores.DeleteAiGatewayConfigStore(ctx, operations.DeleteAiGatewayConfigStoreRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConfigStoreID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConfigStoreIDOrName: "my-entity-name",
     })
     if err != nil {
         log.Fatal(err)

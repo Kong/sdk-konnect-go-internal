@@ -647,10 +647,10 @@ func (s *AIGatewayConfigStores) CreateAiGatewayConfigStore(ctx context.Context, 
 
 // GetAiGatewayConfigStore - Get an AI Gateway Config Store
 // Returns the details of a specific AI Gateway Config Store.
-func (s *AIGatewayConfigStores) GetAiGatewayConfigStore(ctx context.Context, gatewayID string, configStoreID string, opts ...operations.Option) (*operations.GetAiGatewayConfigStoreResponse, error) {
+func (s *AIGatewayConfigStores) GetAiGatewayConfigStore(ctx context.Context, gatewayID string, configStoreIDOrName string, opts ...operations.Option) (*operations.GetAiGatewayConfigStoreResponse, error) {
 	request := operations.GetAiGatewayConfigStoreRequest{
-		GatewayID:     gatewayID,
-		ConfigStoreID: configStoreID,
+		GatewayID:           gatewayID,
+		ConfigStoreIDOrName: configStoreIDOrName,
 	}
 
 	o := operations.Options{}
@@ -671,7 +671,7 @@ func (s *AIGatewayConfigStores) GetAiGatewayConfigStore(ctx context.Context, gat
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -960,7 +960,7 @@ func (s *AIGatewayConfigStores) UpdateAiGatewayConfigStore(ctx context.Context, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1277,7 +1277,7 @@ func (s *AIGatewayConfigStores) DeleteAiGatewayConfigStore(ctx context.Context, 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

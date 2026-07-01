@@ -28,9 +28,9 @@ func (e *GovernanceFeatureAccessCode) IsExact() bool {
 	return false
 }
 
-// Reason - Optional reason when the customer does not have access to the feature. Populated
+// GovernanceFeatureAccessReason - Optional reason when the customer does not have access to the feature. Populated
 // when `has_access` is `false`.
-type Reason struct {
+type GovernanceFeatureAccessReason struct {
 	// Machine-readable error code.
 	Code GovernanceFeatureAccessCode `json:"code"`
 	// Human-readable description of the error.
@@ -39,25 +39,25 @@ type Reason struct {
 	Attributes map[string]any `json:"attributes,omitempty"`
 }
 
-func (r *Reason) GetCode() GovernanceFeatureAccessCode {
-	if r == nil {
+func (g *GovernanceFeatureAccessReason) GetCode() GovernanceFeatureAccessCode {
+	if g == nil {
 		return GovernanceFeatureAccessCode("")
 	}
-	return r.Code
+	return g.Code
 }
 
-func (r *Reason) GetMessage() string {
-	if r == nil {
+func (g *GovernanceFeatureAccessReason) GetMessage() string {
+	if g == nil {
 		return ""
 	}
-	return r.Message
+	return g.Message
 }
 
-func (r *Reason) GetAttributes() map[string]any {
-	if r == nil {
+func (g *GovernanceFeatureAccessReason) GetAttributes() map[string]any {
+	if g == nil {
 		return nil
 	}
-	return r.Attributes
+	return g.Attributes
 }
 
 // GovernanceFeatureAccess - Access status for a single feature.
@@ -71,7 +71,7 @@ type GovernanceFeatureAccess struct {
 	HasAccess bool `json:"has_access"`
 	// Optional reason when the customer does not have access to the feature. Populated
 	// when `has_access` is `false`.
-	Reason *Reason `json:"reason,omitempty"`
+	Reason *GovernanceFeatureAccessReason `json:"reason,omitempty"`
 }
 
 func (g *GovernanceFeatureAccess) GetHasAccess() bool {
@@ -81,7 +81,7 @@ func (g *GovernanceFeatureAccess) GetHasAccess() bool {
 	return g.HasAccess
 }
 
-func (g *GovernanceFeatureAccess) GetReason() *Reason {
+func (g *GovernanceFeatureAccess) GetReason() *GovernanceFeatureAccessReason {
 	if g == nil {
 		return nil
 	}

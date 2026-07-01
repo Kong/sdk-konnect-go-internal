@@ -2,7 +2,7 @@
 
 package sdkkonnectgo
 
-// Generated from OpenAPI doc version 3.15.0 and generator version 2.913.3
+// Generated from OpenAPI doc version 3.15.0 and generator version 2.914.0
 
 import (
 	"context"
@@ -347,8 +347,10 @@ type SDK struct {
 	OpenMeterProductCatalog *OpenMeterProductCatalog
 	// Apps enable you to extend and customize billing and usage workflows by integrating with external systems and services. Apps can automate and enhance your billing ecosystem by supporting capabilities such as synchronizing usage data with third-party platforms, calculating taxes, generating and delivering invoices, handling payment collection, and other billing-related tasks.
 	OpenMeterApps *OpenMeterApps
-	// Billing manages the billing profiles, currencies, cost bases, and invoices for customers.
-	OpenMeterBilling *OpenMeterBilling
+	// Billing settings manages the billing profiles and invoices for customers.
+	OpenMeterBillingSettings *OpenMeterBillingSettings
+	// Currencies and cost bases for customers.
+	OpenMeterCurrencies *OpenMeterCurrencies
 	// Customers are used to track usage of your product or service. Customers can be individuals or organizations that can subscribe to plans and have access to features.
 	OpenMeterCustomers *OpenMeterCustomers
 	// Entitlements are used to control access to features for customers.
@@ -402,24 +404,6 @@ type SDK struct {
 	AIGatewayConfigStores       *AIGatewayConfigStores
 	AIGatewayConfigStoreSecrets *AIGatewayConfigStoreSecrets
 	Dashboards                  *Dashboards
-	// Use a directory to group consumers around an identity, defined by organizational boundaries,
-	// such as a production directory or a development directory. Directories are connected to a
-	// [geographic region](https://docs.konghq.com/konnect/geo/) in Konnect. Centrally managed consumers defined in
-	// directories can be used across multiple control planes.
-	//
-	KongIdentityDirectories *KongIdentityDirectories
-	// Principals represent identities within a directory that can be authenticated and authorized.
-	// Each principal can have associated metadata and API keys for authentication purposes.
-	//
-	KongPrincipal *KongPrincipal
-	// Identities represent external authentication associations for a principal. Each identity links a principal
-	// to an external system such as an OIDC provider, an auth server client, a control plane consumer, or a custom identifier.
-	//
-	KongPrincipalIdentity *KongPrincipalIdentity
-	// Credentials are authentication secrets associated with principals. Supported credential types are
-	// API keys (system-generated or imported) and basic auth username/password pairs.
-	//
-	KongPrincipalCredential *KongPrincipalCredential
 	// A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.
 	// You can find more information about available plugins and which values each plugin accepts at the [Plugin Hub](https://developer.konghq.com/plugins/).
 	// <br><br>
@@ -608,7 +592,7 @@ func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		SDKVersion: "0.2.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.2.0 2.913.3 3.15.0 github.com/Kong/sdk-konnect-go",
+			UserAgent:  "speakeasy-sdk/go 0.2.0 2.914.0 3.15.0 github.com/Kong/sdk-konnect-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -735,7 +719,8 @@ func New(opts ...SDKOption) *SDK {
 	sdk.EventGatewayTLSTrustBundles = newEventGatewayTLSTrustBundles(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.OpenMeterProductCatalog = newOpenMeterProductCatalog(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.OpenMeterApps = newOpenMeterApps(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterBilling = newOpenMeterBilling(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterBillingSettings = newOpenMeterBillingSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterCurrencies = newOpenMeterCurrencies(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.OpenMeterCustomers = newOpenMeterCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.OpenMeterEntitlements = newOpenMeterEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.OpenMeterDefaults = newOpenMeterDefaults(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -767,10 +752,6 @@ func New(opts ...SDKOption) *SDK {
 	sdk.AIGatewayConfigStores = newAIGatewayConfigStores(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGatewayConfigStoreSecrets = newAIGatewayConfigStoreSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Dashboards = newDashboards(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongIdentityDirectories = newKongIdentityDirectories(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongPrincipal = newKongPrincipal(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongPrincipalIdentity = newKongPrincipalIdentity(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongPrincipalCredential = newKongPrincipalCredential(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Plugins = newPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DPNodes = newDPNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DPCertificates = newDPCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)

@@ -74,7 +74,7 @@ type AIGatewayTargetMistralConfig struct {
 	UpstreamURL *string                          `json:"upstream_url,omitempty"`
 	Type        AIGatewayTargetMistralConfigType `json:"type"`
 	// The request format to use when communicating with the Mistral model.
-	Format *AIGatewayTargetMistralConfigFormat `json:"format,omitempty"`
+	Format AIGatewayTargetMistralConfigFormat `json:"format"`
 }
 
 func (a AIGatewayTargetMistralConfig) MarshalJSON() ([]byte, error) {
@@ -82,7 +82,7 @@ func (a AIGatewayTargetMistralConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayTargetMistralConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "format"}); err != nil {
 		return err
 	}
 	return nil
@@ -151,9 +151,9 @@ func (a *AIGatewayTargetMistralConfig) GetType() AIGatewayTargetMistralConfigTyp
 	return a.Type
 }
 
-func (a *AIGatewayTargetMistralConfig) GetFormat() *AIGatewayTargetMistralConfigFormat {
+func (a *AIGatewayTargetMistralConfig) GetFormat() AIGatewayTargetMistralConfigFormat {
 	if a == nil {
-		return nil
+		return AIGatewayTargetMistralConfigFormat("")
 	}
 	return a.Format
 }

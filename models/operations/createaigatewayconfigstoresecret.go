@@ -11,7 +11,7 @@ type CreateAiGatewayConfigStoreSecretRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway Config Store.
-	ConfigStoreID                           string                                             `pathParam:"style=simple,explode=false,name=configStoreId"`
+	ConfigStoreIDOrName                     string                                             `pathParam:"style=simple,explode=false,name=configStoreIdOrName"`
 	CreateAIGatewayConfigStoreSecretRequest components.CreateAIGatewayConfigStoreSecretRequest `request:"mediaType=application/json"`
 }
 
@@ -22,11 +22,11 @@ func (c *CreateAiGatewayConfigStoreSecretRequest) GetGatewayID() string {
 	return c.GatewayID
 }
 
-func (c *CreateAiGatewayConfigStoreSecretRequest) GetConfigStoreID() string {
+func (c *CreateAiGatewayConfigStoreSecretRequest) GetConfigStoreIDOrName() string {
 	if c == nil {
 		return ""
 	}
-	return c.ConfigStoreID
+	return c.ConfigStoreIDOrName
 }
 
 func (c *CreateAiGatewayConfigStoreSecretRequest) GetCreateAIGatewayConfigStoreSecretRequest() components.CreateAIGatewayConfigStoreSecretRequest {

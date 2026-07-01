@@ -11,7 +11,7 @@ type DeleteAiGatewayConfigStoreRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway Config Store.
-	ConfigStoreID string `pathParam:"style=simple,explode=false,name=configStoreId"`
+	ConfigStoreIDOrName string `pathParam:"style=simple,explode=false,name=configStoreIdOrName"`
 	// If true, delete the Config Store and all its secrets. If false, deletion is rejected when secrets are still linked to the Config Store.
 	Force *bool `default:"false" queryParam:"style=form,explode=true,name=force"`
 }
@@ -34,11 +34,11 @@ func (d *DeleteAiGatewayConfigStoreRequest) GetGatewayID() string {
 	return d.GatewayID
 }
 
-func (d *DeleteAiGatewayConfigStoreRequest) GetConfigStoreID() string {
+func (d *DeleteAiGatewayConfigStoreRequest) GetConfigStoreIDOrName() string {
 	if d == nil {
 		return ""
 	}
-	return d.ConfigStoreID
+	return d.ConfigStoreIDOrName
 }
 
 func (d *DeleteAiGatewayConfigStoreRequest) GetForce() *bool {

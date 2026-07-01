@@ -26,9 +26,6 @@
 
 ## ListMcpServerConfigs
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Returns an array of MCP server objects.
 
 ### Example Usage
@@ -90,9 +87,6 @@ func main() {
 
 ## CreateMcpServerConfig
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Create an MCP Server in the Konnect Organization.
 
 ### Example Usage
@@ -119,6 +113,11 @@ func main() {
 
     res, err := s.MCPServers.CreateMcpServerConfig(ctx, components.CreateMCPServerRequest{
         Name: "<value>",
+        DisplayName: "Kellie85",
+        Description: "scuffle lost zowie eek boohoo",
+        Labels: map[string]string{
+            "env": "test",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -152,9 +151,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetMcpServerConfig
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Returns information about an individual MCP server.
 
@@ -214,9 +210,6 @@ func main() {
 
 ## UpdateMcpServerConfig
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Update an individual MCP server.
 
 ### Example Usage
@@ -241,8 +234,13 @@ func main() {
         }),
     )
 
-    res, err := s.MCPServers.UpdateMcpServerConfig(ctx, "fd3b7872-2dae-4834-a227-54b3bea26ffa", components.UpdateMCPServerRequest{
+    res, err := s.MCPServers.UpdateMcpServerConfig(ctx, "fd3b7872-2dae-4834-a227-54b3bea26ffa", components.CreateMCPServerRequest{
         Name: "<value>",
+        DisplayName: "Weston_Dicki",
+        Description: "astride reference wolf delightfully deafening inasmuch",
+        Labels: map[string]string{
+            "env": "test",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -259,7 +257,7 @@ func main() {
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
 | `mcpServerID`                                                                          | `string`                                                                               | :heavy_check_mark:                                                                     | The ID of the MCP server.                                                              |
-| `updateMCPServerRequest`                                                               | [components.UpdateMCPServerRequest](../../models/components/updatemcpserverrequest.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `createMCPServerRequest`                                                               | [components.CreateMCPServerRequest](../../models/components/createmcpserverrequest.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |
 | `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
@@ -278,9 +276,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## PatchMcpServerConfig
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Partially update an individual MCP server.
 
@@ -306,7 +301,11 @@ func main() {
         }),
     )
 
-    res, err := s.MCPServers.PatchMcpServerConfig(ctx, "2caa5873-34f4-44c1-bcfe-6f21646006c8", components.PatchMCPServerRequest{})
+    res, err := s.MCPServers.PatchMcpServerConfig(ctx, "2caa5873-34f4-44c1-bcfe-6f21646006c8", components.PatchMCPServerRequest{
+        Labels: map[string]string{
+            "env": "test",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -341,9 +340,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## DeleteMcpServerConfig
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Delete an MCP server.
 
@@ -402,9 +398,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetMcpServerStatus
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Returns the current aggregated deployment status of an MCP server.
 
@@ -866,9 +859,6 @@ func main() {
 
 ## GetMcpServerSignals
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Client-initiated signals fetch with long-polling capabilities.
 The client supplies `capabilities` as a deepObject query parameter:
   - Keys are capability names (e.g. `mcp`)
@@ -879,6 +869,7 @@ Example:
 
 The CP responds with a JSON payload containing zero or more signals that the client should process.
 If no signals are available, the CP responds with HTTP 304 Not Modified.
+
 
 ### Example Usage
 
@@ -940,10 +931,8 @@ func main() {
 
 ## ListMcpServersByControlPlane
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Returns an array of MCP server objects for the specified control plane.
+
 
 ### Example Usage
 
@@ -1005,10 +994,8 @@ func main() {
 
 ## GetMcpServerByControlPlane
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Retrieves an MCP server by its ID within a specific control plane context.
+
 
 ### Example Usage
 
@@ -1067,10 +1054,8 @@ func main() {
 
 ## GetMcpServerKongEntities
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Retrieves Kong entities (Routes, Services, Plugins) for the Gateway in front of the MCP Server.
+
 
 ### Example Usage
 
@@ -1133,10 +1118,8 @@ func main() {
 
 ## PostMcpServerStatus
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Reports the current deployment status of an MCP server, including replica counts and per-version pod statuses.
+
 
 ### Example Usage
 
@@ -1210,10 +1193,8 @@ func main() {
 
 ## GetMcpServerCode
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
+
 
 ### Example Usage
 

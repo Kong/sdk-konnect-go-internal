@@ -51,7 +51,7 @@ func (s *AIGatewayConfigStoreSecrets) ListAiGatewayConfigStoreSecrets(ctx contex
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -365,7 +365,7 @@ func (s *AIGatewayConfigStoreSecrets) CreateAiGatewayConfigStoreSecret(ctx conte
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -703,7 +703,7 @@ func (s *AIGatewayConfigStoreSecrets) GetAiGatewayConfigStoreSecret(ctx context.
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets/{key}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets/{key}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1013,7 +1013,7 @@ func (s *AIGatewayConfigStoreSecrets) UpdateAiGatewayConfigStoreSecret(ctx conte
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets/{key}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets/{key}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1330,7 +1330,7 @@ func (s *AIGatewayConfigStoreSecrets) DeleteAiGatewayConfigStoreSecret(ctx conte
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreId}/secrets/{key}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/config-stores/{configStoreIdOrName}/secrets/{key}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

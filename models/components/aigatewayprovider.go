@@ -2976,7 +2976,7 @@ func (u AIGatewayProviderAzureAuthOutput) MarshalJSON() ([]byte, error) {
 
 type AIGatewayProviderAzureConfigOutput struct {
 	Auth     AIGatewayProviderAzureAuthOutput `json:"auth"`
-	Instance *string                          `json:"instance,omitempty"`
+	Instance string                           `json:"instance"`
 }
 
 func (a AIGatewayProviderAzureConfigOutput) MarshalJSON() ([]byte, error) {
@@ -2984,7 +2984,7 @@ func (a AIGatewayProviderAzureConfigOutput) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayProviderAzureConfigOutput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"auth"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"auth", "instance"}); err != nil {
 		return err
 	}
 	return nil
@@ -3005,9 +3005,9 @@ func (a *AIGatewayProviderAzureConfigOutput) GetAuthAzure() *AIGatewayProviderCo
 	return a.GetAuth().AIGatewayProviderConfigAuthAzureOutput
 }
 
-func (a *AIGatewayProviderAzureConfigOutput) GetInstance() *string {
+func (a *AIGatewayProviderAzureConfigOutput) GetInstance() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.Instance
 }

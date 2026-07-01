@@ -50,6 +50,10 @@ type AIGatewayTargetBedrockConfig struct {
 	// The upstream URL for the model endpoint.
 	UpstreamURL *string                          `json:"upstream_url,omitempty"`
 	Type        AIGatewayTargetBedrockConfigType `json:"type"`
+	// The AWS region for the model.
+	// Setting this option overrides the AWS_REGION environment variable.
+	//
+	Region *string `json:"region,omitempty"`
 	// S3 bucket prefix for batch inference jobs.
 	BatchBucketPrefix *string `json:"batch_bucket_prefix,omitempty"`
 	// Whether to normalize embedding vectors in the response.
@@ -132,6 +136,13 @@ func (a *AIGatewayTargetBedrockConfig) GetType() AIGatewayTargetBedrockConfigTyp
 		return AIGatewayTargetBedrockConfigType("")
 	}
 	return a.Type
+}
+
+func (a *AIGatewayTargetBedrockConfig) GetRegion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Region
 }
 
 func (a *AIGatewayTargetBedrockConfig) GetBatchBucketPrefix() *string {

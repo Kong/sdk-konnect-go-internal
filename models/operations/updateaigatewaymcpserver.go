@@ -11,7 +11,7 @@ type UpdateAiGatewayMcpServerRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the MCP Server.
-	McpServerID                     string                                     `pathParam:"style=simple,explode=false,name=mcpServerId"`
+	McpServerIDOrName               string                                     `pathParam:"style=simple,explode=false,name=mcpServerIdOrName"`
 	UpdateAIGatewayMCPServerRequest components.UpdateAIGatewayMCPServerRequest `request:"mediaType=application/json"`
 }
 
@@ -22,11 +22,11 @@ func (u *UpdateAiGatewayMcpServerRequest) GetGatewayID() string {
 	return u.GatewayID
 }
 
-func (u *UpdateAiGatewayMcpServerRequest) GetMcpServerID() string {
+func (u *UpdateAiGatewayMcpServerRequest) GetMcpServerIDOrName() string {
 	if u == nil {
 		return ""
 	}
-	return u.McpServerID
+	return u.McpServerIDOrName
 }
 
 func (u *UpdateAiGatewayMcpServerRequest) GetUpdateAIGatewayMCPServerRequest() components.UpdateAIGatewayMCPServerRequest {

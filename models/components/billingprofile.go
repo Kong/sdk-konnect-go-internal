@@ -10,18 +10,18 @@ import (
 	"time"
 )
 
-// TaxID - The entity's legal identification used for tax purposes. They may have other
+// BillingProfileTaxID - The entity's legal identification used for tax purposes. They may have other
 // numbers, but we're only interested in those valid for tax purposes.
-type TaxID struct {
+type BillingProfileTaxID struct {
 	// Normalized tax identification code shown on the original identity document.
 	Code *string `json:"code,omitempty"`
 }
 
-func (t *TaxID) GetCode() *string {
-	if t == nil {
+func (b *BillingProfileTaxID) GetCode() *string {
+	if b == nil {
 		return nil
 	}
-	return t.Code
+	return b.Code
 }
 
 // BillingProfileBillingAddress - Billing address.
@@ -92,17 +92,17 @@ func (b *BillingProfileBillingAddress) GetPhoneNumber() *string {
 	return b.PhoneNumber
 }
 
-// Addresses - Address for where information should be sent if needed.
-type Addresses struct {
+// BillingProfileAddresses - Address for where information should be sent if needed.
+type BillingProfileAddresses struct {
 	// Billing address.
 	BillingAddress BillingProfileBillingAddress `json:"billing_address"`
 }
 
-func (a *Addresses) GetBillingAddress() BillingProfileBillingAddress {
-	if a == nil {
+func (b *BillingProfileAddresses) GetBillingAddress() BillingProfileBillingAddress {
+	if b == nil {
 		return BillingProfileBillingAddress{}
 	}
-	return a.BillingAddress
+	return b.BillingAddress
 }
 
 // Supplier - The name and contact information for the supplier this billing profile
@@ -116,9 +116,9 @@ type Supplier struct {
 	Name *string `json:"name,omitempty"`
 	// The entity's legal identification used for tax purposes. They may have other
 	// numbers, but we're only interested in those valid for tax purposes.
-	TaxID *TaxID `json:"tax_id,omitempty"`
+	TaxID *BillingProfileTaxID `json:"tax_id,omitempty"`
 	// Address for where information should be sent if needed.
-	Addresses *Addresses `json:"addresses,omitempty"`
+	Addresses *BillingProfileAddresses `json:"addresses,omitempty"`
 }
 
 func (s *Supplier) GetID() *string {
@@ -142,14 +142,14 @@ func (s *Supplier) GetName() *string {
 	return s.Name
 }
 
-func (s *Supplier) GetTaxID() *TaxID {
+func (s *Supplier) GetTaxID() *BillingProfileTaxID {
 	if s == nil {
 		return nil
 	}
 	return s.TaxID
 }
 
-func (s *Supplier) GetAddresses() *Addresses {
+func (s *Supplier) GetAddresses() *BillingProfileAddresses {
 	if s == nil {
 		return nil
 	}
@@ -433,6 +433,29 @@ func (w *WorkflowCollectionSettings) GetInterval() *string {
 	return w.Interval
 }
 
+// SubscriptionEndProrationMode - Controls how subscription-ending shortened service periods are billed.
+type SubscriptionEndProrationMode string
+
+const (
+	SubscriptionEndProrationModeBillFullPeriod   SubscriptionEndProrationMode = "bill_full_period"
+	SubscriptionEndProrationModeBillActualPeriod SubscriptionEndProrationMode = "bill_actual_period"
+)
+
+func (e SubscriptionEndProrationMode) ToPointer() *SubscriptionEndProrationMode {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SubscriptionEndProrationMode) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "bill_full_period", "bill_actual_period":
+			return true
+		}
+	}
+	return false
+}
+
 // WorkflowInvoiceSettings - The invoicing settings for this workflow
 type WorkflowInvoiceSettings struct {
 	// Whether to automatically issue the invoice after the draftPeriod has passed.
@@ -441,6 +464,8 @@ type WorkflowInvoiceSettings struct {
 	DraftPeriod *string `default:"P0D" json:"draft_period"`
 	// Should progressive billing be allowed for this workflow?
 	ProgressiveBilling *bool `default:"true" json:"progressive_billing"`
+	// Controls how subscription-ending shortened service periods are billed.
+	SubscriptionEndProrationMode *SubscriptionEndProrationMode `default:"bill_actual_period" json:"subscription_end_proration_mode"`
 }
 
 func (w WorkflowInvoiceSettings) MarshalJSON() ([]byte, error) {
@@ -473,6 +498,13 @@ func (w *WorkflowInvoiceSettings) GetProgressiveBilling() *bool {
 		return nil
 	}
 	return w.ProgressiveBilling
+}
+
+func (w *WorkflowInvoiceSettings) GetSubscriptionEndProrationMode() *SubscriptionEndProrationMode {
+	if w == nil {
+		return nil
+	}
+	return w.SubscriptionEndProrationMode
 }
 
 type PaymentType string
@@ -635,6 +667,11 @@ func (b *BillingProfileTaxCode) GetID() string {
 }
 
 // DefaultTaxConfig - Default tax configuration to apply to the invoices for line items.
+//
+// Setting a tax code (`stripe.code` / `taxCodeId`) on a profile's default tax
+// config is deprecated and can no longer be added or changed: the organization
+// default tax code is used instead. Existing tax-code values may still be removed,
+// and `behavior` remains fully supported.
 type DefaultTaxConfig struct {
 	// Tax behavior.
 	//
@@ -707,6 +744,11 @@ type WorkflowTaxSettings struct {
 	// have a tax location when starting a paid subscription.
 	Enforced *bool `default:"false" json:"enforced"`
 	// Default tax configuration to apply to the invoices for line items.
+	//
+	// Setting a tax code (`stripe.code` / `taxCodeId`) on a profile's default tax
+	// config is deprecated and can no longer be added or changed: the organization
+	// default tax code is used instead. Existing tax-code values may still be removed,
+	// and `behavior` remains fully supported.
 	DefaultTaxConfig *DefaultTaxConfig `json:"default_tax_config,omitempty"`
 }
 

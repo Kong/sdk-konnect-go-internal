@@ -166,7 +166,7 @@ Returns the details of a specific AI Gateway vault.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-vault" method="get" path="/v1/ai-gateways/{gatewayId}/vaults/{vaultId}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-vault" method="get" path="/v1/ai-gateways/{gatewayId}/vaults/{vaultIdOrName}" -->
 ```go
 package main
 
@@ -186,7 +186,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayVaults.GetAiGatewayVault(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayVaults.GetAiGatewayVault(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -218,7 +218,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `vaultID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway Vault.           | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
+| `vaultIDOrName`                                          | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway Vault.           | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -241,7 +241,7 @@ Updates the configuration of an existing AI Gateway vault.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-vault" method="put" path="/v1/ai-gateways/{gatewayId}/vaults/{vaultId}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-vault" method="put" path="/v1/ai-gateways/{gatewayId}/vaults/{vaultIdOrName}" -->
 ```go
 package main
 
@@ -264,7 +264,7 @@ func main() {
 
     res, err := s.AIGatewayVaults.UpdateAiGatewayVault(ctx, operations.UpdateAiGatewayVaultRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        VaultID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        VaultIDOrName: "my-entity-name",
         UpdateAIGatewayVaultRequest: components.CreateUpdateAIGatewayVaultRequestEnv(
             components.EnvironmentVariableVault{
                 Name: "my-env-vault",
@@ -329,7 +329,7 @@ Removes a specific AI Gateway vault.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-vault" method="delete" path="/v1/ai-gateways/{gatewayId}/vaults/{vaultId}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-vault" method="delete" path="/v1/ai-gateways/{gatewayId}/vaults/{vaultIdOrName}" -->
 ```go
 package main
 
@@ -349,7 +349,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayVaults.DeleteAiGatewayVault(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayVaults.DeleteAiGatewayVault(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -365,7 +365,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `vaultID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway Vault.           | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
+| `vaultIDOrName`                                          | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway Vault.           | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

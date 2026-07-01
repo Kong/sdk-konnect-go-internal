@@ -62,7 +62,9 @@ func (e *ResponseStreaming) IsExact() bool {
 
 type AIGatewayModelAPIConfigModel struct {
 	// An alias for the model, used to select the target virtual model when passed in the "model" parameter of the request body.
-	Alias string `json:"alias"`
+	// When not set, this defaults to the AI Gateway model's name.
+	//
+	Alias *string `json:"alias,omitempty"`
 }
 
 func (a AIGatewayModelAPIConfigModel) MarshalJSON() ([]byte, error) {
@@ -70,15 +72,15 @@ func (a AIGatewayModelAPIConfigModel) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayModelAPIConfigModel) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"alias"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayModelAPIConfigModel) GetAlias() string {
+func (a *AIGatewayModelAPIConfigModel) GetAlias() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.Alias
 }

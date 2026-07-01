@@ -192,7 +192,7 @@ Returns the details of a specific AI Gateway provider.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-provider" method="get" path="/v1/ai-gateways/{gatewayId}/providers/{providerId}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-provider" method="get" path="/v1/ai-gateways/{gatewayId}/providers/{providerIdOrName}" -->
 ```go
 package main
 
@@ -212,7 +212,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayProviders.GetAiGatewayProvider(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayProviders.GetAiGatewayProvider(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -268,7 +268,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `providerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway provider.        | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
+| `providerIDOrName`                                       | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway provider.        | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -291,7 +291,7 @@ Updates the configuration of an existing AI Gateway provider.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-provider" method="put" path="/v1/ai-gateways/{gatewayId}/providers/{providerId}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-provider" method="put" path="/v1/ai-gateways/{gatewayId}/providers/{providerIdOrName}" -->
 ```go
 package main
 
@@ -314,7 +314,7 @@ func main() {
 
     res, err := s.AIGatewayProviders.UpdateAiGatewayProvider(ctx, operations.UpdateAiGatewayProviderRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ProviderID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ProviderIDOrName: "my-entity-name",
         UpdateAIGatewayProviderRequest: components.CreateUpdateAIGatewayProviderRequestDeepseek(
             components.AIGatewayProviderDeepseek{
                 Type: components.AIGatewayProviderDeepseekTypeDeepseek,
@@ -406,7 +406,7 @@ Removes a specific AI Gateway provider.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-provider" method="delete" path="/v1/ai-gateways/{gatewayId}/providers/{providerId}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-provider" method="delete" path="/v1/ai-gateways/{gatewayId}/providers/{providerIdOrName}" -->
 ```go
 package main
 
@@ -426,7 +426,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayProviders.DeleteAiGatewayProvider(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayProviders.DeleteAiGatewayProvider(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -442,7 +442,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `providerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway provider.        | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
+| `providerIDOrName`                                       | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway provider.        | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

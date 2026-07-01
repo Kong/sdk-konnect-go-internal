@@ -11,7 +11,7 @@ type GetAiGatewayProviderRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway provider.
-	ProviderID string `pathParam:"style=simple,explode=false,name=providerId"`
+	ProviderIDOrName string `pathParam:"style=simple,explode=false,name=providerIdOrName"`
 }
 
 func (g *GetAiGatewayProviderRequest) GetGatewayID() string {
@@ -21,11 +21,11 @@ func (g *GetAiGatewayProviderRequest) GetGatewayID() string {
 	return g.GatewayID
 }
 
-func (g *GetAiGatewayProviderRequest) GetProviderID() string {
+func (g *GetAiGatewayProviderRequest) GetProviderIDOrName() string {
 	if g == nil {
 		return ""
 	}
-	return g.ProviderID
+	return g.ProviderIDOrName
 }
 
 type GetAiGatewayProviderResponse struct {

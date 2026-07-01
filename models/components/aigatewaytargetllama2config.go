@@ -72,10 +72,10 @@ type AIGatewayTargetLlama2Config struct {
 	// Nucleus sampling probability mass. Tokens with cumulative probability up to top_p are considered.
 	TopP *float64 `json:"top_p,omitempty"`
 	// The upstream URL for the model endpoint.
-	UpstreamURL *string                         `json:"upstream_url,omitempty"`
+	UpstreamURL string                          `json:"upstream_url"`
 	Type        AIGatewayTargetLlama2ConfigType `json:"type"`
 	// The request format to use when communicating with the Llama2 model.
-	Format *Format `json:"format,omitempty"`
+	Format Format `json:"format"`
 }
 
 func (a AIGatewayTargetLlama2Config) MarshalJSON() ([]byte, error) {
@@ -83,7 +83,7 @@ func (a AIGatewayTargetLlama2Config) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayTargetLlama2Config) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type", "format"}); err != nil {
 		return err
 	}
 	return nil
@@ -138,9 +138,9 @@ func (a *AIGatewayTargetLlama2Config) GetTopP() *float64 {
 	return a.TopP
 }
 
-func (a *AIGatewayTargetLlama2Config) GetUpstreamURL() *string {
+func (a *AIGatewayTargetLlama2Config) GetUpstreamURL() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.UpstreamURL
 }
@@ -152,9 +152,9 @@ func (a *AIGatewayTargetLlama2Config) GetType() AIGatewayTargetLlama2ConfigType 
 	return a.Type
 }
 
-func (a *AIGatewayTargetLlama2Config) GetFormat() *Format {
+func (a *AIGatewayTargetLlama2Config) GetFormat() Format {
 	if a == nil {
-		return nil
+		return Format("")
 	}
 	return a.Format
 }

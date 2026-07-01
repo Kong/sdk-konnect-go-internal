@@ -10,7 +10,7 @@ type DeleteAiGatewayAgentRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway agent.
-	AgentID string `pathParam:"style=simple,explode=false,name=agentId"`
+	AgentIDOrName string `pathParam:"style=simple,explode=false,name=agentIdOrName"`
 }
 
 func (d *DeleteAiGatewayAgentRequest) GetGatewayID() string {
@@ -20,11 +20,11 @@ func (d *DeleteAiGatewayAgentRequest) GetGatewayID() string {
 	return d.GatewayID
 }
 
-func (d *DeleteAiGatewayAgentRequest) GetAgentID() string {
+func (d *DeleteAiGatewayAgentRequest) GetAgentIDOrName() string {
 	if d == nil {
 		return ""
 	}
-	return d.AgentID
+	return d.AgentIDOrName
 }
 
 type DeleteAiGatewayAgentResponse struct {

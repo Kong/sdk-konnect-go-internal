@@ -342,6 +342,10 @@ func (c *ChartTileDefinition) GetChartVerticalBar() *BarChart {
 	return c.GetChart().BarChart
 }
 
+func (c *ChartTileDefinition) GetChartTopN() *TopNChart {
+	return c.GetChart().TopNChart
+}
+
 func (c *ChartTileDefinition) GetChartSingleValue() *SingleValueChart {
 	return c.GetChart().SingleValueChart
 }

@@ -32,9 +32,6 @@ func newMCPServers(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks
 }
 
 // ListMcpServerConfigs - List all MCP Servers
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns an array of MCP server objects.
 func (s *MCPServers) ListMcpServerConfigs(ctx context.Context, request operations.ListMcpServerConfigsRequest, opts ...operations.Option) (*operations.ListMcpServerConfigsResponse, error) {
 	o := operations.Options{}
@@ -307,9 +304,6 @@ func (s *MCPServers) ListMcpServerConfigs(ctx context.Context, request operation
 }
 
 // CreateMcpServerConfig - Create an MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Create an MCP Server in the Konnect Organization.
 func (s *MCPServers) CreateMcpServerConfig(ctx context.Context, request components.CreateMCPServerRequest, opts ...operations.Option) (*operations.CreateMcpServerConfigResponse, error) {
 	o := operations.Options{}
@@ -606,9 +600,6 @@ func (s *MCPServers) CreateMcpServerConfig(ctx context.Context, request componen
 }
 
 // GetMcpServerConfig - Get MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns information about an individual MCP server.
 func (s *MCPServers) GetMcpServerConfig(ctx context.Context, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerConfigResponse, error) {
 	request := operations.GetMcpServerConfigRequest{
@@ -902,14 +893,11 @@ func (s *MCPServers) GetMcpServerConfig(ctx context.Context, mcpServerID string,
 }
 
 // UpdateMcpServerConfig - Update MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Update an individual MCP server.
-func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID string, updateMCPServerRequest components.UpdateMCPServerRequest, opts ...operations.Option) (*operations.UpdateMcpServerConfigResponse, error) {
+func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID string, createMCPServerRequest components.CreateMCPServerRequest, opts ...operations.Option) (*operations.UpdateMcpServerConfigResponse, error) {
 	request := operations.UpdateMcpServerConfigRequest{
 		McpServerID:            mcpServerID,
-		UpdateMCPServerRequest: updateMCPServerRequest,
+		CreateMCPServerRequest: createMCPServerRequest,
 	}
 
 	o := operations.Options{}
@@ -944,7 +932,7 @@ func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID stri
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "UpdateMCPServerRequest", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CreateMCPServerRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1227,9 +1215,6 @@ func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID stri
 }
 
 // PatchMcpServerConfig - Partially Update MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Partially update an individual MCP server.
 func (s *MCPServers) PatchMcpServerConfig(ctx context.Context, mcpServerID string, patchMCPServerRequest components.PatchMCPServerRequest, opts ...operations.Option) (*operations.PatchMcpServerConfigResponse, error) {
 	request := operations.PatchMcpServerConfigRequest{
@@ -1552,9 +1537,6 @@ func (s *MCPServers) PatchMcpServerConfig(ctx context.Context, mcpServerID strin
 }
 
 // DeleteMcpServerConfig - Delete MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Delete an MCP server.
 func (s *MCPServers) DeleteMcpServerConfig(ctx context.Context, mcpServerID string, opts ...operations.Option) (*operations.DeleteMcpServerConfigResponse, error) {
 	request := operations.DeleteMcpServerConfigRequest{
@@ -1829,9 +1811,6 @@ func (s *MCPServers) DeleteMcpServerConfig(ctx context.Context, mcpServerID stri
 }
 
 // GetMcpServerStatus - Get MCP Server deployment status
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns the current aggregated deployment status of an MCP server.
 func (s *MCPServers) GetMcpServerStatus(ctx context.Context, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerStatusResponse, error) {
 	request := operations.GetMcpServerStatusRequest{
@@ -3875,9 +3854,6 @@ func (s *MCPServers) UpdateMcpResource(ctx context.Context, resourceID string, m
 }
 
 // GetMcpServerSignals - Get MCP Server Signals
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Client-initiated signals fetch with long-polling capabilities.
 // The client supplies `capabilities` as a deepObject query parameter:
 //   - Keys are capability names (e.g. `mcp`)
@@ -4167,9 +4143,6 @@ func (s *MCPServers) GetMcpServerSignals(ctx context.Context, controlPlaneID str
 }
 
 // ListMcpServersByControlPlane - List MCP Servers by Control Plane
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns an array of MCP server objects for the specified control plane.
 func (s *MCPServers) ListMcpServersByControlPlane(ctx context.Context, request operations.ListMcpServersByControlPlaneRequest, opts ...operations.Option) (*operations.ListMcpServersByControlPlaneResponse, error) {
 	o := operations.Options{}
@@ -4442,9 +4415,6 @@ func (s *MCPServers) ListMcpServersByControlPlane(ctx context.Context, request o
 }
 
 // GetMcpServerByControlPlane - Get MCP Server by Control Plane
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Retrieves an MCP server by its ID within a specific control plane context.
 func (s *MCPServers) GetMcpServerByControlPlane(ctx context.Context, controlPlaneID string, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerByControlPlaneResponse, error) {
 	request := operations.GetMcpServerByControlPlaneRequest{
@@ -4739,9 +4709,6 @@ func (s *MCPServers) GetMcpServerByControlPlane(ctx context.Context, controlPlan
 }
 
 // GetMcpServerKongEntities - Get Kong entities for the MCP Server Gateway
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Retrieves Kong entities (Routes, Services, Plugins) for the Gateway in front of the MCP Server.
 func (s *MCPServers) GetMcpServerKongEntities(ctx context.Context, request operations.GetMcpServerKongEntitiesRequest, opts ...operations.Option) (*operations.GetMcpServerKongEntitiesResponse, error) {
 	o := operations.Options{}
@@ -5035,9 +5002,6 @@ func (s *MCPServers) GetMcpServerKongEntities(ctx context.Context, request opera
 }
 
 // PostMcpServerStatus - Report MCP Server deployment status
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Reports the current deployment status of an MCP server, including replica counts and per-version pod statuses.
 func (s *MCPServers) PostMcpServerStatus(ctx context.Context, request operations.PostMcpServerStatusRequest, opts ...operations.Option) (*operations.PostMcpServerStatusResponse, error) {
 	o := operations.Options{}
@@ -5315,9 +5279,6 @@ func (s *MCPServers) PostMcpServerStatus(ctx context.Context, request operations
 }
 
 // GetMcpServerCode - Get generated Python code for the MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
 func (s *MCPServers) GetMcpServerCode(ctx context.Context, controlPlaneID string, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerCodeResponse, error) {
 	request := operations.GetMcpServerCodeRequest{

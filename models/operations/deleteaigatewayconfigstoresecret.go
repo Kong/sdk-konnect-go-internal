@@ -10,7 +10,7 @@ type DeleteAiGatewayConfigStoreSecretRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway Config Store.
-	ConfigStoreID string `pathParam:"style=simple,explode=false,name=configStoreId"`
+	ConfigStoreIDOrName string `pathParam:"style=simple,explode=false,name=configStoreIdOrName"`
 	// Config Store Secret key.
 	Key string `pathParam:"style=simple,explode=false,name=key"`
 }
@@ -22,11 +22,11 @@ func (d *DeleteAiGatewayConfigStoreSecretRequest) GetGatewayID() string {
 	return d.GatewayID
 }
 
-func (d *DeleteAiGatewayConfigStoreSecretRequest) GetConfigStoreID() string {
+func (d *DeleteAiGatewayConfigStoreSecretRequest) GetConfigStoreIDOrName() string {
 	if d == nil {
 		return ""
 	}
-	return d.ConfigStoreID
+	return d.ConfigStoreIDOrName
 }
 
 func (d *DeleteAiGatewayConfigStoreSecretRequest) GetKey() string {

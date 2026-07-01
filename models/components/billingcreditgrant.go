@@ -321,6 +321,15 @@ type BillingCreditGrant struct {
 	Filters *BillingCreditGrantFilters `json:"filters,omitempty"`
 	// Draw-down priority of the grant. Lower values have higher priority.
 	Priority *int64 `default:"10" json:"priority"`
+	// The timestamp when the credit grant becomes effective.
+	//
+	// Defaults to the current date and time.
+	EffectiveAt *time.Time `json:"effective_at,omitempty"`
+	// Idempotency key for the credit grant creation request.
+	//
+	// When provided, reusing the same key returns an HTTP 409 Conflict instead of
+	// creating a duplicate grant, which makes create requests safe to retry.
+	Key *string `json:"key,omitempty"`
 	// The timestamp when the credit grant expires.
 	//
 	// Calculated from the grant effective time and `expires_after` if provided.
@@ -445,6 +454,20 @@ func (b *BillingCreditGrant) GetPriority() *int64 {
 		return nil
 	}
 	return b.Priority
+}
+
+func (b *BillingCreditGrant) GetEffectiveAt() *time.Time {
+	if b == nil {
+		return nil
+	}
+	return b.EffectiveAt
+}
+
+func (b *BillingCreditGrant) GetKey() *string {
+	if b == nil {
+		return nil
+	}
+	return b.Key
 }
 
 func (b *BillingCreditGrant) GetExpiresAt() *time.Time {

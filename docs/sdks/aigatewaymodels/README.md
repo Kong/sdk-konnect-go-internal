@@ -152,7 +152,7 @@ func main() {
                     },
                 )),
                 Model: components.AIGatewayModelAPIConfigModel{
-                    Alias: "<value>",
+                    Alias: sdkkonnectgo.Pointer("<value>"),
                 },
             },
             Capabilities: []components.Capabilities{
@@ -206,7 +206,7 @@ Returns the details of a specific AI Gateway model.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-model" method="get" path="/v1/ai-gateways/{gatewayId}/models/{modelId}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-model" method="get" path="/v1/ai-gateways/{gatewayId}/models/{modelIdOrName}" -->
 ```go
 package main
 
@@ -226,7 +226,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayModels.GetAiGatewayModel(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayModels.GetAiGatewayModel(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -248,7 +248,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `modelID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway model.           | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
+| `modelIDOrName`                                          | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway model.           | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -271,7 +271,7 @@ Updates the configuration of an existing AI Gateway model.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-model" method="put" path="/v1/ai-gateways/{gatewayId}/models/{modelId}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-model" method="put" path="/v1/ai-gateways/{gatewayId}/models/{modelIdOrName}" -->
 ```go
 package main
 
@@ -294,7 +294,7 @@ func main() {
 
     res, err := s.AIGatewayModels.UpdateAiGatewayModel(ctx, operations.UpdateAiGatewayModelRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ModelID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ModelIDOrName: "my-entity-name",
         UpdateAIGatewayModelRequest: components.CreateUpdateAIGatewayModelRequestAPI(
             components.AIGatewayModelAPI{
                 DisplayName: "My GPT 5 model",
@@ -332,7 +332,7 @@ func main() {
                         },
                     )),
                     Model: components.AIGatewayModelAPIConfigModel{
-                        Alias: "<value>",
+                        Alias: sdkkonnectgo.Pointer("<value>"),
                     },
                 },
                 Capabilities: []components.Capabilities{},
@@ -383,7 +383,7 @@ Removes a specific AI Gateway model.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-model" method="delete" path="/v1/ai-gateways/{gatewayId}/models/{modelId}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-model" method="delete" path="/v1/ai-gateways/{gatewayId}/models/{modelIdOrName}" -->
 ```go
 package main
 
@@ -403,7 +403,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayModels.DeleteAiGatewayModel(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayModels.DeleteAiGatewayModel(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -419,7 +419,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `modelID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway model.           | bf138ba2-c9b1-4229-b268-04d9d8a6410b                     |
+| `modelIDOrName`                                          | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway model.           | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

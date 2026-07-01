@@ -11,7 +11,7 @@ type UpdateAiGatewayVaultRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway Vault.
-	VaultID                     string                                 `pathParam:"style=simple,explode=false,name=vaultId"`
+	VaultIDOrName               string                                 `pathParam:"style=simple,explode=false,name=vaultIdOrName"`
 	UpdateAIGatewayVaultRequest components.UpdateAIGatewayVaultRequest `request:"mediaType=application/json"`
 }
 
@@ -22,11 +22,11 @@ func (u *UpdateAiGatewayVaultRequest) GetGatewayID() string {
 	return u.GatewayID
 }
 
-func (u *UpdateAiGatewayVaultRequest) GetVaultID() string {
+func (u *UpdateAiGatewayVaultRequest) GetVaultIDOrName() string {
 	if u == nil {
 		return ""
 	}
-	return u.VaultID
+	return u.VaultIDOrName
 }
 
 func (u *UpdateAiGatewayVaultRequest) GetUpdateAIGatewayVaultRequest() components.UpdateAIGatewayVaultRequest {

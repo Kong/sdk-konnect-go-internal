@@ -11,7 +11,7 @@ type GetAiGatewayVaultRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway Vault.
-	VaultID string `pathParam:"style=simple,explode=false,name=vaultId"`
+	VaultIDOrName string `pathParam:"style=simple,explode=false,name=vaultIdOrName"`
 }
 
 func (g *GetAiGatewayVaultRequest) GetGatewayID() string {
@@ -21,11 +21,11 @@ func (g *GetAiGatewayVaultRequest) GetGatewayID() string {
 	return g.GatewayID
 }
 
-func (g *GetAiGatewayVaultRequest) GetVaultID() string {
+func (g *GetAiGatewayVaultRequest) GetVaultIDOrName() string {
 	if g == nil {
 		return ""
 	}
-	return g.VaultID
+	return g.VaultIDOrName
 }
 
 type GetAiGatewayVaultResponse struct {

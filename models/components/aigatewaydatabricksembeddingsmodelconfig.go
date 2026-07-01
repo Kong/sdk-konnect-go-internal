@@ -37,7 +37,7 @@ type AIGatewayDatabricksEmbeddingsModelConfig struct {
 	UpstreamURL string                                       `json:"upstream_url"`
 	Type        AIGatewayDatabricksEmbeddingsModelConfigType `json:"type"`
 	// The Databricks workspace instance ID.
-	WorkspaceInstanceID *string `json:"workspace_instance_id,omitempty"`
+	WorkspaceInstanceID string `json:"workspace_instance_id"`
 }
 
 func (a AIGatewayDatabricksEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (a AIGatewayDatabricksEmbeddingsModelConfig) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AIGatewayDatabricksEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type", "workspace_instance_id"}); err != nil {
 		return err
 	}
 	return nil
@@ -65,9 +65,9 @@ func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetType() AIGatewayDatabricks
 	return a.Type
 }
 
-func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetWorkspaceInstanceID() *string {
+func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetWorkspaceInstanceID() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.WorkspaceInstanceID
 }

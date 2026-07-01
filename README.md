@@ -1182,56 +1182,6 @@ func main() {
 * [GetKeySet](docs/sdks/keysets/README.md#getkeyset) - Get a KeySet
 * [UpsertKeySet](docs/sdks/keysets/README.md#upsertkeyset) - Upsert a KeySet
 
-### [KongIdentityDirectories](docs/sdks/kongidentitydirectories/README.md)
-
-* [CreateDirectory](docs/sdks/kongidentitydirectories/README.md#createdirectory) - Create a new Directory
-* [ListKongDirectories](docs/sdks/kongidentitydirectories/README.md#listkongdirectories) - List all directories
-* [UpdateDirectory](docs/sdks/kongidentitydirectories/README.md#updatedirectory) - Update a Directory
-* [ReplaceDirectory](docs/sdks/kongidentitydirectories/README.md#replacedirectory) - Replace a Directory
-* [GetDirectory](docs/sdks/kongidentitydirectories/README.md#getdirectory) - Get a Directory
-* [DeleteDirectory](docs/sdks/kongidentitydirectories/README.md#deletedirectory) - Delete a Directory
-* [GetRealmConfig](docs/sdks/kongidentitydirectories/README.md#getrealmconfig) - Get the realm configuration of a Directory
-* [ReplaceRealmConfig](docs/sdks/kongidentitydirectories/README.md#replacerealmconfig) - Replace Directory realm configuration
-
-### [KongPrincipal](docs/sdks/kongprincipal/README.md)
-
-* [CreatePrincipal](docs/sdks/kongprincipal/README.md#createprincipal) - Create a Principal in a Directory
-* [ListPrincipals](docs/sdks/kongprincipal/README.md#listprincipals) - List all the Principals of a Directory
-* [UpdatePrincipal](docs/sdks/kongprincipal/README.md#updateprincipal) - Update a Principal
-* [ReplacePrincipal](docs/sdks/kongprincipal/README.md#replaceprincipal) - Replace a Principal
-* [GetPrincipal](docs/sdks/kongprincipal/README.md#getprincipal) - Get a Principal
-* [DeletePrincipal](docs/sdks/kongprincipal/README.md#deleteprincipal) - Delete a Principal
-
-### [KongPrincipalCredential](docs/sdks/kongprincipalcredential/README.md)
-
-* [ListPrincipalBasicAuths](docs/sdks/kongprincipalcredential/README.md#listprincipalbasicauths) - List all basic auth credentials
-* [CreatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#createprincipalbasicauth) - Create a basic auth credential
-* [GetPrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#getprincipalbasicauth) - Get a basic auth credential
-* [UpdatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#updateprincipalbasicauth) - Update a basic auth credential
-* [ReplacePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#replaceprincipalbasicauth) - Replace a basic auth credential
-* [DeletePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#deleteprincipalbasicauth) - Delete a basic auth credential
-* [ListPasswords](docs/sdks/kongprincipalcredential/README.md#listpasswords) - List all passwords for a basic auth
-* [CreatePassword](docs/sdks/kongprincipalcredential/README.md#createpassword) - Create a password for a basic auth credential
-* [DeleteAllPasswords](docs/sdks/kongprincipalcredential/README.md#deleteallpasswords) - Delete all passwords for a basic auth
-* [GetPassword](docs/sdks/kongprincipalcredential/README.md#getpassword) - Get a password
-* [UpdatePassword](docs/sdks/kongprincipalcredential/README.md#updatepassword) - Update a password
-* [ReplacePassword](docs/sdks/kongprincipalcredential/README.md#replacepassword) - Replace a password
-* [DeletePassword](docs/sdks/kongprincipalcredential/README.md#deletepassword) - Delete a password
-* [CreatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#createprincipalkey) - Create a principal API key
-* [ListPrincipalKeys](docs/sdks/kongprincipalcredential/README.md#listprincipalkeys) - List all API keys for a principal
-* [UpdatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#updateprincipalkey) - Update a principal API key
-* [GetIdentityKey](docs/sdks/kongprincipalcredential/README.md#getidentitykey) - Get a principal API key
-* [DeletePrincipalKey](docs/sdks/kongprincipalcredential/README.md#deleteprincipalkey) - Delete an API key
-
-### [KongPrincipalIdentity](docs/sdks/kongprincipalidentity/README.md)
-
-* [ListIdentities](docs/sdks/kongprincipalidentity/README.md#listidentities) - List all identities for a principal
-* [CreateIdentity](docs/sdks/kongprincipalidentity/README.md#createidentity) - Create an identity for a principal
-* [GetIdentity](docs/sdks/kongprincipalidentity/README.md#getidentity) - Get an identity
-* [ReplaceIdentity](docs/sdks/kongprincipalidentity/README.md#replaceidentity) - Replace an identity
-* [UpdateIdentity](docs/sdks/kongprincipalidentity/README.md#updateidentity) - Update an identity
-* [DeleteIdentity](docs/sdks/kongprincipalidentity/README.md#deleteidentity) - Delete an identity
-
 ### [ManagedSystemAccountsRoles](docs/sdks/managedsystemaccountsroles/README.md)
 
 * [GetSystemAccountsAssignedRolesInternal](docs/sdks/managedsystemaccountsroles/README.md#getsystemaccountsassignedrolesinternal) - List Roles (Internal)
@@ -1337,18 +1287,21 @@ func main() {
 * [ListApps](docs/sdks/openmeterapps/README.md#listapps) - List apps
 * [GetApp](docs/sdks/openmeterapps/README.md#getapp) - Get app
 
-### [OpenMeterBilling](docs/sdks/openmeterbilling/README.md)
+### [OpenMeterBillingSettings](docs/sdks/openmeterbillingsettings/README.md)
 
-* [ListCurrencies](docs/sdks/openmeterbilling/README.md#listcurrencies) - List currencies
-* [CreateCustomCurrency](docs/sdks/openmeterbilling/README.md#createcustomcurrency) - Create custom currency
-* [ListCostBases](docs/sdks/openmeterbilling/README.md#listcostbases) - List cost bases
-* [CreateCostBasis](docs/sdks/openmeterbilling/README.md#createcostbasis) - Create cost basis
-* [ListCustomerCharges](docs/sdks/openmeterbilling/README.md#listcustomercharges) - List customer charges
-* [ListBillingProfiles](docs/sdks/openmeterbilling/README.md#listbillingprofiles) - List billing profiles
-* [CreateBillingProfile](docs/sdks/openmeterbilling/README.md#createbillingprofile) - Create a new billing profile
-* [GetBillingProfile](docs/sdks/openmeterbilling/README.md#getbillingprofile) - Get a billing profile
-* [UpdateBillingProfile](docs/sdks/openmeterbilling/README.md#updatebillingprofile) - Update a billing profile
-* [DeleteBillingProfile](docs/sdks/openmeterbilling/README.md#deletebillingprofile) - Delete a billing profile
+* [GetInvoice](docs/sdks/openmeterbillingsettings/README.md#getinvoice) - Get a billing invoice
+* [ListBillingProfiles](docs/sdks/openmeterbillingsettings/README.md#listbillingprofiles) - List billing profiles
+* [CreateBillingProfile](docs/sdks/openmeterbillingsettings/README.md#createbillingprofile) - Create a new billing profile
+* [GetBillingProfile](docs/sdks/openmeterbillingsettings/README.md#getbillingprofile) - Get a billing profile
+* [UpdateBillingProfile](docs/sdks/openmeterbillingsettings/README.md#updatebillingprofile) - Update a billing profile
+* [DeleteBillingProfile](docs/sdks/openmeterbillingsettings/README.md#deletebillingprofile) - Delete a billing profile
+
+### [OpenMeterCurrencies](docs/sdks/openmetercurrencies/README.md)
+
+* [ListCurrencies](docs/sdks/openmetercurrencies/README.md#listcurrencies) - List currencies
+* [CreateCustomCurrency](docs/sdks/openmetercurrencies/README.md#createcustomcurrency) - Create custom currency
+* [ListCostBases](docs/sdks/openmetercurrencies/README.md#listcostbases) - List cost bases
+* [CreateCostBasis](docs/sdks/openmetercurrencies/README.md#createcostbasis) - Create cost basis
 
 ### [OpenMeterCustomers](docs/sdks/openmetercustomers/README.md)
 
@@ -1362,6 +1315,8 @@ func main() {
 * [UpdateCustomerBillingAppData](docs/sdks/openmetercustomers/README.md#updatecustomerbillingappdata) - Update customer billing app data
 * [CreateCustomerStripeCheckoutSession](docs/sdks/openmetercustomers/README.md#createcustomerstripecheckoutsession) - Create Stripe Checkout Session
 * [CreateCustomerStripePortalSession](docs/sdks/openmetercustomers/README.md#createcustomerstripeportalsession) - Create Stripe customer portal session
+* [ListCustomerCharges](docs/sdks/openmetercustomers/README.md#listcustomercharges) - List customer charges
+* [CreateCustomerCharges](docs/sdks/openmetercustomers/README.md#createcustomercharges) - Create customer charge
 * [CreateCreditAdjustment](docs/sdks/openmetercustomers/README.md#createcreditadjustment) - Create a credit adjustment
 * [GetCustomerCreditBalance](docs/sdks/openmetercustomers/README.md#getcustomercreditbalance) - Get a customer's credit balance
 * [CreateCreditGrant](docs/sdks/openmetercustomers/README.md#createcreditgrant) - Create a new credit grant
@@ -1402,13 +1357,13 @@ func main() {
 
 ### [OpenMeterProductCatalog](docs/sdks/openmeterproductcatalog/README.md)
 
-* [ListOpenmeterAddons](docs/sdks/openmeterproductcatalog/README.md#listopenmeteraddons) - List add-ons
-* [CreateOpenmeterAddon](docs/sdks/openmeterproductcatalog/README.md#createopenmeteraddon) - Create add-on
-* [UpdateOpenmeterAddon](docs/sdks/openmeterproductcatalog/README.md#updateopenmeteraddon) - Update add-on
-* [GetOpenmeterAddon](docs/sdks/openmeterproductcatalog/README.md#getopenmeteraddon) - Get add-on
-* [DeleteOpenmeterAddon](docs/sdks/openmeterproductcatalog/README.md#deleteopenmeteraddon) - Soft delete add-on
-* [ArchiveOpenmeterAddon](docs/sdks/openmeterproductcatalog/README.md#archiveopenmeteraddon) - Archive add-on version
-* [PublishAddon](docs/sdks/openmeterproductcatalog/README.md#publishaddon) - Publish add-on version
+* [ListProductCatalogAddons](docs/sdks/openmeterproductcatalog/README.md#listproductcatalogaddons) - List add-ons
+* [CreateProductCatalogAddon](docs/sdks/openmeterproductcatalog/README.md#createproductcatalogaddon) - Create add-on
+* [UpdateProductCatalogAddon](docs/sdks/openmeterproductcatalog/README.md#updateproductcatalogaddon) - Update add-on
+* [GetProductCatalogAddon](docs/sdks/openmeterproductcatalog/README.md#getproductcatalogaddon) - Get add-on
+* [DeleteProductCatalogAddon](docs/sdks/openmeterproductcatalog/README.md#deleteproductcatalogaddon) - Soft delete add-on
+* [ArchiveProductCatalogAddon](docs/sdks/openmeterproductcatalog/README.md#archiveproductcatalogaddon) - Archive add-on version
+* [PublishProductCatalogAddon](docs/sdks/openmeterproductcatalog/README.md#publishproductcatalogaddon) - Publish add-on version
 * [ListPlans](docs/sdks/openmeterproductcatalog/README.md#listplans) - List plans
 * [CreatePlan](docs/sdks/openmeterproductcatalog/README.md#createplan) - Create plan
 * [UpdatePlan](docs/sdks/openmeterproductcatalog/README.md#updateplan) - Update plan
@@ -1427,6 +1382,7 @@ func main() {
 * [CreateSubscription](docs/sdks/openmetersubscriptions/README.md#createsubscription) - Create subscription
 * [ListSubscriptions](docs/sdks/openmetersubscriptions/README.md#listsubscriptions) - List subscriptions
 * [GetSubscription](docs/sdks/openmetersubscriptions/README.md#getsubscription) - Get subscription
+* [CreateSubscriptionAddon](docs/sdks/openmetersubscriptions/README.md#createsubscriptionaddon) - Create a new subscription add-on
 * [ListSubscriptionAddons](docs/sdks/openmetersubscriptions/README.md#listsubscriptionaddons) - List subscription addons
 * [GetSubscriptionAddon](docs/sdks/openmetersubscriptions/README.md#getsubscriptionaddon) - Get add-on association for subscription
 * [CancelSubscription](docs/sdks/openmetersubscriptions/README.md#cancelsubscription) - Cancel subscription

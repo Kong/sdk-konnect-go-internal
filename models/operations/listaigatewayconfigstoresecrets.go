@@ -11,7 +11,7 @@ type ListAiGatewayConfigStoreSecretsRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
 	// The unique ID or name of the AI Gateway Config Store.
-	ConfigStoreID string `pathParam:"style=simple,explode=false,name=configStoreId"`
+	ConfigStoreIDOrName string `pathParam:"style=simple,explode=false,name=configStoreIdOrName"`
 	// The maximum number of items to include per page. The last page of a collection may include fewer items.
 	PageSize *int64 `queryParam:"style=form,explode=true,name=page[size]"`
 	// Request the next page of data, starting with the item after this parameter.
@@ -25,11 +25,11 @@ func (l *ListAiGatewayConfigStoreSecretsRequest) GetGatewayID() string {
 	return l.GatewayID
 }
 
-func (l *ListAiGatewayConfigStoreSecretsRequest) GetConfigStoreID() string {
+func (l *ListAiGatewayConfigStoreSecretsRequest) GetConfigStoreIDOrName() string {
 	if l == nil {
 		return ""
 	}
-	return l.ConfigStoreID
+	return l.ConfigStoreIDOrName
 }
 
 func (l *ListAiGatewayConfigStoreSecretsRequest) GetPageSize() *int64 {
