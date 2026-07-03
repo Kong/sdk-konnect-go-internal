@@ -33,8 +33,6 @@ func (e *AIGatewayHuggingfaceEmbeddingsModelConfigType) UnmarshalJSON(data []byt
 
 // AIGatewayHuggingfaceEmbeddingsModelConfig - Hugging Face-specific configuration for a model.
 type AIGatewayHuggingfaceEmbeddingsModelConfig struct {
-	// The name of the embeddings model.
-	Name string `json:"name"`
 	// The URL of the embeddings model.
 	UpstreamURL string                                        `json:"upstream_url"`
 	Type        AIGatewayHuggingfaceEmbeddingsModelConfigType `json:"type"`
@@ -49,17 +47,10 @@ func (a AIGatewayHuggingfaceEmbeddingsModelConfig) MarshalJSON() ([]byte, error)
 }
 
 func (a *AIGatewayHuggingfaceEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
 		return err
 	}
 	return nil
-}
-
-func (a *AIGatewayHuggingfaceEmbeddingsModelConfig) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
 }
 
 func (a *AIGatewayHuggingfaceEmbeddingsModelConfig) GetUpstreamURL() string {

@@ -19,7 +19,7 @@ const (
 // AIGatewayModelVectorDBConfigOutput - Configuration for the vector database used by the model.
 type AIGatewayModelVectorDBConfigOutput struct {
 	AIGatewayModelVectorDBConfigPgVectorOutput *AIGatewayModelVectorDBConfigPgVectorOutput `queryParam:"inline" union:"member"`
-	AIGatewayModelVectorDBConfigRedis          *AIGatewayModelVectorDBConfigRedis          `queryParam:"inline" union:"member"`
+	AIGatewayModelVectorDBConfigRedisOutput    *AIGatewayModelVectorDBConfigRedisOutput    `queryParam:"inline" union:"member"`
 
 	Type AIGatewayModelVectorDBConfigOutputType
 }
@@ -27,8 +27,8 @@ type AIGatewayModelVectorDBConfigOutput struct {
 func CreateAIGatewayModelVectorDBConfigOutputPgvector(pgvector AIGatewayModelVectorDBConfigPgVectorOutput) AIGatewayModelVectorDBConfigOutput {
 	typ := AIGatewayModelVectorDBConfigOutputTypePgvector
 
-	typStr := Strategy(typ)
-	pgvector.Strategy = typStr
+	typStr := AIGatewayModelVectorDBConfigPgVectorType(typ)
+	pgvector.Type = typStr
 
 	return AIGatewayModelVectorDBConfigOutput{
 		AIGatewayModelVectorDBConfigPgVectorOutput: &pgvector,
@@ -36,22 +36,22 @@ func CreateAIGatewayModelVectorDBConfigOutputPgvector(pgvector AIGatewayModelVec
 	}
 }
 
-func CreateAIGatewayModelVectorDBConfigOutputRedis(redis AIGatewayModelVectorDBConfigRedis) AIGatewayModelVectorDBConfigOutput {
+func CreateAIGatewayModelVectorDBConfigOutputRedis(redis AIGatewayModelVectorDBConfigRedisOutput) AIGatewayModelVectorDBConfigOutput {
 	typ := AIGatewayModelVectorDBConfigOutputTypeRedis
 
-	typStr := AIGatewayModelVectorDBConfigRedisStrategy(typ)
-	redis.Strategy = typStr
+	typStr := AIGatewayModelVectorDBConfigRedisType(typ)
+	redis.Type = typStr
 
 	return AIGatewayModelVectorDBConfigOutput{
-		AIGatewayModelVectorDBConfigRedis: &redis,
-		Type:                              typ,
+		AIGatewayModelVectorDBConfigRedisOutput: &redis,
+		Type:                                    typ,
 	}
 }
 
 func (u *AIGatewayModelVectorDBConfigOutput) UnmarshalJSON(data []byte) error {
 
 	type discriminator struct {
-		Strategy string `json:"strategy"`
+		Type string `json:"type"`
 	}
 
 	dis := new(discriminator)
@@ -59,23 +59,23 @@ func (u *AIGatewayModelVectorDBConfigOutput) UnmarshalJSON(data []byte) error {
 		return fmt.Errorf("could not unmarshal discriminator: %w", err)
 	}
 
-	switch dis.Strategy {
+	switch dis.Type {
 	case "pgvector":
 		aiGatewayModelVectorDBConfigPgVectorOutput := new(AIGatewayModelVectorDBConfigPgVectorOutput)
 		if err := utils.UnmarshalJSON(data, &aiGatewayModelVectorDBConfigPgVectorOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Strategy == pgvector) type AIGatewayModelVectorDBConfigPgVectorOutput within AIGatewayModelVectorDBConfigOutput: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == pgvector) type AIGatewayModelVectorDBConfigPgVectorOutput within AIGatewayModelVectorDBConfigOutput: %w", string(data), err)
 		}
 
 		u.AIGatewayModelVectorDBConfigPgVectorOutput = aiGatewayModelVectorDBConfigPgVectorOutput
 		u.Type = AIGatewayModelVectorDBConfigOutputTypePgvector
 		return nil
 	case "redis":
-		aiGatewayModelVectorDBConfigRedis := new(AIGatewayModelVectorDBConfigRedis)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelVectorDBConfigRedis, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Strategy == redis) type AIGatewayModelVectorDBConfigRedis within AIGatewayModelVectorDBConfigOutput: %w", string(data), err)
+		aiGatewayModelVectorDBConfigRedisOutput := new(AIGatewayModelVectorDBConfigRedisOutput)
+		if err := utils.UnmarshalJSON(data, &aiGatewayModelVectorDBConfigRedisOutput, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == redis) type AIGatewayModelVectorDBConfigRedisOutput within AIGatewayModelVectorDBConfigOutput: %w", string(data), err)
 		}
 
-		u.AIGatewayModelVectorDBConfigRedis = aiGatewayModelVectorDBConfigRedis
+		u.AIGatewayModelVectorDBConfigRedisOutput = aiGatewayModelVectorDBConfigRedisOutput
 		u.Type = AIGatewayModelVectorDBConfigOutputTypeRedis
 		return nil
 	}
@@ -88,8 +88,8 @@ func (u AIGatewayModelVectorDBConfigOutput) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AIGatewayModelVectorDBConfigPgVectorOutput, "", true)
 	}
 
-	if u.AIGatewayModelVectorDBConfigRedis != nil {
-		return utils.MarshalJSON(u.AIGatewayModelVectorDBConfigRedis, "", true)
+	if u.AIGatewayModelVectorDBConfigRedisOutput != nil {
+		return utils.MarshalJSON(u.AIGatewayModelVectorDBConfigRedisOutput, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type AIGatewayModelVectorDBConfigOutput: all fields are null")

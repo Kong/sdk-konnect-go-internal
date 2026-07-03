@@ -279,7 +279,7 @@ Returns the details of a specific AI Gateway policy.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-policy" method="get" path="/v1/ai-gateways/{gatewayId}/policies/{policyId}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-policy" method="get" path="/v1/ai-gateways/{gatewayId}/policies/{policyIdOrName}" -->
 ```go
 package main
 
@@ -299,7 +299,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayPolicies.GetAiGatewayPolicy(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayPolicies.GetAiGatewayPolicy(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -315,7 +315,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `policyID`                                               | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway policy.                  | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `policyIDOrName`                                         | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway policy.          | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -338,7 +338,7 @@ Updates the configuration of an existing AI Gateway policy.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-policy" method="put" path="/v1/ai-gateways/{gatewayId}/policies/{policyId}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-policy" method="put" path="/v1/ai-gateways/{gatewayId}/policies/{policyIdOrName}" -->
 ```go
 package main
 
@@ -361,7 +361,7 @@ func main() {
 
     res, err := s.AIGatewayPolicies.UpdateAiGatewayPolicy(ctx, operations.UpdateAiGatewayPolicyRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        PolicyID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        PolicyIDOrName: "my-entity-name",
         UpdateAIGatewayPolicyRequest: components.UpdateAIGatewayPolicyRequest{
             DisplayName: "My Cool AI PII Sanitizer Policy",
             Name: "ai-pii-sanitizer-1234",
@@ -419,7 +419,7 @@ Removes a specific AI Gateway policy.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-policy" method="delete" path="/v1/ai-gateways/{gatewayId}/policies/{policyId}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-policy" method="delete" path="/v1/ai-gateways/{gatewayId}/policies/{policyIdOrName}" -->
 ```go
 package main
 
@@ -439,7 +439,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayPolicies.DeleteAiGatewayPolicy(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayPolicies.DeleteAiGatewayPolicy(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -455,7 +455,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `policyID`                                               | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway policy.                  | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `policyIDOrName`                                         | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway policy.          | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -466,6 +466,7 @@ func main() {
 
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.BadRequestError      | 400                            | application/problem+json       |
 | sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
 | sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.NotFoundError        | 404                            | application/problem+json       |

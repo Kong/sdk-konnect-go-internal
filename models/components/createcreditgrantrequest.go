@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
+	"time"
 )
 
 // CreditFundingMethod - Funding method of the grant.
@@ -205,10 +206,19 @@ type CreateCreditGrantRequest struct {
 	Filters *CreateCreditGrantFilters `json:"filters,omitempty"`
 	// Draw-down priority of the grant. Lower values have higher priority.
 	Priority *int64 `default:"10" json:"priority"`
+	// The timestamp when the credit grant becomes effective.
+	//
+	// Defaults to the current date and time.
+	EffectiveAt *time.Time `json:"effective_at,omitempty"`
 	// The duration after which the credit grant expires.
 	//
 	// Defaults to never expiring.
 	ExpiresAfter *string `json:"expires_after,omitempty"`
+	// Idempotency key for the credit grant creation request.
+	//
+	// When provided, reusing the same key returns an HTTP 409 Conflict instead of
+	// creating a duplicate grant, which makes create requests safe to retry.
+	Key *string `json:"key,omitempty"`
 }
 
 func (c CreateCreditGrantRequest) MarshalJSON() ([]byte, error) {
@@ -292,9 +302,23 @@ func (c *CreateCreditGrantRequest) GetPriority() *int64 {
 	return c.Priority
 }
 
+func (c *CreateCreditGrantRequest) GetEffectiveAt() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.EffectiveAt
+}
+
 func (c *CreateCreditGrantRequest) GetExpiresAfter() *string {
 	if c == nil {
 		return nil
 	}
 	return c.ExpiresAfter
+}
+
+func (c *CreateCreditGrantRequest) GetKey() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Key
 }

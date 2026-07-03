@@ -18,32 +18,32 @@ const (
 
 // BillingCharge - Customer charge.
 type BillingCharge struct {
-	BillingFlatFeeCharge    *BillingFlatFeeCharge    `queryParam:"inline" union:"member"`
-	BillingUsageBasedCharge *BillingUsageBasedCharge `queryParam:"inline" union:"member"`
+	BillingChargeFlatFee    *BillingChargeFlatFee    `queryParam:"inline" union:"member"`
+	BillingChargeUsageBased *BillingChargeUsageBased `queryParam:"inline" union:"member"`
 
 	Type BillingChargeType
 }
 
-func CreateBillingChargeFlatFee(flatFee BillingFlatFeeCharge) BillingCharge {
+func CreateBillingChargeFlatFee(flatFee BillingChargeFlatFee) BillingCharge {
 	typ := BillingChargeTypeFlatFee
 
-	typStr := BillingFlatFeeChargeType(typ)
+	typStr := BillingChargeFlatFeeType(typ)
 	flatFee.Type = typStr
 
 	return BillingCharge{
-		BillingFlatFeeCharge: &flatFee,
+		BillingChargeFlatFee: &flatFee,
 		Type:                 typ,
 	}
 }
 
-func CreateBillingChargeUsageBased(usageBased BillingUsageBasedCharge) BillingCharge {
+func CreateBillingChargeUsageBased(usageBased BillingChargeUsageBased) BillingCharge {
 	typ := BillingChargeTypeUsageBased
 
-	typStr := BillingUsageBasedChargeType(typ)
+	typStr := BillingChargeUsageBasedType(typ)
 	usageBased.Type = typStr
 
 	return BillingCharge{
-		BillingUsageBasedCharge: &usageBased,
+		BillingChargeUsageBased: &usageBased,
 		Type:                    typ,
 	}
 }
@@ -61,21 +61,21 @@ func (u *BillingCharge) UnmarshalJSON(data []byte) error {
 
 	switch dis.Type {
 	case "flat_fee":
-		billingFlatFeeCharge := new(BillingFlatFeeCharge)
-		if err := utils.UnmarshalJSON(data, &billingFlatFeeCharge, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == flat_fee) type BillingFlatFeeCharge within BillingCharge: %w", string(data), err)
+		billingChargeFlatFee := new(BillingChargeFlatFee)
+		if err := utils.UnmarshalJSON(data, &billingChargeFlatFee, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == flat_fee) type BillingChargeFlatFee within BillingCharge: %w", string(data), err)
 		}
 
-		u.BillingFlatFeeCharge = billingFlatFeeCharge
+		u.BillingChargeFlatFee = billingChargeFlatFee
 		u.Type = BillingChargeTypeFlatFee
 		return nil
 	case "usage_based":
-		billingUsageBasedCharge := new(BillingUsageBasedCharge)
-		if err := utils.UnmarshalJSON(data, &billingUsageBasedCharge, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == usage_based) type BillingUsageBasedCharge within BillingCharge: %w", string(data), err)
+		billingChargeUsageBased := new(BillingChargeUsageBased)
+		if err := utils.UnmarshalJSON(data, &billingChargeUsageBased, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == usage_based) type BillingChargeUsageBased within BillingCharge: %w", string(data), err)
 		}
 
-		u.BillingUsageBasedCharge = billingUsageBasedCharge
+		u.BillingChargeUsageBased = billingChargeUsageBased
 		u.Type = BillingChargeTypeUsageBased
 		return nil
 	}
@@ -84,12 +84,12 @@ func (u *BillingCharge) UnmarshalJSON(data []byte) error {
 }
 
 func (u BillingCharge) MarshalJSON() ([]byte, error) {
-	if u.BillingFlatFeeCharge != nil {
-		return utils.MarshalJSON(u.BillingFlatFeeCharge, "", true)
+	if u.BillingChargeFlatFee != nil {
+		return utils.MarshalJSON(u.BillingChargeFlatFee, "", true)
 	}
 
-	if u.BillingUsageBasedCharge != nil {
-		return utils.MarshalJSON(u.BillingUsageBasedCharge, "", true)
+	if u.BillingChargeUsageBased != nil {
+		return utils.MarshalJSON(u.BillingChargeUsageBased, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type BillingCharge: all fields are null")

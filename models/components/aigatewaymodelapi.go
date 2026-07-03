@@ -62,15 +62,13 @@ type AIGatewayModelAPI struct {
 	// Whether the model is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
 	// Access control rules for allowing or denying Consumers, Consumer Groups, or Authenticated Groups to this model.
-	Acls AIGatewayACLS `json:"acls"`
-	// Routing, logging, and load balancing configuration for the model.
-	Config AIGatewayModelConfig `json:"config"`
+	Acls *AIGatewayACLS `json:"acls,omitempty"`
 	// List of request/response formats supported by this model.
 	Formats []AIGatewayModelFormat `json:"formats"`
 	// One or more backend models that this model entry routes to.
-	TargetModels []AIGatewayTargetModel `json:"target_models"`
+	Targets []AIGatewayTarget `json:"targets"`
 	// List of policy references.
-	Policies []string `json:"policies"`
+	Policies []string `json:"policies,omitempty"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
 	//
 	// Public labels are intended to store **PUBLIC** metadata.
@@ -84,6 +82,8 @@ type AIGatewayModelAPI struct {
 	//
 	ManagedBy map[string]string     `json:"managed_by,omitempty"`
 	Type      AIGatewayModelAPIType `json:"type"`
+	// Routing, logging, and load balancing configuration for the model.
+	Config AIGatewayModelAPIConfig `json:"config"`
 	// List of AI capabilities enabled for this API model.
 	Capabilities []Capabilities `json:"capabilities"`
 }
@@ -93,7 +93,7 @@ func (a AIGatewayModelAPI) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayModelAPI) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "acls", "config", "formats", "target_models", "policies", "type", "capabilities"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"display_name", "name", "formats", "targets", "type", "config", "capabilities"}); err != nil {
 		return err
 	}
 	return nil
@@ -120,18 +120,11 @@ func (a *AIGatewayModelAPI) GetEnabled() *bool {
 	return a.Enabled
 }
 
-func (a *AIGatewayModelAPI) GetAcls() AIGatewayACLS {
+func (a *AIGatewayModelAPI) GetAcls() *AIGatewayACLS {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.Acls
-}
-
-func (a *AIGatewayModelAPI) GetConfig() AIGatewayModelConfig {
-	if a == nil {
-		return AIGatewayModelConfig{}
-	}
-	return a.Config
 }
 
 func (a *AIGatewayModelAPI) GetFormats() []AIGatewayModelFormat {
@@ -141,16 +134,16 @@ func (a *AIGatewayModelAPI) GetFormats() []AIGatewayModelFormat {
 	return a.Formats
 }
 
-func (a *AIGatewayModelAPI) GetTargetModels() []AIGatewayTargetModel {
+func (a *AIGatewayModelAPI) GetTargets() []AIGatewayTarget {
 	if a == nil {
-		return []AIGatewayTargetModel{}
+		return []AIGatewayTarget{}
 	}
-	return a.TargetModels
+	return a.Targets
 }
 
 func (a *AIGatewayModelAPI) GetPolicies() []string {
 	if a == nil {
-		return []string{}
+		return nil
 	}
 	return a.Policies
 }
@@ -174,6 +167,13 @@ func (a *AIGatewayModelAPI) GetType() AIGatewayModelAPIType {
 		return AIGatewayModelAPIType("")
 	}
 	return a.Type
+}
+
+func (a *AIGatewayModelAPI) GetConfig() AIGatewayModelAPIConfig {
+	if a == nil {
+		return AIGatewayModelAPIConfig{}
+	}
+	return a.Config
 }
 
 func (a *AIGatewayModelAPI) GetCapabilities() []Capabilities {

@@ -110,7 +110,6 @@ func main() {
         Name: "gregs-dev-consumer",
         Type: components.CreateAIGatewayConsumerRequestTypeOauth,
         CustomID: sdkkonnectgo.Pointer("dev-users"),
-        Policies: []string{},
         Labels: map[string]string{
             "category": "finance",
         },
@@ -157,7 +156,7 @@ Returns the details of a specific AI Gateway consumer.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-consumer" method="get" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-consumer" method="get" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerIdOrName}" -->
 ```go
 package main
 
@@ -177,7 +176,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayConsumers.GetAiGatewayConsumer(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayConsumers.GetAiGatewayConsumer(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -193,7 +192,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `consumerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway consumer.                | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `consumerIDOrName`                                       | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway consumer.        | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -216,7 +215,7 @@ Updates the configuration of an existing AI Gateway consumer.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-consumer" method="put" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-consumer" method="put" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerIdOrName}" -->
 ```go
 package main
 
@@ -239,17 +238,12 @@ func main() {
 
     res, err := s.AIGatewayConsumers.UpdateAiGatewayConsumer(ctx, operations.UpdateAiGatewayConsumerRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConsumerIDOrName: "my-entity-name",
         UpdateAIGatewayConsumerRequest: components.UpdateAIGatewayConsumerRequest{
             DisplayName: "Greg's Dev Consumer",
             Name: "gregs-dev-consumer",
             Type: components.UpdateAIGatewayConsumerRequestTypeAPIKey,
             CustomID: sdkkonnectgo.Pointer("dev-users"),
-            Policies: []string{
-                "<value 1>",
-                "<value 2>",
-                "<value 3>",
-            },
             Labels: map[string]string{
                 "category": "finance",
             },
@@ -296,7 +290,7 @@ Removes a specific AI Gateway consumer.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-consumer" method="delete" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-consumer" method="delete" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerIdOrName}" -->
 ```go
 package main
 
@@ -316,7 +310,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayConsumers.DeleteAiGatewayConsumer(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayConsumers.DeleteAiGatewayConsumer(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -332,7 +326,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `consumerID`                                             | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway consumer.                | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `consumerIDOrName`                                       | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway consumer.        | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

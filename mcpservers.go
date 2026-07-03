@@ -32,9 +32,6 @@ func newMCPServers(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks
 }
 
 // ListMcpServerConfigs - List all MCP Servers
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns an array of MCP server objects.
 func (s *MCPServers) ListMcpServerConfigs(ctx context.Context, request operations.ListMcpServerConfigsRequest, opts ...operations.Option) (*operations.ListMcpServerConfigsResponse, error) {
 	o := operations.Options{}
@@ -307,9 +304,6 @@ func (s *MCPServers) ListMcpServerConfigs(ctx context.Context, request operation
 }
 
 // CreateMcpServerConfig - Create an MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Create an MCP Server in the Konnect Organization.
 func (s *MCPServers) CreateMcpServerConfig(ctx context.Context, request components.CreateMCPServerRequest, opts ...operations.Option) (*operations.CreateMcpServerConfigResponse, error) {
 	o := operations.Options{}
@@ -484,12 +478,12 @@ func (s *MCPServers) CreateMcpServerConfig(ctx context.Context, request componen
 				return nil, err
 			}
 
-			var out components.MCPServerInfo
+			var out components.MCPServer
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.MCPServerInfo = &out
+			res.MCPServer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -606,9 +600,6 @@ func (s *MCPServers) CreateMcpServerConfig(ctx context.Context, request componen
 }
 
 // GetMcpServerConfig - Get MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns information about an individual MCP server.
 func (s *MCPServers) GetMcpServerConfig(ctx context.Context, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerConfigResponse, error) {
 	request := operations.GetMcpServerConfigRequest{
@@ -780,12 +771,12 @@ func (s *MCPServers) GetMcpServerConfig(ctx context.Context, mcpServerID string,
 				return nil, err
 			}
 
-			var out components.MCPServerInfo
+			var out components.MCPServer
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.MCPServerInfo = &out
+			res.MCPServer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -902,14 +893,11 @@ func (s *MCPServers) GetMcpServerConfig(ctx context.Context, mcpServerID string,
 }
 
 // UpdateMcpServerConfig - Update MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Update an individual MCP server.
-func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID string, updateMCPServerRequest components.UpdateMCPServerRequest, opts ...operations.Option) (*operations.UpdateMcpServerConfigResponse, error) {
+func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID string, createMCPServerRequest components.CreateMCPServerRequest, opts ...operations.Option) (*operations.UpdateMcpServerConfigResponse, error) {
 	request := operations.UpdateMcpServerConfigRequest{
 		McpServerID:            mcpServerID,
-		UpdateMCPServerRequest: updateMCPServerRequest,
+		CreateMCPServerRequest: createMCPServerRequest,
 	}
 
 	o := operations.Options{}
@@ -944,7 +932,7 @@ func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID stri
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "UpdateMCPServerRequest", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CreateMCPServerRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -1084,12 +1072,12 @@ func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID stri
 				return nil, err
 			}
 
-			var out components.MCPServerInfo
+			var out components.MCPServer
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.MCPServerInfo = &out
+			res.MCPServer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1227,9 +1215,6 @@ func (s *MCPServers) UpdateMcpServerConfig(ctx context.Context, mcpServerID stri
 }
 
 // PatchMcpServerConfig - Partially Update MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Partially update an individual MCP server.
 func (s *MCPServers) PatchMcpServerConfig(ctx context.Context, mcpServerID string, patchMCPServerRequest components.PatchMCPServerRequest, opts ...operations.Option) (*operations.PatchMcpServerConfigResponse, error) {
 	request := operations.PatchMcpServerConfigRequest{
@@ -1409,12 +1394,12 @@ func (s *MCPServers) PatchMcpServerConfig(ctx context.Context, mcpServerID strin
 				return nil, err
 			}
 
-			var out components.MCPServerInfo
+			var out components.MCPServer
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.MCPServerInfo = &out
+			res.MCPServer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1552,9 +1537,6 @@ func (s *MCPServers) PatchMcpServerConfig(ctx context.Context, mcpServerID strin
 }
 
 // DeleteMcpServerConfig - Delete MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Delete an MCP server.
 func (s *MCPServers) DeleteMcpServerConfig(ctx context.Context, mcpServerID string, opts ...operations.Option) (*operations.DeleteMcpServerConfigResponse, error) {
 	request := operations.DeleteMcpServerConfigRequest{
@@ -1829,9 +1811,6 @@ func (s *MCPServers) DeleteMcpServerConfig(ctx context.Context, mcpServerID stri
 }
 
 // GetMcpServerStatus - Get MCP Server deployment status
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns the current aggregated deployment status of an MCP server.
 func (s *MCPServers) GetMcpServerStatus(ctx context.Context, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerStatusResponse, error) {
 	request := operations.GetMcpServerStatusRequest{
@@ -3874,317 +3853,7 @@ func (s *MCPServers) UpdateMcpResource(ctx context.Context, resourceID string, m
 
 }
 
-// GetMcpResourceSpec - Get MCP Resource Spec
-// Retrieve the raw spec content for an MCP resource.
-func (s *MCPServers) GetMcpResourceSpec(ctx context.Context, resourceID string, opts ...operations.Option) (*operations.GetMcpResourceSpecResponse, error) {
-	request := operations.GetMcpResourceSpecRequest{
-		ResourceID: resourceID,
-	}
-
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionRetries,
-		operations.SupportedOptionTimeout,
-		operations.SupportedOptionAcceptHeaderOverride,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
-
-	var baseURL string
-	if o.ServerURL == nil {
-		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	} else {
-		baseURL = *o.ServerURL
-	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/mcp-resources/{resourceId}/spec", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	hookCtx := hooks.HookContext{
-		SDK:              s.rootSDK,
-		SDKConfiguration: s.sdkConfiguration,
-		BaseURL:          baseURL,
-		Context:          ctx,
-		OperationID:      "get-mcp-resource-spec",
-		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
-	}
-
-	timeout := o.Timeout
-	if timeout == nil {
-		timeout = s.sdkConfiguration.Timeout
-	}
-
-	if timeout != nil {
-		var cancel context.CancelFunc
-		ctx, cancel = context.WithTimeout(ctx, *timeout)
-		defer cancel()
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	if o.AcceptHeaderOverride != nil {
-		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
-	} else {
-		req.Header.Set("Accept", "application/json;q=1, application/yaml;q=0")
-	}
-
-	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
-		return nil, err
-	}
-
-	for k, v := range o.SetHeaders {
-		req.Header.Set(k, v)
-	}
-
-	globalRetryConfig := s.sdkConfiguration.RetryConfig
-	retryConfig := o.Retries
-	if retryConfig == nil {
-		if globalRetryConfig != nil {
-			retryConfig = globalRetryConfig
-		}
-	}
-
-	var httpRes *http.Response
-	if retryConfig != nil {
-		httpRes, err = utils.Retry(ctx, utils.Retries{
-			Config: retryConfig,
-			StatusCodes: []string{
-				"429",
-				"500",
-				"502",
-				"503",
-				"504",
-			},
-		}, func() (*http.Response, error) {
-			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
-				copyBody, err := req.GetBody()
-
-				if err != nil {
-					return nil, err
-				}
-
-				req.Body = copyBody
-			}
-
-			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
-			if err != nil {
-				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
-					return nil, err
-				}
-
-				return nil, retry.Permanent(err)
-			}
-
-			httpRes, err := s.sdkConfiguration.Client.Do(req)
-			if err != nil || httpRes == nil {
-				if err != nil {
-					err = fmt.Errorf("error sending request: %w", err)
-				} else {
-					err = fmt.Errorf("error sending request: no response")
-				}
-
-				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
-			}
-			return httpRes, err
-		})
-
-		if err != nil {
-			return nil, err
-		} else {
-			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
-			if err != nil {
-				return nil, err
-			}
-		}
-	} else {
-		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
-		if err != nil {
-			return nil, err
-		}
-
-		httpRes, err = s.sdkConfiguration.Client.Do(req)
-		if err != nil || httpRes == nil {
-			if err != nil {
-				err = fmt.Errorf("error sending request: %w", err)
-			} else {
-				err = fmt.Errorf("error sending request: no response")
-			}
-
-			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
-			return nil, err
-		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
-			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
-			if err != nil {
-				return nil, err
-			} else if _httpRes != nil {
-				httpRes = _httpRes
-			}
-		} else {
-			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
-			if err != nil {
-				return nil, err
-			}
-		}
-	}
-
-	res := &operations.GetMcpResourceSpecResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: httpRes.Header.Get("Content-Type"),
-		RawResponse: httpRes,
-	}
-
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out map[string]any
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.MCPAPISpec = out
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/yaml`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			out := string(rawBody)
-			res.MCPAPISpecYAML = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 400:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.BadRequestError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.UnauthorizedError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 403:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.ForbiddenError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
-		rawBody, err := utils.ConsumeRawBody(httpRes)
-		if err != nil {
-			return nil, err
-		}
-		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := utils.ConsumeRawBody(httpRes)
-		if err != nil {
-			return nil, err
-		}
-		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
-	default:
-		rawBody, err := utils.ConsumeRawBody(httpRes)
-		if err != nil {
-			return nil, err
-		}
-		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
-	}
-
-	return res, nil
-
-}
-
 // GetMcpServerSignals - Get MCP Server Signals
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Client-initiated signals fetch with long-polling capabilities.
 // The client supplies `capabilities` as a deepObject query parameter:
 //   - Keys are capability names (e.g. `mcp`)
@@ -4474,9 +4143,6 @@ func (s *MCPServers) GetMcpServerSignals(ctx context.Context, controlPlaneID str
 }
 
 // ListMcpServersByControlPlane - List MCP Servers by Control Plane
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Returns an array of MCP server objects for the specified control plane.
 func (s *MCPServers) ListMcpServersByControlPlane(ctx context.Context, request operations.ListMcpServersByControlPlaneRequest, opts ...operations.Option) (*operations.ListMcpServersByControlPlaneResponse, error) {
 	o := operations.Options{}
@@ -4749,9 +4415,6 @@ func (s *MCPServers) ListMcpServersByControlPlane(ctx context.Context, request o
 }
 
 // GetMcpServerByControlPlane - Get MCP Server by Control Plane
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Retrieves an MCP server by its ID within a specific control plane context.
 func (s *MCPServers) GetMcpServerByControlPlane(ctx context.Context, controlPlaneID string, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerByControlPlaneResponse, error) {
 	request := operations.GetMcpServerByControlPlaneRequest{
@@ -5046,9 +4709,6 @@ func (s *MCPServers) GetMcpServerByControlPlane(ctx context.Context, controlPlan
 }
 
 // GetMcpServerKongEntities - Get Kong entities for the MCP Server Gateway
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Retrieves Kong entities (Routes, Services, Plugins) for the Gateway in front of the MCP Server.
 func (s *MCPServers) GetMcpServerKongEntities(ctx context.Context, request operations.GetMcpServerKongEntitiesRequest, opts ...operations.Option) (*operations.GetMcpServerKongEntitiesResponse, error) {
 	o := operations.Options{}
@@ -5342,9 +5002,6 @@ func (s *MCPServers) GetMcpServerKongEntities(ctx context.Context, request opera
 }
 
 // PostMcpServerStatus - Report MCP Server deployment status
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Reports the current deployment status of an MCP server, including replica counts and per-version pod statuses.
 func (s *MCPServers) PostMcpServerStatus(ctx context.Context, request operations.PostMcpServerStatusRequest, opts ...operations.Option) (*operations.PostMcpServerStatusResponse, error) {
 	o := operations.Options{}
@@ -5622,9 +5279,6 @@ func (s *MCPServers) PostMcpServerStatus(ctx context.Context, request operations
 }
 
 // GetMcpServerCode - Get generated Python code for the MCP Server
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
 func (s *MCPServers) GetMcpServerCode(ctx context.Context, controlPlaneID string, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerCodeResponse, error) {
 	request := operations.GetMcpServerCodeRequest{

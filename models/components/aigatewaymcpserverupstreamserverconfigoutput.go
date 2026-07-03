@@ -53,8 +53,6 @@ type AIGatewayMCPServerUpstreamServerConfigOutput struct {
 	Logging *AIGatewayMCPServerUpstreamServerConfigLogging `json:"logging,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
 	MaxRequestBodySize *int64 `default:"8388608" json:"max_request_body_size"`
-	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
-	Proxy *AIGatewayProxyConfigOutput `json:"proxy,omitempty"`
 	// Server-side configuration specific to `upstream-server` mode.
 	Server *AIGatewayMCPServerUpstreamServerServerConfigOutput `json:"server,omitempty"`
 	// Helper field to set protocol, host, port and path of the upstream service using a URL.
@@ -99,13 +97,6 @@ func (a *AIGatewayMCPServerUpstreamServerConfigOutput) GetMaxRequestBodySize() *
 	return a.MaxRequestBodySize
 }
 
-func (a *AIGatewayMCPServerUpstreamServerConfigOutput) GetProxy() *AIGatewayProxyConfigOutput {
-	if a == nil {
-		return nil
-	}
-	return a.Proxy
-}
-
 func (a *AIGatewayMCPServerUpstreamServerConfigOutput) GetServer() *AIGatewayMCPServerUpstreamServerServerConfigOutput {
 	if a == nil {
 		return nil
@@ -135,8 +126,6 @@ type AIGatewayMCPServerUpstreamServerConfig struct {
 	Logging *AIGatewayMCPServerUpstreamServerConfigLogging `json:"logging,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
 	MaxRequestBodySize *int64 `default:"8388608" json:"max_request_body_size"`
-	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
-	Proxy *AIGatewayProxyConfig `json:"proxy,omitempty"`
 	// Server-side configuration specific to `upstream-server` mode.
 	Server *AIGatewayMCPServerUpstreamServerServerConfig `json:"server,omitempty"`
 	// Helper field to set protocol, host, port and path of the upstream service using a URL.
@@ -179,13 +168,6 @@ func (a *AIGatewayMCPServerUpstreamServerConfig) GetMaxRequestBodySize() *int64 
 		return nil
 	}
 	return a.MaxRequestBodySize
-}
-
-func (a *AIGatewayMCPServerUpstreamServerConfig) GetProxy() *AIGatewayProxyConfig {
-	if a == nil {
-		return nil
-	}
-	return a.Proxy
 }
 
 func (a *AIGatewayMCPServerUpstreamServerConfig) GetServer() *AIGatewayMCPServerUpstreamServerServerConfig {

@@ -6,7 +6,7 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AIGatewayMCPToolBaseMethod - The method of the exported API, which must match the route's methods.
+// AIGatewayMCPToolBaseMethod - For conversion-only and conversion-listener modes, the method of the exported API, which must match the route's methods.
 type AIGatewayMCPToolBaseMethod string
 
 const (
@@ -32,20 +32,20 @@ func (e *AIGatewayMCPToolBaseMethod) IsExact() bool {
 	return false
 }
 
-// Scheme - The scheme of the exported API. By default, Kong will extract the scheme from API configuration. If the configured scheme is not expected, this field can be used to override it.
-type Scheme string
+// AIGatewayMCPToolBaseScheme - The scheme of the exported API. By default, Kong will extract the scheme from API configuration. If the configured scheme is not expected, this field can be used to override it.
+type AIGatewayMCPToolBaseScheme string
 
 const (
-	SchemeHTTP  Scheme = "http"
-	SchemeHTTPS Scheme = "https"
+	AIGatewayMCPToolBaseSchemeHTTP  AIGatewayMCPToolBaseScheme = "http"
+	AIGatewayMCPToolBaseSchemeHTTPS AIGatewayMCPToolBaseScheme = "https"
 )
 
-func (e Scheme) ToPointer() *Scheme {
+func (e AIGatewayMCPToolBaseScheme) ToPointer() *AIGatewayMCPToolBaseScheme {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Scheme) IsExact() bool {
+func (e *AIGatewayMCPToolBaseScheme) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "http", "https":
@@ -60,7 +60,7 @@ type AIGatewayMCPToolBase struct {
 	// Access control rules for allowing or denying consumer groups access to this tool.
 	// When configured, these will override the default access control rules defined on the MCP Server.
 	//
-	Acls        *AIGatewayACLS               `json:"acls,omitempty"`
+	Acls        *AIGatewayMCPACLs            `json:"acls,omitempty"`
 	Annotations *AIGatewayMCPToolAnnotations `json:"annotations,omitempty"`
 	// A description of what the tool does.
 	Description string `json:"description"`
@@ -69,9 +69,9 @@ type AIGatewayMCPToolBase struct {
 	// The host of the exported API, which must match the route's hosts. It should be the route's host. By default, Kong will extract the host from API configuration. If the configured host is wildcard, this field is required.
 	Host *string `json:"host,omitempty"`
 	// Tool identifier. In passthrough-listener mode, used to match remote MCP Server tools for ACL enforcement. In other modes, it is also used as the tool name (overrides annotations.title if present).
-	Name *string `json:"name,omitempty"`
-	// The method of the exported API, which must match the route's methods.
-	Method AIGatewayMCPToolBaseMethod `json:"method"`
+	Name string `json:"name"`
+	// For conversion-only and conversion-listener modes, the method of the exported API, which must match the route's methods.
+	Method *AIGatewayMCPToolBaseMethod `json:"method,omitempty"`
 	// The path of the exported API, which must match the route's paths. Path not starting with '/' are treated as relative path and the route path will be added as the prefix. By default, Kong will extract the path from API configuration.
 	Path *string `json:"path,omitempty"`
 	// The query arguments of the exported API. If the generated query arguments are not exactly matched, this field is required.
@@ -81,7 +81,7 @@ type AIGatewayMCPToolBase struct {
 	// The API responses specification defined in OpenAPI JSON format. This specification will be used to validate the upstream response and map it back to the structuredOutput. For example, '{"200":{"content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"string"}}}}}}}}'. See https://swagger.io/docs/specification/v3_0/describing-responses/ for more details. Only one non-error (status code < 400) response is supported. Note that `$ref` is not supported.
 	Responses any `json:"responses,omitempty"`
 	// The scheme of the exported API. By default, Kong will extract the scheme from API configuration. If the configured scheme is not expected, this field can be used to override it.
-	Scheme     *Scheme                     `json:"scheme,omitempty"`
+	Scheme     *AIGatewayMCPToolBaseScheme `json:"scheme,omitempty"`
 	Parameters []AIGatewayMCPToolParameter `json:"parameters,omitempty"`
 }
 
@@ -90,13 +90,13 @@ func (a AIGatewayMCPToolBase) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayMCPToolBase) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"description", "method"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"description", "name"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayMCPToolBase) GetAcls() *AIGatewayACLS {
+func (a *AIGatewayMCPToolBase) GetAcls() *AIGatewayMCPACLs {
 	if a == nil {
 		return nil
 	}
@@ -131,16 +131,16 @@ func (a *AIGatewayMCPToolBase) GetHost() *string {
 	return a.Host
 }
 
-func (a *AIGatewayMCPToolBase) GetName() *string {
+func (a *AIGatewayMCPToolBase) GetName() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.Name
 }
 
-func (a *AIGatewayMCPToolBase) GetMethod() AIGatewayMCPToolBaseMethod {
+func (a *AIGatewayMCPToolBase) GetMethod() *AIGatewayMCPToolBaseMethod {
 	if a == nil {
-		return AIGatewayMCPToolBaseMethod("")
+		return nil
 	}
 	return a.Method
 }
@@ -173,7 +173,7 @@ func (a *AIGatewayMCPToolBase) GetResponses() any {
 	return a.Responses
 }
 
-func (a *AIGatewayMCPToolBase) GetScheme() *Scheme {
+func (a *AIGatewayMCPToolBase) GetScheme() *AIGatewayMCPToolBaseScheme {
 	if a == nil {
 		return nil
 	}

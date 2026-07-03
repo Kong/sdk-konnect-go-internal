@@ -648,10 +648,10 @@ func (s *AIGatewayConsumers) CreateAiGatewayConsumer(ctx context.Context, gatewa
 
 // GetAiGatewayConsumer - Get an AI Gateway Consumer
 // Returns the details of a specific AI Gateway consumer.
-func (s *AIGatewayConsumers) GetAiGatewayConsumer(ctx context.Context, gatewayID string, consumerID string, opts ...operations.Option) (*operations.GetAiGatewayConsumerResponse, error) {
+func (s *AIGatewayConsumers) GetAiGatewayConsumer(ctx context.Context, gatewayID string, consumerIDOrName string, opts ...operations.Option) (*operations.GetAiGatewayConsumerResponse, error) {
 	request := operations.GetAiGatewayConsumerRequest{
-		GatewayID:  gatewayID,
-		ConsumerID: consumerID,
+		GatewayID:        gatewayID,
+		ConsumerIDOrName: consumerIDOrName,
 	}
 
 	o := operations.Options{}
@@ -672,7 +672,7 @@ func (s *AIGatewayConsumers) GetAiGatewayConsumer(ctx context.Context, gatewayID
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/consumers/{consumerId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/consumers/{consumerIdOrName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -961,7 +961,7 @@ func (s *AIGatewayConsumers) UpdateAiGatewayConsumer(ctx context.Context, reques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/consumers/{consumerId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/consumers/{consumerIdOrName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1259,10 +1259,10 @@ func (s *AIGatewayConsumers) UpdateAiGatewayConsumer(ctx context.Context, reques
 
 // DeleteAiGatewayConsumer - Delete an AI Gateway Consumer
 // Removes a specific AI Gateway consumer.
-func (s *AIGatewayConsumers) DeleteAiGatewayConsumer(ctx context.Context, gatewayID string, consumerID string, opts ...operations.Option) (*operations.DeleteAiGatewayConsumerResponse, error) {
+func (s *AIGatewayConsumers) DeleteAiGatewayConsumer(ctx context.Context, gatewayID string, consumerIDOrName string, opts ...operations.Option) (*operations.DeleteAiGatewayConsumerResponse, error) {
 	request := operations.DeleteAiGatewayConsumerRequest{
-		GatewayID:  gatewayID,
-		ConsumerID: consumerID,
+		GatewayID:        gatewayID,
+		ConsumerIDOrName: consumerIDOrName,
 	}
 
 	o := operations.Options{}
@@ -1283,7 +1283,7 @@ func (s *AIGatewayConsumers) DeleteAiGatewayConsumer(ctx context.Context, gatewa
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/consumers/{consumerId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/ai-gateways/{gatewayId}/consumers/{consumerIdOrName}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

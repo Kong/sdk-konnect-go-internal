@@ -33,15 +33,11 @@ func (e *AIGatewayGeminiEmbeddingsModelConfigType) UnmarshalJSON(data []byte) er
 
 // AIGatewayGeminiEmbeddingsModelConfig - Google Gemini-specific configuration for a model.
 type AIGatewayGeminiEmbeddingsModelConfig struct {
-	// The name of the embeddings model.
-	Name string `json:"name"`
 	// The URL of the embeddings model.
 	UpstreamURL string                                   `json:"upstream_url"`
 	Type        AIGatewayGeminiEmbeddingsModelConfigType `json:"type"`
-	// The Google Cloud location ID for the model endpoint.
-	LocationID *string `json:"location_id,omitempty"`
-	// The custom API endpoint for the Gemini model.
-	APIEndpoint *string `json:"api_endpoint,omitempty"`
+	// Configuration for a model hosted on Google Cloud Project.
+	GcpEnvironment *GCPModelConfig `json:"gcp_environment,omitempty"`
 }
 
 func (a AIGatewayGeminiEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
@@ -49,17 +45,10 @@ func (a AIGatewayGeminiEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayGeminiEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
 		return err
 	}
 	return nil
-}
-
-func (a *AIGatewayGeminiEmbeddingsModelConfig) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
 }
 
 func (a *AIGatewayGeminiEmbeddingsModelConfig) GetUpstreamURL() string {
@@ -76,16 +65,9 @@ func (a *AIGatewayGeminiEmbeddingsModelConfig) GetType() AIGatewayGeminiEmbeddin
 	return a.Type
 }
 
-func (a *AIGatewayGeminiEmbeddingsModelConfig) GetLocationID() *string {
+func (a *AIGatewayGeminiEmbeddingsModelConfig) GetGcpEnvironment() *GCPModelConfig {
 	if a == nil {
 		return nil
 	}
-	return a.LocationID
-}
-
-func (a *AIGatewayGeminiEmbeddingsModelConfig) GetAPIEndpoint() *string {
-	if a == nil {
-		return nil
-	}
-	return a.APIEndpoint
+	return a.GcpEnvironment
 }

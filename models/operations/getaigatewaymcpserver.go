@@ -10,8 +10,8 @@ import (
 type GetAiGatewayMcpServerRequest struct {
 	// The unique ID of the AI Gateway.
 	GatewayID string `pathParam:"style=simple,explode=false,name=gatewayId"`
-	// The unique ID of the MCP Server.
-	McpServerID string `pathParam:"style=simple,explode=false,name=mcpServerId"`
+	// The unique ID or name of the MCP Server.
+	McpServerIDOrName string `pathParam:"style=simple,explode=false,name=mcpServerIdOrName"`
 }
 
 func (g *GetAiGatewayMcpServerRequest) GetGatewayID() string {
@@ -21,11 +21,11 @@ func (g *GetAiGatewayMcpServerRequest) GetGatewayID() string {
 	return g.GatewayID
 }
 
-func (g *GetAiGatewayMcpServerRequest) GetMcpServerID() string {
+func (g *GetAiGatewayMcpServerRequest) GetMcpServerIDOrName() string {
 	if g == nil {
 		return ""
 	}
-	return g.McpServerID
+	return g.McpServerIDOrName
 }
 
 type GetAiGatewayMcpServerResponse struct {

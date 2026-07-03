@@ -33,11 +33,13 @@ func (e *AIGatewayBedrockEmbeddingsModelConfigType) UnmarshalJSON(data []byte) e
 
 // AIGatewayBedrockEmbeddingsModelConfig - AWS Bedrock-specific configuration for a model.
 type AIGatewayBedrockEmbeddingsModelConfig struct {
-	// The name of the embeddings model.
-	Name string `json:"name"`
 	// The URL of the embeddings model.
 	UpstreamURL string                                    `json:"upstream_url"`
 	Type        AIGatewayBedrockEmbeddingsModelConfigType `json:"type"`
+	// The AWS region for the model.
+	// Setting this option overrides the AWS_REGION environment variable.
+	//
+	Region *string `json:"region,omitempty"`
 	// S3 bucket prefix for batch inference jobs.
 	BatchBucketPrefix *string `json:"batch_bucket_prefix,omitempty"`
 	// Whether to normalize embedding vectors in the response.
@@ -53,17 +55,10 @@ func (a AIGatewayBedrockEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayBedrockEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
 		return err
 	}
 	return nil
-}
-
-func (a *AIGatewayBedrockEmbeddingsModelConfig) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
 }
 
 func (a *AIGatewayBedrockEmbeddingsModelConfig) GetUpstreamURL() string {
@@ -78,6 +73,13 @@ func (a *AIGatewayBedrockEmbeddingsModelConfig) GetType() AIGatewayBedrockEmbedd
 		return AIGatewayBedrockEmbeddingsModelConfigType("")
 	}
 	return a.Type
+}
+
+func (a *AIGatewayBedrockEmbeddingsModelConfig) GetRegion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Region
 }
 
 func (a *AIGatewayBedrockEmbeddingsModelConfig) GetBatchBucketPrefix() *string {

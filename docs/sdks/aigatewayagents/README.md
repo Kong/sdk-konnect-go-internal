@@ -105,26 +105,16 @@ func main() {
         DisplayName: "Kong Air Flight Booking Agent",
         Name: "kongair-flight-booking-agent",
         Type: components.CreateAIGatewayAgentRequestTypeA2a,
-        Policies: []string{
-            "<value 1>",
-            "<value 2>",
-        },
-        Acls: components.AIGatewayACLS{
-            Allow: []string{
-                "<value 1>",
-                "<value 2>",
-            },
-            Deny: []string{},
-        },
-        Config: components.CreateAIGatewayAgentRequestConfig{
-            URL: sdkkonnectgo.Pointer("https://booking-agent.internal.kongair.com"),
-            Route: &components.AIGatewayRouteConfig{
-                Destinations: []components.Destinations{
-                    components.Destinations{
-                        IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                        Port: sdkkonnectgo.Pointer[int64](1234),
-                    },
+        Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
+            components.AIGatewayAllowACL{
+                Allow: []string{
+                    "consumer-group-1",
                 },
+            },
+        )),
+        Config: components.CreateAIGatewayAgentRequestConfig{
+            URL: "https://booking-agent.internal.kongair.com",
+            Route: &components.AIGatewayRouteConfig{
                 Headers: map[string]any{
                     "version": []any{
                         "v1",
@@ -133,12 +123,6 @@ func main() {
                 },
                 Hosts: []string{
                     "foo.example.com",
-                },
-                Sources: []components.Sources{
-                    components.Sources{
-                        IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                        Port: sdkkonnectgo.Pointer[int64](1234),
-                    },
                 },
             },
             Logging: &components.CreateAIGatewayAgentRequestLogging{
@@ -156,7 +140,13 @@ func main() {
         log.Fatal(err)
     }
     if res.AIGatewayAgent != nil {
-        // handle response
+        switch res.AIGatewayAgent.Acls.Type {
+            case components.AIGatewayACLSTypeAIGatewayAllowACL:
+                // res.AIGatewayAgent.Acls.AIGatewayAllowACL is populated
+            case components.AIGatewayACLSTypeAIGatewayDenyACL:
+                // res.AIGatewayAgent.Acls.AIGatewayDenyACL is populated
+        }
+
     }
 }
 ```
@@ -192,7 +182,7 @@ Returns the details of a specific AI Gateway agent.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-agent" method="get" path="/v1/ai-gateways/{gatewayId}/agents/{agentId}" -->
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-agent" method="get" path="/v1/ai-gateways/{gatewayId}/agents/{agentIdOrName}" -->
 ```go
 package main
 
@@ -212,12 +202,18 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayAgents.GetAiGatewayAgent(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayAgents.GetAiGatewayAgent(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
     if res.AIGatewayAgent != nil {
-        // handle response
+        switch res.AIGatewayAgent.Acls.Type {
+            case components.AIGatewayACLSTypeAIGatewayAllowACL:
+                // res.AIGatewayAgent.Acls.AIGatewayAllowACL is populated
+            case components.AIGatewayACLSTypeAIGatewayDenyACL:
+                // res.AIGatewayAgent.Acls.AIGatewayDenyACL is populated
+        }
+
     }
 }
 ```
@@ -228,7 +224,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `agentID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway agent.                   | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `agentIDOrName`                                          | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway agent.           | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
@@ -251,7 +247,7 @@ Updates the configuration of an existing AI Gateway agent.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-ai-gateway-agent" method="put" path="/v1/ai-gateways/{gatewayId}/agents/{agentId}" -->
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-agent" method="put" path="/v1/ai-gateways/{gatewayId}/agents/{agentIdOrName}" -->
 ```go
 package main
 
@@ -274,35 +270,21 @@ func main() {
 
     res, err := s.AIGatewayAgents.UpdateAiGatewayAgent(ctx, operations.UpdateAiGatewayAgentRequest{
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        AgentID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        AgentIDOrName: "my-entity-name",
         UpdateAIGatewayAgentRequest: components.UpdateAIGatewayAgentRequest{
             DisplayName: "Kong Air Flight Booking Agent",
             Name: "kongair-flight-booking-agent",
             Type: components.UpdateAIGatewayAgentRequestTypeA2a,
-            Policies: []string{
-                "<value 1>",
-                "<value 2>",
-                "<value 3>",
-            },
-            Acls: components.AIGatewayACLS{
-                Allow: []string{
-                    "<value 1>",
-                    "<value 2>",
-                    "<value 3>",
-                },
-                Deny: []string{
-                    "<value 1>",
-                },
-            },
-            Config: components.UpdateAIGatewayAgentRequestConfig{
-                URL: sdkkonnectgo.Pointer("https://booking-agent.internal.kongair.com"),
-                Route: &components.AIGatewayRouteConfig{
-                    Destinations: []components.Destinations{
-                        components.Destinations{
-                            IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                            Port: sdkkonnectgo.Pointer[int64](1234),
-                        },
+            Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
+                components.AIGatewayAllowACL{
+                    Allow: []string{
+                        "consumer-group-1",
                     },
+                },
+            )),
+            Config: components.UpdateAIGatewayAgentRequestConfig{
+                URL: "https://booking-agent.internal.kongair.com",
+                Route: &components.AIGatewayRouteConfig{
                     Headers: map[string]any{
                         "version": []any{
                             "v1",
@@ -311,12 +293,6 @@ func main() {
                     },
                     Hosts: []string{
                         "foo.example.com",
-                    },
-                    Sources: []components.Sources{
-                        components.Sources{
-                            IP: sdkkonnectgo.Pointer("10.1.0.0/16"),
-                            Port: sdkkonnectgo.Pointer[int64](1234),
-                        },
                     },
                 },
                 Logging: &components.UpdateAIGatewayAgentRequestLogging{
@@ -335,7 +311,13 @@ func main() {
         log.Fatal(err)
     }
     if res.AIGatewayAgent != nil {
-        // handle response
+        switch res.AIGatewayAgent.Acls.Type {
+            case components.AIGatewayACLSTypeAIGatewayAllowACL:
+                // res.AIGatewayAgent.Acls.AIGatewayAllowACL is populated
+            case components.AIGatewayACLSTypeAIGatewayDenyACL:
+                // res.AIGatewayAgent.Acls.AIGatewayDenyACL is populated
+        }
+
     }
 }
 ```
@@ -369,7 +351,7 @@ Removes a specific AI Gateway agent.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-agent" method="delete" path="/v1/ai-gateways/{gatewayId}/agents/{agentId}" -->
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-agent" method="delete" path="/v1/ai-gateways/{gatewayId}/agents/{agentIdOrName}" -->
 ```go
 package main
 
@@ -389,7 +371,7 @@ func main() {
         }),
     )
 
-    res, err := s.AIGatewayAgents.DeleteAiGatewayAgent(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "bf138ba2-c9b1-4229-b268-04d9d8a6410b")
+    res, err := s.AIGatewayAgents.DeleteAiGatewayAgent(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", "my-entity-name")
     if err != nil {
         log.Fatal(err)
     }
@@ -405,7 +387,7 @@ func main() {
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
 | `gatewayID`                                              | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway.                         | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `agentID`                                                | `string`                                                 | :heavy_check_mark:                                       | The unique ID of the AI Gateway agent.                   | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `agentIDOrName`                                          | `string`                                                 | :heavy_check_mark:                                       | The unique ID or name of the AI Gateway agent.           | my-entity-name                                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response

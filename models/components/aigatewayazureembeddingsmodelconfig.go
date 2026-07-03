@@ -33,13 +33,11 @@ func (e *AIGatewayAzureEmbeddingsModelConfigType) UnmarshalJSON(data []byte) err
 
 // AIGatewayAzureEmbeddingsModelConfig - Azure-specific configuration for a model.
 type AIGatewayAzureEmbeddingsModelConfig struct {
-	// The name of the embeddings model.
-	Name string `json:"name"`
 	// The URL of the embeddings model.
 	UpstreamURL string                                  `json:"upstream_url"`
 	Type        AIGatewayAzureEmbeddingsModelConfigType `json:"type"`
 	// The Azure deployment ID for the model.
-	DeploymentID *string `json:"deployment_id,omitempty"`
+	DeploymentID string `json:"deployment_id"`
 	// The Azure OpenAI API version to use.
 	APIVersion *string `default:"2023-05-15" json:"api_version"`
 }
@@ -49,17 +47,10 @@ func (a AIGatewayAzureEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayAzureEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type", "deployment_id"}); err != nil {
 		return err
 	}
 	return nil
-}
-
-func (a *AIGatewayAzureEmbeddingsModelConfig) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
 }
 
 func (a *AIGatewayAzureEmbeddingsModelConfig) GetUpstreamURL() string {
@@ -76,9 +67,9 @@ func (a *AIGatewayAzureEmbeddingsModelConfig) GetType() AIGatewayAzureEmbeddings
 	return a.Type
 }
 
-func (a *AIGatewayAzureEmbeddingsModelConfig) GetDeploymentID() *string {
+func (a *AIGatewayAzureEmbeddingsModelConfig) GetDeploymentID() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.DeploymentID
 }

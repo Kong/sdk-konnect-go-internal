@@ -64,14 +64,14 @@ type AIGatewayMCPServerBaseACLPropertiesOauth struct {
 	//
 	AccessTokenClaimField string `json:"access_token_claim_field"`
 	// Access control rules for allowing or denying consumer groups.
-	Acls AIGatewayACLS `json:"acls"`
+	Acls *AIGatewayMCPACLs `json:"acls,omitempty"`
 	// Default access control rules for allowing or denying consumer groups to tools.
-	DefaultToolAcls AIGatewayACLS                                `json:"default_tool_acls"`
+	DefaultToolAcls *AIGatewayMCPACLs                            `json:"default_tool_acls,omitempty"`
 	Type            AIGatewayMCPServerBaseACLPropertiesOauthType `json:"type"`
 	// Routing, logging, and server configuration for the MCP Server.
-	Config AIGatewayMCPServerWithUpstreamConfig `json:"config"`
+	Config AIGatewayMCPServerWithUpstreamNoProxyConfig `json:"config"`
 	// List of tools exposed by this MCP Server.
-	Tools []AIGatewayMCPToolBase `json:"tools"`
+	Tools []AIGatewayMCPConversionTool `json:"tools,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
 	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
@@ -79,7 +79,7 @@ type AIGatewayMCPServerBaseACLPropertiesOauth struct {
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
 	// List of policy references.
-	Policies []string `json:"policies"`
+	Policies []string `json:"policies,omitempty"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
 	//
 	// Public labels are intended to store **PUBLIC** metadata.
@@ -100,7 +100,7 @@ func (a AIGatewayMCPServerBaseACLPropertiesOauth) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AIGatewayMCPServerBaseACLPropertiesOauth) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"acl_attribute_type", "access_token_claim_field", "acls", "default_tool_acls", "type", "config", "tools", "display_name", "name", "policies"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"acl_attribute_type", "access_token_claim_field", "type", "config", "display_name", "name"}); err != nil {
 		return err
 	}
 	return nil
@@ -120,16 +120,16 @@ func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetAccessTokenClaimField() st
 	return a.AccessTokenClaimField
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetAcls() AIGatewayACLS {
+func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetAcls() *AIGatewayMCPACLs {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.Acls
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetDefaultToolAcls() AIGatewayACLS {
+func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetDefaultToolAcls() *AIGatewayMCPACLs {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.DefaultToolAcls
 }
@@ -141,16 +141,16 @@ func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetType() AIGatewayMCPServerB
 	return a.Type
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetConfig() AIGatewayMCPServerWithUpstreamConfig {
+func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetConfig() AIGatewayMCPServerWithUpstreamNoProxyConfig {
 	if a == nil {
-		return AIGatewayMCPServerWithUpstreamConfig{}
+		return AIGatewayMCPServerWithUpstreamNoProxyConfig{}
 	}
 	return a.Config
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetTools() []AIGatewayMCPToolBase {
+func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetTools() []AIGatewayMCPConversionTool {
 	if a == nil {
-		return []AIGatewayMCPToolBase{}
+		return nil
 	}
 	return a.Tools
 }
@@ -178,7 +178,7 @@ func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetEnabled() *bool {
 
 func (a *AIGatewayMCPServerBaseACLPropertiesOauth) GetPolicies() []string {
 	if a == nil {
-		return []string{}
+		return nil
 	}
 	return a.Policies
 }
@@ -255,14 +255,14 @@ type AIGatewayMCPServerBaseACLPropertiesConsumer struct {
 	// The type of attributes that ACL is evaluated with.
 	ACLAttributeType *ACLAttributeType `default:"consumer" json:"acl_attribute_type"`
 	// Access control rules for allowing or denying consumer groups.
-	Acls AIGatewayACLS `json:"acls"`
+	Acls *AIGatewayMCPACLs `json:"acls,omitempty"`
 	// Default access control rules for allowing or denying consumer groups to tools.
-	DefaultToolAcls AIGatewayACLS                                   `json:"default_tool_acls"`
+	DefaultToolAcls *AIGatewayMCPACLs                               `json:"default_tool_acls,omitempty"`
 	Type            AIGatewayMCPServerBaseACLPropertiesConsumerType `json:"type"`
 	// Routing, logging, and server configuration for the MCP Server.
-	Config AIGatewayMCPServerWithUpstreamConfig `json:"config"`
+	Config AIGatewayMCPServerWithUpstreamNoProxyConfig `json:"config"`
 	// List of tools exposed by this MCP Server.
-	Tools []AIGatewayMCPToolBase `json:"tools"`
+	Tools []AIGatewayMCPConversionTool `json:"tools,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
 	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
@@ -270,7 +270,7 @@ type AIGatewayMCPServerBaseACLPropertiesConsumer struct {
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
 	// List of policy references.
-	Policies []string `json:"policies"`
+	Policies []string `json:"policies,omitempty"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
 	//
 	// Public labels are intended to store **PUBLIC** metadata.
@@ -291,7 +291,7 @@ func (a AIGatewayMCPServerBaseACLPropertiesConsumer) MarshalJSON() ([]byte, erro
 }
 
 func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"acls", "default_tool_acls", "type", "config", "tools", "display_name", "name", "policies"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "config", "display_name", "name"}); err != nil {
 		return err
 	}
 	return nil
@@ -304,16 +304,16 @@ func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetACLAttributeType() *ACL
 	return a.ACLAttributeType
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetAcls() AIGatewayACLS {
+func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetAcls() *AIGatewayMCPACLs {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.Acls
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetDefaultToolAcls() AIGatewayACLS {
+func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetDefaultToolAcls() *AIGatewayMCPACLs {
 	if a == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return a.DefaultToolAcls
 }
@@ -325,16 +325,16 @@ func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetType() AIGatewayMCPServ
 	return a.Type
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetConfig() AIGatewayMCPServerWithUpstreamConfig {
+func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetConfig() AIGatewayMCPServerWithUpstreamNoProxyConfig {
 	if a == nil {
-		return AIGatewayMCPServerWithUpstreamConfig{}
+		return AIGatewayMCPServerWithUpstreamNoProxyConfig{}
 	}
 	return a.Config
 }
 
-func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetTools() []AIGatewayMCPToolBase {
+func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetTools() []AIGatewayMCPConversionTool {
 	if a == nil {
-		return []AIGatewayMCPToolBase{}
+		return nil
 	}
 	return a.Tools
 }
@@ -362,7 +362,7 @@ func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetEnabled() *bool {
 
 func (a *AIGatewayMCPServerBaseACLPropertiesConsumer) GetPolicies() []string {
 	if a == nil {
-		return []string{}
+		return nil
 	}
 	return a.Policies
 }

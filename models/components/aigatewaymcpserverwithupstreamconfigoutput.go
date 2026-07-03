@@ -53,14 +53,14 @@ type AIGatewayMCPServerWithUpstreamConfigOutput struct {
 	Logging *AIGatewayMCPServerWithUpstreamConfigLogging `json:"logging,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
 	MaxRequestBodySize *int64 `default:"8388608" json:"max_request_body_size"`
-	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
-	Proxy *AIGatewayProxyConfigOutput `json:"proxy,omitempty"`
 	// Server-side configuration for the MCP Server.
-	Server *AIGatewayMCPServerServerConfigBase `json:"server,omitempty"`
+	Server *AIGatewayMCPServerServerConfigBaseOutput `json:"server,omitempty"`
 	// Helper field to set protocol, host, port and path of the upstream service using a URL.
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
 	URL string `json:"url"`
+	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
+	Proxy *AIGatewayProxyConfigOutput `json:"proxy,omitempty"`
 }
 
 func (a AIGatewayMCPServerWithUpstreamConfigOutput) MarshalJSON() ([]byte, error) {
@@ -95,14 +95,7 @@ func (a *AIGatewayMCPServerWithUpstreamConfigOutput) GetMaxRequestBodySize() *in
 	return a.MaxRequestBodySize
 }
 
-func (a *AIGatewayMCPServerWithUpstreamConfigOutput) GetProxy() *AIGatewayProxyConfigOutput {
-	if a == nil {
-		return nil
-	}
-	return a.Proxy
-}
-
-func (a *AIGatewayMCPServerWithUpstreamConfigOutput) GetServer() *AIGatewayMCPServerServerConfigBase {
+func (a *AIGatewayMCPServerWithUpstreamConfigOutput) GetServer() *AIGatewayMCPServerServerConfigBaseOutput {
 	if a == nil {
 		return nil
 	}
@@ -116,6 +109,13 @@ func (a *AIGatewayMCPServerWithUpstreamConfigOutput) GetURL() string {
 	return a.URL
 }
 
+func (a *AIGatewayMCPServerWithUpstreamConfigOutput) GetProxy() *AIGatewayProxyConfigOutput {
+	if a == nil {
+		return nil
+	}
+	return a.Proxy
+}
+
 // AIGatewayMCPServerWithUpstreamConfig - Routing, logging, and server configuration for the MCP Server.
 type AIGatewayMCPServerWithUpstreamConfig struct {
 	// Configuration for an AI Gateway route.
@@ -124,14 +124,14 @@ type AIGatewayMCPServerWithUpstreamConfig struct {
 	Logging *AIGatewayMCPServerWithUpstreamConfigLogging `json:"logging,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
 	MaxRequestBodySize *int64 `default:"8388608" json:"max_request_body_size"`
-	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
-	Proxy *AIGatewayProxyConfig `json:"proxy,omitempty"`
 	// Server-side configuration for the MCP Server.
 	Server *AIGatewayMCPServerServerConfigBase `json:"server,omitempty"`
 	// Helper field to set protocol, host, port and path of the upstream service using a URL.
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
 	URL string `json:"url"`
+	// HTTP/HTTPS proxy configuration for outbound requests to the upstream AI provider.
+	Proxy *AIGatewayProxyConfig `json:"proxy,omitempty"`
 }
 
 func (a AIGatewayMCPServerWithUpstreamConfig) MarshalJSON() ([]byte, error) {
@@ -166,13 +166,6 @@ func (a *AIGatewayMCPServerWithUpstreamConfig) GetMaxRequestBodySize() *int64 {
 	return a.MaxRequestBodySize
 }
 
-func (a *AIGatewayMCPServerWithUpstreamConfig) GetProxy() *AIGatewayProxyConfig {
-	if a == nil {
-		return nil
-	}
-	return a.Proxy
-}
-
 func (a *AIGatewayMCPServerWithUpstreamConfig) GetServer() *AIGatewayMCPServerServerConfigBase {
 	if a == nil {
 		return nil
@@ -185,4 +178,11 @@ func (a *AIGatewayMCPServerWithUpstreamConfig) GetURL() string {
 		return ""
 	}
 	return a.URL
+}
+
+func (a *AIGatewayMCPServerWithUpstreamConfig) GetProxy() *AIGatewayProxyConfig {
+	if a == nil {
+		return nil
+	}
+	return a.Proxy
 }

@@ -41,6 +41,12 @@ aiGatewayEmbeddingsModelConfig := components.CreateAIGatewayEmbeddingsModelConfi
 aiGatewayEmbeddingsModelConfig := components.CreateAIGatewayEmbeddingsModelConfigVercel(components.AIGatewayVercelEmbeddingsModelConfig{/* values here */})
 ```
 
+### AIGatewayVertexEmbeddingsModelConfig
+
+```go
+aiGatewayEmbeddingsModelConfig := components.CreateAIGatewayEmbeddingsModelConfigVertex(components.AIGatewayVertexEmbeddingsModelConfig{/* values here */})
+```
+
 ## Union Discrimination
 
 Use the `Type` field to determine which variant is active, then access the corresponding field:
@@ -59,5 +65,7 @@ switch aiGatewayEmbeddingsModelConfig.Type {
 		// aiGatewayEmbeddingsModelConfig.AIGatewayHuggingfaceEmbeddingsModelConfig is populated
 	case components.AIGatewayEmbeddingsModelConfigTypeVercel:
 		// aiGatewayEmbeddingsModelConfig.AIGatewayVercelEmbeddingsModelConfig is populated
+	case components.AIGatewayEmbeddingsModelConfigTypeVertex:
+		// aiGatewayEmbeddingsModelConfig.AIGatewayVertexEmbeddingsModelConfig is populated
 }
 ```

@@ -34,9 +34,9 @@ func (e *AIGatewayMCPServerConversionOnlyType) UnmarshalJSON(data []byte) error 
 type AIGatewayMCPServerConversionOnly struct {
 	Type AIGatewayMCPServerConversionOnlyType `json:"type"`
 	// Routing, logging, and server configuration for the MCP Server.
-	Config AIGatewayMCPServerWithUpstreamConfig `json:"config"`
+	Config AIGatewayMCPServerWithUpstreamNoProxyConfig `json:"config"`
 	// List of tools exposed by this MCP Server.
-	Tools []AIGatewayMCPToolBase `json:"tools"`
+	Tools []AIGatewayMCPConversionTool `json:"tools,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
 	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
@@ -44,7 +44,7 @@ type AIGatewayMCPServerConversionOnly struct {
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
 	// List of policy references.
-	Policies []string `json:"policies"`
+	Policies []string `json:"policies,omitempty"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
 	//
 	// Public labels are intended to store **PUBLIC** metadata.
@@ -65,7 +65,7 @@ func (a AIGatewayMCPServerConversionOnly) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayMCPServerConversionOnly) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "config", "tools", "display_name", "name", "policies"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "config", "display_name", "name"}); err != nil {
 		return err
 	}
 	return nil
@@ -78,16 +78,16 @@ func (a *AIGatewayMCPServerConversionOnly) GetType() AIGatewayMCPServerConversio
 	return a.Type
 }
 
-func (a *AIGatewayMCPServerConversionOnly) GetConfig() AIGatewayMCPServerWithUpstreamConfig {
+func (a *AIGatewayMCPServerConversionOnly) GetConfig() AIGatewayMCPServerWithUpstreamNoProxyConfig {
 	if a == nil {
-		return AIGatewayMCPServerWithUpstreamConfig{}
+		return AIGatewayMCPServerWithUpstreamNoProxyConfig{}
 	}
 	return a.Config
 }
 
-func (a *AIGatewayMCPServerConversionOnly) GetTools() []AIGatewayMCPToolBase {
+func (a *AIGatewayMCPServerConversionOnly) GetTools() []AIGatewayMCPConversionTool {
 	if a == nil {
-		return []AIGatewayMCPToolBase{}
+		return nil
 	}
 	return a.Tools
 }
@@ -115,7 +115,7 @@ func (a *AIGatewayMCPServerConversionOnly) GetEnabled() *bool {
 
 func (a *AIGatewayMCPServerConversionOnly) GetPolicies() []string {
 	if a == nil {
-		return []string{}
+		return nil
 	}
 	return a.Policies
 }

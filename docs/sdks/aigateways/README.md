@@ -98,6 +98,7 @@ func main() {
 
     res, err := s.AIGateways.CreateAiGateway(ctx, components.CreateAIGatewayRequest{
         DisplayName: "My AI Gateway",
+        Name: "my-ai-gateway",
         Description: sdkkonnectgo.Pointer("An AI Gateway for my organization."),
         ProxyUrls: []components.AIGatewayProxyURL{
             components.AIGatewayProxyURL{
@@ -228,6 +229,7 @@ func main() {
 
     res, err := s.AIGateways.UpdateAiGateway(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", components.UpdateAIGatewayRequest{
         DisplayName: "My AI Gateway",
+        Name: "my-ai-gateway",
         Description: sdkkonnectgo.Pointer("An AI Gateway for my organization."),
         ProxyUrls: []components.AIGatewayProxyURL{
             components.AIGatewayProxyURL{

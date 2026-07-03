@@ -33,13 +33,11 @@ func (e *AIGatewayDatabricksEmbeddingsModelConfigType) UnmarshalJSON(data []byte
 
 // AIGatewayDatabricksEmbeddingsModelConfig - Databricks-specific configuration for a model.
 type AIGatewayDatabricksEmbeddingsModelConfig struct {
-	// The name of the embeddings model.
-	Name string `json:"name"`
 	// The URL of the embeddings model.
 	UpstreamURL string                                       `json:"upstream_url"`
 	Type        AIGatewayDatabricksEmbeddingsModelConfigType `json:"type"`
 	// The Databricks workspace instance ID.
-	WorkspaceInstanceID *string `json:"workspace_instance_id,omitempty"`
+	WorkspaceInstanceID string `json:"workspace_instance_id"`
 }
 
 func (a AIGatewayDatabricksEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
@@ -47,17 +45,10 @@ func (a AIGatewayDatabricksEmbeddingsModelConfig) MarshalJSON() ([]byte, error) 
 }
 
 func (a *AIGatewayDatabricksEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type", "workspace_instance_id"}); err != nil {
 		return err
 	}
 	return nil
-}
-
-func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
 }
 
 func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetUpstreamURL() string {
@@ -74,9 +65,9 @@ func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetType() AIGatewayDatabricks
 	return a.Type
 }
 
-func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetWorkspaceInstanceID() *string {
+func (a *AIGatewayDatabricksEmbeddingsModelConfig) GetWorkspaceInstanceID() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.WorkspaceInstanceID
 }

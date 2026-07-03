@@ -118,8 +118,7 @@ func (u AIGatewayProviderVertexAuth) MarshalJSON() ([]byte, error) {
 }
 
 type AIGatewayProviderVertexConfig struct {
-	Auth      AIGatewayProviderVertexAuth `json:"auth"`
-	ProjectID *string                     `json:"project_id,omitempty"`
+	Auth AIGatewayProviderVertexAuth `json:"auth"`
 }
 
 func (a AIGatewayProviderVertexConfig) MarshalJSON() ([]byte, error) {
@@ -146,13 +145,6 @@ func (a *AIGatewayProviderVertexConfig) GetAuthBasic() *AIGatewayProviderConfigA
 
 func (a *AIGatewayProviderVertexConfig) GetAuthGcp() *AIGatewayProviderConfigAuthGCP {
 	return a.GetAuth().AIGatewayProviderConfigAuthGCP
-}
-
-func (a *AIGatewayProviderVertexConfig) GetProjectID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.ProjectID
 }
 
 // AIGatewayProviderVertex - Config for GCP LLM provider.

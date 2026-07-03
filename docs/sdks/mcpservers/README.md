@@ -17,7 +17,6 @@
 * [GetMcpResource](#getmcpresource) - Get an MCP Resource
 * [DeleteMcpResource](#deletemcpresource) - Delete an MCP Resource
 * [UpdateMcpResource](#updatemcpresource) - Update an MCP Resource
-* [GetMcpResourceSpec](#getmcpresourcespec) - Get MCP Resource Spec
 * [GetMcpServerSignals](#getmcpserversignals) - Get MCP Server Signals
 * [ListMcpServersByControlPlane](#listmcpserversbycontrolplane) - List MCP Servers by Control Plane
 * [GetMcpServerByControlPlane](#getmcpserverbycontrolplane) - Get MCP Server by Control Plane
@@ -26,9 +25,6 @@
 * [GetMcpServerCode](#getmcpservercode) - Get generated Python code for the MCP Server
 
 ## ListMcpServerConfigs
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Returns an array of MCP server objects.
 
@@ -91,9 +87,6 @@ func main() {
 
 ## CreateMcpServerConfig
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Create an MCP Server in the Konnect Organization.
 
 ### Example Usage
@@ -120,11 +113,16 @@ func main() {
 
     res, err := s.MCPServers.CreateMcpServerConfig(ctx, components.CreateMCPServerRequest{
         Name: "<value>",
+        DisplayName: "Kellie85",
+        Description: "scuffle lost zowie eek boohoo",
+        Labels: map[string]string{
+            "env": "test",
+        },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -154,9 +152,6 @@ func main() {
 
 ## GetMcpServerConfig
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Returns information about an individual MCP server.
 
 ### Example Usage
@@ -185,7 +180,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -215,9 +210,6 @@ func main() {
 
 ## UpdateMcpServerConfig
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Update an individual MCP server.
 
 ### Example Usage
@@ -242,13 +234,18 @@ func main() {
         }),
     )
 
-    res, err := s.MCPServers.UpdateMcpServerConfig(ctx, "fd3b7872-2dae-4834-a227-54b3bea26ffa", components.UpdateMCPServerRequest{
+    res, err := s.MCPServers.UpdateMcpServerConfig(ctx, "fd3b7872-2dae-4834-a227-54b3bea26ffa", components.CreateMCPServerRequest{
         Name: "<value>",
+        DisplayName: "Weston_Dicki",
+        Description: "astride reference wolf delightfully deafening inasmuch",
+        Labels: map[string]string{
+            "env": "test",
+        },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -260,7 +257,7 @@ func main() {
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
 | `mcpServerID`                                                                          | `string`                                                                               | :heavy_check_mark:                                                                     | The ID of the MCP server.                                                              |
-| `updateMCPServerRequest`                                                               | [components.UpdateMCPServerRequest](../../models/components/updatemcpserverrequest.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `createMCPServerRequest`                                                               | [components.CreateMCPServerRequest](../../models/components/createmcpserverrequest.md) | :heavy_check_mark:                                                                     | N/A                                                                                    |
 | `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
@@ -279,9 +276,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## PatchMcpServerConfig
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Partially update an individual MCP server.
 
@@ -307,11 +301,15 @@ func main() {
         }),
     )
 
-    res, err := s.MCPServers.PatchMcpServerConfig(ctx, "2caa5873-34f4-44c1-bcfe-6f21646006c8", components.PatchMCPServerRequest{})
+    res, err := s.MCPServers.PatchMcpServerConfig(ctx, "2caa5873-34f4-44c1-bcfe-6f21646006c8", components.PatchMCPServerRequest{
+        Labels: map[string]string{
+            "env": "test",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerInfo != nil {
+    if res.MCPServer != nil {
         // handle response
     }
 }
@@ -342,9 +340,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## DeleteMcpServerConfig
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Delete an MCP server.
 
@@ -403,9 +398,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetMcpServerStatus
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Returns the current aggregated deployment status of an MCP server.
 
@@ -610,12 +602,17 @@ func main() {
     )
 
     res, err := s.MCPServers.CreateMcpResource(ctx, components.MCPResourceInput{
-        Config: components.CreateMCPResourceInputConfigAPIReference(
-            components.MCPResourceAPIReferenceConfig{
-                Type: components.MCPResourceAPIReferenceConfigTypeAPIReference,
-                APIReference: components.MCPAPIReference{
-                    ID: "df15b4a7-8b73-49eb-9e06-27bff6f14fda",
-                    VersionID: "64337ff7-a4f1-4e51-b433-c77012c08bb4",
+        Name: "my-api-resource",
+        DisplayName: "Richard_Bogisich-Haley",
+        Labels: map[string]string{
+            "env": "test",
+        },
+        Source: components.CreateMCPResourceSourceDetailInputAPICatalog(
+            components.MCPResourceSourceAPICatalog{
+                Type: components.MCPResourceSourceAPICatalogTypeAPICatalog,
+                Config: components.MCPResourceSourceAPICatalogConfig{
+                    APIID: "158a0fc7-479a-4928-8a64-7656c1824f7f",
+                    APIVersionID: "bc0b9df1-67ba-475f-9670-37de3cc2e4f6",
                 },
             },
         ),
@@ -624,7 +621,13 @@ func main() {
         log.Fatal(err)
     }
     if res.MCPResourceInfo != nil {
-        // handle response
+        switch res.MCPResourceInfo.Source.Type {
+            case components.MCPResourceSourceDetailTypeAPICatalog:
+                // res.MCPResourceInfo.Source.MCPResourceSourceAPICatalog is populated
+            case components.MCPResourceSourceDetailTypeRaw:
+                // res.MCPResourceInfo.Source.MCPResourceSourceRaw is populated
+        }
+
     }
 }
 ```
@@ -682,7 +685,13 @@ func main() {
         log.Fatal(err)
     }
     if res.MCPResourceInfo != nil {
-        // handle response
+        switch res.MCPResourceInfo.Source.Type {
+            case components.MCPResourceSourceDetailTypeAPICatalog:
+                // res.MCPResourceInfo.Source.MCPResourceSourceAPICatalog is populated
+            case components.MCPResourceSourceDetailTypeRaw:
+                // res.MCPResourceInfo.Source.MCPResourceSourceRaw is populated
+        }
+
     }
 }
 ```
@@ -794,12 +803,17 @@ func main() {
     )
 
     res, err := s.MCPServers.UpdateMcpResource(ctx, "a71bce83-5516-4e15-9cb9-5b23f30c4c08", components.MCPResourceInput{
-        Config: components.CreateMCPResourceInputConfigAPIReference(
-            components.MCPResourceAPIReferenceConfig{
-                Type: components.MCPResourceAPIReferenceConfigTypeAPIReference,
-                APIReference: components.MCPAPIReference{
-                    ID: "314dc7fe-6ae9-4acf-8eda-6df1e4112aab",
-                    VersionID: "e4e511e1-5324-4103-9a21-b9f5a4090d6b",
+        Name: "my-api-resource",
+        DisplayName: "Daron_Graham",
+        Labels: map[string]string{
+            "env": "test",
+        },
+        Source: components.CreateMCPResourceSourceDetailInputAPICatalog(
+            components.MCPResourceSourceAPICatalog{
+                Type: components.MCPResourceSourceAPICatalogTypeAPICatalog,
+                Config: components.MCPResourceSourceAPICatalogConfig{
+                    APIID: "158a0fc7-479a-4928-8a64-7656c1824f7f",
+                    APIVersionID: "bc0b9df1-67ba-475f-9670-37de3cc2e4f6",
                 },
             },
         ),
@@ -808,7 +822,13 @@ func main() {
         log.Fatal(err)
     }
     if res.MCPResourceInfo != nil {
-        // handle response
+        switch res.MCPResourceInfo.Source.Type {
+            case components.MCPResourceSourceDetailTypeAPICatalog:
+                // res.MCPResourceInfo.Source.MCPResourceSourceAPICatalog is populated
+            case components.MCPResourceSourceDetailTypeRaw:
+                // res.MCPResourceInfo.Source.MCPResourceSourceRaw is populated
+        }
+
     }
 }
 ```
@@ -837,68 +857,7 @@ func main() {
 | sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## GetMcpResourceSpec
-
-Retrieve the raw spec content for an MCP resource.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-mcp-resource-spec" method="get" path="/v1/mcp-resources/{resourceId}/spec" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.MCPServers.GetMcpResourceSpec(ctx, "0652c8f2-dcdf-442e-8d7a-24cf3656b0a9")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.MCPAPISpec != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `resourceID`                                             | `string`                                                 | :heavy_check_mark:                                       | The ID of the MCP resource.                              |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.GetMcpResourceSpecResponse](../../models/operations/getmcpresourcespecresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
 ## GetMcpServerSignals
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Client-initiated signals fetch with long-polling capabilities.
 The client supplies `capabilities` as a deepObject query parameter:
@@ -910,6 +869,7 @@ Example:
 
 The CP responds with a JSON payload containing zero or more signals that the client should process.
 If no signals are available, the CP responds with HTTP 304 Not Modified.
+
 
 ### Example Usage
 
@@ -971,10 +931,8 @@ func main() {
 
 ## ListMcpServersByControlPlane
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Returns an array of MCP server objects for the specified control plane.
+
 
 ### Example Usage
 
@@ -1036,10 +994,8 @@ func main() {
 
 ## GetMcpServerByControlPlane
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Retrieves an MCP server by its ID within a specific control plane context.
+
 
 ### Example Usage
 
@@ -1098,10 +1054,8 @@ func main() {
 
 ## GetMcpServerKongEntities
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Retrieves Kong entities (Routes, Services, Plugins) for the Gateway in front of the MCP Server.
+
 
 ### Example Usage
 
@@ -1164,10 +1118,8 @@ func main() {
 
 ## PostMcpServerStatus
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Reports the current deployment status of an MCP server, including replica counts and per-version pod statuses.
+
 
 ### Example Usage
 
@@ -1241,10 +1193,8 @@ func main() {
 
 ## GetMcpServerCode
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
+
 
 ### Example Usage
 

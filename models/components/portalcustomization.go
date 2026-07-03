@@ -190,6 +190,29 @@ func (s *SpecRenderer) GetAllowCustomServerUrls() *bool {
 	return s.AllowCustomServerUrls
 }
 
+type Footer struct {
+	// The unique name of a snippet in the portal to render in place of the default footer.
+	SnippetName *string `json:"snippet_name"`
+}
+
+func (f *Footer) GetSnippetName() *string {
+	if f == nil {
+		return nil
+	}
+	return f.SnippetName
+}
+
+type PortalLayout struct {
+	Footer *Footer `json:"footer,omitempty"`
+}
+
+func (p *PortalLayout) GetFooter() *Footer {
+	if p == nil {
+		return nil
+	}
+	return p.Footer
+}
+
 // PortalCustomization - The custom settings of this portal
 type PortalCustomization struct {
 	Theme        *Theme        `json:"theme,omitempty"`
@@ -199,6 +222,7 @@ type PortalCustomization struct {
 	Menu         *Menu         `json:"menu,omitempty"`
 	SpecRenderer *SpecRenderer `json:"spec_renderer,omitempty"`
 	Robots       *string       `json:"robots,omitempty"`
+	PortalLayout *PortalLayout `json:"portal_layout,omitempty"`
 }
 
 func (p *PortalCustomization) GetTheme() *Theme {
@@ -248,4 +272,11 @@ func (p *PortalCustomization) GetRobots() *string {
 		return nil
 	}
 	return p.Robots
+}
+
+func (p *PortalCustomization) GetPortalLayout() *PortalLayout {
+	if p == nil {
+		return nil
+	}
+	return p.PortalLayout
 }

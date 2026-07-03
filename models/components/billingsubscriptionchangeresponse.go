@@ -32,6 +32,35 @@ func (e *BillingSubscriptionChangeResponseStatus) IsExact() bool {
 	return false
 }
 
+// BillingSubscriptionChangeResponseSettlementMode - Settlement mode for billing.
+//
+// Values:
+//
+// - `credit_then_invoice`: Credits are applied first, then any remainder is
+// invoiced.
+// - `credit_only`: Usage is settled exclusively against credits.
+type BillingSubscriptionChangeResponseSettlementMode string
+
+const (
+	BillingSubscriptionChangeResponseSettlementModeCreditThenInvoice BillingSubscriptionChangeResponseSettlementMode = "credit_then_invoice"
+	BillingSubscriptionChangeResponseSettlementModeCreditOnly        BillingSubscriptionChangeResponseSettlementMode = "credit_only"
+)
+
+func (e BillingSubscriptionChangeResponseSettlementMode) ToPointer() *BillingSubscriptionChangeResponseSettlementMode {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BillingSubscriptionChangeResponseSettlementMode) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "credit_then_invoice", "credit_only":
+			return true
+		}
+	}
+	return false
+}
+
 // Current - The current subscription before the change.
 type Current struct {
 	// ULID (Universally Unique Lexicographically Sortable Identifier).
@@ -61,6 +90,14 @@ type Current struct {
 	BillingAnchor time.Time `json:"billing_anchor"`
 	// The status of the subscription.
 	Status BillingSubscriptionChangeResponseStatus `json:"status"`
+	// Settlement mode for billing.
+	//
+	// Values:
+	//
+	// - `credit_then_invoice`: Credits are applied first, then any remainder is
+	// invoiced.
+	// - `credit_only`: Usage is settled exclusively against credits.
+	SettlementMode *BillingSubscriptionChangeResponseSettlementMode `json:"settlement_mode,omitempty"`
 }
 
 func (c Current) MarshalJSON() ([]byte, error) {
@@ -137,6 +174,13 @@ func (c *Current) GetStatus() BillingSubscriptionChangeResponseStatus {
 	return c.Status
 }
 
+func (c *Current) GetSettlementMode() *BillingSubscriptionChangeResponseSettlementMode {
+	if c == nil {
+		return nil
+	}
+	return c.SettlementMode
+}
+
 // BillingSubscriptionChangeResponseNextStatus - The status of the subscription.
 type BillingSubscriptionChangeResponseNextStatus string
 
@@ -156,6 +200,35 @@ func (e *BillingSubscriptionChangeResponseNextStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "active", "inactive", "canceled", "scheduled":
+			return true
+		}
+	}
+	return false
+}
+
+// BillingSubscriptionChangeResponseNextSettlementMode - Settlement mode for billing.
+//
+// Values:
+//
+// - `credit_then_invoice`: Credits are applied first, then any remainder is
+// invoiced.
+// - `credit_only`: Usage is settled exclusively against credits.
+type BillingSubscriptionChangeResponseNextSettlementMode string
+
+const (
+	BillingSubscriptionChangeResponseNextSettlementModeCreditThenInvoice BillingSubscriptionChangeResponseNextSettlementMode = "credit_then_invoice"
+	BillingSubscriptionChangeResponseNextSettlementModeCreditOnly        BillingSubscriptionChangeResponseNextSettlementMode = "credit_only"
+)
+
+func (e BillingSubscriptionChangeResponseNextSettlementMode) ToPointer() *BillingSubscriptionChangeResponseNextSettlementMode {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BillingSubscriptionChangeResponseNextSettlementMode) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "credit_then_invoice", "credit_only":
 			return true
 		}
 	}
@@ -191,6 +264,14 @@ type Next struct {
 	BillingAnchor time.Time `json:"billing_anchor"`
 	// The status of the subscription.
 	Status BillingSubscriptionChangeResponseNextStatus `json:"status"`
+	// Settlement mode for billing.
+	//
+	// Values:
+	//
+	// - `credit_then_invoice`: Credits are applied first, then any remainder is
+	// invoiced.
+	// - `credit_only`: Usage is settled exclusively against credits.
+	SettlementMode *BillingSubscriptionChangeResponseNextSettlementMode `json:"settlement_mode,omitempty"`
 }
 
 func (n Next) MarshalJSON() ([]byte, error) {
@@ -265,6 +346,13 @@ func (n *Next) GetStatus() BillingSubscriptionChangeResponseNextStatus {
 		return BillingSubscriptionChangeResponseNextStatus("")
 	}
 	return n.Status
+}
+
+func (n *Next) GetSettlementMode() *BillingSubscriptionChangeResponseNextSettlementMode {
+	if n == nil {
+		return nil
+	}
+	return n.SettlementMode
 }
 
 // BillingSubscriptionChangeResponse - Response for changing a subscription.

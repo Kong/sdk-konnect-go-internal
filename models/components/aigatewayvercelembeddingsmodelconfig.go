@@ -33,8 +33,6 @@ func (e *AIGatewayVercelEmbeddingsModelConfigType) UnmarshalJSON(data []byte) er
 
 // AIGatewayVercelEmbeddingsModelConfig - Vercel AI Gateway-specific configuration for a model.
 type AIGatewayVercelEmbeddingsModelConfig struct {
-	// The name of the embeddings model.
-	Name string `json:"name"`
 	// The URL of the embeddings model.
 	UpstreamURL string                                   `json:"upstream_url"`
 	Type        AIGatewayVercelEmbeddingsModelConfigType `json:"type"`
@@ -45,17 +43,10 @@ func (a AIGatewayVercelEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayVercelEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
 		return err
 	}
 	return nil
-}
-
-func (a *AIGatewayVercelEmbeddingsModelConfig) GetName() string {
-	if a == nil {
-		return ""
-	}
-	return a.Name
 }
 
 func (a *AIGatewayVercelEmbeddingsModelConfig) GetUpstreamURL() string {

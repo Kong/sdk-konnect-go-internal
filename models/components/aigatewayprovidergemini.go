@@ -118,8 +118,7 @@ func (u AIGatewayProviderGeminiAuth) MarshalJSON() ([]byte, error) {
 }
 
 type AIGatewayProviderGeminiConfig struct {
-	Auth      AIGatewayProviderGeminiAuth `json:"auth"`
-	ProjectID *string                     `json:"project_id,omitempty"`
+	Auth AIGatewayProviderGeminiAuth `json:"auth"`
 }
 
 func (a AIGatewayProviderGeminiConfig) MarshalJSON() ([]byte, error) {
@@ -146,13 +145,6 @@ func (a *AIGatewayProviderGeminiConfig) GetAuthBasic() *AIGatewayProviderConfigA
 
 func (a *AIGatewayProviderGeminiConfig) GetAuthGcp() *AIGatewayProviderConfigAuthGCP {
 	return a.GetAuth().AIGatewayProviderConfigAuthGCP
-}
-
-func (a *AIGatewayProviderGeminiConfig) GetProjectID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.ProjectID
 }
 
 // AIGatewayProviderGemini - Config for GCP LLM provider.

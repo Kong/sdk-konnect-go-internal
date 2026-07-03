@@ -119,8 +119,7 @@ func (u AIGatewayProviderVertexAuthOutput) MarshalJSON() ([]byte, error) {
 }
 
 type AIGatewayProviderVertexConfigOutput struct {
-	Auth      AIGatewayProviderVertexAuthOutput `json:"auth"`
-	ProjectID *string                           `json:"project_id,omitempty"`
+	Auth AIGatewayProviderVertexAuthOutput `json:"auth"`
 }
 
 func (a AIGatewayProviderVertexConfigOutput) MarshalJSON() ([]byte, error) {
@@ -147,13 +146,6 @@ func (a *AIGatewayProviderVertexConfigOutput) GetAuthBasic() *AIGatewayProviderC
 
 func (a *AIGatewayProviderVertexConfigOutput) GetAuthGcp() *AIGatewayProviderConfigAuthGCPOutput {
 	return a.GetAuth().AIGatewayProviderConfigAuthGCPOutput
-}
-
-func (a *AIGatewayProviderVertexConfigOutput) GetProjectID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.ProjectID
 }
 
 // AIGatewayProviderAIGatewayProviderVertex - Config for GCP LLM provider.
@@ -1732,8 +1724,7 @@ func (u AIGatewayProviderGeminiAuthOutput) MarshalJSON() ([]byte, error) {
 }
 
 type AIGatewayProviderGeminiConfigOutput struct {
-	Auth      AIGatewayProviderGeminiAuthOutput `json:"auth"`
-	ProjectID *string                           `json:"project_id,omitempty"`
+	Auth AIGatewayProviderGeminiAuthOutput `json:"auth"`
 }
 
 func (a AIGatewayProviderGeminiConfigOutput) MarshalJSON() ([]byte, error) {
@@ -1760,13 +1751,6 @@ func (a *AIGatewayProviderGeminiConfigOutput) GetAuthBasic() *AIGatewayProviderC
 
 func (a *AIGatewayProviderGeminiConfigOutput) GetAuthGcp() *AIGatewayProviderConfigAuthGCPOutput {
 	return a.GetAuth().AIGatewayProviderConfigAuthGCPOutput
-}
-
-func (a *AIGatewayProviderGeminiConfigOutput) GetProjectID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.ProjectID
 }
 
 // AIGatewayProviderAIGatewayProviderGemini - Config for GCP LLM provider.
@@ -2976,7 +2960,7 @@ func (u AIGatewayProviderAzureAuthOutput) MarshalJSON() ([]byte, error) {
 
 type AIGatewayProviderAzureConfigOutput struct {
 	Auth     AIGatewayProviderAzureAuthOutput `json:"auth"`
-	Instance *string                          `json:"instance,omitempty"`
+	Instance string                           `json:"instance"`
 }
 
 func (a AIGatewayProviderAzureConfigOutput) MarshalJSON() ([]byte, error) {
@@ -2984,7 +2968,7 @@ func (a AIGatewayProviderAzureConfigOutput) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayProviderAzureConfigOutput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"auth"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"auth", "instance"}); err != nil {
 		return err
 	}
 	return nil
@@ -3005,9 +2989,9 @@ func (a *AIGatewayProviderAzureConfigOutput) GetAuthAzure() *AIGatewayProviderCo
 	return a.GetAuth().AIGatewayProviderConfigAuthAzureOutput
 }
 
-func (a *AIGatewayProviderAzureConfigOutput) GetInstance() *string {
+func (a *AIGatewayProviderAzureConfigOutput) GetInstance() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.Instance
 }

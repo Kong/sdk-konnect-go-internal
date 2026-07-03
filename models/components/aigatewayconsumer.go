@@ -41,7 +41,7 @@ type AIGatewayConsumer struct {
 	// Identifier for mapping the consumer when using OAuth authentication.
 	CustomID *string `json:"custom_id,omitempty"`
 	// List of policy references.
-	Policies []string `json:"policies"`
+	Policies []string `json:"policies,omitempty"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
 	//
 	// Public labels are intended to store **PUBLIC** metadata.
@@ -104,7 +104,7 @@ func (a *AIGatewayConsumer) GetCustomID() *string {
 
 func (a *AIGatewayConsumer) GetPolicies() []string {
 	if a == nil {
-		return []string{}
+		return nil
 	}
 	return a.Policies
 }

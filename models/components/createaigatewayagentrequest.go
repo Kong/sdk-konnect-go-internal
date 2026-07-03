@@ -74,7 +74,7 @@ type CreateAIGatewayAgentRequestConfig struct {
 	// Helper field to set protocol, host, port and path of the upstream A2A Agent using a URL.
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
-	URL *string `json:"url,omitempty"`
+	URL string `json:"url"`
 	// Configuration for an AI Gateway route.
 	Route *AIGatewayRouteConfig `json:"route,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
@@ -94,9 +94,9 @@ func (c *CreateAIGatewayAgentRequestConfig) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetURL() *string {
+func (c *CreateAIGatewayAgentRequestConfig) GetURL() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.URL
 }
@@ -132,8 +132,9 @@ type CreateAIGatewayAgentRequest struct {
 	// The type of the agent.
 	Type CreateAIGatewayAgentRequestType `json:"type"`
 	// List of policy references.
-	Policies []string      `json:"policies"`
-	Acls     AIGatewayACLS `json:"acls"`
+	Policies []string `json:"policies,omitempty"`
+	// Access control rules. Configure exactly one of `allow` or `deny`.
+	Acls *AIGatewayACLS `json:"acls,omitempty"`
 	// Configuration for the agent. The structure varies depending on the agent type.
 	Config CreateAIGatewayAgentRequestConfig `json:"config"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
@@ -192,14 +193,14 @@ func (c *CreateAIGatewayAgentRequest) GetType() CreateAIGatewayAgentRequestType 
 
 func (c *CreateAIGatewayAgentRequest) GetPolicies() []string {
 	if c == nil {
-		return []string{}
+		return nil
 	}
 	return c.Policies
 }
 
-func (c *CreateAIGatewayAgentRequest) GetAcls() AIGatewayACLS {
+func (c *CreateAIGatewayAgentRequest) GetAcls() *AIGatewayACLS {
 	if c == nil {
-		return AIGatewayACLS{}
+		return nil
 	}
 	return c.Acls
 }

@@ -4,7 +4,6 @@ package components
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
@@ -33,68 +32,20 @@ func (e *MCPResourceInputType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type MCPResourceInputConfigType string
-
-const (
-	MCPResourceInputConfigTypeAPIReference MCPResourceInputConfigType = "api_reference"
-)
-
-type MCPResourceInputConfig struct {
-	MCPResourceAPIReferenceConfig *MCPResourceAPIReferenceConfig `queryParam:"inline" union:"member"`
-
-	Type MCPResourceInputConfigType
-}
-
-func CreateMCPResourceInputConfigAPIReference(apiReference MCPResourceAPIReferenceConfig) MCPResourceInputConfig {
-	typ := MCPResourceInputConfigTypeAPIReference
-
-	typStr := MCPResourceAPIReferenceConfigType(typ)
-	apiReference.Type = typStr
-
-	return MCPResourceInputConfig{
-		MCPResourceAPIReferenceConfig: &apiReference,
-		Type:                          typ,
-	}
-}
-
-func (u *MCPResourceInputConfig) UnmarshalJSON(data []byte) error {
-
-	type discriminator struct {
-		Type string `json:"type"`
-	}
-
-	dis := new(discriminator)
-	if err := json.Unmarshal(data, &dis); err != nil {
-		return fmt.Errorf("could not unmarshal discriminator: %w", err)
-	}
-
-	switch dis.Type {
-	case "api_reference":
-		mcpResourceAPIReferenceConfig := new(MCPResourceAPIReferenceConfig)
-		if err := utils.UnmarshalJSON(data, &mcpResourceAPIReferenceConfig, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == api_reference) type MCPResourceAPIReferenceConfig within MCPResourceInputConfig: %w", string(data), err)
-		}
-
-		u.MCPResourceAPIReferenceConfig = mcpResourceAPIReferenceConfig
-		u.Type = MCPResourceInputConfigTypeAPIReference
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for MCPResourceInputConfig", string(data))
-}
-
-func (u MCPResourceInputConfig) MarshalJSON() ([]byte, error) {
-	if u.MCPResourceAPIReferenceConfig != nil {
-		return utils.MarshalJSON(u.MCPResourceAPIReferenceConfig, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type MCPResourceInputConfig: all fields are null")
-}
-
 type MCPResourceInput struct {
+	// The name of the MCP resource. Must be unique within the organization and follow machine name conventions.
+	Name string `json:"name"`
+	// The display name of the MCP resource.
+	DisplayName string `json:"display_name"`
+	// Labels store metadata of an entity that can be used for filtering an entity list or for searching across entity types.
+	//
+	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+	//
+	Labels map[string]string `json:"labels"`
 	// The type of the MCP resource.
-	Type   *MCPResourceInputType  `default:"api" json:"type"`
-	Config MCPResourceInputConfig `json:"config"`
+	Type *MCPResourceInputType `default:"api" json:"type"`
+	// The source of the MCP resource used in create and update requests.
+	Source MCPResourceSourceDetailInput `json:"source"`
 }
 
 func (m MCPResourceInput) MarshalJSON() ([]byte, error) {
@@ -108,6 +59,27 @@ func (m *MCPResourceInput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (m *MCPResourceInput) GetName() string {
+	if m == nil {
+		return ""
+	}
+	return m.Name
+}
+
+func (m *MCPResourceInput) GetDisplayName() string {
+	if m == nil {
+		return ""
+	}
+	return m.DisplayName
+}
+
+func (m *MCPResourceInput) GetLabels() map[string]string {
+	if m == nil {
+		return map[string]string{}
+	}
+	return m.Labels
+}
+
 func (m *MCPResourceInput) GetType() *MCPResourceInputType {
 	if m == nil {
 		return nil
@@ -115,13 +87,17 @@ func (m *MCPResourceInput) GetType() *MCPResourceInputType {
 	return m.Type
 }
 
-func (m *MCPResourceInput) GetConfig() MCPResourceInputConfig {
+func (m *MCPResourceInput) GetSource() MCPResourceSourceDetailInput {
 	if m == nil {
-		return MCPResourceInputConfig{}
+		return MCPResourceSourceDetailInput{}
 	}
-	return m.Config
+	return m.Source
 }
 
-func (m *MCPResourceInput) GetConfigAPIReference() *MCPResourceAPIReferenceConfig {
-	return m.GetConfig().MCPResourceAPIReferenceConfig
+func (m *MCPResourceInput) GetSourceAPICatalog() *MCPResourceSourceAPICatalog {
+	return m.GetSource().MCPResourceSourceAPICatalog
+}
+
+func (m *MCPResourceInput) GetSourceRaw() *MCPResourceSourceRawInput {
+	return m.GetSource().MCPResourceSourceRawInput
 }
