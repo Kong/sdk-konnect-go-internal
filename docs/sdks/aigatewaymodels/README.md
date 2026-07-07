@@ -105,13 +105,6 @@ func main() {
         components.AIGatewayModelAPI{
             DisplayName: "My GPT 5 model",
             Name: "my-gpt-5-model",
-            Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
-                components.AIGatewayAllowACL{
-                    Allow: []string{
-                        "consumer-group-1",
-                    },
-                },
-            )),
             Formats: []components.AIGatewayModelFormat{
                 components.AIGatewayModelFormat{
                     Type: components.AIGatewayModelFormatTypeOpenai.ToPointer(),
@@ -297,13 +290,6 @@ func main() {
             components.AIGatewayModelAPI{
                 DisplayName: "My GPT 5 model",
                 Name: "my-gpt-5-model",
-                Acls: sdkkonnectgo.Pointer(components.CreateAIGatewayACLSAIGatewayAllowACL(
-                    components.AIGatewayAllowACL{
-                        Allow: []string{
-                            "consumer-group-1",
-                        },
-                    },
-                )),
                 Formats: []components.AIGatewayModelFormat{
                     components.AIGatewayModelFormat{
                         Type: components.AIGatewayModelFormatTypeOpenai.ToPointer(),

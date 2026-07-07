@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 942ecc38edd19912a24f953dc44fc8c7
+  docChecksum: ea5abe2aadf05c51e482a13e0fc28aad
   docVersion: 3.15.0
-  speakeasyVersion: 1.788.0
-  generationVersion: 2.915.0
+  speakeasyVersion: 1.789.0
+  generationVersion: 2.916.2
   releaseVersion: 0.2.0
   configChecksum: 8da1b243c23e05dcfe374e2a60a3e3fb
 persistentEdits:
@@ -61,11 +61,12 @@ trackedFiles:
   aigatewaydataplane.go: {}
   aigatewaydataplanecertificates.go: {}
   aigatewaydebug.go: {}
+  aigatewayidentityproviders.go: {}
   aigatewaymcpservers.go: {}
+  aigatewaymodelproviders.go: {}
   aigatewaymodels.go: {}
   aigatewaynodes.go: {}
   aigatewaypolicies.go: {}
-  aigatewayproviders.go: {}
   aigateways.go: {}
   aigatewayvaults.go: {}
   aimanager.go:
@@ -227,6 +228,7 @@ trackedFiles:
   deviceauthorizationgrant.go:
     id: 9738ab3fd6c6
     pristine_git_object: e4d4ece46d05497e3bc04508ad24b3daf7f98bca
+  docs/models/components/access.md: {}
   docs/models/components/acl.md:
     id: 6f393cba7b84
     pristine_git_object: f00962dcc2ec5b3cff3f20f758db3aaf7d7f4e57
@@ -346,6 +348,7 @@ trackedFiles:
   docs/models/components/aigateway.md: {}
   docs/models/components/aigatewayacls.md: {}
   docs/models/components/aigatewayagent.md: {}
+  docs/models/components/aigatewayagentaccess.md: {}
   docs/models/components/aigatewayagentconfig.md: {}
   docs/models/components/aigatewayagentlogging.md: {}
   docs/models/components/aigatewayagenttype.md: {}
@@ -381,6 +384,20 @@ trackedFiles:
   docs/models/components/aigatewaygeminiembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewayhuggingfaceembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayhuggingfaceembeddingsmodelconfigtype.md: {}
+  docs/models/components/aigatewayidentityprovider.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauth.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthaigatewayidentityproviderconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthaigatewayidentityproviderkeyauthconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthaigatewayidentityprovidertype.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnect.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectaigatewayidentityprovideropenidconnectconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectaigatewayidentityprovidertype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectauthmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigoutput.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttype.md: {}
   docs/models/components/aigatewaymcpacls.md: {}
   docs/models/components/aigatewaymcpconversiontool.md: {}
   docs/models/components/aigatewaymcpconversiontoolmethod.md: {}
@@ -390,71 +407,30 @@ trackedFiles:
   docs/models/components/aigatewaymcpserveraigatewaymcpserverlistener.md: {}
   docs/models/components/aigatewaymcpserveraigatewaymcpserverpassthroughlistener.md: {}
   docs/models/components/aigatewaymcpserveraigatewaymcpserverupstreamserver.md: {}
+  docs/models/components/aigatewaymcpserverbaseaclproperties.md: {}
   docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumer.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverbaseaclpropertiesconsumer.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverconversionlisteneraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverlistenertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverpassthroughlisteneraclattributetype.md: {}
-  ? docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverpassthroughlisteneraigatewaymcpserverbaseaclpropertiesconsumer.md
-  : {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverpassthroughlistenertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverupstreamserveraclattributetype.md: {}
-  ? docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverupstreamserveraigatewaymcpserverbaseaclpropertiesconsumer.md
-  : {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumeraigatewaymcpserverupstreamservertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesconsumertype.md: {}
   docs/models/components/aigatewaymcpserverbaseaclpropertiesoauth.md: {}
   docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverbaseaclpropertiesoauth.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverconversionlistenertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverlisteneraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverlisteneraigatewaymcpserveraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverlisteneraigatewaymcpservertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverlistenertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverpassthroughlisteneraclattributetype.md: {}
-  ? docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverpassthroughlisteneraigatewaymcpserveraclattributetype.md
-  : {}
-  ? docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverpassthroughlisteneraigatewaymcpserverbaseaclpropertiesoauth.md
-  : {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverpassthroughlisteneraigatewaymcpservertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverpassthroughlistenertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverupstreamserveraclattributetype.md: {}
-  ? docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverupstreamserveraigatewaymcpserveraclattributetype.md
-  : {}
-  ? docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverupstreamserveraigatewaymcpserverbaseaclpropertiesoauth.md
-  : {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverupstreamserveraigatewaymcpservertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthaigatewaymcpserverupstreamservertype.md: {}
-  docs/models/components/aigatewaymcpserverbaseaclpropertiesoauthtype.md: {}
   docs/models/components/aigatewaymcpserverconversionlistener.md: {}
-  docs/models/components/aigatewaymcpserverconversionlisteneraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverconversionlisteneraigatewaymcpserverbaseaclpropertiesconsumer.md: {}
-  docs/models/components/aigatewaymcpserverconversionlisteneraigatewaymcpserverbaseaclpropertiesoauth.md: {}
+  docs/models/components/aigatewaymcpserverconversionlisteneraigatewaymcpservertype.md: {}
   docs/models/components/aigatewaymcpserverconversionlistenertype.md: {}
   docs/models/components/aigatewaymcpserverconversiononly.md: {}
   docs/models/components/aigatewaymcpserverconversiononlyaigatewaymcpservertype.md: {}
   docs/models/components/aigatewaymcpserverconversiononlytype.md: {}
   docs/models/components/aigatewaymcpserverlistener.md: {}
-  docs/models/components/aigatewaymcpserverlisteneraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverlisteneraigatewaymcpserverbaseaclpropertiesconsumer.md: {}
-  docs/models/components/aigatewaymcpserverlisteneraigatewaymcpserverbaseaclpropertiesoauth.md: {}
+  docs/models/components/aigatewaymcpserverlisteneraigatewaymcpservertype.md: {}
   docs/models/components/aigatewaymcpserverlistenertype.md: {}
   docs/models/components/aigatewaymcpservernoupstreamconfig.md: {}
   docs/models/components/aigatewaymcpservernoupstreamconfiglogging.md: {}
   docs/models/components/aigatewaymcpservernoupstreamconfigoutput.md: {}
   docs/models/components/aigatewaymcpserverpassthroughlistener.md: {}
-  docs/models/components/aigatewaymcpserverpassthroughlisteneraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverpassthroughlisteneraigatewaymcpserverbaseaclpropertiesconsumer.md: {}
-  docs/models/components/aigatewaymcpserverpassthroughlisteneraigatewaymcpserverbaseaclpropertiesoauth.md: {}
+  docs/models/components/aigatewaymcpserverpassthroughlisteneraigatewaymcpservertype.md: {}
   docs/models/components/aigatewaymcpserverpassthroughlistenertype.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbase.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbaseoutput.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbasesession.md: {}
   docs/models/components/aigatewaymcpserverupstreamserver.md: {}
-  docs/models/components/aigatewaymcpserverupstreamserveraclattributetype.md: {}
-  docs/models/components/aigatewaymcpserverupstreamserveraigatewaymcpserverbaseaclpropertiesconsumer.md: {}
-  docs/models/components/aigatewaymcpserverupstreamserveraigatewaymcpserverbaseaclpropertiesoauth.md: {}
+  docs/models/components/aigatewaymcpserverupstreamserveraigatewaymcpservertype.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfig.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfiglogging.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfigoutput.md: {}
@@ -480,13 +456,16 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfigoutput.md: {}
   docs/models/components/aigatewaymcptoolannotations.md: {}
   docs/models/components/aigatewaymcptoolbase.md: {}
+  docs/models/components/aigatewaymcptoolbaseaccess.md: {}
   docs/models/components/aigatewaymcptoolbasemethod.md: {}
   docs/models/components/aigatewaymcptoolbasescheme.md: {}
   docs/models/components/aigatewaymcptoolparameter.md: {}
   docs/models/components/aigatewaymcpupstreamtool.md: {}
+  docs/models/components/aigatewaymcpupstreamtoolaccess.md: {}
   docs/models/components/aigatewaymcpupstreamtoolmethod.md: {}
   docs/models/components/aigatewaymcpupstreamtoolscheme.md: {}
   docs/models/components/aigatewaymodel.md: {}
+  docs/models/components/aigatewaymodelaccess.md: {}
   docs/models/components/aigatewaymodelaigatewaymodelapi.md: {}
   docs/models/components/aigatewaymodelaigatewaymodelmodel.md: {}
   docs/models/components/aigatewaymodelapi.md: {}
@@ -531,6 +510,143 @@ trackedFiles:
   docs/models/components/aigatewaymodelmodelconfigoutput.md: {}
   docs/models/components/aigatewaymodelmodelconfigresponsestreaming.md: {}
   docs/models/components/aigatewaymodelmodeltype.md: {}
+  docs/models/components/aigatewaymodelprovider.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovideranthropic.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderazure.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderbedrock.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidercerebras.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidercohere.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderdashscope.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderdatabricks.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderdeepseek.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidergemini.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderhuggingface.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderkimi.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderllama2.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidermistral.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderollama.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovideropenai.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidervercel.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidervertex.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidervllm.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderxai.md: {}
+  docs/models/components/aigatewaymodelprovideranthropic.md: {}
+  docs/models/components/aigatewaymodelprovideranthropicaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovideranthropicconfig.md: {}
+  docs/models/components/aigatewaymodelprovideranthropicconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovideranthropictype.md: {}
+  docs/models/components/aigatewaymodelproviderazure.md: {}
+  docs/models/components/aigatewaymodelproviderazureaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderazureauth.md: {}
+  docs/models/components/aigatewaymodelproviderazureauthoutput.md: {}
+  docs/models/components/aigatewaymodelproviderazureconfig.md: {}
+  docs/models/components/aigatewaymodelproviderazureconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderazuretype.md: {}
+  docs/models/components/aigatewaymodelproviderbedrock.md: {}
+  docs/models/components/aigatewaymodelproviderbedrockaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderbedrockauth.md: {}
+  docs/models/components/aigatewaymodelproviderbedrockauthoutput.md: {}
+  docs/models/components/aigatewaymodelproviderbedrockconfig.md: {}
+  docs/models/components/aigatewaymodelproviderbedrockconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderbedrocktype.md: {}
+  docs/models/components/aigatewaymodelprovidercerebras.md: {}
+  docs/models/components/aigatewaymodelprovidercerebrasaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovidercerebrasconfig.md: {}
+  docs/models/components/aigatewaymodelprovidercerebrasconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovidercerebrastype.md: {}
+  docs/models/components/aigatewaymodelprovidercohere.md: {}
+  docs/models/components/aigatewaymodelprovidercohereaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovidercohereconfig.md: {}
+  docs/models/components/aigatewaymodelprovidercohereconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovidercoheretype.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthaws.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthawsoutput.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthawstype.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthazure.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthazureoutput.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthazuretype.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthbasic.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthbasicheaders.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthbasicoutput.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthbasicparams.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthbasictype.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthgcp.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthgcpoutput.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthgcptype.md: {}
+  docs/models/components/aigatewaymodelproviderdashscope.md: {}
+  docs/models/components/aigatewaymodelproviderdashscopeaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderdashscopeconfig.md: {}
+  docs/models/components/aigatewaymodelproviderdashscopeconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderdashscopetype.md: {}
+  docs/models/components/aigatewaymodelproviderdatabricks.md: {}
+  docs/models/components/aigatewaymodelproviderdatabricksaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderdatabricksconfig.md: {}
+  docs/models/components/aigatewaymodelproviderdatabricksconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderdatabrickstype.md: {}
+  docs/models/components/aigatewaymodelproviderdeepseek.md: {}
+  docs/models/components/aigatewaymodelproviderdeepseekaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderdeepseekconfig.md: {}
+  docs/models/components/aigatewaymodelproviderdeepseekconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderdeepseektype.md: {}
+  docs/models/components/aigatewaymodelprovidergemini.md: {}
+  docs/models/components/aigatewaymodelprovidergeminiaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovidergeminiauth.md: {}
+  docs/models/components/aigatewaymodelprovidergeminiauthoutput.md: {}
+  docs/models/components/aigatewaymodelprovidergeminiconfig.md: {}
+  docs/models/components/aigatewaymodelprovidergeminiconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovidergeminitype.md: {}
+  docs/models/components/aigatewaymodelproviderhuggingface.md: {}
+  docs/models/components/aigatewaymodelproviderhuggingfaceaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderhuggingfaceconfig.md: {}
+  docs/models/components/aigatewaymodelproviderhuggingfaceconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderhuggingfacetype.md: {}
+  docs/models/components/aigatewaymodelproviderkimi.md: {}
+  docs/models/components/aigatewaymodelproviderkimiaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderkimiconfig.md: {}
+  docs/models/components/aigatewaymodelproviderkimiconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderkimitype.md: {}
+  docs/models/components/aigatewaymodelproviderllama2.md: {}
+  docs/models/components/aigatewaymodelproviderllama2aigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderllama2config.md: {}
+  docs/models/components/aigatewaymodelproviderllama2configoutput.md: {}
+  docs/models/components/aigatewaymodelproviderllama2type.md: {}
+  docs/models/components/aigatewaymodelprovidermistral.md: {}
+  docs/models/components/aigatewaymodelprovidermistralaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovidermistralconfig.md: {}
+  docs/models/components/aigatewaymodelprovidermistralconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovidermistraltype.md: {}
+  docs/models/components/aigatewaymodelproviderollama.md: {}
+  docs/models/components/aigatewaymodelproviderollamaaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderollamaconfig.md: {}
+  docs/models/components/aigatewaymodelproviderollamaconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderollamatype.md: {}
+  docs/models/components/aigatewaymodelprovideropenai.md: {}
+  docs/models/components/aigatewaymodelprovideropenaiaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovideropenaiconfig.md: {}
+  docs/models/components/aigatewaymodelprovideropenaiconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovideropenaitype.md: {}
+  docs/models/components/aigatewaymodelprovidervercel.md: {}
+  docs/models/components/aigatewaymodelprovidervercelaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovidervercelconfig.md: {}
+  docs/models/components/aigatewaymodelprovidervercelconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderverceltype.md: {}
+  docs/models/components/aigatewaymodelprovidervertex.md: {}
+  docs/models/components/aigatewaymodelprovidervertexaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovidervertexauth.md: {}
+  docs/models/components/aigatewaymodelprovidervertexauthoutput.md: {}
+  docs/models/components/aigatewaymodelprovidervertexconfig.md: {}
+  docs/models/components/aigatewaymodelprovidervertexconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovidervertextype.md: {}
+  docs/models/components/aigatewaymodelprovidervllm.md: {}
+  docs/models/components/aigatewaymodelprovidervllmaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelprovidervllmconfig.md: {}
+  docs/models/components/aigatewaymodelprovidervllmconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovidervllmtype.md: {}
+  docs/models/components/aigatewaymodelproviderxai.md: {}
+  docs/models/components/aigatewaymodelproviderxaiaigatewaymodelprovidertype.md: {}
+  docs/models/components/aigatewaymodelproviderxaiconfig.md: {}
+  docs/models/components/aigatewaymodelproviderxaiconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderxaitype.md: {}
   docs/models/components/aigatewaymodelvectordbconfig.md: {}
   docs/models/components/aigatewaymodelvectordbconfigoutput.md: {}
   docs/models/components/aigatewaymodelvectordbconfigpgvector.md: {}
@@ -544,143 +660,6 @@ trackedFiles:
   docs/models/components/aigatewaymodelvectordbconfigredistype.md: {}
   docs/models/components/aigatewaypolicy.md: {}
   docs/models/components/aigatewaypolicyschema.md: {}
-  docs/models/components/aigatewayprovider.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovideranthropic.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderazure.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderbedrock.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovidercerebras.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovidercohere.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderdashscope.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderdatabricks.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderdeepseek.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovidergemini.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderhuggingface.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderkimi.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderllama2.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovidermistral.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderollama.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovideropenai.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovidervercel.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovidervertex.md: {}
-  docs/models/components/aigatewayprovideraigatewayprovidervllm.md: {}
-  docs/models/components/aigatewayprovideraigatewayproviderxai.md: {}
-  docs/models/components/aigatewayprovideranthropic.md: {}
-  docs/models/components/aigatewayprovideranthropicaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovideranthropicconfig.md: {}
-  docs/models/components/aigatewayprovideranthropicconfigoutput.md: {}
-  docs/models/components/aigatewayprovideranthropictype.md: {}
-  docs/models/components/aigatewayproviderazure.md: {}
-  docs/models/components/aigatewayproviderazureaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderazureauth.md: {}
-  docs/models/components/aigatewayproviderazureauthoutput.md: {}
-  docs/models/components/aigatewayproviderazureconfig.md: {}
-  docs/models/components/aigatewayproviderazureconfigoutput.md: {}
-  docs/models/components/aigatewayproviderazuretype.md: {}
-  docs/models/components/aigatewayproviderbedrock.md: {}
-  docs/models/components/aigatewayproviderbedrockaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderbedrockauth.md: {}
-  docs/models/components/aigatewayproviderbedrockauthoutput.md: {}
-  docs/models/components/aigatewayproviderbedrockconfig.md: {}
-  docs/models/components/aigatewayproviderbedrockconfigoutput.md: {}
-  docs/models/components/aigatewayproviderbedrocktype.md: {}
-  docs/models/components/aigatewayprovidercerebras.md: {}
-  docs/models/components/aigatewayprovidercerebrasaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovidercerebrasconfig.md: {}
-  docs/models/components/aigatewayprovidercerebrasconfigoutput.md: {}
-  docs/models/components/aigatewayprovidercerebrastype.md: {}
-  docs/models/components/aigatewayprovidercohere.md: {}
-  docs/models/components/aigatewayprovidercohereaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovidercohereconfig.md: {}
-  docs/models/components/aigatewayprovidercohereconfigoutput.md: {}
-  docs/models/components/aigatewayprovidercoheretype.md: {}
-  docs/models/components/aigatewayproviderconfigauthaws.md: {}
-  docs/models/components/aigatewayproviderconfigauthawsoutput.md: {}
-  docs/models/components/aigatewayproviderconfigauthawstype.md: {}
-  docs/models/components/aigatewayproviderconfigauthazure.md: {}
-  docs/models/components/aigatewayproviderconfigauthazureoutput.md: {}
-  docs/models/components/aigatewayproviderconfigauthazuretype.md: {}
-  docs/models/components/aigatewayproviderconfigauthbasic.md: {}
-  docs/models/components/aigatewayproviderconfigauthbasicheaders.md: {}
-  docs/models/components/aigatewayproviderconfigauthbasicoutput.md: {}
-  docs/models/components/aigatewayproviderconfigauthbasicparams.md: {}
-  docs/models/components/aigatewayproviderconfigauthbasictype.md: {}
-  docs/models/components/aigatewayproviderconfigauthgcp.md: {}
-  docs/models/components/aigatewayproviderconfigauthgcpoutput.md: {}
-  docs/models/components/aigatewayproviderconfigauthgcptype.md: {}
-  docs/models/components/aigatewayproviderdashscope.md: {}
-  docs/models/components/aigatewayproviderdashscopeaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderdashscopeconfig.md: {}
-  docs/models/components/aigatewayproviderdashscopeconfigoutput.md: {}
-  docs/models/components/aigatewayproviderdashscopetype.md: {}
-  docs/models/components/aigatewayproviderdatabricks.md: {}
-  docs/models/components/aigatewayproviderdatabricksaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderdatabricksconfig.md: {}
-  docs/models/components/aigatewayproviderdatabricksconfigoutput.md: {}
-  docs/models/components/aigatewayproviderdatabrickstype.md: {}
-  docs/models/components/aigatewayproviderdeepseek.md: {}
-  docs/models/components/aigatewayproviderdeepseekaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderdeepseekconfig.md: {}
-  docs/models/components/aigatewayproviderdeepseekconfigoutput.md: {}
-  docs/models/components/aigatewayproviderdeepseektype.md: {}
-  docs/models/components/aigatewayprovidergemini.md: {}
-  docs/models/components/aigatewayprovidergeminiaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovidergeminiauth.md: {}
-  docs/models/components/aigatewayprovidergeminiauthoutput.md: {}
-  docs/models/components/aigatewayprovidergeminiconfig.md: {}
-  docs/models/components/aigatewayprovidergeminiconfigoutput.md: {}
-  docs/models/components/aigatewayprovidergeminitype.md: {}
-  docs/models/components/aigatewayproviderhuggingface.md: {}
-  docs/models/components/aigatewayproviderhuggingfaceaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderhuggingfaceconfig.md: {}
-  docs/models/components/aigatewayproviderhuggingfaceconfigoutput.md: {}
-  docs/models/components/aigatewayproviderhuggingfacetype.md: {}
-  docs/models/components/aigatewayproviderkimi.md: {}
-  docs/models/components/aigatewayproviderkimiaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderkimiconfig.md: {}
-  docs/models/components/aigatewayproviderkimiconfigoutput.md: {}
-  docs/models/components/aigatewayproviderkimitype.md: {}
-  docs/models/components/aigatewayproviderllama2.md: {}
-  docs/models/components/aigatewayproviderllama2aigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderllama2config.md: {}
-  docs/models/components/aigatewayproviderllama2configoutput.md: {}
-  docs/models/components/aigatewayproviderllama2type.md: {}
-  docs/models/components/aigatewayprovidermistral.md: {}
-  docs/models/components/aigatewayprovidermistralaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovidermistralconfig.md: {}
-  docs/models/components/aigatewayprovidermistralconfigoutput.md: {}
-  docs/models/components/aigatewayprovidermistraltype.md: {}
-  docs/models/components/aigatewayproviderollama.md: {}
-  docs/models/components/aigatewayproviderollamaaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderollamaconfig.md: {}
-  docs/models/components/aigatewayproviderollamaconfigoutput.md: {}
-  docs/models/components/aigatewayproviderollamatype.md: {}
-  docs/models/components/aigatewayprovideropenai.md: {}
-  docs/models/components/aigatewayprovideropenaiaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovideropenaiconfig.md: {}
-  docs/models/components/aigatewayprovideropenaiconfigoutput.md: {}
-  docs/models/components/aigatewayprovideropenaitype.md: {}
-  docs/models/components/aigatewayprovidervercel.md: {}
-  docs/models/components/aigatewayprovidervercelaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovidervercelconfig.md: {}
-  docs/models/components/aigatewayprovidervercelconfigoutput.md: {}
-  docs/models/components/aigatewayproviderverceltype.md: {}
-  docs/models/components/aigatewayprovidervertex.md: {}
-  docs/models/components/aigatewayprovidervertexaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovidervertexauth.md: {}
-  docs/models/components/aigatewayprovidervertexauthoutput.md: {}
-  docs/models/components/aigatewayprovidervertexconfig.md: {}
-  docs/models/components/aigatewayprovidervertexconfigoutput.md: {}
-  docs/models/components/aigatewayprovidervertextype.md: {}
-  docs/models/components/aigatewayprovidervllm.md: {}
-  docs/models/components/aigatewayprovidervllmaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayprovidervllmconfig.md: {}
-  docs/models/components/aigatewayprovidervllmconfigoutput.md: {}
-  docs/models/components/aigatewayprovidervllmtype.md: {}
-  docs/models/components/aigatewayproviderxai.md: {}
-  docs/models/components/aigatewayproviderxaiaigatewayprovidertype.md: {}
-  docs/models/components/aigatewayproviderxaiconfig.md: {}
-  docs/models/components/aigatewayproviderxaiconfigoutput.md: {}
-  docs/models/components/aigatewayproviderxaitype.md: {}
   docs/models/components/aigatewayproxyconfig.md: {}
   docs/models/components/aigatewayproxyconfigauth.md: {}
   docs/models/components/aigatewayproxyconfigoutput.md: {}
@@ -698,6 +677,7 @@ trackedFiles:
   docs/models/components/aigatewayrediscloudconfigurationkeepalive.md: {}
   docs/models/components/aigatewayrediscloudconfigurationnodes.md: {}
   docs/models/components/aigatewayrediscloudconfigurationoutput.md: {}
+  docs/models/components/aigatewayrediscloudconfigurationport.md: {}
   docs/models/components/aigatewayrediscloudconfigurationrole.md: {}
   docs/models/components/aigatewayrediscloudconfigurationsentinel.md: {}
   docs/models/components/aigatewayrediscloudconfigurationsentinelnodes.md: {}
@@ -928,6 +908,9 @@ trackedFiles:
   docs/models/components/apiregistrationsfilters.md: {}
   docs/models/components/apiregistrationslistresponse.md: {}
   docs/models/components/apiregistrationstatus.md: {}
+  docs/models/components/apiresourcepayload.md: {}
+  docs/models/components/apiresourcepayloadtype.md: {}
+  docs/models/components/apiresourcesourcepayload.md: {}
   docs/models/components/apiresponseschema.md:
     id: 28fa007ad29a
     pristine_git_object: 302618373fbf8023ad9eb8c5f888bbb0fb47a136
@@ -1194,6 +1177,7 @@ trackedFiles:
     id: f573e765ffa9
     pristine_git_object: 9e8ee17774b4e899e557550edb8be458fcb56cce
   docs/models/components/authmethod.md: {}
+  docs/models/components/authmethods.md: {}
   docs/models/components/authorizationendpoint.md:
     id: b8c514967216
     pristine_git_object: e407fd9940420b93c15c324752a87384789859f7
@@ -1683,6 +1667,8 @@ trackedFiles:
     id: ddf465ca3a09
     pristine_git_object: 4b63880a3e6ab60e764445b188781e8a1ebcec51
   docs/models/components/captureprofileinfo.md: {}
+  docs/models/components/catalogapiresource.md: {}
+  docs/models/components/catalogapiresourcetype.md: {}
   docs/models/components/catalogapiservicemappingfilterparameters.md:
     id: 188735badb17
     pristine_git_object: bab6fdf724e9501ffe2f847c1d9a6c959aa2d0d4
@@ -2113,10 +2099,11 @@ trackedFiles:
   docs/models/components/createaigatewayconsumerrequest.md: {}
   docs/models/components/createaigatewayconsumerrequesttype.md: {}
   docs/models/components/createaigatewaydataplanecertificaterequest.md: {}
+  docs/models/components/createaigatewayidentityproviderrequest.md: {}
   docs/models/components/createaigatewaymcpserverrequest.md: {}
+  docs/models/components/createaigatewaymodelproviderrequest.md: {}
   docs/models/components/createaigatewaymodelrequest.md: {}
   docs/models/components/createaigatewaypolicyrequest.md: {}
-  docs/models/components/createaigatewayproviderrequest.md: {}
   docs/models/components/createaigatewayrequest.md: {}
   docs/models/components/createaigatewayvaultrequest.md: {}
   docs/models/components/createandmapserviceactionpayload.md:
@@ -3764,11 +3751,12 @@ trackedFiles:
   docs/models/components/listaigatewayconsumersresponse.md: {}
   docs/models/components/listaigatewaydataplanecertificatesresponse.md: {}
   docs/models/components/listaigatewaydataplanenodesresponse.md: {}
+  docs/models/components/listaigatewayidentityprovidersresponse.md: {}
   docs/models/components/listaigatewaymcpserversresponse.md: {}
+  docs/models/components/listaigatewaymodelprovidersresponse.md: {}
   docs/models/components/listaigatewaymodelsresponse.md: {}
   docs/models/components/listaigatewaypoliciesresponse.md: {}
   docs/models/components/listaigatewaypolicyusageresponse.md: {}
-  docs/models/components/listaigatewayprovidersresponse.md: {}
   docs/models/components/listaigatewaysresponse.md: {}
   docs/models/components/listaigatewayvaultsresponse.md: {}
   docs/models/components/listapiattributesresponse.md:
@@ -4221,15 +4209,13 @@ trackedFiles:
   docs/models/components/mcpcapabilitiesmap.md: {}
   docs/models/components/mcpcapabilityrequest.md: {}
   docs/models/components/mcpresourceinfo.md: {}
-  docs/models/components/mcpresourceinfotype.md: {}
-  docs/models/components/mcpresourceinput.md: {}
-  docs/models/components/mcpresourceinputtype.md: {}
   docs/models/components/mcpresourcemappingfilter.md: {}
+  docs/models/components/mcpresourceremotemcpserverpayload.md: {}
+  docs/models/components/mcpresourceremotemcpserverpayloadconfig.md: {}
+  docs/models/components/mcpresourceremotemcpserverpayloadtype.md: {}
   docs/models/components/mcpresourcesourceapicatalog.md: {}
   docs/models/components/mcpresourcesourceapicatalogconfig.md: {}
   docs/models/components/mcpresourcesourceapicatalogtype.md: {}
-  docs/models/components/mcpresourcesourcedetail.md: {}
-  docs/models/components/mcpresourcesourcedetailinput.md: {}
   docs/models/components/mcpresourcesourceraw.md: {}
   docs/models/components/mcpresourcesourcerawinput.md: {}
   docs/models/components/mcpresourcesourcerawinputconfig.md: {}
@@ -4243,6 +4229,9 @@ trackedFiles:
   docs/models/components/mcpservercpinfo.md: {}
   docs/models/components/mcpservermcpresourcemapping.md: {}
   docs/models/components/mcpserverpodsstatus.md: {}
+  docs/models/components/mcpserverresourcepayload.md: {}
+  docs/models/components/mcpserverresourcepayloadtype.md: {}
+  docs/models/components/mcpserverresourcesourcepayload.md: {}
   docs/models/components/mcpserverruntime.md: {}
   docs/models/components/mcpserversignal.md: {}
   docs/models/components/mcpserversignals.md: {}
@@ -4582,6 +4571,7 @@ trackedFiles:
   docs/models/components/partialrediseeconfig.md:
     id: c33202d4ab81
     pristine_git_object: e84613cb08c066aa8b53644ec0aebce4d1fba409
+  docs/models/components/partialrediseeport.md: {}
   docs/models/components/partials.md:
     id: ec7adb67c28d
     pristine_git_object: 5fccbdcc703146c27cfb1b341d46e3aecd8b7d04
@@ -5071,6 +5061,8 @@ trackedFiles:
   docs/models/components/ratelimitingconfiguration.md:
     id: 398315cc561a
     pristine_git_object: bfdd1b48944da7a866060b8c1c18c9e8571785eb
+  docs/models/components/rawapiresource.md: {}
+  docs/models/components/rawapiresourcetype.md: {}
   docs/models/components/rawapispecprovider.md:
     id: 30e1ffdf7a89
     pristine_git_object: 4486e9550ee4a830ec06de3d2f9418e538666c7d
@@ -5111,6 +5103,8 @@ trackedFiles:
   docs/models/components/relativeyeartimerange.md:
     id: 66294e9b7078
     pristine_git_object: 0b46327e6f6b84d681cac47578a8611066fa60ad
+  docs/models/components/remotemcpserverresource.md: {}
+  docs/models/components/remotemcpserverresourcetype.md: {}
   docs/models/components/replaceimagerequestschema.md: {}
   docs/models/components/replaceportalauditlogreplayjob.md:
     id: 3a683389fb63
@@ -6101,10 +6095,11 @@ trackedFiles:
   docs/models/components/updateaigatewayconsumergrouprequest.md: {}
   docs/models/components/updateaigatewayconsumerrequest.md: {}
   docs/models/components/updateaigatewayconsumerrequesttype.md: {}
+  docs/models/components/updateaigatewayidentityproviderrequest.md: {}
   docs/models/components/updateaigatewaymcpserverrequest.md: {}
+  docs/models/components/updateaigatewaymodelproviderrequest.md: {}
   docs/models/components/updateaigatewaymodelrequest.md: {}
   docs/models/components/updateaigatewaypolicyrequest.md: {}
-  docs/models/components/updateaigatewayproviderrequest.md: {}
   docs/models/components/updateaigatewayrequest.md: {}
   docs/models/components/updateaigatewayvaultrequest.md: {}
   docs/models/components/updateapipackagerequest.md:
@@ -6745,14 +6740,16 @@ trackedFiles:
   docs/models/operations/createaigatewayconsumerresponse.md: {}
   docs/models/operations/createaigatewaydataplanecertificaterequest.md: {}
   docs/models/operations/createaigatewaydataplanecertificateresponse.md: {}
+  docs/models/operations/createaigatewayidentityproviderrequest.md: {}
+  docs/models/operations/createaigatewayidentityproviderresponse.md: {}
   docs/models/operations/createaigatewaymcpserverrequest.md: {}
   docs/models/operations/createaigatewaymcpserverresponse.md: {}
+  docs/models/operations/createaigatewaymodelproviderrequest.md: {}
+  docs/models/operations/createaigatewaymodelproviderresponse.md: {}
   docs/models/operations/createaigatewaymodelrequest.md: {}
   docs/models/operations/createaigatewaymodelresponse.md: {}
   docs/models/operations/createaigatewaypolicyrequest.md: {}
   docs/models/operations/createaigatewaypolicyresponse.md: {}
-  docs/models/operations/createaigatewayproviderrequest.md: {}
-  docs/models/operations/createaigatewayproviderresponse.md: {}
   docs/models/operations/createaigatewayresponse.md: {}
   docs/models/operations/createaigatewayvaultrequest.md: {}
   docs/models/operations/createaigatewayvaultresponse.md: {}
@@ -7061,6 +7058,7 @@ trackedFiles:
     id: 20ecd2e9d54c
     pristine_git_object: be69dc15b42f530edf979571f9195b261bda52ba
   docs/models/operations/createllmcostoverrideresponse.md: {}
+  docs/models/operations/createmcpresourcerequestbody.md: {}
   docs/models/operations/createmcpresourceresponse.md: {}
   docs/models/operations/createmcpserverconfigresponse.md: {}
   docs/models/operations/createmcpservercontrolplanemappingrequest.md: {}
@@ -7338,14 +7336,16 @@ trackedFiles:
   docs/models/operations/deleteaigatewayconsumerresponse.md: {}
   docs/models/operations/deleteaigatewaydataplanecertificaterequest.md: {}
   docs/models/operations/deleteaigatewaydataplanecertificateresponse.md: {}
+  docs/models/operations/deleteaigatewayidentityproviderrequest.md: {}
+  docs/models/operations/deleteaigatewayidentityproviderresponse.md: {}
   docs/models/operations/deleteaigatewaymcpserverrequest.md: {}
   docs/models/operations/deleteaigatewaymcpserverresponse.md: {}
+  docs/models/operations/deleteaigatewaymodelproviderrequest.md: {}
+  docs/models/operations/deleteaigatewaymodelproviderresponse.md: {}
   docs/models/operations/deleteaigatewaymodelrequest.md: {}
   docs/models/operations/deleteaigatewaymodelresponse.md: {}
   docs/models/operations/deleteaigatewaypolicyrequest.md: {}
   docs/models/operations/deleteaigatewaypolicyresponse.md: {}
-  docs/models/operations/deleteaigatewayproviderrequest.md: {}
-  docs/models/operations/deleteaigatewayproviderresponse.md: {}
   docs/models/operations/deleteaigatewayrequest.md: {}
   docs/models/operations/deleteaigatewayresponse.md: {}
   docs/models/operations/deleteaigatewayvaultrequest.md: {}
@@ -8260,8 +8260,12 @@ trackedFiles:
   docs/models/operations/getaigatewaydebugcpoutputresponse.md: {}
   docs/models/operations/getaigatewayexpectedconfigversionrequest.md: {}
   docs/models/operations/getaigatewayexpectedconfigversionresponse.md: {}
+  docs/models/operations/getaigatewayidentityproviderrequest.md: {}
+  docs/models/operations/getaigatewayidentityproviderresponse.md: {}
   docs/models/operations/getaigatewaymcpserverrequest.md: {}
   docs/models/operations/getaigatewaymcpserverresponse.md: {}
+  docs/models/operations/getaigatewaymodelproviderrequest.md: {}
+  docs/models/operations/getaigatewaymodelproviderresponse.md: {}
   docs/models/operations/getaigatewaymodelrequest.md: {}
   docs/models/operations/getaigatewaymodelresponse.md: {}
   docs/models/operations/getaigatewaynoderequest.md: {}
@@ -8270,8 +8274,6 @@ trackedFiles:
   docs/models/operations/getaigatewaypolicyresponse.md: {}
   docs/models/operations/getaigatewaypolicyschemarequest.md: {}
   docs/models/operations/getaigatewaypolicyschemaresponse.md: {}
-  docs/models/operations/getaigatewayproviderrequest.md: {}
-  docs/models/operations/getaigatewayproviderresponse.md: {}
   docs/models/operations/getaigatewayrequest.md: {}
   docs/models/operations/getaigatewayresponse.md: {}
   docs/models/operations/getaigatewayvaultrequest.md: {}
@@ -9302,8 +9304,12 @@ trackedFiles:
   docs/models/operations/listaigatewayconsumersresponse.md: {}
   docs/models/operations/listaigatewaydataplanecertificatesrequest.md: {}
   docs/models/operations/listaigatewaydataplanecertificatesresponse.md: {}
+  docs/models/operations/listaigatewayidentityprovidersrequest.md: {}
+  docs/models/operations/listaigatewayidentityprovidersresponse.md: {}
   docs/models/operations/listaigatewaymcpserversrequest.md: {}
   docs/models/operations/listaigatewaymcpserversresponse.md: {}
+  docs/models/operations/listaigatewaymodelprovidersrequest.md: {}
+  docs/models/operations/listaigatewaymodelprovidersresponse.md: {}
   docs/models/operations/listaigatewaymodelsrequest.md: {}
   docs/models/operations/listaigatewaymodelsresponse.md: {}
   docs/models/operations/listaigatewaynodesrequest.md: {}
@@ -9312,8 +9318,6 @@ trackedFiles:
   docs/models/operations/listaigatewaypoliciesresponse.md: {}
   docs/models/operations/listaigatewaypolicyusagerequest.md: {}
   docs/models/operations/listaigatewaypolicyusageresponse.md: {}
-  docs/models/operations/listaigatewayprovidersrequest.md: {}
-  docs/models/operations/listaigatewayprovidersresponse.md: {}
   docs/models/operations/listaigatewaysrequest.md: {}
   docs/models/operations/listaigatewaysresponse.md: {}
   docs/models/operations/listaigatewayvaultsrequest.md: {}
@@ -10880,14 +10884,16 @@ trackedFiles:
   docs/models/operations/updateaigatewayconsumergroupresponse.md: {}
   docs/models/operations/updateaigatewayconsumerrequest.md: {}
   docs/models/operations/updateaigatewayconsumerresponse.md: {}
+  docs/models/operations/updateaigatewayidentityproviderrequest.md: {}
+  docs/models/operations/updateaigatewayidentityproviderresponse.md: {}
   docs/models/operations/updateaigatewaymcpserverrequest.md: {}
   docs/models/operations/updateaigatewaymcpserverresponse.md: {}
+  docs/models/operations/updateaigatewaymodelproviderrequest.md: {}
+  docs/models/operations/updateaigatewaymodelproviderresponse.md: {}
   docs/models/operations/updateaigatewaymodelrequest.md: {}
   docs/models/operations/updateaigatewaymodelresponse.md: {}
   docs/models/operations/updateaigatewaypolicyrequest.md: {}
   docs/models/operations/updateaigatewaypolicyresponse.md: {}
-  docs/models/operations/updateaigatewayproviderrequest.md: {}
-  docs/models/operations/updateaigatewayproviderresponse.md: {}
   docs/models/operations/updateaigatewayrequest.md: {}
   docs/models/operations/updateaigatewayresponse.md: {}
   docs/models/operations/updateaigatewayvaultrequest.md: {}
@@ -11103,6 +11109,7 @@ trackedFiles:
     id: 0bcc56122b7c
     pristine_git_object: 1019a351b901cbbb83f860083b87a4713f94b808
   docs/models/operations/updatemcpresourcerequest.md: {}
+  docs/models/operations/updatemcpresourcerequestbody.md: {}
   docs/models/operations/updatemcpresourceresponse.md: {}
   docs/models/operations/updatemcpserverconfigrequest.md: {}
   docs/models/operations/updatemcpserverconfigresponse.md: {}
@@ -11688,11 +11695,12 @@ trackedFiles:
   docs/sdks/aigatewaydataplane/README.md: {}
   docs/sdks/aigatewaydataplanecertificates/README.md: {}
   docs/sdks/aigatewaydebug/README.md: {}
+  docs/sdks/aigatewayidentityproviders/README.md: {}
   docs/sdks/aigatewaymcpservers/README.md: {}
+  docs/sdks/aigatewaymodelproviders/README.md: {}
   docs/sdks/aigatewaymodels/README.md: {}
   docs/sdks/aigatewaynodes/README.md: {}
   docs/sdks/aigatewaypolicies/README.md: {}
-  docs/sdks/aigatewayproviders/README.md: {}
   docs/sdks/aigateways/README.md: {}
   docs/sdks/aigatewayvaults/README.md: {}
   docs/sdks/aimanager/README.md:
@@ -11914,6 +11922,7 @@ trackedFiles:
     pristine_git_object: 8cb1b76edaa5423c86512e49f89afe2dde1c0a1c
   docs/sdks/mcpresourcecontents/README.md: {}
   docs/sdks/mcpresourcemappings/README.md: {}
+  docs/sdks/mcpresources/README.md: {}
   docs/sdks/mcpserverruntime/README.md: {}
   docs/sdks/mcpservers/README.md: {}
   docs/sdks/me/README.md:
@@ -12179,6 +12188,7 @@ trackedFiles:
     pristine_git_object: 87d82e3fbc8ec3036a927dc89df15c87a347c704
   mcpresourcecontents.go: {}
   mcpresourcemappings.go: {}
+  mcpresources.go: {}
   mcpserverruntime.go: {}
   mcpservers.go: {}
   me.go:
@@ -12262,6 +12272,7 @@ trackedFiles:
   models/components/aigateway.go: {}
   models/components/aigatewayacls.go: {}
   models/components/aigatewayagent.go: {}
+  models/components/aigatewayagentaccess.go: {}
   models/components/aigatewayallowacl.go: {}
   models/components/aigatewayavailablepolicy.go: {}
   models/components/aigatewayazureembeddingsmodelconfig.go: {}
@@ -12285,9 +12296,15 @@ trackedFiles:
   models/components/aigatewayexpectedconfigversion.go: {}
   models/components/aigatewaygeminiembeddingsmodelconfig.go: {}
   models/components/aigatewayhuggingfaceembeddingsmodelconfig.go: {}
+  models/components/aigatewayidentityprovider.go: {}
+  models/components/aigatewayidentityproviderkeyauth.go: {}
+  models/components/aigatewayidentityprovideropenidconnect.go: {}
   models/components/aigatewaymcpacls.go: {}
   models/components/aigatewaymcpconversiontool.go: {}
   models/components/aigatewaymcpserver.go: {}
+  models/components/aigatewaymcpserverbaseaclproperties.go: {}
+  models/components/aigatewaymcpserverbaseaclpropertiesconsumer.go: {}
+  models/components/aigatewaymcpserverbaseaclpropertiesoauth.go: {}
   models/components/aigatewaymcpserverconversionlistener.go: {}
   models/components/aigatewaymcpserverconversiononly.go: {}
   models/components/aigatewaymcpserverlistener.go: {}
@@ -12308,6 +12325,7 @@ trackedFiles:
   models/components/aigatewaymcptoolparameter.go: {}
   models/components/aigatewaymcpupstreamtool.go: {}
   models/components/aigatewaymodel.go: {}
+  models/components/aigatewaymodelaccess.go: {}
   models/components/aigatewaymodelapi.go: {}
   models/components/aigatewaymodelapiconfigoutput.go: {}
   models/components/aigatewaymodelbalancerconfig.go: {}
@@ -12322,36 +12340,36 @@ trackedFiles:
   models/components/aigatewaymodelformat.go: {}
   models/components/aigatewaymodelmodel.go: {}
   models/components/aigatewaymodelmodelconfigoutput.go: {}
+  models/components/aigatewaymodelprovider.go: {}
+  models/components/aigatewaymodelprovideranthropic.go: {}
+  models/components/aigatewaymodelproviderazure.go: {}
+  models/components/aigatewaymodelproviderbedrock.go: {}
+  models/components/aigatewaymodelprovidercerebras.go: {}
+  models/components/aigatewaymodelprovidercohere.go: {}
+  models/components/aigatewaymodelproviderconfigauthawsoutput.go: {}
+  models/components/aigatewaymodelproviderconfigauthazureoutput.go: {}
+  models/components/aigatewaymodelproviderconfigauthbasicoutput.go: {}
+  models/components/aigatewaymodelproviderconfigauthgcpoutput.go: {}
+  models/components/aigatewaymodelproviderdashscope.go: {}
+  models/components/aigatewaymodelproviderdatabricks.go: {}
+  models/components/aigatewaymodelproviderdeepseek.go: {}
+  models/components/aigatewaymodelprovidergemini.go: {}
+  models/components/aigatewaymodelproviderhuggingface.go: {}
+  models/components/aigatewaymodelproviderkimi.go: {}
+  models/components/aigatewaymodelproviderllama2.go: {}
+  models/components/aigatewaymodelprovidermistral.go: {}
+  models/components/aigatewaymodelproviderollama.go: {}
+  models/components/aigatewaymodelprovideropenai.go: {}
+  models/components/aigatewaymodelprovidervercel.go: {}
+  models/components/aigatewaymodelprovidervertex.go: {}
+  models/components/aigatewaymodelprovidervllm.go: {}
+  models/components/aigatewaymodelproviderxai.go: {}
   models/components/aigatewaymodelvectordbconfig.go: {}
   models/components/aigatewaymodelvectordbconfigoutput.go: {}
   models/components/aigatewaymodelvectordbconfigpgvectoroutput.go: {}
   models/components/aigatewaymodelvectordbconfigredisoutput.go: {}
   models/components/aigatewaypolicy.go: {}
   models/components/aigatewaypolicyschema.go: {}
-  models/components/aigatewayprovider.go: {}
-  models/components/aigatewayprovideranthropic.go: {}
-  models/components/aigatewayproviderazure.go: {}
-  models/components/aigatewayproviderbedrock.go: {}
-  models/components/aigatewayprovidercerebras.go: {}
-  models/components/aigatewayprovidercohere.go: {}
-  models/components/aigatewayproviderconfigauthawsoutput.go: {}
-  models/components/aigatewayproviderconfigauthazureoutput.go: {}
-  models/components/aigatewayproviderconfigauthbasicoutput.go: {}
-  models/components/aigatewayproviderconfigauthgcpoutput.go: {}
-  models/components/aigatewayproviderdashscope.go: {}
-  models/components/aigatewayproviderdatabricks.go: {}
-  models/components/aigatewayproviderdeepseek.go: {}
-  models/components/aigatewayprovidergemini.go: {}
-  models/components/aigatewayproviderhuggingface.go: {}
-  models/components/aigatewayproviderkimi.go: {}
-  models/components/aigatewayproviderllama2.go: {}
-  models/components/aigatewayprovidermistral.go: {}
-  models/components/aigatewayproviderollama.go: {}
-  models/components/aigatewayprovideropenai.go: {}
-  models/components/aigatewayprovidervercel.go: {}
-  models/components/aigatewayprovidervertex.go: {}
-  models/components/aigatewayprovidervllm.go: {}
-  models/components/aigatewayproviderxai.go: {}
   models/components/aigatewayproxyconfigoutput.go: {}
   models/components/aigatewayproxyurl.go: {}
   models/components/aigatewayredisawsauthenticationoutput.go: {}
@@ -12502,6 +12520,8 @@ trackedFiles:
   models/components/apiregistration.go: {}
   models/components/apiregistrationsfilters.go: {}
   models/components/apiregistrationslistresponse.go: {}
+  models/components/apiresourcepayload.go: {}
+  models/components/apiresourcesourcepayload.go: {}
   models/components/apiresponseschema.go:
     id: f0b7a87cf74f
     pristine_git_object: cdf07cc6499de38646681645c536d73e11ff79ef
@@ -12788,6 +12808,7 @@ trackedFiles:
     id: b231b11d8a77
     pristine_git_object: b4f620f187a90a5f86fd75af59ff803891b86b16
   models/components/captureprofileinfo.go: {}
+  models/components/catalogapiresource.go: {}
   models/components/catalogapiservicemappingfilterparameters.go:
     id: 77bee009e172
     pristine_git_object: a2dba7556a0af935c2f2509181f3716107b5466f
@@ -13028,10 +13049,11 @@ trackedFiles:
   models/components/createaigatewayconsumergrouprequest.go: {}
   models/components/createaigatewayconsumerrequest.go: {}
   models/components/createaigatewaydataplanecertificaterequest.go: {}
+  models/components/createaigatewayidentityproviderrequest.go: {}
   models/components/createaigatewaymcpserverrequest.go: {}
+  models/components/createaigatewaymodelproviderrequest.go: {}
   models/components/createaigatewaymodelrequest.go: {}
   models/components/createaigatewaypolicyrequest.go: {}
-  models/components/createaigatewayproviderrequest.go: {}
   models/components/createaigatewayrequest.go: {}
   models/components/createaigatewayvaultrequest.go: {}
   models/components/createandmapserviceactionpayload.go:
@@ -13906,11 +13928,12 @@ trackedFiles:
   models/components/listaigatewayconsumersresponse.go: {}
   models/components/listaigatewaydataplanecertificatesresponse.go: {}
   models/components/listaigatewaydataplanenodesresponse.go: {}
+  models/components/listaigatewayidentityprovidersresponse.go: {}
   models/components/listaigatewaymcpserversresponse.go: {}
+  models/components/listaigatewaymodelprovidersresponse.go: {}
   models/components/listaigatewaymodelsresponse.go: {}
   models/components/listaigatewaypoliciesresponse.go: {}
   models/components/listaigatewaypolicyusageresponse.go: {}
-  models/components/listaigatewayprovidersresponse.go: {}
   models/components/listaigatewaysresponse.go: {}
   models/components/listaigatewayvaultsresponse.go: {}
   models/components/listapiattributesresponse.go:
@@ -14222,12 +14245,10 @@ trackedFiles:
   models/components/mcpcapabilitiesmap.go: {}
   models/components/mcpcapabilityrequest.go: {}
   models/components/mcpresourceinfo.go: {}
-  models/components/mcpresourceinput.go: {}
   models/components/mcpresourcemappingfilter.go: {}
+  models/components/mcpresourceremotemcpserverpayload.go: {}
   models/components/mcpresourcesourceapicatalog.go: {}
   models/components/mcpresourcesourceapicatalogconfig.go: {}
-  models/components/mcpresourcesourcedetail.go: {}
-  models/components/mcpresourcesourcedetailinput.go: {}
   models/components/mcpresourcesourceraw.go: {}
   models/components/mcpresourcesourcerawinput.go: {}
   models/components/mcpserver.go: {}
@@ -14238,6 +14259,8 @@ trackedFiles:
   models/components/mcpservercpinfo.go: {}
   models/components/mcpservermcpresourcemapping.go: {}
   models/components/mcpserverpodsstatus.go: {}
+  models/components/mcpserverresourcepayload.go: {}
+  models/components/mcpserverresourcesourcepayload.go: {}
   models/components/mcpserverruntime.go: {}
   models/components/mcpserversignal.go: {}
   models/components/mcpserversignals.go: {}
@@ -14702,6 +14725,7 @@ trackedFiles:
   models/components/ratelimitingconfig.go:
     id: 006b8b76d276
     pristine_git_object: 719e115bd77c3de2336e7c5dd53ffc31aa735c38
+  models/components/rawapiresource.go: {}
   models/components/rawapispecprovider.go:
     id: dfb2736f9883
     pristine_git_object: 785b69373a037316fef28a68e1361b04415ac518
@@ -14713,6 +14737,7 @@ trackedFiles:
   models/components/registry.go: {}
   models/components/registryfilterparameters.go: {}
   models/components/registrylist.go: {}
+  models/components/remotemcpserverresource.go: {}
   models/components/replaceimagerequestschema.go: {}
   models/components/replaceportalauditlogreplayjob.go:
     id: 0e95884aee38
@@ -15084,10 +15109,11 @@ trackedFiles:
   models/components/updateaigatewayconfigstoresecretrequest.go: {}
   models/components/updateaigatewayconsumergrouprequest.go: {}
   models/components/updateaigatewayconsumerrequest.go: {}
+  models/components/updateaigatewayidentityproviderrequest.go: {}
   models/components/updateaigatewaymcpserverrequest.go: {}
+  models/components/updateaigatewaymodelproviderrequest.go: {}
   models/components/updateaigatewaymodelrequest.go: {}
   models/components/updateaigatewaypolicyrequest.go: {}
-  models/components/updateaigatewayproviderrequest.go: {}
   models/components/updateaigatewayrequest.go: {}
   models/components/updateaigatewayvaultrequest.go: {}
   models/components/updateapipackagerequest.go:
@@ -15498,10 +15524,11 @@ trackedFiles:
   models/operations/createaigatewayconsumercredential.go: {}
   models/operations/createaigatewayconsumergroup.go: {}
   models/operations/createaigatewaydataplanecertificate.go: {}
+  models/operations/createaigatewayidentityprovider.go: {}
   models/operations/createaigatewaymcpserver.go: {}
   models/operations/createaigatewaymodel.go: {}
+  models/operations/createaigatewaymodelprovider.go: {}
   models/operations/createaigatewaypolicy.go: {}
-  models/operations/createaigatewayprovider.go: {}
   models/operations/createaigatewayvault.go: {}
   models/operations/createapi.go:
     id: 8b6f75fd92e2
@@ -15835,10 +15862,11 @@ trackedFiles:
   models/operations/deleteaigatewayconsumercredential.go: {}
   models/operations/deleteaigatewayconsumergroup.go: {}
   models/operations/deleteaigatewaydataplanecertificate.go: {}
+  models/operations/deleteaigatewayidentityprovider.go: {}
   models/operations/deleteaigatewaymcpserver.go: {}
   models/operations/deleteaigatewaymodel.go: {}
+  models/operations/deleteaigatewaymodelprovider.go: {}
   models/operations/deleteaigatewaypolicy.go: {}
-  models/operations/deleteaigatewayprovider.go: {}
   models/operations/deleteaigatewayvault.go: {}
   models/operations/deleteapi.go:
     id: 37733108de03
@@ -16291,12 +16319,13 @@ trackedFiles:
   models/operations/getaigatewaydataplanecertificate.go: {}
   models/operations/getaigatewaydebugcpoutput.go: {}
   models/operations/getaigatewayexpectedconfigversion.go: {}
+  models/operations/getaigatewayidentityprovider.go: {}
   models/operations/getaigatewaymcpserver.go: {}
   models/operations/getaigatewaymodel.go: {}
+  models/operations/getaigatewaymodelprovider.go: {}
   models/operations/getaigatewaynode.go: {}
   models/operations/getaigatewaypolicy.go: {}
   models/operations/getaigatewaypolicyschema.go: {}
-  models/operations/getaigatewayprovider.go: {}
   models/operations/getaigatewayvault.go: {}
   models/operations/getapipackage.go:
     id: 4d59c353cdc8
@@ -16808,12 +16837,13 @@ trackedFiles:
   models/operations/listaigatewayconsumers.go: {}
   models/operations/listaigatewayconsumersinconsumergroup.go: {}
   models/operations/listaigatewaydataplanecertificates.go: {}
+  models/operations/listaigatewayidentityproviders.go: {}
   models/operations/listaigatewaymcpservers.go: {}
+  models/operations/listaigatewaymodelproviders.go: {}
   models/operations/listaigatewaymodels.go: {}
   models/operations/listaigatewaynodes.go: {}
   models/operations/listaigatewaypolicies.go: {}
   models/operations/listaigatewaypolicyusage.go: {}
-  models/operations/listaigatewayproviders.go: {}
   models/operations/listaigateways.go: {}
   models/operations/listaigatewayvaults.go: {}
   models/operations/listapiattributes.go:
@@ -17522,10 +17552,11 @@ trackedFiles:
   models/operations/updateaigatewayconfigstoresecret.go: {}
   models/operations/updateaigatewayconsumer.go: {}
   models/operations/updateaigatewayconsumergroup.go: {}
+  models/operations/updateaigatewayidentityprovider.go: {}
   models/operations/updateaigatewaymcpserver.go: {}
   models/operations/updateaigatewaymodel.go: {}
+  models/operations/updateaigatewaymodelprovider.go: {}
   models/operations/updateaigatewaypolicy.go: {}
-  models/operations/updateaigatewayprovider.go: {}
   models/operations/updateaigatewayvault.go: {}
   models/operations/updateapi.go:
     id: a65d817aedce
@@ -30300,7 +30331,7 @@ examples:
           page[after]: "ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"
       responses:
         "200":
-          application/json: {"data": [{"id": "a1fc1774-1a12-421d-b9c0-19eed09af83f", "name": "<value>", "display_name": "Mavis_Breitenberg79", "labels": {"env": "test"}, "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "741a1221-d9c0-419e-9ed0-9af83fe22097", "api_version_id": "d3ffd574-12c9-4167-a04d-75745a69b88d"}}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "meta": {"page": {"next": "/boot/defaults", "previous": "/private", "size": 10}}}
+          application/json: {"data": [{"id": "a1fc1774-1a12-421d-b9c0-19eed09af83f", "name": "<value>", "display_name": "Mavis_Breitenberg79", "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "741a1221-d9c0-419e-9ed0-9af83fe22097", "api_version_id": "d3ffd574-12c9-4167-a04d-75745a69b88d"}}}], "meta": {"page": {"next": "/boot/defaults", "previous": "/private", "size": 10}}}
         "400":
           application/problem+json: {"status": 465488, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
         "401":
@@ -30313,7 +30344,7 @@ examples:
         application/json: {"name": "my-api-resource", "display_name": "Richard_Bogisich-Haley", "labels": {"env": "test"}, "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}}
       responses:
         "201":
-          application/json: {"id": "5aa99745-97e2-409b-b9f7-6442b7deda81", "name": "<value>", "display_name": "Jedediah.Renner", "labels": {"env": "test"}, "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "5aa99745-97e2-409b-b9f7-6442b7deda81", "name": "<value>", "display_name": "Jedediah.Renner", "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}}
         "400":
           application/problem+json: {"status": 69795, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -30329,7 +30360,7 @@ examples:
           resourceId: "1c4cc520-45e3-4087-8b08-6465521d7fc2"
       responses:
         "200":
-          application/json: {"id": "1b91f7a6-6dc8-481d-9a96-1bf3a55a4738", "name": "<value>", "display_name": "Bartholome_Hagenes", "labels": {"env": "test"}, "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "1b91f7a6-6dc8-481d-9a96-1bf3a55a4738", "name": "<value>", "display_name": "Bartholome_Hagenes", "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}}
         "400":
           application/problem+json: {"status": 144120, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "enum", "reason": "is a required field", "choices": ["<value 1>", "<value 2>", "<value 3>"], "source": "body"}]}
         "401":
@@ -30361,7 +30392,7 @@ examples:
         application/json: {"name": "my-api-resource", "display_name": "Daron_Graham", "labels": {"env": "test"}, "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}}
       responses:
         "200":
-          application/json: {"id": "e47715c1-ed8d-4541-a388-f1f43bbe1980", "name": "<value>", "display_name": "Trever_Hodkiewicz", "labels": {"env": "test"}, "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "e47715c1-ed8d-4541-a388-f1f43bbe1980", "name": "<value>", "display_name": "Trever_Hodkiewicz", "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "api", "source": {"type": "api_catalog", "config": {"api_id": "158a0fc7-479a-4928-8a64-7656c1824f7f", "api_version_id": "bc0b9df1-67ba-475f-9670-37de3cc2e4f6"}}}
         "400":
           application/problem+json: {"status": 393130, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -30922,7 +30953,7 @@ examples:
           policyId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
       responses:
         "200":
-          application/json: {"agents": [], "consumers": [{"display_name": "Greg's Dev Consumer", "name": "gregs-dev-consumer", "type": "api-key", "custom_id": "dev-users", "policies": ["<value 1>"], "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "consumer_groups": [{"display_name": "Dev Users Group", "name": "dev-users", "policies": [], "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "models": [{"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "acls": {"allow": ["consumer-group-1"]}, "formats": [{"type": "openai"}], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "huggingface", "use_cache": false, "wait_for_model": false}}], "policies": ["<value 1>", "<value 2>"], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "lowest-usage", "tokens_count_strategy": "total-tokens"}, "model": {}}, "capabilities": ["batches"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "mcp_servers": []}
+          application/json: {"agents": [], "consumers": [{"display_name": "Greg's Dev Consumer", "name": "gregs-dev-consumer", "type": "api-key", "custom_id": "dev-users", "policies": ["<value 1>"], "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "consumer_groups": [{"display_name": "Dev Users Group", "name": "dev-users", "policies": [], "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "models": [{"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [{"type": "openai"}], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "huggingface", "use_cache": false, "wait_for_model": false}}], "policies": ["<value 1>", "<value 2>"], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "lowest-usage", "tokens_count_strategy": "total-tokens"}, "model": {}}, "capabilities": ["batches"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "mcp_servers": []}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -30956,10 +30987,10 @@ examples:
         path:
           gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
       requestBody:
-        application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "acls": {"allow": ["consumer-group-1"]}, "formats": [{"type": "openai"}], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "cohere", "api_version": "v2", "embedding_input_type": "classification", "wait_for_model": false}}], "policies": ["<value 1>", "<value 2>", "<value 3>"], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "lowest-usage", "tokens_count_strategy": "total-tokens"}, "model": {}}, "capabilities": ["files"]}
+        application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [{"type": "openai"}], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "cohere", "api_version": "v2", "embedding_input_type": "classification", "wait_for_model": false}}], "policies": ["<value 1>", "<value 2>", "<value 3>"], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "lowest-usage", "tokens_count_strategy": "total-tokens"}, "model": {}}, "capabilities": ["files"]}
       responses:
         "201":
-          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "acls": {"deny": ["consumer-group-1"]}, "formats": [], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "cohere", "api_version": "v2", "embedding_input_type": "classification", "wait_for_model": false}}], "policies": ["<value 1>", "<value 2>", "<value 3>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "consistent-hashing", "hash_on_header": "X-Kong-LLM-Request-ID"}}, "capabilities": ["agentic"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "cohere", "api_version": "v2", "embedding_input_type": "classification", "wait_for_model": false}}], "policies": ["<value 1>", "<value 2>", "<value 3>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "consistent-hashing", "hash_on_header": "X-Kong-LLM-Request-ID"}}, "capabilities": ["agentic"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 121022, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -30981,7 +31012,7 @@ examples:
           modelIdOrName: "my-entity-name"
       responses:
         "200":
-          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "acls": {"deny": ["consumer-group-1"]}, "formats": [], "targets": [], "policies": ["<value 1>", "<value 2>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "semantic", "embeddings": {"allow_auth_override": false, "provider": "azure-ai-se", "name": "<value>"}, "vectordb": {"type": "redis", "dimensions": 401198, "distance_metric": "euclidean", "connect_timeout": 2000, "connection_is_proxied": false, "database": 0, "host": "127.0.0.1", "port": 6379, "read_timeout": 2000, "send_timeout": 2000, "ssl": true, "ssl_verify": true}}}, "capabilities": [], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [], "targets": [], "policies": ["<value 1>", "<value 2>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "semantic", "embeddings": {"allow_auth_override": false, "provider": "azure-ai-se", "name": "<value>"}, "vectordb": {"type": "redis", "dimensions": 401198, "distance_metric": "euclidean", "connect_timeout": 2000, "connection_is_proxied": false, "database": 0, "host": "127.0.0.1", "port": 6379, "read_timeout": 2000, "send_timeout": 2000, "ssl": true, "ssl_verify": true}}}, "capabilities": [], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -30998,10 +31029,10 @@ examples:
           modelId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
           modelIdOrName: "my-entity-name"
       requestBody:
-        application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "acls": {"allow": ["consumer-group-1"]}, "formats": [{"type": "openai"}], "targets": [], "policies": [], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "round-robin"}, "model": {}}, "capabilities": []}
+        application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [{"type": "openai"}], "targets": [], "policies": [], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "round-robin"}, "model": {}}, "capabilities": []}
       responses:
         "200":
-          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "acls": {"deny": ["consumer-group-1"]}, "formats": [{"type": "openai"}], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "kimi", "international": true}}], "policies": [], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "priority"}, "model": {}}, "capabilities": ["batches"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [{"type": "openai"}], "targets": [{"name": "gpt-5-model", "weight": 100, "allow_auth_override": false, "provider": "azure-ai-se", "config": {"type": "kimi", "international": true}}], "policies": [], "type": "api", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "priority"}, "model": {}}, "capabilities": ["batches"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 483228, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -31053,10 +31084,10 @@ examples:
         path:
           gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
       requestBody:
-        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "acls": {"allow": ["consumer-group-1"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
+        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
       responses:
         "201":
-          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "acls": {"allow": ["consumer-group-1"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 263006, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min_length", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
         "401":
@@ -31078,7 +31109,7 @@ examples:
           agentIdOrName: "my-entity-name"
       responses:
         "200":
-          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "acls": {"allow": ["consumer-group-1"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -31095,10 +31126,10 @@ examples:
           agentId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
           agentIdOrName: "my-entity-name"
       requestBody:
-        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "acls": {"allow": ["consumer-group-1"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
+        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
       responses:
         "200":
-          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "acls": {"allow": ["consumer-group-1"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}}, "config": {"url": "https://booking-agent.internal.kongair.com", "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "statistics": true, "max_payload_size": 524288}}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 626299, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -31473,10 +31504,10 @@ examples:
         path:
           gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
       requestBody:
-        application/json: {"acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>", "acls": {"allow": [], "deny": ["<value 1>"]}, "default_tool_acls": {"allow": [], "deny": ["<value 1>"]}, "type": "upstream-server", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com", "tools_cache_ttl_seconds": 93572}, "tools": [], "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"]}
+        application/json: {"type": "upstream-server", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com", "tools_cache_ttl_seconds": 93572}, "tools": [], "access": {"acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>"}, "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>", "acls": {"allow": [], "deny": ["<value 1>"]}, "default_tool_acls": {"allow": [], "deny": ["<value 1>"]}}
       responses:
         "201":
-          application/json: {"acl_attribute_type": "consumer", "acls": {"allow": [], "deny": ["<value 1>"]}, "default_tool_acls": {"allow": [], "deny": ["<value 1>"]}, "type": "conversion-listener", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com"}, "tools": [{"description": "Search for available flights", "name": "<value>", "method": "DELETE", "parameters": [{"name": "origin", "in": "query", "description": "The origin airport code.", "required": true}]}], "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"type": "conversion-listener", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com"}, "tools": [{"description": "Search for available flights", "name": "<value>", "method": "DELETE", "parameters": [{"name": "origin", "in": "query", "description": "The origin airport code.", "required": true}]}], "access": {"acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>"}, "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "acl_attribute_type": "consumer", "acls": {"allow": [], "deny": ["<value 1>"]}, "default_tool_acls": {"allow": [], "deny": ["<value 1>"]}}
         "400":
           application/problem+json: {"status": 632000, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -31498,7 +31529,7 @@ examples:
           mcpServerIdOrName: "my-entity-name"
       responses:
         "200":
-          application/json: {"acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>", "acls": {"allow": ["<value 1>", "<value 2>"], "deny": ["<value 1>"]}, "default_tool_acls": {"allow": ["<value 1>", "<value 2>", "<value 3>"], "deny": ["<value 1>", "<value 2>", "<value 3>"]}, "type": "conversion-listener", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com"}, "tools": [{"description": "Search for available flights", "name": "<value>", "method": "DELETE", "parameters": [{"name": "origin", "in": "query", "description": "The origin airport code.", "required": true}]}], "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"type": "conversion-listener", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com"}, "tools": [{"description": "Search for available flights", "name": "<value>", "method": "DELETE", "parameters": [{"name": "origin", "in": "query", "description": "The origin airport code.", "required": true}]}], "access": {"acl_attribute_type": "consumer"}, "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>", "acls": {"allow": ["<value 1>", "<value 2>"], "deny": ["<value 1>"]}, "default_tool_acls": {"allow": ["<value 1>", "<value 2>", "<value 3>"], "deny": ["<value 1>", "<value 2>", "<value 3>"]}}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -31515,10 +31546,10 @@ examples:
           mcpServerId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
           mcpServerIdOrName: "my-entity-name"
       requestBody:
-        application/json: {"acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>", "acls": {"allow": ["<value 1>", "<value 2>", "<value 3>"], "deny": ["<value 1>", "<value 2>"]}, "default_tool_acls": {"allow": ["<value 1>"], "deny": ["<value 1>", "<value 2>"]}, "type": "upstream-server", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com", "tools_cache_ttl_seconds": 97975}, "tools": [{"description": "Search for available flights", "name": "<value>", "method": "GET", "parameters": [{"name": "origin", "in": "query", "description": "The origin airport code.", "required": true}]}], "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"]}
+        application/json: {"type": "upstream-server", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com", "tools_cache_ttl_seconds": 97975}, "tools": [{"description": "Search for available flights", "name": "<value>", "method": "GET", "parameters": [{"name": "origin", "in": "query", "description": "The origin airport code.", "required": true}]}], "access": {"acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>"}, "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>", "acls": {"allow": ["<value 1>", "<value 2>", "<value 3>"], "deny": ["<value 1>", "<value 2>"]}, "default_tool_acls": {"allow": ["<value 1>"], "deny": ["<value 1>", "<value 2>"]}}
       responses:
         "200":
-          application/json: {"acl_attribute_type": "consumer", "acls": {"allow": ["<value 1>", "<value 2>", "<value 3>"], "deny": ["<value 1>", "<value 2>"]}, "default_tool_acls": {"allow": ["<value 1>"], "deny": ["<value 1>", "<value 2>"]}, "type": "conversion-listener", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com"}, "tools": [], "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"type": "conversion-listener", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "url": "https://mcp.internal.kongair.com"}, "tools": [], "access": {"acl_attribute_type": "oauth_access_token", "access_token_claim_field": "<value>"}, "display_name": "Kong Air Flights", "name": "kongair-flights", "enabled": true, "policies": ["<value 1>"], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "acl_attribute_type": "consumer", "acls": {"allow": ["<value 1>", "<value 2>", "<value 3>"], "deny": ["<value 1>", "<value 2>"]}, "default_tool_acls": {"allow": ["<value 1>"], "deny": ["<value 1>", "<value 2>"]}}
         "400":
           application/problem+json: {"status": 953018, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "enum", "reason": "is a required field", "choices": ["<value 1>", "<value 2>"], "source": "body"}]}
         "401":
@@ -36388,6 +36419,198 @@ examples:
           application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
         "404":
           application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  list-ai-gateway-model-providers:
+    speakeasy-default-list-ai-gateway-model-providers:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+        query:
+          page[size]: 10
+          page[after]: "ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"
+      responses:
+        "200":
+          application/json: {"data": [{"type": "gemini", "display_name": "Azure AI SE", "name": "azure-ai-se", "config": {"auth": {"type": "basic"}}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "meta": {"page": {"next": "/opt", "previous": "/Network", "size": 10}}}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  create-ai-gateway-model-provider:
+    speakeasy-default-create-ai-gateway-model-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+      requestBody:
+        application/json: {"type": "vertex", "display_name": "Azure AI SE", "name": "azure-ai-se", "config": {"auth": {"type": "gcp"}}}
+      responses:
+        "201":
+          application/json: {"type": "kimi", "display_name": "Azure AI SE", "name": "azure-ai-se", "config": {"auth": {"type": "basic"}}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 777434, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "dependent_fields", "reason": "is a required field", "dependents": ["<value 1>"], "source": "body"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  get-ai-gateway-model-provider:
+    speakeasy-default-get-ai-gateway-model-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          modelProviderIdOrName: "my-entity-name"
+      responses:
+        "200":
+          application/json: {"type": "cerebras", "display_name": "Azure AI SE", "name": "azure-ai-se", "config": {"auth": {"type": "basic"}}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  update-ai-gateway-model-provider:
+    speakeasy-default-update-ai-gateway-model-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          modelProviderIdOrName: "my-entity-name"
+      requestBody:
+        application/json: {"type": "deepseek", "display_name": "Azure AI SE", "name": "azure-ai-se", "config": {"auth": {"type": "basic"}}}
+      responses:
+        "200":
+          application/json: {"type": "bedrock", "display_name": "Azure AI SE", "name": "azure-ai-se", "config": {"auth": {"type": "aws"}}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 299440, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  delete-ai-gateway-model-provider:
+    speakeasy-default-delete-ai-gateway-model-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          modelProviderIdOrName: "my-entity-name"
+      responses:
+        "400":
+          application/problem+json: {"status": 247021, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  list-ai-gateway-identity-providers:
+    speakeasy-default-list-ai-gateway-identity-providers:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+        query:
+          page[size]: 10
+          page[after]: "ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"
+      responses:
+        "200":
+          application/json: {"data": [{"display_name": "Okta AI SE", "name": "okta-ai-se", "type": "key-auth", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "meta": {"page": {"next": "/Library", "previous": null, "size": 10}}}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  create-ai-gateway-identity-provider:
+    speakeasy-default-create-ai-gateway-identity-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+      requestBody:
+        application/json: {"display_name": "Okta AI SE", "name": "okta-ai-se", "type": "key-auth"}
+      responses:
+        "201":
+          application/json: {"display_name": "Okta AI SE", "name": "okta-ai-se", "type": "key-auth", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 200822, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  get-ai-gateway-identity-provider:
+    speakeasy-default-get-ai-gateway-identity-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          identityProviderIdOrName: "my-entity-name"
+      responses:
+        "200":
+          application/json: {"display_name": "Okta AI SE", "name": "okta-ai-se", "type": "key-auth", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  update-ai-gateway-identity-provider:
+    speakeasy-default-update-ai-gateway-identity-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          identityProviderIdOrName: "my-entity-name"
+      requestBody:
+        application/json: {"display_name": "Okta AI SE", "name": "okta-ai-se", "type": "key-auth"}
+      responses:
+        "200":
+          application/json: {"display_name": "Okta AI SE", "name": "okta-ai-se", "type": "openid-connect", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 991108, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "max_items", "maximum": 8, "source": "body", "reason": "must not have more than 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  delete-ai-gateway-identity-provider:
+    speakeasy-default-delete-ai-gateway-identity-provider:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          identityProviderIdOrName: "my-entity-name"
+      responses:
+        "400":
+          application/problem+json: {"status": 336067, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
         "429":
           application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
 examplesVersion: 1.0.2

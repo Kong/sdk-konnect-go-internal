@@ -652,6 +652,7 @@ tags:
       Multiple meters can be created for the same event type, enabling flexible
       metering scenarios.
   - name: MCP Servers
+  - name: MCP Resources
   - name: MCP Resource Contents
   - name: MCP Resource Mappings
   - name: Control Plane Mappings
@@ -674,6 +675,10 @@ tags:
     description: >-
       Consumer groups for applying rate-limiting and access policies to AI
       Gateway traffic.
+  - name: AI Gateway Identity Providers
+    description: >-
+      Identity providers for authenticating users and accessing AI Gateway
+      resources.
   - name: AI Gateway Models
     description: >-
       Models that define routing, capabilities, and backend targets for the AI
@@ -684,9 +689,9 @@ tags:
       the AI Gateway.
   - name: AI Gateway MCP Servers
     description: MCP Servers that expose tools for AI Gateway integrations.
-  - name: AI Gateway Providers
+  - name: AI Gateway Model Providers
     description: >-
-      Providers that define the backend AI service connections for the AI
+      Model providers that define the backend AI service connections for the AI
       Gateway.
   - name: AI Gateway Debug
     description: AI Gateway debug endpoints.
@@ -20275,7 +20280,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
       tags:
-        - MCP Servers
+        - MCP Resources
     post:
       x-unstable: true
       x-internal: true
@@ -20287,7 +20292,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MCPResourceInput'
+              oneOf:
+                - $ref: '#/components/schemas/ApiResourcePayload'
+                - $ref: '#/components/schemas/McpServerResourcePayload'
       responses:
         '201':
           description: A response to creating an MCP resource.
@@ -20304,7 +20311,7 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - MCP Servers
+        - MCP Resources
   /v1/mcp-resources/{resourceId}:
     parameters:
       - $ref: '#/components/parameters/mcpResourceId'
@@ -20330,7 +20337,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - MCP Servers
+        - MCP Resources
     delete:
       x-unstable: true
       x-internal: true
@@ -20349,7 +20356,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
       tags:
-        - MCP Servers
+        - MCP Resources
     put:
       x-unstable: true
       x-internal: true
@@ -20361,7 +20368,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MCPResourceInput'
+              oneOf:
+                - $ref: '#/components/schemas/ApiResourcePayload'
+                - $ref: '#/components/schemas/McpServerResourcePayload'
       responses:
         '200':
           description: A response to updating an MCP resource.
@@ -20380,7 +20389,7 @@ paths:
         '409':
           $ref: '#/components/responses/Conflict'
       tags:
-        - MCP Servers
+        - MCP Resources
   /v1/mcp-resources/{resourceId}/contents:
     parameters:
       - $ref: '#/components/parameters/mcpResourceId'
@@ -22417,22 +22426,22 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
       tags:
         - AI Gateway MCP Servers
-  /v1/ai-gateways/{gatewayId}/providers:
+  /v1/ai-gateways/{gatewayId}/model-providers:
     parameters:
       - $ref: '#/components/parameters/AIGatewayId'
     get:
       x-internal: true
       x-unstable: true
       x-terraform-excluded: list operation is not needed by the Terraform provider
-      operationId: list-ai-gateway-providers
-      summary: List AI Gateway Providers
-      description: Returns a list of providers configured for the AI Gateway.
+      operationId: list-ai-gateway-model-providers
+      summary: List AI Gateway Model Providers
+      description: Returns a list of model providers configured for the AI Gateway.
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageAfter'
       responses:
         '200':
-          $ref: '#/components/responses/ListAIGatewayProvidersResponse'
+          $ref: '#/components/responses/ListAIGatewayModelProvidersResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -22442,25 +22451,25 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
       tags:
-        - AI Gateway Providers
+        - AI Gateway Model Providers
     post:
       x-internal: true
       x-unstable: true
       x-speakeasy-entity-operation:
-        terraform-resource: AIGatewayProvider#create
+        terraform-resource: AIGatewayModelProvider#create
         terraform-datasource: null
-      operationId: create-ai-gateway-provider
-      summary: Create an AI Gateway Provider
-      description: Registers a new provider for the AI Gateway.
+      operationId: create-ai-gateway-model-provider
+      summary: Create an AI Gateway Model Provider
+      description: Registers a new model provider for the AI Gateway.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateAIGatewayProviderRequest'
+              $ref: '#/components/schemas/CreateAIGatewayModelProviderRequest'
       responses:
         '201':
-          $ref: '#/components/responses/CreateAIGatewayProviderResponse'
+          $ref: '#/components/responses/CreateAIGatewayModelProviderResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -22472,23 +22481,23 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
       tags:
-        - AI Gateway Providers
-  /v1/ai-gateways/{gatewayId}/providers/{providerIdOrName}:
+        - AI Gateway Model Providers
+  /v1/ai-gateways/{gatewayId}/model-providers/{modelProviderIdOrName}:
     parameters:
       - $ref: '#/components/parameters/AIGatewayId'
-      - $ref: '#/components/parameters/AIGatewayProviderIdOrName'
+      - $ref: '#/components/parameters/AIGatewayModelProviderIdOrName'
     get:
       x-internal: true
       x-unstable: true
       x-speakeasy-entity-operation:
-        terraform-resource: AIGatewayProvider#read
+        terraform-resource: AIGatewayModelProvider#read
         terraform-datasource: null
-      operationId: get-ai-gateway-provider
-      summary: Get an AI Gateway Provider
-      description: Returns the details of a specific AI Gateway provider.
+      operationId: get-ai-gateway-model-provider
+      summary: Get an AI Gateway Model Provider
+      description: Returns the details of a specific AI Gateway model provider.
       responses:
         '200':
-          $ref: '#/components/responses/GetAIGatewayProviderResponse'
+          $ref: '#/components/responses/GetAIGatewayModelProviderResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -22498,25 +22507,25 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
       tags:
-        - AI Gateway Providers
+        - AI Gateway Model Providers
     put:
       x-internal: true
       x-unstable: true
       x-speakeasy-entity-operation:
-        terraform-resource: AIGatewayProvider#create,update
+        terraform-resource: AIGatewayModelProvider#create,update
         terraform-datasource: null
-      operationId: update-ai-gateway-provider
-      summary: Update an AI Gateway Provider
-      description: Updates the configuration of an existing AI Gateway provider.
+      operationId: update-ai-gateway-model-provider
+      summary: Update an AI Gateway Model Provider
+      description: Updates the configuration of an existing AI Gateway model provider.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateAIGatewayProviderRequest'
+              $ref: '#/components/schemas/UpdateAIGatewayModelProviderRequest'
       responses:
         '200':
-          $ref: '#/components/responses/UpdateAIGatewayProviderResponse'
+          $ref: '#/components/responses/UpdateAIGatewayModelProviderResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -22528,19 +22537,19 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
       tags:
-        - AI Gateway Providers
+        - AI Gateway Model Providers
     delete:
       x-internal: true
       x-unstable: true
       x-speakeasy-entity-operation:
-        terraform-resource: AIGatewayProvider#delete
+        terraform-resource: AIGatewayModelProvider#delete
         terraform-datasource: null
-      operationId: delete-ai-gateway-provider
-      summary: Delete an AI Gateway Provider
-      description: Removes a specific AI Gateway provider.
+      operationId: delete-ai-gateway-model-provider
+      summary: Delete an AI Gateway Model Provider
+      description: Removes a specific AI Gateway model provider.
       responses:
         '204':
-          description: Provider deleted successfully.
+          description: Model provider deleted successfully.
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -22554,7 +22563,145 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
       tags:
-        - AI Gateway Providers
+        - AI Gateway Model Providers
+  /v1/ai-gateways/{gatewayId}/identity:
+    parameters:
+      - $ref: '#/components/parameters/AIGatewayId'
+    get:
+      x-internal: true
+      x-unstable: true
+      x-terraform-excluded: list operation is not needed by the Terraform provider
+      operationId: list-ai-gateway-identity-providers
+      summary: List AI Gateway Identity Providers
+      description: Returns a list of identity providers configured for the AI Gateway.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListAIGatewayIdentityProvidersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      tags:
+        - AI Gateway Identity Providers
+    post:
+      x-internal: true
+      x-unstable: true
+      x-speakeasy-entity-operation:
+        terraform-resource: AIGatewayIdentityProvider#create
+        terraform-datasource: null
+      operationId: create-ai-gateway-identity-provider
+      summary: Create an AI Gateway Identity Provider
+      description: Registers a new identity provider for the AI Gateway.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAIGatewayIdentityProviderRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateAIGatewayIdentityProviderResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      tags:
+        - AI Gateway Identity Providers
+  /v1/ai-gateways/{gatewayId}/identity/{identityProviderIdOrName}:
+    parameters:
+      - $ref: '#/components/parameters/AIGatewayId'
+      - $ref: '#/components/parameters/AIGatewayIdentityProviderIdOrName'
+    get:
+      x-internal: true
+      x-unstable: true
+      x-speakeasy-entity-operation:
+        terraform-resource: AIGatewayIdentityProvider#read
+        terraform-datasource: null
+      operationId: get-ai-gateway-identity-provider
+      summary: Get an AI Gateway Identity Provider
+      description: Returns the details of a specific AI Gateway identity provider.
+      responses:
+        '200':
+          $ref: '#/components/responses/GetAIGatewayIdentityProviderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      tags:
+        - AI Gateway Identity Providers
+    put:
+      x-internal: true
+      x-unstable: true
+      x-speakeasy-entity-operation:
+        terraform-resource: AIGatewayIdentityProvider#create,update
+        terraform-datasource: null
+      operationId: update-ai-gateway-identity-provider
+      summary: Update an AI Gateway Identity Provider
+      description: Updates the configuration of an existing AI Gateway Identity provider.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAIGatewayIdentityProviderRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdateAIGatewayIdentityProviderResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      tags:
+        - AI Gateway Identity Providers
+    delete:
+      x-internal: true
+      x-unstable: true
+      x-speakeasy-entity-operation:
+        terraform-resource: AIGatewayIdentityProvider#delete
+        terraform-datasource: null
+      operationId: delete-ai-gateway-identity-provider
+      summary: Delete an AI Gateway Identity Provider
+      description: Removes a specific AI Gateway Identity provider.
+      responses:
+        '204':
+          description: Identity provider deleted successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      tags:
+        - AI Gateway Identity Providers
   /v1/ai-gateways/{gatewayId}/config-stores:
     parameters:
       - $ref: '#/components/parameters/AIGatewayId'
@@ -34619,11 +34766,18 @@ components:
       description: The unique ID or name of the MCP Server.
       schema:
         $ref: '#/components/schemas/AIGatewayEntityIdentifier'
-    AIGatewayProviderIdOrName:
-      name: providerIdOrName
+    AIGatewayModelProviderIdOrName:
+      name: modelProviderIdOrName
       in: path
       required: true
-      description: The unique ID or name of the AI Gateway provider.
+      description: The unique ID or name of the AI Gateway model provider.
+      schema:
+        $ref: '#/components/schemas/AIGatewayEntityIdentifier'
+    AIGatewayIdentityProviderIdOrName:
+      name: identityProviderIdOrName
+      in: path
+      required: true
+      description: The unique ID or name of the AI Gateway Identity provider.
       schema:
         $ref: '#/components/schemas/AIGatewayEntityIdentifier'
     AIGatewayConsumerId:
@@ -40543,8 +40697,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AIGatewayMCPServer'
-    ListAIGatewayProvidersResponse:
-      description: A paginated list of AI Gateway Providers.
+    ListAIGatewayModelProvidersResponse:
+      description: A paginated list of AI Gateway Model Providers.
       content:
         application/json:
           schema:
@@ -40556,7 +40710,7 @@ components:
               data:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AIGatewayProvider'
+                  $ref: '#/components/schemas/AIGatewayModelProvider'
               meta:
                 $ref: '#/components/schemas/CursorMeta'
     ListAIGatewayAgentsResponse:
@@ -40771,24 +40925,58 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AIGatewayConfigStoreSecret'
-    CreateAIGatewayProviderResponse:
-      description: Provider created successfully.
+    CreateAIGatewayModelProviderResponse:
+      description: Model provider created successfully.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AIGatewayProvider'
-    GetAIGatewayProviderResponse:
-      description: A successful response returning an AI Gateway Provider.
+            $ref: '#/components/schemas/AIGatewayModelProvider'
+    GetAIGatewayModelProviderResponse:
+      description: A successful response returning an AI Gateway Model Provider.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AIGatewayProvider'
-    UpdateAIGatewayProviderResponse:
-      description: Provider updated successfully.
+            $ref: '#/components/schemas/AIGatewayModelProvider'
+    UpdateAIGatewayModelProviderResponse:
+      description: Model provider updated successfully.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AIGatewayProvider'
+            $ref: '#/components/schemas/AIGatewayModelProvider'
+    CreateAIGatewayIdentityProviderResponse:
+      description: Identity Provider created successfully.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AIGatewayIdentityProvider'
+    GetAIGatewayIdentityProviderResponse:
+      description: A successful response returning an AI Gateway Identity Provider.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AIGatewayIdentityProvider'
+    UpdateAIGatewayIdentityProviderResponse:
+      description: Identity provider updated successfully.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AIGatewayIdentityProvider'
+    ListAIGatewayIdentityProvidersResponse:
+      description: A paginated list of AI Gateway Identity Providers.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - data
+              - meta
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AIGatewayIdentityProvider'
+              meta:
+                $ref: '#/components/schemas/CursorMeta'
     TooManyRequests:
       description: Too Many Requests
       content:
@@ -44183,6 +44371,11 @@ components:
             - 71.78.149.75
             - 91.149.112.244
             - 51.235.15.121
+        hostnames:
+          type: array
+          items:
+            type: string
+          description: List of hostnames for proxying to the data-plane group.
         created_at:
           type: string
           format: date-time
@@ -82354,12 +82547,10 @@ components:
           maxLength: 1024
         labels:
           $ref: '#/components/schemas/Labels'
-    MCPResourceInput:
+    BaseResourcePayload:
       type: object
       required:
         - name
-        - type
-        - source
         - display_name
         - labels
       properties:
@@ -82379,15 +82570,39 @@ components:
           maxLength: 120
         labels:
           $ref: '#/components/schemas/Labels'
-        type:
-          type: string
-          description: The type of the MCP resource.
-          enum:
-            - api
-          default: api
-        source:
-          $ref: '#/components/schemas/MCPResourceSourceDetailInput'
-    MCPResourceInfo:
+    ApiResourcePayload:
+      allOf:
+        - $ref: '#/components/schemas/BaseResourcePayload'
+        - type: object
+          required:
+            - type
+            - source
+          properties:
+            type:
+              type: string
+              description: The type of the MCP resource.
+              enum:
+                - api
+              default: api
+            source:
+              $ref: '#/components/schemas/ApiResourceSourcePayload'
+    McpServerResourcePayload:
+      allOf:
+        - $ref: '#/components/schemas/BaseResourcePayload'
+        - type: object
+          required:
+            - type
+            - source
+          properties:
+            type:
+              type: string
+              description: The type of the MCP resource.
+              enum:
+                - mcp_server
+              default: mcp_server
+            source:
+              $ref: '#/components/schemas/McpServerResourceSourcePayload'
+    RawApiResource:
       type: object
       description: The MCP resource object.
       required:
@@ -82395,8 +82610,86 @@ components:
         - name
         - display_name
         - labels
+        - created_at
+        - updated_at
         - type
         - source
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the MCP resource.
+        name:
+          type: string
+          description: The unique name of the MCP resource.
+          minLength: 1
+          maxLength: 256
+        display_name:
+          type: string
+          description: The display name of the MCP resource.
+          minLength: 1
+          maxLength: 120
+        labels:
+          $ref: '#/components/schemas/Labels'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        type:
+          type: string
+          description: The type of the MCP resource.
+          enum:
+            - api
+        source:
+          $ref: '#/components/schemas/MCPResourceSourceRaw'
+    CatalogApiResource:
+      type: object
+      description: The MCP resource object.
+      required:
+        - id
+        - name
+        - display_name
+        - labels
+        - created_at
+        - updated_at
+        - type
+        - source
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The unique identifier for the MCP resource.
+        name:
+          type: string
+          description: The unique name of the MCP resource.
+          minLength: 1
+          maxLength: 256
+        display_name:
+          type: string
+          description: The display name of the MCP resource.
+          minLength: 1
+          maxLength: 120
+        labels:
+          $ref: '#/components/schemas/Labels'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        type:
+          type: string
+          description: The type of the MCP resource.
+          enum:
+            - api
+        source:
+          $ref: '#/components/schemas/MCPResourceSourceAPICatalog'
+    RemoteMcpServerResource:
+      type: object
+      description: The MCP resource object.
+      required:
+        - id
+        - name
+        - display_name
+        - labels
         - created_at
         - updated_at
       properties:
@@ -82416,26 +82709,41 @@ components:
           maxLength: 120
         labels:
           $ref: '#/components/schemas/Labels'
-        type:
-          type: string
-          description: The type of the MCP resource.
-          enum:
-            - api
-        source:
-          $ref: '#/components/schemas/MCPResourceSourceDetail'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+      allOf:
+        - $ref: '#/components/schemas/BaseResourcePayload'
+        - type: object
+          required:
+            - type
+            - source
+          properties:
+            type:
+              type: string
+              description: The type of the MCP resource.
+              enum:
+                - mcp_server
+              default: mcp_server
+            source:
+              $ref: '#/components/schemas/McpServerResourceSourcePayload'
+    MCPResourceInfo:
+      anyOf:
+        - $ref: '#/components/schemas/RawApiResource'
+        - $ref: '#/components/schemas/CatalogApiResource'
+        - $ref: '#/components/schemas/RemoteMcpServerResource'
     MCPResourceSourceConfigType:
       type: string
       enum:
         - api_catalog
         - raw
+        - remote_mcp_server
       description: The type of the MCP resource source.
       x-enum-varnames:
         - MCPResourceSourceConfigTypeAPICatalog
         - MCPResourceSourceConfigTypeRaw
+        - MCPResourceSourceConfigTypeRemoteMcpServer
       x-speakeasy-unknown-values: allow
     MCPResourceSourceAPICatalogConfig:
       type: object
@@ -82460,12 +82768,9 @@ components:
         - config
       properties:
         type:
-          allOf:
-            - $ref: '#/components/schemas/MCPResourceSourceConfigType'
-            - type: string
-              enum:
-                - api_catalog
-              x-go-type: MCPResourceSourceConfigType
+          type: string
+          enum:
+            - api_catalog
         config:
           $ref: '#/components/schemas/MCPResourceSourceAPICatalogConfig'
       example:
@@ -82480,12 +82785,9 @@ components:
         - type
       properties:
         type:
-          allOf:
-            - $ref: '#/components/schemas/MCPResourceSourceConfigType'
-            - type: string
-              enum:
-                - raw
-              x-go-type: MCPResourceSourceConfigType
+          type: string
+          enum:
+            - raw
       example:
         type: raw
     MCPResourceSourceRawInput:
@@ -82518,17 +82820,39 @@ components:
             info:
               title: My API
               version: 1.0.0
-    MCPResourceSourceDetail:
-      description: The source of the MCP resource, indicating how it originated.
-      oneOf:
-        - $ref: '#/components/schemas/MCPResourceSourceAPICatalog'
-        - $ref: '#/components/schemas/MCPResourceSourceRaw'
-      discriminator:
-        propertyName: type
-        mapping:
-          api_catalog: '#/components/schemas/MCPResourceSourceAPICatalog'
-          raw: '#/components/schemas/MCPResourceSourceRaw'
-    MCPResourceSourceDetailInput:
+    MCPResourceRemoteMcpServerPayload:
+      type: object
+      required:
+        - type
+        - config
+      properties:
+        type:
+          allOf:
+            - $ref: '#/components/schemas/MCPResourceSourceConfigType'
+            - type: string
+              enum:
+                - remote_mcp_server
+              x-go-type: MCPResourceSourceConfigType
+        config:
+          description: Configuration of a remote MCP Server.
+          type: object
+          required:
+            - url
+            - headers
+          properties:
+            url:
+              description: >-
+                URL to a remote MCP Server that must include a protocol
+                (http/https), and cannot contain query parameters or fragments.
+              type: string
+              format: uri
+              pattern: ^https?://[^?#]+$
+            headers:
+              description: Headers to be used when making proxying requests to a MCP Server
+              type: object
+              additionalProperties:
+                type: string
+    ApiResourceSourcePayload:
       description: The source of the MCP resource used in create and update requests.
       oneOf:
         - $ref: '#/components/schemas/MCPResourceSourceAPICatalog'
@@ -82538,6 +82862,14 @@ components:
         mapping:
           api_catalog: '#/components/schemas/MCPResourceSourceAPICatalog'
           raw: '#/components/schemas/MCPResourceSourceRawInput'
+    McpServerResourceSourcePayload:
+      description: The source of the MCP resource used in create and update requests.
+      oneOf:
+        - $ref: '#/components/schemas/MCPResourceRemoteMcpServerPayload'
+      discriminator:
+        propertyName: type
+        mapping:
+          remote_mcp_server: '#/components/schemas/MCPResourceRemoteMcpServerPayload'
     ListMCPResourcesResponse:
       type: object
       required:
@@ -83359,14 +83691,8 @@ components:
           description: Whether the model is enabled.
           default: true
           example: true
-        acls:
-          description: >-
-            Access control rules for allowing or denying Consumers, Consumer
-            Groups, or Authenticated Groups to this model.
-          x-internal: true
-          x-unstable: true
-          allOf:
-            - $ref: '#/components/schemas/AIGatewayACLS'
+        access:
+          $ref: '#/components/schemas/AIGatewayModelAccess'
         formats:
           type: array
           description: List of request/response formats supported by this model.
@@ -83446,14 +83772,8 @@ components:
           description: Whether the model is enabled.
           default: true
           example: true
-        acls:
-          description: >-
-            Access control rules for allowing or denying Consumers, Consumer
-            Groups, or Authenticated Groups to this model.
-          x-internal: true
-          x-unstable: true
-          allOf:
-            - $ref: '#/components/schemas/AIGatewayACLS'
+        access:
+          $ref: '#/components/schemas/AIGatewayModelAccess'
         formats:
           type: array
           description: List of request/response formats supported by this model.
@@ -84322,7 +84642,7 @@ components:
                 provider.
               default: false
             provider:
-              $ref: '#/components/schemas/AIGatewayProviderReference'
+              $ref: '#/components/schemas/AIGatewayModelProviderReference'
             name:
               type: string
               description: The name of the embeddings model.
@@ -84670,12 +84990,16 @@ components:
             This field is
             [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
         port:
-          type: integer
-          default: 6379
-          minimum: 0
-          maximum: 65535
+          oneOf:
+            - type: integer
+              default: 6379
+              maximum: 65535
+              minimum: 0
+              example: 6379
+            - type: string
+              example: '{vault://hcv/redis/port}'
           x-referenceable: true
-          x-go-type: types.IntOrString
+          x-go-type: types.Referenceable
           x-go-type-import:
             path: >-
               github.com/kong/koko/internal/server/public/openapi/controlplanesconfig/types
@@ -84950,7 +85274,7 @@ components:
             provider.
           default: false
         provider:
-          $ref: '#/components/schemas/AIGatewayProviderReference'
+          $ref: '#/components/schemas/AIGatewayModelProviderReference'
         config:
           $ref: '#/components/schemas/AIGatewayTargetConfig'
     AIGatewayTargetConfig:
@@ -86009,6 +86333,33 @@ components:
       oneOf:
         - $ref: '#/components/schemas/AIGatewayAllowACL'
         - $ref: '#/components/schemas/AIGatewayDenyACL'
+    AIGatewayAgentAccess:
+      type: object
+      x-internal: true
+      x-unstable: true
+      additionalProperties: false
+      description: Access control configuration for an agent.
+      properties:
+        acls:
+          $ref: '#/components/schemas/AIGatewayACLS'
+    AIGatewayModelAccess:
+      type: object
+      x-internal: true
+      x-unstable: true
+      additionalProperties: false
+      description: Access control configuration for a model.
+      properties:
+        acls:
+          $ref: '#/components/schemas/AIGatewayACLS'
+        identity_providers:
+          type: array
+          description: >
+            List of identity providers for granting access to the model.
+
+            At most 1 identity provider of each identity provider type can be
+            referenced.
+          items:
+            $ref: '#/components/schemas/AIGatewayIdentityProviderReference'
     AIGatewayMCPACLs:
       type: object
       x-internal: true
@@ -88276,8 +88627,8 @@ components:
           x-speakeasy-unknown-values: allow
         policies:
           $ref: '#/components/schemas/AIGatewayPolicyReferences'
-        acls:
-          $ref: '#/components/schemas/AIGatewayACLS'
+        access:
+          $ref: '#/components/schemas/AIGatewayAgentAccess'
         config:
           type: object
           additionalProperties: false
@@ -88368,8 +88719,8 @@ components:
           x-speakeasy-unknown-values: allow
         policies:
           $ref: '#/components/schemas/AIGatewayPolicyReferences'
-        acls:
-          $ref: '#/components/schemas/AIGatewayACLS'
+        access:
+          $ref: '#/components/schemas/AIGatewayAgentAccess'
         config:
           type: object
           additionalProperties: false
@@ -88463,8 +88814,8 @@ components:
           x-speakeasy-unknown-values: allow
         policies:
           $ref: '#/components/schemas/AIGatewayPolicyReferences'
-        acls:
-          $ref: '#/components/schemas/AIGatewayACLS'
+        access:
+          $ref: '#/components/schemas/AIGatewayAgentAccess'
         config:
           type: object
           additionalProperties: false
@@ -89026,6 +89377,7 @@ components:
       required:
         - type
         - config
+        - access
         - display_name
         - name
       properties:
@@ -89040,6 +89392,8 @@ components:
           description: List of tools exposed by this MCP Server.
           items:
             $ref: '#/components/schemas/AIGatewayMCPConversionTool'
+        access:
+          $ref: '#/components/schemas/AIGatewayMCPServerBaseACLProperties'
         display_name:
           type: string
           minLength: 1
@@ -89069,19 +89423,12 @@ components:
       x-internal: true
       x-unstable: true
       additionalProperties: true
-      oneOf:
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
-      discriminator:
-        propertyName: acl_attribute_type
-        mapping:
-          consumer: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-          oauth_access_token: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
     AIGatewayMCPServerListener:
       type: object
       required:
         - type
         - config
+        - access
         - display_name
         - name
       properties:
@@ -89096,6 +89443,8 @@ components:
           description: List of tools exposed by this MCP Server.
           items:
             $ref: '#/components/schemas/AIGatewayMCPToolBase'
+        access:
+          $ref: '#/components/schemas/AIGatewayMCPServerBaseACLProperties'
         display_name:
           type: string
           minLength: 1
@@ -89125,19 +89474,12 @@ components:
       x-internal: true
       x-unstable: true
       additionalProperties: true
-      oneOf:
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
-      discriminator:
-        propertyName: acl_attribute_type
-        mapping:
-          consumer: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-          oauth_access_token: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
     AIGatewayMCPServerPassthroughListener:
       type: object
       required:
         - type
         - config
+        - access
         - display_name
         - name
       properties:
@@ -89152,6 +89494,8 @@ components:
           description: List of tools exposed by this MCP Server.
           items:
             $ref: '#/components/schemas/AIGatewayMCPToolBase'
+        access:
+          $ref: '#/components/schemas/AIGatewayMCPServerBaseACLProperties'
         display_name:
           type: string
           minLength: 1
@@ -89181,19 +89525,12 @@ components:
       x-internal: true
       x-unstable: true
       additionalProperties: true
-      oneOf:
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
-      discriminator:
-        propertyName: acl_attribute_type
-        mapping:
-          consumer: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-          oauth_access_token: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
     AIGatewayMCPServerUpstreamServer:
       type: object
       required:
         - type
         - config
+        - access
         - display_name
         - name
       properties:
@@ -89208,6 +89545,8 @@ components:
           description: List of tools exposed by this MCP Server.
           items:
             $ref: '#/components/schemas/AIGatewayMCPUpstreamTool'
+        access:
+          $ref: '#/components/schemas/AIGatewayMCPServerBaseACLProperties'
         display_name:
           type: string
           minLength: 1
@@ -89237,14 +89576,6 @@ components:
       x-internal: true
       x-unstable: true
       additionalProperties: true
-      oneOf:
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
-      discriminator:
-        propertyName: acl_attribute_type
-        mapping:
-          consumer: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
-          oauth_access_token: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
     AIGatewayMCPConversionTool:
       type: object
       additionalProperties: false
@@ -89256,17 +89587,21 @@ components:
         - description
         - method
       properties:
-        acls:
-          description: >
-            Access control rules for allowing or denying consumer groups access
-            to this tool.
+        access:
+          type: object
+          additionalProperties: false
+          properties:
+            acls:
+              description: >
+                Access control rules for allowing or denying consumer groups
+                access to this tool.
 
-            When configured, these will override the default access control
-            rules defined on the MCP Server.
-          x-internal: true
-          x-unstable: true
-          allOf:
-            - $ref: '#/components/schemas/AIGatewayMCPACLs'
+                When configured, these will override the default access control
+                rules defined on the MCP Server.
+              x-internal: true
+              x-unstable: true
+              allOf:
+                - $ref: '#/components/schemas/AIGatewayMCPACLs'
         annotations:
           $ref: '#/components/schemas/AIGatewayMCPToolAnnotations'
         description:
@@ -89325,6 +89660,17 @@ components:
           x-speakeasy-unknown-values: allow
         parameters:
           $ref: '#/components/schemas/AIGatewayMCPToolParameters'
+    AIGatewayMCPServerBaseACLProperties:
+      x-internal: true
+      x-unstable: true
+      oneOf:
+        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
+        - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
+      discriminator:
+        propertyName: acl_attribute_type
+        mapping:
+          consumer: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
+          oauth_access_token: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
     AIGatewayMCPServerBaseACLPropertiesConsumer:
       title: AIGatewayMCPServerBaseACLPropertiesConsumer
       type: object
@@ -89648,12 +89994,16 @@ components:
             This field is
             [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
         port:
-          type: integer
-          default: 6379
-          minimum: 0
-          maximum: 65535
+          oneOf:
+            - type: integer
+              default: 6379
+              maximum: 65535
+              minimum: 0
+              example: 6379
+            - type: string
+              example: '{vault://hcv/redis/port}'
           x-referenceable: true
-          x-go-type: types.IntOrString
+          x-go-type: types.Referenceable
           x-go-type-import:
             path: >-
               github.com/kong/koko/internal/server/public/openapi/controlplanesconfig/types
@@ -90488,17 +90838,21 @@ components:
         - name
         - description
       properties:
-        acls:
-          description: >
-            Access control rules for allowing or denying consumer groups access
-            to this tool.
+        access:
+          type: object
+          additionalProperties: false
+          properties:
+            acls:
+              description: >
+                Access control rules for allowing or denying consumer groups
+                access to this tool.
 
-            When configured, these will override the default access control
-            rules defined on the MCP Server.
-          x-internal: true
-          x-unstable: true
-          allOf:
-            - $ref: '#/components/schemas/AIGatewayMCPACLs'
+                When configured, these will override the default access control
+                rules defined on the MCP Server.
+              x-internal: true
+              x-unstable: true
+              allOf:
+                - $ref: '#/components/schemas/AIGatewayMCPACLs'
         annotations:
           $ref: '#/components/schemas/AIGatewayMCPToolAnnotations'
         description:
@@ -90568,17 +90922,21 @@ components:
         - name
         - description
       properties:
-        acls:
-          description: >
-            Access control rules for allowing or denying consumer groups access
-            to this tool.
+        access:
+          type: object
+          additionalProperties: false
+          properties:
+            acls:
+              description: >
+                Access control rules for allowing or denying consumer groups
+                access to this tool.
 
-            When configured, these will override the default access control
-            rules defined on the MCP Server.
-          x-internal: true
-          x-unstable: true
-          allOf:
-            - $ref: '#/components/schemas/AIGatewayMCPACLs'
+                When configured, these will override the default access control
+                rules defined on the MCP Server.
+              x-internal: true
+              x-unstable: true
+              allOf:
+                - $ref: '#/components/schemas/AIGatewayMCPACLs'
         annotations:
           $ref: '#/components/schemas/AIGatewayMCPToolAnnotations'
         description:
@@ -90773,13 +91131,226 @@ components:
             JSON Schema definition for the parameter value. See
             https://swagger.io/docs/specification/v3_0/describing-parameters/#schema-vs-content
             for more details.
-    AIGatewayProviderReference:
+    AIGatewayIdentityProviderReference:
       type: string
       description: >-
-        Reference to a provider instance. This is either the provider ID or the
-        provider name.
+        Reference to a provider instance. This is either the identity provider
+        ID or the identity provider name.
+      example: okta-ai-se
+    AIGatewayIdentityProviderKeyAuth:
+      type: object
+      x-internal: true
+      x-unstable: true
+      description: Configuration for an identity provider.
+      required:
+        - display_name
+        - name
+        - type
+      properties:
+        display_name:
+          type: string
+          minLength: 1
+          maxLength: 256
+          description: The display name for this identity provider instance.
+          example: Okta AI SE
+        name:
+          x-internal: true
+          x-unstable: true
+          description: >-
+            A user-defined unique identifier for this identity provider
+            instance, used as a stable human-readable reference.
+          example: okta-ai-se
+          allOf:
+            - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
+        labels:
+          $ref: '#/components/schemas/PublicLabels'
+        managed_by:
+          $ref: '#/components/schemas/ManagedBy'
+        type:
+          type: string
+          enum:
+            - key-auth
+        config:
+          type: object
+          additionalProperties: true
+          description: >
+            Configuration for the Kong Key auth identity provider.
+
+            For advanced use cases, additional config properties can be sent in
+            the request body.
+
+            See: https://developer.konghq.com/plugins/key-auth/reference/ for
+            the list of properties
+          properties:
+            hide_credentials:
+              type: boolean
+              description: >
+                An optional boolean value telling the plugin to show or hide the
+                credential from the upstream service. 
+
+                If true, the plugin strips the credential from the request.
+              default: true
+            key_in_body:
+              type: boolean
+              description: >
+                If enabled, reads the request body. 
+
+                Supported MIME types: application/www-form-urlencoded,
+                application/json, and multipart/form-data.
+              default: false
+            key_in_header:
+              type: boolean
+              description: >
+                If enabled (default), the plugin reads the request header and
+                tries to find the key in it.
+              default: true
+            key_in_query:
+              type: boolean
+              description: >
+                If enabled (default), the plugin reads the query parameter in
+                the request and tries to find the key in it.
+              default: true
+            key_names:
+              type: array
+              description: >
+                An array of strings containing the names of the keys to look for
+                in the request.
+              items:
+                type: string
+              default:
+                - apikey
+      title: AIGatewayIdentityProviderKeyAuthConfig
+    AIGatewayIdentityProviderOpenIDConnect:
+      type: object
+      x-internal: true
+      x-unstable: true
+      description: Configuration for an identity provider.
+      required:
+        - display_name
+        - name
+        - type
+      properties:
+        display_name:
+          type: string
+          minLength: 1
+          maxLength: 256
+          description: The display name for this identity provider instance.
+          example: Okta AI SE
+        name:
+          x-internal: true
+          x-unstable: true
+          description: >-
+            A user-defined unique identifier for this identity provider
+            instance, used as a stable human-readable reference.
+          example: okta-ai-se
+          allOf:
+            - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
+        labels:
+          $ref: '#/components/schemas/PublicLabels'
+        managed_by:
+          $ref: '#/components/schemas/ManagedBy'
+        type:
+          type: string
+          enum:
+            - openid-connect
+        config:
+          type: object
+          additionalProperties: true
+          description: >
+            Configuration for the OpenID Connect identity provider.
+
+            For advanced use cases, additional config properties can be sent in
+            the request body.
+
+            See: https://developer.konghq.com/plugins/openid-connect/reference/
+            for the list of properties
+          properties:
+            auth_methods:
+              type: array
+              description: Types of credentials/grants to enable.
+              items:
+                type: string
+                enum:
+                  - authorization_code
+                  - bearer
+                  - client_credentials
+                  - introspection
+                  - kong_oauth2
+                  - password
+                  - refresh_token
+                  - session
+                  - userinfo
+                x-speakeasy-unknown-values: allow
+              default:
+                - bearer
+                - client_credentials
+            client_id:
+              type: array
+              description: >
+                An array of strings representing the client id for the OpenID
+                Connect provider.
+
+                When multiple values are provided, the client ID and secrets
+                pairs correspond based on their locations in the array.
+
+                This field is
+                [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+              items:
+                type: string
+            client_secret:
+              type: array
+              writeOnly: true
+              description: >
+                An array of strings representing the client secret for the
+                OpenID Connect provider.
+
+                When multiple values are provided, the client ID and secrets
+                pairs correspond based on their locations in the array.
+
+                This field is
+                [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+              items:
+                type: string
+            consumer_claim:
+              type: array
+              description: >
+                An array containing an array of string paths representing the
+                location of the claim in a nested object. 
+
+                For example, to map to user.info.id, set [ "user", "info", "id"
+                ].
+              items:
+                type: array
+                items:
+                  type: string
+            consumer_optional:
+              type: boolean
+              description: |
+                Do not terminate the request if consumer mapping fails.
+              default: false
+            issuer:
+              type: string
+              description: URL that identifies the OpenID Provider
+              example: https://dev-123456.okta.com
+            scopes:
+              type: array
+              description: |
+                This field is referenceable.
+              items:
+                type: string
+              default:
+                - openid
+            ssl_verify:
+              type: boolean
+              default: true
+      title: AIGatewayIdentityProviderOpenIDConnectConfig
+    AIGatewayModelProviderReference:
+      type: string
+      description: >-
+        Reference to a model provider instance. This is either the model
+        provider ID or the model provider name.
       example: azure-ai-se
-    AIGatewayProviderAnthropic:
+    AIGatewayModelProviderAnthropic:
       type: object
       required:
         - type
@@ -90795,14 +91366,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -90813,17 +91384,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderCerebras:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderCerebras:
       type: object
       required:
         - type
@@ -90839,14 +91410,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -90857,17 +91428,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderCohere:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderCohere:
       type: object
       required:
         - type
@@ -90883,14 +91454,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -90901,17 +91472,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderDashscope:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderDashscope:
       type: object
       required:
         - type
@@ -90927,14 +91498,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -90945,17 +91516,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderDatabricks:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderDatabricks:
       type: object
       required:
         - type
@@ -90971,14 +91542,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -90989,17 +91560,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderDeepseek:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderDeepseek:
       type: object
       required:
         - type
@@ -91015,14 +91586,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91033,17 +91604,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderHuggingface:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderHuggingface:
       type: object
       required:
         - type
@@ -91059,14 +91630,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91077,17 +91648,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderKimi:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderKimi:
       type: object
       required:
         - type
@@ -91103,14 +91674,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91121,17 +91692,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderLlama2:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderLlama2:
       type: object
       required:
         - type
@@ -91147,14 +91718,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91165,17 +91736,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderMistral:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderMistral:
       type: object
       required:
         - type
@@ -91191,14 +91762,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91209,17 +91780,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderOllama:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderOllama:
       type: object
       required:
         - type
@@ -91235,14 +91806,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91253,17 +91824,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderOpenai:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderOpenai:
       type: object
       required:
         - type
@@ -91279,14 +91850,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91297,17 +91868,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderVercel:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderVercel:
       type: object
       required:
         - type
@@ -91323,14 +91894,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91341,17 +91912,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderVllm:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderVllm:
       type: object
       required:
         - type
@@ -91367,14 +91938,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91385,17 +91956,17 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderXai:
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderXai:
       type: object
       required:
         - type
@@ -91411,14 +91982,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91429,24 +92000,24 @@ components:
         config:
           type: object
           additionalProperties: false
-          description: Configuration for the provider.
+          description: Configuration for the model provider.
           required:
             - auth
           properties:
             auth:
-              $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
+              $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for an upstream LLM provider.
-    AIGatewayProviderConfigAuthBasic:
-      title: AIGatewayProviderConfigAuthBasic
+        Configuration for an upstream model provider.
+    AIGatewayModelProviderConfigAuthBasic:
+      title: AIGatewayModelProviderConfigAuthBasic
       type: object
       x-internal: true
       x-unstable: true
       additionalProperties: false
       description: |
-        Basic auth config for an upstream LLM provider.
+        Basic auth config for an upstream model provider.
       required:
         - type
       properties:
@@ -91512,7 +92083,7 @@ components:
                   - body
                   - query
                 x-speakeasy-unknown-values: allow
-    AIGatewayProviderBedrock:
+    AIGatewayModelProviderBedrock:
       type: object
       required:
         - type
@@ -91528,14 +92099,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91551,24 +92122,24 @@ components:
           properties:
             auth:
               oneOf:
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthAWS'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthAWS'
               discriminator:
                 propertyName: type
                 mapping:
-                  basic: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                  aws: '#/components/schemas/AIGatewayProviderConfigAuthAWS'
+                  basic: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                  aws: '#/components/schemas/AIGatewayModelProviderConfigAuthAWS'
       x-internal: true
       x-unstable: true
       description: |
-        Config for AWS LLM provider.
-    AIGatewayProviderConfigAuthAWS:
-      title: AIGatewayProviderConfigAuthAWS
+        Config for AWS model provider.
+    AIGatewayModelProviderConfigAuthAWS:
+      title: AIGatewayModelProviderConfigAuthAWS
       type: object
       x-internal: true
       x-unstable: true
       description: |
-        Configuration for AWS LLM provider.
+        Configuration for AWS model provider.
       required:
         - type
       properties:
@@ -91621,7 +92192,7 @@ components:
         batch_role_arn:
           type: string
           description: AWS role arn to use when calling the batch API.
-    AIGatewayProviderAzure:
+    AIGatewayModelProviderAzure:
       type: object
       required:
         - type
@@ -91637,14 +92208,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91661,28 +92232,28 @@ components:
           properties:
             auth:
               oneOf:
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthAzure'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthAzure'
               discriminator:
                 propertyName: type
                 mapping:
-                  basic: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                  azure: '#/components/schemas/AIGatewayProviderConfigAuthAzure'
+                  basic: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                  azure: '#/components/schemas/AIGatewayModelProviderConfigAuthAzure'
             instance:
               type: string
               example: kong-az-east
       x-internal: true
       x-unstable: true
       description: |
-        Config for Azure LLM provider.
-    AIGatewayProviderConfigAuthAzure:
-      title: AIGatewayProviderConfigAuthAzure
+        Config for Azure model provider.
+    AIGatewayModelProviderConfigAuthAzure:
+      title: AIGatewayModelProviderConfigAuthAzure
       type: object
       x-internal: true
       x-unstable: true
       additionalProperties: false
       description: |
-        Configuration for Azure LLM provider.
+        Configuration for Azure model provider.
       required:
         - type
       properties:
@@ -91726,7 +92297,7 @@ components:
           description: >-
             Set true to use the Azure Cloud Managed Identity (or user-assigned
             identity) to authenticate with Azure-provider models.
-    AIGatewayProviderGemini:
+    AIGatewayModelProviderGemini:
       type: object
       required:
         - type
@@ -91742,14 +92313,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91765,18 +92336,18 @@ components:
           properties:
             auth:
               oneOf:
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthGCP'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthGCP'
               discriminator:
                 propertyName: type
                 mapping:
-                  basic: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                  gcp: '#/components/schemas/AIGatewayProviderConfigAuthGCP'
+                  basic: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                  gcp: '#/components/schemas/AIGatewayModelProviderConfigAuthGCP'
       x-internal: true
       x-unstable: true
       description: |
-        Config for GCP LLM provider.
-    AIGatewayProviderVertex:
+        Config for GCP model provider.
+    AIGatewayModelProviderVertex:
       type: object
       required:
         - type
@@ -91792,14 +92363,14 @@ components:
           type: string
           minLength: 1
           maxLength: 256
-          description: The display name for this provider instance.
+          description: The display name for this model provider instance.
           example: Azure AI SE
         name:
           x-internal: true
           x-unstable: true
           description: >-
-            A user-defined unique identifier for this provider instance, used as
-            a stable human-readable reference.
+            A user-defined unique identifier for this model provider instance,
+            used as a stable human-readable reference.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91815,25 +92386,25 @@ components:
           properties:
             auth:
               oneOf:
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                - $ref: '#/components/schemas/AIGatewayProviderConfigAuthGCP'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                - $ref: '#/components/schemas/AIGatewayModelProviderConfigAuthGCP'
               discriminator:
                 propertyName: type
                 mapping:
-                  basic: '#/components/schemas/AIGatewayProviderConfigAuthBasic'
-                  gcp: '#/components/schemas/AIGatewayProviderConfigAuthGCP'
+                  basic: '#/components/schemas/AIGatewayModelProviderConfigAuthBasic'
+                  gcp: '#/components/schemas/AIGatewayModelProviderConfigAuthGCP'
       x-internal: true
       x-unstable: true
       description: |
-        Config for GCP LLM provider.
-    AIGatewayProviderConfigAuthGCP:
-      title: AIGatewayProviderConfigAuthGCP
+        Config for GCP model provider.
+    AIGatewayModelProviderConfigAuthGCP:
+      title: AIGatewayModelProviderConfigAuthGCP
       type: object
       x-internal: true
       x-unstable: true
       additionalProperties: false
       description: |
-        Configuration for GCP LLM provider.
+        Configuration for GCP model provider.
       required:
         - type
       properties:
@@ -91995,141 +92566,186 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
-    CreateAIGatewayProviderRequest:
+    CreateAIGatewayModelProviderRequest:
       x-internal: true
       x-unstable: true
       oneOf:
-        - $ref: '#/components/schemas/AIGatewayProviderAnthropic'
-        - $ref: '#/components/schemas/AIGatewayProviderAzure'
-        - $ref: '#/components/schemas/AIGatewayProviderBedrock'
-        - $ref: '#/components/schemas/AIGatewayProviderCerebras'
-        - $ref: '#/components/schemas/AIGatewayProviderCohere'
-        - $ref: '#/components/schemas/AIGatewayProviderDashscope'
-        - $ref: '#/components/schemas/AIGatewayProviderDatabricks'
-        - $ref: '#/components/schemas/AIGatewayProviderDeepseek'
-        - $ref: '#/components/schemas/AIGatewayProviderGemini'
-        - $ref: '#/components/schemas/AIGatewayProviderHuggingface'
-        - $ref: '#/components/schemas/AIGatewayProviderKimi'
-        - $ref: '#/components/schemas/AIGatewayProviderLlama2'
-        - $ref: '#/components/schemas/AIGatewayProviderMistral'
-        - $ref: '#/components/schemas/AIGatewayProviderOllama'
-        - $ref: '#/components/schemas/AIGatewayProviderOpenai'
-        - $ref: '#/components/schemas/AIGatewayProviderVercel'
-        - $ref: '#/components/schemas/AIGatewayProviderVllm'
-        - $ref: '#/components/schemas/AIGatewayProviderXai'
-        - $ref: '#/components/schemas/AIGatewayProviderVertex'
+        - $ref: '#/components/schemas/AIGatewayModelProviderAnthropic'
+        - $ref: '#/components/schemas/AIGatewayModelProviderAzure'
+        - $ref: '#/components/schemas/AIGatewayModelProviderBedrock'
+        - $ref: '#/components/schemas/AIGatewayModelProviderCerebras'
+        - $ref: '#/components/schemas/AIGatewayModelProviderCohere'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDashscope'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDatabricks'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDeepseek'
+        - $ref: '#/components/schemas/AIGatewayModelProviderGemini'
+        - $ref: '#/components/schemas/AIGatewayModelProviderHuggingface'
+        - $ref: '#/components/schemas/AIGatewayModelProviderKimi'
+        - $ref: '#/components/schemas/AIGatewayModelProviderLlama2'
+        - $ref: '#/components/schemas/AIGatewayModelProviderMistral'
+        - $ref: '#/components/schemas/AIGatewayModelProviderOllama'
+        - $ref: '#/components/schemas/AIGatewayModelProviderOpenai'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVercel'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVllm'
+        - $ref: '#/components/schemas/AIGatewayModelProviderXai'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVertex'
       discriminator:
         propertyName: type
         mapping:
-          anthropic: '#/components/schemas/AIGatewayProviderAnthropic'
-          azure: '#/components/schemas/AIGatewayProviderAzure'
-          bedrock: '#/components/schemas/AIGatewayProviderBedrock'
-          cerebras: '#/components/schemas/AIGatewayProviderCerebras'
-          cohere: '#/components/schemas/AIGatewayProviderCohere'
-          dashscope: '#/components/schemas/AIGatewayProviderDashscope'
-          databricks: '#/components/schemas/AIGatewayProviderDatabricks'
-          deepseek: '#/components/schemas/AIGatewayProviderDeepseek'
-          gemini: '#/components/schemas/AIGatewayProviderGemini'
-          huggingface: '#/components/schemas/AIGatewayProviderHuggingface'
-          kimi: '#/components/schemas/AIGatewayProviderKimi'
-          llama2: '#/components/schemas/AIGatewayProviderLlama2'
-          mistral: '#/components/schemas/AIGatewayProviderMistral'
-          ollama: '#/components/schemas/AIGatewayProviderOllama'
-          openai: '#/components/schemas/AIGatewayProviderOpenai'
-          vercel: '#/components/schemas/AIGatewayProviderVercel'
-          vllm: '#/components/schemas/AIGatewayProviderVllm'
-          xai: '#/components/schemas/AIGatewayProviderXai'
-          vertex: '#/components/schemas/AIGatewayProviderVertex'
-    UpdateAIGatewayProviderRequest:
+          anthropic: '#/components/schemas/AIGatewayModelProviderAnthropic'
+          azure: '#/components/schemas/AIGatewayModelProviderAzure'
+          bedrock: '#/components/schemas/AIGatewayModelProviderBedrock'
+          cerebras: '#/components/schemas/AIGatewayModelProviderCerebras'
+          cohere: '#/components/schemas/AIGatewayModelProviderCohere'
+          dashscope: '#/components/schemas/AIGatewayModelProviderDashscope'
+          databricks: '#/components/schemas/AIGatewayModelProviderDatabricks'
+          deepseek: '#/components/schemas/AIGatewayModelProviderDeepseek'
+          gemini: '#/components/schemas/AIGatewayModelProviderGemini'
+          huggingface: '#/components/schemas/AIGatewayModelProviderHuggingface'
+          kimi: '#/components/schemas/AIGatewayModelProviderKimi'
+          llama2: '#/components/schemas/AIGatewayModelProviderLlama2'
+          mistral: '#/components/schemas/AIGatewayModelProviderMistral'
+          ollama: '#/components/schemas/AIGatewayModelProviderOllama'
+          openai: '#/components/schemas/AIGatewayModelProviderOpenai'
+          vercel: '#/components/schemas/AIGatewayModelProviderVercel'
+          vllm: '#/components/schemas/AIGatewayModelProviderVllm'
+          xai: '#/components/schemas/AIGatewayModelProviderXai'
+          vertex: '#/components/schemas/AIGatewayModelProviderVertex'
+    UpdateAIGatewayModelProviderRequest:
       x-internal: true
       x-unstable: true
       oneOf:
-        - $ref: '#/components/schemas/AIGatewayProviderAnthropic'
-        - $ref: '#/components/schemas/AIGatewayProviderAzure'
-        - $ref: '#/components/schemas/AIGatewayProviderBedrock'
-        - $ref: '#/components/schemas/AIGatewayProviderCerebras'
-        - $ref: '#/components/schemas/AIGatewayProviderCohere'
-        - $ref: '#/components/schemas/AIGatewayProviderDashscope'
-        - $ref: '#/components/schemas/AIGatewayProviderDatabricks'
-        - $ref: '#/components/schemas/AIGatewayProviderDeepseek'
-        - $ref: '#/components/schemas/AIGatewayProviderGemini'
-        - $ref: '#/components/schemas/AIGatewayProviderHuggingface'
-        - $ref: '#/components/schemas/AIGatewayProviderKimi'
-        - $ref: '#/components/schemas/AIGatewayProviderLlama2'
-        - $ref: '#/components/schemas/AIGatewayProviderMistral'
-        - $ref: '#/components/schemas/AIGatewayProviderOllama'
-        - $ref: '#/components/schemas/AIGatewayProviderOpenai'
-        - $ref: '#/components/schemas/AIGatewayProviderVercel'
-        - $ref: '#/components/schemas/AIGatewayProviderVllm'
-        - $ref: '#/components/schemas/AIGatewayProviderXai'
-        - $ref: '#/components/schemas/AIGatewayProviderVertex'
+        - $ref: '#/components/schemas/AIGatewayModelProviderAnthropic'
+        - $ref: '#/components/schemas/AIGatewayModelProviderAzure'
+        - $ref: '#/components/schemas/AIGatewayModelProviderBedrock'
+        - $ref: '#/components/schemas/AIGatewayModelProviderCerebras'
+        - $ref: '#/components/schemas/AIGatewayModelProviderCohere'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDashscope'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDatabricks'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDeepseek'
+        - $ref: '#/components/schemas/AIGatewayModelProviderGemini'
+        - $ref: '#/components/schemas/AIGatewayModelProviderHuggingface'
+        - $ref: '#/components/schemas/AIGatewayModelProviderKimi'
+        - $ref: '#/components/schemas/AIGatewayModelProviderLlama2'
+        - $ref: '#/components/schemas/AIGatewayModelProviderMistral'
+        - $ref: '#/components/schemas/AIGatewayModelProviderOllama'
+        - $ref: '#/components/schemas/AIGatewayModelProviderOpenai'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVercel'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVllm'
+        - $ref: '#/components/schemas/AIGatewayModelProviderXai'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVertex'
       discriminator:
         propertyName: type
         mapping:
-          anthropic: '#/components/schemas/AIGatewayProviderAnthropic'
-          azure: '#/components/schemas/AIGatewayProviderAzure'
-          bedrock: '#/components/schemas/AIGatewayProviderBedrock'
-          cerebras: '#/components/schemas/AIGatewayProviderCerebras'
-          cohere: '#/components/schemas/AIGatewayProviderCohere'
-          dashscope: '#/components/schemas/AIGatewayProviderDashscope'
-          databricks: '#/components/schemas/AIGatewayProviderDatabricks'
-          deepseek: '#/components/schemas/AIGatewayProviderDeepseek'
-          gemini: '#/components/schemas/AIGatewayProviderGemini'
-          huggingface: '#/components/schemas/AIGatewayProviderHuggingface'
-          kimi: '#/components/schemas/AIGatewayProviderKimi'
-          llama2: '#/components/schemas/AIGatewayProviderLlama2'
-          mistral: '#/components/schemas/AIGatewayProviderMistral'
-          ollama: '#/components/schemas/AIGatewayProviderOllama'
-          openai: '#/components/schemas/AIGatewayProviderOpenai'
-          vercel: '#/components/schemas/AIGatewayProviderVercel'
-          vllm: '#/components/schemas/AIGatewayProviderVllm'
-          xai: '#/components/schemas/AIGatewayProviderXai'
-          vertex: '#/components/schemas/AIGatewayProviderVertex'
-    AIGatewayProvider:
+          anthropic: '#/components/schemas/AIGatewayModelProviderAnthropic'
+          azure: '#/components/schemas/AIGatewayModelProviderAzure'
+          bedrock: '#/components/schemas/AIGatewayModelProviderBedrock'
+          cerebras: '#/components/schemas/AIGatewayModelProviderCerebras'
+          cohere: '#/components/schemas/AIGatewayModelProviderCohere'
+          dashscope: '#/components/schemas/AIGatewayModelProviderDashscope'
+          databricks: '#/components/schemas/AIGatewayModelProviderDatabricks'
+          deepseek: '#/components/schemas/AIGatewayModelProviderDeepseek'
+          gemini: '#/components/schemas/AIGatewayModelProviderGemini'
+          huggingface: '#/components/schemas/AIGatewayModelProviderHuggingface'
+          kimi: '#/components/schemas/AIGatewayModelProviderKimi'
+          llama2: '#/components/schemas/AIGatewayModelProviderLlama2'
+          mistral: '#/components/schemas/AIGatewayModelProviderMistral'
+          ollama: '#/components/schemas/AIGatewayModelProviderOllama'
+          openai: '#/components/schemas/AIGatewayModelProviderOpenai'
+          vercel: '#/components/schemas/AIGatewayModelProviderVercel'
+          vllm: '#/components/schemas/AIGatewayModelProviderVllm'
+          xai: '#/components/schemas/AIGatewayModelProviderXai'
+          vertex: '#/components/schemas/AIGatewayModelProviderVertex'
+    AIGatewayModelProvider:
       x-internal: true
       x-unstable: true
       oneOf:
-        - $ref: '#/components/schemas/AIGatewayProviderAnthropic'
-        - $ref: '#/components/schemas/AIGatewayProviderAzure'
-        - $ref: '#/components/schemas/AIGatewayProviderBedrock'
-        - $ref: '#/components/schemas/AIGatewayProviderCerebras'
-        - $ref: '#/components/schemas/AIGatewayProviderCohere'
-        - $ref: '#/components/schemas/AIGatewayProviderDashscope'
-        - $ref: '#/components/schemas/AIGatewayProviderDatabricks'
-        - $ref: '#/components/schemas/AIGatewayProviderDeepseek'
-        - $ref: '#/components/schemas/AIGatewayProviderGemini'
-        - $ref: '#/components/schemas/AIGatewayProviderHuggingface'
-        - $ref: '#/components/schemas/AIGatewayProviderKimi'
-        - $ref: '#/components/schemas/AIGatewayProviderLlama2'
-        - $ref: '#/components/schemas/AIGatewayProviderMistral'
-        - $ref: '#/components/schemas/AIGatewayProviderOllama'
-        - $ref: '#/components/schemas/AIGatewayProviderOpenai'
-        - $ref: '#/components/schemas/AIGatewayProviderVercel'
-        - $ref: '#/components/schemas/AIGatewayProviderVllm'
-        - $ref: '#/components/schemas/AIGatewayProviderXai'
-        - $ref: '#/components/schemas/AIGatewayProviderVertex'
+        - $ref: '#/components/schemas/AIGatewayModelProviderAnthropic'
+        - $ref: '#/components/schemas/AIGatewayModelProviderAzure'
+        - $ref: '#/components/schemas/AIGatewayModelProviderBedrock'
+        - $ref: '#/components/schemas/AIGatewayModelProviderCerebras'
+        - $ref: '#/components/schemas/AIGatewayModelProviderCohere'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDashscope'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDatabricks'
+        - $ref: '#/components/schemas/AIGatewayModelProviderDeepseek'
+        - $ref: '#/components/schemas/AIGatewayModelProviderGemini'
+        - $ref: '#/components/schemas/AIGatewayModelProviderHuggingface'
+        - $ref: '#/components/schemas/AIGatewayModelProviderKimi'
+        - $ref: '#/components/schemas/AIGatewayModelProviderLlama2'
+        - $ref: '#/components/schemas/AIGatewayModelProviderMistral'
+        - $ref: '#/components/schemas/AIGatewayModelProviderOllama'
+        - $ref: '#/components/schemas/AIGatewayModelProviderOpenai'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVercel'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVllm'
+        - $ref: '#/components/schemas/AIGatewayModelProviderXai'
+        - $ref: '#/components/schemas/AIGatewayModelProviderVertex'
       discriminator:
         propertyName: type
         mapping:
-          anthropic: '#/components/schemas/AIGatewayProviderAnthropic'
-          azure: '#/components/schemas/AIGatewayProviderAzure'
-          bedrock: '#/components/schemas/AIGatewayProviderBedrock'
-          cerebras: '#/components/schemas/AIGatewayProviderCerebras'
-          cohere: '#/components/schemas/AIGatewayProviderCohere'
-          dashscope: '#/components/schemas/AIGatewayProviderDashscope'
-          databricks: '#/components/schemas/AIGatewayProviderDatabricks'
-          deepseek: '#/components/schemas/AIGatewayProviderDeepseek'
-          gemini: '#/components/schemas/AIGatewayProviderGemini'
-          huggingface: '#/components/schemas/AIGatewayProviderHuggingface'
-          kimi: '#/components/schemas/AIGatewayProviderKimi'
-          llama2: '#/components/schemas/AIGatewayProviderLlama2'
-          mistral: '#/components/schemas/AIGatewayProviderMistral'
-          ollama: '#/components/schemas/AIGatewayProviderOllama'
-          openai: '#/components/schemas/AIGatewayProviderOpenai'
-          vercel: '#/components/schemas/AIGatewayProviderVercel'
-          vllm: '#/components/schemas/AIGatewayProviderVllm'
-          xai: '#/components/schemas/AIGatewayProviderXai'
-          vertex: '#/components/schemas/AIGatewayProviderVertex'
+          anthropic: '#/components/schemas/AIGatewayModelProviderAnthropic'
+          azure: '#/components/schemas/AIGatewayModelProviderAzure'
+          bedrock: '#/components/schemas/AIGatewayModelProviderBedrock'
+          cerebras: '#/components/schemas/AIGatewayModelProviderCerebras'
+          cohere: '#/components/schemas/AIGatewayModelProviderCohere'
+          dashscope: '#/components/schemas/AIGatewayModelProviderDashscope'
+          databricks: '#/components/schemas/AIGatewayModelProviderDatabricks'
+          deepseek: '#/components/schemas/AIGatewayModelProviderDeepseek'
+          gemini: '#/components/schemas/AIGatewayModelProviderGemini'
+          huggingface: '#/components/schemas/AIGatewayModelProviderHuggingface'
+          kimi: '#/components/schemas/AIGatewayModelProviderKimi'
+          llama2: '#/components/schemas/AIGatewayModelProviderLlama2'
+          mistral: '#/components/schemas/AIGatewayModelProviderMistral'
+          ollama: '#/components/schemas/AIGatewayModelProviderOllama'
+          openai: '#/components/schemas/AIGatewayModelProviderOpenai'
+          vercel: '#/components/schemas/AIGatewayModelProviderVercel'
+          vllm: '#/components/schemas/AIGatewayModelProviderVllm'
+          xai: '#/components/schemas/AIGatewayModelProviderXai'
+          vertex: '#/components/schemas/AIGatewayModelProviderVertex'
+      type: object
+      required:
+        - id
+        - created_at
+        - updated_at
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    CreateAIGatewayIdentityProviderRequest:
+      x-internal: true
+      x-unstable: true
+      oneOf:
+        - $ref: '#/components/schemas/AIGatewayIdentityProviderKeyAuth'
+        - $ref: '#/components/schemas/AIGatewayIdentityProviderOpenIDConnect'
+      discriminator:
+        propertyName: type
+        mapping:
+          key-auth: '#/components/schemas/AIGatewayIdentityProviderKeyAuth'
+          openid-connect: '#/components/schemas/AIGatewayIdentityProviderOpenIDConnect'
+    UpdateAIGatewayIdentityProviderRequest:
+      x-internal: true
+      x-unstable: true
+      oneOf:
+        - $ref: '#/components/schemas/AIGatewayIdentityProviderKeyAuth'
+        - $ref: '#/components/schemas/AIGatewayIdentityProviderOpenIDConnect'
+      discriminator:
+        propertyName: type
+        mapping:
+          key-auth: '#/components/schemas/AIGatewayIdentityProviderKeyAuth'
+          openid-connect: '#/components/schemas/AIGatewayIdentityProviderOpenIDConnect'
+    AIGatewayIdentityProvider:
+      x-internal: true
+      x-unstable: true
+      oneOf:
+        - $ref: '#/components/schemas/AIGatewayIdentityProviderKeyAuth'
+        - $ref: '#/components/schemas/AIGatewayIdentityProviderOpenIDConnect'
+      discriminator:
+        propertyName: type
+        mapping:
+          key-auth: '#/components/schemas/AIGatewayIdentityProviderKeyAuth'
+          openid-connect: '#/components/schemas/AIGatewayIdentityProviderOpenIDConnect'
       type: object
       required:
         - id

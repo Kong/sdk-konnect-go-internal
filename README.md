@@ -287,6 +287,14 @@ func main() {
 
 * [GetAiGatewayDebugCpOutput](docs/sdks/aigatewaydebug/README.md#getaigatewaydebugcpoutput) - Get the CP config output for an AI Gateway
 
+### [AIGatewayIdentityProviders](docs/sdks/aigatewayidentityproviders/README.md)
+
+* [ListAiGatewayIdentityProviders](docs/sdks/aigatewayidentityproviders/README.md#listaigatewayidentityproviders) - List AI Gateway Identity Providers
+* [CreateAiGatewayIdentityProvider](docs/sdks/aigatewayidentityproviders/README.md#createaigatewayidentityprovider) - Create an AI Gateway Identity Provider
+* [GetAiGatewayIdentityProvider](docs/sdks/aigatewayidentityproviders/README.md#getaigatewayidentityprovider) - Get an AI Gateway Identity Provider
+* [UpdateAiGatewayIdentityProvider](docs/sdks/aigatewayidentityproviders/README.md#updateaigatewayidentityprovider) - Update an AI Gateway Identity Provider
+* [DeleteAiGatewayIdentityProvider](docs/sdks/aigatewayidentityproviders/README.md#deleteaigatewayidentityprovider) - Delete an AI Gateway Identity Provider
+
 ### [AIGatewayMCPServers](docs/sdks/aigatewaymcpservers/README.md)
 
 * [ListAiGatewayMcpServers](docs/sdks/aigatewaymcpservers/README.md#listaigatewaymcpservers) - List MCP Servers
@@ -294,6 +302,14 @@ func main() {
 * [GetAiGatewayMcpServer](docs/sdks/aigatewaymcpservers/README.md#getaigatewaymcpserver) - Get an MCP Server
 * [UpdateAiGatewayMcpServer](docs/sdks/aigatewaymcpservers/README.md#updateaigatewaymcpserver) - Update an MCP Server
 * [DeleteAiGatewayMcpServer](docs/sdks/aigatewaymcpservers/README.md#deleteaigatewaymcpserver) - Delete an MCP Server
+
+### [AIGatewayModelProviders](docs/sdks/aigatewaymodelproviders/README.md)
+
+* [ListAiGatewayModelProviders](docs/sdks/aigatewaymodelproviders/README.md#listaigatewaymodelproviders) - List AI Gateway Model Providers
+* [CreateAiGatewayModelProvider](docs/sdks/aigatewaymodelproviders/README.md#createaigatewaymodelprovider) - Create an AI Gateway Model Provider
+* [GetAiGatewayModelProvider](docs/sdks/aigatewaymodelproviders/README.md#getaigatewaymodelprovider) - Get an AI Gateway Model Provider
+* [UpdateAiGatewayModelProvider](docs/sdks/aigatewaymodelproviders/README.md#updateaigatewaymodelprovider) - Update an AI Gateway Model Provider
+* [DeleteAiGatewayModelProvider](docs/sdks/aigatewaymodelproviders/README.md#deleteaigatewaymodelprovider) - Delete an AI Gateway Model Provider
 
 ### [AIGatewayModels](docs/sdks/aigatewaymodels/README.md)
 
@@ -318,14 +334,6 @@ func main() {
 * [UpdateAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#updateaigatewaypolicy) - Update an AI Gateway Policy
 * [DeleteAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#deleteaigatewaypolicy) - Delete an AI Gateway Policy
 * [ListAiGatewayPolicyUsage](docs/sdks/aigatewaypolicies/README.md#listaigatewaypolicyusage) - List AI Gateway Policy Usage
-
-### [AIGatewayProviders](docs/sdks/aigatewayproviders/README.md)
-
-* [ListAiGatewayProviders](docs/sdks/aigatewayproviders/README.md#listaigatewayproviders) - List AI Gateway Providers
-* [CreateAiGatewayProvider](docs/sdks/aigatewayproviders/README.md#createaigatewayprovider) - Create an AI Gateway Provider
-* [GetAiGatewayProvider](docs/sdks/aigatewayproviders/README.md#getaigatewayprovider) - Get an AI Gateway Provider
-* [UpdateAiGatewayProvider](docs/sdks/aigatewayproviders/README.md#updateaigatewayprovider) - Update an AI Gateway Provider
-* [DeleteAiGatewayProvider](docs/sdks/aigatewayproviders/README.md#deleteaigatewayprovider) - Delete an AI Gateway Provider
 
 ### [AIGatewayVaults](docs/sdks/aigatewayvaults/README.md)
 
@@ -1201,6 +1209,14 @@ func main() {
 * [DeleteMcpServerResourceMapping](docs/sdks/mcpresourcemappings/README.md#deletemcpserverresourcemapping) - Delete MCP Server MCP Resource Mapping
 * [GetMcpServerResourceMapping](docs/sdks/mcpresourcemappings/README.md#getmcpserverresourcemapping) - Get MCP Server MCP Resource Mapping
 
+### [MCPResources](docs/sdks/mcpresources/README.md)
+
+* [ListMcpResources](docs/sdks/mcpresources/README.md#listmcpresources) - List MCP Resources
+* [CreateMcpResource](docs/sdks/mcpresources/README.md#createmcpresource) - Create an MCP Resource
+* [GetMcpResource](docs/sdks/mcpresources/README.md#getmcpresource) - Get an MCP Resource
+* [DeleteMcpResource](docs/sdks/mcpresources/README.md#deletemcpresource) - Delete an MCP Resource
+* [UpdateMcpResource](docs/sdks/mcpresources/README.md#updatemcpresource) - Update an MCP Resource
+
 ### [MCPServerRuntime](docs/sdks/mcpserverruntime/README.md)
 
 * [GetMcpServerRuntimeConfig](docs/sdks/mcpserverruntime/README.md#getmcpserverruntimeconfig) - Get MCP Server Runtime Configuration
@@ -1215,11 +1231,6 @@ func main() {
 * [DeleteMcpServerConfig](docs/sdks/mcpservers/README.md#deletemcpserverconfig) - Delete MCP Server
 * [GetMcpServerStatus](docs/sdks/mcpservers/README.md#getmcpserverstatus) - Get MCP Server deployment status
 * [GetMcpServerGeneratedCode](docs/sdks/mcpservers/README.md#getmcpservergeneratedcode) - Get generated Python code for an MCP Server
-* [ListMcpResources](docs/sdks/mcpservers/README.md#listmcpresources) - List MCP Resources
-* [CreateMcpResource](docs/sdks/mcpservers/README.md#createmcpresource) - Create an MCP Resource
-* [GetMcpResource](docs/sdks/mcpservers/README.md#getmcpresource) - Get an MCP Resource
-* [DeleteMcpResource](docs/sdks/mcpservers/README.md#deletemcpresource) - Delete an MCP Resource
-* [UpdateMcpResource](docs/sdks/mcpservers/README.md#updatemcpresource) - Update an MCP Resource
 * [GetMcpServerSignals](docs/sdks/mcpservers/README.md#getmcpserversignals) - Get MCP Server Signals
 * [ListMcpServersByControlPlane](docs/sdks/mcpservers/README.md#listmcpserversbycontrolplane) - List MCP Servers by Control Plane
 * [GetMcpServerByControlPlane](docs/sdks/mcpservers/README.md#getmcpserverbycontrolplane) - Get MCP Server by Control Plane

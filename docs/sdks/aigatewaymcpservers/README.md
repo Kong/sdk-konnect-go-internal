@@ -102,46 +102,52 @@ func main() {
     )
 
     res, err := s.AIGatewayMCPServers.CreateAiGatewayMcpServer(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", components.CreateCreateAIGatewayMCPServerRequestUpstreamServer(
-        components.CreateAIGatewayMCPServerUpstreamServerOauthAccessToken(
-            components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerAIGatewayMCPServerBaseACLPropertiesOauth{
-                ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerACLAttributeTypeOauthAccessToken,
-                AccessTokenClaimField: "<value>",
-                Acls: &components.AIGatewayMCPACLs{
-                    Allow: []string{},
-                    Deny: []string{
+        components.AIGatewayMCPServerUpstreamServer{
+            Type: components.AIGatewayMCPServerUpstreamServerTypeUpstreamServer,
+            Config: components.AIGatewayMCPServerUpstreamServerConfig{
+                Route: &components.AIGatewayRouteConfig{
+                    Headers: map[string]any{
+                        "version": []any{
+                            "v1",
+                            "v2",
+                        },
+                    },
+                    Hosts: []string{
+                        "foo.example.com",
+                    },
+                },
+                URL: "https://mcp.internal.kongair.com",
+                ToolsCacheTTLSeconds: 93572,
+            },
+            Tools: []components.AIGatewayMCPUpstreamTool{},
+            Access: components.CreateAIGatewayMCPServerBaseACLPropertiesOauthAccessToken(
+                components.AIGatewayMCPServerBaseACLPropertiesOauth{
+                    ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthACLAttributeTypeOauthAccessToken,
+                    AccessTokenClaimField: "<value>",
+                },
+            ),
+            DisplayName: "Kong Air Flights",
+            Name: "kongair-flights",
+            Policies: []string{
+                "<value 1>",
+            },
+            AdditionalProperties: map[string]any{
+                "acl_attribute_type": "oauth_access_token",
+                "access_token_claim_field": "<value>",
+                "acls": map[string]any{
+                    "allow": []any{},
+                    "deny": []any{
                         "<value 1>",
                     },
                 },
-                DefaultToolAcls: &components.AIGatewayMCPACLs{
-                    Allow: []string{},
-                    Deny: []string{
+                "default_tool_acls": map[string]any{
+                    "allow": []any{},
+                    "deny": []any{
                         "<value 1>",
                     },
-                },
-                Type: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerTypeUpstreamServer,
-                Config: components.AIGatewayMCPServerUpstreamServerConfig{
-                    Route: &components.AIGatewayRouteConfig{
-                        Headers: map[string]any{
-                            "version": []any{
-                                "v1",
-                                "v2",
-                            },
-                        },
-                        Hosts: []string{
-                            "foo.example.com",
-                        },
-                    },
-                    URL: "https://mcp.internal.kongair.com",
-                    ToolsCacheTTLSeconds: 93572,
-                },
-                Tools: []components.AIGatewayMCPUpstreamTool{},
-                DisplayName: "Kong Air Flights",
-                Name: "kongair-flights",
-                Policies: []string{
-                    "<value 1>",
                 },
             },
-        ),
+        },
     ))
     if err != nil {
         log.Fatal(err)
@@ -291,68 +297,74 @@ func main() {
         GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
         McpServerIDOrName: "my-entity-name",
         UpdateAIGatewayMCPServerRequest: components.CreateUpdateAIGatewayMCPServerRequestUpstreamServer(
-            components.CreateAIGatewayMCPServerUpstreamServerOauthAccessToken(
-                components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerAIGatewayMCPServerBaseACLPropertiesOauth{
-                    ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerACLAttributeTypeOauthAccessToken,
-                    AccessTokenClaimField: "<value>",
-                    Acls: &components.AIGatewayMCPACLs{
-                        Allow: []string{
+            components.AIGatewayMCPServerUpstreamServer{
+                Type: components.AIGatewayMCPServerUpstreamServerTypeUpstreamServer,
+                Config: components.AIGatewayMCPServerUpstreamServerConfig{
+                    Route: &components.AIGatewayRouteConfig{
+                        Headers: map[string]any{
+                            "version": []any{
+                                "v1",
+                                "v2",
+                            },
+                        },
+                        Hosts: []string{
+                            "foo.example.com",
+                        },
+                    },
+                    URL: "https://mcp.internal.kongair.com",
+                    ToolsCacheTTLSeconds: 97975,
+                },
+                Tools: []components.AIGatewayMCPUpstreamTool{
+                    components.AIGatewayMCPUpstreamTool{
+                        Description: "Search for available flights",
+                        Name: "<value>",
+                        Method: components.AIGatewayMCPUpstreamToolMethodGet.ToPointer(),
+                        Parameters: []components.AIGatewayMCPToolParameter{
+                            components.AIGatewayMCPToolParameter{
+                                Name: "origin",
+                                In: components.InQuery,
+                                Description: sdkkonnectgo.Pointer("The origin airport code."),
+                                Required: sdkkonnectgo.Pointer(true),
+                            },
+                        },
+                    },
+                },
+                Access: components.CreateAIGatewayMCPServerBaseACLPropertiesOauthAccessToken(
+                    components.AIGatewayMCPServerBaseACLPropertiesOauth{
+                        ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthACLAttributeTypeOauthAccessToken,
+                        AccessTokenClaimField: "<value>",
+                    },
+                ),
+                DisplayName: "Kong Air Flights",
+                Name: "kongair-flights",
+                Policies: []string{
+                    "<value 1>",
+                },
+                AdditionalProperties: map[string]any{
+                    "acl_attribute_type": "oauth_access_token",
+                    "access_token_claim_field": "<value>",
+                    "acls": map[string]any{
+                        "allow": []any{
                             "<value 1>",
                             "<value 2>",
                             "<value 3>",
                         },
-                        Deny: []string{
+                        "deny": []any{
                             "<value 1>",
                             "<value 2>",
                         },
                     },
-                    DefaultToolAcls: &components.AIGatewayMCPACLs{
-                        Allow: []string{
+                    "default_tool_acls": map[string]any{
+                        "allow": []any{
                             "<value 1>",
                         },
-                        Deny: []string{
+                        "deny": []any{
                             "<value 1>",
                             "<value 2>",
                         },
-                    },
-                    Type: components.AIGatewayMCPServerBaseACLPropertiesOauthAIGatewayMCPServerUpstreamServerTypeUpstreamServer,
-                    Config: components.AIGatewayMCPServerUpstreamServerConfig{
-                        Route: &components.AIGatewayRouteConfig{
-                            Headers: map[string]any{
-                                "version": []any{
-                                    "v1",
-                                    "v2",
-                                },
-                            },
-                            Hosts: []string{
-                                "foo.example.com",
-                            },
-                        },
-                        URL: "https://mcp.internal.kongair.com",
-                        ToolsCacheTTLSeconds: 97975,
-                    },
-                    Tools: []components.AIGatewayMCPUpstreamTool{
-                        components.AIGatewayMCPUpstreamTool{
-                            Description: "Search for available flights",
-                            Name: "<value>",
-                            Method: components.AIGatewayMCPUpstreamToolMethodGet.ToPointer(),
-                            Parameters: []components.AIGatewayMCPToolParameter{
-                                components.AIGatewayMCPToolParameter{
-                                    Name: "origin",
-                                    In: components.InQuery,
-                                    Description: sdkkonnectgo.Pointer("The origin airport code."),
-                                    Required: sdkkonnectgo.Pointer(true),
-                                },
-                            },
-                        },
-                    },
-                    DisplayName: "Kong Air Flights",
-                    Name: "kongair-flights",
-                    Policies: []string{
-                        "<value 1>",
                     },
                 },
-            ),
+            },
         ),
     })
     if err != nil {
