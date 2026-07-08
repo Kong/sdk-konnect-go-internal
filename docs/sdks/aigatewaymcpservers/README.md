@@ -120,12 +120,12 @@ func main() {
                 ToolsCacheTTLSeconds: 93572,
             },
             Tools: []components.AIGatewayMCPUpstreamTool{},
-            Access: components.CreateAIGatewayMCPServerBaseACLPropertiesOauthAccessToken(
+            Access: sdkkonnectgo.Pointer(components.CreateAIGatewayMCPServerBaseACLPropertiesOauthAccessToken(
                 components.AIGatewayMCPServerBaseACLPropertiesOauth{
                     ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthACLAttributeTypeOauthAccessToken,
                     AccessTokenClaimField: "<value>",
                 },
-            ),
+            )),
             DisplayName: "Kong Air Flights",
             Name: "kongair-flights",
             Policies: []string{
@@ -329,12 +329,12 @@ func main() {
                         },
                     },
                 },
-                Access: components.CreateAIGatewayMCPServerBaseACLPropertiesOauthAccessToken(
+                Access: sdkkonnectgo.Pointer(components.CreateAIGatewayMCPServerBaseACLPropertiesOauthAccessToken(
                     components.AIGatewayMCPServerBaseACLPropertiesOauth{
                         ACLAttributeType: components.AIGatewayMCPServerBaseACLPropertiesOauthACLAttributeTypeOauthAccessToken,
                         AccessTokenClaimField: "<value>",
                     },
-                ),
+                )),
                 DisplayName: "Kong Air Flights",
                 Name: "kongair-flights",
                 Policies: []string{

@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:cce72bee276a6f2a35aa88bcb36a1348d0839b744549a08ec5dda16736b1cd16
         sourceBlobDigest: sha256:06e5c344c94c47df4fc4f309dca046dedc669865827bee9e274c4927161c98d8
         codeSamplesNamespace: konnect-go-code-samples
-        codeSamplesRevisionDigest: sha256:c58d82d30b0e75a416142ae57c9729cba454e33b053b2fa3e3b0d94d465b9132
+        codeSamplesRevisionDigest: sha256:f3def6184115d0bbdd6f3f6747f3704de49c9b45fa3eca15420b2cf7c8f1c792
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

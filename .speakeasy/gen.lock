@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: ea5abe2aadf05c51e482a13e0fc28aad
+  docChecksum: 4bb70805fb96d55839e45cfc57ae799c
   docVersion: 3.15.0
   speakeasyVersion: 1.789.0
   generationVersion: 2.916.2
@@ -31012,7 +31012,7 @@ examples:
           modelIdOrName: "my-entity-name"
       responses:
         "200":
-          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [], "targets": [], "policies": ["<value 1>", "<value 2>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "semantic", "embeddings": {"allow_auth_override": false, "provider": "azure-ai-se", "name": "<value>"}, "vectordb": {"type": "redis", "dimensions": 401198, "distance_metric": "euclidean", "connect_timeout": 2000, "connection_is_proxied": false, "database": 0, "host": "127.0.0.1", "port": 6379, "read_timeout": 2000, "send_timeout": 2000, "ssl": true, "ssl_verify": true}}}, "capabilities": [], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [], "targets": [], "policies": ["<value 1>", "<value 2>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "semantic", "embeddings": {"allow_auth_override": false, "provider": "azure-ai-se", "name": "<value>", "config": {"upstream_url": "https://tame-tuxedo.info/", "type": "vercel"}}, "vectordb": {"type": "redis", "dimensions": 401198, "distance_metric": "euclidean", "connect_timeout": 2000, "connection_is_proxied": false, "database": 0, "host": "127.0.0.1", "port": 6379, "read_timeout": 2000, "send_timeout": 2000, "ssl": true, "ssl_verify": true}}}, "capabilities": [], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":

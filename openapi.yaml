@@ -54669,10 +54669,6 @@ components:
       description: Configuration data for Dev Portal integrations
       type: object
       additionalProperties: false
-      x-property-annotations:
-        equal_web:
-          - x-unstable
-          - x-internal
       default: {}
       properties:
         google_tag_manager:
@@ -54737,10 +54733,6 @@ components:
       description: Partially update configuration data for Dev Portal integrations
       type: object
       additionalProperties: false
-      x-property-annotations:
-        equal_web:
-          - x-unstable
-          - x-internal
       default: {}
       properties:
         google_tag_manager:
@@ -84633,6 +84625,7 @@ components:
           required:
             - name
             - provider
+            - config
           properties:
             allow_auth_override:
               type: boolean
@@ -89377,7 +89370,6 @@ components:
       required:
         - type
         - config
-        - access
         - display_name
         - name
       properties:
@@ -89428,7 +89420,6 @@ components:
       required:
         - type
         - config
-        - access
         - display_name
         - name
       properties:
@@ -89479,7 +89470,6 @@ components:
       required:
         - type
         - config
-        - access
         - display_name
         - name
       properties:
@@ -89530,7 +89520,6 @@ components:
       required:
         - type
         - config
-        - access
         - display_name
         - name
       properties:
@@ -89663,6 +89652,8 @@ components:
     AIGatewayMCPServerBaseACLProperties:
       x-internal: true
       x-unstable: true
+      default:
+        acl_attribute_type: consumer
       oneOf:
         - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesConsumer'
         - $ref: '#/components/schemas/AIGatewayMCPServerBaseACLPropertiesOauth'
@@ -92844,6 +92835,7 @@ components:
               - data_plane_node_version
               - gateway_service
               - portal
+              - principal
               - realm
               - response_source
               - route
@@ -92910,6 +92902,7 @@ components:
               - llm_embeddings_provider
               - llm_embeddings_model
               - time
+              - principal
               - realm
               - status_code
               - status_code_grouped
@@ -92979,6 +92972,7 @@ components:
               - mcp_session_id
               - mcp_tool_name
               - portal
+              - principal
               - realm
               - response_source
               - route
@@ -93836,6 +93830,42 @@ components:
           required:
             - operator
             - field
+    MetricsPrincipalFilterByField:
+      title: Filter by principal
+      oneOf:
+        - title: Multiselect filters
+          type: object
+          properties:
+            operator:
+              $ref: '#/components/schemas/RequestsFilterType'
+            value:
+              description: |
+                The IDs to include in the results.
+              type: array
+              items:
+                $ref: '#/components/schemas/UnscopedUuid'
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - principal
+          required:
+            - operator
+            - value
+            - field
+        - title: Empty filters
+          type: object
+          properties:
+            operator:
+              $ref: '#/components/schemas/RequestsFilterTypeEmpty'
+            field:
+              description: The field to filter.
+              type: string
+              enum:
+                - principal
+          required:
+            - operator
+            - field
     MetricsRealmFilterByField:
       title: Filter by realm
       oneOf:
@@ -94120,6 +94150,7 @@ components:
               - data_plane_node_version
               - gateway_service
               - portal
+              - principal
               - realm
               - response_source
               - route
@@ -94550,6 +94581,7 @@ components:
               - llm_cache_status
               - llm_embeddings_model
               - llm_embeddings_provider
+              - principal
               - realm
               - route
               - status_code
@@ -94927,6 +94959,7 @@ components:
               - mcp_session_id
               - mcp_tool_name
               - portal
+              - principal
               - realm
               - response_source
               - route
@@ -95286,6 +95319,7 @@ components:
             - mcp_session_id
             - mcp_tool_name
             - portal
+            - principal
             - realm
             - response_source
             - route

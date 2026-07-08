@@ -31,6 +31,7 @@ custom := components.AdvancedFiltersField("custom_value")
 | `AdvancedFiltersFieldDataPlaneNodeVersion`      | data_plane_node_version                         |
 | `AdvancedFiltersFieldGatewayService`            | gateway_service                                 |
 | `AdvancedFiltersFieldPortal`                    | portal                                          |
+| `AdvancedFiltersFieldPrincipal`                 | principal                                       |
 | `AdvancedFiltersFieldRealm`                     | realm                                           |
 | `AdvancedFiltersFieldResponseSource`            | response_source                                 |
 | `AdvancedFiltersFieldRoute`                     | route                                           |
