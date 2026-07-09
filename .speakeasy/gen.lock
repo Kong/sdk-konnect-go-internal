@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 4bb70805fb96d55839e45cfc57ae799c
+  docChecksum: 7644604375459056522b780f06c29e82
   docVersion: 3.15.0
   speakeasyVersion: 1.789.0
   generationVersion: 2.916.2
@@ -453,6 +453,8 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverwithupstreamconfigoutput.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfig.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfiglogging.md: {}
+  docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfig.md: {}
+  docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfiglogging.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfigoutput.md: {}
   docs/models/components/aigatewaymcptoolannotations.md: {}
   docs/models/components/aigatewaymcptoolbase.md: {}
@@ -2012,6 +2014,7 @@ trackedFiles:
   docs/models/components/consumergroupinsidewrapper.md:
     id: 8545d5ed2572
     pristine_git_object: 93542f5349a5c8aec0d68ee143140a7313d9b828
+  docs/models/components/consumersearchfilter.md: {}
   docs/models/components/consumevaluevalidationaction.md: {}
   docs/models/components/containerspec.md: {}
   docs/models/components/controlplane.md:
@@ -4703,6 +4706,7 @@ trackedFiles:
   docs/models/components/pluginconsumergroup.md:
     id: 8e2c9bf1d53d
     pristine_git_object: 2413f3069fb0e73a9bf2d02980b93a7bab104363
+  docs/models/components/pluginprotocols.md: {}
   docs/models/components/pluginroute.md:
     id: f69cdfab30ac
     pristine_git_object: 760ade5d3c8dbe4b8392ae59670df87e85a49c88
@@ -5496,12 +5500,10 @@ trackedFiles:
   docs/models/components/routejson.md:
     id: 2d49ee24cffc
     pristine_git_object: 29d771c17193c47718c46caa94e5bc1e935cf914
-  docs/models/components/routejsonprotocols.md:
-    id: 4d016c91e9c9
-    pristine_git_object: 2a7dc9ea31456824962bfccefde2db4328f74aa9
   docs/models/components/routejsonservice.md:
     id: 21bb757366f1
     pristine_git_object: 0d7d5e99423d51f3049f2ff85da99c5d0408cc5c
+  docs/models/components/routesearchfilter.md: {}
   docs/models/components/routetype.md: {}
   docs/models/components/routewithoutparents.md:
     id: e03d9c07c452
@@ -5702,6 +5704,7 @@ trackedFiles:
   docs/models/components/services.md:
     id: 449d4ca2897e
     pristine_git_object: 9e6f5ffc06f5dce4c4a4809a58055bc72c54b40c
+  docs/models/components/servicesearchfilter.md: {}
   docs/models/components/serviceselector.md:
     id: dee755ee493c
     pristine_git_object: a30d6dfface87817bc0feedad201a3c6d8e53af6
@@ -10842,9 +10845,18 @@ trackedFiles:
   docs/models/operations/schedulescorecardevaluationresponse.md:
     id: 510d06c7fddf
     pristine_git_object: ae5e81223e25e7730a88ffb222879399c1c47da7
-  docs/models/operations/searchpluginrequest.md: {}
-  docs/models/operations/searchpluginresponse.md: {}
-  docs/models/operations/searchpluginresponsebody.md: {}
+  docs/models/operations/searchconsumersinworkspacerequest.md: {}
+  docs/models/operations/searchconsumersinworkspaceresponse.md: {}
+  docs/models/operations/searchconsumersinworkspaceresponsebody.md: {}
+  docs/models/operations/searchpluginsrequest.md: {}
+  docs/models/operations/searchpluginsresponse.md: {}
+  docs/models/operations/searchpluginsresponsebody.md: {}
+  docs/models/operations/searchroutesinworkspacerequest.md: {}
+  docs/models/operations/searchroutesinworkspaceresponse.md: {}
+  docs/models/operations/searchroutesinworkspaceresponsebody.md: {}
+  docs/models/operations/searchservicesinworkspacerequest.md: {}
+  docs/models/operations/searchservicesinworkspaceresponse.md: {}
+  docs/models/operations/searchservicesinworkspaceresponsebody.md: {}
   docs/models/operations/stopdebugsessionrequest.md:
     id: a3813e7319cc
     pristine_git_object: badd77d955c41b059dfb014b1b2cc96b8d715d59
@@ -12319,6 +12331,7 @@ trackedFiles:
   models/components/aigatewaymcpserverupstreamservertooloauth2configcredentialsoutput.go: {}
   models/components/aigatewaymcpserverupstreamservertooloauth2configjwt.go: {}
   models/components/aigatewaymcpserverwithupstreamconfigoutput.go: {}
+  models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfig.go: {}
   models/components/aigatewaymcpserverwithupstreamnoproxyconfigoutput.go: {}
   models/components/aigatewaymcptoolannotations.go: {}
   models/components/aigatewaymcptoolbase.go: {}
@@ -12991,6 +13004,7 @@ trackedFiles:
   models/components/consumergroupinsidewrapper.go:
     id: 099230a8ffe9
     pristine_git_object: 35ad113f35b1fbd26e2d8e5463b01c45c00631de
+  models/components/consumersearchfilter.go: {}
   models/components/consumevaluevalidationaction.go: {}
   models/components/containerspec.go: {}
   models/components/controlplane.go:
@@ -14789,6 +14803,7 @@ trackedFiles:
   models/components/routejson.go:
     id: d92d6bc73818
     pristine_git_object: 1e4307838f4dc34f794d9c0de13d14be492efc39
+  models/components/routesearchfilter.go: {}
   models/components/routewithoutparents.go:
     id: dbd67bd3596c
     pristine_git_object: 1193347ba59d5cc2ec5a34e7167f3567c4e6e46d
@@ -14916,6 +14931,7 @@ trackedFiles:
   models/components/servicereferenceinput.go:
     id: 68daf19d3bbb
     pristine_git_object: 60473eb39955d8514903974fa0f0cd063f14845c
+  models/components/servicesearchfilter.go: {}
   models/components/servicevulnerabilityattributes.go:
     id: bc0a477e97ff
     pristine_git_object: 94034d763abd3d87838f963930a597df3fc07a09
@@ -17531,7 +17547,10 @@ trackedFiles:
   models/operations/schedulescorecardevaluation.go:
     id: 76a1f471b9c0
     pristine_git_object: c2db10ef3b2dd0dc8499aa2b01ba9f2a2f9db129
-  models/operations/searchplugin.go: {}
+  models/operations/searchconsumersinworkspace.go: {}
+  models/operations/searchplugins.go: {}
+  models/operations/searchroutesinworkspace.go: {}
+  models/operations/searchservicesinworkspace.go: {}
   models/operations/stopdebugsession.go:
     id: fafe7d341422
     pristine_git_object: 40fa0bb6f7d09595790ec08c7a722162b565bd92
@@ -36613,6 +36632,85 @@ examples:
           application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
         "429":
           application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  search-consumers-in-workspace:
+    speakeasy-default-search-consumers-in-workspace:
+      parameters:
+        path:
+          controlPlaneId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
+          workspace: "team-payments"
+        query:
+          size: 100
+          tags: "tag1,tag2"
+      responses:
+        "200":
+          application/json: {"data": [{"custom_id": "4200", "id": "8a388226-80e8-4027-a486-25e4f7db5d21", "tags": ["silver-tier"], "username": "bob-the-builder"}]}
+        "400":
+          application/problem+json: {"status": 301829, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "500":
+          application/problem+json: {"status": 975985, "title": "<value>", "instance": "<value>", "detail": "<value>"}
+  search-services-in-workspace:
+    speakeasy-default-search-services-in-workspace:
+      parameters:
+        path:
+          controlPlaneId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
+          workspace: "team-payments"
+        query:
+          size: 100
+          tags: "tag1,tag2"
+      responses:
+        "200":
+          application/json: {"data": [{"connect_timeout": 60000, "enabled": true, "host": "example.internal", "id": "49fd316e-c457-481c-9fc7-8079153e4f3c", "name": "example-service", "path": "/", "port": 80, "protocol": "http", "read_timeout": 60000, "retries": 5, "write_timeout": 60000}]}
+        "400":
+          application/problem+json: {"status": 608047, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "500":
+          application/problem+json: {"status": 555187, "title": "<value>", "instance": "<value>", "detail": "<value>"}
+  search-routes-in-workspace:
+    speakeasy-default-search-routes-in-workspace:
+      parameters:
+        path:
+          controlPlaneId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
+          workspace: "team-payments"
+        query:
+          size: 100
+          tags: "tag1,tag2"
+      responses:
+        "200":
+          application/json: {"data": [{"hosts": ["foo.example.com", "foo.example.us"], "https_redirect_status_code": 426, "id": "56c4566c-14cc-4132-9011-4139fcbbe50a", "name": "example-route", "path_handling": "v0", "paths": ["/v1", "/v2"], "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "service": {"id": "bd380f99-659d-415e-b0e7-72ea05df3218"}, "strip_path": true}]}
+        "400":
+          application/problem+json: {"status": 303996, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "500":
+          application/problem+json: {"status": 131757, "title": "<value>", "instance": "<value>", "detail": "<value>"}
+  search-plugins:
+    speakeasy-default-search-plugins:
+      parameters:
+        path:
+          controlPlaneId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
+        query:
+          size: 100
+          tags: "tag1,tag2"
+      responses:
+        "200":
+          application/json: {"data": [{"config": {"anonymous": "<value>", "hide_credentials": false, "key_in_body": false, "key_in_header": true, "key_in_query": true, "key_names": ["apikey"], "run_on_preflight": true}, "enabled": true, "id": "3fd1eea1-885a-4011-b986-289943ff8177", "name": "key-auth", "partials": [{"id": "cff1230a-00f7-4ae8-b376-c370f0eb4dae", "name": "foo-partial", "path": "config.redis"}, {"id": "129ee345-cba8-4e55-9d6d-93c223ff91ae", "name": "bar-partial", "path": "config.redis"}], "protocols": ["grpc", "grpcs", "http", "https"]}]}
+        "400":
+          application/problem+json: {"status": 83500, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "500":
+          application/problem+json: {"status": 219232, "title": "<value>", "instance": "<value>", "detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
 generatedFiles:

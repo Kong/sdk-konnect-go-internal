@@ -42,7 +42,7 @@ type AIGatewayMCPServerAIGatewayMCPServerUpstreamServer struct {
 	Access *AIGatewayMCPServerBaseACLProperties `json:"access,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
-	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
+	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
@@ -224,7 +224,7 @@ type AIGatewayMCPServerAIGatewayMCPServerPassthroughListener struct {
 	Access *AIGatewayMCPServerBaseACLProperties `json:"access,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
-	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
+	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
@@ -406,7 +406,7 @@ type AIGatewayMCPServerAIGatewayMCPServerListener struct {
 	Access *AIGatewayMCPServerBaseACLProperties `json:"access,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
-	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
+	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
@@ -588,7 +588,7 @@ type AIGatewayMCPServerAIGatewayMCPServerConversionListener struct {
 	Access *AIGatewayMCPServerBaseACLProperties `json:"access,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
-	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
+	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
@@ -763,13 +763,13 @@ func (e *AIGatewayMCPServerConversionOnlyAIGatewayMCPServerType) UnmarshalJSON(d
 
 type AIGatewayMCPServerAIGatewayMCPServerConversionOnly struct {
 	Type AIGatewayMCPServerConversionOnlyAIGatewayMCPServerType `json:"type"`
-	// Routing, logging, and server configuration for the MCP Server.
-	Config AIGatewayMCPServerWithUpstreamNoProxyConfigOutput `json:"config"`
+	// Routing, logging, and request body size limits for the MCP Server.
+	Config AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig `json:"config"`
 	// List of tools exposed by this MCP Server.
 	Tools []AIGatewayMCPConversionTool `json:"tools,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
-	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
+	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
@@ -814,9 +814,9 @@ func (a *AIGatewayMCPServerAIGatewayMCPServerConversionOnly) GetType() AIGateway
 	return a.Type
 }
 
-func (a *AIGatewayMCPServerAIGatewayMCPServerConversionOnly) GetConfig() AIGatewayMCPServerWithUpstreamNoProxyConfigOutput {
+func (a *AIGatewayMCPServerAIGatewayMCPServerConversionOnly) GetConfig() AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig {
 	if a == nil {
-		return AIGatewayMCPServerWithUpstreamNoProxyConfigOutput{}
+		return AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig{}
 	}
 	return a.Config
 }

@@ -779,6 +779,7 @@ func main() {
 
 ### [Consumers](docs/sdks/consumers/README.md)
 
+* [SearchConsumersInWorkspace](docs/sdks/consumers/README.md#searchconsumersinworkspace) - Search Consumers in a workspace
 * [ListConsumerInWorkspace](docs/sdks/consumers/README.md#listconsumerinworkspace) - List all Consumers in a workspace
 * [CreateConsumerInWorkspace](docs/sdks/consumers/README.md#createconsumerinworkspace) - Create a new Consumer in a workspace
 * [DeleteConsumerInWorkspace](docs/sdks/consumers/README.md#deleteconsumerinworkspace) - Delete a Consumer in a workspace
@@ -1449,7 +1450,7 @@ func main() {
 
 ### [Plugins](docs/sdks/plugins/README.md)
 
-* [SearchPlugin](docs/sdks/plugins/README.md#searchplugin) - Search for Plugins
+* [SearchPlugins](docs/sdks/plugins/README.md#searchplugins) - Search for Plugins
 * [ListPluginWithConsumerGroupInWorkspace](docs/sdks/plugins/README.md#listpluginwithconsumergroupinworkspace) - List all Plugins associated with a Consumer Group in a workspace
 * [CreatePluginWithConsumerGroupInWorkspace](docs/sdks/plugins/README.md#createpluginwithconsumergroupinworkspace) - Create a new Plugin associated with a Consumer Group in a workspace
 * [DeletePluginWithConsumerGroupInWorkspace](docs/sdks/plugins/README.md#deletepluginwithconsumergroupinworkspace) - Delete a a Plugin associated with a Consumer Group in a workspace
@@ -1675,6 +1676,7 @@ func main() {
 
 ### [Routes](docs/sdks/routes/README.md)
 
+* [SearchRoutesInWorkspace](docs/sdks/routes/README.md#searchroutesinworkspace) - Search Routes in a workspace
 * [ListRouteInWorkspace](docs/sdks/routes/README.md#listrouteinworkspace) - List all Routes in a workspace
 * [CreateRouteInWorkspace](docs/sdks/routes/README.md#createrouteinworkspace) - Create a new Route in a workspace
 * [DeleteRouteInWorkspace](docs/sdks/routes/README.md#deleterouteinworkspace) - Delete a Route in a workspace
@@ -1718,6 +1720,7 @@ func main() {
 
 ### [Services](docs/sdks/services/README.md)
 
+* [SearchServicesInWorkspace](docs/sdks/services/README.md#searchservicesinworkspace) - Search Services in a workspace
 * [ListServiceInWorkspace](docs/sdks/services/README.md#listserviceinworkspace) - List all Services in a workspace
 * [CreateServiceInWorkspace](docs/sdks/services/README.md#createserviceinworkspace) - Create a new Service in a workspace
 * [DeleteServiceInWorkspace](docs/sdks/services/README.md#deleteserviceinworkspace) - Delete a Service in a workspace

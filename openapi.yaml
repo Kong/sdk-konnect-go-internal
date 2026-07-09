@@ -23144,11 +23144,140 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+  /v2/control-planes/{controlPlaneId}/core-entities/{workspace}/consumers/search:
+    get:
+      x-unstable: true
+      x-internal: true
+      operationId: search-consumers-in-workspace
+      summary: Search Consumers in a workspace
+      description: Search Consumers in a workspace
+      parameters:
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+        - $ref: '#/components/parameters/ConsumerSearchFilter'
+      responses:
+        '200':
+          description: A successful response searching Consumers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Consumer'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/Internal'
+        '503':
+          $ref: '#/components/responses/NotAvailable'
+      tags:
+        - Consumers
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/Workspace'
+  /v2/control-planes/{controlPlaneId}/core-entities/{workspace}/services/search:
+    get:
+      x-unstable: true
+      x-internal: true
+      operationId: search-services-in-workspace
+      summary: Search Services in a workspace
+      description: Search Services in a workspace
+      parameters:
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+        - $ref: '#/components/parameters/ServiceSearchFilter'
+      responses:
+        '200':
+          description: A successful response searching Services
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Service'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/Internal'
+        '503':
+          $ref: '#/components/responses/NotAvailable'
+      tags:
+        - Services
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/Workspace'
+  /v2/control-planes/{controlPlaneId}/core-entities/{workspace}/routes/search:
+    get:
+      x-unstable: true
+      x-internal: true
+      operationId: search-routes-in-workspace
+      summary: Search Routes in a workspace
+      description: Search Routes in a workspace
+      parameters:
+        - $ref: '#/components/parameters/PaginationSize'
+        - $ref: '#/components/parameters/PaginationOffset'
+        - $ref: '#/components/parameters/PaginationTagsFilter'
+        - $ref: '#/components/parameters/RouteSearchFilter'
+      responses:
+        '200':
+          description: A successful response searching Routes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Route'
+                  next:
+                    $ref: '#/components/schemas/PaginationNextResponse'
+                  offset:
+                    $ref: '#/components/schemas/PaginationOffsetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/Internal'
+        '503':
+          $ref: '#/components/responses/NotAvailable'
+      tags:
+        - Routes
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/Workspace'
   /v2/control-planes/{controlPlaneId}/core-entities/plugins/search:
     get:
       x-internal: true
       x-unstable: true
-      operationId: search-plugin
+      operationId: search-plugins
       summary: Search for Plugins
       description: Search for Plugins
       parameters:
@@ -23172,8 +23301,16 @@ paths:
                     $ref: '#/components/schemas/PaginationNextResponse'
                   offset:
                     $ref: '#/components/schemas/PaginationOffsetResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
-          $ref: '#/components/responses/HTTP401Error'
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/Internal'
+        '503':
+          $ref: '#/components/responses/NotAvailable'
       tags:
         - Plugins
     parameters:
@@ -34935,6 +35072,39 @@ components:
       in: path
       required: true
       description: Node identifier
+    RouteSearchFilter:
+      name: filter
+      in: query
+      description: Filter routes by fields
+      required: false
+      schema:
+        type: object
+        properties:
+          name:
+            $ref: '#/components/schemas/LegacyStringFieldFilter'
+      style: deepObject
+    ServiceSearchFilter:
+      name: filter
+      in: query
+      description: Filter services by fields
+      required: false
+      schema:
+        type: object
+        properties:
+          name:
+            $ref: '#/components/schemas/LegacyStringFieldFilter'
+      style: deepObject
+    ConsumerSearchFilter:
+      name: filter
+      in: query
+      description: Filter consumers by fields
+      required: false
+      schema:
+        type: object
+        properties:
+          name:
+            $ref: '#/components/schemas/LegacyStringFieldFilter'
+      style: deepObject
     PluginSearchFilter:
       name: filter
       in: query
@@ -83245,7 +83415,9 @@ components:
           description: The display name for this AI Gateway.
           example: My AI Gateway
         name:
-          description: The name for this AI Gateway.
+          description: >-
+            The name for this AI Gateway. This value is immutable after
+            creation.
           example: my-ai-gateway
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -83280,7 +83452,9 @@ components:
           description: The display name for this AI Gateway.
           example: My AI Gateway
         name:
-          description: The name for this AI Gateway.
+          description: >-
+            The name for this AI Gateway. This value is immutable after
+            creation.
           example: my-ai-gateway
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -83319,7 +83493,9 @@ components:
           description: The display name for this AI Gateway.
           example: My AI Gateway
         name:
-          description: The name for this AI Gateway.
+          description: >-
+            The name for this AI Gateway. This value is immutable after
+            creation.
           example: my-ai-gateway
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -83674,7 +83850,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: my-gpt-5-model
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -83755,7 +83931,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: my-gpt-5-model
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -86449,6 +86625,8 @@ components:
             A user-defined unique identifier for this vault instance, used as a
             stable human-readable reference.
 
+            This value is immutable after creation.
+
             The name is used to load the right Vault configuration and
             implementation when referencing secrets with the other entities.
           example: my-awesome-vault
@@ -86493,6 +86671,8 @@ components:
           description: >
             A user-defined unique identifier for this vault instance, used as a
             stable human-readable reference.
+
+            This value is immutable after creation.
 
             The name is used to load the right Vault configuration and
             implementation when referencing secrets with the other entities.
@@ -86561,6 +86741,8 @@ components:
           description: >
             A user-defined unique identifier for this vault instance, used as a
             stable human-readable reference.
+
+            This value is immutable after creation.
 
             The name is used to load the right Vault configuration and
             implementation when referencing secrets with the other entities.
@@ -86719,6 +86901,8 @@ components:
             A user-defined unique identifier for this vault instance, used as a
             stable human-readable reference.
 
+            This value is immutable after creation.
+
             The name is used to load the right Vault configuration and
             implementation when referencing secrets with the other entities.
           example: my-awesome-vault
@@ -86823,6 +87007,8 @@ components:
           description: >
             A user-defined unique identifier for this vault instance, used as a
             stable human-readable reference.
+
+            This value is immutable after creation.
 
             The name is used to load the right Vault configuration and
             implementation when referencing secrets with the other entities.
@@ -86991,6 +87177,8 @@ components:
             A user-defined unique identifier for this vault instance, used as a
             stable human-readable reference.
 
+            This value is immutable after creation.
+
             The name is used to load the right Vault configuration and
             implementation when referencing secrets with the other entities.
           example: my-awesome-vault
@@ -87121,6 +87309,8 @@ components:
           description: >
             A user-defined unique identifier for this vault instance, used as a
             stable human-readable reference.
+
+            This value is immutable after creation.
 
             The name is used to load the right Vault configuration and
             implementation when referencing secrets with the other entities.
@@ -88339,7 +88529,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this policy instance, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: ai-pii-sanitizer-1234
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88407,7 +88598,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this policy instance, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: ai-pii-sanitizer-1234
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88478,7 +88670,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this policy instance, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: ai-pii-sanitizer-1234
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88601,7 +88794,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this agent, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: kongair-flight-booking-agent
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88693,7 +88886,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this agent, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: kongair-flight-booking-agent
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88788,7 +88981,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this agent, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: kongair-flight-booking-agent
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88886,7 +89079,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this consumer, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: gregs-dev-consumer
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88929,7 +89122,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this consumer, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: gregs-dev-consumer
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -88975,7 +89168,7 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this consumer, used as a stable
-            human-readable reference.
+            human-readable reference. This value is immutable after creation.
           example: gregs-dev-consumer
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89021,7 +89214,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this credential, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: gregs-dev-key
           allOf:
             - &ref_17
@@ -89069,7 +89263,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this credential, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: gregs-dev-key
           allOf:
             - *ref_17
@@ -89118,7 +89313,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this credential, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: gregs-dev-key
           allOf:
             - &ref_18
@@ -89162,7 +89358,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this credential, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: gregs-dev-key
           allOf:
             - *ref_17
@@ -89186,7 +89383,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this credential, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: gregs-dev-key
           allOf:
             - *ref_18
@@ -89227,7 +89425,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this consumer group, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: dev-users
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89257,7 +89456,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this consumer group, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: dev-users
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89301,7 +89501,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this consumer group, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: dev-users
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89330,7 +89531,8 @@ components:
           enum:
             - conversion-only
         config:
-          $ref: '#/components/schemas/AIGatewayMCPServerWithUpstreamNoProxyConfig'
+          $ref: >-
+            #/components/schemas/AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig
         tools:
           type: array
           description: List of tools exposed by this MCP Server.
@@ -89347,7 +89549,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this MCP server, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: kongair-flights
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89397,7 +89600,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this MCP server, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: kongair-flights
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89447,7 +89651,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this MCP server, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: kongair-flights
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89497,7 +89702,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this MCP server, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: kongair-flights
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -89547,7 +89753,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this MCP server, used as a
-            stable human-readable reference.
+            stable human-readable reference. This value is immutable after
+            creation.
           example: kongair-flights
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -90333,6 +90540,47 @@ components:
           default: 8388608
         server:
           $ref: '#/components/schemas/AIGatewayMCPServerServerConfigBase'
+    AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig:
+      type: object
+      x-internal: true
+      x-unstable: true
+      description: Routing, logging, and request body size limits for the MCP Server.
+      additionalProperties: false
+      properties:
+        route:
+          $ref: '#/components/schemas/AIGatewayRouteConfig'
+        logging:
+          type: object
+          x-internal: true
+          x-unstable: true
+          description: Configuration for AI Gateway logging.
+          additionalProperties: false
+          properties:
+            payloads:
+              type: boolean
+              default: false
+            statistics:
+              type: boolean
+              default: true
+            audits:
+              type: boolean
+              default: false
+        max_request_body_size:
+          type: integer
+          description: Maximum size of request body to parse. Set to 0 for unlimited.
+          default: 8388608
+        url:
+          type: string
+          description: >
+            Helper field to set protocol, host, port and path of the upstream
+            service using a URL.
+
+            This is the same as a Kong Gateway Service URL:
+            ${scheme}://${host}:${port}/${path}
+          format: uri
+          example: https://mcp.internal.kongair.com
+      required:
+        - url
     AIGatewayMCPServerWithUpstreamNoProxyConfig:
       type: object
       x-internal: true
@@ -91149,7 +91397,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this identity provider
-            instance, used as a stable human-readable reference.
+            instance, used as a stable human-readable reference. This value is
+            immutable after creation.
           example: okta-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91177,14 +91426,14 @@ components:
               type: boolean
               description: >
                 An optional boolean value telling the plugin to show or hide the
-                credential from the upstream service. 
+                credential from the upstream service.
 
                 If true, the plugin strips the credential from the request.
               default: true
             key_in_body:
               type: boolean
               description: >
-                If enabled, reads the request body. 
+                If enabled, reads the request body.
 
                 Supported MIME types: application/www-form-urlencoded,
                 application/json, and multipart/form-data.
@@ -91232,7 +91481,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this identity provider
-            instance, used as a stable human-readable reference.
+            instance, used as a stable human-readable reference. This value is
+            immutable after creation.
           example: okta-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91302,11 +91552,11 @@ components:
                 [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
               items:
                 type: string
-            consumer_claim:
+            consumer_claims:
               type: array
               description: >
                 An array containing an array of string paths representing the
-                location of the claim in a nested object. 
+                location of the claim in a nested object.
 
                 For example, to map to user.info.id, set [ "user", "info", "id"
                 ].
@@ -91364,7 +91614,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91408,7 +91659,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91452,7 +91704,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91496,7 +91749,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91540,7 +91794,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91584,7 +91839,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91628,7 +91884,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91672,7 +91929,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91716,7 +91974,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91760,7 +92019,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91804,7 +92064,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91848,7 +92109,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91892,7 +92154,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91936,7 +92199,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -91980,7 +92244,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -92097,7 +92362,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -92206,7 +92472,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -92311,7 +92578,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -92361,7 +92629,8 @@ components:
           x-unstable: true
           description: >-
             A user-defined unique identifier for this model provider instance,
-            used as a stable human-readable reference.
+            used as a stable human-readable reference. This value is immutable
+            after creation.
           example: azure-ai-se
           allOf:
             - $ref: '#/components/schemas/AIGatewayEntityIdentifier'
@@ -92456,7 +92725,9 @@ components:
           minLength: 1
           maxLength: 256
           pattern: ^[a-zA-Z0-9.\-_~]*$
-          description: The name of the Config Store.
+          description: >-
+            The name of the Config Store. This value is immutable after
+            creation.
           example: my-config-store
     UpdateAIGatewayConfigStoreRequest:
       x-internal: true
@@ -92494,7 +92765,9 @@ components:
           minLength: 1
           maxLength: 256
           pattern: ^[a-zA-Z0-9.\-_~]*$
-          description: The name of the Config Store.
+          description: >-
+            The name of the Config Store. This value is immutable after
+            creation.
           example: my-config-store
         id:
           $ref: '#/components/schemas/UUID'

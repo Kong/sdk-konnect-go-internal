@@ -40,7 +40,7 @@ type AIGatewayMCPServerUpstreamServer struct {
 	Access *AIGatewayMCPServerBaseACLProperties `json:"access,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
-	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference.
+	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// Whether the MCP Server is enabled.
 	Enabled *bool `default:"true" json:"enabled"`
