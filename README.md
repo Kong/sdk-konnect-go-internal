@@ -267,6 +267,8 @@ func main() {
 * [GetAiGatewayConsumer](docs/sdks/aigatewayconsumers/README.md#getaigatewayconsumer) - Get an AI Gateway Consumer
 * [UpdateAiGatewayConsumer](docs/sdks/aigatewayconsumers/README.md#updateaigatewayconsumer) - Update an AI Gateway Consumer
 * [DeleteAiGatewayConsumer](docs/sdks/aigatewayconsumers/README.md#deleteaigatewayconsumer) - Delete an AI Gateway Consumer
+* [ListAiGatewayConsumerGroupsForConsumer](docs/sdks/aigatewayconsumers/README.md#listaigatewayconsumergroupsforconsumer) - List Consumer Groups a Consumer belongs to
+* [UpdateAiGatewayConsumerGroupsForConsumer](docs/sdks/aigatewayconsumers/README.md#updateaigatewayconsumergroupsforconsumer) - Updates Consumer Groups a Consumer belongs to
 * [ListAiGatewayConsumerCredentials](docs/sdks/aigatewayconsumers/README.md#listaigatewayconsumercredentials) - List AI Gateway Consumer Credentials
 * [CreateAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#createaigatewayconsumercredential) - Create an AI Gateway Consumer Credential
 * [GetAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#getaigatewayconsumercredential) - Get an AI Gateway Consumer Credential
@@ -1450,6 +1452,7 @@ func main() {
 
 ### [Plugins](docs/sdks/plugins/README.md)
 
+* [SearchPluginsInWorkspace](docs/sdks/plugins/README.md#searchpluginsinworkspace) - Search Plugins in a workspace
 * [SearchPlugins](docs/sdks/plugins/README.md#searchplugins) - Search for Plugins
 * [ListPluginWithConsumerGroupInWorkspace](docs/sdks/plugins/README.md#listpluginwithconsumergroupinworkspace) - List all Plugins associated with a Consumer Group in a workspace
 * [CreatePluginWithConsumerGroupInWorkspace](docs/sdks/plugins/README.md#createpluginwithconsumergroupinworkspace) - Create a new Plugin associated with a Consumer Group in a workspace

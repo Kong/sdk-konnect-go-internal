@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 7644604375459056522b780f06c29e82
+  docChecksum: f763e7727a8f29db8668296f6eb3ab78
   docVersion: 3.15.0
-  speakeasyVersion: 1.789.0
-  generationVersion: 2.916.2
+  speakeasyVersion: 1.790.0
+  generationVersion: 2.917.0
   releaseVersion: 0.2.0
   configChecksum: 8da1b243c23e05dcfe374e2a60a3e3fb
 persistentEdits:
@@ -386,17 +386,17 @@ trackedFiles:
   docs/models/components/aigatewayhuggingfaceembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewayidentityprovider.md: {}
   docs/models/components/aigatewayidentityproviderkeyauth.md: {}
-  docs/models/components/aigatewayidentityproviderkeyauthaigatewayidentityproviderconfig.md: {}
-  docs/models/components/aigatewayidentityproviderkeyauthaigatewayidentityproviderkeyauthconfig.md: {}
-  docs/models/components/aigatewayidentityproviderkeyauthaigatewayidentityprovidertype.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponse.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponseconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponsetype.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthtype.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnect.md: {}
-  docs/models/components/aigatewayidentityprovideropenidconnectaigatewayidentityprovideropenidconnectconfig.md: {}
-  docs/models/components/aigatewayidentityprovideropenidconnectaigatewayidentityprovidertype.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectauthmethods.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectconfig.md: {}
-  docs/models/components/aigatewayidentityprovideropenidconnectconfigoutput.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponse.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsetype.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnecttype.md: {}
   docs/models/components/aigatewaymcpacls.md: {}
   docs/models/components/aigatewaymcpconversiontool.md: {}
@@ -1954,6 +1954,7 @@ trackedFiles:
   docs/models/components/configstoresecret.md:
     id: 0dbfc6485611
     pristine_git_object: 56e4aaf28212a6a35f59b0a707c0de7b4a508b60
+  docs/models/components/configsync.md: {}
   docs/models/components/configurationdataplanegroup.md:
     id: 16de5856d965
     pristine_git_object: 566fdf88bc0c825dfb0771414b7bf2fe1f5e60ae
@@ -3279,6 +3280,8 @@ trackedFiles:
   docs/models/components/getnodecompatibilitystatus.md:
     id: 0d4b484868c5
     pristine_git_object: 40840505d36a770908ca672087544c300f5448b2
+  docs/models/components/getnodeconfigsync.md: {}
+  docs/models/components/getnoderesiliency.md: {}
   docs/models/components/getpartialschemaresponse.md:
     id: f7c0ad52e655
     pristine_git_object: 12cafe93817fd4ad0df625e377776a1e3f2e77cf
@@ -5121,6 +5124,7 @@ trackedFiles:
   docs/models/components/requiredintegrationcapability.md:
     id: 4f5abf901aaa
     pristine_git_object: 36f8147303cdb0e4711fe1a9ffca37c4255fe1dd
+  docs/models/components/resiliency.md: {}
   docs/models/components/resolvecustomerresponse.md:
     id: 25ba81d71ac5
     pristine_git_object: f5753fdfd6b34a7905b669757b113426c9accb7a
@@ -9299,6 +9303,8 @@ trackedFiles:
   docs/models/operations/listaigatewayconfigstoresresponse.md: {}
   docs/models/operations/listaigatewayconsumercredentialsrequest.md: {}
   docs/models/operations/listaigatewayconsumercredentialsresponse.md: {}
+  docs/models/operations/listaigatewayconsumergroupsforconsumerrequest.md: {}
+  docs/models/operations/listaigatewayconsumergroupsforconsumerresponse.md: {}
   docs/models/operations/listaigatewayconsumergroupsrequest.md: {}
   docs/models/operations/listaigatewayconsumergroupsresponse.md: {}
   docs/models/operations/listaigatewayconsumersinconsumergrouprequest.md: {}
@@ -10848,6 +10854,9 @@ trackedFiles:
   docs/models/operations/searchconsumersinworkspacerequest.md: {}
   docs/models/operations/searchconsumersinworkspaceresponse.md: {}
   docs/models/operations/searchconsumersinworkspaceresponsebody.md: {}
+  docs/models/operations/searchpluginsinworkspacerequest.md: {}
+  docs/models/operations/searchpluginsinworkspaceresponse.md: {}
+  docs/models/operations/searchpluginsinworkspaceresponsebody.md: {}
   docs/models/operations/searchpluginsrequest.md: {}
   docs/models/operations/searchpluginsresponse.md: {}
   docs/models/operations/searchpluginsresponsebody.md: {}
@@ -10894,6 +10903,10 @@ trackedFiles:
   docs/models/operations/updateaigatewayconfigstoresecretresponse.md: {}
   docs/models/operations/updateaigatewayconsumergrouprequest.md: {}
   docs/models/operations/updateaigatewayconsumergroupresponse.md: {}
+  docs/models/operations/updateaigatewayconsumergroupsforconsumerrequest.md: {}
+  docs/models/operations/updateaigatewayconsumergroupsforconsumerrequestbody.md: {}
+  docs/models/operations/updateaigatewayconsumergroupsforconsumerresponse.md: {}
+  docs/models/operations/updateaigatewayconsumergroupsforconsumerresponsebody.md: {}
   docs/models/operations/updateaigatewayconsumerrequest.md: {}
   docs/models/operations/updateaigatewayconsumerresponse.md: {}
   docs/models/operations/updateaigatewayidentityproviderrequest.md: {}
@@ -12310,7 +12323,9 @@ trackedFiles:
   models/components/aigatewayhuggingfaceembeddingsmodelconfig.go: {}
   models/components/aigatewayidentityprovider.go: {}
   models/components/aigatewayidentityproviderkeyauth.go: {}
+  models/components/aigatewayidentityproviderkeyauthresponse.go: {}
   models/components/aigatewayidentityprovideropenidconnect.go: {}
+  models/components/aigatewayidentityprovideropenidconnectresponse.go: {}
   models/components/aigatewaymcpacls.go: {}
   models/components/aigatewaymcpconversiontool.go: {}
   models/components/aigatewaymcpserver.go: {}
@@ -16850,6 +16865,7 @@ trackedFiles:
   models/operations/listaigatewayconfigstoresecrets.go: {}
   models/operations/listaigatewayconsumercredentials.go: {}
   models/operations/listaigatewayconsumergroups.go: {}
+  models/operations/listaigatewayconsumergroupsforconsumer.go: {}
   models/operations/listaigatewayconsumers.go: {}
   models/operations/listaigatewayconsumersinconsumergroup.go: {}
   models/operations/listaigatewaydataplanecertificates.go: {}
@@ -17549,6 +17565,7 @@ trackedFiles:
     pristine_git_object: c2db10ef3b2dd0dc8499aa2b01ba9f2a2f9db129
   models/operations/searchconsumersinworkspace.go: {}
   models/operations/searchplugins.go: {}
+  models/operations/searchpluginsinworkspace.go: {}
   models/operations/searchroutesinworkspace.go: {}
   models/operations/searchservicesinworkspace.go: {}
   models/operations/stopdebugsession.go:
@@ -17571,6 +17588,7 @@ trackedFiles:
   models/operations/updateaigatewayconfigstoresecret.go: {}
   models/operations/updateaigatewayconsumer.go: {}
   models/operations/updateaigatewayconsumergroup.go: {}
+  models/operations/updateaigatewayconsumergroupsforconsumer.go: {}
   models/operations/updateaigatewayidentityprovider.go: {}
   models/operations/updateaigatewaymcpserver.go: {}
   models/operations/updateaigatewaymodel.go: {}
@@ -36711,6 +36729,67 @@ examples:
           application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
         "500":
           application/problem+json: {"status": 219232, "title": "<value>", "instance": "<value>", "detail": "<value>"}
+  list-ai-gateway-consumer-groups-for-consumer:
+    speakeasy-default-list-ai-gateway-consumer-groups-for-consumer:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          consumerIdOrName: "my-entity-name"
+        query:
+          page[size]: 10
+          page[after]: "ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"
+      responses:
+        "200":
+          application/json: {"data": [], "meta": {"page": {"next": "/usr/src", "previous": "/usr/libdata", "size": 10}}}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  update-ai-gateway-consumer-groups-for-consumer:
+    speakeasy-default-update-ai-gateway-consumer-groups-for-consumer:
+      parameters:
+        path:
+          gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
+          consumerIdOrName: "my-entity-name"
+      requestBody:
+        application/json: {}
+      responses:
+        "201":
+          application/json: {}
+        "400":
+          application/problem+json: {"status": 193548, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "dependent_fields", "reason": "is a required field", "dependents": [], "source": "body"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "429":
+          application/problem+json: {"status": 429, "title": "Too Many Requests", "type": "https://httpstatuses.com/429", "instance": "kong:trace:1234567890", "detail": "Too Many Requests"}
+  search-plugins-in-workspace:
+    speakeasy-default-search-plugins-in-workspace:
+      parameters:
+        path:
+          controlPlaneId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
+          workspace: "team-payments"
+        query:
+          size: 100
+          tags: "tag1,tag2"
+      responses:
+        "200":
+          application/json: {"data": [{"config": {"anonymous": "<value>", "hide_credentials": false, "key_in_body": false, "key_in_header": true, "key_in_query": true, "key_names": ["apikey"], "run_on_preflight": true}, "enabled": true, "id": "3fd1eea1-885a-4011-b986-289943ff8177", "name": "key-auth", "partials": [{"id": "cff1230a-00f7-4ae8-b376-c370f0eb4dae", "name": "foo-partial", "path": "config.redis"}, {"id": "129ee345-cba8-4e55-9d6d-93c223ff91ae", "name": "bar-partial", "path": "config.redis"}], "protocols": ["grpc", "grpcs", "http", "https"]}]}
+        "400":
+          application/problem+json: {"status": 348407, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "500":
+          application/problem+json: {"status": 382997, "title": "<value>", "instance": "<value>", "detail": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
 generatedFiles:
