@@ -122,10 +122,6 @@ func (e *Embeddings) GetConfigBedrock() *AIGatewayBedrockEmbeddingsModelConfig {
 	return e.GetConfig().AIGatewayBedrockEmbeddingsModelConfig
 }
 
-func (e *Embeddings) GetConfigDatabricks() *AIGatewayDatabricksEmbeddingsModelConfig {
-	return e.GetConfig().AIGatewayDatabricksEmbeddingsModelConfig
-}
-
 func (e *Embeddings) GetConfigGemini() *AIGatewayGeminiEmbeddingsModelConfig {
 	return e.GetConfig().AIGatewayGeminiEmbeddingsModelConfig
 }
@@ -134,8 +130,16 @@ func (e *Embeddings) GetConfigHuggingface() *AIGatewayHuggingfaceEmbeddingsModel
 	return e.GetConfig().AIGatewayHuggingfaceEmbeddingsModelConfig
 }
 
-func (e *Embeddings) GetConfigVercel() *AIGatewayVercelEmbeddingsModelConfig {
-	return e.GetConfig().AIGatewayVercelEmbeddingsModelConfig
+func (e *Embeddings) GetConfigMistral() *AIGatewayMistralEmbeddingsModelConfig {
+	return e.GetConfig().AIGatewayMistralEmbeddingsModelConfig
+}
+
+func (e *Embeddings) GetConfigOllama() *AIGatewayOllamaEmbeddingsModelConfig {
+	return e.GetConfig().AIGatewayOllamaEmbeddingsModelConfig
+}
+
+func (e *Embeddings) GetConfigOpenai() *AIGatewayOpenaiEmbeddingsModelConfig {
+	return e.GetConfig().AIGatewayOpenaiEmbeddingsModelConfig
 }
 
 func (e *Embeddings) GetConfigVertex() *AIGatewayVertexEmbeddingsModelConfig {

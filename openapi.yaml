@@ -84228,7 +84228,6 @@ components:
       additionalProperties: false
       required:
         - route
-        - model
       properties:
         route:
           $ref: '#/components/schemas/AIGatewayRouteConfig'
@@ -84280,6 +84279,8 @@ components:
                 Display the model name selected in the X-Kong-LLM-Model response
                 header
               default: true
+          default:
+            name_header: true
         balancer:
           $ref: '#/components/schemas/AIGatewayModelBalancerConfig'
         proxy:
@@ -84290,7 +84291,6 @@ components:
       additionalProperties: false
       required:
         - route
-        - model
       properties:
         route:
           $ref: '#/components/schemas/AIGatewayRouteConfig'
@@ -85025,20 +85025,22 @@ components:
       oneOf:
         - $ref: '#/components/schemas/AIGatewayAzureEmbeddingsModelConfig'
         - $ref: '#/components/schemas/AIGatewayBedrockEmbeddingsModelConfig'
-        - $ref: '#/components/schemas/AIGatewayDatabricksEmbeddingsModelConfig'
         - $ref: '#/components/schemas/AIGatewayGeminiEmbeddingsModelConfig'
         - $ref: '#/components/schemas/AIGatewayHuggingfaceEmbeddingsModelConfig'
-        - $ref: '#/components/schemas/AIGatewayVercelEmbeddingsModelConfig'
+        - $ref: '#/components/schemas/AIGatewayMistralEmbeddingsModelConfig'
+        - $ref: '#/components/schemas/AIGatewayOllamaEmbeddingsModelConfig'
+        - $ref: '#/components/schemas/AIGatewayOpenaiEmbeddingsModelConfig'
         - $ref: '#/components/schemas/AIGatewayVertexEmbeddingsModelConfig'
       discriminator:
         propertyName: type
         mapping:
           azure: '#/components/schemas/AIGatewayAzureEmbeddingsModelConfig'
           bedrock: '#/components/schemas/AIGatewayBedrockEmbeddingsModelConfig'
-          databricks: '#/components/schemas/AIGatewayDatabricksEmbeddingsModelConfig'
           gemini: '#/components/schemas/AIGatewayGeminiEmbeddingsModelConfig'
           huggingface: '#/components/schemas/AIGatewayHuggingfaceEmbeddingsModelConfig'
-          vercel: '#/components/schemas/AIGatewayVercelEmbeddingsModelConfig'
+          mistral: '#/components/schemas/AIGatewayMistralEmbeddingsModelConfig'
+          ollama: '#/components/schemas/AIGatewayOllamaEmbeddingsModelConfig'
+          openai: '#/components/schemas/AIGatewayOpenaiEmbeddingsModelConfig'
           vertex: '#/components/schemas/AIGatewayVertexEmbeddingsModelConfig'
     AIGatewayAzureEmbeddingsModelConfig:
       type: object
@@ -85100,27 +85102,6 @@ components:
           type: string
           description: S3 URI for storing video generation outputs.
       description: AWS Bedrock-specific configuration for a model.
-    AIGatewayDatabricksEmbeddingsModelConfig:
-      type: object
-      x-internal: true
-      x-unstable: true
-      additionalProperties: false
-      required:
-        - upstream_url
-        - type
-        - workspace_instance_id
-      properties:
-        upstream_url:
-          type: string
-          description: The URL of the embeddings model.
-        type:
-          type: string
-          enum:
-            - databricks
-        workspace_instance_id:
-          type: string
-          description: The Databricks workspace instance ID.
-      description: Databricks-specific configuration for a model.
     AIGatewayGeminiEmbeddingsModelConfig:
       type: object
       x-internal: true
@@ -85165,7 +85146,32 @@ components:
           default: false
           description: Whether to wait for the model to load if it is not ready.
       description: Hugging Face-specific configuration for a model.
-    AIGatewayVercelEmbeddingsModelConfig:
+    AIGatewayMistralEmbeddingsModelConfig:
+      type: object
+      x-internal: true
+      x-unstable: true
+      additionalProperties: false
+      required:
+        - upstream_url
+        - type
+        - format
+      properties:
+        upstream_url:
+          type: string
+          description: The URL of the embeddings model.
+        type:
+          type: string
+          enum:
+            - mistral
+        format:
+          description: The request format to use when communicating with the Mistral model.
+          type: string
+          enum:
+            - ollama
+            - openai
+          x-speakeasy-unknown-values: allow
+      description: Mistral-specific configuration for a model.
+    AIGatewayOllamaEmbeddingsModelConfig:
       type: object
       x-internal: true
       x-unstable: true
@@ -85180,8 +85186,25 @@ components:
         type:
           type: string
           enum:
-            - vercel
-      description: Vercel AI Gateway-specific configuration for a model.
+            - ollama
+      description: Ollama-specific configuration for a model.
+    AIGatewayOpenaiEmbeddingsModelConfig:
+      type: object
+      x-internal: true
+      x-unstable: true
+      additionalProperties: false
+      required:
+        - upstream_url
+        - type
+      properties:
+        upstream_url:
+          type: string
+          description: The URL of the embeddings model.
+        type:
+          type: string
+          enum:
+            - openai
+      description: Openai-specific configuration for a model.
     AIGatewayVertexEmbeddingsModelConfig:
       type: object
       x-internal: true
@@ -91696,6 +91719,8 @@ components:
 
             See: https://developer.konghq.com/plugins/openid-connect/reference/
             for the list of properties
+          required:
+            - cache_tokens_salt
           properties:
             auth_methods:
               type: array
@@ -91769,6 +91794,11 @@ components:
             ssl_verify:
               type: boolean
               default: true
+            cache_tokens_salt:
+              type: string
+              description: >
+                Salt used for generating the cache key that is used for caching
+                the token endpoint requests.
       title: AIGatewayIdentityProviderOpenIDConnectConfig
     AIGatewayModelProviderReference:
       type: string

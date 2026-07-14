@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 91dcfe1bdce253339344baa15155a704
+  docChecksum: 597d83806cf6c2c6e107e69330894760
   docVersion: 3.15.0
-  speakeasyVersion: 1.790.0
-  generationVersion: 2.917.0
+  speakeasyVersion: 1.790.1
+  generationVersion: 2.918.1
   releaseVersion: 0.2.0
   configChecksum: 8da1b243c23e05dcfe374e2a60a3e3fb
 persistentEdits:
@@ -367,8 +367,6 @@ trackedFiles:
   docs/models/components/aigatewayconsumercredentialwithkeytype.md: {}
   docs/models/components/aigatewayconsumergroup.md: {}
   docs/models/components/aigatewayconsumertype.md: {}
-  docs/models/components/aigatewaydatabricksembeddingsmodelconfig.md: {}
-  docs/models/components/aigatewaydatabricksembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewaydataplaneclientcertificate.md: {}
   docs/models/components/aigatewaydataplaneclientcertificatemetadata.md: {}
   docs/models/components/aigatewaydataplanenode.md: {}
@@ -466,6 +464,9 @@ trackedFiles:
   docs/models/components/aigatewaymcpupstreamtoolaccess.md: {}
   docs/models/components/aigatewaymcpupstreamtoolmethod.md: {}
   docs/models/components/aigatewaymcpupstreamtoolscheme.md: {}
+  docs/models/components/aigatewaymistralembeddingsmodelconfig.md: {}
+  docs/models/components/aigatewaymistralembeddingsmodelconfigformat.md: {}
+  docs/models/components/aigatewaymistralembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewaymodel.md: {}
   docs/models/components/aigatewaymodelaccess.md: {}
   docs/models/components/aigatewaymodelaigatewaymodelapi.md: {}
@@ -660,6 +661,10 @@ trackedFiles:
   docs/models/components/aigatewaymodelvectordbconfigredisnodes.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisoutput.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredistype.md: {}
+  docs/models/components/aigatewayollamaembeddingsmodelconfig.md: {}
+  docs/models/components/aigatewayollamaembeddingsmodelconfigtype.md: {}
+  docs/models/components/aigatewayopenaiembeddingsmodelconfig.md: {}
+  docs/models/components/aigatewayopenaiembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewaypolicy.md: {}
   docs/models/components/aigatewaypolicyschema.md: {}
   docs/models/components/aigatewayproxyconfig.md: {}
@@ -736,8 +741,6 @@ trackedFiles:
   docs/models/components/aigatewayvaultgooglesecretmanagervault.md: {}
   docs/models/components/aigatewayvaulthashicorpvault.md: {}
   docs/models/components/aigatewayvaultkonnectconfigstorevault.md: {}
-  docs/models/components/aigatewayvercelembeddingsmodelconfig.md: {}
-  docs/models/components/aigatewayvercelembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewayvertexembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayvertexembeddingsmodelconfigtype.md: {}
   docs/models/components/aimanagervirtualkey.md:
@@ -12312,7 +12315,6 @@ trackedFiles:
   models/components/aigatewayconsumercredential.go: {}
   models/components/aigatewayconsumercredentialwithkey.go: {}
   models/components/aigatewayconsumergroup.go: {}
-  models/components/aigatewaydatabricksembeddingsmodelconfig.go: {}
   models/components/aigatewaydataplaneclientcertificate.go: {}
   models/components/aigatewaydataplanenode.go: {}
   models/components/aigatewaydataplanenodecompatibilityissue.go: {}
@@ -12356,6 +12358,7 @@ trackedFiles:
   models/components/aigatewaymcptoolbase.go: {}
   models/components/aigatewaymcptoolparameter.go: {}
   models/components/aigatewaymcpupstreamtool.go: {}
+  models/components/aigatewaymistralembeddingsmodelconfig.go: {}
   models/components/aigatewaymodel.go: {}
   models/components/aigatewaymodelaccess.go: {}
   models/components/aigatewaymodelapi.go: {}
@@ -12400,6 +12403,8 @@ trackedFiles:
   models/components/aigatewaymodelvectordbconfigoutput.go: {}
   models/components/aigatewaymodelvectordbconfigpgvectoroutput.go: {}
   models/components/aigatewaymodelvectordbconfigredisoutput.go: {}
+  models/components/aigatewayollamaembeddingsmodelconfig.go: {}
+  models/components/aigatewayopenaiembeddingsmodelconfig.go: {}
   models/components/aigatewaypolicy.go: {}
   models/components/aigatewaypolicyschema.go: {}
   models/components/aigatewayproxyconfigoutput.go: {}
@@ -12431,7 +12436,6 @@ trackedFiles:
   models/components/aigatewaytargetvllmconfig.go: {}
   models/components/aigatewaytargetxaiconfig.go: {}
   models/components/aigatewayvault.go: {}
-  models/components/aigatewayvercelembeddingsmodelconfig.go: {}
   models/components/aigatewayvertexembeddingsmodelconfig.go: {}
   models/components/aimanagervirtualkey.go:
     id: 4df1d46efacf
@@ -31056,7 +31060,7 @@ examples:
           modelIdOrName: "my-entity-name"
       responses:
         "200":
-          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [], "targets": [], "policies": ["<value 1>", "<value 2>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "semantic", "embeddings": {"allow_auth_override": false, "provider": "azure-ai-se", "name": "<value>", "config": {"upstream_url": "https://tame-tuxedo.info/", "type": "vercel"}}, "vectordb": {"type": "redis", "dimensions": 401198, "distance_metric": "euclidean", "connect_timeout": 2000, "connection_is_proxied": false, "database": 0, "host": "127.0.0.1", "port": 6379, "read_timeout": 2000, "send_timeout": 2000, "ssl": true, "ssl_verify": true}}}, "capabilities": [], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "My GPT 5 model", "name": "my-gpt-5-model", "enabled": true, "formats": [], "targets": [], "policies": ["<value 1>", "<value 2>"], "type": "model", "config": {"route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "response_streaming": "allow", "max_request_body_size": 8388608, "model": {"name_header": true}, "balancer": {"connect_timeout": 60000, "fail_timeout": 10000, "max_fails": 0, "read_timeout": 60000, "retries": 5, "slots": 10000, "write_timeout": 60000, "algorithm": "semantic", "embeddings": {"allow_auth_override": false, "provider": "azure-ai-se", "name": "<value>", "config": {"upstream_url": "https://tame-tuxedo.info/", "type": "openai"}}, "vectordb": {"type": "redis", "dimensions": 401198, "distance_metric": "euclidean", "connect_timeout": 2000, "connection_is_proxied": false, "database": 0, "host": "127.0.0.1", "port": 6379, "read_timeout": 2000, "send_timeout": 2000, "ssl": true, "ssl_verify": true}}}, "capabilities": [], "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
