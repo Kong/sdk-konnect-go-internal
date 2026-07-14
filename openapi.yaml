@@ -163,7 +163,7 @@ tags:
       be authorized to manage.
 
       For instance, they will be able to perform dynamic client registration
-      (DCR) with the provider. 
+      (DCR) with the provider.
 
       The DCR provider provides credentials to each DCR-enabled application in
       Konnect that can be used to access Product Versions that the app is
@@ -172,12 +172,16 @@ tags:
     description: >
       Application Auth Strategies are sets of plugin configurations that
       represent how the gateway will perform authentication and authorization
-      for a Product Version. 
+      for a Product Version.
 
-      Called “Auth Strategy” for short in the context of portals/applications. 
+      Called “Auth Strategy” for short in the context of portals/applications.
 
       The plugins are synced to any Gateway Service that is currently linked or
       becomes linked to the Product Version.
+
+      The optional `principals` property controls application-principal behavior
+      for V3 API Catalog portals and applications. It defaults to disabled when
+      omitted.
   - name: API
   - name: API Documentation
   - name: API Specification
@@ -9531,8 +9535,6 @@ paths:
       - $ref: '#/components/parameters/ApplicationId'
       - $ref: '#/components/parameters/RegistrationId'
     put:
-      x-internal: true
-      x-unstable: true
       summary: Update application consumer mapping
       description: >-
         Associates an existing Gateway Consumer with the application in the
@@ -9568,8 +9570,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
     delete:
-      x-internal: true
-      x-unstable: true
       summary: Delete application consumer mapping
       description: >-
         Removes the Gateway Consumer mapping associated with the application in
@@ -20777,6 +20777,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MCPServerControlPlaneMappingInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Control Plane Mappings
+    patch:
+      x-unstable: true
+      x-internal: true
+      operationId: patch-mcp-server-control-plane-mapping
+      summary: Patch MCP Server Control Plane Mapping
+      description: Update a mapping between an MCP Server and a Control Plane.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchMCPServerControlPlaneMappingRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/PatchMCPServerControlPlaneMappingResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -40689,6 +40714,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/MCPServerControlPlaneMappingInfo'
+    PatchMCPServerControlPlaneMappingResponse:
+      description: Details of MCP Server - Control Plane mapping after update.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MCPServerControlPlaneMappingInfo'
     MCPServerRuntimeResponse:
       description: A response containing the MCP server runtime configuration
       content:
@@ -48954,7 +48985,6 @@ components:
             type: string
     AuthStrategyPrincipals:
       title: AuthStrategyPrincipals
-      x-feature-flag: tdx-6623-application-principals
       description: >
         Application principal settings for this auth strategy. Runtime effect
         applies to V3 API Catalog (ACE) portals and
@@ -48974,10 +49004,10 @@ components:
       title: AppAuthStrategyConfigKeyAuth
       description: >
         The most basic mode to configure an Application Auth Strategy for an API
-        Product Version. 
+        Product Version.
 
         Using this mode will allow developers to generate API keys that will
-        authenticate their application requests. 
+        authenticate their application requests.
 
         Once authenticated, an application will be granted access to any Product
         Version it is registered for that is configured for Key Auth.
@@ -49053,14 +49083,14 @@ components:
       title: PartialAppAuthStrategyConfigOpenIDConnect
       description: >
         A more advanced mode to configure an API Product Version’s Application
-        Auth Strategy. 
+        Auth Strategy.
 
         Using this mode will allow developers to use API credentials issued from
-        an external IdP that will authenticate their application requests. 
+        an external IdP that will authenticate their application requests.
 
         Once authenticated, an application will be granted access to any Product
         Version it is registered for that is configured for the same Auth
-        Strategy. 
+        Strategy.
 
         An OIDC strategy may be used in conjunction with a DCR provider to
         automatically create the IdP application.
@@ -49093,14 +49123,14 @@ components:
       title: AppAuthStrategyConfigOpenIDConnect
       description: >
         A more advanced mode to configure an API Product Version’s Application
-        Auth Strategy. 
+        Auth Strategy.
 
         Using this mode will allow developers to use API credentials issued from
-        an external IdP that will authenticate their application requests. 
+        an external IdP that will authenticate their application requests.
 
         Once authenticated, an application will be granted access to any Product
         Version it is registered for that is configured for the same Auth
-        Strategy. 
+        Strategy.
 
         An OIDC strategy may be used in conjunction with a DCR provider to
         automatically create the IdP application.
@@ -49139,10 +49169,6 @@ components:
       description: Request for creating a Key Auth Application Auth Strategy
       type: object
       additionalProperties: false
-      x-property-annotations:
-        principals:
-          - x-internal
-          - x-unstable
       required:
         - name
         - display_name
@@ -49177,10 +49203,6 @@ components:
         Strategy
       type: object
       additionalProperties: false
-      x-property-annotations:
-        principals:
-          - x-internal
-          - x-unstable
       required:
         - id
         - name
@@ -49261,10 +49283,6 @@ components:
       description: Payload for creating an OIDC Application Auth Strategy
       type: object
       additionalProperties: false
-      x-property-annotations:
-        principals:
-          - x-internal
-          - x-unstable
       required:
         - name
         - display_name
@@ -49301,10 +49319,6 @@ components:
       description: Response payload from creating an OIDC Application Auth Strategy
       type: object
       additionalProperties: false
-      x-property-annotations:
-        principals:
-          - x-internal
-          - x-unstable
       required:
         - id
         - name
@@ -49424,10 +49438,6 @@ components:
       description: Request body for updating an Application Auth Strategy
       type: object
       additionalProperties: false
-      x-property-annotations:
-        principals:
-          - x-internal
-          - x-unstable
       properties:
         name:
           $ref: '#/components/schemas/AuthStrategyName'
@@ -52942,9 +52952,6 @@ components:
       type: object
       x-property-annotations:
         additional_data:
-          - x-internal
-          - x-unstable
-        consumer:
           - x-internal
           - x-unstable
       required:
@@ -83473,12 +83480,23 @@ components:
             $ref: '#/components/schemas/MCPServerMCPResourceMapping'
         meta:
           $ref: '#/components/schemas/CursorMeta'
+    MCPServerControlPlaneMappingMode:
+      type: string
+      enum:
+        - basic
+        - advanced
+      description: >-
+        Whether the MCP Server deployment on this Control Plane is managed by
+        Konnect defaults ('basic') or configured directly via Kong Operator
+        custom resources ('advanced').
+      x-speakeasy-unknown-values: allow
     MCPServerControlPlaneMappingInfo:
       type: object
       required:
         - id
         - mcp_server_id
         - control_plane_id
+        - mode
         - created_at
         - updated_at
       properties:
@@ -83494,6 +83512,8 @@ components:
           type: string
           format: uuid
           description: The unique identifier for the Control Plane.
+        mode:
+          $ref: '#/components/schemas/MCPServerControlPlaneMappingMode'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -83519,6 +83539,13 @@ components:
           type: string
           format: uuid
           description: The unique identifier for the Control Plane.
+        mode:
+          $ref: '#/components/schemas/MCPServerControlPlaneMappingMode'
+    PatchMCPServerControlPlaneMappingRequest:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/MCPServerControlPlaneMappingMode'
     MCPServerRuntime:
       title: MCPServerRuntime
       type: object
@@ -86725,9 +86752,7 @@ components:
       description: List of policy references.
       items:
         type: string
-        description: >-
-          Reference to a policy instance. This is either the policy ID or the
-          policy name.
+        description: Reference to a policy instance by name.
     AIGatewayVaultConfigBaseProperties:
       type: object
       x-internal: true
@@ -91540,9 +91565,7 @@ components:
             for more details.
     AIGatewayIdentityProviderReference:
       type: string
-      description: >-
-        Reference to a provider instance. This is either the identity provider
-        ID or the identity provider name.
+      description: Reference to a identity provider instance by name.
       example: okta-ai-se
     AIGatewayIdentityProviderKeyAuth:
       type: object
@@ -91749,9 +91772,7 @@ components:
       title: AIGatewayIdentityProviderOpenIDConnectConfig
     AIGatewayModelProviderReference:
       type: string
-      description: >-
-        Reference to a model provider instance. This is either the model
-        provider ID or the model provider name.
+      description: Reference to a model provider instance by name.
       example: azure-ai-se
     AIGatewayModelProviderAnthropic:
       type: object

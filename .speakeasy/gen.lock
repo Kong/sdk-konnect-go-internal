@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: a25b751357c5a111a4e7faf460428255
+  docChecksum: 91dcfe1bdce253339344baa15155a704
   docVersion: 3.15.0
   speakeasyVersion: 1.790.0
   generationVersion: 2.917.0
@@ -4232,6 +4232,7 @@ trackedFiles:
   docs/models/components/mcpservercommonfilter.md: {}
   docs/models/components/mcpservercontrolplanemappingfilter.md: {}
   docs/models/components/mcpservercontrolplanemappinginfo.md: {}
+  docs/models/components/mcpservercontrolplanemappingmode.md: {}
   docs/models/components/mcpservercpinfo.md: {}
   docs/models/components/mcpservermcpresourcemapping.md: {}
   docs/models/components/mcpserverpodsstatus.md: {}
@@ -4609,6 +4610,7 @@ trackedFiles:
     id: 6a676f94511d
     pristine_git_object: 13eadc9612fedb0dfbb957a4e5ae469ae0f4ec6e
   docs/models/components/patchgatewayrequest.md: {}
+  docs/models/components/patchmcpservercontrolplanemappingrequest.md: {}
   docs/models/components/patchmcpserverrequest.md: {}
   docs/models/components/patchnetworkrequest.md:
     id: 561df69cc1de
@@ -10588,6 +10590,8 @@ trackedFiles:
   docs/models/operations/patcheventgatewayvirtualclusterproducepolicyresponse.md: {}
   docs/models/operations/patchmcpserverconfigrequest.md: {}
   docs/models/operations/patchmcpserverconfigresponse.md: {}
+  docs/models/operations/patchmcpservercontrolplanemappingrequest.md: {}
+  docs/models/operations/patchmcpservercontrolplanemappingresponse.md: {}
   docs/models/operations/patchoauthdeviceconfirmresponse.md:
     id: 29d785c76d1b
     pristine_git_object: 964e24c69e11a7a1257eb2d46522ab7e54a7e9e5
@@ -14285,6 +14289,7 @@ trackedFiles:
   models/components/mcpservercommonfilter.go: {}
   models/components/mcpservercontrolplanemappingfilter.go: {}
   models/components/mcpservercontrolplanemappinginfo.go: {}
+  models/components/mcpservercontrolplanemappingmode.go: {}
   models/components/mcpservercpinfo.go: {}
   models/components/mcpservermcpresourcemapping.go: {}
   models/components/mcpserverpodsstatus.go: {}
@@ -14490,6 +14495,7 @@ trackedFiles:
     id: 34614769245b
     pristine_git_object: 2e9cb34b814589d68e10efc3792b4a7b8fc0a2d9
   models/components/patchgatewayrequest.go: {}
+  models/components/patchmcpservercontrolplanemappingrequest.go: {}
   models/components/patchmcpserverrequest.go: {}
   models/components/patchnetworkrequest.go:
     id: 45af051679ea
@@ -17419,6 +17425,7 @@ trackedFiles:
   models/operations/patcheventgatewayvirtualclusterconsumepolicy.go: {}
   models/operations/patcheventgatewayvirtualclusterproducepolicy.go: {}
   models/operations/patchmcpserverconfig.go: {}
+  models/operations/patchmcpservercontrolplanemapping.go: {}
   models/operations/patchoauthdeviceconfirm.go:
     id: 2ec33e80f8dd
     pristine_git_object: 9a8ad2a81190dd4c13153c35f402d772346c8437
@@ -36154,7 +36161,7 @@ examples:
           page: {"size": 10, "after": "ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ", "before": "ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"}
       responses:
         "200":
-          application/json: {"data": [{"id": "d6a4e899-736f-4ef4-8875-0f6d656aff79", "mcp_server_id": "f7393ef8-8def-45ee-aa77-69ab15abd134", "control_plane_id": "aedc4b0c-6aec-4da0-8a20-3d0581dab3b2", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "meta": {"page": {"next": "/boot", "previous": "/etc", "size": 10}}}
+          application/json: {"data": [{"id": "d6a4e899-736f-4ef4-8875-0f6d656aff79", "mcp_server_id": "f7393ef8-8def-45ee-aa77-69ab15abd134", "control_plane_id": "aedc4b0c-6aec-4da0-8a20-3d0581dab3b2", "mode": "basic", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "meta": {"page": {"next": "/boot", "previous": "/etc", "size": 10}}}
         "400":
           application/problem+json: {"status": 112741, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
         "401":
@@ -36172,7 +36179,7 @@ examples:
         application/json: {"control_plane_id": "0ae82373-342d-4224-bdb3-28e7167b126e"}
       responses:
         "201":
-          application/json: {"id": "88520551-bd49-43a1-9c7b-d22dc715b570", "mcp_server_id": "0daa80fe-8b20-4986-9a68-d7727ea0dce6", "control_plane_id": "dbf70a22-497e-433a-a66e-4109f7ec920a", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "88520551-bd49-43a1-9c7b-d22dc715b570", "mcp_server_id": "0daa80fe-8b20-4986-9a68-d7727ea0dce6", "control_plane_id": "dbf70a22-497e-433a-a66e-4109f7ec920a", "mode": "basic", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 184038, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -36189,7 +36196,7 @@ examples:
           mappingId: "8e260d77-f92d-45ec-95c2-dacf1ac8a9ec"
       responses:
         "200":
-          application/json: {"id": "3302d344-b884-4930-bff7-9e4762f84851", "mcp_server_id": "e6430589-ecb4-4298-8cb7-be46575362ff", "control_plane_id": "bc9b8ecc-9833-450c-8080-46a54b6e791f", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "3302d344-b884-4930-bff7-9e4762f84851", "mcp_server_id": "e6430589-ecb4-4298-8cb7-be46575362ff", "control_plane_id": "bc9b8ecc-9833-450c-8080-46a54b6e791f", "mode": "advanced", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 658925, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -36790,6 +36797,25 @@ examples:
           application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
         "500":
           application/problem+json: {"status": 382997, "title": "<value>", "instance": "<value>", "detail": "<value>"}
+  patch-mcp-server-control-plane-mapping:
+    speakeasy-default-patch-mcp-server-control-plane-mapping:
+      parameters:
+        path:
+          mcpServerId: "1fcda8ef-10c5-4856-a107-54895723bc0f"
+          mappingId: "1b7d7ac5-1b4e-4d99-9906-a42b9fa8eba6"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "bb6619c4-57f9-4470-9951-b31ed21883f8", "mcp_server_id": "e31c0d4a-c201-4931-917e-5bacc8e38cec", "control_plane_id": "b42512ca-801a-4a0c-8429-65f6c7f46eca", "mode": "advanced", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 96903, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "dependent_fields", "reason": "is a required field", "dependents": [], "source": "body"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
 examplesVersion: 1.0.2
 generatedTests: {}
 generatedFiles:

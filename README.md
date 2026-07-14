@@ -817,6 +817,7 @@ func main() {
 * [ListControlPlaneMappings](docs/sdks/controlplanemappings/README.md#listcontrolplanemappings) - Get a list of CPs mapped to MCP Server
 * [CreateMcpServerControlPlaneMapping](docs/sdks/controlplanemappings/README.md#createmcpservercontrolplanemapping) - Create MCP Server CP Mapping
 * [GetControlPlaneMapping](docs/sdks/controlplanemappings/README.md#getcontrolplanemapping) - Get a mapping between an MCP Server and a CP
+* [PatchMcpServerControlPlaneMapping](docs/sdks/controlplanemappings/README.md#patchmcpservercontrolplanemapping) - Patch MCP Server Control Plane Mapping
 * [DeleteMcpServerControlPlaneMapping](docs/sdks/controlplanemappings/README.md#deletemcpservercontrolplanemapping) - Delete MCP Server Control Plane Mapping
 
 ### [ControlPlaneResourceQuotas](docs/sdks/controlplaneresourcequotas/README.md)
