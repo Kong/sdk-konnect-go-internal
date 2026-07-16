@@ -34,7 +34,7 @@ func (e *AIGatewayOllamaEmbeddingsModelConfigType) UnmarshalJSON(data []byte) er
 // AIGatewayOllamaEmbeddingsModelConfig - Ollama-specific configuration for a model.
 type AIGatewayOllamaEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                   `json:"upstream_url"`
+	UpstreamURL *string                                  `json:"upstream_url,omitempty"`
 	Type        AIGatewayOllamaEmbeddingsModelConfigType `json:"type"`
 }
 
@@ -43,15 +43,15 @@ func (a AIGatewayOllamaEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayOllamaEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayOllamaEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayOllamaEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }

@@ -31,36 +31,10 @@ func (e *AIGatewayMistralEmbeddingsModelConfigType) UnmarshalJSON(data []byte) e
 	}
 }
 
-// AIGatewayMistralEmbeddingsModelConfigFormat - The request format to use when communicating with the Mistral model.
-type AIGatewayMistralEmbeddingsModelConfigFormat string
-
-const (
-	AIGatewayMistralEmbeddingsModelConfigFormatOllama AIGatewayMistralEmbeddingsModelConfigFormat = "ollama"
-	AIGatewayMistralEmbeddingsModelConfigFormatOpenai AIGatewayMistralEmbeddingsModelConfigFormat = "openai"
-)
-
-func (e AIGatewayMistralEmbeddingsModelConfigFormat) ToPointer() *AIGatewayMistralEmbeddingsModelConfigFormat {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayMistralEmbeddingsModelConfigFormat) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "ollama", "openai":
-			return true
-		}
-	}
-	return false
-}
-
-// AIGatewayMistralEmbeddingsModelConfig - Mistral-specific configuration for a model.
 type AIGatewayMistralEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                    `json:"upstream_url"`
+	UpstreamURL *string                                   `json:"upstream_url,omitempty"`
 	Type        AIGatewayMistralEmbeddingsModelConfigType `json:"type"`
-	// The request format to use when communicating with the Mistral model.
-	Format AIGatewayMistralEmbeddingsModelConfigFormat `json:"format"`
 }
 
 func (a AIGatewayMistralEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
@@ -68,15 +42,15 @@ func (a AIGatewayMistralEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayMistralEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type", "format"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayMistralEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayMistralEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }
@@ -86,11 +60,4 @@ func (a *AIGatewayMistralEmbeddingsModelConfig) GetType() AIGatewayMistralEmbedd
 		return AIGatewayMistralEmbeddingsModelConfigType("")
 	}
 	return a.Type
-}
-
-func (a *AIGatewayMistralEmbeddingsModelConfig) GetFormat() AIGatewayMistralEmbeddingsModelConfigFormat {
-	if a == nil {
-		return AIGatewayMistralEmbeddingsModelConfigFormat("")
-	}
-	return a.Format
 }

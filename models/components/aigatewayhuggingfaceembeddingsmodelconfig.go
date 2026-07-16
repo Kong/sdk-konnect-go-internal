@@ -34,7 +34,7 @@ func (e *AIGatewayHuggingfaceEmbeddingsModelConfigType) UnmarshalJSON(data []byt
 // AIGatewayHuggingfaceEmbeddingsModelConfig - Hugging Face-specific configuration for a model.
 type AIGatewayHuggingfaceEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                        `json:"upstream_url"`
+	UpstreamURL *string                                       `json:"upstream_url,omitempty"`
 	Type        AIGatewayHuggingfaceEmbeddingsModelConfigType `json:"type"`
 	// Whether to use the Hugging Face inference cache.
 	UseCache *bool `default:"false" json:"use_cache"`
@@ -47,15 +47,15 @@ func (a AIGatewayHuggingfaceEmbeddingsModelConfig) MarshalJSON() ([]byte, error)
 }
 
 func (a *AIGatewayHuggingfaceEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayHuggingfaceEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayHuggingfaceEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }

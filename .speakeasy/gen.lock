@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 065c407411599a418c47e2af367256f3
+  docChecksum: 5ee2b1dee47bae583261e59ec4c15169
   docVersion: 3.15.0
   speakeasyVersion: 1.790.2
   generationVersion: 2.918.3
@@ -465,7 +465,6 @@ trackedFiles:
   docs/models/components/aigatewaymcpupstreamtoolmethod.md: {}
   docs/models/components/aigatewaymcpupstreamtoolscheme.md: {}
   docs/models/components/aigatewaymistralembeddingsmodelconfig.md: {}
-  docs/models/components/aigatewaymistralembeddingsmodelconfigformat.md: {}
   docs/models/components/aigatewaymistralembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewaymodel.md: {}
   docs/models/components/aigatewaymodelaccess.md: {}

@@ -34,7 +34,7 @@ func (e *AIGatewayVertexEmbeddingsModelConfigType) UnmarshalJSON(data []byte) er
 // AIGatewayVertexEmbeddingsModelConfig - Google Vertex-specific configuration for a model.
 type AIGatewayVertexEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                   `json:"upstream_url"`
+	UpstreamURL *string                                  `json:"upstream_url,omitempty"`
 	Type        AIGatewayVertexEmbeddingsModelConfigType `json:"type"`
 	// Configuration for a model hosted on Google Cloud Project.
 	GcpEnvironment *GCPModelConfig `json:"gcp_environment,omitempty"`
@@ -45,15 +45,15 @@ func (a AIGatewayVertexEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayVertexEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayVertexEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayVertexEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }

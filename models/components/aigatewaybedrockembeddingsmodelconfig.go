@@ -34,7 +34,7 @@ func (e *AIGatewayBedrockEmbeddingsModelConfigType) UnmarshalJSON(data []byte) e
 // AIGatewayBedrockEmbeddingsModelConfig - AWS Bedrock-specific configuration for a model.
 type AIGatewayBedrockEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                    `json:"upstream_url"`
+	UpstreamURL *string                                   `json:"upstream_url,omitempty"`
 	Type        AIGatewayBedrockEmbeddingsModelConfigType `json:"type"`
 	// The AWS region for the model.
 	// Setting this option overrides the AWS_REGION environment variable.
@@ -55,15 +55,15 @@ func (a AIGatewayBedrockEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayBedrockEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayBedrockEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayBedrockEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }

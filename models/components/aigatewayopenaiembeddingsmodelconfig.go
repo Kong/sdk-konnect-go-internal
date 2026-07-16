@@ -34,7 +34,7 @@ func (e *AIGatewayOpenaiEmbeddingsModelConfigType) UnmarshalJSON(data []byte) er
 // AIGatewayOpenaiEmbeddingsModelConfig - Openai-specific configuration for a model.
 type AIGatewayOpenaiEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                   `json:"upstream_url"`
+	UpstreamURL *string                                  `json:"upstream_url,omitempty"`
 	Type        AIGatewayOpenaiEmbeddingsModelConfigType `json:"type"`
 }
 
@@ -43,15 +43,15 @@ func (a AIGatewayOpenaiEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayOpenaiEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayOpenaiEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayOpenaiEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }

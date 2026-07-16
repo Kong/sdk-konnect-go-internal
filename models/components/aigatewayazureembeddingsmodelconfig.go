@@ -34,7 +34,7 @@ func (e *AIGatewayAzureEmbeddingsModelConfigType) UnmarshalJSON(data []byte) err
 // AIGatewayAzureEmbeddingsModelConfig - Azure-specific configuration for a model.
 type AIGatewayAzureEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                  `json:"upstream_url"`
+	UpstreamURL *string                                 `json:"upstream_url,omitempty"`
 	Type        AIGatewayAzureEmbeddingsModelConfigType `json:"type"`
 	// The Azure deployment ID for the model.
 	DeploymentID string `json:"deployment_id"`
@@ -47,15 +47,15 @@ func (a AIGatewayAzureEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayAzureEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type", "deployment_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type", "deployment_id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayAzureEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayAzureEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }

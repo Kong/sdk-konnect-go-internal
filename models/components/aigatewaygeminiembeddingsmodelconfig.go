@@ -34,7 +34,7 @@ func (e *AIGatewayGeminiEmbeddingsModelConfigType) UnmarshalJSON(data []byte) er
 // AIGatewayGeminiEmbeddingsModelConfig - Google Gemini-specific configuration for a model.
 type AIGatewayGeminiEmbeddingsModelConfig struct {
 	// The URL of the embeddings model.
-	UpstreamURL string                                   `json:"upstream_url"`
+	UpstreamURL *string                                  `json:"upstream_url,omitempty"`
 	Type        AIGatewayGeminiEmbeddingsModelConfigType `json:"type"`
 	// Configuration for a model hosted on Google Cloud Project.
 	GcpEnvironment *GCPModelConfig `json:"gcp_environment,omitempty"`
@@ -45,15 +45,15 @@ func (a AIGatewayGeminiEmbeddingsModelConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayGeminiEmbeddingsModelConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"upstream_url", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayGeminiEmbeddingsModelConfig) GetUpstreamURL() string {
+func (a *AIGatewayGeminiEmbeddingsModelConfig) GetUpstreamURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.UpstreamURL
 }
