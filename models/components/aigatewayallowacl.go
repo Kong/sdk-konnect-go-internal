@@ -7,7 +7,7 @@ import (
 )
 
 type AIGatewayAllowACL struct {
-	// List of Consumers, Consumer Groups, or Authenticated Groups that are permitted access.
+	// List of Consumer Groups Names, or Authenticated Groups Names that are permitted access.
 	Allow []string `json:"allow"`
 }
 

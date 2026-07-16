@@ -7,7 +7,7 @@ import (
 )
 
 type AIGatewayDenyACL struct {
-	// List of Consumers, Consumer Groups, or Authenticated Groups that are denied access.
+	// List of Consumer Groups Names, or Authenticated Groups Names that are denied access.
 	Deny []string `json:"deny"`
 }
 

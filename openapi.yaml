@@ -35255,7 +35255,7 @@ components:
           enabled:
             $ref: '#/components/schemas/BooleanFieldFilter'
           scope:
-            $ref: '#/components/schemas/PluginScopeEqualsFilter'
+            $ref: '#/components/schemas/PluginScopeFilter'
           route:
             $ref: '#/components/schemas/StringFieldEqualsFilter'
           service:
@@ -82815,6 +82815,13 @@ components:
           format: uuid
           nullable: true
           description: The MCP resource ID associated with the MCP server.
+        mode:
+          allOf:
+            - $ref: '#/components/schemas/MCPServerControlPlaneMappingMode'
+          nullable: false
+          description: >
+            The deployment mode of the MCP server on the associated Control
+            Plane.
         version:
           type: string
           description: The version of the MCP server.
@@ -86692,8 +86699,8 @@ components:
         allow:
           type: array
           description: >-
-            List of Consumers, Consumer Groups, or Authenticated Groups that are
-            permitted access.
+            List of Consumer Groups Names, or Authenticated Groups Names that
+            are permitted access.
           items:
             type: string
     AIGatewayDenyACL:
@@ -86709,8 +86716,8 @@ components:
         deny:
           type: array
           description: >-
-            List of Consumers, Consumer Groups, or Authenticated Groups that are
-            denied access.
+            List of Consumer Groups Names, or Authenticated Groups Names that
+            are denied access.
           items:
             type: string
     AIGatewayACLS:
@@ -95844,12 +95851,22 @@ components:
       required:
         - field
         - operator
-    PluginScopeEqualsFilter:
-      description: Filters on the given plugin scope value by exact match.
+    PluginScopeFilter:
+      description: Filters on the given plugin scope value.
       additionalProperties: false
+      oneOf:
+        - $ref: '#/components/schemas/PluginScopeEqualsFilter'
+        - $ref: '#/components/schemas/PluginScopeOrEqualsFilter'
+    PluginScopeEqualsFilter:
+      description: Filters on the given plugin scope value with an exact match
+      additionalProperties: false
+      required:
+        - eq
+      type: object
       properties:
         eq:
           type: string
+          example: service
           enum:
             - route
             - service
@@ -95857,6 +95874,18 @@ components:
             - consumer_group
             - global
           x-speakeasy-unknown-values: allow
+    PluginScopeOrEqualsFilter:
+      description: >-
+        Filters on the given plugin scope values with an exact match for any of
+        the values
+      additionalProperties: false
+      required:
+        - oeq
+      type: object
+      properties:
+        oeq:
+          type: string
+          example: global,service
     DataPlaneClientCertificate:
       x-speakeasy-entity: GatewayDataPlaneClientCertificate
       type: object

@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 597d83806cf6c2c6e107e69330894760
+  docChecksum: 065c407411599a418c47e2af367256f3
   docVersion: 3.15.0
-  speakeasyVersion: 1.790.1
-  generationVersion: 2.918.1
+  speakeasyVersion: 1.790.2
+  generationVersion: 2.918.3
   releaseVersion: 0.2.0
   configChecksum: 8da1b243c23e05dcfe374e2a60a3e3fb
 persistentEdits:
@@ -15,7 +15,7 @@ features:
   go:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    additionalProperties: 0.1.2
+    additionalProperties: 0.1.3
     constsAndDefaults: 0.1.14
     core: 3.13.47
     deepObjectParams: 0.1.1
@@ -4237,6 +4237,7 @@ trackedFiles:
   docs/models/components/mcpservercontrolplanemappinginfo.md: {}
   docs/models/components/mcpservercontrolplanemappingmode.md: {}
   docs/models/components/mcpservercpinfo.md: {}
+  docs/models/components/mcpservercpinfomode.md: {}
   docs/models/components/mcpservermcpresourcemapping.md: {}
   docs/models/components/mcpserverpodsstatus.md: {}
   docs/models/components/mcpserverresourcepayload.md: {}
@@ -4728,6 +4729,8 @@ trackedFiles:
     id: d734f9e78f09
     pristine_git_object: b053b40bc30ae10a2015542e119676a35019e9d4
   docs/models/components/pluginscopeequalsfilter.md: {}
+  docs/models/components/pluginscopefilter.md: {}
+  docs/models/components/pluginscopeorequalsfilter.md: {}
   docs/models/components/pluginsearchfilter.md: {}
   docs/models/components/pluginservice.md:
     id: 4b3650d36277
@@ -14562,6 +14565,8 @@ trackedFiles:
     id: 6adfa5930de6
     pristine_git_object: 08372adbd2b1c205b6ea2cf4be4b71004350b8e3
   models/components/pluginscopeequalsfilter.go: {}
+  models/components/pluginscopefilter.go: {}
+  models/components/pluginscopeorequalsfilter.go: {}
   models/components/pluginsearchfilter.go: {}
   models/components/pluginwithoutparents.go:
     id: 2a841a61124a
@@ -36729,6 +36734,7 @@ examples:
         query:
           size: 100
           tags: "tag1,tag2"
+          filter: {"scope": {"eq": "service"}}
       responses:
         "200":
           application/json: {"data": [{"config": {"anonymous": "<value>", "hide_credentials": false, "key_in_body": false, "key_in_header": true, "key_in_query": true, "key_names": ["apikey"], "run_on_preflight": true}, "enabled": true, "id": "3fd1eea1-885a-4011-b986-289943ff8177", "name": "key-auth", "partials": [{"id": "cff1230a-00f7-4ae8-b376-c370f0eb4dae", "name": "foo-partial", "path": "config.redis"}, {"id": "129ee345-cba8-4e55-9d6d-93c223ff91ae", "name": "bar-partial", "path": "config.redis"}], "protocols": ["grpc", "grpcs", "http", "https"]}]}
@@ -36790,6 +36796,7 @@ examples:
         query:
           size: 100
           tags: "tag1,tag2"
+          filter: {"scope": {"eq": "service"}}
       responses:
         "200":
           application/json: {"data": [{"config": {"anonymous": "<value>", "hide_credentials": false, "key_in_body": false, "key_in_header": true, "key_in_query": true, "key_names": ["apikey"], "run_on_preflight": true}, "enabled": true, "id": "3fd1eea1-885a-4011-b986-289943ff8177", "name": "key-auth", "partials": [{"id": "cff1230a-00f7-4ae8-b376-c370f0eb4dae", "name": "foo-partial", "path": "config.redis"}, {"id": "129ee345-cba8-4e55-9d6d-93c223ff91ae", "name": "bar-partial", "path": "config.redis"}], "protocols": ["grpc", "grpcs", "http", "https"]}]}
