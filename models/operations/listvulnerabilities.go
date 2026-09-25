@@ -15,6 +15,14 @@ type ListVulnerabilitiesRequest struct {
 	// Filters a collection of catalog-wide vulnerabilities.
 	Filter *components.CatalogVulnerabilityFilterParameters `queryParam:"style=deepObject,explode=true,name=filter"`
 	// Sorts a collection of catalog-wide vulnerabilities. Supported sort attributes are:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - last_opened_at
 	//   - dismissed_at
 	//   - fixed_at

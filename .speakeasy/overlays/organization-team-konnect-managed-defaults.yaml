@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: Preserve omitted membership management in organization team requests
+  version: 0.0.1
+actions:
+  - target: $.components.requestBodies.CreateTeam.content['application/json'].schema.properties.konnect_managed['$ref']
+    remove: true
+  - target: $.components.requestBodies.CreateTeam.content['application/json'].schema.properties.konnect_managed
+    update:
+      type: boolean
+      description: Whether team membership is managed by Konnect instead of identity provider mappings.
+      title: KonnectManaged
+  - target: $.components.requestBodies.UpdateTeam.content['application/json'].schema.properties.konnect_managed['$ref']
+    remove: true
+  - target: $.components.requestBodies.UpdateTeam.content['application/json'].schema.properties.konnect_managed
+    update:
+      type: boolean
+      description: Whether team membership is managed by Konnect instead of identity provider mappings.
+      title: KonnectManaged

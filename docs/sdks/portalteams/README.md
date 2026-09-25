@@ -103,6 +103,7 @@ func main() {
     res, err := s.PortalTeams.CreatePortalTeam(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalCreateTeamRequest{
         Name: "IDM - Developers",
         Description: sdkkonnectgo.Pointer("The Identity Management (IDM) team."),
+        KonnectManaged: sdkkonnectgo.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -228,6 +229,7 @@ func main() {
             Name: sdkkonnectgo.Pointer("IDM - Developers"),
             Description: sdkkonnectgo.Pointer("The Identity Management (IDM) API team."),
             CanOwnApplications: sdkkonnectgo.Pointer(false),
+            KonnectManaged: sdkkonnectgo.Pointer(false),
         },
     })
     if err != nil {

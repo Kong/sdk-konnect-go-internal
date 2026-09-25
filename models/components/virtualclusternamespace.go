@@ -5,8 +5,10 @@ package components
 // VirtualClusterNamespaceMode - * hide_prefix - the configured prefix is hidden from clients for topics and IDs when reading.
 //
 //	Created resources are written with the prefix on the backend cluster.
-//   - enforce_prefix - the configured prefix remains visible to clients.
-//     Created resources must include the prefix or the request will fail.
+//
+// * enforce_prefix - the configured prefix remains visible to clients.
+//
+//	Created resources must include the prefix or the request will fail.
 type VirtualClusterNamespaceMode string
 
 const (
@@ -33,8 +35,24 @@ func (e *VirtualClusterNamespaceMode) IsExact() bool {
 // It allows to either hide or enforce a static prefix on resources (topics, consumer group IDs, transaction IDs).
 type VirtualClusterNamespace struct {
 	// * hide_prefix - the configured prefix is hidden from clients for topics and IDs when reading.
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   Created resources are written with the prefix on the backend cluster.
 	// * enforce_prefix - the configured prefix remains visible to clients.
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   Created resources must include the prefix or the request will fail.
 	//
 	Mode VirtualClusterNamespaceMode `json:"mode"`

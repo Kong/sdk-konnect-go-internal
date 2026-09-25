@@ -50,6 +50,19 @@ endif
 
 OPENAPI_FILE = openapi.yaml
 SPEAKEASY_DIR = .speakeasy
+UPDATE_PORTAL_OVERLAY = $(SPEAKEASY_DIR)/overlays/update-portal-patch-defaults.yaml
+UPDATE_PORTAL_AUDIT_LOG_WEBHOOK_OVERLAY = \
+	$(SPEAKEASY_DIR)/overlays/update-portal-audit-log-webhook-patch-defaults.yaml
+PATCH_CUSTOM_PORTAL_EMAIL_TEMPLATE_OVERLAY = \
+	$(SPEAKEASY_DIR)/overlays/patch-custom-portal-email-template-defaults.yaml
+UPDATE_PORTAL_IDENTITY_PROVIDER_OVERLAY = \
+	$(SPEAKEASY_DIR)/overlays/update-portal-identity-provider-defaults.yaml
+UPDATE_DCR_CONFIG_HTTP_OVERLAY = \
+	$(SPEAKEASY_DIR)/overlays/update-dcr-config-http-defaults.yaml
+BACKEND_CLUSTER_TLS_OVERLAY = \
+	$(SPEAKEASY_DIR)/overlays/backend-cluster-tls-defaults.yaml
+PORTAL_TEAM_KONNECT_MANAGED_OVERLAY = \
+	$(SPEAKEASY_DIR)/overlays/portal-team-konnect-managed-defaults.yaml
 KUBEBUILDER_GENERATE_CODE_MARKER = +kubebuilder:object:generate=true
 
 
@@ -60,6 +73,12 @@ KUBEBUILDER_GENERATE_CODE_MARKER = +kubebuilder:object:generate=true
 _generate.omitempty:
 	$(SED) -i 's#Members \[\]Members `json:"members,omitempty"`#Members \[\]Members `json:"members"`#g' \
 		models/components/groupmembership.go
+
+	# strip_path has a conditional default (invalid for grpc/grpcs protocols) that speakeasy
+	# always injects when the field is unset, causing CreateRoute to fail Kong Admin API
+	# validation for gRPC routes. Strip the default so the field is only sent when explicitly set.
+	$(SED) -i 's#StripPath \*bool `default:"true" json:"strip_path"`#StripPath *bool `json:"strip_path,omitempty"`#g' \
+		models/components/routejson.go
 
 .PHONY: generate.deepcopy
 generate.deepcopy: controller-gen
@@ -136,9 +155,56 @@ generate.deepcopy: controller-gen
 #       DeepCopy() for the types that need it and then using speakeasy to generate
 #       the final sdk code.
 # NOTE: add more types that need to have DeepCopy() generated.
-.PHONY: generate.sdk
-generate.sdk:
+.PHONY: validate.update-portal-overlay
+validate.update-portal-overlay:
+	speakeasy overlay validate --overlay $(UPDATE_PORTAL_OVERLAY)
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) --overlay $(UPDATE_PORTAL_OVERLAY) --out /dev/null
+
+.PHONY: validate.update-portal-audit-log-webhook-overlay
+validate.update-portal-audit-log-webhook-overlay:
+	speakeasy overlay validate --overlay $(UPDATE_PORTAL_AUDIT_LOG_WEBHOOK_OVERLAY)
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) \
+		--overlay $(UPDATE_PORTAL_AUDIT_LOG_WEBHOOK_OVERLAY) --out /dev/null
+
+.PHONY: validate.patch-custom-portal-email-template-overlay
+validate.patch-custom-portal-email-template-overlay:
+	speakeasy overlay validate --overlay $(PATCH_CUSTOM_PORTAL_EMAIL_TEMPLATE_OVERLAY)
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) \
+		--overlay $(PATCH_CUSTOM_PORTAL_EMAIL_TEMPLATE_OVERLAY) --out /dev/null
+
+.PHONY: validate.update-portal-identity-provider-overlay
+validate.update-portal-identity-provider-overlay:
+	speakeasy overlay validate --overlay $(UPDATE_PORTAL_IDENTITY_PROVIDER_OVERLAY)
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) \
+		--overlay $(UPDATE_PORTAL_IDENTITY_PROVIDER_OVERLAY) --out /dev/null
+
+.PHONY: validate.update-dcr-config-http-overlay
+validate.update-dcr-config-http-overlay:
+	speakeasy overlay validate --overlay $(UPDATE_DCR_CONFIG_HTTP_OVERLAY)
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) \
+		--overlay $(UPDATE_DCR_CONFIG_HTTP_OVERLAY) --out /dev/null
+
+.PHONY: validate.backend-cluster-tls-overlay
+validate.backend-cluster-tls-overlay:
+	speakeasy overlay validate --overlay $(BACKEND_CLUSTER_TLS_OVERLAY)
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) \
+		--overlay $(BACKEND_CLUSTER_TLS_OVERLAY) --out /dev/null
+
+.PHONY: generate.sdk.speakeasy
+.PHONY: validate.portal-team-konnect-managed-overlay
+validate.portal-team-konnect-managed-overlay:
+	speakeasy overlay validate --overlay $(PORTAL_TEAM_KONNECT_MANAGED_OVERLAY)
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) \
+		--overlay $(PORTAL_TEAM_KONNECT_MANAGED_OVERLAY) --out /dev/null
+
+generate.sdk.speakeasy: validate.organization-team-overlay validate.update-portal-overlay validate.update-portal-audit-log-webhook-overlay \
+	validate.patch-custom-portal-email-template-overlay validate.update-portal-identity-provider-overlay \
+	validate.update-dcr-config-http-overlay validate.backend-cluster-tls-overlay \
+	validate.portal-team-konnect-managed-overlay
 	speakeasy run --skip-versioning --skip-testing --minimal --skip-upload-spec
+
+.PHONY: generate.sdk
+generate.sdk: generate.sdk.speakeasy
 	git add --update .
 	$(MAKE) generate.deepcopy
 	$(MAKE) _generate.omitempty
@@ -209,3 +275,9 @@ generate.mocks: mockery remove.mocks
 .PHONY: verify.diff
 verify.diff:
 	@$(PROJECT_DIR)/scripts/verify-diff.sh $(PROJECT_DIR)
+
+.PHONY: validate.organization-team-overlay
+validate.organization-team-overlay:
+	speakeasy overlay validate --overlay .speakeasy/overlays/organization-team-konnect-managed-defaults.yaml
+	speakeasy overlay apply --strict --schema $(OPENAPI_FILE) \
+		--overlay .speakeasy/overlays/organization-team-konnect-managed-defaults.yaml --out /dev/null

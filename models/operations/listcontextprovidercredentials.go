@@ -15,6 +15,14 @@ type ListContextProviderCredentialsRequest struct {
 	// Filter context provider credentials returned in the response.
 	Filter *components.ContextProviderCredentialFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 	// Sorts a collection of context provider credentials. Supported sort attributes are:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - `display_name`
 	//   - `created_at`
 	//   - `updated_at`
