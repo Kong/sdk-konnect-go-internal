@@ -60,6 +60,11 @@ KUBEBUILDER_GENERATE_CODE_MARKER = +kubebuilder:object:generate=true
 _generate.omitempty:
 	$(SED) -i 's#Members \[\]Members `json:"members,omitempty"`#Members \[\]Members `json:"members"`#g' \
 		models/components/groupmembership.go
+	# strip_path has a conditional default (invalid for grpc/grpcs protocols) that speakeasy
+	# always injects when the field is unset, causing CreateRoute to fail Kong Admin API
+	# validation for gRPC routes. Strip the default so the field is only sent when explicitly set.
+	$(SED) -i 's#StripPath \*bool `default:"true" json:"strip_path"`#StripPath *bool `json:"strip_path,omitempty"`#g' \
+		models/components/routejson.go
 
 .PHONY: generate.deepcopy
 generate.deepcopy: controller-gen
@@ -184,6 +189,7 @@ _generate.ifacemaker:
 		-p sdkkonnectgo
 
 TYPES_TO_MOCK := $(shell grep -B 20 'rootSDK.*\*SDK' *.go | grep 'type.*struct' | awk '{print $$2}' | sort -u)
+
 
 .PHONY: remove.interfaces
 remove.interfaces:
