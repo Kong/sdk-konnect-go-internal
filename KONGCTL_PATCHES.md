@@ -3,7 +3,7 @@
 This branch regenerates internal SDK v0.5.1 (`7af4b170`) from
 Kong/platform-api `224e6d7cf228f803fbcef570e5d53cf5337401f0` and applies
 kongctl's canonical compatibility patch bundle from
-`fdded07792e5a08f6214c0e040692242fe3a8b93`.
+`a2d0d29136bc26a47bde8418f2240d5f7c769b16`.
 
 The AI Gateway source specification is 2.2.24. Its public runtime cutoff
 remains 2.2; the unsplit internal SDK input includes the currently merged
@@ -49,7 +49,10 @@ separate AI Cost Management specification is not added to this SDK.
 The canonical patch bundle is snapshotted in `kongctl-patches/`, including
 its source commit and SHA-256 hashes in `provenance.json`. It removes
 automatic defaults from sparse requests and preserves explicit empty
-`identity_realms` arrays. No kongctl build applies these patches at runtime.
+`identity_realms` arrays. The audit-log webhook PATCH overlay removes all
+property defaults, including the internal `include_principal_name` default;
+an empty PATCH stays empty. Its regression test is part of the shared bundle.
+No kongctl build applies these patches at runtime.
 
 The SDK Makefile's tool installation and Speakeasy generation targets are
 backported from kongctl's public SDK baseline `2314d4a9ddd8`. The internal
