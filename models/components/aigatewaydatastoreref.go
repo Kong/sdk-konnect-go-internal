@@ -9,7 +9,7 @@ import (
 // AIGatewayDatastoreRef - A reference to an existing datastore
 type AIGatewayDatastoreRef struct {
 	// An immutable user-defined identifier for this resource.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 }
 
 func (a AIGatewayDatastoreRef) MarshalJSON() ([]byte, error) {
@@ -17,15 +17,15 @@ func (a AIGatewayDatastoreRef) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AIGatewayDatastoreRef) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayDatastoreRef) GetName() *string {
+func (a *AIGatewayDatastoreRef) GetName() string {
 	if a == nil {
-		return nil
+		return ""
 	}
 	return a.Name
 }

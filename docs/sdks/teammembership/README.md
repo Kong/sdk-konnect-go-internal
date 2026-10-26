@@ -44,7 +44,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.UserCollection != nil {
+    if res.TeamUserMembershipCollection != nil {
         // handle response
     }
 }
@@ -223,7 +223,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.TeamCollection != nil {
+    if res.UserTeamMembershipCollection != nil {
         // handle response
     }
 }

@@ -5,7 +5,7 @@ Filter by a numeric value.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 numericFieldFilter := components.CreateNumericFieldFilterNumber(float64{/* values here */})

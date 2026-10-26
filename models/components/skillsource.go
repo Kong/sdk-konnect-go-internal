@@ -12,12 +12,14 @@ import (
 type SkillSourceType string
 
 const (
-	SkillSourceTypeRaw SkillSourceType = "raw"
+	SkillSourceTypeRaw    SkillSourceType = "raw"
+	SkillSourceTypeGithub SkillSourceType = "github"
 )
 
 // SkillSource - Where the skill's content comes from, as returned by the API. Never includes the content itself — read it through the skill contents endpoint.
 type SkillSource struct {
-	RawSkillSource *RawSkillSource `queryParam:"inline" union:"member"`
+	RawSkillSource    *RawSkillSource    `queryParam:"inline" union:"member"`
+	GithubSkillSource *GithubSkillSource `queryParam:"inline" union:"member"`
 
 	Type SkillSourceType
 }
@@ -31,6 +33,18 @@ func CreateSkillSourceRaw(raw RawSkillSource) SkillSource {
 	return SkillSource{
 		RawSkillSource: &raw,
 		Type:           typ,
+	}
+}
+
+func CreateSkillSourceGithub(github GithubSkillSource) SkillSource {
+	typ := SkillSourceTypeGithub
+
+	typStr := GithubSkillSourceType(typ)
+	github.Type = typStr
+
+	return SkillSource{
+		GithubSkillSource: &github,
+		Type:              typ,
 	}
 }
 
@@ -62,6 +76,15 @@ func (u *SkillSource) UnmarshalJSON(data []byte) (err error) {
 		u.RawSkillSource = rawSkillSource
 		u.Type = SkillSourceTypeRaw
 		return nil
+	case "github":
+		githubSkillSource := new(GithubSkillSource)
+		if err := utils.UnmarshalJSON(data, &githubSkillSource, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == github) type GithubSkillSource within SkillSource: %w", string(data), err)
+		}
+
+		u.GithubSkillSource = githubSkillSource
+		u.Type = SkillSourceTypeGithub
+		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SkillSource", string(data))
@@ -70,6 +93,10 @@ func (u *SkillSource) UnmarshalJSON(data []byte) (err error) {
 func (u SkillSource) MarshalJSON() ([]byte, error) {
 	if u.RawSkillSource != nil {
 		return utils.MarshalJSON(u.RawSkillSource, "", true)
+	}
+
+	if u.GithubSkillSource != nil {
+		return utils.MarshalJSON(u.GithubSkillSource, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type SkillSource: all fields are null")

@@ -20,4 +20,7 @@ type DeclarativeConfigurationSDK interface {
 	// DeleteDeclarativeConfig - Delete the declarative config
 	// Delete the declarative config
 	DeleteDeclarativeConfig(ctx context.Context, controlPlaneID string, opts ...operations.Option) (*operations.DeleteDeclarativeConfigResponse, error)
+	// ValidateControlPlaneConfig - Validate a control plane configuration
+	// Validates a set of core entities as one configuration for the control plane. Entities refer to each other by ID. The configuration is not stored.
+	ValidateControlPlaneConfig(ctx context.Context, controlPlaneID string, controlPlaneConfig components.ControlPlaneConfig, opts ...operations.Option) (*operations.ValidateControlPlaneConfigResponse, error)
 }

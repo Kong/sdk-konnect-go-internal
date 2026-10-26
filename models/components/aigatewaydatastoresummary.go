@@ -10,9 +10,10 @@ import (
 type AIGatewayDatastoreSummaryType string
 
 const (
-	AIGatewayDatastoreSummaryTypeRedisCe  AIGatewayDatastoreSummaryType = "redis-ce"
-	AIGatewayDatastoreSummaryTypeRedisEe  AIGatewayDatastoreSummaryType = "redis-ee"
-	AIGatewayDatastoreSummaryTypeVectordb AIGatewayDatastoreSummaryType = "vectordb"
+	AIGatewayDatastoreSummaryTypeRedisCe    AIGatewayDatastoreSummaryType = "redis-ce"
+	AIGatewayDatastoreSummaryTypeRedisEe    AIGatewayDatastoreSummaryType = "redis-ee"
+	AIGatewayDatastoreSummaryTypeVectordb   AIGatewayDatastoreSummaryType = "vectordb"
+	AIGatewayDatastoreSummaryTypeTokenVault AIGatewayDatastoreSummaryType = "token-vault"
 )
 
 func (e AIGatewayDatastoreSummaryType) ToPointer() *AIGatewayDatastoreSummaryType {
@@ -23,7 +24,7 @@ func (e AIGatewayDatastoreSummaryType) ToPointer() *AIGatewayDatastoreSummaryTyp
 func (e *AIGatewayDatastoreSummaryType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "redis-ce", "redis-ee", "vectordb":
+		case "redis-ce", "redis-ee", "vectordb", "token-vault":
 			return true
 		}
 	}
@@ -42,6 +43,8 @@ type AIGatewayDatastoreSummary struct {
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
 	UpdatedAt time.Time `json:"updated_at"`
+	// An immutable read-only flag to identify resource managed by Konnect services.
+	KonnectManaged *bool `json:"konnect_managed,omitempty"`
 }
 
 func (a AIGatewayDatastoreSummary) MarshalJSON() ([]byte, error) {
@@ -95,4 +98,11 @@ func (a *AIGatewayDatastoreSummary) GetUpdatedAt() time.Time {
 		return time.Time{}
 	}
 	return a.UpdatedAt
+}
+
+func (a *AIGatewayDatastoreSummary) GetKonnectManaged() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.KonnectManaged
 }

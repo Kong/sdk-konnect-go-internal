@@ -16,8 +16,9 @@ custom := components.AIGatewayDatastoreSummaryType("custom_value")
 
 ## Values
 
-| Name                                    | Value                                   |
-| --------------------------------------- | --------------------------------------- |
-| `AIGatewayDatastoreSummaryTypeRedisCe`  | redis-ce                                |
-| `AIGatewayDatastoreSummaryTypeRedisEe`  | redis-ee                                |
-| `AIGatewayDatastoreSummaryTypeVectordb` | vectordb                                |
+| Name                                      | Value                                     |
+| ----------------------------------------- | ----------------------------------------- |
+| `AIGatewayDatastoreSummaryTypeRedisCe`    | redis-ce                                  |
+| `AIGatewayDatastoreSummaryTypeRedisEe`    | redis-ee                                  |
+| `AIGatewayDatastoreSummaryTypeVectordb`   | vectordb                                  |
+| `AIGatewayDatastoreSummaryTypeTokenVault` | token-vault                               |

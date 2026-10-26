@@ -12,7 +12,7 @@ created in the timeline.
 createSubscriptionAddonRequestTiming := components.CreateCreateSubscriptionAddonRequestTimingBillingSubscriptionEditTimingEnum(components.BillingSubscriptionEditTimingEnum{/* values here */})
 ```
 
-### 
+###
 
 ```go
 createSubscriptionAddonRequestTiming := components.CreateCreateSubscriptionAddonRequestTimingDateTime(time.Time{/* values here */})

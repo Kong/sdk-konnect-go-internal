@@ -16,7 +16,7 @@ type APIImplementationFilterParameters struct {
 	// Filters on the given datetime (RFC-3339) field value.
 	UpdatedAt *DateTimeFieldFilter `queryParam:"name=updated_at"`
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
-	EnvironmentID *UUIDFieldFilter `queryParam:"name=environment_id"`
+	EnvironmentID *UUIDFieldFilter `queryParam:"name=environment.id"`
 }
 
 func (a *APIImplementationFilterParameters) GetID() *UUIDFieldFilter {

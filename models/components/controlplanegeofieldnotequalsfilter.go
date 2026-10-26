@@ -15,6 +15,7 @@ type ControlPlaneGeoFieldNotEqualsFilter struct {
 	// - `me` — Middle East
 	// - `in` — India
 	// - `sg` — Singapore
+	// - `uk` — United Kingdom
 	//
 	Neq ControlPlaneGeo `queryParam:"name=neq"`
 }

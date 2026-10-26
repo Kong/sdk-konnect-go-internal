@@ -11,7 +11,7 @@ If not provided the subscription is canceled immediately.
 timing := components.CreateTimingBillingSubscriptionEditTimingEnum(components.BillingSubscriptionEditTimingEnum{/* values here */})
 ```
 
-### 
+###
 
 ```go
 timing := components.CreateTimingDateTime(time.Time{/* values here */})

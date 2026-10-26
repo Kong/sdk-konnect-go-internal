@@ -7,27 +7,27 @@ import (
 	"fmt"
 )
 
-// GoogleTagManagerIntegrationType - The type of the integration for categorization
-type GoogleTagManagerIntegrationType string
+// Type - The type of the integration for categorization
+type Type string
 
 const (
-	GoogleTagManagerIntegrationTypeTracking GoogleTagManagerIntegrationType = "tracking"
+	TypeTracking Type = "tracking"
 )
 
-func (e GoogleTagManagerIntegrationType) ToPointer() *GoogleTagManagerIntegrationType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
-func (e *GoogleTagManagerIntegrationType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "tracking":
-		*e = GoogleTagManagerIntegrationType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GoogleTagManagerIntegrationType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
@@ -121,7 +121,7 @@ type GoogleTagManagerIntegration struct {
 	// Whether the integration is enabled
 	Enabled bool `json:"enabled"`
 	// The type of the integration for categorization
-	Type GoogleTagManagerIntegrationType `json:"type"`
+	Type Type `json:"type"`
 	// Configuration data for the Google Tag Manager integration
 	ConfigData ConfigData `json:"config_data"`
 }
@@ -133,9 +133,9 @@ func (g *GoogleTagManagerIntegration) GetEnabled() bool {
 	return g.Enabled
 }
 
-func (g *GoogleTagManagerIntegration) GetType() GoogleTagManagerIntegrationType {
+func (g *GoogleTagManagerIntegration) GetType() Type {
 	if g == nil {
-		return GoogleTagManagerIntegrationType("")
+		return Type("")
 	}
 	return g.Type
 }

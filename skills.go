@@ -608,6 +608,9 @@ func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, re
 }
 
 // GetContextInterfaceSkill - Get a Skill
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Retrieve a single skill by its ID.
 func (s *Skills) GetContextInterfaceSkill(ctx context.Context, interfaceID string, skillID string, opts ...operations.Option) (*operations.GetContextInterfaceSkillResponse, error) {
 	request := operations.GetContextInterfaceSkillRequest{
@@ -906,6 +909,9 @@ func (s *Skills) GetContextInterfaceSkill(ctx context.Context, interfaceID strin
 }
 
 // PatchContextInterfaceSkill - Update a Skill
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Partially update a skill. Supplying `source` replaces the skill's source in its entirety and re-runs validation against the new content.
 func (s *Skills) PatchContextInterfaceSkill(ctx context.Context, request operations.PatchContextInterfaceSkillRequest, opts ...operations.Option) (*operations.PatchContextInterfaceSkillResponse, error) {
 	o := operations.Options{}
@@ -1228,6 +1234,9 @@ func (s *Skills) PatchContextInterfaceSkill(ctx context.Context, request operati
 }
 
 // DeleteContextInterfaceSkill - Delete a Skill
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Delete a skill and its associated content.
 func (s *Skills) DeleteContextInterfaceSkill(ctx context.Context, interfaceID string, skillID string, opts ...operations.Option) (*operations.DeleteContextInterfaceSkillResponse, error) {
 	request := operations.DeleteContextInterfaceSkillRequest{
@@ -1485,6 +1494,9 @@ func (s *Skills) DeleteContextInterfaceSkill(ctx context.Context, interfaceID st
 }
 
 // GetContextInterfaceSkillContents - Get Skill Contents
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Returns a presigned S3 URL for the skill's SKILL.md file. Used by the Konnect UI to let a user view a skill's content.
 func (s *Skills) GetContextInterfaceSkillContents(ctx context.Context, interfaceID string, skillID string, opts ...operations.Option) (*operations.GetContextInterfaceSkillContentsResponse, error) {
 	request := operations.GetContextInterfaceSkillContentsRequest{
@@ -1783,6 +1795,9 @@ func (s *Skills) GetContextInterfaceSkillContents(ctx context.Context, interface
 }
 
 // ListContextInterfaceSkills - List Skills
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Returns a list of skills for the specified Context Interface.
 func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operations.ListContextInterfaceSkillsRequest, opts ...operations.Option) (*operations.ListContextInterfaceSkillsResponse, error) {
 	o := operations.Options{}
@@ -2080,6 +2095,9 @@ func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operati
 }
 
 // CreateContextInterfaceSkill - Create a Skill
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
 func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID string, createSkillRequest components.CreateSkillRequest, opts ...operations.Option) (*operations.CreateContextInterfaceSkillResponse, error) {
 	request := operations.CreateContextInterfaceSkillRequest{
@@ -2325,6 +2343,28 @@ func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID st
 			}
 
 			var out sdkerrors.ForbiddenError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
+			}
+
+			out.RawResponse = httpRes
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out sdkerrors.NotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}

@@ -297,6 +297,83 @@ func (_c *MockAIGatewaysSDK_GetAiGateway_Call) RunAndReturn(run func(ctx context
 	return _c
 }
 
+// ListAiGatewayRuntimeVersions provides a mock function for the type MockAIGatewaysSDK
+func (_mock *MockAIGatewaysSDK) ListAiGatewayRuntimeVersions(ctx context.Context, opts ...operations.Option) (*operations.ListAiGatewayRuntimeVersionsResponse, error) {
+	var tmpRet mock.Arguments
+	if len(opts) > 0 {
+		tmpRet = _mock.Called(ctx, opts)
+	} else {
+		tmpRet = _mock.Called(ctx)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for ListAiGatewayRuntimeVersions")
+	}
+
+	var r0 *operations.ListAiGatewayRuntimeVersionsResponse
+	var r1 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, ...operations.Option) (*operations.ListAiGatewayRuntimeVersionsResponse, error)); ok {
+		return returnFunc(ctx, opts...)
+	}
+	if returnFunc, ok := ret.Get(0).(func(context.Context, ...operations.Option) *operations.ListAiGatewayRuntimeVersionsResponse); ok {
+		r0 = returnFunc(ctx, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operations.ListAiGatewayRuntimeVersionsResponse)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(context.Context, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+	return r0, r1
+}
+
+// MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListAiGatewayRuntimeVersions'
+type MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call struct {
+	*mock.Call
+}
+
+// ListAiGatewayRuntimeVersions is a helper method to define mock.On call
+//   - ctx context.Context
+//   - opts ...operations.Option
+func (_e *MockAIGatewaysSDK_Expecter) ListAiGatewayRuntimeVersions(ctx any, opts ...any) *MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call {
+	return &MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call{Call: _e.mock.On("ListAiGatewayRuntimeVersions",
+		append([]any{ctx}, opts...)...)}
+}
+
+func (_c *MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call) Run(run func(ctx context.Context, opts ...operations.Option)) *MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 []operations.Option
+		var variadicArgs []operations.Option
+		if len(args) > 1 {
+			variadicArgs = args[1].([]operations.Option)
+		}
+		arg1 = variadicArgs
+		run(
+			arg0,
+			arg1...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call) Return(listAiGatewayRuntimeVersionsResponse *operations.ListAiGatewayRuntimeVersionsResponse, err error) *MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call {
+	_c.Call.Return(listAiGatewayRuntimeVersionsResponse, err)
+	return _c
+}
+
+func (_c *MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call) RunAndReturn(run func(ctx context.Context, opts ...operations.Option) (*operations.ListAiGatewayRuntimeVersionsResponse, error)) *MockAIGatewaysSDK_ListAiGatewayRuntimeVersions_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ListAiGateways provides a mock function for the type MockAIGatewaysSDK
 func (_mock *MockAIGatewaysSDK) ListAiGateways(ctx context.Context, pageSize *int64, pageNumber *int64, opts ...operations.Option) (*operations.ListAiGatewaysResponse, error) {
 	var tmpRet mock.Arguments

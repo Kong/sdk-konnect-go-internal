@@ -44,14 +44,6 @@ func main() {
             Version: sdkkonnectgo.Pointer("1.0.0"),
             Spec: components.CreateAPIVersionRequestSpec{
                 Content: sdkkonnectgo.Pointer("{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Example API\",\"version\":\"1.0.0\"},\"paths\":{\"/example\":{\"get\":{\"summary\":\"Example endpoint\",\"responses\":{\"200\":{\"description\":\"Successful response\"}}}}}}"),
-                Provider: sdkkonnectgo.Pointer(components.CreateCreateAPIVersionRequestProviderResourceBoundIntegrationAPISpecProviderPayload(
-                    components.ResourceBoundIntegrationAPISpecProviderPayload{
-                        Type: "<value>",
-                        Config: components.ResourceBoundIntegrationAPISpecProviderPayloadConfig{
-                            ResourceID: "IqkHvMdyHukxcwAs",
-                        },
-                    },
-                )),
             },
         },
     })
@@ -248,14 +240,6 @@ func main() {
             Version: sdkkonnectgo.Pointer("1.0.0"),
             Spec: &components.APIVersionRequestSpec{
                 Content: sdkkonnectgo.Pointer("{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Example API\",\"version\":\"1.0.0\"},\"paths\":{\"/example\":{\"get\":{\"summary\":\"Example endpoint\",\"responses\":{\"200\":{\"description\":\"Successful response\"}}}}}}"),
-                Provider: sdkkonnectgo.Pointer(components.CreateAPIVersionRequestProviderResourceBoundIntegrationAPISpecProviderPayload(
-                    components.ResourceBoundIntegrationAPISpecProviderPayload{
-                        Type: "<value>",
-                        Config: components.ResourceBoundIntegrationAPISpecProviderPayloadConfig{
-                            ResourceID: "IqkHvMdyHukxcwAs",
-                        },
-                    },
-                )),
             },
         },
     })

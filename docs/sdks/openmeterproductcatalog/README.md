@@ -28,9 +28,6 @@ Product catalog manages plans, add-ons, and their associations for subscription-
 
 ## ListProductCatalogAddons
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 List all add-ons.
 
 ### Example Usage
@@ -95,9 +92,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreateProductCatalogAddon
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Create a new add-on.
 
@@ -193,9 +187,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## UpdateProductCatalogAddon
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Update an add-on by id.
 
@@ -296,9 +287,6 @@ func main() {
 
 ## GetProductCatalogAddon
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Get add-on by id.
 
 ### Example Usage
@@ -358,9 +346,6 @@ func main() {
 
 ## DeleteProductCatalogAddon
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Soft delete add-on by id.
 
 ### Example Usage
@@ -418,9 +403,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ArchiveProductCatalogAddon
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Archive an add-on version.
 
@@ -480,9 +462,6 @@ func main() {
 
 ## PublishProductCatalogAddon
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Publish an add-on version.
 
 ### Example Usage
@@ -540,9 +519,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListPlans
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 List all plans.
 
@@ -603,9 +579,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreatePlan
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Create a new plan.
 
@@ -673,9 +646,6 @@ func main() {
 
 ## UpdatePlan
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Update a plan by id.
 
 ### Example Usage
@@ -742,9 +712,6 @@ func main() {
 
 ## GetPlan
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Get a plan by id.
 
 ### Example Usage
@@ -804,9 +771,6 @@ func main() {
 
 ## DeletePlan
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Delete a plan by id.
 
 ### Example Usage
@@ -864,6 +828,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListPlanAddons
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 List add-ons associated with a plan.
 
@@ -1202,9 +1169,6 @@ func main() {
 
 ## ArchivePlan
 
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
 Archive a plan version.
 
 ### Example Usage
@@ -1262,9 +1226,6 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## PublishPlan
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
 
 Publish a plan version.
 

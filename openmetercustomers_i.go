@@ -49,12 +49,18 @@ type OpenMeterCustomersSDK interface {
 	// customer.
 	CreateCustomerStripePortalSession(ctx context.Context, customerID string, billingCustomerStripeCreateCustomerPortalSessionRequest components.BillingCustomerStripeCreateCustomerPortalSessionRequest, opts ...operations.Option) (*operations.CreateCustomerStripePortalSessionResponse, error)
 	// ListCustomerCharges - List customer charges
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// List customer charges.
 	//
 	// Returns the customer's charges that are represented as either flat fee or
 	// usage-based charges.
 	ListCustomerCharges(ctx context.Context, request operations.ListCustomerChargesRequest, opts ...operations.Option) (*operations.ListCustomerChargesResponse, error)
 	// CreateCustomerCharges - Create customer charge
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Create customer charge.
 	CreateCustomerCharges(ctx context.Context, customerID string, createChargeRequest components.CreateChargeRequest, opts ...operations.Option) (*operations.CreateCustomerChargesResponse, error)
 	// CreateCreditAdjustment - Create a credit adjustment
@@ -103,6 +109,9 @@ type OpenMeterCustomersSDK interface {
 	// the system so that revenue recognition and credit availability work as expected.
 	UpdateCreditGrantExternalSettlement(ctx context.Context, request operations.UpdateCreditGrantExternalSettlementRequest, opts ...operations.Option) (*operations.UpdateCreditGrantExternalSettlementResponse, error)
 	// VoidCreditGrant - Void credit grant
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Void a credit grant, forfeiting the remaining unused balance.
 	//
 	// Voiding is a forward-looking, irreversible operation. Credits already consumed

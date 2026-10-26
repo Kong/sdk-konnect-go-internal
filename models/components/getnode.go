@@ -113,6 +113,7 @@ type Item struct {
 	UpdatedAt           *int64                      `json:"updated_at,omitempty"`
 	ConfigHash          *string                     `json:"config_hash,omitempty"`
 	ConfigSync          *GetNodeConfigSync          `json:"config_sync,omitempty"`
+	Errors              []NodeError                 `json:"errors,omitempty"`
 	CompatibilityStatus *GetNodeCompatibilityStatus `json:"compatibility_status,omitempty"`
 	// The current log level of the node.
 	LogLevel       *string                `json:"log_level,omitempty"`
@@ -180,6 +181,13 @@ func (i *Item) GetConfigSync() *GetNodeConfigSync {
 		return nil
 	}
 	return i.ConfigSync
+}
+
+func (i *Item) GetErrors() []NodeError {
+	if i == nil {
+		return nil
+	}
+	return i.Errors
 }
 
 func (i *Item) GetCompatibilityStatus() *GetNodeCompatibilityStatus {

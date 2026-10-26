@@ -17,6 +17,9 @@ type AIGatewaysSDK interface {
 	// CreateAiGateway - Create an AI Gateway
 	// Creates a new AI Gateway in the organization.
 	CreateAiGateway(ctx context.Context, request components.CreateAIGatewayRequest, opts ...operations.Option) (*operations.CreateAiGatewayResponse, error)
+	// ListAiGatewayRuntimeVersions - List AI Gateway Runtime Versions
+	// Returns a list of AI Gateway runtime versions which affects API behavior and compatibility.
+	ListAiGatewayRuntimeVersions(ctx context.Context, opts ...operations.Option) (*operations.ListAiGatewayRuntimeVersionsResponse, error)
 	// GetAiGateway - Get an AI Gateway
 	// Returns the details of a specific AI Gateway.
 	GetAiGateway(ctx context.Context, gatewayID string, opts ...operations.Option) (*operations.GetAiGatewayResponse, error)

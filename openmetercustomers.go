@@ -3100,6 +3100,9 @@ func (s *OpenMeterCustomers) CreateCustomerStripePortalSession(ctx context.Conte
 }
 
 // ListCustomerCharges - List customer charges
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List customer charges.
 //
 // Returns the customer's charges that are represented as either flat fee or
@@ -3400,6 +3403,9 @@ func (s *OpenMeterCustomers) ListCustomerCharges(ctx context.Context, request op
 }
 
 // CreateCustomerCharges - Create customer charge
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Create customer charge.
 func (s *OpenMeterCustomers) CreateCustomerCharges(ctx context.Context, customerID string, createChargeRequest components.CreateChargeRequest, opts ...operations.Option) (*operations.CreateCustomerChargesResponse, error) {
 	request := operations.CreateCustomerChargesRequest{
@@ -5534,6 +5540,9 @@ func (s *OpenMeterCustomers) UpdateCreditGrantExternalSettlement(ctx context.Con
 }
 
 // VoidCreditGrant - Void credit grant
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Void a credit grant, forfeiting the remaining unused balance.
 //
 // Voiding is a forward-looking, irreversible operation. Credits already consumed

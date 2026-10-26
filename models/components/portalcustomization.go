@@ -30,6 +30,7 @@ func (e *PortalCustomizationMode) IsExact() bool {
 }
 
 type Colors struct {
+	// The primary accent color used in the portal's theme. Must be a valid hex color value.
 	Primary *string `json:"primary,omitempty"`
 }
 
@@ -40,7 +41,9 @@ func (c *Colors) GetPrimary() *string {
 	return c.Primary
 }
 
+// Theme - The theme settings for this portal.
 type Theme struct {
+	// The theme name to apply to this portal. Supported names are 'ocean', 'mesa', and 'grove'. If another name is provided or this property is omitted, the portal uses the default 'ocean' theme.
 	Name   *string                  `json:"name,omitempty"`
 	Mode   *PortalCustomizationMode `json:"mode,omitempty"`
 	Colors *Colors                  `json:"colors,omitempty"`
@@ -159,7 +162,7 @@ type PortalCustomizationSpecRenderer struct {
 	HideDeprecated *bool `default:"false" json:"hide_deprecated"`
 	// Let users define a custom server URL for endpoints. This will be used to generate code snippets and to test the API. The URL is client-side only and is not saved.
 	AllowCustomServerUrls *bool                               `default:"true" json:"allow_custom_server_urls"`
-	TryItUIAudience       *PortalCustomizationTryItUIAudience `default:"all" json:"try_it_ui_audience"`
+	TryItUIAudience       *PortalCustomizationTryItUIAudience `json:"try_it_ui_audience,omitempty"`
 }
 
 func (p PortalCustomizationSpecRenderer) MarshalJSON() ([]byte, error) {
@@ -254,7 +257,11 @@ func (p *PortalLayout) GetFooter() *Footer {
 
 // PortalCustomization - The custom settings of this portal
 type PortalCustomization struct {
-	Theme  *Theme  `json:"theme,omitempty"`
+	// The theme settings for this portal.
+	Theme *Theme `json:"theme,omitempty"`
+	// This property is deprecated and is not used by the portal.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Layout *string `json:"layout,omitempty"`
 	CSS    *string `json:"css,omitempty"`
 	Js     *Js     `json:"js,omitempty"`

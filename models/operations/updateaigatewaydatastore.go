@@ -48,6 +48,10 @@ func (u *UpdateAiGatewayDatastoreRequest) GetUpdateAIGatewayDatastoreRequestVect
 	return u.GetUpdateAIGatewayDatastoreRequest().VectorDBDatastore
 }
 
+func (u *UpdateAiGatewayDatastoreRequest) GetUpdateAIGatewayDatastoreRequestTokenVault() *components.TokenVaultDatastore {
+	return u.GetUpdateAIGatewayDatastoreRequest().TokenVaultDatastore
+}
+
 type UpdateAiGatewayDatastoreResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -104,6 +108,13 @@ func (u *UpdateAiGatewayDatastoreResponse) GetAIGatewayDatastoreRedisEe() *compo
 func (u *UpdateAiGatewayDatastoreResponse) GetAIGatewayDatastoreVectordb() *components.AIGatewayDatastoreVectorDBDatastore {
 	if v := u.GetAIGatewayDatastore(); v != nil {
 		return v.AIGatewayDatastoreVectorDBDatastore
+	}
+	return nil
+}
+
+func (u *UpdateAiGatewayDatastoreResponse) GetAIGatewayDatastoreTokenVault() *components.AIGatewayDatastoreTokenVaultDatastore {
+	if v := u.GetAIGatewayDatastore(); v != nil {
+		return v.AIGatewayDatastoreTokenVaultDatastore
 	}
 	return nil
 }

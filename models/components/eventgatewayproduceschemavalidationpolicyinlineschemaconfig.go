@@ -10,8 +10,6 @@ import (
 //
 // **Requires a minimum runtime version of `1.3`**.
 type EventGatewayProduceSchemaValidationPolicyInlineSchemaConfig struct {
-	// A reference to a schema Registry.
-	SchemaRegistry *SchemaRegistryReference `json:"schema_registry,omitempty"`
 	// Describes how to handle a failure in a policy applied to produced records.
 	// * `reject` - rejects the record batch.
 	// * `passthrough` - passes the record silently to the backend cluster even though policy execution failed.
@@ -30,12 +28,30 @@ type EventGatewayProduceSchemaValidationPolicyInlineSchemaConfig struct {
 	// Defines a behavior when record key is not valid.
 	// * reject - rejects a batch for topic partition. Only available for produce.
 	// * mark - marks a record with kong/server header and client ID value
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   to help to identify the clients violating schema.
 	//
 	KeyValidationAction *ProduceKeyValidationAction `json:"key_validation_action,omitempty"`
 	// Defines a behavior when record value is not valid.
 	// * reject - rejects a batch for topic partition. Only available for produce.
 	// * mark - marks a record with kong/server header and client ID value
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   to help to identify the clients violating schema.
 	//
 	ValueValidationAction *ProduceValueValidationAction `json:"value_validation_action,omitempty"`
@@ -60,13 +76,6 @@ func (e *EventGatewayProduceSchemaValidationPolicyInlineSchemaConfig) UnmarshalJ
 		return err
 	}
 	return nil
-}
-
-func (e *EventGatewayProduceSchemaValidationPolicyInlineSchemaConfig) GetSchemaRegistry() *SchemaRegistryReference {
-	if e == nil {
-		return nil
-	}
-	return e.SchemaRegistry
 }
 
 func (e *EventGatewayProduceSchemaValidationPolicyInlineSchemaConfig) GetFailureMode() *ProduceFailureMode {

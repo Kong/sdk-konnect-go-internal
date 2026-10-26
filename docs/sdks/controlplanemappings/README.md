@@ -12,8 +12,10 @@
 
 ## ListControlPlaneMappings
 
-Get a list of all Control Planes that have been mapped to the given Context Interface.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
+Get a list of all Control Planes that have been mapped to the given Context Interface.
 
 ### Example Usage
 
@@ -79,6 +81,9 @@ func main() {
 
 ## CreateContextInterfaceControlPlaneMapping
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Create a Context Interface - Control Plane mapping
 
 ### Example Usage
@@ -140,6 +145,9 @@ func main() {
 
 ## GetControlPlaneMapping
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Retrieve a mapping by its ID.
 
 ### Example Usage
@@ -198,6 +206,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## PatchContextInterfaceControlPlaneMapping
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Update a mapping between a Context Interface and a Control Plane.
 
@@ -261,6 +272,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## DeleteContextInterfaceControlPlaneMapping
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Delete Context Interface Control Plane Mapping.
 

@@ -7,7 +7,7 @@
 * [ListContextInterfaces](#listcontextinterfaces) - List all Context Interfaces
 * [CreateContextInterface](#createcontextinterface) - Create a Context Interface
 * [GetContextInterface](#getcontextinterface) - Get Context Interface
-* [UpdateContextInterface](#updatecontextinterface) - Update MCP Server
+* [UpdateContextInterface](#updatecontextinterface) - Update Context Interface
 * [PatchContextInterface](#patchcontextinterface) - Partially Update Context Interface
 * [DeleteContextInterface](#deletecontextinterface) - Delete Context Interface
 * [ListContextInterfacesByContextSource](#listcontextinterfacesbycontextsource) - List Context Source Context Interfaces
@@ -516,7 +516,7 @@ func main() {
 
 ## GetContextInterfaceGeneratedCode
 
-Generated MCP Server code of a Context Interface.
+Returns the generated MCP server code for a Context Interface.
 
 
 ### Example Usage

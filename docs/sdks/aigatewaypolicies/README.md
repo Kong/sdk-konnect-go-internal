@@ -240,7 +240,7 @@ func main() {
         },
         Datastores: []components.AIGatewayDatastoreRef{
             components.AIGatewayDatastoreRef{
-                Name: sdkkonnectgo.Pointer("shared-redis"),
+                Name: "shared-redis",
             },
         },
     })
@@ -386,7 +386,7 @@ func main() {
             },
             Datastores: []components.AIGatewayDatastoreRef{
                 components.AIGatewayDatastoreRef{
-                    Name: sdkkonnectgo.Pointer("shared-redis"),
+                    Name: "shared-redis",
                 },
             },
         },

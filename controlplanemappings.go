@@ -31,6 +31,9 @@ func newControlPlaneMappings(rootSDK *SDK, sdkConfig config.SDKConfiguration, ho
 }
 
 // ListControlPlaneMappings - Get a list of CPs mapped to Context Interface
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Get a list of all Control Planes that have been mapped to the given Context Interface.
 func (s *ControlPlaneMappings) ListControlPlaneMappings(ctx context.Context, request operations.ListControlPlaneMappingsRequest, opts ...operations.Option) (*operations.ListControlPlaneMappingsResponse, error) {
 	o := operations.Options{}
@@ -328,6 +331,9 @@ func (s *ControlPlaneMappings) ListControlPlaneMappings(ctx context.Context, req
 }
 
 // CreateContextInterfaceControlPlaneMapping - Create Context Interface CP Mapping
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Create a Context Interface - Control Plane mapping
 func (s *ControlPlaneMappings) CreateContextInterfaceControlPlaneMapping(ctx context.Context, interfaceID string, createMCPServerControlPlaneMappingRequest components.CreateMCPServerControlPlaneMappingRequest, opts ...operations.Option) (*operations.CreateContextInterfaceControlPlaneMappingResponse, error) {
 	request := operations.CreateContextInterfaceControlPlaneMappingRequest{
@@ -633,6 +639,9 @@ func (s *ControlPlaneMappings) CreateContextInterfaceControlPlaneMapping(ctx con
 }
 
 // GetControlPlaneMapping - Get Context Interface Control Plane Mapping
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Retrieve a mapping by its ID.
 func (s *ControlPlaneMappings) GetControlPlaneMapping(ctx context.Context, interfaceID string, mappingID string, opts ...operations.Option) (*operations.GetControlPlaneMappingResponse, error) {
 	request := operations.GetControlPlaneMappingRequest{
@@ -931,6 +940,9 @@ func (s *ControlPlaneMappings) GetControlPlaneMapping(ctx context.Context, inter
 }
 
 // PatchContextInterfaceControlPlaneMapping - Patch Context Interface Control Plane Mapping
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Update a mapping between a Context Interface and a Control Plane.
 func (s *ControlPlaneMappings) PatchContextInterfaceControlPlaneMapping(ctx context.Context, request operations.PatchContextInterfaceControlPlaneMappingRequest, opts ...operations.Option) (*operations.PatchContextInterfaceControlPlaneMappingResponse, error) {
 	o := operations.Options{}
@@ -1231,6 +1243,9 @@ func (s *ControlPlaneMappings) PatchContextInterfaceControlPlaneMapping(ctx cont
 }
 
 // DeleteContextInterfaceControlPlaneMapping - Delete Context Interface CP Mapping
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Delete Context Interface Control Plane Mapping.
 func (s *ControlPlaneMappings) DeleteContextInterfaceControlPlaneMapping(ctx context.Context, interfaceID string, mappingID string, opts ...operations.Option) (*operations.DeleteContextInterfaceControlPlaneMappingResponse, error) {
 	request := operations.DeleteContextInterfaceControlPlaneMappingRequest{

@@ -23,6 +23,12 @@ aiGatewayDatastore := components.CreateAIGatewayDatastoreRedisEe(components.AIGa
 aiGatewayDatastore := components.CreateAIGatewayDatastoreVectordb(components.AIGatewayDatastoreVectorDBDatastore{/* values here */})
 ```
 
+### AIGatewayDatastoreTokenVaultDatastore
+
+```go
+aiGatewayDatastore := components.CreateAIGatewayDatastoreTokenVault(components.AIGatewayDatastoreTokenVaultDatastore{/* values here */})
+```
+
 ## Union Discrimination
 
 Use the `Type` field to determine which variant is active, then access the corresponding field:
@@ -35,5 +41,7 @@ switch aiGatewayDatastore.Type {
 		// aiGatewayDatastore.AIGatewayDatastoreRedisEEDatastore is populated
 	case components.AIGatewayDatastoreTypeVectordb:
 		// aiGatewayDatastore.AIGatewayDatastoreVectorDBDatastore is populated
+	case components.AIGatewayDatastoreTypeTokenVault:
+		// aiGatewayDatastore.AIGatewayDatastoreTokenVaultDatastore is populated
 }
 ```

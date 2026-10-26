@@ -10,19 +10,19 @@ mean time-to-ack value for the service which if not passing could be 25 minutes.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 rawValue := components.CreateRawValueNumber(float64{/* values here */})
 ```
 
-### 
+###
 
 ```go
 rawValue := components.CreateRawValueStr(string{/* values here */})
 ```
 
-### 
+###
 
 ```go
 rawValue := components.CreateRawValueBoolean(bool{/* values here */})
@@ -40,13 +40,13 @@ rawValue := components.CreateRawValueTimeValue(components.TimeValue{/* values he
 rawValue := components.CreateRawValueCriteriaEvaluationRelationMap(components.CriteriaEvaluationRelationMap{/* values here */})
 ```
 
-### 
+###
 
 ```go
 rawValue := components.CreateRawValueMapOfAny(map[string]any{/* values here */})
 ```
 
-### 
+###
 
 ```go
 rawValue := components.CreateRawValueAny(any{/* values here */})

@@ -39,6 +39,10 @@ func (c *CreateAiGatewayDatastoreRequest) GetCreateAIGatewayDatastoreRequestVect
 	return c.GetCreateAIGatewayDatastoreRequest().VectorDBDatastore
 }
 
+func (c *CreateAiGatewayDatastoreRequest) GetCreateAIGatewayDatastoreRequestTokenVault() *components.TokenVaultDatastore {
+	return c.GetCreateAIGatewayDatastoreRequest().TokenVaultDatastore
+}
+
 type CreateAiGatewayDatastoreResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -95,6 +99,13 @@ func (c *CreateAiGatewayDatastoreResponse) GetAIGatewayDatastoreRedisEe() *compo
 func (c *CreateAiGatewayDatastoreResponse) GetAIGatewayDatastoreVectordb() *components.AIGatewayDatastoreVectorDBDatastore {
 	if v := c.GetAIGatewayDatastore(); v != nil {
 		return v.AIGatewayDatastoreVectorDBDatastore
+	}
+	return nil
+}
+
+func (c *CreateAiGatewayDatastoreResponse) GetAIGatewayDatastoreTokenVault() *components.AIGatewayDatastoreTokenVaultDatastore {
+	if v := c.GetAIGatewayDatastore(); v != nil {
+		return v.AIGatewayDatastoreTokenVaultDatastore
 	}
 	return nil
 }

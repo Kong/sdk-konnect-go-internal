@@ -2,12 +2,17 @@
 
 package components
 
-// AIGatewayDatastoreUsageEntryType - The kind of entity holding the reference. A policy holds one in its `datastores` array. A model holds one when its balancer is `semantic`.
+// AIGatewayDatastoreUsageEntryType - The kind of entity holding the reference. A policy holds one in its `datastores` array. A
+// model holds one when its balancer is `semantic`. An MCP server, a model provider, or an
+// auth strategy holds one when it stores credentials in the Token Vault.
 type AIGatewayDatastoreUsageEntryType string
 
 const (
-	AIGatewayDatastoreUsageEntryTypePolicy AIGatewayDatastoreUsageEntryType = "policy"
-	AIGatewayDatastoreUsageEntryTypeModel  AIGatewayDatastoreUsageEntryType = "model"
+	AIGatewayDatastoreUsageEntryTypePolicy        AIGatewayDatastoreUsageEntryType = "policy"
+	AIGatewayDatastoreUsageEntryTypeModel         AIGatewayDatastoreUsageEntryType = "model"
+	AIGatewayDatastoreUsageEntryTypeMcpServer     AIGatewayDatastoreUsageEntryType = "mcp_server"
+	AIGatewayDatastoreUsageEntryTypeModelProvider AIGatewayDatastoreUsageEntryType = "model_provider"
+	AIGatewayDatastoreUsageEntryTypeAuthStrategy  AIGatewayDatastoreUsageEntryType = "auth_strategy"
 )
 
 func (e AIGatewayDatastoreUsageEntryType) ToPointer() *AIGatewayDatastoreUsageEntryType {
@@ -18,7 +23,7 @@ func (e AIGatewayDatastoreUsageEntryType) ToPointer() *AIGatewayDatastoreUsageEn
 func (e *AIGatewayDatastoreUsageEntryType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "policy", "model":
+		case "policy", "model", "mcp_server", "model_provider", "auth_strategy":
 			return true
 		}
 	}
@@ -27,7 +32,10 @@ func (e *AIGatewayDatastoreUsageEntryType) IsExact() bool {
 
 // AIGatewayDatastoreUsageEntry - Identity of an entity that references an AI Gateway Datastore.
 type AIGatewayDatastoreUsageEntry struct {
-	// The kind of entity holding the reference. A policy holds one in its `datastores` array. A model holds one when its balancer is `semantic`.
+	// The kind of entity holding the reference. A policy holds one in its `datastores` array. A
+	// model holds one when its balancer is `semantic`. An MCP server, a model provider, or an
+	// auth strategy holds one when it stores credentials in the Token Vault.
+	//
 	Type AIGatewayDatastoreUsageEntryType `json:"type"`
 	// Contains a unique identifier used for this resource.
 	ID          string `json:"id"`

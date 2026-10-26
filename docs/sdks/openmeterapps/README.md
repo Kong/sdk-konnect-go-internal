@@ -16,6 +16,9 @@ Apps enable you to extend and customize billing and usage workflows by integrati
 
 ## ListAppCatalog
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 List available apps.
 
 ### Example Usage
@@ -72,6 +75,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## InstallApp
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Install an app from the catalog.
 
@@ -144,6 +150,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetAppCatalogItem
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Get an app catalog item by type.
 
@@ -334,6 +343,9 @@ func main() {
 
 ## UninstallApp
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Uninstall an app by ID.
 
 ### Example Usage
@@ -391,6 +403,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## UpdateApp
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Update an installed app.
 

@@ -6,12 +6,21 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// EventGatewayParsedRecordTranscodeSchemaSourceReference - Looks up an existing schema in a schema registry using a computed subject and version.
+// EventGatewayParsedRecordTranscodeSchemaSourceReference - References a schema registered in a schema registry, computing the subject and version to use.
 type EventGatewayParsedRecordTranscodeSchemaSourceReference struct {
 	//lint:ignore U1000 accessed via reflection for JSON marshaling
 	type_ string `const:"reference" json:"type"`
-	// References a schema registered in a schema registry, computing the subject and version to use.
-	Reference EventGatewayParsedRecordTranscodeSchemaReference `json:"reference"`
+	// A reference to a schema Registry.
+	SchemaRegistry SchemaRegistryReference `json:"schema_registry"`
+	// An expression that computes the schema registry subject of the output data's schema.
+	Subject string `json:"subject"`
+	// An expression that computes the schema registry version of the output data's schema.
+	Version string `json:"version"`
+	// Defines how to record the schema id for the transcoded output data. See the
+	// [Confluent docs](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#wire-format)
+	// for more about the wire format.
+	//
+	SchemaRefDestination EventGatewayParsedRecordTranscodeSchemaRefDestination `json:"schema_ref_destination"`
 }
 
 func (e EventGatewayParsedRecordTranscodeSchemaSourceReference) MarshalJSON() ([]byte, error) {
@@ -19,7 +28,7 @@ func (e EventGatewayParsedRecordTranscodeSchemaSourceReference) MarshalJSON() ([
 }
 
 func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"type", "reference"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"type", "schema_registry", "subject", "version", "schema_ref_destination"}); err != nil {
 		return err
 	}
 	return nil
@@ -29,9 +38,42 @@ func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetType() strin
 	return "reference"
 }
 
-func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetReference() EventGatewayParsedRecordTranscodeSchemaReference {
+func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetSchemaRegistry() SchemaRegistryReference {
 	if e == nil {
-		return EventGatewayParsedRecordTranscodeSchemaReference{}
+		return SchemaRegistryReference{}
 	}
-	return e.Reference
+	return e.SchemaRegistry
+}
+
+func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetSubject() string {
+	if e == nil {
+		return ""
+	}
+	return e.Subject
+}
+
+func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetVersion() string {
+	if e == nil {
+		return ""
+	}
+	return e.Version
+}
+
+func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetSchemaRefDestination() EventGatewayParsedRecordTranscodeSchemaRefDestination {
+	if e == nil {
+		return EventGatewayParsedRecordTranscodeSchemaRefDestination{}
+	}
+	return e.SchemaRefDestination
+}
+
+func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetSchemaRefDestinationConfluentFormat() *EventGatewayParsedRecordTranscodeSchemaRefDestinationConfluentFormat {
+	return e.GetSchemaRefDestination().EventGatewayParsedRecordTranscodeSchemaRefDestinationConfluentFormat
+}
+
+func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetSchemaRefDestinationRecordHeader() *EventGatewayParsedRecordTranscodeSchemaRefDestinationRecordHeader {
+	return e.GetSchemaRefDestination().EventGatewayParsedRecordTranscodeSchemaRefDestinationRecordHeader
+}
+
+func (e *EventGatewayParsedRecordTranscodeSchemaSourceReference) GetSchemaRefDestinationNone() *EventGatewayParsedRecordTranscodeSchemaRefDestinationNone {
+	return e.GetSchemaRefDestination().EventGatewayParsedRecordTranscodeSchemaRefDestinationNone
 }

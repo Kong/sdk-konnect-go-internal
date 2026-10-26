@@ -16,6 +16,7 @@ type ControlPlaneGeoFieldEqualsComparison struct {
 	// - `me` — Middle East
 	// - `in` — India
 	// - `sg` — Singapore
+	// - `uk` — United Kingdom
 	//
 	Eq ControlPlaneGeo `queryParam:"name=eq"`
 }

@@ -9,7 +9,7 @@ import (
 // UpdatePortalAuditLogWebhook - The request schema to modify an portal audit log webhook.
 type UpdatePortalAuditLogWebhook struct {
 	// Indicates if the data should be sent to the configured destination.
-	Enabled *bool `default:"false" json:"enabled"`
+	Enabled *bool `json:"enabled,omitempty"`
 	// ID of the audit log destination.
 	AuditLogDestinationID *string `json:"audit_log_destination_id,omitempty"`
 	// Whether to include the principal name in the audit log entries sent to the webhook.

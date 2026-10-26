@@ -20,7 +20,7 @@ type ContextInterfacesSDK interface {
 	// GetContextInterface - Get Context Interface
 	// Returns information about an individual Context Interface.
 	GetContextInterface(ctx context.Context, interfaceID string, opts ...operations.Option) (*operations.GetContextInterfaceResponse, error)
-	// UpdateContextInterface - Update MCP Server
+	// UpdateContextInterface - Update Context Interface
 	// Update an individual Context Interface.
 	UpdateContextInterface(ctx context.Context, interfaceID string, createMCPServerRequest components.CreateMCPServerRequest, opts ...operations.Option) (*operations.UpdateContextInterfaceResponse, error)
 	// PatchContextInterface - Partially Update Context Interface
@@ -36,6 +36,6 @@ type ContextInterfacesSDK interface {
 	// Returns the current aggregated deployment status of a Context Interface.
 	GetMcpServerStatus(ctx context.Context, interfaceID string, opts ...operations.Option) (*operations.GetMcpServerStatusResponse, error)
 	// GetContextInterfaceGeneratedCode - Get Generated Code for a Context Interface
-	// Generated MCP Server code of a Context Interface.
+	// Returns the generated MCP server code for a Context Interface.
 	GetContextInterfaceGeneratedCode(ctx context.Context, interfaceID string, opts ...operations.Option) (*operations.GetContextInterfaceGeneratedCodeResponse, error)
 }

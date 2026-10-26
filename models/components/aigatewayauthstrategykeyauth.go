@@ -6,139 +6,6 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AIGatewayAuthStrategyKeyAuthPrincipals - Authenticate against Kong Identity instead of local credentials.
-// Mutually exclusive with identity realms.
-type AIGatewayAuthStrategyKeyAuthPrincipals struct {
-	// When true, authenticate against Kong Identity instead of local credentials.
-	Enabled *bool `default:"false" json:"enabled"`
-	// The Kong Identity directory instance to authenticate against.
-	Directory *string `default:"default" json:"directory"`
-	// When true (default), reject the request if no matching principal is found in Kong Identity.
-	// When false, allow the request to continue unauthenticated instead.
-	//
-	ErrorOnMiss *bool `default:"true" json:"error_on_miss"`
-}
-
-func (a AIGatewayAuthStrategyKeyAuthPrincipals) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthPrincipals) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthPrincipals) GetEnabled() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.Enabled
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthPrincipals) GetDirectory() *string {
-	if a == nil {
-		return nil
-	}
-	return a.Directory
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthPrincipals) GetErrorOnMiss() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.ErrorOnMiss
-}
-
-// AIGatewayAuthStrategyKeyAuthConfig - Configuration for the key-auth auth strategy.
-// For advanced use cases, additional config properties can be sent in the request body.
-// See: https://developer.konghq.com/plugins/key-auth/reference/ for the list of properties
-type AIGatewayAuthStrategyKeyAuthConfig struct {
-	// An optional boolean value telling the plugin to show or hide the credential from the upstream service.
-	// If true, the plugin strips the credential from the request.
-	//
-	HideCredentials *bool `default:"true" json:"hide_credentials"`
-	// If enabled, reads the request body.
-	// Supported MIME types: application/www-form-urlencoded, application/json, and multipart/form-data.
-	//
-	KeyInBody *bool `default:"false" json:"key_in_body"`
-	// If enabled (default), the plugin reads the request header and tries to find the key in it.
-	//
-	KeyInHeader *bool `default:"true" json:"key_in_header"`
-	// If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
-	//
-	KeyInQuery *bool `default:"true" json:"key_in_query"`
-	// An array of strings containing the names of the keys to look for in the request.
-	//
-	KeyNames []string `json:"key_names,omitempty"`
-	// Authenticate against Kong Identity instead of local credentials.
-	// Mutually exclusive with identity realms.
-	//
-	Principals           *AIGatewayAuthStrategyKeyAuthPrincipals `json:"principals,omitempty"`
-	AdditionalProperties map[string]any                          `additionalProperties:"true" json:"-"`
-}
-
-func (a AIGatewayAuthStrategyKeyAuthConfig) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) GetHideCredentials() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.HideCredentials
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) GetKeyInBody() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.KeyInBody
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) GetKeyInHeader() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.KeyInHeader
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) GetKeyInQuery() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.KeyInQuery
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) GetKeyNames() []string {
-	if a == nil {
-		return nil
-	}
-	return a.KeyNames
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) GetPrincipals() *AIGatewayAuthStrategyKeyAuthPrincipals {
-	if a == nil {
-		return nil
-	}
-	return a.Principals
-}
-
-func (a *AIGatewayAuthStrategyKeyAuthConfig) GetAdditionalProperties() map[string]any {
-	if a == nil {
-		return nil
-	}
-	return a.AdditionalProperties
-}
-
 // AIGatewayAuthStrategyKeyAuth - Configuration for an auth strategy.
 type AIGatewayAuthStrategyKeyAuth struct {
 	// The display name for this auth strategy instance.
@@ -157,13 +24,24 @@ type AIGatewayAuthStrategyKeyAuth struct {
 	// Keys must be 1–63 characters long and start with an alphanumeric character.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
-	//lint:ignore U1000 accessed via reflection for JSON marshaling
-	type_ string `const:"key-auth" json:"type"`
-	// Configuration for the key-auth auth strategy.
-	// For advanced use cases, additional config properties can be sent in the request body.
-	// See: https://developer.konghq.com/plugins/key-auth/reference/ for the list of properties
+	// The Token Vault Datastore holding this entity's credential storage: the directory credentials
+	// are written to, and the encryption keys that seal them. Required when `token_vault` is set
+	// (on an auth strategy, when its credential manager is enabled), and the referenced Datastore
+	// must have type `token-vault`. Only one Datastore can be referenced.
 	//
-	Config *AIGatewayAuthStrategyKeyAuthConfig `json:"config,omitempty"`
+	// **Requires a minimum runtime version of `2.3`**.
+	Datastores []AIGatewayDatastoreRef `json:"datastores,omitempty"`
+	// Serves the self-service enrollment UI through which end users authorize the upstream providers
+	// this auth strategy authenticates against. Omit `token_vault` entirely to serve no such UI.
+	//
+	// Requires a `token-vault` Datastore reference in `datastores`; enabling the credential manager
+	// without one is rejected.
+	//
+	// **Requires a minimum runtime version of `2.3`**.
+	TokenVault *AIGatewayTokenVaultCredentialManagerInput `json:"token_vault,omitempty"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_  string                      `const:"key-auth" json:"type"`
+	Config *AIGWKeyAuthGeneratedConfig `json:"config,omitempty"`
 }
 
 func (a AIGatewayAuthStrategyKeyAuth) MarshalJSON() ([]byte, error) {
@@ -205,11 +83,25 @@ func (a *AIGatewayAuthStrategyKeyAuth) GetManagedBy() map[string]string {
 	return a.ManagedBy
 }
 
+func (a *AIGatewayAuthStrategyKeyAuth) GetDatastores() []AIGatewayDatastoreRef {
+	if a == nil {
+		return nil
+	}
+	return a.Datastores
+}
+
+func (a *AIGatewayAuthStrategyKeyAuth) GetTokenVault() *AIGatewayTokenVaultCredentialManagerInput {
+	if a == nil {
+		return nil
+	}
+	return a.TokenVault
+}
+
 func (a *AIGatewayAuthStrategyKeyAuth) GetType() string {
 	return "key-auth"
 }
 
-func (a *AIGatewayAuthStrategyKeyAuth) GetConfig() *AIGatewayAuthStrategyKeyAuthConfig {
+func (a *AIGatewayAuthStrategyKeyAuth) GetConfig() *AIGWKeyAuthGeneratedConfig {
 	if a == nil {
 		return nil
 	}

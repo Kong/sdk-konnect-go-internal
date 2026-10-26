@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -10,12 +11,23 @@ import (
 type ListConfigStoresInWorkspaceRequest struct {
 	// The UUID of your control plane. This variable is available in the Konnect manager.
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
-	// The maximum number of items to include per page. The last page of a collection may include fewer items.
-	PageSize *int64 `queryParam:"style=form,explode=true,name=page[size]"`
-	// Request the next page of data, starting with the item after this parameter.
-	PageAfter *string `queryParam:"style=form,explode=true,name=page[after]"`
+	// Number of resources to be returned.
+	Size *int64 `default:"100" queryParam:"style=form,explode=true,name=size"`
+	// Offset from which to return the next set of resources. Use the value of the 'offset' field from the response of a list operation as input here to paginate through all the resources
+	Offset *string `queryParam:"style=form,explode=true,name=offset"`
 	// The name of the workspace
 	Workspace string `pathParam:"style=simple,explode=false,name=workspace"`
+}
+
+func (l ListConfigStoresInWorkspaceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListConfigStoresInWorkspaceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (l *ListConfigStoresInWorkspaceRequest) GetControlPlaneID() string {
@@ -25,18 +37,18 @@ func (l *ListConfigStoresInWorkspaceRequest) GetControlPlaneID() string {
 	return l.ControlPlaneID
 }
 
-func (l *ListConfigStoresInWorkspaceRequest) GetPageSize() *int64 {
+func (l *ListConfigStoresInWorkspaceRequest) GetSize() *int64 {
 	if l == nil {
 		return nil
 	}
-	return l.PageSize
+	return l.Size
 }
 
-func (l *ListConfigStoresInWorkspaceRequest) GetPageAfter() *string {
+func (l *ListConfigStoresInWorkspaceRequest) GetOffset() *string {
 	if l == nil {
 		return nil
 	}
-	return l.PageAfter
+	return l.Offset
 }
 
 func (l *ListConfigStoresInWorkspaceRequest) GetWorkspace() string {

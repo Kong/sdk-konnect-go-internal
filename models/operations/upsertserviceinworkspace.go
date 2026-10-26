@@ -15,7 +15,7 @@ type UpsertServiceInWorkspaceRequest struct {
 	// The name of the workspace
 	Workspace string `pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of the Service
-	Service components.Service `request:"mediaType=application/json"`
+	ServiceRequest components.ServiceRequest `request:"mediaType=application/json"`
 }
 
 func (u *UpsertServiceInWorkspaceRequest) GetServiceID() string {
@@ -39,11 +39,11 @@ func (u *UpsertServiceInWorkspaceRequest) GetWorkspace() string {
 	return u.Workspace
 }
 
-func (u *UpsertServiceInWorkspaceRequest) GetService() components.Service {
+func (u *UpsertServiceInWorkspaceRequest) GetServiceRequest() components.ServiceRequest {
 	if u == nil {
-		return components.Service{}
+		return components.ServiceRequest{}
 	}
-	return u.Service
+	return u.ServiceRequest
 }
 
 type UpsertServiceInWorkspaceResponse struct {

@@ -1,0 +1,85 @@
+diff --git i/overlays/go-sdk/ai-gateway-auth-strategy-configs.yaml w/overlays/go-sdk/ai-gateway-auth-strategy-configs.yaml
+index 93aa41e28..7e17de5b8 100644
+--- i/overlays/go-sdk/ai-gateway-auth-strategy-configs.yaml
++++ w/overlays/go-sdk/ai-gateway-auth-strategy-configs.yaml
+@@ -40,3 +40,21 @@ actions:
+   - target: $["components"]["schemas"]["AIGWOpenIDConnectGeneratedConfig"]
+     update:
+       required: [ issuer, cache_tokens_salt ]
++  - target: $["components"]["schemas"]["AIGWOpenIDConnectGeneratedConfig"]["properties"]
++    update:
++      credential_claims:
++        type: array
++        x-min-runtime-version: '2.3'
++        description: |
++          Claim paths used to derive virtual credentials when consumer mapping is not used.
++          The paths are evaluated in order. The first matching claim is used.
++        items:
++          type: array
++          description: >-
++            Path to the claim in the token payload. For example, `[ account, id ]` maps to
++            `account.id`.
++          minItems: 1
++          items:
++            type: string
++        default:
++          - - sub
+diff --git i/tools/filter-operations.js w/tools/filter-operations.js
+index 4f8f1e306..b9a789135 100644
+--- i/tools/filter-operations.js
++++ w/tools/filter-operations.js
+@@ -82,7 +82,7 @@ function processScopedAnnotations(doc, sdkName = process.env.SDK_NAME) {
+       if (sdkName.includes(terraformSdkName) && this.node["x-sdk-scoped-annotation"][terraformSdkName]) {
+         // applies to all terraform providers
+         Object.assign(this.node, this.node["x-sdk-scoped-annotation"][terraformSdkName]);
+-      } else if (sdkName === goSdkName && this.node["x-sdk-scoped-annotation"][goSdkName])  {
++      } else if (sdkName.startsWith(goSdkName) && this.node["x-sdk-scoped-annotation"][goSdkName])  {
+         // applies to all go-sdks
+         Object.assign(this.node, this.node["x-sdk-scoped-annotation"][goSdkName]);
+       }
+diff --git i/tools/gen_internal_go_sdk.sh w/tools/gen_internal_go_sdk.sh
+index e88e712c8..5df1d5ec3 100755
+--- i/tools/gen_internal_go_sdk.sh
++++ w/tools/gen_internal_go_sdk.sh
+@@ -23,8 +23,11 @@ then
+   exit 1
+ fi
+
++set -euo pipefail
++
+ # Process specs
+ $DIR/run.sh ${SDK_NAME};
++GEN_FILE="${DIR}/../${OAS_PATH}" node $DIR/restore-aigw-generated-configs.js
+
+ OVERLAYS=(
+   # NOTE(pmalek): Remove defaults from SDK types. Those defaults cause the generated
+@@ -38,6 +41,7 @@ OVERLAYS=(
+   "overlays/go-sdk/partial-port-referenceable-overlay.yaml"
+   # Note - remove this once Portal IdP API bugs are fixed - TPS-4055, TPS-3992
+   "overlays/go-sdk/portal-idp-create.yaml"
++  "overlays/go-sdk/ai-gateway-auth-strategy-configs.yaml"
+   # Drop the unsupported JSON Schema `not` keyword from MCPPackage.version.
+   "overlays/go-sdk/ai-builder.yaml"
+ )
+@@ -50,6 +54,8 @@ node $DIR/filter-operations.js
+ # Annotate the merged OAS with the source spec title/version/path it was built from
+ node $DIR/add-input-schemas.js
+
++sed -i 's/[[:blank:]]*$//' "${DIR}/../${OAS_PATH}"
++
+ copy_to_sdk_dir "${DIR}/../../${SDK_DIR}" "${DIR}/../${OAS_PATH}"
+
+ # Clean up environment variables
+diff --git i/tools/restore-aigw-generated-configs.js w/tools/restore-aigw-generated-configs.js
+index 3ad812bab..29b11433e 100644
+--- i/tools/restore-aigw-generated-configs.js
++++ w/tools/restore-aigw-generated-configs.js
+@@ -17,7 +17,7 @@ const AIGW_GENERATED_CONFIG_SCHEMAS = [
+
+ async function restoreAIGatewayGeneratedConfigs() {
+   const sdkName = process.env.SDK_NAME;
+-  const needsRestore = sdkName && (sdkName.includes("terraform") || sdkName === "go-sdk");
++  const needsRestore = sdkName && (sdkName.includes("terraform") || sdkName.startsWith("go-sdk"));
+   if (!needsRestore) {
+     return;
+   }

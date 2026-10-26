@@ -10,6 +10,125 @@ import (
 	"time"
 )
 
+type AIGatewayDatastoreTokenVaultDatastore struct {
+	// A user-defined unique identifier for this Datastore, used as a stable human-readable reference.
+	// This value is immutable after creation.
+	//
+	Name string `json:"name"`
+	// The display name for this Datastore.
+	DisplayName string `json:"display_name"`
+	// The description of the Datastore.
+	Description *string `default:"" json:"description"`
+	// Public labels store information about an entity that can be used for filtering a list of objects.
+	//
+	// Public labels are intended to store **PUBLIC** metadata.
+	//
+	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+	//
+	Labels map[string]string `json:"labels,omitempty"`
+	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
+	//
+	// Keys must be 1–63 characters long and start with an alphanumeric character.
+	//
+	ManagedBy map[string]string `json:"managed_by,omitempty"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_  string                          `const:"token-vault" json:"type"`
+	Config TokenVaultDatastoreConfigOutput `json:"config"`
+	// Contains a unique identifier used for this resource.
+	ID string `json:"id"`
+	// An ISO-8601 timestamp representation of entity creation date.
+	CreatedAt time.Time `json:"created_at"`
+	// An ISO-8601 timestamp representation of entity update date.
+	UpdatedAt time.Time `json:"updated_at"`
+	// An immutable read-only flag to identify resource managed by Konnect services.
+	KonnectManaged *bool `json:"konnect_managed,omitempty"`
+}
+
+func (a AIGatewayDatastoreTokenVaultDatastore) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"name", "display_name", "type", "config", "id", "created_at", "updated_at"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetName() string {
+	if a == nil {
+		return ""
+	}
+	return a.Name
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetDisplayName() string {
+	if a == nil {
+		return ""
+	}
+	return a.DisplayName
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetDescription() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Description
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetLabels() map[string]string {
+	if a == nil {
+		return nil
+	}
+	return a.Labels
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetManagedBy() map[string]string {
+	if a == nil {
+		return nil
+	}
+	return a.ManagedBy
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetType() string {
+	return "token-vault"
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetConfig() TokenVaultDatastoreConfigOutput {
+	if a == nil {
+		return TokenVaultDatastoreConfigOutput{}
+	}
+	return a.Config
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetID() string {
+	if a == nil {
+		return ""
+	}
+	return a.ID
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetCreatedAt() time.Time {
+	if a == nil {
+		return time.Time{}
+	}
+	return a.CreatedAt
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetUpdatedAt() time.Time {
+	if a == nil {
+		return time.Time{}
+	}
+	return a.UpdatedAt
+}
+
+func (a *AIGatewayDatastoreTokenVaultDatastore) GetKonnectManaged() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.KonnectManaged
+}
+
 // AIGatewayDatastoreVectorDBDatastore - Carries the pgvector connection only. `strategy`, `dimensions`, `distance_metric`, and `threshold`
 // belong to the policy or model referencing this Datastore, not the Datastore itself.
 type AIGatewayDatastoreVectorDBDatastore struct {
@@ -42,6 +161,8 @@ type AIGatewayDatastoreVectorDBDatastore struct {
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
 	UpdatedAt time.Time `json:"updated_at"`
+	// An immutable read-only flag to identify resource managed by Konnect services.
+	KonnectManaged *bool `json:"konnect_managed,omitempty"`
 }
 
 func (a AIGatewayDatastoreVectorDBDatastore) MarshalJSON() ([]byte, error) {
@@ -122,6 +243,13 @@ func (a *AIGatewayDatastoreVectorDBDatastore) GetUpdatedAt() time.Time {
 	return a.UpdatedAt
 }
 
+func (a *AIGatewayDatastoreVectorDBDatastore) GetKonnectManaged() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.KonnectManaged
+}
+
 type AIGatewayDatastoreRedisEEDatastore struct {
 	// A user-defined unique identifier for this Datastore, used as a stable human-readable reference.
 	// This value is immutable after creation.
@@ -152,6 +280,8 @@ type AIGatewayDatastoreRedisEEDatastore struct {
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
 	UpdatedAt time.Time `json:"updated_at"`
+	// An immutable read-only flag to identify resource managed by Konnect services.
+	KonnectManaged *bool `json:"konnect_managed,omitempty"`
 }
 
 func (a AIGatewayDatastoreRedisEEDatastore) MarshalJSON() ([]byte, error) {
@@ -232,6 +362,13 @@ func (a *AIGatewayDatastoreRedisEEDatastore) GetUpdatedAt() time.Time {
 	return a.UpdatedAt
 }
 
+func (a *AIGatewayDatastoreRedisEEDatastore) GetKonnectManaged() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.KonnectManaged
+}
+
 type AIGatewayDatastoreRedisCEDatastore struct {
 	// A user-defined unique identifier for this Datastore, used as a stable human-readable reference.
 	// This value is immutable after creation.
@@ -262,6 +399,8 @@ type AIGatewayDatastoreRedisCEDatastore struct {
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
 	UpdatedAt time.Time `json:"updated_at"`
+	// An immutable read-only flag to identify resource managed by Konnect services.
+	KonnectManaged *bool `json:"konnect_managed,omitempty"`
 }
 
 func (a AIGatewayDatastoreRedisCEDatastore) MarshalJSON() ([]byte, error) {
@@ -342,19 +481,28 @@ func (a *AIGatewayDatastoreRedisCEDatastore) GetUpdatedAt() time.Time {
 	return a.UpdatedAt
 }
 
+func (a *AIGatewayDatastoreRedisCEDatastore) GetKonnectManaged() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.KonnectManaged
+}
+
 type AIGatewayDatastoreType string
 
 const (
-	AIGatewayDatastoreTypeRedisCe  AIGatewayDatastoreType = "redis-ce"
-	AIGatewayDatastoreTypeRedisEe  AIGatewayDatastoreType = "redis-ee"
-	AIGatewayDatastoreTypeVectordb AIGatewayDatastoreType = "vectordb"
+	AIGatewayDatastoreTypeRedisCe    AIGatewayDatastoreType = "redis-ce"
+	AIGatewayDatastoreTypeRedisEe    AIGatewayDatastoreType = "redis-ee"
+	AIGatewayDatastoreTypeVectordb   AIGatewayDatastoreType = "vectordb"
+	AIGatewayDatastoreTypeTokenVault AIGatewayDatastoreType = "token-vault"
 )
 
 // AIGatewayDatastore - Configuration for an AI Gateway Datastore.
 type AIGatewayDatastore struct {
-	AIGatewayDatastoreRedisCEDatastore  *AIGatewayDatastoreRedisCEDatastore  `queryParam:"inline" union:"member"`
-	AIGatewayDatastoreRedisEEDatastore  *AIGatewayDatastoreRedisEEDatastore  `queryParam:"inline" union:"member"`
-	AIGatewayDatastoreVectorDBDatastore *AIGatewayDatastoreVectorDBDatastore `queryParam:"inline" union:"member"`
+	AIGatewayDatastoreRedisCEDatastore    *AIGatewayDatastoreRedisCEDatastore    `queryParam:"inline" union:"member"`
+	AIGatewayDatastoreRedisEEDatastore    *AIGatewayDatastoreRedisEEDatastore    `queryParam:"inline" union:"member"`
+	AIGatewayDatastoreVectorDBDatastore   *AIGatewayDatastoreVectorDBDatastore   `queryParam:"inline" union:"member"`
+	AIGatewayDatastoreTokenVaultDatastore *AIGatewayDatastoreTokenVaultDatastore `queryParam:"inline" union:"member"`
 
 	Type AIGatewayDatastoreType
 }
@@ -383,6 +531,15 @@ func CreateAIGatewayDatastoreVectordb(vectordb AIGatewayDatastoreVectorDBDatasto
 	return AIGatewayDatastore{
 		AIGatewayDatastoreVectorDBDatastore: &vectordb,
 		Type:                                typ,
+	}
+}
+
+func CreateAIGatewayDatastoreTokenVault(tokenVault AIGatewayDatastoreTokenVaultDatastore) AIGatewayDatastore {
+	typ := AIGatewayDatastoreTypeTokenVault
+
+	return AIGatewayDatastore{
+		AIGatewayDatastoreTokenVaultDatastore: &tokenVault,
+		Type:                                  typ,
 	}
 }
 
@@ -432,6 +589,15 @@ func (u *AIGatewayDatastore) UnmarshalJSON(data []byte) (err error) {
 		u.AIGatewayDatastoreVectorDBDatastore = aiGatewayDatastoreVectorDBDatastore
 		u.Type = AIGatewayDatastoreTypeVectordb
 		return nil
+	case "token-vault":
+		aiGatewayDatastoreTokenVaultDatastore := new(AIGatewayDatastoreTokenVaultDatastore)
+		if err := utils.UnmarshalJSON(data, &aiGatewayDatastoreTokenVaultDatastore, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == token-vault) type AIGatewayDatastoreTokenVaultDatastore within AIGatewayDatastore: %w", string(data), err)
+		}
+
+		u.AIGatewayDatastoreTokenVaultDatastore = aiGatewayDatastoreTokenVaultDatastore
+		u.Type = AIGatewayDatastoreTypeTokenVault
+		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayDatastore", string(data))
@@ -448,6 +614,10 @@ func (u AIGatewayDatastore) MarshalJSON() ([]byte, error) {
 
 	if u.AIGatewayDatastoreVectorDBDatastore != nil {
 		return utils.MarshalJSON(u.AIGatewayDatastoreVectorDBDatastore, "", true)
+	}
+
+	if u.AIGatewayDatastoreTokenVaultDatastore != nil {
+		return utils.MarshalJSON(u.AIGatewayDatastoreTokenVaultDatastore, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type AIGatewayDatastore: all fields are null")

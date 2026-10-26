@@ -135,6 +135,8 @@ func main() {
                 // res.AIGatewayDatastore.AIGatewayDatastoreRedisEEDatastore is populated
             case components.AIGatewayDatastoreTypeVectordb:
                 // res.AIGatewayDatastore.AIGatewayDatastoreVectorDBDatastore is populated
+            case components.AIGatewayDatastoreTypeTokenVault:
+                // res.AIGatewayDatastore.AIGatewayDatastoreTokenVaultDatastore is populated
         }
 
     }
@@ -204,6 +206,8 @@ func main() {
                 // res.AIGatewayDatastore.AIGatewayDatastoreRedisEEDatastore is populated
             case components.AIGatewayDatastoreTypeVectordb:
                 // res.AIGatewayDatastore.AIGatewayDatastoreVectorDBDatastore is populated
+            case components.AIGatewayDatastoreTypeTokenVault:
+                // res.AIGatewayDatastore.AIGatewayDatastoreTokenVaultDatastore is populated
         }
 
     }
@@ -289,6 +293,8 @@ func main() {
                 // res.AIGatewayDatastore.AIGatewayDatastoreRedisEEDatastore is populated
             case components.AIGatewayDatastoreTypeVectordb:
                 // res.AIGatewayDatastore.AIGatewayDatastoreVectorDBDatastore is populated
+            case components.AIGatewayDatastoreTypeTokenVault:
+                // res.AIGatewayDatastore.AIGatewayDatastoreTokenVaultDatastore is populated
         }
 
     }

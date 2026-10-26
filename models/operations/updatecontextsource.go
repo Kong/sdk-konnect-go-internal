@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
@@ -13,8 +14,8 @@ import (
 type UpdateContextSourceRequestBodyType string
 
 const (
-	UpdateContextSourceRequestBodyTypeAPIResourcePayload       UpdateContextSourceRequestBodyType = "ApiResourcePayload"
-	UpdateContextSourceRequestBodyTypeMcpServerResourcePayload UpdateContextSourceRequestBodyType = "McpServerResourcePayload"
+	UpdateContextSourceRequestBodyTypeAPI       UpdateContextSourceRequestBodyType = "api"
+	UpdateContextSourceRequestBodyTypeMcpServer UpdateContextSourceRequestBodyType = "mcp_server"
 )
 
 type UpdateContextSourceRequestBody struct {
@@ -24,20 +25,26 @@ type UpdateContextSourceRequestBody struct {
 	Type UpdateContextSourceRequestBodyType
 }
 
-func CreateUpdateContextSourceRequestBodyAPIResourcePayload(apiResourcePayload components.APIResourcePayload) UpdateContextSourceRequestBody {
-	typ := UpdateContextSourceRequestBodyTypeAPIResourcePayload
+func CreateUpdateContextSourceRequestBodyAPI(api components.APIResourcePayload) UpdateContextSourceRequestBody {
+	typ := UpdateContextSourceRequestBodyTypeAPI
+
+	typStr := components.APIResourcePayloadType(typ)
+	api.Type = &typStr
 
 	return UpdateContextSourceRequestBody{
-		APIResourcePayload: &apiResourcePayload,
+		APIResourcePayload: &api,
 		Type:               typ,
 	}
 }
 
-func CreateUpdateContextSourceRequestBodyMcpServerResourcePayload(mcpServerResourcePayload components.McpServerResourcePayload) UpdateContextSourceRequestBody {
-	typ := UpdateContextSourceRequestBodyTypeMcpServerResourcePayload
+func CreateUpdateContextSourceRequestBodyMcpServer(mcpServer components.McpServerResourcePayload) UpdateContextSourceRequestBody {
+	typ := UpdateContextSourceRequestBodyTypeMcpServer
+
+	typStr := components.McpServerResourcePayloadType(typ)
+	mcpServer.Type = &typStr
 
 	return UpdateContextSourceRequestBody{
-		McpServerResourcePayload: &mcpServerResourcePayload,
+		McpServerResourcePayload: &mcpServer,
 		Type:                     typ,
 	}
 }
@@ -51,17 +58,33 @@ func (u *UpdateContextSourceRequestBody) UnmarshalJSON(data []byte) (err error) 
 		}
 	}()
 
-	var apiResourcePayload components.APIResourcePayload = components.APIResourcePayload{}
-	if err := utils.UnmarshalJSON(data, &apiResourcePayload, "", true, nil); err == nil {
-		u.APIResourcePayload = &apiResourcePayload
-		u.Type = UpdateContextSourceRequestBodyTypeAPIResourcePayload
-		return nil
+	type discriminator struct {
+		Type string `json:"type"`
 	}
 
-	var mcpServerResourcePayload components.McpServerResourcePayload = components.McpServerResourcePayload{}
-	if err := utils.UnmarshalJSON(data, &mcpServerResourcePayload, "", true, nil); err == nil {
-		u.McpServerResourcePayload = &mcpServerResourcePayload
-		u.Type = UpdateContextSourceRequestBodyTypeMcpServerResourcePayload
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	}
+
+	switch dis.Type {
+	case "api":
+		apiResourcePayload := new(components.APIResourcePayload)
+		if err := utils.UnmarshalJSON(data, &apiResourcePayload, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == api) type components.APIResourcePayload within UpdateContextSourceRequestBody: %w", string(data), err)
+		}
+
+		u.APIResourcePayload = apiResourcePayload
+		u.Type = UpdateContextSourceRequestBodyTypeAPI
+		return nil
+	case "mcp_server":
+		mcpServerResourcePayload := new(components.McpServerResourcePayload)
+		if err := utils.UnmarshalJSON(data, &mcpServerResourcePayload, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == mcp_server) type components.McpServerResourcePayload within UpdateContextSourceRequestBody: %w", string(data), err)
+		}
+
+		u.McpServerResourcePayload = mcpServerResourcePayload
+		u.Type = UpdateContextSourceRequestBodyTypeMcpServer
 		return nil
 	}
 
@@ -98,6 +121,14 @@ func (u *UpdateContextSourceRequest) GetRequestBody() UpdateContextSourceRequest
 		return UpdateContextSourceRequestBody{}
 	}
 	return u.RequestBody
+}
+
+func (u *UpdateContextSourceRequest) GetRequestBodyAPI() *components.APIResourcePayload {
+	return u.GetRequestBody().APIResourcePayload
+}
+
+func (u *UpdateContextSourceRequest) GetRequestBodyMcpServer() *components.McpServerResourcePayload {
+	return u.GetRequestBody().McpServerResourcePayload
 }
 
 type UpdateContextSourceResponse struct {

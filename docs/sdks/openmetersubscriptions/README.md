@@ -811,6 +811,9 @@ func main() {
 
 ## MigrateSubscription
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Migrates to a later version of the current plan. With starting_phase omitted and
 billing_anchor omitted or unchanged, migration amends the subscription in place:
 unchanged items retain their service periods and both response entries have the
@@ -884,6 +887,9 @@ func main() {
 
 ## RestoreSubscription
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Restores the subscription by deleting any later-scheduled successor
 subscriptions and continuing this one indefinitely. This is the inverse of a
 future-dated change, which schedules a successor. Restore is not available when
@@ -945,6 +951,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## UnscheduleSubscription
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Deletes a scheduled subscription that has not yet become active, removing it and
 resolving any scheduling conflict it was holding. This is distinct from

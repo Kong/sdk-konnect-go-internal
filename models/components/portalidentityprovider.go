@@ -12,22 +12,22 @@ import (
 type PortalIdentityProviderConfigType string
 
 const (
-	PortalIdentityProviderConfigTypeOIDCIdentityProviderConfigOutput PortalIdentityProviderConfigType = "OIDCIdentityProviderConfig_output"
+	PortalIdentityProviderConfigTypePortalOIDCIdentityProviderConfig PortalIdentityProviderConfigType = "PortalOIDCIdentityProviderConfig"
 	PortalIdentityProviderConfigTypePortalSAMLIdentityProviderConfig PortalIdentityProviderConfigType = "PortalSAMLIdentityProviderConfig"
 )
 
 type PortalIdentityProviderConfig struct {
-	OIDCIdentityProviderConfigOutput *OIDCIdentityProviderConfigOutput `queryParam:"inline" union:"member"`
+	PortalOIDCIdentityProviderConfig *PortalOIDCIdentityProviderConfig `queryParam:"inline" union:"member"`
 	PortalSAMLIdentityProviderConfig *PortalSAMLIdentityProviderConfig `queryParam:"inline" union:"member"`
 
 	Type PortalIdentityProviderConfigType
 }
 
-func CreatePortalIdentityProviderConfigOIDCIdentityProviderConfigOutput(oidcIdentityProviderConfigOutput OIDCIdentityProviderConfigOutput) PortalIdentityProviderConfig {
-	typ := PortalIdentityProviderConfigTypeOIDCIdentityProviderConfigOutput
+func CreatePortalIdentityProviderConfigPortalOIDCIdentityProviderConfig(portalOIDCIdentityProviderConfig PortalOIDCIdentityProviderConfig) PortalIdentityProviderConfig {
+	typ := PortalIdentityProviderConfigTypePortalOIDCIdentityProviderConfig
 
 	return PortalIdentityProviderConfig{
-		OIDCIdentityProviderConfigOutput: &oidcIdentityProviderConfigOutput,
+		PortalOIDCIdentityProviderConfig: &portalOIDCIdentityProviderConfig,
 		Type:                             typ,
 	}
 }
@@ -50,10 +50,10 @@ func (u *PortalIdentityProviderConfig) UnmarshalJSON(data []byte) (err error) {
 		}
 	}()
 
-	var oidcIdentityProviderConfigOutput OIDCIdentityProviderConfigOutput = OIDCIdentityProviderConfigOutput{}
-	if err := utils.UnmarshalJSON(data, &oidcIdentityProviderConfigOutput, "", true, nil); err == nil {
-		u.OIDCIdentityProviderConfigOutput = &oidcIdentityProviderConfigOutput
-		u.Type = PortalIdentityProviderConfigTypeOIDCIdentityProviderConfigOutput
+	var portalOIDCIdentityProviderConfig PortalOIDCIdentityProviderConfig = PortalOIDCIdentityProviderConfig{}
+	if err := utils.UnmarshalJSON(data, &portalOIDCIdentityProviderConfig, "", true, nil); err == nil {
+		u.PortalOIDCIdentityProviderConfig = &portalOIDCIdentityProviderConfig
+		u.Type = PortalIdentityProviderConfigTypePortalOIDCIdentityProviderConfig
 		return nil
 	}
 
@@ -68,8 +68,8 @@ func (u *PortalIdentityProviderConfig) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (u PortalIdentityProviderConfig) MarshalJSON() ([]byte, error) {
-	if u.OIDCIdentityProviderConfigOutput != nil {
-		return utils.MarshalJSON(u.OIDCIdentityProviderConfigOutput, "", true)
+	if u.PortalOIDCIdentityProviderConfig != nil {
+		return utils.MarshalJSON(u.PortalOIDCIdentityProviderConfig, "", true)
 	}
 
 	if u.PortalSAMLIdentityProviderConfig != nil {

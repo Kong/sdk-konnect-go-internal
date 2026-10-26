@@ -8,26 +8,26 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type Type string
+type URLAPISpecProviderType string
 
 const (
-	TypeURL Type = "url"
+	URLAPISpecProviderTypeURL URLAPISpecProviderType = "url"
 )
 
-func (e Type) ToPointer() *Type {
+func (e URLAPISpecProviderType) ToPointer() *URLAPISpecProviderType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *URLAPISpecProviderType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "url":
-		*e = Type(v)
+		*e = URLAPISpecProviderType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for URLAPISpecProviderType: %v", v)
 	}
 }
 
@@ -57,7 +57,7 @@ func (u *URLAPISpecProviderConfig) GetURL() string {
 }
 
 type URLAPISpecProvider struct {
-	Type   Type                     `json:"type"`
+	Type   URLAPISpecProviderType   `json:"type"`
 	Config URLAPISpecProviderConfig `json:"config"`
 }
 
@@ -72,9 +72,9 @@ func (u *URLAPISpecProvider) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *URLAPISpecProvider) GetType() Type {
+func (u *URLAPISpecProvider) GetType() URLAPISpecProviderType {
 	if u == nil {
-		return Type("")
+		return URLAPISpecProviderType("")
 	}
 	return u.Type
 }

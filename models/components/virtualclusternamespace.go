@@ -5,8 +5,10 @@ package components
 // VirtualClusterNamespaceMode - * hide_prefix - the configured prefix is hidden from clients for topics and IDs when reading.
 //
 //	Created resources are written with the prefix on the backend cluster.
-//   - enforce_prefix - the configured prefix remains visible to clients.
-//     Created resources must include the prefix or the request will fail.
+//
+// * enforce_prefix - the configured prefix remains visible to clients.
+//
+//	Created resources must include the prefix or the request will fail.
 type VirtualClusterNamespaceMode string
 
 const (
@@ -33,12 +35,32 @@ func (e *VirtualClusterNamespaceMode) IsExact() bool {
 // It allows to either hide or enforce a static prefix on resources (topics, consumer group IDs, transaction IDs).
 type VirtualClusterNamespace struct {
 	// * hide_prefix - the configured prefix is hidden from clients for topics and IDs when reading.
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   Created resources are written with the prefix on the backend cluster.
 	// * enforce_prefix - the configured prefix remains visible to clients.
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   Created resources must include the prefix or the request will fail.
 	//
 	Mode VirtualClusterNamespaceMode `json:"mode"`
 	// The namespace is differentiated by this chosen prefix.
+	// The prefix is prepended to Kafka topic names, so it can only contain the characters Kafka allows in them: ASCII letters, digits, `.`, `_` and `-`.
+	// It must contain at least one character other than `.` and be at most 100 characters long to leave room for the rest of the topic name (Kafka limits topic names to 249 characters).
 	// For example, if the prefix is set to "analytics_" the topic named "analytics_user_clicks" is available to the clients
 	// of the virtual cluster. Topics without the prefix will be ignored unless added via `additional.topics`.
 	//

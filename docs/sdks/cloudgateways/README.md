@@ -167,9 +167,11 @@ the desired state — Kong diffs it against the current configuration, then adds
 groups to match. Any network referenced in the request that is currently `offline` automatically transitions
 to `initializing`.
 
-Use `kind: dedicated.v0` (default) for dedicated Cloud Gateways — `version`, `cloud_gateway_network_id`, and
-`autoscale` are required. Use `kind: serverless.v1` for serverless Cloud Gateways — those three fields must
-be omitted.
+For a `Dedicated API gateway`, use kind: dedicated.v0 and type: api (both defaults); version,
+cloud_gateway_network_id, and autoscale are required. For a `Dedicated AI gateway`, use
+kind: dedicated.v0 and type: ai; cloud_gateway_network_id is required, while version, autoscale,
+and environment must be omitted. For a `Serverless gateway`, use kind: serverless.v1; version,
+cloud_gateway_network_id, and autoscale must be omitted.
 
 
 ### Example Usage
@@ -217,6 +219,7 @@ func main() {
                 },
             },
         },
+        APIAccess: components.APIAccessPrivatePlusPublic.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

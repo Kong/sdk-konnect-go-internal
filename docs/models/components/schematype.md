@@ -22,3 +22,4 @@ custom := components.SchemaType("custom_value")
 | ---------------- | ---------------- |
 | `SchemaTypeAvro` | avro             |
 | `SchemaTypeJSON` | json             |
+| `SchemaTypeAny`  | any              |

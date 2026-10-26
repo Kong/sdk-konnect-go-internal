@@ -6,13 +6,13 @@
 ### APIResourcePayload
 
 ```go
-createContextSourceRequestBody := operations.CreateCreateContextSourceRequestBodyAPIResourcePayload(components.APIResourcePayload{/* values here */})
+createContextSourceRequestBody := operations.CreateCreateContextSourceRequestBodyAPI(components.APIResourcePayload{/* values here */})
 ```
 
 ### McpServerResourcePayload
 
 ```go
-createContextSourceRequestBody := operations.CreateCreateContextSourceRequestBodyMcpServerResourcePayload(components.McpServerResourcePayload{/* values here */})
+createContextSourceRequestBody := operations.CreateCreateContextSourceRequestBodyMcpServer(components.McpServerResourcePayload{/* values here */})
 ```
 
 ## Union Discrimination
@@ -21,9 +21,9 @@ Use the `Type` field to determine which variant is active, then access the corre
 
 ```go
 switch createContextSourceRequestBody.Type {
-	case operations.CreateContextSourceRequestBodyTypeAPIResourcePayload:
+	case operations.CreateContextSourceRequestBodyTypeAPI:
 		// createContextSourceRequestBody.APIResourcePayload is populated
-	case operations.CreateContextSourceRequestBodyTypeMcpServerResourcePayload:
+	case operations.CreateContextSourceRequestBodyTypeMcpServer:
 		// createContextSourceRequestBody.McpServerResourcePayload is populated
 }
 ```

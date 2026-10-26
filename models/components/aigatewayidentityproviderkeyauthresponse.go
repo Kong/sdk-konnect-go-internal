@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-// Principals - Authenticate against Kong Identity instead of local credentials.
+// AIGatewayIdentityProviderKeyAuthResponsePrincipals - Authenticate against Kong Identity instead of local credentials.
 // Mutually exclusive with identity realms.
-type Principals struct {
+type AIGatewayIdentityProviderKeyAuthResponsePrincipals struct {
 	// When true, authenticate against Kong Identity instead of local credentials.
 	Enabled *bool `default:"false" json:"enabled"`
 	// The Kong Identity directory instance to authenticate against.
@@ -20,36 +20,36 @@ type Principals struct {
 	ErrorOnMiss *bool `default:"true" json:"error_on_miss"`
 }
 
-func (p Principals) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
+func (a AIGatewayIdentityProviderKeyAuthResponsePrincipals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (p *Principals) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *Principals) GetEnabled() *bool {
-	if p == nil {
+func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) GetEnabled() *bool {
+	if a == nil {
 		return nil
 	}
-	return p.Enabled
+	return a.Enabled
 }
 
-func (p *Principals) GetDirectory() *string {
-	if p == nil {
+func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) GetDirectory() *string {
+	if a == nil {
 		return nil
 	}
-	return p.Directory
+	return a.Directory
 }
 
-func (p *Principals) GetErrorOnMiss() *bool {
-	if p == nil {
+func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) GetErrorOnMiss() *bool {
+	if a == nil {
 		return nil
 	}
-	return p.ErrorOnMiss
+	return a.ErrorOnMiss
 }
 
 // AIGatewayIdentityProviderKeyAuthResponseConfig - Configuration for the Kong Key auth identity provider.
@@ -76,8 +76,8 @@ type AIGatewayIdentityProviderKeyAuthResponseConfig struct {
 	// Authenticate against Kong Identity instead of local credentials.
 	// Mutually exclusive with identity realms.
 	//
-	Principals           *Principals    `json:"principals,omitempty"`
-	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+	Principals           *AIGatewayIdentityProviderKeyAuthResponsePrincipals `json:"principals,omitempty"`
+	AdditionalProperties map[string]any                                      `additionalProperties:"true" json:"-"`
 }
 
 func (a AIGatewayIdentityProviderKeyAuthResponseConfig) MarshalJSON() ([]byte, error) {
@@ -126,7 +126,7 @@ func (a *AIGatewayIdentityProviderKeyAuthResponseConfig) GetKeyNames() []string 
 	return a.KeyNames
 }
 
-func (a *AIGatewayIdentityProviderKeyAuthResponseConfig) GetPrincipals() *Principals {
+func (a *AIGatewayIdentityProviderKeyAuthResponseConfig) GetPrincipals() *AIGatewayIdentityProviderKeyAuthResponsePrincipals {
 	if a == nil {
 		return nil
 	}

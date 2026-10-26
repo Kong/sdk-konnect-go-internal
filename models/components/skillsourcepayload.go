@@ -12,12 +12,14 @@ import (
 type SkillSourcePayloadType string
 
 const (
-	SkillSourcePayloadTypeRaw SkillSourcePayloadType = "raw"
+	SkillSourcePayloadTypeRaw    SkillSourcePayloadType = "raw"
+	SkillSourcePayloadTypeGithub SkillSourcePayloadType = "github"
 )
 
 // SkillSourcePayload - Where the skill's content comes from, used in create and update requests. The shape of `config` is determined by `type`.
 type SkillSourcePayload struct {
-	RawSkillSourcePayload *RawSkillSourcePayload `queryParam:"inline" union:"member"`
+	RawSkillSourcePayload    *RawSkillSourcePayload    `queryParam:"inline" union:"member"`
+	GithubSkillSourcePayload *GithubSkillSourcePayload `queryParam:"inline" union:"member"`
 
 	Type SkillSourcePayloadType
 }
@@ -31,6 +33,18 @@ func CreateSkillSourcePayloadRaw(raw RawSkillSourcePayload) SkillSourcePayload {
 	return SkillSourcePayload{
 		RawSkillSourcePayload: &raw,
 		Type:                  typ,
+	}
+}
+
+func CreateSkillSourcePayloadGithub(github GithubSkillSourcePayload) SkillSourcePayload {
+	typ := SkillSourcePayloadTypeGithub
+
+	typStr := GithubSkillSourcePayloadType(typ)
+	github.Type = typStr
+
+	return SkillSourcePayload{
+		GithubSkillSourcePayload: &github,
+		Type:                     typ,
 	}
 }
 
@@ -62,6 +76,15 @@ func (u *SkillSourcePayload) UnmarshalJSON(data []byte) (err error) {
 		u.RawSkillSourcePayload = rawSkillSourcePayload
 		u.Type = SkillSourcePayloadTypeRaw
 		return nil
+	case "github":
+		githubSkillSourcePayload := new(GithubSkillSourcePayload)
+		if err := utils.UnmarshalJSON(data, &githubSkillSourcePayload, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == github) type GithubSkillSourcePayload within SkillSourcePayload: %w", string(data), err)
+		}
+
+		u.GithubSkillSourcePayload = githubSkillSourcePayload
+		u.Type = SkillSourcePayloadTypeGithub
+		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SkillSourcePayload", string(data))
@@ -70,6 +93,10 @@ func (u *SkillSourcePayload) UnmarshalJSON(data []byte) (err error) {
 func (u SkillSourcePayload) MarshalJSON() ([]byte, error) {
 	if u.RawSkillSourcePayload != nil {
 		return utils.MarshalJSON(u.RawSkillSourcePayload, "", true)
+	}
+
+	if u.GithubSkillSourcePayload != nil {
+		return utils.MarshalJSON(u.GithubSkillSourcePayload, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type SkillSourcePayload: all fields are null")

@@ -16,7 +16,7 @@ type APIPublicationFilterParameters struct {
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`, `contains`, `ocontains`
 	EntityType *StringFieldFilter `queryParam:"name=entity_type"`
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
-	EnvironmentID *UUIDFieldFilter `queryParam:"name=environment_id"`
+	EnvironmentID *UUIDFieldFilter `queryParam:"name=environment.id"`
 }
 
 func (a *APIPublicationFilterParameters) GetPortalID() *UUIDFieldFilter {

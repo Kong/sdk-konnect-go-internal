@@ -102,7 +102,7 @@ type Skill struct {
 	ID string `json:"id"`
 	// The ID of the Context Interface this skill belongs to.
 	ContextInterfaceID string `json:"context_interface_id"`
-	// The machine name of the skill.
+	// The machine name of the skill, taken from the name declared in the frontmatter. Unique within the MCP server and cannot be set or changed by the client.
 	Name string `json:"name"`
 	// The human-readable display name of the skill.
 	DisplayName string `json:"display_name"`
@@ -118,6 +118,8 @@ type Skill struct {
 	Source SkillSource `json:"source"`
 	// The current validation status of the skill. `pending` means the content has not yet been read and validated.
 	Status SkillStatus `json:"status"`
+	// The promoted revision of the skill's content — the only revision ever served.
+	Version *string `json:"version"`
 	// The outcome of the most recent attempt to fetch the skill's content from its source. `null` for sources whose content is supplied inline.
 	SyncStatus *SyncStatus `json:"sync_status"`
 	// The reason the skill failed validation. `null` unless `status` is `invalid`.
@@ -199,11 +201,22 @@ func (s *Skill) GetSourceRaw() *RawSkillSource {
 	return s.GetSource().RawSkillSource
 }
 
+func (s *Skill) GetSourceGithub() *GithubSkillSource {
+	return s.GetSource().GithubSkillSource
+}
+
 func (s *Skill) GetStatus() SkillStatus {
 	if s == nil {
 		return SkillStatus("")
 	}
 	return s.Status
+}
+
+func (s *Skill) GetVersion() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Version
 }
 
 func (s *Skill) GetSyncStatus() *SyncStatus {

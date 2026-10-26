@@ -5,7 +5,7 @@ Filter by customer ID.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listInvoicesParamsFilterULIDFieldFilter := components.CreateListInvoicesParamsFilterULIDFieldFilterStr(string{/* values here */})

@@ -193,7 +193,7 @@ func main() {
     res, err := s.CatalogServiceAPISpecs.PreviewCatalogServiceAPISpec(ctx, "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7", components.PreviewCatalogServiceAPISpec{
         Provider: components.CreatePreviewCatalogServiceAPISpecCreateAPISpecProviderURLAPISpecProvider(
             components.URLAPISpecProvider{
-                Type: components.TypeURL,
+                Type: components.URLAPISpecProviderTypeURL,
                 Config: components.URLAPISpecProviderConfig{
                     URL: "https://api.petstore.com/v3/openapi.json",
                 },
