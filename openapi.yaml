@@ -60965,9 +60965,6 @@ components:
       additionalProperties: false
     AISettingsResponseFeatures:
       type: object
-      description: >-
-        AI features configuration. When top-level `enabled` is false, every
-        feature toggle here is automatically reset to false.
       x-property-annotations:
         portal_agent:
           - x-unstable
@@ -60978,18 +60975,24 @@ components:
       properties:
         portal_agent:
           type: object
-          description: Portal Agent config
+          description: Portal Agent configuration
           properties:
             enabled:
               type: boolean
               description: Whether the Portal Agent is enabled or not
               default: false
+            display_name:
+              $ref: '#/components/schemas/PortalAgentDisplayName'
+            audience:
+              $ref: '#/components/schemas/PortalAgentAudience'
           required:
             - enabled
+            - display_name
+            - audience
           additionalProperties: false
         ai_search:
           type: object
-          description: AI Search config
+          description: AI Search configuration
           properties:
             enabled:
               type: boolean
@@ -61000,11 +61003,11 @@ components:
           additionalProperties: false
         mcp_server:
           type: object
-          description: MCP Server config
+          description: MCP Server configuration
           properties:
             enabled:
               type: boolean
-              description: Whether the MCP Server is enabled or not
+              description: Whether the Portal MCP Server is enabled or not
               default: false
             write_operations_enabled:
               type: boolean
@@ -61016,9 +61019,12 @@ components:
             - enabled
             - write_operations_enabled
           additionalProperties: false
+      additionalProperties: false
+      description: >-
+        AI features configuration. When top-level `enabled` is false, every
+        feature toggle here is automatically reset to false.
       required:
         - mcp_server
-      additionalProperties: false
     PatchAISettingsRequest:
       title: PatchAISettingsRequest
       type: object
@@ -61064,6 +61070,10 @@ components:
               type: boolean
               description: Whether the Portal Agent is enabled or not
               default: false
+            display_name:
+              $ref: '#/components/schemas/PortalAgentDisplayNameNullable'
+            audience:
+              $ref: '#/components/schemas/PortalAgentAudienceNullable'
           required:
             - enabled
           additionalProperties: false
@@ -61120,6 +61130,10 @@ components:
               type: boolean
               description: Whether the Portal Agent is enabled or not
               default: false
+            display_name:
+              $ref: '#/components/schemas/PortalAgentDisplayNameNullable'
+            audience:
+              $ref: '#/components/schemas/PortalAgentAudienceNullable'
           required:
             - enabled
           additionalProperties: false
@@ -63766,6 +63780,23 @@ components:
           $ref: '#/components/schemas/StringFieldFilter'
         team_id:
           $ref: '#/components/schemas/UuidFieldFilter'
+    PortalAgentDisplayName:
+      type: string
+      minLength: 1
+      maxLength: 120
+      default: AI
+      example: AI
+      description: The display name for the Portal Agent, shown to developers in the portal
+    PortalAgentAudience:
+      type: string
+      enum:
+        - all
+      default: all
+      description: >-
+        The audience allowed to interact with the Portal Agent. Currently only
+        `all` (available to every developer, including unauthenticated ones) is
+        supported. `authenticated` (restricted to signed-in developers only) is
+        planned for a future release.
     AISettingsFeatures:
       type: object
       description: >-
@@ -63787,8 +63818,14 @@ components:
               type: boolean
               description: Whether the Portal Agent is enabled or not
               default: false
+            display_name:
+              $ref: '#/components/schemas/PortalAgentDisplayName'
+            audience:
+              $ref: '#/components/schemas/PortalAgentAudience'
           required:
             - enabled
+            - display_name
+            - audience
           additionalProperties: false
         ai_search:
           type: object
@@ -64679,6 +64716,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CredentialListItem'
+    PortalAgentDisplayNameNullable:
+      type: string
+      minLength: 1
+      maxLength: 120
+      default: AI
+      example: AI
+      description: The display name for the Portal Agent, shown to developers in the portal
+      nullable: true
+    PortalAgentAudienceNullable:
+      type: string
+      enum:
+        - all
+      default: all
+      description: >-
+        The audience allowed to interact with the Portal Agent. Currently only
+        `all` (available to every developer, including unauthenticated ones) is
+        supported. `authenticated` (restricted to signed-in developers only) is
+        planned for a future release.
+      nullable: true
     CustomFormFieldName:
       type: string
       description: |
@@ -110620,6 +110676,7 @@ components:
           items:
             type: string
             enum:
+              - '*'
               - generate
               - agentic
               - realtime
@@ -110631,6 +110688,8 @@ components:
               - video
               - rerank
               - decisions
+            x-enum-dev:
+              - '*'
             x-enum-min-runtime-version:
               decisions: '2.2'
             x-speakeasy-unknown-values: allow
@@ -110709,9 +110768,12 @@ components:
           items:
             type: string
             enum:
+              - '*'
               - batches
               - files
               - skills
+            x-enum-dev:
+              - '*'
             x-enum-min-runtime-version:
               skills: '2.2'
             x-speakeasy-unknown-values: allow
@@ -112464,6 +112526,7 @@ components:
           type: string
           description: The format type.
           enum:
+            - '*'
             - anthropic
             - bedrock
             - cohere
@@ -112473,6 +112536,8 @@ components:
             - passthrough
             - typesafe
           example: openai
+          x-enum-dev:
+            - '*'
           x-enum-min-runtime-version:
             passthrough: '2.2'
             typesafe: '2.2'
@@ -144149,7 +144214,7 @@ x-input-schemas:
     version: 1.12.5
     path: src/konnect/definitions/ai-builder/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.2.23
+    version: 2.2.24
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
@@ -144188,7 +144253,7 @@ x-input-schemas:
     version: 1.0.2
     path: src/konnect/definitions/notification-hub/v1/openapi.yaml
   - title: Portal Management V3
-    version: 3.14.0
+    version: 3.14.1
     path: src/konnect/definitions/portal-management/v3/openapi.yaml
   - title: Konnect Service Catalog
     version: 1.3.3

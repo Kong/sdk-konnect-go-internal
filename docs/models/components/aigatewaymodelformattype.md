@@ -9,7 +9,7 @@ import (
 	"github.com/Kong/sdk-konnect-go/models/components"
 )
 
-value := components.AIGatewayModelFormatTypeAnthropic
+value := components.AIGatewayModelFormatTypeWildcard
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.AIGatewayModelFormatType("custom_value")
@@ -20,6 +20,7 @@ custom := components.AIGatewayModelFormatType("custom_value")
 
 | Name                                  | Value                                 |
 | ------------------------------------- | ------------------------------------- |
+| `AIGatewayModelFormatTypeWildcard`    | *                                     |
 | `AIGatewayModelFormatTypeAnthropic`   | anthropic                             |
 | `AIGatewayModelFormatTypeBedrock`     | bedrock                               |
 | `AIGatewayModelFormatTypeCohere`      | cohere                                |

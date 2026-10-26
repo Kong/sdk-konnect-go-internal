@@ -126,6 +126,38 @@ func TestAIGateway23BedrockEndpointTypeOmitted(t *testing.T) {
 	require.NotContains(t, body, "endpoint_type")
 }
 
+func TestAIGateway23WildcardEnums(t *testing.T) {
+	format := c.AIGatewayModelFormatType("*")
+	modelCapability := c.AIGatewayModelModelCapabilities("*")
+	apiCapability := c.Capabilities("*")
+	require.True(t, format.IsExact(), "wildcard must be a known format")
+	require.True(t, modelCapability.IsExact(), "wildcard must be a known model capability")
+	require.True(t, apiCapability.IsExact(), "wildcard must be a known API capability")
+}
+
+func TestAIGateway23WildcardRequests(t *testing.T) {
+	for _, modelType := range []string{"model", "api"} {
+		for _, operation := range []string{"create", "update"} {
+			t.Run(modelType+"/"+operation, func(t *testing.T) {
+				input := `{"type":"` + modelType + `","name":"wildcard","display_name":"Wildcard",` +
+					`"formats":[{"type":"*"}],"capabilities":["*"],"config":{"route":{"paths":["/llm"]}},` +
+					`"targets":[{"name":"upstream","provider":"provider","config":{"type":"openai"}}]}`
+				var request any = &c.CreateAIGatewayModelRequest{}
+				if operation == "update" {
+					request = &c.UpdateAIGatewayModelRequest{}
+				}
+				require.NoError(t, json.Unmarshal([]byte(input), request))
+				encoded, err := json.Marshal(request)
+				require.NoError(t, err)
+				var body map[string]any
+				require.NoError(t, json.Unmarshal(encoded, &body))
+				require.Equal(t, []any{map[string]any{"type": "*"}}, body["formats"])
+				require.Equal(t, []any{"*"}, body["capabilities"])
+			})
+		}
+	}
+}
+
 func requireJSONSubset(t *testing.T, want, got any) {
 	t.Helper()
 	switch expected := want.(type) {

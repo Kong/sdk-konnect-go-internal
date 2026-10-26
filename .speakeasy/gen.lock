@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 32cc5ba28c294b439fe0c47dd7ee374e
+  docChecksum: b5cd2d45646194f07838c4b2353a0286
   docVersion: 3.15.0
   speakeasyVersion: 1.802.0
   generationVersion: 2.948.4
@@ -5491,6 +5491,8 @@ trackedFiles:
     id: b84bb0aebdb0
     pristine_git_object: 53539fd6742e8bdda51bf1e735d8419b2ac93c8e
   docs/models/components/portalagent.md: {}
+  docs/models/components/portalagentaudience.md: {}
+  docs/models/components/portalagentaudiencenullable.md: {}
   docs/models/components/portalapipublicationfilterparameters.md:
     id: 8b0d82fe3966
     pristine_git_object: f7055f91ce4bc4595fae41f475d0e23814d81cdc
@@ -16247,6 +16249,8 @@ trackedFiles:
   models/components/pluginwithoutparents.go:
     id: 2a841a61124a
     pristine_git_object: e678f443e2248c8a4aa873ecb33bfaf1dbb6167a
+  models/components/portalagentaudience.go: {}
+  models/components/portalagentaudiencenullable.go: {}
   models/components/portalapipublicationfilterparameters.go:
     id: 73eed25a1356
     pristine_git_object: 678c2c0624b803d5a98dd9c438af34e589f7b50d
@@ -25136,10 +25140,10 @@ examples:
   create-portal:
     speakeasy-default-create-portal:
       requestBody:
-        application/json: {"name": "<value>", "authentication_enabled": true, "rbac_enabled": false, "sipr_enabled": true, "auto_approve_developers": false, "auto_approve_applications": false, "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false, "create_default_content": false}
+        application/json: {"name": "<value>", "authentication_enabled": true, "rbac_enabled": false, "ai": {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}, "sipr_enabled": true, "auto_approve_developers": false, "auto_approve_applications": false, "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false, "create_default_content": false}
       responses:
         "201":
-          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "name": "<value>", "display_name": "Ahmed41", "description": "circa dislocate and woot", "authentication_enabled": true, "rbac_enabled": false, "sipr_enabled": true, "default_api_visibility": "public", "default_page_visibility": "private", "default_application_auth_strategy_id": "f42d549e-285d-456d-8c7c-34242786ac72", "auto_approve_developers": false, "auto_approve_applications": false, "default_domain": "red-expansion.net", "canonical_domain": "strident-spirit.org", "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "name": "<value>", "display_name": "Ahmed41", "description": "circa dislocate and woot", "authentication_enabled": true, "rbac_enabled": false, "ai": {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}, "sipr_enabled": true, "default_api_visibility": "public", "default_page_visibility": "private", "default_application_auth_strategy_id": "f42d549e-285d-456d-8c7c-34242786ac72", "auto_approve_developers": false, "auto_approve_applications": false, "default_domain": "red-expansion.net", "canonical_domain": "strident-spirit.org", "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -25153,7 +25157,7 @@ examples:
           portalId: "1672e313-9f8e-4485-a62b-716aad351889"
       responses:
         "200":
-          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "name": "<value>", "display_name": "Brenna55", "description": "beep however from serialize seldom before contrail reconstitute at scuttle", "authentication_enabled": true, "rbac_enabled": false, "sipr_enabled": true, "default_api_visibility": "public", "default_page_visibility": "public", "default_application_auth_strategy_id": "b90603a6-edaf-4c4e-8b71-84f2cfb7cd2e", "auto_approve_developers": false, "auto_approve_applications": false, "default_domain": "impish-baritone.com", "canonical_domain": "hateful-circumference.org", "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "name": "<value>", "display_name": "Brenna55", "description": "beep however from serialize seldom before contrail reconstitute at scuttle", "authentication_enabled": true, "rbac_enabled": false, "ai": {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}, "sipr_enabled": true, "default_api_visibility": "public", "default_page_visibility": "public", "default_application_auth_strategy_id": "b90603a6-edaf-4c4e-8b71-84f2cfb7cd2e", "auto_approve_developers": false, "auto_approve_applications": false, "default_domain": "impish-baritone.com", "canonical_domain": "hateful-circumference.org", "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -25166,10 +25170,10 @@ examples:
         path:
           portalId: "efe853b6-a55c-4929-9b80-c39a22b01c7a"
       requestBody:
-        application/json: {"sipr_enabled": true, "labels": {"env": "test"}}
+        application/json: {"ai": {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}, "sipr_enabled": true, "labels": {"env": "test"}}
       responses:
         "200":
-          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "name": "<value>", "display_name": "Adaline.Nolan", "description": "however that unless", "authentication_enabled": true, "rbac_enabled": false, "sipr_enabled": true, "default_api_visibility": "public", "default_page_visibility": "public", "default_application_auth_strategy_id": "d7801b53-0df1-4fdf-87ca-e3c44496492f", "auto_approve_developers": false, "auto_approve_applications": false, "default_domain": "wretched-travel.org", "canonical_domain": "evil-almighty.com", "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "name": "<value>", "display_name": "Adaline.Nolan", "description": "however that unless", "authentication_enabled": true, "rbac_enabled": false, "ai": {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}, "sipr_enabled": true, "default_api_visibility": "public", "default_page_visibility": "public", "default_application_auth_strategy_id": "d7801b53-0df1-4fdf-87ca-e3c44496492f", "auto_approve_developers": false, "auto_approve_applications": false, "default_domain": "wretched-travel.org", "canonical_domain": "evil-almighty.com", "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -36643,7 +36647,7 @@ examples:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       responses:
         "200":
-          application/json: {"enabled": false, "features": {"mcp_server": {"enabled": false, "write_operations_enabled": false}}}
+          application/json: {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -40485,10 +40489,10 @@ examples:
         path:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       requestBody:
-        application/json: {"enabled": false, "features": {"mcp_server": {"enabled": false, "write_operations_enabled": false}}}
+        application/json: {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}
       responses:
         "200":
-          application/json: {"enabled": false, "features": {"mcp_server": {"enabled": false, "write_operations_enabled": false}}}
+          application/json: {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -40501,10 +40505,10 @@ examples:
         path:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       requestBody:
-        application/json: {"enabled": false}
+        application/json: {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}}}
       responses:
         "200":
-          application/json: {"enabled": false, "features": {"mcp_server": {"enabled": false, "write_operations_enabled": false}}}
+          application/json: {"enabled": false, "features": {"portal_agent": {"enabled": false, "display_name": "AI", "audience": "all"}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":

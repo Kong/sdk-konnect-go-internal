@@ -10,6 +10,7 @@ import (
 type AIGatewayModelFormatType string
 
 const (
+	AIGatewayModelFormatTypeWildcard    AIGatewayModelFormatType = "*"
 	AIGatewayModelFormatTypeAnthropic   AIGatewayModelFormatType = "anthropic"
 	AIGatewayModelFormatTypeBedrock     AIGatewayModelFormatType = "bedrock"
 	AIGatewayModelFormatTypeCohere      AIGatewayModelFormatType = "cohere"
@@ -28,7 +29,7 @@ func (e AIGatewayModelFormatType) ToPointer() *AIGatewayModelFormatType {
 func (e *AIGatewayModelFormatType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "anthropic", "bedrock", "cohere", "gemini", "huggingface", "openai", "passthrough", "typesafe":
+		case "*", "anthropic", "bedrock", "cohere", "gemini", "huggingface", "openai", "passthrough", "typesafe":
 			return true
 		}
 	}

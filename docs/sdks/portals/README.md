@@ -101,6 +101,12 @@ func main() {
 
     res, err := s.Portals.CreatePortal(ctx, components.CreatePortal{
         Name: "<value>",
+        Ai: &components.AISettings{
+            Features: components.AISettingsFeatures{
+                PortalAgent: &components.PortalAgent{},
+                McpServer: components.AISettingsFeaturesMcpServer{},
+            },
+        },
         SiprEnabled: sdkkonnectgo.Pointer(true),
         Labels: map[string]*string{
             "env": sdkkonnectgo.Pointer("test"),
@@ -220,6 +226,12 @@ func main() {
     )
 
     res, err := s.Portals.UpdatePortal(ctx, "efe853b6-a55c-4929-9b80-c39a22b01c7a", components.UpdatePortal{
+        Ai: &components.AISettings{
+            Features: components.AISettingsFeatures{
+                PortalAgent: &components.PortalAgent{},
+                McpServer: components.AISettingsFeaturesMcpServer{},
+            },
+        },
         SiprEnabled: sdkkonnectgo.Pointer(true),
         Labels: map[string]*string{
             "env": sdkkonnectgo.Pointer("test"),

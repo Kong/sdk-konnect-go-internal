@@ -13,6 +13,7 @@ import (
 type AIGatewayModelModelAIGatewayModelCapabilities string
 
 const (
+	AIGatewayModelModelAIGatewayModelCapabilitiesWildcard           AIGatewayModelModelAIGatewayModelCapabilities = "*"
 	AIGatewayModelModelAIGatewayModelCapabilitiesGenerate           AIGatewayModelModelAIGatewayModelCapabilities = "generate"
 	AIGatewayModelModelAIGatewayModelCapabilitiesAgentic            AIGatewayModelModelAIGatewayModelCapabilities = "agentic"
 	AIGatewayModelModelAIGatewayModelCapabilitiesRealtime           AIGatewayModelModelAIGatewayModelCapabilities = "realtime"
@@ -34,7 +35,7 @@ func (e AIGatewayModelModelAIGatewayModelCapabilities) ToPointer() *AIGatewayMod
 func (e *AIGatewayModelModelAIGatewayModelCapabilities) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "generate", "agentic", "realtime", "embeddings", "image", "audio/speech", "audio/transcription", "audio/translation", "video", "rerank", "decisions":
+		case "*", "generate", "agentic", "realtime", "embeddings", "image", "audio/speech", "audio/transcription", "audio/translation", "video", "rerank", "decisions":
 			return true
 		}
 	}
@@ -208,9 +209,10 @@ func (a *AIGatewayModelAIGatewayModelModel) GetUpdatedAt() time.Time {
 type AIGatewayModelAPICapabilities string
 
 const (
-	AIGatewayModelAPICapabilitiesBatches AIGatewayModelAPICapabilities = "batches"
-	AIGatewayModelAPICapabilitiesFiles   AIGatewayModelAPICapabilities = "files"
-	AIGatewayModelAPICapabilitiesSkills  AIGatewayModelAPICapabilities = "skills"
+	AIGatewayModelAPICapabilitiesWildcard AIGatewayModelAPICapabilities = "*"
+	AIGatewayModelAPICapabilitiesBatches  AIGatewayModelAPICapabilities = "batches"
+	AIGatewayModelAPICapabilitiesFiles    AIGatewayModelAPICapabilities = "files"
+	AIGatewayModelAPICapabilitiesSkills   AIGatewayModelAPICapabilities = "skills"
 )
 
 func (e AIGatewayModelAPICapabilities) ToPointer() *AIGatewayModelAPICapabilities {
@@ -221,7 +223,7 @@ func (e AIGatewayModelAPICapabilities) ToPointer() *AIGatewayModelAPICapabilitie
 func (e *AIGatewayModelAPICapabilities) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "batches", "files", "skills":
+		case "*", "batches", "files", "skills":
 			return true
 		}
 	}

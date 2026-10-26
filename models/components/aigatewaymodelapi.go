@@ -9,9 +9,10 @@ import (
 type Capabilities string
 
 const (
-	CapabilitiesBatches Capabilities = "batches"
-	CapabilitiesFiles   Capabilities = "files"
-	CapabilitiesSkills  Capabilities = "skills"
+	CapabilitiesWildcard Capabilities = "*"
+	CapabilitiesBatches  Capabilities = "batches"
+	CapabilitiesFiles    Capabilities = "files"
+	CapabilitiesSkills   Capabilities = "skills"
 )
 
 func (e Capabilities) ToPointer() *Capabilities {
@@ -22,7 +23,7 @@ func (e Capabilities) ToPointer() *Capabilities {
 func (e *Capabilities) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "batches", "files", "skills":
+		case "*", "batches", "files", "skills":
 			return true
 		}
 	}

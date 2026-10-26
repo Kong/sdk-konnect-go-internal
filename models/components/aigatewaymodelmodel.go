@@ -9,6 +9,7 @@ import (
 type AIGatewayModelModelCapabilities string
 
 const (
+	AIGatewayModelModelCapabilitiesWildcard           AIGatewayModelModelCapabilities = "*"
 	AIGatewayModelModelCapabilitiesGenerate           AIGatewayModelModelCapabilities = "generate"
 	AIGatewayModelModelCapabilitiesAgentic            AIGatewayModelModelCapabilities = "agentic"
 	AIGatewayModelModelCapabilitiesRealtime           AIGatewayModelModelCapabilities = "realtime"
@@ -30,7 +31,7 @@ func (e AIGatewayModelModelCapabilities) ToPointer() *AIGatewayModelModelCapabil
 func (e *AIGatewayModelModelCapabilities) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "generate", "agentic", "realtime", "embeddings", "image", "audio/speech", "audio/transcription", "audio/translation", "video", "rerank", "decisions":
+		case "*", "generate", "agentic", "realtime", "embeddings", "image", "audio/speech", "audio/transcription", "audio/translation", "video", "rerank", "decisions":
 			return true
 		}
 	}

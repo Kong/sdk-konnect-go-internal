@@ -159,6 +159,7 @@ generate.sdk.speakeasy: speakeasy validate.kongctl-overlays
 
 .PHONY: generate.sdk
 generate.sdk:
+	$(SED) -i 's/[[:blank:]]*$$//' $(OPENAPI_FILE)
 	# Discard generated helpers tied to the previous input before Speakeasy compiles the refreshed SDK.
 	$(RM) models/components/zz_generated.deepcopy.go
 	$(MAKE) remove.interfaces
@@ -172,7 +173,11 @@ generate.sdk:
 	$(MAKE) generate.interfaces
 	$(MAKE) generate.mocks
 	go mod tidy
-	find docs -name '*.md' -exec $(SED) -i 's/^### $/###/' {} +
+	$(MAKE) format.generated-docs
+
+.PHONY: format.generated-docs
+format.generated-docs:
+	find docs -name '*.md' -exec $(SED) -i 's/^### $$/###/' {} +
 
 # NOTE: Use this when there are breaking changes in the generated SDK code
 #       that require the interfaces and mocks to be regenerated.
