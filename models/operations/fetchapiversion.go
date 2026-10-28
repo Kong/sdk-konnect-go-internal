@@ -15,7 +15,7 @@ type FetchAPIVersionRequest struct {
 	VersionID string `pathParam:"style=simple,explode=false,name=versionId"`
 	// The format of the returned `spec.content`. Defaults to `json`.
 	//
-	SpecFormat *components.SpecFormatSchema `default:"json" queryParam:"style=form,explode=true,name=spec_format"`
+	SpecFormat *components.SpecFormatSchema `queryParam:"style=form,explode=true,name=spec_format"`
 }
 
 func (f FetchAPIVersionRequest) MarshalJSON() ([]byte, error) {

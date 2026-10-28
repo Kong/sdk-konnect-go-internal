@@ -12,7 +12,7 @@ time.
 measureUsageFrom := components.CreateMeasureUsageFromBillingEntitlementMeasureUsageFromPreset(components.BillingEntitlementMeasureUsageFromPreset{/* values here */})
 ```
 
-### 
+###
 
 ```go
 measureUsageFrom := components.CreateMeasureUsageFromDateTime(time.Time{/* values here */})

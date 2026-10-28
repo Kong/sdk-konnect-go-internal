@@ -5,13 +5,13 @@ Selects which fields of the parsed record to mask. A maximum of 50 path entries 
 
 ## Supported Types
 
-### 
+###
 
 ```go
 eventGatewayParsedRecordMaskSelectorPaths := components.CreateEventGatewayParsedRecordMaskSelectorPathsArrayOfEventGatewayParsedRecordFieldPathsArray([]components.EventGatewayParsedRecordFieldPathsArray{/* values here */})
 ```
 
-### 
+###
 
 ```go
 eventGatewayParsedRecordMaskSelectorPaths := components.CreateEventGatewayParsedRecordMaskSelectorPathsStr(string{/* values here */})

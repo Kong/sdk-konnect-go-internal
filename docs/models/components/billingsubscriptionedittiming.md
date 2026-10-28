@@ -11,7 +11,7 @@ When the requested changes should take effect. Defaults to immediate.
 billingSubscriptionEditTiming := components.CreateBillingSubscriptionEditTimingBillingSubscriptionEditTimingEnum(components.BillingSubscriptionEditTimingEnum{/* values here */})
 ```
 
-### 
+###
 
 ```go
 billingSubscriptionEditTiming := components.CreateBillingSubscriptionEditTimingDateTime(time.Time{/* values here */})

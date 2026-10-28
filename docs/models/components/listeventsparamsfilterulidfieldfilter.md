@@ -5,7 +5,7 @@ Filter events by the associated customer ID.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listEventsParamsFilterULIDFieldFilter := components.CreateListEventsParamsFilterULIDFieldFilterStr(string{/* values here */})

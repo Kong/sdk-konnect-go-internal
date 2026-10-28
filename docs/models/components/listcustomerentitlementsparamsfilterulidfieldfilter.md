@@ -5,7 +5,7 @@ Filter entitlements by feature ID.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listCustomerEntitlementsParamsFilterULIDFieldFilter := components.CreateListCustomerEntitlementsParamsFilterULIDFieldFilterStr(string{/* values here */})

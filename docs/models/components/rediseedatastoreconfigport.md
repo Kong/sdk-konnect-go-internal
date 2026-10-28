@@ -7,13 +7,13 @@ This field is [referenceable](https://developer.konghq.com/gateway/entities/vaul
 
 ## Supported Types
 
-### 
+###
 
 ```go
 redisEEDatastoreConfigPort := components.CreateRedisEEDatastoreConfigPortInteger(int64{/* values here */})
 ```
 
-### 
+###
 
 ```go
 redisEEDatastoreConfigPort := components.CreateRedisEEDatastoreConfigPortStr(string{/* values here */})

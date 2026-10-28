@@ -13,7 +13,7 @@ configuration.
 billingSubscriptionChangeTiming := components.CreateBillingSubscriptionChangeTimingBillingSubscriptionEditTimingEnum(components.BillingSubscriptionEditTimingEnum{/* values here */})
 ```
 
-### 
+###
 
 ```go
 billingSubscriptionChangeTiming := components.CreateBillingSubscriptionChangeTimingDateTime(time.Time{/* values here */})

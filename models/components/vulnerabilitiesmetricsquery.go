@@ -314,6 +314,7 @@ func (u Filters) MarshalJSON() ([]byte, error) {
 // If granularity is not specified and `time` is in the `dimensions` list, a default will be chosen based on the time range requested.
 //
 // Different relative times support different granularities:
+//
 //   - 1d  => daily
 //   - 7d  => daily, weekly
 //   - 3w  => daily, weekly
@@ -322,6 +323,7 @@ func (u Filters) MarshalJSON() ([]byte, error) {
 //   - 1y  => daily, weekly
 //
 // For special time ranges:
+//
 //   - current_week, previous_week   => daily
 //   - current_month, previous_month => daily, weekly
 //
@@ -457,6 +459,15 @@ type VulnerabilitiesMetricsQuery struct {
 	// If granularity is not specified and `time` is in the `dimensions` list, a default will be chosen based on the time range requested.
 	//
 	// Different relative times support different granularities:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - 1d  => daily
 	//   - 7d  => daily, weekly
 	//   - 3w  => daily, weekly
@@ -465,6 +476,15 @@ type VulnerabilitiesMetricsQuery struct {
 	//   - 1y  => daily, weekly
 	//
 	// For special time ranges:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - current_week, previous_week   => daily
 	//   - current_month, previous_month => daily, weekly
 	//

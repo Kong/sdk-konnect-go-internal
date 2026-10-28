@@ -5,7 +5,7 @@ Filter grants by the ID of the customer that owns the entitlement.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listGrantsParamsFilterULIDFieldFilter := components.CreateListGrantsParamsFilterULIDFieldFilterStr(string{/* values here */})

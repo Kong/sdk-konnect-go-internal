@@ -87,7 +87,7 @@ type CreatePortal struct {
 	// When enabled, portal registration notifications include the registering developer's identifying information (such as name and email).
 	NotificationsDeveloperPiiVisibilityEnabled *bool `default:"false" json:"notifications_developer_pii_visibility_enabled"`
 	// Use to create the portal page default content upon creation of this portal
-	CreateDefaultContent *bool `default:"false" json:"create_default_content"`
+	CreateDefaultContent *bool `json:"create_default_content,omitempty"`
 }
 
 func (c CreatePortal) MarshalJSON() ([]byte, error) {

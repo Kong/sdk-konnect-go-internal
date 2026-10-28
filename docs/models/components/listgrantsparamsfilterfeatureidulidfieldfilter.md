@@ -5,7 +5,7 @@ Filter grants by the ID of the entitlement's feature.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listGrantsParamsFilterFeatureIDULIDFieldFilter := components.CreateListGrantsParamsFilterFeatureIDULIDFieldFilterStr(string{/* values here */})

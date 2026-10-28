@@ -3,19 +3,19 @@
 
 ## Supported Types
 
-### 
+###
 
 ```go
 metadataTemplate := components.CreateMetadataTemplateStr(string{/* values here */})
 ```
 
-### 
+###
 
 ```go
 metadataTemplate := components.CreateMetadataTemplateNumber(float64{/* values here */})
 ```
 
-### 
+###
 
 ```go
 metadataTemplate := components.CreateMetadataTemplateBoolean(bool{/* values here */})

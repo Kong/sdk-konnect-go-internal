@@ -5,13 +5,13 @@ If any of these entries match, the resource name matches for this rule. A maximu
 
 ## Supported Types
 
-### 
+###
 
 ```go
 resourceNames := components.CreateResourceNamesArrayOfEventGatewayACLResourceName([]components.EventGatewayACLResourceName{/* values here */})
 ```
 
-### 
+###
 
 ```go
 resourceNames := components.CreateResourceNamesStr(string{/* values here */})

@@ -9,7 +9,7 @@
 authProvider := components.CreateAuthProviderOne(components.One{/* values here */})
 ```
 
-### 
+###
 
 ```go
 authProvider := components.CreateAuthProviderStr(string{/* values here */})

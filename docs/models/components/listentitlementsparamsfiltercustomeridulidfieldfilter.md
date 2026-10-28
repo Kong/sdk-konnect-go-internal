@@ -5,7 +5,7 @@ Filter entitlements by customer ID.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listEntitlementsParamsFilterCustomerIDULIDFieldFilter := components.CreateListEntitlementsParamsFilterCustomerIDULIDFieldFilterStr(string{/* values here */})

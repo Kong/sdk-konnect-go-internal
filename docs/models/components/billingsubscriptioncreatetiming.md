@@ -14,7 +14,7 @@ the past is rejected.
 billingSubscriptionCreateTiming := components.CreateBillingSubscriptionCreateTimingBillingSubscriptionCreateTimingEnum(components.BillingSubscriptionCreateTimingEnum{/* values here */})
 ```
 
-### 
+###
 
 ```go
 billingSubscriptionCreateTiming := components.CreateBillingSubscriptionCreateTimingDateTime(time.Time{/* values here */})

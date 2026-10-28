@@ -5,7 +5,7 @@ Filter charges by the ID of their customer.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listChargesParamsFilterCustomerIDULIDFieldFilter := components.CreateListChargesParamsFilterCustomerIDULIDFieldFilterStr(string{/* values here */})

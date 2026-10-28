@@ -6,7 +6,7 @@ optional; provide exactly one to specify the comparison.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 ulidFieldFilter := components.CreateULIDFieldFilterStr(string{/* values here */})
