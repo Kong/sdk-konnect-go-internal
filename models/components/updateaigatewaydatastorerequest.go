@@ -12,16 +12,18 @@ import (
 type UpdateAIGatewayDatastoreRequestType string
 
 const (
-	UpdateAIGatewayDatastoreRequestTypeRedisCe  UpdateAIGatewayDatastoreRequestType = "redis-ce"
-	UpdateAIGatewayDatastoreRequestTypeRedisEe  UpdateAIGatewayDatastoreRequestType = "redis-ee"
-	UpdateAIGatewayDatastoreRequestTypeVectordb UpdateAIGatewayDatastoreRequestType = "vectordb"
+	UpdateAIGatewayDatastoreRequestTypeRedisCe    UpdateAIGatewayDatastoreRequestType = "redis-ce"
+	UpdateAIGatewayDatastoreRequestTypeRedisEe    UpdateAIGatewayDatastoreRequestType = "redis-ee"
+	UpdateAIGatewayDatastoreRequestTypeVectordb   UpdateAIGatewayDatastoreRequestType = "vectordb"
+	UpdateAIGatewayDatastoreRequestTypeTokenVault UpdateAIGatewayDatastoreRequestType = "token-vault"
 )
 
 // UpdateAIGatewayDatastoreRequest - Configuration for an AI Gateway Datastore.
 type UpdateAIGatewayDatastoreRequest struct {
-	RedisCEDatastore  *RedisCEDatastore  `queryParam:"inline" union:"member"`
-	RedisEEDatastore  *RedisEEDatastore  `queryParam:"inline" union:"member"`
-	VectorDBDatastore *VectorDBDatastore `queryParam:"inline" union:"member"`
+	RedisCEDatastore    *RedisCEDatastore    `queryParam:"inline" union:"member"`
+	RedisEEDatastore    *RedisEEDatastore    `queryParam:"inline" union:"member"`
+	VectorDBDatastore   *VectorDBDatastore   `queryParam:"inline" union:"member"`
+	TokenVaultDatastore *TokenVaultDatastore `queryParam:"inline" union:"member"`
 
 	Type UpdateAIGatewayDatastoreRequestType
 }
@@ -50,6 +52,15 @@ func CreateUpdateAIGatewayDatastoreRequestVectordb(vectordb VectorDBDatastore) U
 	return UpdateAIGatewayDatastoreRequest{
 		VectorDBDatastore: &vectordb,
 		Type:              typ,
+	}
+}
+
+func CreateUpdateAIGatewayDatastoreRequestTokenVault(tokenVault TokenVaultDatastore) UpdateAIGatewayDatastoreRequest {
+	typ := UpdateAIGatewayDatastoreRequestTypeTokenVault
+
+	return UpdateAIGatewayDatastoreRequest{
+		TokenVaultDatastore: &tokenVault,
+		Type:                typ,
 	}
 }
 
@@ -99,6 +110,15 @@ func (u *UpdateAIGatewayDatastoreRequest) UnmarshalJSON(data []byte) (err error)
 		u.VectorDBDatastore = vectorDBDatastore
 		u.Type = UpdateAIGatewayDatastoreRequestTypeVectordb
 		return nil
+	case "token-vault":
+		tokenVaultDatastore := new(TokenVaultDatastore)
+		if err := utils.UnmarshalJSON(data, &tokenVaultDatastore, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == token-vault) type TokenVaultDatastore within UpdateAIGatewayDatastoreRequest: %w", string(data), err)
+		}
+
+		u.TokenVaultDatastore = tokenVaultDatastore
+		u.Type = UpdateAIGatewayDatastoreRequestTypeTokenVault
+		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateAIGatewayDatastoreRequest", string(data))
@@ -115,6 +135,10 @@ func (u UpdateAIGatewayDatastoreRequest) MarshalJSON() ([]byte, error) {
 
 	if u.VectorDBDatastore != nil {
 		return utils.MarshalJSON(u.VectorDBDatastore, "", true)
+	}
+
+	if u.TokenVaultDatastore != nil {
+		return utils.MarshalJSON(u.TokenVaultDatastore, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type UpdateAIGatewayDatastoreRequest: all fields are null")

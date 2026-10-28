@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### OIDCIdentityProviderConfigOutput
+### PortalOIDCIdentityProviderConfig
 
 ```go
-portalIdentityProviderConfig := components.CreatePortalIdentityProviderConfigOIDCIdentityProviderConfigOutput(components.OIDCIdentityProviderConfigOutput{/* values here */})
+portalIdentityProviderConfig := components.CreatePortalIdentityProviderConfigPortalOIDCIdentityProviderConfig(components.PortalOIDCIdentityProviderConfig{/* values here */})
 ```
 
 ### PortalSAMLIdentityProviderConfig
@@ -21,8 +21,8 @@ Use the `Type` field to determine which variant is active, then access the corre
 
 ```go
 switch portalIdentityProviderConfig.Type {
-	case components.PortalIdentityProviderConfigTypeOIDCIdentityProviderConfigOutput:
-		// portalIdentityProviderConfig.OIDCIdentityProviderConfigOutput is populated
+	case components.PortalIdentityProviderConfigTypePortalOIDCIdentityProviderConfig:
+		// portalIdentityProviderConfig.PortalOIDCIdentityProviderConfig is populated
 	case components.PortalIdentityProviderConfigTypePortalSAMLIdentityProviderConfig:
 		// portalIdentityProviderConfig.PortalSAMLIdentityProviderConfig is populated
 }

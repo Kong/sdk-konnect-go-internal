@@ -296,6 +296,11 @@ func main() {
 * [GetAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#getaigatewayconsumercredential) - Get an AI Gateway Consumer Credential
 * [DeleteAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#deleteaigatewayconsumercredential) - Delete an AI Gateway Consumer Credential
 
+### [AIGatewayCostManagementTags](docs/sdks/aigatewaycostmanagementtags/README.md)
+
+* [GetCostManagementTags](docs/sdks/aigatewaycostmanagementtags/README.md#getcostmanagementtags) - Get cost management tags
+* [UpdateCostManagementTags](docs/sdks/aigatewaycostmanagementtags/README.md#updatecostmanagementtags) - Update cost management tags
+
 ### [AIGatewayCustomPolicies](docs/sdks/aigatewaycustompolicies/README.md)
 
 * [ListAiGatewayCustomPolicies](docs/sdks/aigatewaycustompolicies/README.md#listaigatewaycustompolicies) - List AI Gateway Custom Policies
@@ -399,6 +404,7 @@ func main() {
 
 * [ListAiGateways](docs/sdks/aigateways/README.md#listaigateways) - List AI Gateways
 * [CreateAiGateway](docs/sdks/aigateways/README.md#createaigateway) - Create an AI Gateway
+* [ListAiGatewayRuntimeVersions](docs/sdks/aigateways/README.md#listaigatewayruntimeversions) - List AI Gateway Runtime Versions
 * [GetAiGateway](docs/sdks/aigateways/README.md#getaigateway) - Get an AI Gateway
 * [UpdateAiGateway](docs/sdks/aigateways/README.md#updateaigateway) - Update an AI Gateway
 * [PatchAiGateway](docs/sdks/aigateways/README.md#patchaigateway) - Patch an AI Gateway
@@ -525,10 +531,6 @@ func main() {
 * [~~FetchAPISpec~~](docs/sdks/apispecification/README.md#fetchapispec) - Get API Specification :warning: **Deprecated**
 * [~~UpdateAPISpec~~](docs/sdks/apispecification/README.md#updateapispec) - Update API Specification :warning: **Deprecated**
 * [~~DeleteAPISpec~~](docs/sdks/apispecification/README.md#deleteapispec) - Delete API Specification :warning: **Deprecated**
-
-### [APISpecsPreview](docs/sdks/apispecspreview/README.md)
-
-* [PreviewAPISpec](docs/sdks/apispecspreview/README.md#previewapispec) - Preview API Spec
 
 ### [APIVersion](docs/sdks/apiversion/README.md)
 
@@ -666,6 +668,47 @@ func main() {
 * [GetCaCertificate](docs/sdks/cacertificates/README.md#getcacertificate) - Get a CA Certificate
 * [UpsertCaCertificate](docs/sdks/cacertificates/README.md#upsertcacertificate) - Upsert a CA Certificate
 
+### [CatalogAIModelImplementations](docs/sdks/catalogaimodelimplementations/README.md)
+
+* [ListAiModelImplementations](docs/sdks/catalogaimodelimplementations/README.md#listaimodelimplementations) - List AI Model implementations
+* [CreateAiModelImplementation](docs/sdks/catalogaimodelimplementations/README.md#createaimodelimplementation) - Create AI Model implementation
+* [GetAiModelImplementation](docs/sdks/catalogaimodelimplementations/README.md#getaimodelimplementation) - Get AI Model implementation
+* [DeleteAiModelImplementation](docs/sdks/catalogaimodelimplementations/README.md#deleteaimodelimplementation) - Delete AI Model implementation
+
+### [CatalogAIModelSources](docs/sdks/catalogaimodelsources/README.md)
+
+* [GetAiModelSource](docs/sdks/catalogaimodelsources/README.md#getaimodelsource) - Get AI Model source
+* [CreateAiModelSource](docs/sdks/catalogaimodelsources/README.md#createaimodelsource) - Create AI Model source
+* [ReplaceAiModelSource](docs/sdks/catalogaimodelsources/README.md#replaceaimodelsource) - Replace AI Model source
+* [UpdateAiModelSource](docs/sdks/catalogaimodelsources/README.md#updateaimodelsource) - Update AI Model source
+* [DeleteAiModelSource](docs/sdks/catalogaimodelsources/README.md#deleteaimodelsource) - Delete AI Model source
+* [GetAiModelSourcePreview](docs/sdks/catalogaimodelsources/README.md#getaimodelsourcepreview) - Get AI Model source preview
+
+### [CatalogAIModelSpecs](docs/sdks/catalogaimodelspecs/README.md)
+
+* [GetAiModelVersionSpec](docs/sdks/catalogaimodelspecs/README.md#getaimodelversionspec) - Get AI Model version spec
+* [UpsertAiModelVersionSpec](docs/sdks/catalogaimodelspecs/README.md#upsertaimodelversionspec) - Upsert AI Model version spec
+* [DeleteAiModelVersionSpec](docs/sdks/catalogaimodelspecs/README.md#deleteaimodelversionspec) - Delete AI Model version spec
+* [GetAiModelSpec](docs/sdks/catalogaimodelspecs/README.md#getaimodelspec) - Get AI Model spec
+
+### [CatalogAIModelVersions](docs/sdks/catalogaimodelversions/README.md)
+
+* [ListAiModelVersions](docs/sdks/catalogaimodelversions/README.md#listaimodelversions) - List AI Model versions
+* [CreateAiModelVersion](docs/sdks/catalogaimodelversions/README.md#createaimodelversion) - Create AI Model version
+* [GetLatestAiModelVersion](docs/sdks/catalogaimodelversions/README.md#getlatestaimodelversion) - Get latest AI Model version
+* [UpdateLatestAiModelVersion](docs/sdks/catalogaimodelversions/README.md#updatelatestaimodelversion) - Update latest AI Model version
+* [UpsertLatestAiModelVersion](docs/sdks/catalogaimodelversions/README.md#upsertlatestaimodelversion) - Replace latest AI Model version
+* [DeleteLatestAiModelVersion](docs/sdks/catalogaimodelversions/README.md#deletelatestaimodelversion) - Delete latest AI Model version
+
+### [CatalogAIModels](docs/sdks/catalogaimodels/README.md)
+
+* [ListAiModels](docs/sdks/catalogaimodels/README.md#listaimodels) - List AI Models
+* [CreateAiModel](docs/sdks/catalogaimodels/README.md#createaimodel) - Create AI Model
+* [GetAiModel](docs/sdks/catalogaimodels/README.md#getaimodel) - Get AI Model
+* [UpdateAiModel](docs/sdks/catalogaimodels/README.md#updateaimodel) - Update AI Model
+* [UpsertAiModel](docs/sdks/catalogaimodels/README.md#upsertaimodel) - Replace AI Model
+* [DeleteAiModel](docs/sdks/catalogaimodels/README.md#deleteaimodel) - Delete AI Model
+
 ### [CatalogIntegrations](docs/sdks/catalogintegrations/README.md)
 
 * [CreateCatalogIntegration](docs/sdks/catalogintegrations/README.md#createcatalogintegration) - Create Integration
@@ -673,6 +716,40 @@ func main() {
 * [GetCatalogIntegration](docs/sdks/catalogintegrations/README.md#getcatalogintegration) - Get Integration
 * [UpdateCatalogIntegration](docs/sdks/catalogintegrations/README.md#updatecatalogintegration) - Update Integration
 * [DeleteCatalogIntegration](docs/sdks/catalogintegrations/README.md#deletecatalogintegration) - Delete Integration
+
+### [CatalogMCPImplementations](docs/sdks/catalogmcpimplementations/README.md)
+
+* [ListMcpImplementations](docs/sdks/catalogmcpimplementations/README.md#listmcpimplementations) - List MCP implementations
+* [CreateMcpImplementation](docs/sdks/catalogmcpimplementations/README.md#createmcpimplementation) - Create MCP implementation
+* [GetMcpImplementation](docs/sdks/catalogmcpimplementations/README.md#getmcpimplementation) - Get MCP implementation
+* [DeleteMcpImplementation](docs/sdks/catalogmcpimplementations/README.md#deletemcpimplementation) - Delete MCP implementation
+
+### [CatalogMCPSources](docs/sdks/catalogmcpsources/README.md)
+
+* [GetMcpSource](docs/sdks/catalogmcpsources/README.md#getmcpsource) - Get MCP source
+* [CreateMcpSource](docs/sdks/catalogmcpsources/README.md#createmcpsource) - Create MCP source
+* [ReplaceMcpSource](docs/sdks/catalogmcpsources/README.md#replacemcpsource) - Replace MCP source
+* [UpdateMcpSource](docs/sdks/catalogmcpsources/README.md#updatemcpsource) - Update MCP source
+* [DeleteMcpSource](docs/sdks/catalogmcpsources/README.md#deletemcpsource) - Delete MCP source
+* [GetMcpSourcePreview](docs/sdks/catalogmcpsources/README.md#getmcpsourcepreview) - Get MCP source preview
+
+### [CatalogMCPVersions](docs/sdks/catalogmcpversions/README.md)
+
+* [ListMcpVersions](docs/sdks/catalogmcpversions/README.md#listmcpversions) - List MCP versions
+* [CreateMcpVersion](docs/sdks/catalogmcpversions/README.md#createmcpversion) - Create MCP version
+* [GetLatestMcpVersion](docs/sdks/catalogmcpversions/README.md#getlatestmcpversion) - Get latest MCP version
+* [UpdateLatestMcpVersion](docs/sdks/catalogmcpversions/README.md#updatelatestmcpversion) - Update latest MCP version
+* [UpsertLatestMcpVersion](docs/sdks/catalogmcpversions/README.md#upsertlatestmcpversion) - Replace latest MCP version
+* [DeleteLatestMcpVersion](docs/sdks/catalogmcpversions/README.md#deletelatestmcpversion) - Delete latest MCP version
+
+### [CatalogMCPs](docs/sdks/catalogmcps/README.md)
+
+* [ListMcps](docs/sdks/catalogmcps/README.md#listmcps) - List MCPs
+* [CreateMcp](docs/sdks/catalogmcps/README.md#createmcp) - Create MCP
+* [GetMcp](docs/sdks/catalogmcps/README.md#getmcp) - Get MCP
+* [UpdateMcp](docs/sdks/catalogmcps/README.md#updatemcp) - Update MCP
+* [UpsertMcp](docs/sdks/catalogmcps/README.md#upsertmcp) - Replace MCP
+* [DeleteMcp](docs/sdks/catalogmcps/README.md#deletemcp) - Delete MCP
 
 ### [CatalogResourceMappings](docs/sdks/catalogresourcemappings/README.md)
 
@@ -875,18 +952,18 @@ func main() {
 * [AddConsumerToSpecificConsumerGroup](docs/sdks/consumers/README.md#addconsumertospecificconsumergroup) - Add consumer to a specific consumer group
 * [RemoveConsumerFromConsumerGroup](docs/sdks/consumers/README.md#removeconsumerfromconsumergroup) - Remove consumer from consumer group
 
-### [ContextInterfaceConfigs](docs/sdks/contextinterfaceconfigs/README.md)
+### [ContextInterfaceCapabilityControls](docs/sdks/contextinterfacecapabilitycontrols/README.md)
 
-* [GetContextInterfacesSourceMappingCapabilityControls](docs/sdks/contextinterfaceconfigs/README.md#getcontextinterfacessourcemappingcapabilitycontrols) - Get Interface-Source Capability Controls
-* [CreateContextInterfacesSourceMappingCapabilityControls](docs/sdks/contextinterfaceconfigs/README.md#createcontextinterfacessourcemappingcapabilitycontrols) - Create Interface-Source Capability Controls
-* [PatchContextInterfacesSourceMappingCapabilityControls](docs/sdks/contextinterfaceconfigs/README.md#patchcontextinterfacessourcemappingcapabilitycontrols) - Update Interface-Source Capability Controls
+* [GetContextInterfacesSourceMappingCapabilityControls](docs/sdks/contextinterfacecapabilitycontrols/README.md#getcontextinterfacessourcemappingcapabilitycontrols) - Get Interface-Source Capability Controls
+* [CreateContextInterfacesSourceMappingCapabilityControls](docs/sdks/contextinterfacecapabilitycontrols/README.md#createcontextinterfacessourcemappingcapabilitycontrols) - Create Interface-Source Capability Controls
+* [PatchContextInterfacesSourceMappingCapabilityControls](docs/sdks/contextinterfacecapabilitycontrols/README.md#patchcontextinterfacessourcemappingcapabilitycontrols) - Update Interface-Source Capability Controls
 
 ### [ContextInterfaces](docs/sdks/contextinterfaces/README.md)
 
 * [ListContextInterfaces](docs/sdks/contextinterfaces/README.md#listcontextinterfaces) - List all Context Interfaces
 * [CreateContextInterface](docs/sdks/contextinterfaces/README.md#createcontextinterface) - Create a Context Interface
 * [GetContextInterface](docs/sdks/contextinterfaces/README.md#getcontextinterface) - Get Context Interface
-* [UpdateContextInterface](docs/sdks/contextinterfaces/README.md#updatecontextinterface) - Update MCP Server
+* [UpdateContextInterface](docs/sdks/contextinterfaces/README.md#updatecontextinterface) - Update Context Interface
 * [PatchContextInterface](docs/sdks/contextinterfaces/README.md#patchcontextinterface) - Partially Update Context Interface
 * [DeleteContextInterface](docs/sdks/contextinterfaces/README.md#deletecontextinterface) - Delete Context Interface
 * [ListContextInterfacesByContextSource](docs/sdks/contextinterfaces/README.md#listcontextinterfacesbycontextsource) - List Context Source Context Interfaces
@@ -1016,6 +1093,7 @@ func main() {
 * [UpsertDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#upsertdeclarativeconfig) - Create or Update the declarative config
 * [GetDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#getdeclarativeconfig) - Get the declarative configuration
 * [DeleteDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#deletedeclarativeconfig) - Delete the declarative config
+* [ValidateControlPlaneConfig](docs/sdks/declarativeconfiguration/README.md#validatecontrolplaneconfig) - Validate a control plane configuration
 
 ### [DegraphqlRoutes](docs/sdks/degraphqlroutes/README.md)
 
@@ -1033,6 +1111,20 @@ func main() {
 * [DeleteDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#deletedegraphqlroutewithservice) - Delete a a Degraphql_route associated with a Service
 * [GetDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#getdegraphqlroutewithservice) - Get a Degraphql_route associated with a Service
 * [UpsertDegraphqlRouteWithService](docs/sdks/degraphqlroutes/README.md#upsertdegraphqlroutewithservice) - Upsert a Degraphql_route associated with a Service
+
+### [Destinations](docs/sdks/destinations/README.md)
+
+* [ListDestinations](docs/sdks/destinations/README.md#listdestinations) - List destinations
+* [CreateDestination](docs/sdks/destinations/README.md#createdestination) - Create a destination
+* [GetDestination](docs/sdks/destinations/README.md#getdestination) - Get a destination
+* [UpdateDestination](docs/sdks/destinations/README.md#updatedestination) - Update a destination
+* [DeleteDestination](docs/sdks/destinations/README.md#deletedestination) - Delete a destination
+* [TestDestination](docs/sdks/destinations/README.md#testdestination) - Test a destination
+* [RotateDestinationSecret](docs/sdks/destinations/README.md#rotatedestinationsecret) - Rotate the destination signing secret
+* [GetDestinationDelivery](docs/sdks/destinations/README.md#getdestinationdelivery) - Get a delivery and its attempts
+* [ResendDestinationDelivery](docs/sdks/destinations/README.md#resenddestinationdelivery) - Resend a delivery
+* [ListDestinationSubscriptions](docs/sdks/destinations/README.md#listdestinationsubscriptions) - List the org subscriptions of a destination
+* [ListDeliveries](docs/sdks/destinations/README.md#listdeliveries) - List deliveries of the organization
 
 ### [DeviceAuthorizationGrant](docs/sdks/deviceauthorizationgrant/README.md)
 
@@ -1354,6 +1446,18 @@ func main() {
 * [GetOrganizationsMe](docs/sdks/me/README.md#getorganizationsme) - Get My Organization
 * [UpdateOrganizationsMe](docs/sdks/me/README.md#updateorganizationsme) - Update My Organization
 
+### [Mesh](docs/sdks/mesh/README.md)
+
+* [ListMeshControlPlanes](docs/sdks/mesh/README.md#listmeshcontrolplanes) - List Control Planes
+* [CreateCp](docs/sdks/mesh/README.md#createcp) - Create a new control plane
+* [GetMeshControlPlane](docs/sdks/mesh/README.md#getmeshcontrolplane) - Get the control plane
+* [DeleteMeshControlPlane](docs/sdks/mesh/README.md#deletemeshcontrolplane) - Delete the control plane
+* [UpdateCp](docs/sdks/mesh/README.md#updatecp) - Update a whole control plane
+* [PatchMeshControlPlane](docs/sdks/mesh/README.md#patchmeshcontrolplane) - Patch parts of control plane
+* [ListMeshControlPlaneReadinessReports](docs/sdks/mesh/README.md#listmeshcontrolplanereadinessreports) - List upgrade readiness reports
+* [ScanMeshControlPlane](docs/sdks/mesh/README.md#scanmeshcontrolplane) - Scan a control plane for upgrade readiness
+* [GetMeshControlPlaneReadinessReport](docs/sdks/mesh/README.md#getmeshcontrolplanereadinessreport) - Get an upgrade readiness report
+
 ### [MeteringEvents](docs/sdks/meteringevents/README.md)
 
 * [ListMeteringEvents](docs/sdks/meteringevents/README.md#listmeteringevents) - List metering events
@@ -1466,8 +1570,22 @@ func main() {
 
 * [ListCustomerEntitlementAccess](docs/sdks/openmeterentitlements/README.md#listcustomerentitlementaccess) - List customer entitlement access
 * [GetCustomerEntitlementAccess](docs/sdks/openmeterentitlements/README.md#getcustomerentitlementaccess) - Get customer entitlement access
+* [GetCustomerEntitlementValueByFeatureKey](docs/sdks/openmeterentitlements/README.md#getcustomerentitlementvaluebyfeaturekey) - Get customer entitlement value by feature key
 * [CreateCustomerEntitlement](docs/sdks/openmeterentitlements/README.md#createcustomerentitlement) - Create customer entitlement
+* [ListCustomerEntitlements](docs/sdks/openmeterentitlements/README.md#listcustomerentitlements) - List customer entitlements
+* [GetCustomerEntitlement](docs/sdks/openmeterentitlements/README.md#getcustomerentitlement) - Get customer entitlement
+* [DeleteCustomerEntitlement](docs/sdks/openmeterentitlements/README.md#deletecustomerentitlement) - Delete customer entitlement
+* [CreateCustomerEntitlementGrant](docs/sdks/openmeterentitlements/README.md#createcustomerentitlementgrant) - Create customer entitlement grant
+* [ListCustomerEntitlementGrants](docs/sdks/openmeterentitlements/README.md#listcustomerentitlementgrants) - List customer entitlement grants
+* [GetCustomerEntitlementHistory](docs/sdks/openmeterentitlements/README.md#getcustomerentitlementhistory) - Get customer entitlement history
+* [OverrideCustomerEntitlement](docs/sdks/openmeterentitlements/README.md#overridecustomerentitlement) - Override customer entitlement
+* [ResetCustomerEntitlementUsage](docs/sdks/openmeterentitlements/README.md#resetcustomerentitlementusage) - Reset customer entitlement usage
+* [GetCustomerEntitlementValue](docs/sdks/openmeterentitlements/README.md#getcustomerentitlementvalue) - Get customer entitlement value
 * [QueryEntitlementAccess](docs/sdks/openmeterentitlements/README.md#queryentitlementaccess) - Query entitlement access
+* [ListEntitlements](docs/sdks/openmeterentitlements/README.md#listentitlements) - List entitlements
+* [GetEntitlement](docs/sdks/openmeterentitlements/README.md#getentitlement) - Get entitlement
+* [ListGrants](docs/sdks/openmeterentitlements/README.md#listgrants) - List grants
+* [VoidGrant](docs/sdks/openmeterentitlements/README.md#voidgrant) - Void grant
 
 ### [OpenMeterFeatures](docs/sdks/openmeterfeatures/README.md)
 
@@ -1478,13 +1596,21 @@ func main() {
 * [DeleteFeature](docs/sdks/openmeterfeatures/README.md#deletefeature) - Delete feature
 * [QueryFeatureCost](docs/sdks/openmeterfeatures/README.md#queryfeaturecost) - Query feature cost
 
-### [OpenMeterLLMCost](docs/sdks/openmeterllmcost/README.md)
+### [~~OpenMeterLLMCost~~](docs/sdks/openmeterllmcost/README.md)
 
-* [ListLlmCostOverrides](docs/sdks/openmeterllmcost/README.md#listllmcostoverrides) - List LLM cost overrides
-* [CreateLlmCostOverride](docs/sdks/openmeterllmcost/README.md#createllmcostoverride) - Create LLM cost override
-* [DeleteLlmCostOverride](docs/sdks/openmeterllmcost/README.md#deletellmcostoverride) - Delete LLM cost override
-* [ListLlmCostPrices](docs/sdks/openmeterllmcost/README.md#listllmcostprices) - List LLM cost prices
-* [GetLlmCostPrice](docs/sdks/openmeterllmcost/README.md#getllmcostprice) - Get LLM cost price
+* [~~ListLlmCostOverrides~~](docs/sdks/openmeterllmcost/README.md#listllmcostoverrides) - List LLM cost overrides :warning: **Deprecated**
+* [~~CreateLlmCostOverride~~](docs/sdks/openmeterllmcost/README.md#createllmcostoverride) - Create LLM cost override :warning: **Deprecated**
+* [~~DeleteLlmCostOverride~~](docs/sdks/openmeterllmcost/README.md#deletellmcostoverride) - Delete LLM cost override :warning: **Deprecated**
+* [~~ListLlmCostPrices~~](docs/sdks/openmeterllmcost/README.md#listllmcostprices) - List LLM cost prices :warning: **Deprecated**
+* [~~GetLlmCostPrice~~](docs/sdks/openmeterllmcost/README.md#getllmcostprice) - Get LLM cost price :warning: **Deprecated**
+
+### [OpenMeterNotifications](docs/sdks/openmeternotifications/README.md)
+
+* [ListNotificationChannels](docs/sdks/openmeternotifications/README.md#listnotificationchannels) - List notification channels
+* [CreateNotificationChannel](docs/sdks/openmeternotifications/README.md#createnotificationchannel) - Create notification channel
+* [GetNotificationChannel](docs/sdks/openmeternotifications/README.md#getnotificationchannel) - Get notification channel
+* [UpdateNotificationChannel](docs/sdks/openmeternotifications/README.md#updatenotificationchannel) - Update notification channel
+* [DeleteNotificationChannel](docs/sdks/openmeternotifications/README.md#deletenotificationchannel) - Delete notification channel
 
 ### [OpenMeterProductCatalog](docs/sdks/openmeterproductcatalog/README.md)
 
@@ -1532,6 +1658,15 @@ func main() {
 * [GetTaxCode](docs/sdks/openmetertax/README.md#gettaxcode) - Get tax code
 * [UpsertTaxCode](docs/sdks/openmetertax/README.md#upserttaxcode) - Upsert tax code
 * [DeleteTaxCode](docs/sdks/openmetertax/README.md#deletetaxcode) - Delete tax code
+
+### [OrgConfigurations](docs/sdks/orgconfigurations/README.md)
+
+* [ListOrgConfigurations](docs/sdks/orgconfigurations/README.md#listorgconfigurations) - List available org configurations
+* [ListOrgSubscriptions](docs/sdks/orgconfigurations/README.md#listorgsubscriptions) - List the org subscriptions of an event type
+* [CreateOrgSubscription](docs/sdks/orgconfigurations/README.md#createorgsubscription) - Create an org subscription
+* [GetOrgSubscription](docs/sdks/orgconfigurations/README.md#getorgsubscription) - Get an org subscription
+* [UpdateOrgSubscription](docs/sdks/orgconfigurations/README.md#updateorgsubscription) - Update an org subscription
+* [DeleteOrgSubscription](docs/sdks/orgconfigurations/README.md#deleteorgsubscription) - Delete an org subscription
 
 ### [OrganizationFeature](docs/sdks/organizationfeature/README.md)
 
@@ -1713,6 +1848,14 @@ func main() {
 * [ListPortalMcpRegistries](docs/sdks/portalmcpregistrypublications/README.md#listportalmcpregistries) - List MCP Registries
 * [ListPortalComputedMcpRegistries](docs/sdks/portalmcpregistrypublications/README.md#listportalcomputedmcpregistries) - List computed MCP Registries
 
+### [PortalNavigation](docs/sdks/portalnavigation/README.md)
+
+* [ListPortalNavigations](docs/sdks/portalnavigation/README.md#listportalnavigations) - List Navigation configurations
+* [CreatePortalNavigation](docs/sdks/portalnavigation/README.md#createportalnavigation) - Create Navigation configuration
+* [GetPortalNavigation](docs/sdks/portalnavigation/README.md#getportalnavigation) - Get a Navigation configuration
+* [ReplacePortalNavigation](docs/sdks/portalnavigation/README.md#replaceportalnavigation) - Replace Navigation configuration
+* [DeletePortalNavigation](docs/sdks/portalnavigation/README.md#deleteportalnavigation) - Delete Navigation configuration
+
 ### [PortalPages](docs/sdks/portalpages/README.md)
 
 * [ListPortalPages](docs/sdks/portalpages/README.md#listportalpages) - List Pages
@@ -1818,6 +1961,8 @@ func main() {
 ### [Schemas](docs/sdks/schemas/README.md)
 
 * [FetchCoreEntityJSONSchema](docs/sdks/schemas/README.md#fetchcoreentityjsonschema) - Get core entity JSON schema
+* [ValidatePluginExpression](docs/sdks/schemas/README.md#validatepluginexpression) - Validate a plugin expression
+* [ValidatePluginCondition](docs/sdks/schemas/README.md#validateplugincondition) - Validate a plugin condition
 * [ValidateEntitySchema](docs/sdks/schemas/README.md#validateentityschema) - Validate entity schema
 * [FetchPartialSchema](docs/sdks/schemas/README.md#fetchpartialschema) - Get partial schema
 
@@ -1850,6 +1995,22 @@ func main() {
 * [DeleteService](docs/sdks/services/README.md#deleteservice) - Delete a Service
 * [GetService](docs/sdks/services/README.md#getservice) - Get a Service
 * [UpsertService](docs/sdks/services/README.md#upsertservice) - Upsert a Service
+
+### [SignalingAPIs](docs/sdks/signalingapis/README.md)
+
+* [ListDeployedContextInterfaceSkillArtifacts](docs/sdks/signalingapis/README.md#listdeployedcontextinterfaceskillartifacts) - List Skill Artifacts By Control Plane
+
+### [SkillArtifacts](docs/sdks/skillartifacts/README.md)
+
+* [ListContextInterfaceSkillArtifacts](docs/sdks/skillartifacts/README.md#listcontextinterfaceskillartifacts) - List Skill Artifacts
+
+### [SkillPreview](docs/sdks/skillpreview/README.md)
+
+* [PreviewContextInterfaceSkill](docs/sdks/skillpreview/README.md#previewcontextinterfaceskill) - Preview a Skill
+
+### [SkillSync](docs/sdks/skillsync/README.md)
+
+* [SyncContextInterfaceSkill](docs/sdks/skillsync/README.md#synccontextinterfaceskill) - Sync Skill
 
 ### [Skills](docs/sdks/skills/README.md)
 

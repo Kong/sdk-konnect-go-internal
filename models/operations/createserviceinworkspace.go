@@ -13,7 +13,7 @@ type CreateServiceInWorkspaceRequest struct {
 	// The name of the workspace
 	Workspace string `pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of the new Service for creation
-	Service components.Service `request:"mediaType=application/json"`
+	ServiceRequest components.ServiceRequest `request:"mediaType=application/json"`
 }
 
 func (c *CreateServiceInWorkspaceRequest) GetControlPlaneID() string {
@@ -30,11 +30,11 @@ func (c *CreateServiceInWorkspaceRequest) GetWorkspace() string {
 	return c.Workspace
 }
 
-func (c *CreateServiceInWorkspaceRequest) GetService() components.Service {
+func (c *CreateServiceInWorkspaceRequest) GetServiceRequest() components.ServiceRequest {
 	if c == nil {
-		return components.Service{}
+		return components.ServiceRequest{}
 	}
-	return c.Service
+	return c.ServiceRequest
 }
 
 type CreateServiceInWorkspaceResponse struct {

@@ -5,6 +5,10 @@ PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 TOOLS_VERSIONS_FILE = $(PROJECT_DIR)/.tools_versions.yaml
 export MISE_DATA_DIR = $(PROJECT_DIR)/bin/
 
+# speakeasy's staticcheck v0.8.1 and mockery cannot read the export data from a newer Go.
+# Pin the toolchain to the version in go.mod so generation, compile tests and lint agree.
+export GOTOOLCHAIN = go$(shell sed -n 's/^go //p' go.mod)
+
 MISE := $(shell which mise)
 .PHONY: mise
 mise:

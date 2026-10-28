@@ -270,6 +270,11 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	ConsumerOptional *bool `default:"false" json:"consumer_optional"`
 	// Claim path used to derive virtual credentials when consumer mapping is not used.
 	CredentialClaim []string `json:"credential_claim,omitempty"`
+	// Claim paths used to derive virtual credentials when consumer mapping is not used.
+	// The paths are evaluated in order. The first matching claim is used.
+	//
+	// **Requires a minimum runtime version of `2.3`**.
+	CredentialClaims [][]string `json:"credential_claims,omitempty"`
 	// URL that identifies the OpenID Provider
 	Issuer *string `json:"issuer,omitempty"`
 	// Overrides the introspection endpoint returned by discovery.
@@ -391,6 +396,13 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetCredentialClaim() 
 		return nil
 	}
 	return a.CredentialClaim
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetCredentialClaims() [][]string {
+	if a == nil {
+		return nil
+	}
+	return a.CredentialClaims
 }
 
 func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIssuer() *string {
@@ -551,8 +563,23 @@ type AIGatewayAuthStrategyOpenIDConnectResponse struct {
 	// Keys must be 1–63 characters long and start with an alphanumeric character.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
+	// The Token Vault Datastore holding this entity's credential storage: the directory credentials
+	// are written to, and the encryption keys that seal them. Required when `token_vault` is set
+	// (on an auth strategy, when its credential manager is enabled), and the referenced Datastore
+	// must have type `token-vault`. Only one Datastore can be referenced.
+	//
+	// **Requires a minimum runtime version of `2.3`**.
+	Datastores []AIGatewayDatastoreRef `json:"datastores,omitempty"`
 	//lint:ignore U1000 accessed via reflection for JSON marshaling
 	type_ string `const:"openid-connect" json:"type"`
+	// Serves the self-service enrollment UI through which end users authorize the upstream providers
+	// this auth strategy authenticates against. Omit `token_vault` entirely to serve no such UI.
+	//
+	// Requires a `token-vault` Datastore reference in `datastores`; enabling the credential manager
+	// without one is rejected.
+	//
+	// **Requires a minimum runtime version of `2.3`**.
+	TokenVault *AIGatewayTokenVaultCredentialManager `json:"token_vault,omitempty"`
 	// Configuration for the OpenID Connect auth strategy.
 	// For advanced use cases, additional config properties can be sent in the request body.
 	// See: https://developer.konghq.com/plugins/openid-connect/reference/ for the list of properties
@@ -605,8 +632,22 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponse) GetManagedBy() map[string]s
 	return a.ManagedBy
 }
 
+func (a *AIGatewayAuthStrategyOpenIDConnectResponse) GetDatastores() []AIGatewayDatastoreRef {
+	if a == nil {
+		return nil
+	}
+	return a.Datastores
+}
+
 func (a *AIGatewayAuthStrategyOpenIDConnectResponse) GetType() string {
 	return "openid-connect"
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponse) GetTokenVault() *AIGatewayTokenVaultCredentialManager {
+	if a == nil {
+		return nil
+	}
+	return a.TokenVault
 }
 
 func (a *AIGatewayAuthStrategyOpenIDConnectResponse) GetConfig() *AIGatewayAuthStrategyOpenIDConnectResponseConfig {

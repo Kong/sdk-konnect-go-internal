@@ -10,6 +10,10 @@ import (
 type AISettingsRequestFeaturesPortalAgent struct {
 	// Whether the Portal Agent is enabled or not
 	Enabled *bool `default:"false" json:"enabled"`
+	// The display name for the Portal Agent, shown to developers in the portal
+	DisplayName *string `default:"AI" json:"display_name"`
+	// The audience allowed to interact with the Portal Agent. Currently only `all` (available to every developer, including unauthenticated ones) is supported. `authenticated` (restricted to signed-in developers only) is planned for a future release.
+	Audience *PortalAgentAudienceNullable `default:"all" json:"audience"`
 }
 
 func (a AISettingsRequestFeaturesPortalAgent) MarshalJSON() ([]byte, error) {
@@ -28,6 +32,20 @@ func (a *AISettingsRequestFeaturesPortalAgent) GetEnabled() *bool {
 		return nil
 	}
 	return a.Enabled
+}
+
+func (a *AISettingsRequestFeaturesPortalAgent) GetDisplayName() *string {
+	if a == nil {
+		return nil
+	}
+	return a.DisplayName
+}
+
+func (a *AISettingsRequestFeaturesPortalAgent) GetAudience() *PortalAgentAudienceNullable {
+	if a == nil {
+		return nil
+	}
+	return a.Audience
 }
 
 // AISettingsRequestFeaturesAISearch - AI Search configuration

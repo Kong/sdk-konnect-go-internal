@@ -19,8 +19,10 @@ type AIGatewayPolicySchema struct {
 	// List of the plugin's fields
 	Fields []Fields `json:"fields"`
 	// Entity-level (cross-field) validation rules applied to the whole record.
-	EntityChecks         []EntityChecks `json:"entity_checks,omitempty"`
-	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
+	EntityChecks []EntityChecks `json:"entity_checks,omitempty"`
+	// Field paths supported by each policy partial.
+	SupportedPartials    map[string][]string `json:"supported_partials,omitempty"`
+	AdditionalProperties map[string]any      `additionalProperties:"true" json:"-"`
 }
 
 func (a AIGatewayPolicySchema) MarshalJSON() ([]byte, error) {
@@ -53,6 +55,13 @@ func (a *AIGatewayPolicySchema) GetEntityChecks() []EntityChecks {
 		return nil
 	}
 	return a.EntityChecks
+}
+
+func (a *AIGatewayPolicySchema) GetSupportedPartials() map[string][]string {
+	if a == nil {
+		return nil
+	}
+	return a.SupportedPartials
 }
 
 func (a *AIGatewayPolicySchema) GetAdditionalProperties() map[string]any {

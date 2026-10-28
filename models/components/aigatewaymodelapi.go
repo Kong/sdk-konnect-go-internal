@@ -9,9 +9,10 @@ import (
 type Capabilities string
 
 const (
-	CapabilitiesBatches Capabilities = "batches"
-	CapabilitiesFiles   Capabilities = "files"
-	CapabilitiesSkills  Capabilities = "skills"
+	CapabilitiesWildcard Capabilities = "*"
+	CapabilitiesBatches  Capabilities = "batches"
+	CapabilitiesFiles    Capabilities = "files"
+	CapabilitiesSkills   Capabilities = "skills"
 )
 
 func (e Capabilities) ToPointer() *Capabilities {
@@ -22,7 +23,7 @@ func (e Capabilities) ToPointer() *Capabilities {
 func (e *Capabilities) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "batches", "files", "skills":
+		case "*", "batches", "files", "skills":
 			return true
 		}
 	}
@@ -63,7 +64,12 @@ type AIGatewayModelAPI struct {
 	type_ string `const:"api" json:"type"`
 	// Routing, logging, and load balancing configuration for the model.
 	Config AIGatewayModelAPIConfig `json:"config"`
-	// List of AI capabilities enabled for this API model.
+	// The capabilities this model supports. Set to a specific capability to
+	// restrict the model to that capability only, or to `*` to allow all
+	// capabilities that the targets support at the gateway's
+	// min_runtime_version. A capability that needs a newer
+	// min_runtime_version is left out of `*`.
+	//
 	Capabilities []Capabilities `json:"capabilities"`
 }
 

@@ -17,6 +17,7 @@ type CreateCustomDomainRequest struct {
 	// - `me` — Middle East
 	// - `in` — India
 	// - `sg` — Singapore
+	// - `uk` — United Kingdom
 	//
 	ControlPlaneGeo ControlPlaneGeo `json:"control_plane_geo"`
 	// Domain name of the custom domain.
@@ -26,10 +27,12 @@ type CreateCustomDomainRequest struct {
 	//
 	// Kind of the custom domain based on Cloud Gateway deployment.
 	Kind *CustomDomainKind `default:"dedicated.v0" json:"kind"`
-	// Type of gateway the dedicated custom domain belongs to: `api` for an API Gateway or
+	// **Pre-release Feature**
+	// This feature is currently in beta and is subject to change.
+	//
+	// Type of gateway the custom domain belongs to: `api` for an API Gateway or
 	// `ai` for an AI Gateway. Applies only to dedicated custom domains. Defaults to `api`
 	// when omitted.
-	//
 	Type *CustomDomainType `default:"api" json:"type"`
 }
 

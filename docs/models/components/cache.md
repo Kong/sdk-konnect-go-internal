@@ -1,14 +1,13 @@
 # Cache
 
-Cache hints Kong emits on the cacheable operations it serves. Only clients on a protocol
-revision that defines them receive them.
+Optional best-effort cache for exchanged credentials, shared across the cluster. Losing it
+only costs a re-exchange. Credentials are encrypted with the keys held by the Token Vault
+Datastore before being cached.
 
-**Requires a minimum runtime version of `2.1`**.
 
 
 ## Fields
 
-| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `ToolsList`                                                                                       | [*components.AIGatewayMCPServerCacheHint](../../models/components/aigatewaymcpservercachehint.md) | :heavy_minus_sign:                                                                                | A cache hint Kong emits on a cacheable operation it serves.                                       |
-| `Discover`                                                                                        | [*components.AIGatewayMCPServerCacheHint](../../models/components/aigatewaymcpservercachehint.md) | :heavy_minus_sign:                                                                                | A cache hint Kong emits on a cacheable operation it serves.                                       |
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `Redis`                                                                                                     | [*components.AIGatewayRedisCloudConfiguration](../../models/components/aigatewayrediscloudconfiguration.md) | :heavy_minus_sign:                                                                                          | Config for connecting to a Cloud Provider's Redis instance.                                                 |

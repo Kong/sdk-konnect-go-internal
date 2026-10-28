@@ -6,10 +6,14 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AISettingsResponseFeaturesPortalAgent - Portal Agent config
+// AISettingsResponseFeaturesPortalAgent - Portal Agent configuration
 type AISettingsResponseFeaturesPortalAgent struct {
 	// Whether the Portal Agent is enabled or not
 	Enabled *bool `default:"false" json:"enabled"`
+	// The display name for the Portal Agent, shown to developers in the portal
+	DisplayName *string `default:"AI" json:"display_name"`
+	// The audience allowed to interact with the Portal Agent. Currently only `all` (available to every developer, including unauthenticated ones) is supported. `authenticated` (restricted to signed-in developers only) is planned for a future release.
+	Audience *PortalAgentAudience `default:"all" json:"audience"`
 }
 
 func (a AISettingsResponseFeaturesPortalAgent) MarshalJSON() ([]byte, error) {
@@ -30,7 +34,21 @@ func (a *AISettingsResponseFeaturesPortalAgent) GetEnabled() *bool {
 	return a.Enabled
 }
 
-// AISettingsResponseFeaturesAISearch - AI Search config
+func (a *AISettingsResponseFeaturesPortalAgent) GetDisplayName() *string {
+	if a == nil {
+		return nil
+	}
+	return a.DisplayName
+}
+
+func (a *AISettingsResponseFeaturesPortalAgent) GetAudience() *PortalAgentAudience {
+	if a == nil {
+		return nil
+	}
+	return a.Audience
+}
+
+// AISettingsResponseFeaturesAISearch - AI Search configuration
 type AISettingsResponseFeaturesAISearch struct {
 	// Whether AI Search is enabled or not
 	Enabled *bool `default:"false" json:"enabled"`
@@ -54,9 +72,9 @@ func (a *AISettingsResponseFeaturesAISearch) GetEnabled() *bool {
 	return a.Enabled
 }
 
-// AISettingsResponseFeaturesMcpServer - MCP Server config
+// AISettingsResponseFeaturesMcpServer - MCP Server configuration
 type AISettingsResponseFeaturesMcpServer struct {
-	// Whether the MCP Server is enabled or not
+	// Whether the Portal MCP Server is enabled or not
 	Enabled *bool `default:"false" json:"enabled"`
 	// Whether write operations are enabled or not for the Portal MCP Server enabled
 	WriteOperationsEnabled *bool `default:"false" json:"write_operations_enabled"`
@@ -89,11 +107,11 @@ func (a *AISettingsResponseFeaturesMcpServer) GetWriteOperationsEnabled() *bool 
 
 // AISettingsResponseFeatures - AI features configuration. When top-level `enabled` is false, every feature toggle here is automatically reset to false.
 type AISettingsResponseFeatures struct {
-	// Portal Agent config
+	// Portal Agent configuration
 	PortalAgent *AISettingsResponseFeaturesPortalAgent `json:"portal_agent,omitempty"`
-	// AI Search config
+	// AI Search configuration
 	AiSearch *AISettingsResponseFeaturesAISearch `json:"ai_search,omitempty"`
-	// MCP Server config
+	// MCP Server configuration
 	McpServer AISettingsResponseFeaturesMcpServer `json:"mcp_server"`
 }
 

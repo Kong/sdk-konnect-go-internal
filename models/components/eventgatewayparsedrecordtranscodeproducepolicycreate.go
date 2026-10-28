@@ -89,10 +89,6 @@ func (e *EventGatewayParsedRecordTranscodeProducePolicyCreate) GetConfig() Event
 	return e.Config
 }
 
-func (e *EventGatewayParsedRecordTranscodeProducePolicyCreate) GetConfigJSON() *EventGatewayParsedRecordTranscodeProduceConfigJSON {
-	return e.GetConfig().EventGatewayParsedRecordTranscodeProduceConfigJSON
-}
-
 func (e *EventGatewayParsedRecordTranscodeProducePolicyCreate) GetConfigAvro() *EventGatewayParsedRecordTranscodeProduceConfigAvro {
 	return e.GetConfig().EventGatewayParsedRecordTranscodeProduceConfigAvro
 }

@@ -95,6 +95,7 @@ func main() {
 
     res, err := s.AISettings.ReplaceAiSettings(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", components.ReplaceAISettingsRequest{
         Features: components.ReplaceAISettingsRequestFeatures{
+            PortalAgent: &components.ReplaceAISettingsRequestFeaturesPortalAgent{},
             McpServer: components.ReplaceAISettingsRequestFeaturesMcpServer{},
         },
     })
@@ -155,7 +156,11 @@ func main() {
         }),
     )
 
-    res, err := s.AISettings.PatchAiSettings(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", components.PatchAISettingsRequest{})
+    res, err := s.AISettings.PatchAiSettings(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", components.PatchAISettingsRequest{
+        Features: &components.AISettingsRequestFeatures{
+            PortalAgent: &components.AISettingsRequestFeaturesPortalAgent{},
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }

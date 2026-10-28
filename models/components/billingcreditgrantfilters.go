@@ -7,6 +7,10 @@ type BillingCreditGrantFilters struct {
 	// Limit the credit grant to specific features. If no features are specified, the
 	// credit grant can be used for any feature.
 	Features []string `json:"features,omitempty"`
+	// Limit credits to charges from these plans. Entries are alternatives; when
+	// features are also specified, both dimensions must match. Omission or an empty
+	// list leaves plans unrestricted.
+	Plans []BillingCreditGrantPlanFilter `json:"plans,omitempty"`
 }
 
 func (b *BillingCreditGrantFilters) GetFeatures() []string {
@@ -14,4 +18,11 @@ func (b *BillingCreditGrantFilters) GetFeatures() []string {
 		return nil
 	}
 	return b.Features
+}
+
+func (b *BillingCreditGrantFilters) GetPlans() []BillingCreditGrantPlanFilter {
+	if b == nil {
+		return nil
+	}
+	return b.Plans
 }

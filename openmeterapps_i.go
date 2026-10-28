@@ -12,12 +12,21 @@ import (
 // OpenMeterAppsSDK is a generated interface.
 type OpenMeterAppsSDK interface {
 	// ListAppCatalog - List app catalog
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// List available apps.
 	ListAppCatalog(ctx context.Context, page *components.PagePaginationQuery, opts ...operations.Option) (*operations.ListAppCatalogResponse, error)
 	// InstallApp - Install app from the catalog
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Install an app from the catalog.
 	InstallApp(ctx context.Context, request components.BillingInstallAppRequest, opts ...operations.Option) (*operations.InstallAppResponse, error)
 	// GetAppCatalogItem - Get app catalog item by type
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Get an app catalog item by type.
 	GetAppCatalogItem(ctx context.Context, appType components.BillingAppType, opts ...operations.Option) (*operations.GetAppCatalogItemResponse, error)
 	// ListApps - List apps
@@ -27,9 +36,15 @@ type OpenMeterAppsSDK interface {
 	// Get an installed app.
 	GetApp(ctx context.Context, appID string, opts ...operations.Option) (*operations.GetAppResponse, error)
 	// UninstallApp - Uninstall app
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Uninstall an app by ID.
 	UninstallApp(ctx context.Context, appID string, opts ...operations.Option) (*operations.UninstallAppResponse, error)
 	// UpdateApp - Update app
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Update an installed app.
 	UpdateApp(ctx context.Context, appID string, billingUpdateAppRequest components.BillingUpdateAppRequest, opts ...operations.Option) (*operations.UpdateAppResponse, error)
 }

@@ -903,7 +903,7 @@ func (s *ContextInterfaces) GetContextInterface(ctx context.Context, interfaceID
 
 }
 
-// UpdateContextInterface - Update MCP Server
+// UpdateContextInterface - Update Context Interface
 // Update an individual Context Interface.
 func (s *ContextInterfaces) UpdateContextInterface(ctx context.Context, interfaceID string, createMCPServerRequest components.CreateMCPServerRequest, opts ...operations.Option) (*operations.UpdateContextInterfaceResponse, error) {
 	request := operations.UpdateContextInterfaceRequest{
@@ -2430,7 +2430,7 @@ func (s *ContextInterfaces) GetMcpServerStatus(ctx context.Context, interfaceID 
 }
 
 // GetContextInterfaceGeneratedCode - Get Generated Code for a Context Interface
-// Generated MCP Server code of a Context Interface.
+// Returns the generated MCP server code for a Context Interface.
 func (s *ContextInterfaces) GetContextInterfaceGeneratedCode(ctx context.Context, interfaceID string, opts ...operations.Option) (*operations.GetContextInterfaceGeneratedCodeResponse, error) {
 	request := operations.GetContextInterfaceGeneratedCodeRequest{
 		InterfaceID: interfaceID,

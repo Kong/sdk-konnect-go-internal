@@ -98,7 +98,7 @@ func main() {
         }),
     )
 
-    res, err := s.ContextSources.CreateContextSource(ctx, operations.CreateCreateContextSourceRequestBodyAPIResourcePayload(
+    res, err := s.ContextSources.CreateContextSource(ctx, operations.CreateCreateContextSourceRequestBodyAPI(
         components.APIResourcePayload{
             Name: "my-api-resource",
             DisplayName: "Hershel.Bechtelar",
@@ -303,7 +303,7 @@ func main() {
         }),
     )
 
-    res, err := s.ContextSources.UpdateContextSource(ctx, "90fc8931-cf90-4890-bb3b-07cbb228526c", operations.CreateUpdateContextSourceRequestBodyMcpServerResourcePayload(
+    res, err := s.ContextSources.UpdateContextSource(ctx, "90fc8931-cf90-4890-bb3b-07cbb228526c", operations.CreateUpdateContextSourceRequestBodyMcpServer(
         components.McpServerResourcePayload{
             Name: "my-api-resource",
             DisplayName: "Thora9",

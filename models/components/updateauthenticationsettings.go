@@ -14,6 +14,10 @@ type UpdateAuthenticationSettings struct {
 	IdpMappingEnabled *bool `json:"idp_mapping_enabled,omitempty"`
 	// Whether a Konnect Identity Admin assigns teams to a user.
 	KonnectMappingEnabled *bool `json:"konnect_mapping_enabled,omitempty"`
+	// Number of minutes of inactivity after which a user is logged out. Must be between 15 minutes and 24 hours.
+	IdleSessionLogoutMinutes *int64 `json:"idle_session_logout_minutes,omitempty"`
+	// Maximum number of minutes a session can last before a user is logged out, regardless of activity. Must be between 15 minutes and 7 days, and cannot be smaller than `idle_session_logout_minutes`.
+	MaximumSessionLogoutMinutes *int64 `json:"maximum_session_logout_minutes,omitempty"`
 }
 
 func (u *UpdateAuthenticationSettings) GetBasicAuthEnabled() *bool {
@@ -49,4 +53,18 @@ func (u *UpdateAuthenticationSettings) GetKonnectMappingEnabled() *bool {
 		return nil
 	}
 	return u.KonnectMappingEnabled
+}
+
+func (u *UpdateAuthenticationSettings) GetIdleSessionLogoutMinutes() *int64 {
+	if u == nil {
+		return nil
+	}
+	return u.IdleSessionLogoutMinutes
+}
+
+func (u *UpdateAuthenticationSettings) GetMaximumSessionLogoutMinutes() *int64 {
+	if u == nil {
+		return nil
+	}
+	return u.MaximumSessionLogoutMinutes
 }

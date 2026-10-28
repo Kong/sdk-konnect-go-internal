@@ -52,6 +52,9 @@ type OpenMeterSubscriptionsSDK interface {
 	// next billing cycle. Subscriptions that have add-ons cannot be edited.
 	EditSubscription(ctx context.Context, subscriptionID string, billingSubscriptionEdit components.BillingSubscriptionEdit, opts ...operations.Option) (*operations.EditSubscriptionResponse, error)
 	// MigrateSubscription - Migrate subscription
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Migrates to a later version of the current plan. With starting_phase omitted and
 	// billing_anchor omitted or unchanged, migration amends the subscription in place:
 	// unchanged items retain their service periods and both response entries have the
@@ -62,12 +65,18 @@ type OpenMeterSubscriptionsSDK interface {
 	// transfer addons. Custom subscriptions cannot be migrated.
 	MigrateSubscription(ctx context.Context, subscriptionID string, billingSubscriptionMigrate components.BillingSubscriptionMigrate, opts ...operations.Option) (*operations.MigrateSubscriptionResponse, error)
 	// RestoreSubscription - Restore subscription
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Restores the subscription by deleting any later-scheduled successor
 	// subscriptions and continuing this one indefinitely. This is the inverse of a
 	// future-dated change, which schedules a successor. Restore is not available when
 	// multi-subscription is enabled.
 	RestoreSubscription(ctx context.Context, subscriptionID string, opts ...operations.Option) (*operations.RestoreSubscriptionResponse, error)
 	// UnscheduleSubscription - Unschedule subscription
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// Deletes a scheduled subscription that has not yet become active, removing it and
 	// resolving any scheduling conflict it was holding. This is distinct from
 	// canceling: cancel ends a running subscription, whereas unscheduling removes a

@@ -33,8 +33,6 @@ func newOpenMeterTax(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hoo
 }
 
 // CreateTaxCode - Create tax code
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
 func (s *OpenMeterTax) CreateTaxCode(ctx context.Context, request components.CreateTaxCodeRequest, opts ...operations.Option) (*operations.CreateTaxCodeResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -312,8 +310,6 @@ func (s *OpenMeterTax) CreateTaxCode(ctx context.Context, request components.Cre
 }
 
 // ListTaxCodes - List tax codes
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
 func (s *OpenMeterTax) ListTaxCodes(ctx context.Context, page *components.PagePaginationQuery, includeDeleted *bool, opts ...operations.Option) (*operations.ListTaxCodesResponse, error) {
 	request := operations.ListTaxCodesRequest{
 		Page:           page,
@@ -593,8 +589,6 @@ func (s *OpenMeterTax) ListTaxCodes(ctx context.Context, page *components.PagePa
 }
 
 // GetTaxCode - Get tax code
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
 func (s *OpenMeterTax) GetTaxCode(ctx context.Context, taxCodeID string, opts ...operations.Option) (*operations.GetTaxCodeResponse, error) {
 	request := operations.GetTaxCodeRequest{
 		TaxCodeID: taxCodeID,
@@ -891,8 +885,6 @@ func (s *OpenMeterTax) GetTaxCode(ctx context.Context, taxCodeID string, opts ..
 }
 
 // UpsertTaxCode - Upsert tax code
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
 func (s *OpenMeterTax) UpsertTaxCode(ctx context.Context, taxCodeID string, upsertTaxCodeRequest components.UpsertTaxCodeRequest, opts ...operations.Option) (*operations.UpsertTaxCodeResponse, error) {
 	request := operations.UpsertTaxCodeRequest{
 		TaxCodeID:            taxCodeID,
@@ -1219,8 +1211,6 @@ func (s *OpenMeterTax) UpsertTaxCode(ctx context.Context, taxCodeID string, upse
 }
 
 // DeleteTaxCode - Delete tax code
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
 func (s *OpenMeterTax) DeleteTaxCode(ctx context.Context, taxCodeID string, opts ...operations.Option) (*operations.DeleteTaxCodeResponse, error) {
 	request := operations.DeleteTaxCodeRequest{
 		TaxCodeID: taxCodeID,

@@ -30,6 +30,7 @@ func (e *PortalCustomizationMode) IsExact() bool {
 }
 
 type Colors struct {
+	// The primary accent color used in the portal's theme. Must be a valid hex color value.
 	Primary *string `json:"primary,omitempty"`
 }
 
@@ -40,10 +41,23 @@ func (c *Colors) GetPrimary() *string {
 	return c.Primary
 }
 
+// Theme - The theme settings for this portal.
 type Theme struct {
-	Name   *string                  `json:"name,omitempty"`
+	// The theme name to apply to this portal. Supported names are 'ocean', 'mesa', and 'grove'. If another name is provided or this property is omitted, the portal uses the default 'ocean' theme.
+	Name   *string                  `default:"ocean" json:"name"`
 	Mode   *PortalCustomizationMode `json:"mode,omitempty"`
 	Colors *Colors                  `json:"colors,omitempty"`
+}
+
+func (t Theme) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *Theme) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (t *Theme) GetName() *string {
@@ -254,7 +268,11 @@ func (p *PortalLayout) GetFooter() *Footer {
 
 // PortalCustomization - The custom settings of this portal
 type PortalCustomization struct {
-	Theme  *Theme  `json:"theme,omitempty"`
+	// The theme settings for this portal.
+	Theme *Theme `json:"theme,omitempty"`
+	// This property is deprecated and is not used by the portal.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Layout *string `json:"layout,omitempty"`
 	CSS    *string `json:"css,omitempty"`
 	Js     *Js     `json:"js,omitempty"`

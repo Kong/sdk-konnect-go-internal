@@ -75,8 +75,12 @@ type AIGatewayAuthStrategyKeyAuthConfig struct {
 	// Authenticate against Kong Identity instead of local credentials.
 	// Mutually exclusive with identity realms.
 	//
-	Principals           *AIGatewayAuthStrategyKeyAuthPrincipals `json:"principals,omitempty"`
-	AdditionalProperties map[string]any                          `additionalProperties:"true" json:"-"`
+	Principals *AIGatewayAuthStrategyKeyAuthPrincipals `json:"principals,omitempty"`
+	// When authentication fails the plugin sends `WWW-Authenticate` header with `realm` attribute value.
+	Realm *string `json:"realm,omitempty"`
+	// A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests are always allowed.
+	RunOnPreflight       *bool          `default:"true" json:"run_on_preflight"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (a AIGatewayAuthStrategyKeyAuthConfig) MarshalJSON() ([]byte, error) {
@@ -132,6 +136,20 @@ func (a *AIGatewayAuthStrategyKeyAuthConfig) GetPrincipals() *AIGatewayAuthStrat
 	return a.Principals
 }
 
+func (a *AIGatewayAuthStrategyKeyAuthConfig) GetRealm() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Realm
+}
+
+func (a *AIGatewayAuthStrategyKeyAuthConfig) GetRunOnPreflight() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.RunOnPreflight
+}
+
 func (a *AIGatewayAuthStrategyKeyAuthConfig) GetAdditionalProperties() map[string]any {
 	if a == nil {
 		return nil
@@ -157,6 +175,13 @@ type AIGatewayAuthStrategyKeyAuth struct {
 	// Keys must be 1–63 characters long and start with an alphanumeric character.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
+	// The Token Vault Datastore holding this entity's credential storage: the directory credentials
+	// are written to, and the encryption keys that seal them. Required when `token_vault` is set
+	// (on an auth strategy, when its credential manager is enabled), and the referenced Datastore
+	// must have type `token-vault`. Only one Datastore can be referenced.
+	//
+	// **Requires a minimum runtime version of `2.3`**.
+	Datastores []AIGatewayDatastoreRef `json:"datastores,omitempty"`
 	//lint:ignore U1000 accessed via reflection for JSON marshaling
 	type_ string `const:"key-auth" json:"type"`
 	// Configuration for the key-auth auth strategy.
@@ -203,6 +228,13 @@ func (a *AIGatewayAuthStrategyKeyAuth) GetManagedBy() map[string]string {
 		return nil
 	}
 	return a.ManagedBy
+}
+
+func (a *AIGatewayAuthStrategyKeyAuth) GetDatastores() []AIGatewayDatastoreRef {
+	if a == nil {
+		return nil
+	}
+	return a.Datastores
 }
 
 func (a *AIGatewayAuthStrategyKeyAuth) GetType() string {

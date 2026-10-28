@@ -3,44 +3,31 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
-
-// CreateAIGatewayCustomPolicyInstalledRequestType - An installed Kong plugin used as a custom policy.
-type CreateAIGatewayCustomPolicyInstalledRequestType string
-
-const (
-	CreateAIGatewayCustomPolicyInstalledRequestTypeInstalled CreateAIGatewayCustomPolicyInstalledRequestType = "installed"
-)
-
-func (e CreateAIGatewayCustomPolicyInstalledRequestType) ToPointer() *CreateAIGatewayCustomPolicyInstalledRequestType {
-	return &e
-}
-func (e *CreateAIGatewayCustomPolicyInstalledRequestType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "installed":
-		*e = CreateAIGatewayCustomPolicyInstalledRequestType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreateAIGatewayCustomPolicyInstalledRequestType: %v", v)
-	}
-}
 
 type CreateAIGatewayCustomPolicyInstalledRequest struct {
 	// A user-defined unique identifier for this custom policy, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// An installed Kong plugin used as a custom policy.
-	Type CreateAIGatewayCustomPolicyInstalledRequestType `json:"type"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_ string `const:"installed" json:"type"`
 	// The display name for this custom policy.
 	DisplayName string `json:"display_name"`
 	// The Lua schema definition for the custom policy, equivalent to a Kong plugin's `schema.lua`.
 	Schema string `json:"schema"`
+	// Public labels store information about an entity that can be used for filtering a list of objects.
+	//
+	// Public labels are intended to store **PUBLIC** metadata.
+	//
+	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+	//
+	Labels map[string]string `json:"labels,omitempty"`
+	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
+	//
+	// Keys must be 1–63 characters long and start with an alphanumeric character.
+	//
+	ManagedBy map[string]string `json:"managed_by,omitempty"`
 }
 
 func (c CreateAIGatewayCustomPolicyInstalledRequest) MarshalJSON() ([]byte, error) {
@@ -61,11 +48,8 @@ func (c *CreateAIGatewayCustomPolicyInstalledRequest) GetName() string {
 	return c.Name
 }
 
-func (c *CreateAIGatewayCustomPolicyInstalledRequest) GetType() CreateAIGatewayCustomPolicyInstalledRequestType {
-	if c == nil {
-		return CreateAIGatewayCustomPolicyInstalledRequestType("")
-	}
-	return c.Type
+func (c *CreateAIGatewayCustomPolicyInstalledRequest) GetType() string {
+	return "installed"
 }
 
 func (c *CreateAIGatewayCustomPolicyInstalledRequest) GetDisplayName() string {
@@ -80,4 +64,18 @@ func (c *CreateAIGatewayCustomPolicyInstalledRequest) GetSchema() string {
 		return ""
 	}
 	return c.Schema
+}
+
+func (c *CreateAIGatewayCustomPolicyInstalledRequest) GetLabels() map[string]string {
+	if c == nil {
+		return nil
+	}
+	return c.Labels
+}
+
+func (c *CreateAIGatewayCustomPolicyInstalledRequest) GetManagedBy() map[string]string {
+	if c == nil {
+		return nil
+	}
+	return c.ManagedBy
 }

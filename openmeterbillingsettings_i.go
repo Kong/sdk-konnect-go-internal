@@ -77,6 +77,9 @@ type OpenMeterBillingSettingsSDK interface {
 	// collection period can be skipped using this action.
 	SnapshotQuantitiesInvoice(ctx context.Context, invoiceID string, opts ...operations.Option) (*operations.SnapshotQuantitiesInvoiceResponse, error)
 	// ListCharges - List charges
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
 	// List charges.
 	//
 	// Returns the charges of every customer that are represented as either flat fee or

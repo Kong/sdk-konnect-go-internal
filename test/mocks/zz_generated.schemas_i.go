@@ -307,3 +307,181 @@ func (_c *MockSchemasSDK_ValidateEntitySchema_Call) RunAndReturn(run func(ctx co
 	_c.Call.Return(run)
 	return _c
 }
+
+// ValidatePluginCondition provides a mock function for the type MockSchemasSDK
+func (_mock *MockSchemasSDK) ValidatePluginCondition(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginConditionRequestBody, opts ...operations.Option) (*operations.ValidatePluginConditionResponse, error) {
+	var tmpRet mock.Arguments
+	if len(opts) > 0 {
+		tmpRet = _mock.Called(ctx, controlPlaneID, requestBody, opts)
+	} else {
+		tmpRet = _mock.Called(ctx, controlPlaneID, requestBody)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for ValidatePluginCondition")
+	}
+
+	var r0 *operations.ValidatePluginConditionResponse
+	var r1 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, operations.ValidatePluginConditionRequestBody, ...operations.Option) (*operations.ValidatePluginConditionResponse, error)); ok {
+		return returnFunc(ctx, controlPlaneID, requestBody, opts...)
+	}
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, operations.ValidatePluginConditionRequestBody, ...operations.Option) *operations.ValidatePluginConditionResponse); ok {
+		r0 = returnFunc(ctx, controlPlaneID, requestBody, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operations.ValidatePluginConditionResponse)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, operations.ValidatePluginConditionRequestBody, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, controlPlaneID, requestBody, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+	return r0, r1
+}
+
+// MockSchemasSDK_ValidatePluginCondition_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ValidatePluginCondition'
+type MockSchemasSDK_ValidatePluginCondition_Call struct {
+	*mock.Call
+}
+
+// ValidatePluginCondition is a helper method to define mock.On call
+//   - ctx context.Context
+//   - controlPlaneID string
+//   - requestBody operations.ValidatePluginConditionRequestBody
+//   - opts ...operations.Option
+func (_e *MockSchemasSDK_Expecter) ValidatePluginCondition(ctx any, controlPlaneID any, requestBody any, opts ...any) *MockSchemasSDK_ValidatePluginCondition_Call {
+	return &MockSchemasSDK_ValidatePluginCondition_Call{Call: _e.mock.On("ValidatePluginCondition",
+		append([]any{ctx, controlPlaneID, requestBody}, opts...)...)}
+}
+
+func (_c *MockSchemasSDK_ValidatePluginCondition_Call) Run(run func(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginConditionRequestBody, opts ...operations.Option)) *MockSchemasSDK_ValidatePluginCondition_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 operations.ValidatePluginConditionRequestBody
+		if args[2] != nil {
+			arg2 = args[2].(operations.ValidatePluginConditionRequestBody)
+		}
+		var arg3 []operations.Option
+		var variadicArgs []operations.Option
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockSchemasSDK_ValidatePluginCondition_Call) Return(validatePluginConditionResponse *operations.ValidatePluginConditionResponse, err error) *MockSchemasSDK_ValidatePluginCondition_Call {
+	_c.Call.Return(validatePluginConditionResponse, err)
+	return _c
+}
+
+func (_c *MockSchemasSDK_ValidatePluginCondition_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginConditionRequestBody, opts ...operations.Option) (*operations.ValidatePluginConditionResponse, error)) *MockSchemasSDK_ValidatePluginCondition_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// ValidatePluginExpression provides a mock function for the type MockSchemasSDK
+func (_mock *MockSchemasSDK) ValidatePluginExpression(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginExpressionRequestBody, opts ...operations.Option) (*operations.ValidatePluginExpressionResponse, error) {
+	var tmpRet mock.Arguments
+	if len(opts) > 0 {
+		tmpRet = _mock.Called(ctx, controlPlaneID, requestBody, opts)
+	} else {
+		tmpRet = _mock.Called(ctx, controlPlaneID, requestBody)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for ValidatePluginExpression")
+	}
+
+	var r0 *operations.ValidatePluginExpressionResponse
+	var r1 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, operations.ValidatePluginExpressionRequestBody, ...operations.Option) (*operations.ValidatePluginExpressionResponse, error)); ok {
+		return returnFunc(ctx, controlPlaneID, requestBody, opts...)
+	}
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, operations.ValidatePluginExpressionRequestBody, ...operations.Option) *operations.ValidatePluginExpressionResponse); ok {
+		r0 = returnFunc(ctx, controlPlaneID, requestBody, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operations.ValidatePluginExpressionResponse)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, operations.ValidatePluginExpressionRequestBody, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, controlPlaneID, requestBody, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+	return r0, r1
+}
+
+// MockSchemasSDK_ValidatePluginExpression_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ValidatePluginExpression'
+type MockSchemasSDK_ValidatePluginExpression_Call struct {
+	*mock.Call
+}
+
+// ValidatePluginExpression is a helper method to define mock.On call
+//   - ctx context.Context
+//   - controlPlaneID string
+//   - requestBody operations.ValidatePluginExpressionRequestBody
+//   - opts ...operations.Option
+func (_e *MockSchemasSDK_Expecter) ValidatePluginExpression(ctx any, controlPlaneID any, requestBody any, opts ...any) *MockSchemasSDK_ValidatePluginExpression_Call {
+	return &MockSchemasSDK_ValidatePluginExpression_Call{Call: _e.mock.On("ValidatePluginExpression",
+		append([]any{ctx, controlPlaneID, requestBody}, opts...)...)}
+}
+
+func (_c *MockSchemasSDK_ValidatePluginExpression_Call) Run(run func(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginExpressionRequestBody, opts ...operations.Option)) *MockSchemasSDK_ValidatePluginExpression_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 operations.ValidatePluginExpressionRequestBody
+		if args[2] != nil {
+			arg2 = args[2].(operations.ValidatePluginExpressionRequestBody)
+		}
+		var arg3 []operations.Option
+		var variadicArgs []operations.Option
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockSchemasSDK_ValidatePluginExpression_Call) Return(validatePluginExpressionResponse *operations.ValidatePluginExpressionResponse, err error) *MockSchemasSDK_ValidatePluginExpression_Call {
+	_c.Call.Return(validatePluginExpressionResponse, err)
+	return _c
+}
+
+func (_c *MockSchemasSDK_ValidatePluginExpression_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginExpressionRequestBody, opts ...operations.Option) (*operations.ValidatePluginExpressionResponse, error)) *MockSchemasSDK_ValidatePluginExpression_Call {
+	_c.Call.Return(run)
+	return _c
+}

@@ -13,6 +13,7 @@ import (
 type AIGatewayModelModelAIGatewayModelCapabilities string
 
 const (
+	AIGatewayModelModelAIGatewayModelCapabilitiesWildcard           AIGatewayModelModelAIGatewayModelCapabilities = "*"
 	AIGatewayModelModelAIGatewayModelCapabilitiesGenerate           AIGatewayModelModelAIGatewayModelCapabilities = "generate"
 	AIGatewayModelModelAIGatewayModelCapabilitiesAgentic            AIGatewayModelModelAIGatewayModelCapabilities = "agentic"
 	AIGatewayModelModelAIGatewayModelCapabilitiesRealtime           AIGatewayModelModelAIGatewayModelCapabilities = "realtime"
@@ -34,7 +35,7 @@ func (e AIGatewayModelModelAIGatewayModelCapabilities) ToPointer() *AIGatewayMod
 func (e *AIGatewayModelModelAIGatewayModelCapabilities) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "generate", "agentic", "realtime", "embeddings", "image", "audio/speech", "audio/transcription", "audio/translation", "video", "rerank", "decisions":
+		case "*", "generate", "agentic", "realtime", "embeddings", "image", "audio/speech", "audio/transcription", "audio/translation", "video", "rerank", "decisions":
 			return true
 		}
 	}
@@ -75,7 +76,12 @@ type AIGatewayModelAIGatewayModelModel struct {
 	type_ string `const:"model" json:"type"`
 	// Routing, logging, and load balancing configuration for the model.
 	Config AIGatewayModelModelConfigOutput `json:"config"`
-	// List of AI capabilities enabled for this model.
+	// The capabilities this model supports. Set to a specific capability to
+	// restrict the model to that capability only, or to `*` to allow all
+	// capabilities that the targets support at the gateway's
+	// min_runtime_version. A capability that needs a newer
+	// min_runtime_version is left out of `*`.
+	//
 	Capabilities []AIGatewayModelModelAIGatewayModelCapabilities `json:"capabilities"`
 	// Contains a unique identifier used for this resource.
 	ID string `json:"id"`
@@ -208,9 +214,10 @@ func (a *AIGatewayModelAIGatewayModelModel) GetUpdatedAt() time.Time {
 type AIGatewayModelAPICapabilities string
 
 const (
-	AIGatewayModelAPICapabilitiesBatches AIGatewayModelAPICapabilities = "batches"
-	AIGatewayModelAPICapabilitiesFiles   AIGatewayModelAPICapabilities = "files"
-	AIGatewayModelAPICapabilitiesSkills  AIGatewayModelAPICapabilities = "skills"
+	AIGatewayModelAPICapabilitiesWildcard AIGatewayModelAPICapabilities = "*"
+	AIGatewayModelAPICapabilitiesBatches  AIGatewayModelAPICapabilities = "batches"
+	AIGatewayModelAPICapabilitiesFiles    AIGatewayModelAPICapabilities = "files"
+	AIGatewayModelAPICapabilitiesSkills   AIGatewayModelAPICapabilities = "skills"
 )
 
 func (e AIGatewayModelAPICapabilities) ToPointer() *AIGatewayModelAPICapabilities {
@@ -221,7 +228,7 @@ func (e AIGatewayModelAPICapabilities) ToPointer() *AIGatewayModelAPICapabilitie
 func (e *AIGatewayModelAPICapabilities) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "batches", "files", "skills":
+		case "*", "batches", "files", "skills":
 			return true
 		}
 	}
@@ -262,7 +269,12 @@ type AIGatewayModelAIGatewayModelAPI struct {
 	type_ string `const:"api" json:"type"`
 	// Routing, logging, and load balancing configuration for the model.
 	Config AIGatewayModelAPIConfigOutput `json:"config"`
-	// List of AI capabilities enabled for this API model.
+	// The capabilities this model supports. Set to a specific capability to
+	// restrict the model to that capability only, or to `*` to allow all
+	// capabilities that the targets support at the gateway's
+	// min_runtime_version. A capability that needs a newer
+	// min_runtime_version is left out of `*`.
+	//
 	Capabilities []AIGatewayModelAPICapabilities `json:"capabilities"`
 	// Contains a unique identifier used for this resource.
 	ID string `json:"id"`

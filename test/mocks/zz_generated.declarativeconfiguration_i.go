@@ -302,3 +302,92 @@ func (_c *MockDeclarativeConfigurationSDK_UpsertDeclarativeConfig_Call) RunAndRe
 	_c.Call.Return(run)
 	return _c
 }
+
+// ValidateControlPlaneConfig provides a mock function for the type MockDeclarativeConfigurationSDK
+func (_mock *MockDeclarativeConfigurationSDK) ValidateControlPlaneConfig(ctx context.Context, controlPlaneID string, controlPlaneConfig components.ControlPlaneConfig, opts ...operations.Option) (*operations.ValidateControlPlaneConfigResponse, error) {
+	var tmpRet mock.Arguments
+	if len(opts) > 0 {
+		tmpRet = _mock.Called(ctx, controlPlaneID, controlPlaneConfig, opts)
+	} else {
+		tmpRet = _mock.Called(ctx, controlPlaneID, controlPlaneConfig)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for ValidateControlPlaneConfig")
+	}
+
+	var r0 *operations.ValidateControlPlaneConfigResponse
+	var r1 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.ControlPlaneConfig, ...operations.Option) (*operations.ValidateControlPlaneConfigResponse, error)); ok {
+		return returnFunc(ctx, controlPlaneID, controlPlaneConfig, opts...)
+	}
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.ControlPlaneConfig, ...operations.Option) *operations.ValidateControlPlaneConfigResponse); ok {
+		r0 = returnFunc(ctx, controlPlaneID, controlPlaneConfig, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operations.ValidateControlPlaneConfigResponse)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.ControlPlaneConfig, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, controlPlaneID, controlPlaneConfig, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+	return r0, r1
+}
+
+// MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ValidateControlPlaneConfig'
+type MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call struct {
+	*mock.Call
+}
+
+// ValidateControlPlaneConfig is a helper method to define mock.On call
+//   - ctx context.Context
+//   - controlPlaneID string
+//   - controlPlaneConfig components.ControlPlaneConfig
+//   - opts ...operations.Option
+func (_e *MockDeclarativeConfigurationSDK_Expecter) ValidateControlPlaneConfig(ctx any, controlPlaneID any, controlPlaneConfig any, opts ...any) *MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call {
+	return &MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call{Call: _e.mock.On("ValidateControlPlaneConfig",
+		append([]any{ctx, controlPlaneID, controlPlaneConfig}, opts...)...)}
+}
+
+func (_c *MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call) Run(run func(ctx context.Context, controlPlaneID string, controlPlaneConfig components.ControlPlaneConfig, opts ...operations.Option)) *MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 components.ControlPlaneConfig
+		if args[2] != nil {
+			arg2 = args[2].(components.ControlPlaneConfig)
+		}
+		var arg3 []operations.Option
+		var variadicArgs []operations.Option
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call) Return(validateControlPlaneConfigResponse *operations.ValidateControlPlaneConfigResponse, err error) *MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call {
+	_c.Call.Return(validateControlPlaneConfigResponse, err)
+	return _c
+}
+
+func (_c *MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, controlPlaneConfig components.ControlPlaneConfig, opts ...operations.Option) (*operations.ValidateControlPlaneConfigResponse, error)) *MockDeclarativeConfigurationSDK_ValidateControlPlaneConfig_Call {
+	_c.Call.Return(run)
+	return _c
+}

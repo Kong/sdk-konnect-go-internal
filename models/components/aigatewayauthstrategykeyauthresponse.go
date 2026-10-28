@@ -56,6 +56,10 @@ func (a *AIGatewayAuthStrategyKeyAuthResponsePrincipals) GetErrorOnMiss() *bool 
 // For advanced use cases, additional config properties can be sent in the request body.
 // See: https://developer.konghq.com/plugins/key-auth/reference/ for the list of properties
 type AIGatewayAuthStrategyKeyAuthResponseConfig struct {
+	// The read-only anonymous consumer value used when authentication fails.
+	// AI Gateway always sets this value to `anonymous`.
+	//
+	Anonymous *string `default:"anonymous" json:"anonymous"`
 	// An optional boolean value telling the plugin to show or hide the credential from the upstream service.
 	// If true, the plugin strips the credential from the request.
 	//
@@ -76,8 +80,12 @@ type AIGatewayAuthStrategyKeyAuthResponseConfig struct {
 	// Authenticate against Kong Identity instead of local credentials.
 	// Mutually exclusive with identity realms.
 	//
-	Principals           *AIGatewayAuthStrategyKeyAuthResponsePrincipals `json:"principals,omitempty"`
-	AdditionalProperties map[string]any                                  `additionalProperties:"true" json:"-"`
+	Principals *AIGatewayAuthStrategyKeyAuthResponsePrincipals `json:"principals,omitempty"`
+	// When authentication fails the plugin sends `WWW-Authenticate` header with `realm` attribute value.
+	Realm *string `json:"realm,omitempty"`
+	// A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests are always allowed.
+	RunOnPreflight       *bool          `default:"true" json:"run_on_preflight"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (a AIGatewayAuthStrategyKeyAuthResponseConfig) MarshalJSON() ([]byte, error) {
@@ -89,6 +97,13 @@ func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) UnmarshalJSON(data []byte) 
 		return err
 	}
 	return nil
+}
+
+func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetAnonymous() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Anonymous
 }
 
 func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetHideCredentials() *bool {
@@ -133,6 +148,20 @@ func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetPrincipals() *AIGatewayA
 	return a.Principals
 }
 
+func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetRealm() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Realm
+}
+
+func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetRunOnPreflight() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.RunOnPreflight
+}
+
 func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetAdditionalProperties() map[string]any {
 	if a == nil {
 		return nil
@@ -158,6 +187,13 @@ type AIGatewayAuthStrategyKeyAuthResponse struct {
 	// Keys must be 1–63 characters long and start with an alphanumeric character.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
+	// The Token Vault Datastore holding this entity's credential storage: the directory credentials
+	// are written to, and the encryption keys that seal them. Required when `token_vault` is set
+	// (on an auth strategy, when its credential manager is enabled), and the referenced Datastore
+	// must have type `token-vault`. Only one Datastore can be referenced.
+	//
+	// **Requires a minimum runtime version of `2.3`**.
+	Datastores []AIGatewayDatastoreRef `json:"datastores,omitempty"`
 	//lint:ignore U1000 accessed via reflection for JSON marshaling
 	type_ string `const:"key-auth" json:"type"`
 	// Configuration for the key-auth auth strategy.
@@ -210,6 +246,13 @@ func (a *AIGatewayAuthStrategyKeyAuthResponse) GetManagedBy() map[string]string 
 		return nil
 	}
 	return a.ManagedBy
+}
+
+func (a *AIGatewayAuthStrategyKeyAuthResponse) GetDatastores() []AIGatewayDatastoreRef {
+	if a == nil {
+		return nil
+	}
+	return a.Datastores
 }
 
 func (a *AIGatewayAuthStrategyKeyAuthResponse) GetType() string {

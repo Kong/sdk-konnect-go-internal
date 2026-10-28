@@ -33,6 +33,9 @@ func newOpenMeterApps(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *ho
 }
 
 // ListAppCatalog - List app catalog
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List available apps.
 func (s *OpenMeterApps) ListAppCatalog(ctx context.Context, page *components.PagePaginationQuery, opts ...operations.Option) (*operations.ListAppCatalogResponse, error) {
 	request := operations.ListAppCatalogRequest{
@@ -312,6 +315,9 @@ func (s *OpenMeterApps) ListAppCatalog(ctx context.Context, page *components.Pag
 }
 
 // InstallApp - Install app from the catalog
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Install an app from the catalog.
 func (s *OpenMeterApps) InstallApp(ctx context.Context, request components.BillingInstallAppRequest, opts ...operations.Option) (*operations.InstallAppResponse, error) {
 	o := operations.Options{}
@@ -362,6 +368,7 @@ func (s *OpenMeterApps) InstallApp(ctx context.Context, request components.Billi
 		defer cancel()
 	}
 
+	ctx = utils.WithOperation(ctx, "install-app")
 	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
@@ -590,6 +597,9 @@ func (s *OpenMeterApps) InstallApp(ctx context.Context, request components.Billi
 }
 
 // GetAppCatalogItem - Get app catalog item by type
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Get an app catalog item by type.
 func (s *OpenMeterApps) GetAppCatalogItem(ctx context.Context, appType components.BillingAppType, opts ...operations.Option) (*operations.GetAppCatalogItemResponse, error) {
 	request := operations.GetAppCatalogItemRequest{
@@ -1459,6 +1469,9 @@ func (s *OpenMeterApps) GetApp(ctx context.Context, appID string, opts ...operat
 }
 
 // UninstallApp - Uninstall app
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Uninstall an app by ID.
 func (s *OpenMeterApps) UninstallApp(ctx context.Context, appID string, opts ...operations.Option) (*operations.UninstallAppResponse, error) {
 	request := operations.UninstallAppRequest{
@@ -1737,6 +1750,9 @@ func (s *OpenMeterApps) UninstallApp(ctx context.Context, appID string, opts ...
 }
 
 // UpdateApp - Update app
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Update an installed app.
 func (s *OpenMeterApps) UpdateApp(ctx context.Context, appID string, billingUpdateAppRequest components.BillingUpdateAppRequest, opts ...operations.Option) (*operations.UpdateAppResponse, error) {
 	request := operations.UpdateAppRequest{
@@ -1792,6 +1808,7 @@ func (s *OpenMeterApps) UpdateApp(ctx context.Context, appID string, billingUpda
 		defer cancel()
 	}
 
+	ctx = utils.WithOperation(ctx, "update-app")
 	req, err := http.NewRequestWithContext(ctx, "PUT", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)

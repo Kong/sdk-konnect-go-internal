@@ -1,6 +1,9 @@
 # AIGatewayDatastoreUsageEntryType
 
-The kind of entity holding the reference. A policy holds one in its `datastores` array. A model holds one when its balancer is `semantic`.
+The kind of entity holding the reference. A policy holds one in its `datastores` array. A
+model holds one when its balancer is `semantic`. An MCP server, a model provider, or an
+auth strategy holds one when it stores credentials in the Token Vault.
+
 
 ## Example Usage
 
@@ -18,7 +21,10 @@ custom := components.AIGatewayDatastoreUsageEntryType("custom_value")
 
 ## Values
 
-| Name                                     | Value                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| `AIGatewayDatastoreUsageEntryTypePolicy` | policy                                   |
-| `AIGatewayDatastoreUsageEntryTypeModel`  | model                                    |
+| Name                                            | Value                                           |
+| ----------------------------------------------- | ----------------------------------------------- |
+| `AIGatewayDatastoreUsageEntryTypePolicy`        | policy                                          |
+| `AIGatewayDatastoreUsageEntryTypeModel`         | model                                           |
+| `AIGatewayDatastoreUsageEntryTypeMcpServer`     | mcp_server                                      |
+| `AIGatewayDatastoreUsageEntryTypeModelProvider` | model_provider                                  |
+| `AIGatewayDatastoreUsageEntryTypeAuthStrategy`  | auth_strategy                                   |

@@ -149,6 +149,9 @@ func main() {
 
 ## GetContextInterfaceSkill
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Retrieve a single skill by its ID.
 
 ### Example Usage
@@ -181,6 +184,8 @@ func main() {
         switch res.Skill.Source.Type {
             case components.SkillSourceTypeRaw:
                 // res.Skill.Source.RawSkillSource is populated
+            case components.SkillSourceTypeGithub:
+                // res.Skill.Source.GithubSkillSource is populated
         }
 
     }
@@ -212,8 +217,10 @@ func main() {
 
 ## PatchContextInterfaceSkill
 
-Partially update a skill. Supplying `source` replaces the skill's source in its entirety and re-runs validation against the new content.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
+Partially update a skill. Supplying `source` replaces the skill's source in its entirety and re-runs validation against the new content.
 
 ### Example Usage
 
@@ -262,6 +269,8 @@ func main() {
         switch res.Skill.Source.Type {
             case components.SkillSourceTypeRaw:
                 // res.Skill.Source.RawSkillSource is populated
+            case components.SkillSourceTypeGithub:
+                // res.Skill.Source.GithubSkillSource is populated
         }
 
     }
@@ -292,6 +301,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## DeleteContextInterfaceSkill
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Delete a skill and its associated content.
 
@@ -351,8 +363,10 @@ func main() {
 
 ## GetContextInterfaceSkillContents
 
-Returns a presigned S3 URL for the skill's SKILL.md file. Used by the Konnect UI to let a user view a skill's content.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
+Returns a presigned S3 URL for the skill's SKILL.md file. Used by the Konnect UI to let a user view a skill's content.
 
 ### Example Usage
 
@@ -410,6 +424,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListContextInterfaceSkills
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Returns a list of skills for the specified Context Interface.
 
@@ -475,8 +492,10 @@ func main() {
 
 ## CreateContextInterfaceSkill
 
-Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
+Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
 
 ### Example Usage
 
@@ -501,7 +520,6 @@ func main() {
     )
 
     res, err := s.Skills.CreateContextInterfaceSkill(ctx, "cc5067fd-3514-4974-bc56-7c504711542c", components.CreateSkillRequest{
-        Name: "pdf-processing",
         DisplayName: "PDF Processing",
         Description: "Extract and summarize content from PDF documents",
         Source: components.CreateSkillSourcePayloadRaw(
@@ -523,6 +541,8 @@ func main() {
         switch res.Skill.Source.Type {
             case components.SkillSourceTypeRaw:
                 // res.Skill.Source.RawSkillSource is populated
+            case components.SkillSourceTypeGithub:
+                // res.Skill.Source.GithubSkillSource is populated
         }
 
     }
@@ -549,5 +569,6 @@ func main() {
 | sdkerrors.BadRequestError   | 400                         | application/problem+json    |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |

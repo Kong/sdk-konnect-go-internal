@@ -10,13 +10,6 @@ import (
 type GetCustomerEntitlementAccessRequest struct {
 	CustomerID string `pathParam:"style=simple,explode=false,name=customerId"`
 	FeatureKey string `pathParam:"style=simple,explode=false,name=featureKey"`
-	// Expand computed fields.
-	//
-	// Supported values are:
-	//
-	// - `value`: Expand the balance details of a metered entitlement; it sets the
-	// `value` field.
-	Expand []components.BillingEntitlementAccessExpand `queryParam:"style=form,explode=false,name=expand"`
 }
 
 func (g *GetCustomerEntitlementAccessRequest) GetCustomerID() string {
@@ -33,13 +26,6 @@ func (g *GetCustomerEntitlementAccessRequest) GetFeatureKey() string {
 	return g.FeatureKey
 }
 
-func (g *GetCustomerEntitlementAccessRequest) GetExpand() []components.BillingEntitlementAccessExpand {
-	if g == nil {
-		return nil
-	}
-	return g.Expand
-}
-
 type GetCustomerEntitlementAccessResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -47,8 +33,8 @@ type GetCustomerEntitlementAccessResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// EntitlementAccessResult response.
-	BillingEntitlementAccessResult *components.BillingEntitlementAccessResult
+	// EntitlementAccessCheckResult response.
+	BillingEntitlementAccessCheckResult *components.BillingEntitlementAccessCheckResult
 }
 
 func (g *GetCustomerEntitlementAccessResponse) GetContentType() string {
@@ -72,9 +58,9 @@ func (g *GetCustomerEntitlementAccessResponse) GetRawResponse() *http.Response {
 	return g.RawResponse
 }
 
-func (g *GetCustomerEntitlementAccessResponse) GetBillingEntitlementAccessResult() *components.BillingEntitlementAccessResult {
+func (g *GetCustomerEntitlementAccessResponse) GetBillingEntitlementAccessCheckResult() *components.BillingEntitlementAccessCheckResult {
 	if g == nil {
 		return nil
 	}
-	return g.BillingEntitlementAccessResult
+	return g.BillingEntitlementAccessCheckResult
 }

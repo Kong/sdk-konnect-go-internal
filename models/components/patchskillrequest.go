@@ -12,12 +12,14 @@ import (
 type PatchSkillRequestSourceType string
 
 const (
-	PatchSkillRequestSourceTypeRaw PatchSkillRequestSourceType = "raw"
+	PatchSkillRequestSourceTypeRaw    PatchSkillRequestSourceType = "raw"
+	PatchSkillRequestSourceTypeGithub PatchSkillRequestSourceType = "github"
 )
 
 // PatchSkillRequestSource - Replaces the existing source in its entirety — partial updates to individual source attributes are not supported. The source `type` cannot be changed after creation.
 type PatchSkillRequestSource struct {
-	RawSkillSourcePayload *RawSkillSourcePayload `queryParam:"inline" union:"member"`
+	RawSkillSourcePayload    *RawSkillSourcePayload    `queryParam:"inline" union:"member"`
+	GithubSkillSourcePayload *GithubSkillSourcePayload `queryParam:"inline" union:"member"`
 
 	Type PatchSkillRequestSourceType
 }
@@ -31,6 +33,18 @@ func CreatePatchSkillRequestSourceRaw(raw RawSkillSourcePayload) PatchSkillReque
 	return PatchSkillRequestSource{
 		RawSkillSourcePayload: &raw,
 		Type:                  typ,
+	}
+}
+
+func CreatePatchSkillRequestSourceGithub(github GithubSkillSourcePayload) PatchSkillRequestSource {
+	typ := PatchSkillRequestSourceTypeGithub
+
+	typStr := GithubSkillSourcePayloadType(typ)
+	github.Type = typStr
+
+	return PatchSkillRequestSource{
+		GithubSkillSourcePayload: &github,
+		Type:                     typ,
 	}
 }
 
@@ -62,6 +76,15 @@ func (u *PatchSkillRequestSource) UnmarshalJSON(data []byte) (err error) {
 		u.RawSkillSourcePayload = rawSkillSourcePayload
 		u.Type = PatchSkillRequestSourceTypeRaw
 		return nil
+	case "github":
+		githubSkillSourcePayload := new(GithubSkillSourcePayload)
+		if err := utils.UnmarshalJSON(data, &githubSkillSourcePayload, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == github) type GithubSkillSourcePayload within PatchSkillRequestSource: %w", string(data), err)
+		}
+
+		u.GithubSkillSourcePayload = githubSkillSourcePayload
+		u.Type = PatchSkillRequestSourceTypeGithub
+		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for PatchSkillRequestSource", string(data))
@@ -72,12 +95,14 @@ func (u PatchSkillRequestSource) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.RawSkillSourcePayload, "", true)
 	}
 
+	if u.GithubSkillSourcePayload != nil {
+		return utils.MarshalJSON(u.GithubSkillSourcePayload, "", true)
+	}
+
 	return nil, errors.New("could not marshal union type PatchSkillRequestSource: all fields are null")
 }
 
 type PatchSkillRequest struct {
-	// The machine name of the skill. Must be unique within the MCP server and must match the name declared in the frontmatter.
-	Name *string `json:"name,omitempty"`
 	// The human-readable display name of the skill.
 	DisplayName *string `json:"display_name,omitempty"`
 	// A description of the skill.
@@ -89,13 +114,6 @@ type PatchSkillRequest struct {
 	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
 	//
 	Labels map[string]string `json:"labels,omitempty"`
-}
-
-func (p *PatchSkillRequest) GetName() *string {
-	if p == nil {
-		return nil
-	}
-	return p.Name
 }
 
 func (p *PatchSkillRequest) GetDisplayName() *string {
@@ -122,6 +140,13 @@ func (p *PatchSkillRequest) GetSource() *PatchSkillRequestSource {
 func (p *PatchSkillRequest) GetSourceRaw() *RawSkillSourcePayload {
 	if v := p.GetSource(); v != nil {
 		return v.RawSkillSourcePayload
+	}
+	return nil
+}
+
+func (p *PatchSkillRequest) GetSourceGithub() *GithubSkillSourcePayload {
+	if v := p.GetSource(); v != nil {
+		return v.GithubSkillSourcePayload
 	}
 	return nil
 }

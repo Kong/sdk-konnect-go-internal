@@ -44,6 +44,10 @@ func (u *UpdateAiGatewayModelProviderRequest) GetUpdateAIGatewayModelProviderReq
 	return u.GetUpdateAIGatewayModelProviderRequest().AIGatewayModelProviderAzure
 }
 
+func (u *UpdateAiGatewayModelProviderRequest) GetUpdateAIGatewayModelProviderRequestBaseten() *components.AIGatewayModelProviderBaseten {
+	return u.GetUpdateAIGatewayModelProviderRequest().AIGatewayModelProviderBaseten
+}
+
 func (u *UpdateAiGatewayModelProviderRequest) GetUpdateAIGatewayModelProviderRequestBedrock() *components.AIGatewayModelProviderBedrock {
 	return u.GetUpdateAIGatewayModelProviderRequest().AIGatewayModelProviderBedrock
 }
@@ -165,6 +169,13 @@ func (u *UpdateAiGatewayModelProviderResponse) GetAIGatewayModelProviderAnthropi
 func (u *UpdateAiGatewayModelProviderResponse) GetAIGatewayModelProviderAzure() *components.AIGatewayModelProviderAIGatewayModelProviderAzure {
 	if v := u.GetAIGatewayModelProvider(); v != nil {
 		return v.AIGatewayModelProviderAIGatewayModelProviderAzure
+	}
+	return nil
+}
+
+func (u *UpdateAiGatewayModelProviderResponse) GetAIGatewayModelProviderBaseten() *components.AIGatewayModelProviderAIGatewayModelProviderBaseten {
+	if v := u.GetAIGatewayModelProvider(); v != nil {
+		return v.AIGatewayModelProviderAIGatewayModelProviderBaseten
 	}
 	return nil
 }

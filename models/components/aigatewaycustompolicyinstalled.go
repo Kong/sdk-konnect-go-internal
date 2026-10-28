@@ -3,45 +3,32 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"time"
 )
-
-// AIGatewayCustomPolicyInstalledType - An installed Kong plugin used as a custom policy.
-type AIGatewayCustomPolicyInstalledType string
-
-const (
-	AIGatewayCustomPolicyInstalledTypeInstalled AIGatewayCustomPolicyInstalledType = "installed"
-)
-
-func (e AIGatewayCustomPolicyInstalledType) ToPointer() *AIGatewayCustomPolicyInstalledType {
-	return &e
-}
-func (e *AIGatewayCustomPolicyInstalledType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "installed":
-		*e = AIGatewayCustomPolicyInstalledType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AIGatewayCustomPolicyInstalledType: %v", v)
-	}
-}
 
 type AIGatewayCustomPolicyInstalled struct {
 	// A user-defined unique identifier for this custom policy, used as a stable human-readable reference. This value is immutable after creation.
 	Name string `json:"name"`
 	// An installed Kong plugin used as a custom policy.
-	Type AIGatewayCustomPolicyInstalledType `json:"type"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_ string `const:"installed" json:"type"`
 	// The display name for this custom policy.
 	DisplayName string `json:"display_name"`
 	// The Lua schema definition for the custom policy, equivalent to a Kong plugin's `schema.lua`.
 	Schema string `json:"schema"`
+	// Public labels store information about an entity that can be used for filtering a list of objects.
+	//
+	// Public labels are intended to store **PUBLIC** metadata.
+	//
+	// Keys must be of length 1-63 characters, and cannot start with "kong", "konnect", "mesh", "kic", or "_".
+	//
+	Labels map[string]string `json:"labels,omitempty"`
+	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
+	//
+	// Keys must be 1–63 characters long and start with an alphanumeric character.
+	//
+	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// Contains a unique identifier used for this resource.
 	ID string `json:"id"`
 	// An ISO-8601 timestamp representation of entity creation date.
@@ -68,11 +55,8 @@ func (a *AIGatewayCustomPolicyInstalled) GetName() string {
 	return a.Name
 }
 
-func (a *AIGatewayCustomPolicyInstalled) GetType() AIGatewayCustomPolicyInstalledType {
-	if a == nil {
-		return AIGatewayCustomPolicyInstalledType("")
-	}
-	return a.Type
+func (a *AIGatewayCustomPolicyInstalled) GetType() string {
+	return "installed"
 }
 
 func (a *AIGatewayCustomPolicyInstalled) GetDisplayName() string {
@@ -87,6 +71,20 @@ func (a *AIGatewayCustomPolicyInstalled) GetSchema() string {
 		return ""
 	}
 	return a.Schema
+}
+
+func (a *AIGatewayCustomPolicyInstalled) GetLabels() map[string]string {
+	if a == nil {
+		return nil
+	}
+	return a.Labels
+}
+
+func (a *AIGatewayCustomPolicyInstalled) GetManagedBy() map[string]string {
+	if a == nil {
+		return nil
+	}
+	return a.ManagedBy
 }
 
 func (a *AIGatewayCustomPolicyInstalled) GetID() string {

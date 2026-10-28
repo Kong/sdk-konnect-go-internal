@@ -96,7 +96,7 @@ func main() {
     res, err := s.PortalIntegrations.UpsertPortalIntegrations(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.PortalIntegrations{
         GoogleTagManager: &components.GoogleTagManagerIntegration{
             Enabled: false,
-            Type: components.GoogleTagManagerIntegrationTypeTracking,
+            Type: components.TypeTracking,
             ConfigData: components.ConfigData{
                 ID: "GTM-XXXXXX",
                 L: sdkkonnectgo.Pointer("myNewName"),

@@ -22,3 +22,4 @@ custom := components.SchemaRegistryConfluentConfigSensitiveDataAwareSchemaType("
 | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `SchemaRegistryConfluentConfigSensitiveDataAwareSchemaTypeAvro` | avro                                                            |
 | `SchemaRegistryConfluentConfigSensitiveDataAwareSchemaTypeJSON` | json                                                            |
+| `SchemaRegistryConfluentConfigSensitiveDataAwareSchemaTypeAny`  | any                                                             |

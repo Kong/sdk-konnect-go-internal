@@ -44,11 +44,6 @@ func main() {
         Labels: map[string]string{
             "env": "test",
         },
-        Spec: sdkkonnectgo.Pointer(components.CreateAPISpecPayloadAPISpecContentPayload(
-            components.APISpecContentPayload{
-                Content: "{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Example API\",\"version\":\"1.0.0\"},\"paths\":{\"/example\":{\"get\":{\"summary\":\"Example endpoint\",\"responses\":{\"200\":{\"description\":\"Successful response\"}}}}}}",
-            },
-        )),
     })
     if err != nil {
         log.Fatal(err)

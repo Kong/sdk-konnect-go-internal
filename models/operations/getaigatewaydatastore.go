@@ -87,3 +87,10 @@ func (g *GetAiGatewayDatastoreResponse) GetAIGatewayDatastoreVectordb() *compone
 	}
 	return nil
 }
+
+func (g *GetAiGatewayDatastoreResponse) GetAIGatewayDatastoreTokenVault() *components.AIGatewayDatastoreTokenVaultDatastore {
+	if v := g.GetAIGatewayDatastore(); v != nil {
+		return v.AIGatewayDatastoreTokenVaultDatastore
+	}
+	return nil
+}

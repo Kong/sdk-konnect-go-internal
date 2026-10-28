@@ -14,6 +14,9 @@ Currencies and cost bases for customers.
 
 ## ListCurrencies
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 List currencies supported by the billing system.
 
 ### Example Usage
@@ -73,6 +76,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreateCustomCurrency
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Create a custom currency. This operation allows defining your own custom
 currency for billing purposes.
@@ -138,6 +144,9 @@ func main() {
 
 ## GetCustomCurrency
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 Get a custom currency.
 
 ### Example Usage
@@ -194,6 +203,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListCostBases
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 List cost bases for a currency. For custom currencies, there can be multiple
 cost bases with different `effective_from` dates.
@@ -259,6 +271,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreateCostBasis
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Create a cost basis for a currency.
 

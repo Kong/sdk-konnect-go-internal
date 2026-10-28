@@ -16,15 +16,16 @@ type EventGatewayParsedRecordTranscodeConsumeConfigJSON struct {
 	//
 	// **Requires a minimum runtime version of `1.2`**.
 	FailureMode ConsumeFailureMode `json:"failure_mode"`
+	// Describes how to handle JSON fields that are not defined in the target schema.
+	// * `fail` - the transcoding fails. The policy `failure_mode` determines how the failure is handled.
+	// * `drop` - the unknown fields are removed from the transcoded value.
+	//
+	// **Requires a minimum runtime version of `1.3`**.
+	OnUnknownField *TranscodeOnUnknownField `default:"fail" json:"on_unknown_field"`
 	// Determines how to look up the schema to use for the transcoded output data.
 	// Leave this unset if the output data schema isn't needed.
 	//
 	SchemaSource *EventGatewayParsedRecordTranscodeSchemaSource `json:"schema_source,omitempty"`
-	// Defines how to record the schema id for the transcoded output data. See the
-	// [Confluent docs](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#wire-format)
-	// for more about the wire format.
-	//
-	SchemaRefDestination EventGatewayParsedRecordTranscodeSchemaRefDestination `json:"schema_ref_destination"`
 	// The serialization format to convert the record value into.
 	//lint:ignore U1000 accessed via reflection for JSON marshaling
 	outputFormat string `const:"json" json:"output_format"`
@@ -35,7 +36,7 @@ func (e EventGatewayParsedRecordTranscodeConsumeConfigJSON) MarshalJSON() ([]byt
 }
 
 func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"failure_mode", "schema_ref_destination", "output_format"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"failure_mode", "output_format"}); err != nil {
 		return err
 	}
 	return nil
@@ -46,6 +47,13 @@ func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetFailureMode() Co
 		return ConsumeFailureMode("")
 	}
 	return e.FailureMode
+}
+
+func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetOnUnknownField() *TranscodeOnUnknownField {
+	if e == nil {
+		return nil
+	}
+	return e.OnUnknownField
 }
 
 func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetSchemaSource() *EventGatewayParsedRecordTranscodeSchemaSource {
@@ -67,25 +75,6 @@ func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetSchemaSourceInli
 		return v.EventGatewayParsedRecordTranscodeSchemaSourceInline
 	}
 	return nil
-}
-
-func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetSchemaRefDestination() EventGatewayParsedRecordTranscodeSchemaRefDestination {
-	if e == nil {
-		return EventGatewayParsedRecordTranscodeSchemaRefDestination{}
-	}
-	return e.SchemaRefDestination
-}
-
-func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetSchemaRefDestinationConfluentFormat() *EventGatewayParsedRecordTranscodeSchemaRefDestinationConfluentFormat {
-	return e.GetSchemaRefDestination().EventGatewayParsedRecordTranscodeSchemaRefDestinationConfluentFormat
-}
-
-func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetSchemaRefDestinationRecordHeader() *EventGatewayParsedRecordTranscodeSchemaRefDestinationRecordHeader {
-	return e.GetSchemaRefDestination().EventGatewayParsedRecordTranscodeSchemaRefDestinationRecordHeader
-}
-
-func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetSchemaRefDestinationNone() *EventGatewayParsedRecordTranscodeSchemaRefDestinationNone {
-	return e.GetSchemaRefDestination().EventGatewayParsedRecordTranscodeSchemaRefDestinationNone
 }
 
 func (e *EventGatewayParsedRecordTranscodeConsumeConfigJSON) GetOutputFormat() string {

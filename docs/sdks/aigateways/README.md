@@ -8,6 +8,7 @@ API related to the management of Konnect AI Gateway resources.
 
 * [ListAiGateways](#listaigateways) - List AI Gateways
 * [CreateAiGateway](#createaigateway) - Create an AI Gateway
+* [ListAiGatewayRuntimeVersions](#listaigatewayruntimeversions) - List AI Gateway Runtime Versions
 * [GetAiGateway](#getaigateway) - Get an AI Gateway
 * [UpdateAiGateway](#updateaigateway) - Update an AI Gateway
 * [PatchAiGateway](#patchaigateway) - Patch an AI Gateway
@@ -142,6 +143,62 @@ func main() {
 | sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
 | sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.ConflictError        | 409                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## ListAiGatewayRuntimeVersions
+
+Returns a list of AI Gateway runtime versions which affects API behavior and compatibility.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-ai-gateway-runtime-versions" method="get" path="/v1/ai-gateways-runtime-versions" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGateways.ListAiGatewayRuntimeVersions(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListAIGatewayRuntimeVersionsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.ListAiGatewayRuntimeVersionsResponse](../../models/operations/listaigatewayruntimeversionsresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
 | sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
 

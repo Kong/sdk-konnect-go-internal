@@ -33,6 +33,9 @@ func newOpenMeterCurrencies(rootSDK *SDK, sdkConfig config.SDKConfiguration, hoo
 }
 
 // ListCurrencies - List currencies
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List currencies supported by the billing system.
 func (s *OpenMeterCurrencies) ListCurrencies(ctx context.Context, request operations.ListCurrenciesRequest, opts ...operations.Option) (*operations.ListCurrenciesResponse, error) {
 	o := operations.Options{}
@@ -308,6 +311,9 @@ func (s *OpenMeterCurrencies) ListCurrencies(ctx context.Context, request operat
 }
 
 // CreateCustomCurrency - Create custom currency
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Create a custom currency. This operation allows defining your own custom
 // currency for billing purposes.
 func (s *OpenMeterCurrencies) CreateCustomCurrency(ctx context.Context, request components.CreateCurrencyCustomRequest, opts ...operations.Option) (*operations.CreateCustomCurrencyResponse, error) {
@@ -587,6 +593,9 @@ func (s *OpenMeterCurrencies) CreateCustomCurrency(ctx context.Context, request 
 }
 
 // GetCustomCurrency - Get custom currency
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Get a custom currency.
 func (s *OpenMeterCurrencies) GetCustomCurrency(ctx context.Context, currencyID string, opts ...operations.Option) (*operations.GetCustomCurrencyResponse, error) {
 	request := operations.GetCustomCurrencyRequest{
@@ -862,6 +871,9 @@ func (s *OpenMeterCurrencies) GetCustomCurrency(ctx context.Context, currencyID 
 }
 
 // ListCostBases - List cost bases
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List cost bases for a currency. For custom currencies, there can be multiple
 // cost bases with different `effective_from` dates.
 func (s *OpenMeterCurrencies) ListCostBases(ctx context.Context, request operations.ListCostBasesRequest, opts ...operations.Option) (*operations.ListCostBasesResponse, error) {
@@ -1160,6 +1172,9 @@ func (s *OpenMeterCurrencies) ListCostBases(ctx context.Context, request operati
 }
 
 // CreateCostBasis - Create cost basis
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // Create a cost basis for a currency.
 func (s *OpenMeterCurrencies) CreateCostBasis(ctx context.Context, currencyID string, createCostBasisRequest components.CreateCostBasisRequest, opts ...operations.Option) (*operations.CreateCostBasisResponse, error) {
 	request := operations.CreateCostBasisRequest{

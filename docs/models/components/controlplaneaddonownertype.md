@@ -1,8 +1,10 @@
 # ControlPlaneAddOnOwnerType
 
+**Pre-release Feature**
+This feature is currently in beta and is subject to change.
+
 Type of gateway that owns the add-on: `api` for an API Gateway or `ai` for an
 AI Gateway. Defaults to `api` when omitted.
-
 
 ## Example Usage
 

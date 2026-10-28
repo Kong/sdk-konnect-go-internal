@@ -696,6 +696,9 @@ func main() {
 
 ## ListCustomerCharges
 
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
 List customer charges.
 
 Returns the customer's charges that are represented as either flat fee or
@@ -776,6 +779,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreateCustomerCharges
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Create customer charge.
 
@@ -1060,6 +1066,11 @@ func main() {
                 "input_tokens",
                 "output_tokens",
             },
+            Plans: []components.CreateCreditGrantPlanFilter{
+                components.CreateCreditGrantPlanFilter{
+                    Key: "resource_key",
+                },
+            },
         },
         EffectiveAt: types.MustNewTimeFromString("2023-01-01T01:01:01.001Z"),
         ExpiresAfter: sdkkonnectgo.Pointer("P1Y"),
@@ -1299,6 +1310,9 @@ func main() {
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## VoidCreditGrant
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
 
 Void a credit grant, forfeiting the remaining unused balance.
 

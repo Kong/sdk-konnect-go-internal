@@ -33,9 +33,6 @@ func newOpenMeterProductCatalog(rootSDK *SDK, sdkConfig config.SDKConfiguration,
 }
 
 // ListProductCatalogAddons - List add-ons
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // List all add-ons.
 func (s *OpenMeterProductCatalog) ListProductCatalogAddons(ctx context.Context, request operations.ListProductCatalogAddonsRequest, opts ...operations.Option) (*operations.ListProductCatalogAddonsResponse, error) {
 	o := operations.Options{}
@@ -311,9 +308,6 @@ func (s *OpenMeterProductCatalog) ListProductCatalogAddons(ctx context.Context, 
 }
 
 // CreateProductCatalogAddon - Create add-on
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Create a new add-on.
 func (s *OpenMeterProductCatalog) CreateProductCatalogAddon(ctx context.Context, request components.CreateAddonRequest1, opts ...operations.Option) (*operations.CreateProductCatalogAddonResponse, error) {
 	o := operations.Options{}
@@ -592,9 +586,6 @@ func (s *OpenMeterProductCatalog) CreateProductCatalogAddon(ctx context.Context,
 }
 
 // UpdateProductCatalogAddon - Update add-on
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Update an add-on by id.
 func (s *OpenMeterProductCatalog) UpdateProductCatalogAddon(ctx context.Context, addonID string, upsertAddonRequest components.UpsertAddonRequest, opts ...operations.Option) (*operations.UpdateProductCatalogAddonResponse, error) {
 	request := operations.UpdateProductCatalogAddonRequest{
@@ -922,9 +913,6 @@ func (s *OpenMeterProductCatalog) UpdateProductCatalogAddon(ctx context.Context,
 }
 
 // GetProductCatalogAddon - Get add-on
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Get add-on by id.
 func (s *OpenMeterProductCatalog) GetProductCatalogAddon(ctx context.Context, addonID string, opts ...operations.Option) (*operations.GetProductCatalogAddonResponse, error) {
 	request := operations.GetProductCatalogAddonRequest{
@@ -1244,9 +1232,6 @@ func (s *OpenMeterProductCatalog) GetProductCatalogAddon(ctx context.Context, ad
 }
 
 // DeleteProductCatalogAddon - Soft delete add-on
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Soft delete add-on by id.
 func (s *OpenMeterProductCatalog) DeleteProductCatalogAddon(ctx context.Context, addonID string, opts ...operations.Option) (*operations.DeleteProductCatalogAddonResponse, error) {
 	request := operations.DeleteProductCatalogAddonRequest{
@@ -1525,9 +1510,6 @@ func (s *OpenMeterProductCatalog) DeleteProductCatalogAddon(ctx context.Context,
 }
 
 // ArchiveProductCatalogAddon - Archive add-on version
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Archive an add-on version.
 func (s *OpenMeterProductCatalog) ArchiveProductCatalogAddon(ctx context.Context, addonID string, opts ...operations.Option) (*operations.ArchiveProductCatalogAddonResponse, error) {
 	request := operations.ArchiveProductCatalogAddonRequest{
@@ -1825,9 +1807,6 @@ func (s *OpenMeterProductCatalog) ArchiveProductCatalogAddon(ctx context.Context
 }
 
 // PublishProductCatalogAddon - Publish add-on version
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Publish an add-on version.
 func (s *OpenMeterProductCatalog) PublishProductCatalogAddon(ctx context.Context, addonID string, opts ...operations.Option) (*operations.PublishProductCatalogAddonResponse, error) {
 	request := operations.PublishProductCatalogAddonRequest{
@@ -2125,9 +2104,6 @@ func (s *OpenMeterProductCatalog) PublishProductCatalogAddon(ctx context.Context
 }
 
 // ListPlans - List plans
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // List all plans.
 func (s *OpenMeterProductCatalog) ListPlans(ctx context.Context, request operations.ListPlansRequest, opts ...operations.Option) (*operations.ListPlansResponse, error) {
 	o := operations.Options{}
@@ -2403,9 +2379,6 @@ func (s *OpenMeterProductCatalog) ListPlans(ctx context.Context, request operati
 }
 
 // CreatePlan - Create plan
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Create a new plan.
 func (s *OpenMeterProductCatalog) CreatePlan(ctx context.Context, request components.CreatePlanRequest, opts ...operations.Option) (*operations.CreatePlanResponse, error) {
 	o := operations.Options{}
@@ -2684,9 +2657,6 @@ func (s *OpenMeterProductCatalog) CreatePlan(ctx context.Context, request compon
 }
 
 // UpdatePlan - Update plan
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Update a plan by id.
 func (s *OpenMeterProductCatalog) UpdatePlan(ctx context.Context, planID string, upsertPlanRequest components.UpsertPlanRequest, opts ...operations.Option) (*operations.UpdatePlanResponse, error) {
 	request := operations.UpdatePlanRequest{
@@ -3014,9 +2984,6 @@ func (s *OpenMeterProductCatalog) UpdatePlan(ctx context.Context, planID string,
 }
 
 // GetPlan - Get plan
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Get a plan by id.
 func (s *OpenMeterProductCatalog) GetPlan(ctx context.Context, planID string, opts ...operations.Option) (*operations.GetPlanResponse, error) {
 	request := operations.GetPlanRequest{
@@ -3336,9 +3303,6 @@ func (s *OpenMeterProductCatalog) GetPlan(ctx context.Context, planID string, op
 }
 
 // DeletePlan - Delete plan
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Delete a plan by id.
 func (s *OpenMeterProductCatalog) DeletePlan(ctx context.Context, planID string, opts ...operations.Option) (*operations.DeletePlanResponse, error) {
 	request := operations.DeletePlanRequest{
@@ -3617,6 +3581,9 @@ func (s *OpenMeterProductCatalog) DeletePlan(ctx context.Context, planID string,
 }
 
 // ListPlanAddons - List add-ons for plan
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List add-ons associated with a plan.
 func (s *OpenMeterProductCatalog) ListPlanAddons(ctx context.Context, request operations.ListPlanAddonsRequest, opts ...operations.Option) (*operations.ListPlanAddonsResponse, error) {
 	o := operations.Options{}
@@ -5108,9 +5075,6 @@ func (s *OpenMeterProductCatalog) DeletePlanAddon(ctx context.Context, planID st
 }
 
 // ArchivePlan - Archive plan version
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Archive a plan version.
 func (s *OpenMeterProductCatalog) ArchivePlan(ctx context.Context, planID string, opts ...operations.Option) (*operations.ArchivePlanResponse, error) {
 	request := operations.ArchivePlanRequest{
@@ -5408,9 +5372,6 @@ func (s *OpenMeterProductCatalog) ArchivePlan(ctx context.Context, planID string
 }
 
 // PublishPlan - Publish plan version
-// **Pre-release Endpoint**
-// This endpoint is currently in beta and is subject to change.
-//
 // Publish a plan version.
 func (s *OpenMeterProductCatalog) PublishPlan(ctx context.Context, planID string, opts ...operations.Option) (*operations.PublishPlanResponse, error) {
 	request := operations.PublishPlanRequest{

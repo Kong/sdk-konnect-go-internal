@@ -2417,6 +2417,9 @@ func (s *OpenMeterBillingSettings) SnapshotQuantitiesInvoice(ctx context.Context
 }
 
 // ListCharges - List charges
+// **Pre-release Endpoint**
+// This endpoint is currently in beta and is subject to change.
+//
 // List charges.
 //
 // Returns the charges of every customer that are represented as either flat fee or

@@ -1,6 +1,6 @@
 # AISettingsResponseFeaturesAISearch
 
-AI Search config
+AI Search configuration
 
 
 ## Fields
