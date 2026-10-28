@@ -3,7 +3,7 @@
 This branch regenerates internal SDK v0.5.1 (`7af4b170`) from
 Kong/platform-api `224e6d7cf228f803fbcef570e5d53cf5337401f0` and applies
 kongctl's canonical compatibility patch bundle from
-`da6978cc52f9be2346ea171eb41e29658b26dfbf`.
+`2c2a7b7282caa8f8a9bf5d432a7908f38258bbd1`.
 
 The AI Gateway source specification is 2.2.24. Its public runtime cutoff
 remains 2.2; the unsplit internal SDK input includes the currently merged
@@ -55,6 +55,10 @@ an empty PATCH stays empty. Its regression test is part of the shared bundle.
 The team membership overlay also covers internal organization-team create and
 update requests, preserving omitted `konnect_managed` fields while retaining
 explicit boolean values. It leaves those fields absent from public SDK input.
+The optional internal `CreatePortal.create_default_content` field is patched
+after generation to preserve omission without changing other create defaults.
+The replacement skips public SDKs where the field is absent and rejects
+unexpected tags or types when present.
 No kongctl build applies these patches at runtime.
 
 The SDK Makefile's tool installation and Speakeasy generation targets are

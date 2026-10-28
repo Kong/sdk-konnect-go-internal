@@ -1,11 +1,11 @@
 {
   "repository": "Kong/kongctl",
-  "commit": "da6978cc52f9be2346ea171eb41e29658b26dfbf",
+  "commit": "2c2a7b7282caa8f8a9bf5d432a7908f38258bbd1",
   "path": "tools/sdk-patches",
   "sha256": {
-    "apply.py": "78508e99dd9a890711743f707fc70d0cc4e66f0c564ad8c00a63204fd3995d09",
-    "manifest.json": "48c6522fa669acce805a40d6535ba3f3e15eb3f6e708511052586d9f32537447",
-    "README.md": "9da545e07c82eab53660c16aee63e14aef41123bc9b1e0312606039ca72fadd8",
+    "apply.py": "c99099993a38ba6d837dee5019411cd99ce957f8618a49af719f0e23363dab82",
+    "manifest.json": "7afee856b797e3fa406b06a0c4e94548210c85aa5de98b3582bb91e1b6a96874",
+    "README.md": "ace9dade8e702a55cd4d330b5995d9732956652c3d5783c19187fbefa4f9f354",
     "overlays/backend-cluster-tls-defaults.yaml": "3c5f065ec53cb0ab53345ac0407af11944433ae6730328adf1bead7a4d5c03ae",
     "overlays/patch-custom-portal-email-template-defaults.yaml": "fab2a9d6a26ad0b29200ae45fbcb365b3ed1322018f314686134e686937d3ed3",
     "overlays/portal-customization-spec-renderer-defaults.yaml": "f14bc9f737c083545c8ea7e5675be6d57d3e673e01639988957cd5b432c7b4e2",
@@ -17,7 +17,7 @@
     "overlays/update-portal-patch-defaults.yaml": "7e0294cd76accc7b96b0241d3fe89fb25fe14063386dec29f9f232d940e36d3d",
     "tests/kongctl_boolean_defaults_test.go.txt": "66275cb568a6d22078a67124c403492f063a70dd5463a31a2252b43f5a6113d5",
     "tests/portal_customization_defaults_test.go.txt": "27c407f677a622af5cd7ad6ff28c19c1a161c31a08e2587b10af276f6dc5b4e2",
-    "tests/portalteam_defaults_test.go.txt": "316b7c292fbfa733de3886ec041ae5dcad537450d6ce5eeaabcc99a31e1945b2",
+    "tests/portalteam_defaults_test.go.txt": "01496bf420248577557a52c2f5481e695afd3cb81be3e55e6165613946614312",
     "tests/identity_realms_test.go.txt": "52cecf934f692d3155ce058eb914133dad12863b1d58ddd89735c1ce1f7d20d2"
   }
 }
