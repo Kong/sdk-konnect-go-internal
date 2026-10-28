@@ -51,7 +51,7 @@ type UpdateAPIVersionRequest struct {
 	Force *QueryParamForce `default:"false" queryParam:"style=form,explode=true,name=force"`
 	// The format of the returned `spec.content`. Defaults to `json`.
 	//
-	SpecFormat        *components.SpecFormatSchema `default:"json" queryParam:"style=form,explode=true,name=spec_format"`
+	SpecFormat        *components.SpecFormatSchema `queryParam:"style=form,explode=true,name=spec_format"`
 	APIVersionRequest components.APIVersionRequest `request:"mediaType=application/json"`
 }
 
