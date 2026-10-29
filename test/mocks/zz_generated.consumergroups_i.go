@@ -7,7 +7,6 @@ package mocks
 import (
 	"context"
 
-	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -131,8 +130,8 @@ func (_c *MockConsumerGroupsSDK_AddConsumerToGroup_Call) RunAndReturn(run func(c
 	return _c
 }
 
-// AddConsumerToGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) AddConsumerToGroupInWorkspace(ctx context.Context, request operations.AddConsumerToGroupInWorkspaceRequest, opts ...operations.Option) (*operations.AddConsumerToGroupInWorkspaceResponse, error) {
+// CreateConsumerGroup provides a mock function for the type MockConsumerGroupsSDK
+func (_mock *MockConsumerGroupsSDK) CreateConsumerGroup(ctx context.Context, request operations.CreateConsumerGroupRequest, opts ...operations.Option) (*operations.CreateConsumerGroupResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -142,106 +141,23 @@ func (_mock *MockConsumerGroupsSDK) AddConsumerToGroupInWorkspace(ctx context.Co
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for AddConsumerToGroupInWorkspace")
-	}
-
-	var r0 *operations.AddConsumerToGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.AddConsumerToGroupInWorkspaceRequest, ...operations.Option) (*operations.AddConsumerToGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.AddConsumerToGroupInWorkspaceRequest, ...operations.Option) *operations.AddConsumerToGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.AddConsumerToGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.AddConsumerToGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'AddConsumerToGroupInWorkspace'
-type MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// AddConsumerToGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.AddConsumerToGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) AddConsumerToGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call{Call: _e.mock.On("AddConsumerToGroupInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.AddConsumerToGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.AddConsumerToGroupInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.AddConsumerToGroupInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call) Return(addConsumerToGroupInWorkspaceResponse *operations.AddConsumerToGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call {
-	_c.Call.Return(addConsumerToGroupInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.AddConsumerToGroupInWorkspaceRequest, opts ...operations.Option) (*operations.AddConsumerToGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_AddConsumerToGroupInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// CreateConsumerGroup provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) CreateConsumerGroup(ctx context.Context, controlPlaneID string, consumerGroup components.ConsumerGroup, opts ...operations.Option) (*operations.CreateConsumerGroupResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, consumerGroup, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, consumerGroup)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for CreateConsumerGroup")
 	}
 
 	var r0 *operations.CreateConsumerGroupResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.ConsumerGroup, ...operations.Option) (*operations.CreateConsumerGroupResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, consumerGroup, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateConsumerGroupRequest, ...operations.Option) (*operations.CreateConsumerGroupResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.ConsumerGroup, ...operations.Option) *operations.CreateConsumerGroupResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, consumerGroup, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateConsumerGroupRequest, ...operations.Option) *operations.CreateConsumerGroupResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.CreateConsumerGroupResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.ConsumerGroup, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, consumerGroup, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateConsumerGroupRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -255,111 +171,22 @@ type MockConsumerGroupsSDK_CreateConsumerGroup_Call struct {
 
 // CreateConsumerGroup is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - consumerGroup components.ConsumerGroup
+//   - request operations.CreateConsumerGroupRequest
 //   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) CreateConsumerGroup(ctx any, controlPlaneID any, consumerGroup any, opts ...any) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
+func (_e *MockConsumerGroupsSDK_Expecter) CreateConsumerGroup(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
 	return &MockConsumerGroupsSDK_CreateConsumerGroup_Call{Call: _e.mock.On("CreateConsumerGroup",
-		append([]any{ctx, controlPlaneID, consumerGroup}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_CreateConsumerGroup_Call) Run(run func(ctx context.Context, controlPlaneID string, consumerGroup components.ConsumerGroup, opts ...operations.Option)) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 components.ConsumerGroup
-		if args[2] != nil {
-			arg2 = args[2].(components.ConsumerGroup)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_CreateConsumerGroup_Call) Return(createConsumerGroupResponse *operations.CreateConsumerGroupResponse, err error) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
-	_c.Call.Return(createConsumerGroupResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_CreateConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, consumerGroup components.ConsumerGroup, opts ...operations.Option) (*operations.CreateConsumerGroupResponse, error)) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// CreateConsumerGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) CreateConsumerGroupInWorkspace(ctx context.Context, request operations.CreateConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.CreateConsumerGroupInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for CreateConsumerGroupInWorkspace")
-	}
-
-	var r0 *operations.CreateConsumerGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateConsumerGroupInWorkspaceRequest, ...operations.Option) (*operations.CreateConsumerGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateConsumerGroupInWorkspaceRequest, ...operations.Option) *operations.CreateConsumerGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreateConsumerGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateConsumerGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateConsumerGroupInWorkspace'
-type MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreateConsumerGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreateConsumerGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) CreateConsumerGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call{Call: _e.mock.On("CreateConsumerGroupInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreateConsumerGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call {
+func (_c *MockConsumerGroupsSDK_CreateConsumerGroup_Call) Run(run func(ctx context.Context, request operations.CreateConsumerGroupRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.CreateConsumerGroupInWorkspaceRequest
+		var arg1 operations.CreateConsumerGroupRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.CreateConsumerGroupInWorkspaceRequest)
+			arg1 = args[1].(operations.CreateConsumerGroupRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -376,23 +203,23 @@ func (_c *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call) Run(run fun
 	return _c
 }
 
-func (_c *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call) Return(createConsumerGroupInWorkspaceResponse *operations.CreateConsumerGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call {
-	_c.Call.Return(createConsumerGroupInWorkspaceResponse, err)
+func (_c *MockConsumerGroupsSDK_CreateConsumerGroup_Call) Return(createConsumerGroupResponse *operations.CreateConsumerGroupResponse, err error) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
+	_c.Call.Return(createConsumerGroupResponse, err)
 	return _c
 }
 
-func (_c *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.CreateConsumerGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_CreateConsumerGroupInWorkspace_Call {
+func (_c *MockConsumerGroupsSDK_CreateConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateConsumerGroupRequest, opts ...operations.Option) (*operations.CreateConsumerGroupResponse, error)) *MockConsumerGroupsSDK_CreateConsumerGroup_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // DeleteConsumerGroup provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) DeleteConsumerGroup(ctx context.Context, controlPlaneID string, consumerGroupID string, opts ...operations.Option) (*operations.DeleteConsumerGroupResponse, error) {
+func (_mock *MockConsumerGroupsSDK) DeleteConsumerGroup(ctx context.Context, request operations.DeleteConsumerGroupRequest, opts ...operations.Option) (*operations.DeleteConsumerGroupResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, consumerGroupID, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, consumerGroupID)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -402,18 +229,18 @@ func (_mock *MockConsumerGroupsSDK) DeleteConsumerGroup(ctx context.Context, con
 
 	var r0 *operations.DeleteConsumerGroupResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.DeleteConsumerGroupResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, consumerGroupID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteConsumerGroupRequest, ...operations.Option) (*operations.DeleteConsumerGroupResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.DeleteConsumerGroupResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, consumerGroupID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteConsumerGroupRequest, ...operations.Option) *operations.DeleteConsumerGroupResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.DeleteConsumerGroupResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, consumerGroupID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteConsumerGroupRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -427,111 +254,22 @@ type MockConsumerGroupsSDK_DeleteConsumerGroup_Call struct {
 
 // DeleteConsumerGroup is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - consumerGroupID string
+//   - request operations.DeleteConsumerGroupRequest
 //   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) DeleteConsumerGroup(ctx any, controlPlaneID any, consumerGroupID any, opts ...any) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
+func (_e *MockConsumerGroupsSDK_Expecter) DeleteConsumerGroup(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
 	return &MockConsumerGroupsSDK_DeleteConsumerGroup_Call{Call: _e.mock.On("DeleteConsumerGroup",
-		append([]any{ctx, controlPlaneID, consumerGroupID}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_DeleteConsumerGroup_Call) Run(run func(ctx context.Context, controlPlaneID string, consumerGroupID string, opts ...operations.Option)) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_DeleteConsumerGroup_Call) Return(deleteConsumerGroupResponse *operations.DeleteConsumerGroupResponse, err error) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
-	_c.Call.Return(deleteConsumerGroupResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_DeleteConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, consumerGroupID string, opts ...operations.Option) (*operations.DeleteConsumerGroupResponse, error)) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// DeleteConsumerGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) DeleteConsumerGroupInWorkspace(ctx context.Context, request operations.DeleteConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteConsumerGroupInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for DeleteConsumerGroupInWorkspace")
-	}
-
-	var r0 *operations.DeleteConsumerGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteConsumerGroupInWorkspaceRequest, ...operations.Option) (*operations.DeleteConsumerGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteConsumerGroupInWorkspaceRequest, ...operations.Option) *operations.DeleteConsumerGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeleteConsumerGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteConsumerGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteConsumerGroupInWorkspace'
-type MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeleteConsumerGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeleteConsumerGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) DeleteConsumerGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call{Call: _e.mock.On("DeleteConsumerGroupInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeleteConsumerGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call {
+func (_c *MockConsumerGroupsSDK_DeleteConsumerGroup_Call) Run(run func(ctx context.Context, request operations.DeleteConsumerGroupRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.DeleteConsumerGroupInWorkspaceRequest
+		var arg1 operations.DeleteConsumerGroupRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.DeleteConsumerGroupInWorkspaceRequest)
+			arg1 = args[1].(operations.DeleteConsumerGroupRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -548,12 +286,12 @@ func (_c *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call) Run(run fun
 	return _c
 }
 
-func (_c *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call) Return(deleteConsumerGroupInWorkspaceResponse *operations.DeleteConsumerGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call {
-	_c.Call.Return(deleteConsumerGroupInWorkspaceResponse, err)
+func (_c *MockConsumerGroupsSDK_DeleteConsumerGroup_Call) Return(deleteConsumerGroupResponse *operations.DeleteConsumerGroupResponse, err error) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
+	_c.Call.Return(deleteConsumerGroupResponse, err)
 	return _c
 }
 
-func (_c *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteConsumerGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_DeleteConsumerGroupInWorkspace_Call {
+func (_c *MockConsumerGroupsSDK_DeleteConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteConsumerGroupRequest, opts ...operations.Option) (*operations.DeleteConsumerGroupResponse, error)) *MockConsumerGroupsSDK_DeleteConsumerGroup_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -641,89 +379,6 @@ func (_c *MockConsumerGroupsSDK_GetConsumerGroup_Call) RunAndReturn(run func(ctx
 	return _c
 }
 
-// GetConsumerGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) GetConsumerGroupInWorkspace(ctx context.Context, request operations.GetConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.GetConsumerGroupInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetConsumerGroupInWorkspace")
-	}
-
-	var r0 *operations.GetConsumerGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetConsumerGroupInWorkspaceRequest, ...operations.Option) (*operations.GetConsumerGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetConsumerGroupInWorkspaceRequest, ...operations.Option) *operations.GetConsumerGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetConsumerGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetConsumerGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetConsumerGroupInWorkspace'
-type MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetConsumerGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetConsumerGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) GetConsumerGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call{Call: _e.mock.On("GetConsumerGroupInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetConsumerGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.GetConsumerGroupInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.GetConsumerGroupInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call) Return(getConsumerGroupInWorkspaceResponse *operations.GetConsumerGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call {
-	_c.Call.Return(getConsumerGroupInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.GetConsumerGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_GetConsumerGroupInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // ListConsumerGroup provides a mock function for the type MockConsumerGroupsSDK
 func (_mock *MockConsumerGroupsSDK) ListConsumerGroup(ctx context.Context, request operations.ListConsumerGroupRequest, opts ...operations.Option) (*operations.ListConsumerGroupResponse, error) {
 	var tmpRet mock.Arguments
@@ -803,89 +458,6 @@ func (_c *MockConsumerGroupsSDK_ListConsumerGroup_Call) Return(listConsumerGroup
 }
 
 func (_c *MockConsumerGroupsSDK_ListConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, request operations.ListConsumerGroupRequest, opts ...operations.Option) (*operations.ListConsumerGroupResponse, error)) *MockConsumerGroupsSDK_ListConsumerGroup_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// ListConsumerGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) ListConsumerGroupInWorkspace(ctx context.Context, request operations.ListConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.ListConsumerGroupInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListConsumerGroupInWorkspace")
-	}
-
-	var r0 *operations.ListConsumerGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListConsumerGroupInWorkspaceRequest, ...operations.Option) (*operations.ListConsumerGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListConsumerGroupInWorkspaceRequest, ...operations.Option) *operations.ListConsumerGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListConsumerGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListConsumerGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListConsumerGroupInWorkspace'
-type MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListConsumerGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListConsumerGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) ListConsumerGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call{Call: _e.mock.On("ListConsumerGroupInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListConsumerGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListConsumerGroupInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListConsumerGroupInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call) Return(listConsumerGroupInWorkspaceResponse *operations.ListConsumerGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call {
-	_c.Call.Return(listConsumerGroupInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.ListConsumerGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_ListConsumerGroupInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -973,8 +545,8 @@ func (_c *MockConsumerGroupsSDK_ListConsumersForConsumerGroup_Call) RunAndReturn
 	return _c
 }
 
-// ListConsumersForConsumerGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) ListConsumersForConsumerGroupInWorkspace(ctx context.Context, request operations.ListConsumersForConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.ListConsumersForConsumerGroupInWorkspaceResponse, error) {
+// RemoveAllConsumersFromConsumerGroup provides a mock function for the type MockConsumerGroupsSDK
+func (_mock *MockConsumerGroupsSDK) RemoveAllConsumersFromConsumerGroup(ctx context.Context, request operations.RemoveAllConsumersFromConsumerGroupRequest, opts ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -984,106 +556,23 @@ func (_mock *MockConsumerGroupsSDK) ListConsumersForConsumerGroupInWorkspace(ctx
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for ListConsumersForConsumerGroupInWorkspace")
-	}
-
-	var r0 *operations.ListConsumersForConsumerGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListConsumersForConsumerGroupInWorkspaceRequest, ...operations.Option) (*operations.ListConsumersForConsumerGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListConsumersForConsumerGroupInWorkspaceRequest, ...operations.Option) *operations.ListConsumersForConsumerGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListConsumersForConsumerGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListConsumersForConsumerGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListConsumersForConsumerGroupInWorkspace'
-type MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListConsumersForConsumerGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListConsumersForConsumerGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) ListConsumersForConsumerGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call{Call: _e.mock.On("ListConsumersForConsumerGroupInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListConsumersForConsumerGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListConsumersForConsumerGroupInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListConsumersForConsumerGroupInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call) Return(listConsumersForConsumerGroupInWorkspaceResponse *operations.ListConsumersForConsumerGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call {
-	_c.Call.Return(listConsumersForConsumerGroupInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListConsumersForConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.ListConsumersForConsumerGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_ListConsumersForConsumerGroupInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// RemoveAllConsumersFromConsumerGroup provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) RemoveAllConsumersFromConsumerGroup(ctx context.Context, consumerGroupID string, controlPlaneID string, opts ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, consumerGroupID, controlPlaneID, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, consumerGroupID, controlPlaneID)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for RemoveAllConsumersFromConsumerGroup")
 	}
 
 	var r0 *operations.RemoveAllConsumersFromConsumerGroupResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupResponse, error)); ok {
-		return returnFunc(ctx, consumerGroupID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.RemoveAllConsumersFromConsumerGroupRequest, ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.RemoveAllConsumersFromConsumerGroupResponse); ok {
-		r0 = returnFunc(ctx, consumerGroupID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.RemoveAllConsumersFromConsumerGroupRequest, ...operations.Option) *operations.RemoveAllConsumersFromConsumerGroupResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.RemoveAllConsumersFromConsumerGroupResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, consumerGroupID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.RemoveAllConsumersFromConsumerGroupRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -1097,111 +586,22 @@ type MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call struct {
 
 // RemoveAllConsumersFromConsumerGroup is a helper method to define mock.On call
 //   - ctx context.Context
-//   - consumerGroupID string
-//   - controlPlaneID string
+//   - request operations.RemoveAllConsumersFromConsumerGroupRequest
 //   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) RemoveAllConsumersFromConsumerGroup(ctx any, consumerGroupID any, controlPlaneID any, opts ...any) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
+func (_e *MockConsumerGroupsSDK_Expecter) RemoveAllConsumersFromConsumerGroup(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
 	return &MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call{Call: _e.mock.On("RemoveAllConsumersFromConsumerGroup",
-		append([]any{ctx, consumerGroupID, controlPlaneID}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call) Run(run func(ctx context.Context, consumerGroupID string, controlPlaneID string, opts ...operations.Option)) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call) Return(removeAllConsumersFromConsumerGroupResponse *operations.RemoveAllConsumersFromConsumerGroupResponse, err error) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
-	_c.Call.Return(removeAllConsumersFromConsumerGroupResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, consumerGroupID string, controlPlaneID string, opts ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupResponse, error)) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// RemoveAllConsumersFromConsumerGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) RemoveAllConsumersFromConsumerGroupInWorkspace(ctx context.Context, request operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for RemoveAllConsumersFromConsumerGroupInWorkspace")
-	}
-
-	var r0 *operations.RemoveAllConsumersFromConsumerGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest, ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest, ...operations.Option) *operations.RemoveAllConsumersFromConsumerGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.RemoveAllConsumersFromConsumerGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RemoveAllConsumersFromConsumerGroupInWorkspace'
-type MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// RemoveAllConsumersFromConsumerGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) RemoveAllConsumersFromConsumerGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call{Call: _e.mock.On("RemoveAllConsumersFromConsumerGroupInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call {
+func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call) Run(run func(ctx context.Context, request operations.RemoveAllConsumersFromConsumerGroupRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest
+		var arg1 operations.RemoveAllConsumersFromConsumerGroupRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest)
+			arg1 = args[1].(operations.RemoveAllConsumersFromConsumerGroupRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -1218,12 +618,12 @@ func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_C
 	return _c
 }
 
-func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call) Return(removeAllConsumersFromConsumerGroupInWorkspaceResponse *operations.RemoveAllConsumersFromConsumerGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call {
-	_c.Call.Return(removeAllConsumersFromConsumerGroupInWorkspaceResponse, err)
+func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call) Return(removeAllConsumersFromConsumerGroupResponse *operations.RemoveAllConsumersFromConsumerGroupResponse, err error) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
+	_c.Call.Return(removeAllConsumersFromConsumerGroupResponse, err)
 	return _c
 }
 
-func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.RemoveAllConsumersFromConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroupInWorkspace_Call {
+func (_c *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, request operations.RemoveAllConsumersFromConsumerGroupRequest, opts ...operations.Option) (*operations.RemoveAllConsumersFromConsumerGroupResponse, error)) *MockConsumerGroupsSDK_RemoveAllConsumersFromConsumerGroup_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -1311,89 +711,6 @@ func (_c *MockConsumerGroupsSDK_RemoveConsumerFromGroup_Call) RunAndReturn(run f
 	return _c
 }
 
-// RemoveConsumerFromGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) RemoveConsumerFromGroupInWorkspace(ctx context.Context, request operations.RemoveConsumerFromGroupInWorkspaceRequest, opts ...operations.Option) (*operations.RemoveConsumerFromGroupInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for RemoveConsumerFromGroupInWorkspace")
-	}
-
-	var r0 *operations.RemoveConsumerFromGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.RemoveConsumerFromGroupInWorkspaceRequest, ...operations.Option) (*operations.RemoveConsumerFromGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.RemoveConsumerFromGroupInWorkspaceRequest, ...operations.Option) *operations.RemoveConsumerFromGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.RemoveConsumerFromGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.RemoveConsumerFromGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'RemoveConsumerFromGroupInWorkspace'
-type MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// RemoveConsumerFromGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.RemoveConsumerFromGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) RemoveConsumerFromGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call{Call: _e.mock.On("RemoveConsumerFromGroupInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.RemoveConsumerFromGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.RemoveConsumerFromGroupInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.RemoveConsumerFromGroupInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call) Return(removeConsumerFromGroupInWorkspaceResponse *operations.RemoveConsumerFromGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call {
-	_c.Call.Return(removeConsumerFromGroupInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.RemoveConsumerFromGroupInWorkspaceRequest, opts ...operations.Option) (*operations.RemoveConsumerFromGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_RemoveConsumerFromGroupInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // UpsertConsumerGroup provides a mock function for the type MockConsumerGroupsSDK
 func (_mock *MockConsumerGroupsSDK) UpsertConsumerGroup(ctx context.Context, request operations.UpsertConsumerGroupRequest, opts ...operations.Option) (*operations.UpsertConsumerGroupResponse, error) {
 	var tmpRet mock.Arguments
@@ -1473,89 +790,6 @@ func (_c *MockConsumerGroupsSDK_UpsertConsumerGroup_Call) Return(upsertConsumerG
 }
 
 func (_c *MockConsumerGroupsSDK_UpsertConsumerGroup_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertConsumerGroupRequest, opts ...operations.Option) (*operations.UpsertConsumerGroupResponse, error)) *MockConsumerGroupsSDK_UpsertConsumerGroup_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// UpsertConsumerGroupInWorkspace provides a mock function for the type MockConsumerGroupsSDK
-func (_mock *MockConsumerGroupsSDK) UpsertConsumerGroupInWorkspace(ctx context.Context, request operations.UpsertConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertConsumerGroupInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertConsumerGroupInWorkspace")
-	}
-
-	var r0 *operations.UpsertConsumerGroupInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertConsumerGroupInWorkspaceRequest, ...operations.Option) (*operations.UpsertConsumerGroupInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertConsumerGroupInWorkspaceRequest, ...operations.Option) *operations.UpsertConsumerGroupInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertConsumerGroupInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertConsumerGroupInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertConsumerGroupInWorkspace'
-type MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertConsumerGroupInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertConsumerGroupInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockConsumerGroupsSDK_Expecter) UpsertConsumerGroupInWorkspace(ctx any, request any, opts ...any) *MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call {
-	return &MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call{Call: _e.mock.On("UpsertConsumerGroupInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertConsumerGroupInWorkspaceRequest, opts ...operations.Option)) *MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertConsumerGroupInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertConsumerGroupInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call) Return(upsertConsumerGroupInWorkspaceResponse *operations.UpsertConsumerGroupInWorkspaceResponse, err error) *MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call {
-	_c.Call.Return(upsertConsumerGroupInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertConsumerGroupInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertConsumerGroupInWorkspaceResponse, error)) *MockConsumerGroupsSDK_UpsertConsumerGroupInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }

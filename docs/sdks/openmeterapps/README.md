@@ -13,6 +13,7 @@ Apps enable you to extend and customize billing and usage workflows by integrati
 * [GetApp](#getapp) - Get app
 * [UninstallApp](#uninstallapp) - Uninstall app
 * [UpdateApp](#updateapp) - Update app
+* [ExecuteAppAction](#executeappaction) - Execute app action
 
 ## ListAppCatalog
 
@@ -468,6 +469,78 @@ func main() {
 ### Response
 
 **[*operations.UpdateAppResponse](../../models/operations/updateappresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## ExecuteAppAction
+
+Execute an operator action on an installed app. The action must be listed in the
+app's `actions`; otherwise the request is rejected.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="execute-app-action" method="post" path="/v3/openmeter/apps/{appId}/action" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.OpenMeterApps.ExecuteAppAction(ctx, "01G65Z755AFWAKHE12NY0CQ9FH", components.CreateBillingAppActionRequestReconcileWebhookEvents(
+        components.BillingAppReconcileWebhookEventsActionRequest{
+            ActionType: components.BillingAppReconcileWebhookEventsActionRequestActionTypeReconcileWebhookEvents,
+        },
+    ))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.BillingApp != nil {
+        switch res.BillingApp.Type {
+            case components.BillingAppUnionTypeStripe:
+                // res.BillingApp.BillingAppStripe is populated
+            case components.BillingAppUnionTypeSandbox:
+                // res.BillingApp.BillingAppSandbox is populated
+            case components.BillingAppUnionTypeExternalInvoicing:
+                // res.BillingApp.BillingAppExternalInvoicing is populated
+        }
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |                                                                                          |
+| `appID`                                                                                  | `string`                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      | 01G65Z755AFWAKHE12NY0CQ9FH                                                               |
+| `billingAppActionRequest`                                                                | [components.BillingAppActionRequest](../../models/components/billingappactionrequest.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |                                                                                          |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |                                                                                          |
+
+### Response
+
+**[*operations.ExecuteAppActionResponse](../../models/operations/executeappactionresponse.md), error**
 
 ### Errors
 

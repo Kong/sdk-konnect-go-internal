@@ -185,6 +185,9 @@ type BillingAppExternalInvoicing struct {
 	Definition BillingAppExternalInvoicingDefinition `json:"definition"`
 	// Status of the app connection.
 	Status BillingAppExternalInvoicingStatus `json:"status"`
+	// Actions the operator should take to bring the app up to date. Omitted when no
+	// action is required.
+	Actions []BillingAppAction `json:"actions,omitempty"`
 	// Enable draft synchronization hook.
 	//
 	// When enabled, invoices will pause at the draft state and wait for the
@@ -286,6 +289,13 @@ func (b *BillingAppExternalInvoicing) GetStatus() BillingAppExternalInvoicingSta
 		return BillingAppExternalInvoicingStatus("")
 	}
 	return b.Status
+}
+
+func (b *BillingAppExternalInvoicing) GetActions() []BillingAppAction {
+	if b == nil {
+		return nil
+	}
+	return b.Actions
 }
 
 func (b *BillingAppExternalInvoicing) GetEnableDraftSyncHook() bool {

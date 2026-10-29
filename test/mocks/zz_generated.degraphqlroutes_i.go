@@ -130,89 +130,6 @@ func (_c *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithService_Call) RunAndRet
 	return _c
 }
 
-// CreateDegraphqlRouteWithServiceInWorkspace provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) CreateDegraphqlRouteWithServiceInWorkspace(ctx context.Context, request operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.CreateDegraphqlRouteWithServiceInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for CreateDegraphqlRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.CreateDegraphqlRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.CreateDegraphqlRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.CreateDegraphqlRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreateDegraphqlRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateDegraphqlRouteWithServiceInWorkspace'
-type MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreateDegraphqlRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) CreateDegraphqlRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call {
-	return &MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call{Call: _e.mock.On("CreateDegraphqlRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call) Return(createDegraphqlRouteWithServiceInWorkspaceResponse *operations.CreateDegraphqlRouteWithServiceInWorkspaceResponse, err error) *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(createDegraphqlRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.CreateDegraphqlRouteWithServiceInWorkspaceResponse, error)) *MockDegraphqlRoutesSDK_CreateDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // DeleteDegraphqlRouteWithService provides a mock function for the type MockDegraphqlRoutesSDK
 func (_mock *MockDegraphqlRoutesSDK) DeleteDegraphqlRouteWithService(ctx context.Context, request operations.DeleteDegraphqlRouteWithServiceRequest, opts ...operations.Option) (*operations.DeleteDegraphqlRouteWithServiceResponse, error) {
 	var tmpRet mock.Arguments
@@ -296,8 +213,8 @@ func (_c *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithService_Call) RunAndRet
 	return _c
 }
 
-// DeleteDegraphqlRouteWithServiceInWorkspace provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) DeleteDegraphqlRouteWithServiceInWorkspace(ctx context.Context, request operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteDegraphqlRouteWithServiceInWorkspaceResponse, error) {
+// GetDegraphqlRoute provides a mock function for the type MockDegraphqlRoutesSDK
+func (_mock *MockDegraphqlRoutesSDK) GetDegraphqlRoute(ctx context.Context, request operations.GetDegraphqlRouteRequest, opts ...operations.Option) (*operations.GetDegraphqlRouteResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -307,106 +224,23 @@ func (_mock *MockDegraphqlRoutesSDK) DeleteDegraphqlRouteWithServiceInWorkspace(
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for DeleteDegraphqlRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.DeleteDegraphqlRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.DeleteDegraphqlRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.DeleteDegraphqlRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeleteDegraphqlRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteDegraphqlRouteWithServiceInWorkspace'
-type MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeleteDegraphqlRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) DeleteDegraphqlRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call {
-	return &MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call{Call: _e.mock.On("DeleteDegraphqlRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call) Return(deleteDegraphqlRouteWithServiceInWorkspaceResponse *operations.DeleteDegraphqlRouteWithServiceInWorkspaceResponse, err error) *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(deleteDegraphqlRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteDegraphqlRouteWithServiceInWorkspaceResponse, error)) *MockDegraphqlRoutesSDK_DeleteDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetDegraphqlRoute provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) GetDegraphqlRoute(ctx context.Context, degraphqlRouteID string, controlPlaneID string, opts ...operations.Option) (*operations.GetDegraphqlRouteResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, degraphqlRouteID, controlPlaneID, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, degraphqlRouteID, controlPlaneID)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for GetDegraphqlRoute")
 	}
 
 	var r0 *operations.GetDegraphqlRouteResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.GetDegraphqlRouteResponse, error)); ok {
-		return returnFunc(ctx, degraphqlRouteID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetDegraphqlRouteRequest, ...operations.Option) (*operations.GetDegraphqlRouteResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.GetDegraphqlRouteResponse); ok {
-		r0 = returnFunc(ctx, degraphqlRouteID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetDegraphqlRouteRequest, ...operations.Option) *operations.GetDegraphqlRouteResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.GetDegraphqlRouteResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, degraphqlRouteID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetDegraphqlRouteRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -420,111 +254,22 @@ type MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call struct {
 
 // GetDegraphqlRoute is a helper method to define mock.On call
 //   - ctx context.Context
-//   - degraphqlRouteID string
-//   - controlPlaneID string
+//   - request operations.GetDegraphqlRouteRequest
 //   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) GetDegraphqlRoute(ctx any, degraphqlRouteID any, controlPlaneID any, opts ...any) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
+func (_e *MockDegraphqlRoutesSDK_Expecter) GetDegraphqlRoute(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
 	return &MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call{Call: _e.mock.On("GetDegraphqlRoute",
-		append([]any{ctx, degraphqlRouteID, controlPlaneID}, opts...)...)}
-}
-
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call) Run(run func(ctx context.Context, degraphqlRouteID string, controlPlaneID string, opts ...operations.Option)) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call) Return(getDegraphqlRouteResponse *operations.GetDegraphqlRouteResponse, err error) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
-	_c.Call.Return(getDegraphqlRouteResponse, err)
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call) RunAndReturn(run func(ctx context.Context, degraphqlRouteID string, controlPlaneID string, opts ...operations.Option) (*operations.GetDegraphqlRouteResponse, error)) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetDegraphqlRouteInWorkspace provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) GetDegraphqlRouteInWorkspace(ctx context.Context, request operations.GetDegraphqlRouteInWorkspaceRequest, opts ...operations.Option) (*operations.GetDegraphqlRouteInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetDegraphqlRouteInWorkspace")
-	}
-
-	var r0 *operations.GetDegraphqlRouteInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetDegraphqlRouteInWorkspaceRequest, ...operations.Option) (*operations.GetDegraphqlRouteInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetDegraphqlRouteInWorkspaceRequest, ...operations.Option) *operations.GetDegraphqlRouteInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetDegraphqlRouteInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetDegraphqlRouteInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetDegraphqlRouteInWorkspace'
-type MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetDegraphqlRouteInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetDegraphqlRouteInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) GetDegraphqlRouteInWorkspace(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call {
-	return &MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call{Call: _e.mock.On("GetDegraphqlRouteInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetDegraphqlRouteInWorkspaceRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call {
+func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call) Run(run func(ctx context.Context, request operations.GetDegraphqlRouteRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.GetDegraphqlRouteInWorkspaceRequest
+		var arg1 operations.GetDegraphqlRouteRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.GetDegraphqlRouteInWorkspaceRequest)
+			arg1 = args[1].(operations.GetDegraphqlRouteRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -541,12 +286,12 @@ func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call) Run(run func
 	return _c
 }
 
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call) Return(getDegraphqlRouteInWorkspaceResponse *operations.GetDegraphqlRouteInWorkspaceResponse, err error) *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call {
-	_c.Call.Return(getDegraphqlRouteInWorkspaceResponse, err)
+func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call) Return(getDegraphqlRouteResponse *operations.GetDegraphqlRouteResponse, err error) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
+	_c.Call.Return(getDegraphqlRouteResponse, err)
 	return _c
 }
 
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetDegraphqlRouteInWorkspaceRequest, opts ...operations.Option) (*operations.GetDegraphqlRouteInWorkspaceResponse, error)) *MockDegraphqlRoutesSDK_GetDegraphqlRouteInWorkspace_Call {
+func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call) RunAndReturn(run func(ctx context.Context, request operations.GetDegraphqlRouteRequest, opts ...operations.Option) (*operations.GetDegraphqlRouteResponse, error)) *MockDegraphqlRoutesSDK_GetDegraphqlRoute_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -634,89 +379,6 @@ func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithService_Call) RunAndReturn
 	return _c
 }
 
-// GetDegraphqlRouteWithServiceInWorkspace provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) GetDegraphqlRouteWithServiceInWorkspace(ctx context.Context, request operations.GetDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.GetDegraphqlRouteWithServiceInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetDegraphqlRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.GetDegraphqlRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.GetDegraphqlRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.GetDegraphqlRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetDegraphqlRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetDegraphqlRouteWithServiceInWorkspace'
-type MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetDegraphqlRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetDegraphqlRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) GetDegraphqlRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call {
-	return &MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call{Call: _e.mock.On("GetDegraphqlRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.GetDegraphqlRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.GetDegraphqlRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call) Return(getDegraphqlRouteWithServiceInWorkspaceResponse *operations.GetDegraphqlRouteWithServiceInWorkspaceResponse, err error) *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(getDegraphqlRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.GetDegraphqlRouteWithServiceInWorkspaceResponse, error)) *MockDegraphqlRoutesSDK_GetDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // ListDegraphqlRoute provides a mock function for the type MockDegraphqlRoutesSDK
 func (_mock *MockDegraphqlRoutesSDK) ListDegraphqlRoute(ctx context.Context, request operations.ListDegraphqlRouteRequest, opts ...operations.Option) (*operations.ListDegraphqlRouteResponse, error) {
 	var tmpRet mock.Arguments
@@ -796,89 +458,6 @@ func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRoute_Call) Return(listDegraphqlRo
 }
 
 func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRoute_Call) RunAndReturn(run func(ctx context.Context, request operations.ListDegraphqlRouteRequest, opts ...operations.Option) (*operations.ListDegraphqlRouteResponse, error)) *MockDegraphqlRoutesSDK_ListDegraphqlRoute_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// ListDegraphqlRouteInWorkspace provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) ListDegraphqlRouteInWorkspace(ctx context.Context, request operations.ListDegraphqlRouteInWorkspaceRequest, opts ...operations.Option) (*operations.ListDegraphqlRouteInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListDegraphqlRouteInWorkspace")
-	}
-
-	var r0 *operations.ListDegraphqlRouteInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListDegraphqlRouteInWorkspaceRequest, ...operations.Option) (*operations.ListDegraphqlRouteInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListDegraphqlRouteInWorkspaceRequest, ...operations.Option) *operations.ListDegraphqlRouteInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListDegraphqlRouteInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListDegraphqlRouteInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListDegraphqlRouteInWorkspace'
-type MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListDegraphqlRouteInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListDegraphqlRouteInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) ListDegraphqlRouteInWorkspace(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call {
-	return &MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call{Call: _e.mock.On("ListDegraphqlRouteInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListDegraphqlRouteInWorkspaceRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListDegraphqlRouteInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListDegraphqlRouteInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call) Return(listDegraphqlRouteInWorkspaceResponse *operations.ListDegraphqlRouteInWorkspaceResponse, err error) *MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call {
-	_c.Call.Return(listDegraphqlRouteInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListDegraphqlRouteInWorkspaceRequest, opts ...operations.Option) (*operations.ListDegraphqlRouteInWorkspaceResponse, error)) *MockDegraphqlRoutesSDK_ListDegraphqlRouteInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -966,89 +545,6 @@ func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithService_Call) RunAndRetur
 	return _c
 }
 
-// ListDegraphqlRouteWithServiceInWorkspace provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) ListDegraphqlRouteWithServiceInWorkspace(ctx context.Context, request operations.ListDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.ListDegraphqlRouteWithServiceInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListDegraphqlRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.ListDegraphqlRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.ListDegraphqlRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.ListDegraphqlRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListDegraphqlRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListDegraphqlRouteWithServiceInWorkspace'
-type MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListDegraphqlRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListDegraphqlRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) ListDegraphqlRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call {
-	return &MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call{Call: _e.mock.On("ListDegraphqlRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListDegraphqlRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListDegraphqlRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call) Return(listDegraphqlRouteWithServiceInWorkspaceResponse *operations.ListDegraphqlRouteWithServiceInWorkspaceResponse, err error) *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(listDegraphqlRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.ListDegraphqlRouteWithServiceInWorkspaceResponse, error)) *MockDegraphqlRoutesSDK_ListDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // UpsertDegraphqlRouteWithService provides a mock function for the type MockDegraphqlRoutesSDK
 func (_mock *MockDegraphqlRoutesSDK) UpsertDegraphqlRouteWithService(ctx context.Context, request operations.UpsertDegraphqlRouteWithServiceRequest, opts ...operations.Option) (*operations.UpsertDegraphqlRouteWithServiceResponse, error) {
 	var tmpRet mock.Arguments
@@ -1128,89 +624,6 @@ func (_c *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithService_Call) Return(up
 }
 
 func (_c *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithService_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertDegraphqlRouteWithServiceRequest, opts ...operations.Option) (*operations.UpsertDegraphqlRouteWithServiceResponse, error)) *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithService_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// UpsertDegraphqlRouteWithServiceInWorkspace provides a mock function for the type MockDegraphqlRoutesSDK
-func (_mock *MockDegraphqlRoutesSDK) UpsertDegraphqlRouteWithServiceInWorkspace(ctx context.Context, request operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertDegraphqlRouteWithServiceInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertDegraphqlRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.UpsertDegraphqlRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.UpsertDegraphqlRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.UpsertDegraphqlRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertDegraphqlRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertDegraphqlRouteWithServiceInWorkspace'
-type MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertDegraphqlRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockDegraphqlRoutesSDK_Expecter) UpsertDegraphqlRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call {
-	return &MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call{Call: _e.mock.On("UpsertDegraphqlRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call) Return(upsertDegraphqlRouteWithServiceInWorkspaceResponse *operations.UpsertDegraphqlRouteWithServiceInWorkspaceResponse, err error) *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(upsertDegraphqlRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertDegraphqlRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertDegraphqlRouteWithServiceInWorkspaceResponse, error)) *MockDegraphqlRoutesSDK_UpsertDegraphqlRouteWithServiceInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }

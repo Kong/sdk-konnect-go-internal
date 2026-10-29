@@ -7,7 +7,6 @@ package mocks
 import (
 	"context"
 
-	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -49,12 +48,12 @@ func (_m *MockSNIsSDK) EXPECT() *MockSNIsSDK_Expecter {
 }
 
 // CreateSni provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) CreateSni(ctx context.Context, controlPlaneID string, sni components.Sni, opts ...operations.Option) (*operations.CreateSniResponse, error) {
+func (_mock *MockSNIsSDK) CreateSni(ctx context.Context, request operations.CreateSniRequest, opts ...operations.Option) (*operations.CreateSniResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, sni, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, sni)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -64,18 +63,18 @@ func (_mock *MockSNIsSDK) CreateSni(ctx context.Context, controlPlaneID string, 
 
 	var r0 *operations.CreateSniResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.Sni, ...operations.Option) (*operations.CreateSniResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, sni, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateSniRequest, ...operations.Option) (*operations.CreateSniResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.Sni, ...operations.Option) *operations.CreateSniResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, sni, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateSniRequest, ...operations.Option) *operations.CreateSniResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.CreateSniResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.Sni, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, sni, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateSniRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -89,111 +88,22 @@ type MockSNIsSDK_CreateSni_Call struct {
 
 // CreateSni is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - sni components.Sni
+//   - request operations.CreateSniRequest
 //   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) CreateSni(ctx any, controlPlaneID any, sni any, opts ...any) *MockSNIsSDK_CreateSni_Call {
+func (_e *MockSNIsSDK_Expecter) CreateSni(ctx any, request any, opts ...any) *MockSNIsSDK_CreateSni_Call {
 	return &MockSNIsSDK_CreateSni_Call{Call: _e.mock.On("CreateSni",
-		append([]any{ctx, controlPlaneID, sni}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_CreateSni_Call) Run(run func(ctx context.Context, controlPlaneID string, sni components.Sni, opts ...operations.Option)) *MockSNIsSDK_CreateSni_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 components.Sni
-		if args[2] != nil {
-			arg2 = args[2].(components.Sni)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_CreateSni_Call) Return(createSniResponse *operations.CreateSniResponse, err error) *MockSNIsSDK_CreateSni_Call {
-	_c.Call.Return(createSniResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_CreateSni_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, sni components.Sni, opts ...operations.Option) (*operations.CreateSniResponse, error)) *MockSNIsSDK_CreateSni_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// CreateSniInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) CreateSniInWorkspace(ctx context.Context, request operations.CreateSniInWorkspaceRequest, opts ...operations.Option) (*operations.CreateSniInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for CreateSniInWorkspace")
-	}
-
-	var r0 *operations.CreateSniInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateSniInWorkspaceRequest, ...operations.Option) (*operations.CreateSniInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateSniInWorkspaceRequest, ...operations.Option) *operations.CreateSniInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreateSniInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateSniInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_CreateSniInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateSniInWorkspace'
-type MockSNIsSDK_CreateSniInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreateSniInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreateSniInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) CreateSniInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_CreateSniInWorkspace_Call {
-	return &MockSNIsSDK_CreateSniInWorkspace_Call{Call: _e.mock.On("CreateSniInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockSNIsSDK_CreateSniInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreateSniInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_CreateSniInWorkspace_Call {
+func (_c *MockSNIsSDK_CreateSni_Call) Run(run func(ctx context.Context, request operations.CreateSniRequest, opts ...operations.Option)) *MockSNIsSDK_CreateSni_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.CreateSniInWorkspaceRequest
+		var arg1 operations.CreateSniRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.CreateSniInWorkspaceRequest)
+			arg1 = args[1].(operations.CreateSniRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -210,12 +120,12 @@ func (_c *MockSNIsSDK_CreateSniInWorkspace_Call) Run(run func(ctx context.Contex
 	return _c
 }
 
-func (_c *MockSNIsSDK_CreateSniInWorkspace_Call) Return(createSniInWorkspaceResponse *operations.CreateSniInWorkspaceResponse, err error) *MockSNIsSDK_CreateSniInWorkspace_Call {
-	_c.Call.Return(createSniInWorkspaceResponse, err)
+func (_c *MockSNIsSDK_CreateSni_Call) Return(createSniResponse *operations.CreateSniResponse, err error) *MockSNIsSDK_CreateSni_Call {
+	_c.Call.Return(createSniResponse, err)
 	return _c
 }
 
-func (_c *MockSNIsSDK_CreateSniInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateSniInWorkspaceRequest, opts ...operations.Option) (*operations.CreateSniInWorkspaceResponse, error)) *MockSNIsSDK_CreateSniInWorkspace_Call {
+func (_c *MockSNIsSDK_CreateSni_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateSniRequest, opts ...operations.Option) (*operations.CreateSniResponse, error)) *MockSNIsSDK_CreateSni_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -303,8 +213,8 @@ func (_c *MockSNIsSDK_CreateSniWithCertificate_Call) RunAndReturn(run func(ctx c
 	return _c
 }
 
-// CreateSniWithCertificateInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) CreateSniWithCertificateInWorkspace(ctx context.Context, request operations.CreateSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.CreateSniWithCertificateInWorkspaceResponse, error) {
+// DeleteSni provides a mock function for the type MockSNIsSDK
+func (_mock *MockSNIsSDK) DeleteSni(ctx context.Context, request operations.DeleteSniRequest, opts ...operations.Option) (*operations.DeleteSniResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -314,106 +224,23 @@ func (_mock *MockSNIsSDK) CreateSniWithCertificateInWorkspace(ctx context.Contex
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for CreateSniWithCertificateInWorkspace")
-	}
-
-	var r0 *operations.CreateSniWithCertificateInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateSniWithCertificateInWorkspaceRequest, ...operations.Option) (*operations.CreateSniWithCertificateInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateSniWithCertificateInWorkspaceRequest, ...operations.Option) *operations.CreateSniWithCertificateInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreateSniWithCertificateInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateSniWithCertificateInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateSniWithCertificateInWorkspace'
-type MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreateSniWithCertificateInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreateSniWithCertificateInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) CreateSniWithCertificateInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call {
-	return &MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call{Call: _e.mock.On("CreateSniWithCertificateInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreateSniWithCertificateInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.CreateSniWithCertificateInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.CreateSniWithCertificateInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call) Return(createSniWithCertificateInWorkspaceResponse *operations.CreateSniWithCertificateInWorkspaceResponse, err error) *MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(createSniWithCertificateInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.CreateSniWithCertificateInWorkspaceResponse, error)) *MockSNIsSDK_CreateSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// DeleteSni provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) DeleteSni(ctx context.Context, controlPlaneID string, sniID string, opts ...operations.Option) (*operations.DeleteSniResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, sniID, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, sniID)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for DeleteSni")
 	}
 
 	var r0 *operations.DeleteSniResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.DeleteSniResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, sniID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteSniRequest, ...operations.Option) (*operations.DeleteSniResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.DeleteSniResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, sniID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteSniRequest, ...operations.Option) *operations.DeleteSniResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.DeleteSniResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, sniID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteSniRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -427,111 +254,22 @@ type MockSNIsSDK_DeleteSni_Call struct {
 
 // DeleteSni is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - sniID string
+//   - request operations.DeleteSniRequest
 //   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) DeleteSni(ctx any, controlPlaneID any, sniID any, opts ...any) *MockSNIsSDK_DeleteSni_Call {
+func (_e *MockSNIsSDK_Expecter) DeleteSni(ctx any, request any, opts ...any) *MockSNIsSDK_DeleteSni_Call {
 	return &MockSNIsSDK_DeleteSni_Call{Call: _e.mock.On("DeleteSni",
-		append([]any{ctx, controlPlaneID, sniID}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_DeleteSni_Call) Run(run func(ctx context.Context, controlPlaneID string, sniID string, opts ...operations.Option)) *MockSNIsSDK_DeleteSni_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_DeleteSni_Call) Return(deleteSniResponse *operations.DeleteSniResponse, err error) *MockSNIsSDK_DeleteSni_Call {
-	_c.Call.Return(deleteSniResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_DeleteSni_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, sniID string, opts ...operations.Option) (*operations.DeleteSniResponse, error)) *MockSNIsSDK_DeleteSni_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// DeleteSniInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) DeleteSniInWorkspace(ctx context.Context, request operations.DeleteSniInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteSniInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for DeleteSniInWorkspace")
-	}
-
-	var r0 *operations.DeleteSniInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteSniInWorkspaceRequest, ...operations.Option) (*operations.DeleteSniInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteSniInWorkspaceRequest, ...operations.Option) *operations.DeleteSniInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeleteSniInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteSniInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_DeleteSniInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteSniInWorkspace'
-type MockSNIsSDK_DeleteSniInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeleteSniInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeleteSniInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) DeleteSniInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_DeleteSniInWorkspace_Call {
-	return &MockSNIsSDK_DeleteSniInWorkspace_Call{Call: _e.mock.On("DeleteSniInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockSNIsSDK_DeleteSniInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeleteSniInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_DeleteSniInWorkspace_Call {
+func (_c *MockSNIsSDK_DeleteSni_Call) Run(run func(ctx context.Context, request operations.DeleteSniRequest, opts ...operations.Option)) *MockSNIsSDK_DeleteSni_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.DeleteSniInWorkspaceRequest
+		var arg1 operations.DeleteSniRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.DeleteSniInWorkspaceRequest)
+			arg1 = args[1].(operations.DeleteSniRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -548,12 +286,12 @@ func (_c *MockSNIsSDK_DeleteSniInWorkspace_Call) Run(run func(ctx context.Contex
 	return _c
 }
 
-func (_c *MockSNIsSDK_DeleteSniInWorkspace_Call) Return(deleteSniInWorkspaceResponse *operations.DeleteSniInWorkspaceResponse, err error) *MockSNIsSDK_DeleteSniInWorkspace_Call {
-	_c.Call.Return(deleteSniInWorkspaceResponse, err)
+func (_c *MockSNIsSDK_DeleteSni_Call) Return(deleteSniResponse *operations.DeleteSniResponse, err error) *MockSNIsSDK_DeleteSni_Call {
+	_c.Call.Return(deleteSniResponse, err)
 	return _c
 }
 
-func (_c *MockSNIsSDK_DeleteSniInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteSniInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteSniInWorkspaceResponse, error)) *MockSNIsSDK_DeleteSniInWorkspace_Call {
+func (_c *MockSNIsSDK_DeleteSni_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteSniRequest, opts ...operations.Option) (*operations.DeleteSniResponse, error)) *MockSNIsSDK_DeleteSni_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -641,8 +379,8 @@ func (_c *MockSNIsSDK_DeleteSniWithCertificate_Call) RunAndReturn(run func(ctx c
 	return _c
 }
 
-// DeleteSniWithCertificateInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) DeleteSniWithCertificateInWorkspace(ctx context.Context, request operations.DeleteSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteSniWithCertificateInWorkspaceResponse, error) {
+// GetSni provides a mock function for the type MockSNIsSDK
+func (_mock *MockSNIsSDK) GetSni(ctx context.Context, request operations.GetSniRequest, opts ...operations.Option) (*operations.GetSniResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -652,106 +390,23 @@ func (_mock *MockSNIsSDK) DeleteSniWithCertificateInWorkspace(ctx context.Contex
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for DeleteSniWithCertificateInWorkspace")
-	}
-
-	var r0 *operations.DeleteSniWithCertificateInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteSniWithCertificateInWorkspaceRequest, ...operations.Option) (*operations.DeleteSniWithCertificateInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteSniWithCertificateInWorkspaceRequest, ...operations.Option) *operations.DeleteSniWithCertificateInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeleteSniWithCertificateInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteSniWithCertificateInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteSniWithCertificateInWorkspace'
-type MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeleteSniWithCertificateInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeleteSniWithCertificateInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) DeleteSniWithCertificateInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call {
-	return &MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call{Call: _e.mock.On("DeleteSniWithCertificateInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeleteSniWithCertificateInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.DeleteSniWithCertificateInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.DeleteSniWithCertificateInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call) Return(deleteSniWithCertificateInWorkspaceResponse *operations.DeleteSniWithCertificateInWorkspaceResponse, err error) *MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(deleteSniWithCertificateInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteSniWithCertificateInWorkspaceResponse, error)) *MockSNIsSDK_DeleteSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetSni provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) GetSni(ctx context.Context, sniID string, controlPlaneID string, opts ...operations.Option) (*operations.GetSniResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, sniID, controlPlaneID, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, sniID, controlPlaneID)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for GetSni")
 	}
 
 	var r0 *operations.GetSniResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.GetSniResponse, error)); ok {
-		return returnFunc(ctx, sniID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetSniRequest, ...operations.Option) (*operations.GetSniResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.GetSniResponse); ok {
-		r0 = returnFunc(ctx, sniID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetSniRequest, ...operations.Option) *operations.GetSniResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.GetSniResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, sniID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetSniRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -765,111 +420,22 @@ type MockSNIsSDK_GetSni_Call struct {
 
 // GetSni is a helper method to define mock.On call
 //   - ctx context.Context
-//   - sniID string
-//   - controlPlaneID string
+//   - request operations.GetSniRequest
 //   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) GetSni(ctx any, sniID any, controlPlaneID any, opts ...any) *MockSNIsSDK_GetSni_Call {
+func (_e *MockSNIsSDK_Expecter) GetSni(ctx any, request any, opts ...any) *MockSNIsSDK_GetSni_Call {
 	return &MockSNIsSDK_GetSni_Call{Call: _e.mock.On("GetSni",
-		append([]any{ctx, sniID, controlPlaneID}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_GetSni_Call) Run(run func(ctx context.Context, sniID string, controlPlaneID string, opts ...operations.Option)) *MockSNIsSDK_GetSni_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_GetSni_Call) Return(getSniResponse *operations.GetSniResponse, err error) *MockSNIsSDK_GetSni_Call {
-	_c.Call.Return(getSniResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_GetSni_Call) RunAndReturn(run func(ctx context.Context, sniID string, controlPlaneID string, opts ...operations.Option) (*operations.GetSniResponse, error)) *MockSNIsSDK_GetSni_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetSniInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) GetSniInWorkspace(ctx context.Context, request operations.GetSniInWorkspaceRequest, opts ...operations.Option) (*operations.GetSniInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetSniInWorkspace")
-	}
-
-	var r0 *operations.GetSniInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetSniInWorkspaceRequest, ...operations.Option) (*operations.GetSniInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetSniInWorkspaceRequest, ...operations.Option) *operations.GetSniInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetSniInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetSniInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_GetSniInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetSniInWorkspace'
-type MockSNIsSDK_GetSniInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetSniInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetSniInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) GetSniInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_GetSniInWorkspace_Call {
-	return &MockSNIsSDK_GetSniInWorkspace_Call{Call: _e.mock.On("GetSniInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockSNIsSDK_GetSniInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetSniInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_GetSniInWorkspace_Call {
+func (_c *MockSNIsSDK_GetSni_Call) Run(run func(ctx context.Context, request operations.GetSniRequest, opts ...operations.Option)) *MockSNIsSDK_GetSni_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.GetSniInWorkspaceRequest
+		var arg1 operations.GetSniRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.GetSniInWorkspaceRequest)
+			arg1 = args[1].(operations.GetSniRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -886,12 +452,12 @@ func (_c *MockSNIsSDK_GetSniInWorkspace_Call) Run(run func(ctx context.Context, 
 	return _c
 }
 
-func (_c *MockSNIsSDK_GetSniInWorkspace_Call) Return(getSniInWorkspaceResponse *operations.GetSniInWorkspaceResponse, err error) *MockSNIsSDK_GetSniInWorkspace_Call {
-	_c.Call.Return(getSniInWorkspaceResponse, err)
+func (_c *MockSNIsSDK_GetSni_Call) Return(getSniResponse *operations.GetSniResponse, err error) *MockSNIsSDK_GetSni_Call {
+	_c.Call.Return(getSniResponse, err)
 	return _c
 }
 
-func (_c *MockSNIsSDK_GetSniInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetSniInWorkspaceRequest, opts ...operations.Option) (*operations.GetSniInWorkspaceResponse, error)) *MockSNIsSDK_GetSniInWorkspace_Call {
+func (_c *MockSNIsSDK_GetSni_Call) RunAndReturn(run func(ctx context.Context, request operations.GetSniRequest, opts ...operations.Option) (*operations.GetSniResponse, error)) *MockSNIsSDK_GetSni_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -979,89 +545,6 @@ func (_c *MockSNIsSDK_GetSniWithCertificate_Call) RunAndReturn(run func(ctx cont
 	return _c
 }
 
-// GetSniWithCertificateInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) GetSniWithCertificateInWorkspace(ctx context.Context, request operations.GetSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.GetSniWithCertificateInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetSniWithCertificateInWorkspace")
-	}
-
-	var r0 *operations.GetSniWithCertificateInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetSniWithCertificateInWorkspaceRequest, ...operations.Option) (*operations.GetSniWithCertificateInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetSniWithCertificateInWorkspaceRequest, ...operations.Option) *operations.GetSniWithCertificateInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetSniWithCertificateInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetSniWithCertificateInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_GetSniWithCertificateInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetSniWithCertificateInWorkspace'
-type MockSNIsSDK_GetSniWithCertificateInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetSniWithCertificateInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetSniWithCertificateInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) GetSniWithCertificateInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_GetSniWithCertificateInWorkspace_Call {
-	return &MockSNIsSDK_GetSniWithCertificateInWorkspace_Call{Call: _e.mock.On("GetSniWithCertificateInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_GetSniWithCertificateInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetSniWithCertificateInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_GetSniWithCertificateInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.GetSniWithCertificateInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.GetSniWithCertificateInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_GetSniWithCertificateInWorkspace_Call) Return(getSniWithCertificateInWorkspaceResponse *operations.GetSniWithCertificateInWorkspaceResponse, err error) *MockSNIsSDK_GetSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(getSniWithCertificateInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_GetSniWithCertificateInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.GetSniWithCertificateInWorkspaceResponse, error)) *MockSNIsSDK_GetSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // ListSni provides a mock function for the type MockSNIsSDK
 func (_mock *MockSNIsSDK) ListSni(ctx context.Context, request operations.ListSniRequest, opts ...operations.Option) (*operations.ListSniResponse, error) {
 	var tmpRet mock.Arguments
@@ -1141,89 +624,6 @@ func (_c *MockSNIsSDK_ListSni_Call) Return(listSniResponse *operations.ListSniRe
 }
 
 func (_c *MockSNIsSDK_ListSni_Call) RunAndReturn(run func(ctx context.Context, request operations.ListSniRequest, opts ...operations.Option) (*operations.ListSniResponse, error)) *MockSNIsSDK_ListSni_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// ListSniInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) ListSniInWorkspace(ctx context.Context, request operations.ListSniInWorkspaceRequest, opts ...operations.Option) (*operations.ListSniInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListSniInWorkspace")
-	}
-
-	var r0 *operations.ListSniInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListSniInWorkspaceRequest, ...operations.Option) (*operations.ListSniInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListSniInWorkspaceRequest, ...operations.Option) *operations.ListSniInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListSniInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListSniInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_ListSniInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListSniInWorkspace'
-type MockSNIsSDK_ListSniInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListSniInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListSniInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) ListSniInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_ListSniInWorkspace_Call {
-	return &MockSNIsSDK_ListSniInWorkspace_Call{Call: _e.mock.On("ListSniInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_ListSniInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListSniInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_ListSniInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListSniInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListSniInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_ListSniInWorkspace_Call) Return(listSniInWorkspaceResponse *operations.ListSniInWorkspaceResponse, err error) *MockSNIsSDK_ListSniInWorkspace_Call {
-	_c.Call.Return(listSniInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_ListSniInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListSniInWorkspaceRequest, opts ...operations.Option) (*operations.ListSniInWorkspaceResponse, error)) *MockSNIsSDK_ListSniInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -1311,89 +711,6 @@ func (_c *MockSNIsSDK_ListSniWithCertificate_Call) RunAndReturn(run func(ctx con
 	return _c
 }
 
-// ListSniWithCertificateInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) ListSniWithCertificateInWorkspace(ctx context.Context, request operations.ListSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.ListSniWithCertificateInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListSniWithCertificateInWorkspace")
-	}
-
-	var r0 *operations.ListSniWithCertificateInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListSniWithCertificateInWorkspaceRequest, ...operations.Option) (*operations.ListSniWithCertificateInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListSniWithCertificateInWorkspaceRequest, ...operations.Option) *operations.ListSniWithCertificateInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListSniWithCertificateInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListSniWithCertificateInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_ListSniWithCertificateInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListSniWithCertificateInWorkspace'
-type MockSNIsSDK_ListSniWithCertificateInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListSniWithCertificateInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListSniWithCertificateInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) ListSniWithCertificateInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_ListSniWithCertificateInWorkspace_Call {
-	return &MockSNIsSDK_ListSniWithCertificateInWorkspace_Call{Call: _e.mock.On("ListSniWithCertificateInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_ListSniWithCertificateInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListSniWithCertificateInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_ListSniWithCertificateInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListSniWithCertificateInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListSniWithCertificateInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_ListSniWithCertificateInWorkspace_Call) Return(listSniWithCertificateInWorkspaceResponse *operations.ListSniWithCertificateInWorkspaceResponse, err error) *MockSNIsSDK_ListSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(listSniWithCertificateInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_ListSniWithCertificateInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.ListSniWithCertificateInWorkspaceResponse, error)) *MockSNIsSDK_ListSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // UpsertSni provides a mock function for the type MockSNIsSDK
 func (_mock *MockSNIsSDK) UpsertSni(ctx context.Context, request operations.UpsertSniRequest, opts ...operations.Option) (*operations.UpsertSniResponse, error) {
 	var tmpRet mock.Arguments
@@ -1477,89 +794,6 @@ func (_c *MockSNIsSDK_UpsertSni_Call) RunAndReturn(run func(ctx context.Context,
 	return _c
 }
 
-// UpsertSniInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) UpsertSniInWorkspace(ctx context.Context, request operations.UpsertSniInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertSniInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertSniInWorkspace")
-	}
-
-	var r0 *operations.UpsertSniInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertSniInWorkspaceRequest, ...operations.Option) (*operations.UpsertSniInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertSniInWorkspaceRequest, ...operations.Option) *operations.UpsertSniInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertSniInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertSniInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_UpsertSniInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertSniInWorkspace'
-type MockSNIsSDK_UpsertSniInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertSniInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertSniInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) UpsertSniInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_UpsertSniInWorkspace_Call {
-	return &MockSNIsSDK_UpsertSniInWorkspace_Call{Call: _e.mock.On("UpsertSniInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_UpsertSniInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertSniInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_UpsertSniInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertSniInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertSniInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_UpsertSniInWorkspace_Call) Return(upsertSniInWorkspaceResponse *operations.UpsertSniInWorkspaceResponse, err error) *MockSNIsSDK_UpsertSniInWorkspace_Call {
-	_c.Call.Return(upsertSniInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_UpsertSniInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertSniInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertSniInWorkspaceResponse, error)) *MockSNIsSDK_UpsertSniInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // UpsertSniWithCertificate provides a mock function for the type MockSNIsSDK
 func (_mock *MockSNIsSDK) UpsertSniWithCertificate(ctx context.Context, request operations.UpsertSniWithCertificateRequest, opts ...operations.Option) (*operations.UpsertSniWithCertificateResponse, error) {
 	var tmpRet mock.Arguments
@@ -1639,89 +873,6 @@ func (_c *MockSNIsSDK_UpsertSniWithCertificate_Call) Return(upsertSniWithCertifi
 }
 
 func (_c *MockSNIsSDK_UpsertSniWithCertificate_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertSniWithCertificateRequest, opts ...operations.Option) (*operations.UpsertSniWithCertificateResponse, error)) *MockSNIsSDK_UpsertSniWithCertificate_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// UpsertSniWithCertificateInWorkspace provides a mock function for the type MockSNIsSDK
-func (_mock *MockSNIsSDK) UpsertSniWithCertificateInWorkspace(ctx context.Context, request operations.UpsertSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertSniWithCertificateInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertSniWithCertificateInWorkspace")
-	}
-
-	var r0 *operations.UpsertSniWithCertificateInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertSniWithCertificateInWorkspaceRequest, ...operations.Option) (*operations.UpsertSniWithCertificateInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertSniWithCertificateInWorkspaceRequest, ...operations.Option) *operations.UpsertSniWithCertificateInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertSniWithCertificateInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertSniWithCertificateInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertSniWithCertificateInWorkspace'
-type MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertSniWithCertificateInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertSniWithCertificateInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockSNIsSDK_Expecter) UpsertSniWithCertificateInWorkspace(ctx any, request any, opts ...any) *MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call {
-	return &MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call{Call: _e.mock.On("UpsertSniWithCertificateInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertSniWithCertificateInWorkspaceRequest, opts ...operations.Option)) *MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertSniWithCertificateInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertSniWithCertificateInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call) Return(upsertSniWithCertificateInWorkspaceResponse *operations.UpsertSniWithCertificateInWorkspaceResponse, err error) *MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call {
-	_c.Call.Return(upsertSniWithCertificateInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertSniWithCertificateInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertSniWithCertificateInWorkspaceResponse, error)) *MockSNIsSDK_UpsertSniWithCertificateInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }

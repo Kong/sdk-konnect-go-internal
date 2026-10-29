@@ -47,4 +47,8 @@ type OpenMeterAppsSDK interface {
 	//
 	// Update an installed app.
 	UpdateApp(ctx context.Context, appID string, billingUpdateAppRequest components.BillingUpdateAppRequest, opts ...operations.Option) (*operations.UpdateAppResponse, error)
+	// ExecuteAppAction - Execute app action
+	// Execute an operator action on an installed app. The action must be listed in the
+	// app's `actions`; otherwise the request is rejected.
+	ExecuteAppAction(ctx context.Context, appID string, billingAppActionRequest components.BillingAppActionRequest, opts ...operations.Option) (*operations.ExecuteAppActionResponse, error)
 }

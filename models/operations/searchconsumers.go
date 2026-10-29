@@ -11,6 +11,8 @@ import (
 type SearchConsumersRequest struct {
 	// The UUID of your control plane. This variable is available in the Konnect manager.
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Number of resources to be returned.
 	Size *int64 `default:"100" queryParam:"style=form,explode=true,name=size"`
 	// Offset from which to return the next set of resources. Use the value of the 'offset' field from the response of a list operation as input here to paginate through all the resources
@@ -37,6 +39,13 @@ func (s *SearchConsumersRequest) GetControlPlaneID() string {
 		return ""
 	}
 	return s.ControlPlaneID
+}
+
+func (s *SearchConsumersRequest) GetWorkspace() string {
+	if s == nil {
+		return ""
+	}
+	return s.Workspace
 }
 
 func (s *SearchConsumersRequest) GetSize() *int64 {

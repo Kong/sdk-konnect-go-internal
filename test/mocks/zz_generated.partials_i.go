@@ -7,7 +7,6 @@ package mocks
 import (
 	"context"
 
-	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -49,12 +48,12 @@ func (_m *MockPartialsSDK) EXPECT() *MockPartialsSDK_Expecter {
 }
 
 // CreatePartial provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) CreatePartial(ctx context.Context, controlPlaneID string, partial components.Partial, opts ...operations.Option) (*operations.CreatePartialResponse, error) {
+func (_mock *MockPartialsSDK) CreatePartial(ctx context.Context, request operations.CreatePartialRequest, opts ...operations.Option) (*operations.CreatePartialResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, partial, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, partial)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -64,18 +63,18 @@ func (_mock *MockPartialsSDK) CreatePartial(ctx context.Context, controlPlaneID 
 
 	var r0 *operations.CreatePartialResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.Partial, ...operations.Option) (*operations.CreatePartialResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, partial, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreatePartialRequest, ...operations.Option) (*operations.CreatePartialResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.Partial, ...operations.Option) *operations.CreatePartialResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, partial, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreatePartialRequest, ...operations.Option) *operations.CreatePartialResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.CreatePartialResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.Partial, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, partial, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreatePartialRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -89,111 +88,22 @@ type MockPartialsSDK_CreatePartial_Call struct {
 
 // CreatePartial is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - partial components.Partial
+//   - request operations.CreatePartialRequest
 //   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) CreatePartial(ctx any, controlPlaneID any, partial any, opts ...any) *MockPartialsSDK_CreatePartial_Call {
+func (_e *MockPartialsSDK_Expecter) CreatePartial(ctx any, request any, opts ...any) *MockPartialsSDK_CreatePartial_Call {
 	return &MockPartialsSDK_CreatePartial_Call{Call: _e.mock.On("CreatePartial",
-		append([]any{ctx, controlPlaneID, partial}, opts...)...)}
-}
-
-func (_c *MockPartialsSDK_CreatePartial_Call) Run(run func(ctx context.Context, controlPlaneID string, partial components.Partial, opts ...operations.Option)) *MockPartialsSDK_CreatePartial_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 components.Partial
-		if args[2] != nil {
-			arg2 = args[2].(components.Partial)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockPartialsSDK_CreatePartial_Call) Return(createPartialResponse *operations.CreatePartialResponse, err error) *MockPartialsSDK_CreatePartial_Call {
-	_c.Call.Return(createPartialResponse, err)
-	return _c
-}
-
-func (_c *MockPartialsSDK_CreatePartial_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, partial components.Partial, opts ...operations.Option) (*operations.CreatePartialResponse, error)) *MockPartialsSDK_CreatePartial_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// CreatePartialInWorkspace provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) CreatePartialInWorkspace(ctx context.Context, request operations.CreatePartialInWorkspaceRequest, opts ...operations.Option) (*operations.CreatePartialInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for CreatePartialInWorkspace")
-	}
-
-	var r0 *operations.CreatePartialInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreatePartialInWorkspaceRequest, ...operations.Option) (*operations.CreatePartialInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreatePartialInWorkspaceRequest, ...operations.Option) *operations.CreatePartialInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreatePartialInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreatePartialInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockPartialsSDK_CreatePartialInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreatePartialInWorkspace'
-type MockPartialsSDK_CreatePartialInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreatePartialInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreatePartialInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) CreatePartialInWorkspace(ctx any, request any, opts ...any) *MockPartialsSDK_CreatePartialInWorkspace_Call {
-	return &MockPartialsSDK_CreatePartialInWorkspace_Call{Call: _e.mock.On("CreatePartialInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockPartialsSDK_CreatePartialInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreatePartialInWorkspaceRequest, opts ...operations.Option)) *MockPartialsSDK_CreatePartialInWorkspace_Call {
+func (_c *MockPartialsSDK_CreatePartial_Call) Run(run func(ctx context.Context, request operations.CreatePartialRequest, opts ...operations.Option)) *MockPartialsSDK_CreatePartial_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.CreatePartialInWorkspaceRequest
+		var arg1 operations.CreatePartialRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.CreatePartialInWorkspaceRequest)
+			arg1 = args[1].(operations.CreatePartialRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -210,23 +120,23 @@ func (_c *MockPartialsSDK_CreatePartialInWorkspace_Call) Run(run func(ctx contex
 	return _c
 }
 
-func (_c *MockPartialsSDK_CreatePartialInWorkspace_Call) Return(createPartialInWorkspaceResponse *operations.CreatePartialInWorkspaceResponse, err error) *MockPartialsSDK_CreatePartialInWorkspace_Call {
-	_c.Call.Return(createPartialInWorkspaceResponse, err)
+func (_c *MockPartialsSDK_CreatePartial_Call) Return(createPartialResponse *operations.CreatePartialResponse, err error) *MockPartialsSDK_CreatePartial_Call {
+	_c.Call.Return(createPartialResponse, err)
 	return _c
 }
 
-func (_c *MockPartialsSDK_CreatePartialInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreatePartialInWorkspaceRequest, opts ...operations.Option) (*operations.CreatePartialInWorkspaceResponse, error)) *MockPartialsSDK_CreatePartialInWorkspace_Call {
+func (_c *MockPartialsSDK_CreatePartial_Call) RunAndReturn(run func(ctx context.Context, request operations.CreatePartialRequest, opts ...operations.Option) (*operations.CreatePartialResponse, error)) *MockPartialsSDK_CreatePartial_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // DeletePartial provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) DeletePartial(ctx context.Context, controlPlaneID string, partialID string, opts ...operations.Option) (*operations.DeletePartialResponse, error) {
+func (_mock *MockPartialsSDK) DeletePartial(ctx context.Context, request operations.DeletePartialRequest, opts ...operations.Option) (*operations.DeletePartialResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, partialID, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, partialID)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -236,18 +146,18 @@ func (_mock *MockPartialsSDK) DeletePartial(ctx context.Context, controlPlaneID 
 
 	var r0 *operations.DeletePartialResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.DeletePartialResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, partialID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeletePartialRequest, ...operations.Option) (*operations.DeletePartialResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.DeletePartialResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, partialID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeletePartialRequest, ...operations.Option) *operations.DeletePartialResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.DeletePartialResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, partialID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeletePartialRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -261,111 +171,22 @@ type MockPartialsSDK_DeletePartial_Call struct {
 
 // DeletePartial is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - partialID string
+//   - request operations.DeletePartialRequest
 //   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) DeletePartial(ctx any, controlPlaneID any, partialID any, opts ...any) *MockPartialsSDK_DeletePartial_Call {
+func (_e *MockPartialsSDK_Expecter) DeletePartial(ctx any, request any, opts ...any) *MockPartialsSDK_DeletePartial_Call {
 	return &MockPartialsSDK_DeletePartial_Call{Call: _e.mock.On("DeletePartial",
-		append([]any{ctx, controlPlaneID, partialID}, opts...)...)}
-}
-
-func (_c *MockPartialsSDK_DeletePartial_Call) Run(run func(ctx context.Context, controlPlaneID string, partialID string, opts ...operations.Option)) *MockPartialsSDK_DeletePartial_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockPartialsSDK_DeletePartial_Call) Return(deletePartialResponse *operations.DeletePartialResponse, err error) *MockPartialsSDK_DeletePartial_Call {
-	_c.Call.Return(deletePartialResponse, err)
-	return _c
-}
-
-func (_c *MockPartialsSDK_DeletePartial_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, partialID string, opts ...operations.Option) (*operations.DeletePartialResponse, error)) *MockPartialsSDK_DeletePartial_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// DeletePartialInWorkspace provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) DeletePartialInWorkspace(ctx context.Context, request operations.DeletePartialInWorkspaceRequest, opts ...operations.Option) (*operations.DeletePartialInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for DeletePartialInWorkspace")
-	}
-
-	var r0 *operations.DeletePartialInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeletePartialInWorkspaceRequest, ...operations.Option) (*operations.DeletePartialInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeletePartialInWorkspaceRequest, ...operations.Option) *operations.DeletePartialInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeletePartialInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeletePartialInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockPartialsSDK_DeletePartialInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeletePartialInWorkspace'
-type MockPartialsSDK_DeletePartialInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeletePartialInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeletePartialInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) DeletePartialInWorkspace(ctx any, request any, opts ...any) *MockPartialsSDK_DeletePartialInWorkspace_Call {
-	return &MockPartialsSDK_DeletePartialInWorkspace_Call{Call: _e.mock.On("DeletePartialInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockPartialsSDK_DeletePartialInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeletePartialInWorkspaceRequest, opts ...operations.Option)) *MockPartialsSDK_DeletePartialInWorkspace_Call {
+func (_c *MockPartialsSDK_DeletePartial_Call) Run(run func(ctx context.Context, request operations.DeletePartialRequest, opts ...operations.Option)) *MockPartialsSDK_DeletePartial_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.DeletePartialInWorkspaceRequest
+		var arg1 operations.DeletePartialRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.DeletePartialInWorkspaceRequest)
+			arg1 = args[1].(operations.DeletePartialRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -382,23 +203,23 @@ func (_c *MockPartialsSDK_DeletePartialInWorkspace_Call) Run(run func(ctx contex
 	return _c
 }
 
-func (_c *MockPartialsSDK_DeletePartialInWorkspace_Call) Return(deletePartialInWorkspaceResponse *operations.DeletePartialInWorkspaceResponse, err error) *MockPartialsSDK_DeletePartialInWorkspace_Call {
-	_c.Call.Return(deletePartialInWorkspaceResponse, err)
+func (_c *MockPartialsSDK_DeletePartial_Call) Return(deletePartialResponse *operations.DeletePartialResponse, err error) *MockPartialsSDK_DeletePartial_Call {
+	_c.Call.Return(deletePartialResponse, err)
 	return _c
 }
 
-func (_c *MockPartialsSDK_DeletePartialInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeletePartialInWorkspaceRequest, opts ...operations.Option) (*operations.DeletePartialInWorkspaceResponse, error)) *MockPartialsSDK_DeletePartialInWorkspace_Call {
+func (_c *MockPartialsSDK_DeletePartial_Call) RunAndReturn(run func(ctx context.Context, request operations.DeletePartialRequest, opts ...operations.Option) (*operations.DeletePartialResponse, error)) *MockPartialsSDK_DeletePartial_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // GetPartial provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) GetPartial(ctx context.Context, partialID string, controlPlaneID string, opts ...operations.Option) (*operations.GetPartialResponse, error) {
+func (_mock *MockPartialsSDK) GetPartial(ctx context.Context, request operations.GetPartialRequest, opts ...operations.Option) (*operations.GetPartialResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, partialID, controlPlaneID, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, partialID, controlPlaneID)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -408,18 +229,18 @@ func (_mock *MockPartialsSDK) GetPartial(ctx context.Context, partialID string, 
 
 	var r0 *operations.GetPartialResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.GetPartialResponse, error)); ok {
-		return returnFunc(ctx, partialID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetPartialRequest, ...operations.Option) (*operations.GetPartialResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.GetPartialResponse); ok {
-		r0 = returnFunc(ctx, partialID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetPartialRequest, ...operations.Option) *operations.GetPartialResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.GetPartialResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, partialID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetPartialRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -433,111 +254,22 @@ type MockPartialsSDK_GetPartial_Call struct {
 
 // GetPartial is a helper method to define mock.On call
 //   - ctx context.Context
-//   - partialID string
-//   - controlPlaneID string
+//   - request operations.GetPartialRequest
 //   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) GetPartial(ctx any, partialID any, controlPlaneID any, opts ...any) *MockPartialsSDK_GetPartial_Call {
+func (_e *MockPartialsSDK_Expecter) GetPartial(ctx any, request any, opts ...any) *MockPartialsSDK_GetPartial_Call {
 	return &MockPartialsSDK_GetPartial_Call{Call: _e.mock.On("GetPartial",
-		append([]any{ctx, partialID, controlPlaneID}, opts...)...)}
-}
-
-func (_c *MockPartialsSDK_GetPartial_Call) Run(run func(ctx context.Context, partialID string, controlPlaneID string, opts ...operations.Option)) *MockPartialsSDK_GetPartial_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockPartialsSDK_GetPartial_Call) Return(getPartialResponse *operations.GetPartialResponse, err error) *MockPartialsSDK_GetPartial_Call {
-	_c.Call.Return(getPartialResponse, err)
-	return _c
-}
-
-func (_c *MockPartialsSDK_GetPartial_Call) RunAndReturn(run func(ctx context.Context, partialID string, controlPlaneID string, opts ...operations.Option) (*operations.GetPartialResponse, error)) *MockPartialsSDK_GetPartial_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetPartialInWorkspace provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) GetPartialInWorkspace(ctx context.Context, request operations.GetPartialInWorkspaceRequest, opts ...operations.Option) (*operations.GetPartialInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetPartialInWorkspace")
-	}
-
-	var r0 *operations.GetPartialInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetPartialInWorkspaceRequest, ...operations.Option) (*operations.GetPartialInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetPartialInWorkspaceRequest, ...operations.Option) *operations.GetPartialInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetPartialInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetPartialInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockPartialsSDK_GetPartialInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetPartialInWorkspace'
-type MockPartialsSDK_GetPartialInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetPartialInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetPartialInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) GetPartialInWorkspace(ctx any, request any, opts ...any) *MockPartialsSDK_GetPartialInWorkspace_Call {
-	return &MockPartialsSDK_GetPartialInWorkspace_Call{Call: _e.mock.On("GetPartialInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockPartialsSDK_GetPartialInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetPartialInWorkspaceRequest, opts ...operations.Option)) *MockPartialsSDK_GetPartialInWorkspace_Call {
+func (_c *MockPartialsSDK_GetPartial_Call) Run(run func(ctx context.Context, request operations.GetPartialRequest, opts ...operations.Option)) *MockPartialsSDK_GetPartial_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.GetPartialInWorkspaceRequest
+		var arg1 operations.GetPartialRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.GetPartialInWorkspaceRequest)
+			arg1 = args[1].(operations.GetPartialRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -554,12 +286,12 @@ func (_c *MockPartialsSDK_GetPartialInWorkspace_Call) Run(run func(ctx context.C
 	return _c
 }
 
-func (_c *MockPartialsSDK_GetPartialInWorkspace_Call) Return(getPartialInWorkspaceResponse *operations.GetPartialInWorkspaceResponse, err error) *MockPartialsSDK_GetPartialInWorkspace_Call {
-	_c.Call.Return(getPartialInWorkspaceResponse, err)
+func (_c *MockPartialsSDK_GetPartial_Call) Return(getPartialResponse *operations.GetPartialResponse, err error) *MockPartialsSDK_GetPartial_Call {
+	_c.Call.Return(getPartialResponse, err)
 	return _c
 }
 
-func (_c *MockPartialsSDK_GetPartialInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetPartialInWorkspaceRequest, opts ...operations.Option) (*operations.GetPartialInWorkspaceResponse, error)) *MockPartialsSDK_GetPartialInWorkspace_Call {
+func (_c *MockPartialsSDK_GetPartial_Call) RunAndReturn(run func(ctx context.Context, request operations.GetPartialRequest, opts ...operations.Option) (*operations.GetPartialResponse, error)) *MockPartialsSDK_GetPartial_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -647,89 +379,6 @@ func (_c *MockPartialsSDK_ListPartial_Call) RunAndReturn(run func(ctx context.Co
 	return _c
 }
 
-// ListPartialInWorkspace provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) ListPartialInWorkspace(ctx context.Context, request operations.ListPartialInWorkspaceRequest, opts ...operations.Option) (*operations.ListPartialInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListPartialInWorkspace")
-	}
-
-	var r0 *operations.ListPartialInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListPartialInWorkspaceRequest, ...operations.Option) (*operations.ListPartialInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListPartialInWorkspaceRequest, ...operations.Option) *operations.ListPartialInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListPartialInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListPartialInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockPartialsSDK_ListPartialInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListPartialInWorkspace'
-type MockPartialsSDK_ListPartialInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListPartialInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListPartialInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) ListPartialInWorkspace(ctx any, request any, opts ...any) *MockPartialsSDK_ListPartialInWorkspace_Call {
-	return &MockPartialsSDK_ListPartialInWorkspace_Call{Call: _e.mock.On("ListPartialInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockPartialsSDK_ListPartialInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListPartialInWorkspaceRequest, opts ...operations.Option)) *MockPartialsSDK_ListPartialInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListPartialInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListPartialInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockPartialsSDK_ListPartialInWorkspace_Call) Return(listPartialInWorkspaceResponse *operations.ListPartialInWorkspaceResponse, err error) *MockPartialsSDK_ListPartialInWorkspace_Call {
-	_c.Call.Return(listPartialInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockPartialsSDK_ListPartialInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListPartialInWorkspaceRequest, opts ...operations.Option) (*operations.ListPartialInWorkspaceResponse, error)) *MockPartialsSDK_ListPartialInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // UpsertPartial provides a mock function for the type MockPartialsSDK
 func (_mock *MockPartialsSDK) UpsertPartial(ctx context.Context, request operations.UpsertPartialRequest, opts ...operations.Option) (*operations.UpsertPartialResponse, error) {
 	var tmpRet mock.Arguments
@@ -809,89 +458,6 @@ func (_c *MockPartialsSDK_UpsertPartial_Call) Return(upsertPartialResponse *oper
 }
 
 func (_c *MockPartialsSDK_UpsertPartial_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertPartialRequest, opts ...operations.Option) (*operations.UpsertPartialResponse, error)) *MockPartialsSDK_UpsertPartial_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// UpsertPartialInWorkspace provides a mock function for the type MockPartialsSDK
-func (_mock *MockPartialsSDK) UpsertPartialInWorkspace(ctx context.Context, request operations.UpsertPartialInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertPartialInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertPartialInWorkspace")
-	}
-
-	var r0 *operations.UpsertPartialInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertPartialInWorkspaceRequest, ...operations.Option) (*operations.UpsertPartialInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertPartialInWorkspaceRequest, ...operations.Option) *operations.UpsertPartialInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertPartialInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertPartialInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockPartialsSDK_UpsertPartialInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertPartialInWorkspace'
-type MockPartialsSDK_UpsertPartialInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertPartialInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertPartialInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockPartialsSDK_Expecter) UpsertPartialInWorkspace(ctx any, request any, opts ...any) *MockPartialsSDK_UpsertPartialInWorkspace_Call {
-	return &MockPartialsSDK_UpsertPartialInWorkspace_Call{Call: _e.mock.On("UpsertPartialInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockPartialsSDK_UpsertPartialInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertPartialInWorkspaceRequest, opts ...operations.Option)) *MockPartialsSDK_UpsertPartialInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertPartialInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertPartialInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockPartialsSDK_UpsertPartialInWorkspace_Call) Return(upsertPartialInWorkspaceResponse *operations.UpsertPartialInWorkspaceResponse, err error) *MockPartialsSDK_UpsertPartialInWorkspace_Call {
-	_c.Call.Return(upsertPartialInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockPartialsSDK_UpsertPartialInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertPartialInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertPartialInWorkspaceResponse, error)) *MockPartialsSDK_UpsertPartialInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }

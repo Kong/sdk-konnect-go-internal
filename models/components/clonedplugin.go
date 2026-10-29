@@ -11,7 +11,7 @@ type ClonedPlugin struct {
 	//
 	// Keys must be 1–63 characters long and start with an alphanumeric character.
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
-	// The name to associate with the cloned plugin.
+	// The name to associate with the cloned plugin. Consider using a distinct prefix for cloned plugins to avoid naming conflicts with new bundled plugins in future Kong releases.
 	Name string `json:"name"`
 	// The plugin execution priority. If not set, it will inherit the priority of the referenced plugin.
 	Priority *int64 `json:"priority,omitempty"`

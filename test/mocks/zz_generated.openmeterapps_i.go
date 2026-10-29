@@ -48,6 +48,95 @@ func (_m *MockOpenMeterAppsSDK) EXPECT() *MockOpenMeterAppsSDK_Expecter {
 	return &MockOpenMeterAppsSDK_Expecter{mock: &_m.Mock}
 }
 
+// ExecuteAppAction provides a mock function for the type MockOpenMeterAppsSDK
+func (_mock *MockOpenMeterAppsSDK) ExecuteAppAction(ctx context.Context, appID string, billingAppActionRequest components.BillingAppActionRequest, opts ...operations.Option) (*operations.ExecuteAppActionResponse, error) {
+	var tmpRet mock.Arguments
+	if len(opts) > 0 {
+		tmpRet = _mock.Called(ctx, appID, billingAppActionRequest, opts)
+	} else {
+		tmpRet = _mock.Called(ctx, appID, billingAppActionRequest)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for ExecuteAppAction")
+	}
+
+	var r0 *operations.ExecuteAppActionResponse
+	var r1 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.BillingAppActionRequest, ...operations.Option) (*operations.ExecuteAppActionResponse, error)); ok {
+		return returnFunc(ctx, appID, billingAppActionRequest, opts...)
+	}
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.BillingAppActionRequest, ...operations.Option) *operations.ExecuteAppActionResponse); ok {
+		r0 = returnFunc(ctx, appID, billingAppActionRequest, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operations.ExecuteAppActionResponse)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.BillingAppActionRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, appID, billingAppActionRequest, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+	return r0, r1
+}
+
+// MockOpenMeterAppsSDK_ExecuteAppAction_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ExecuteAppAction'
+type MockOpenMeterAppsSDK_ExecuteAppAction_Call struct {
+	*mock.Call
+}
+
+// ExecuteAppAction is a helper method to define mock.On call
+//   - ctx context.Context
+//   - appID string
+//   - billingAppActionRequest components.BillingAppActionRequest
+//   - opts ...operations.Option
+func (_e *MockOpenMeterAppsSDK_Expecter) ExecuteAppAction(ctx any, appID any, billingAppActionRequest any, opts ...any) *MockOpenMeterAppsSDK_ExecuteAppAction_Call {
+	return &MockOpenMeterAppsSDK_ExecuteAppAction_Call{Call: _e.mock.On("ExecuteAppAction",
+		append([]any{ctx, appID, billingAppActionRequest}, opts...)...)}
+}
+
+func (_c *MockOpenMeterAppsSDK_ExecuteAppAction_Call) Run(run func(ctx context.Context, appID string, billingAppActionRequest components.BillingAppActionRequest, opts ...operations.Option)) *MockOpenMeterAppsSDK_ExecuteAppAction_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 string
+		if args[1] != nil {
+			arg1 = args[1].(string)
+		}
+		var arg2 components.BillingAppActionRequest
+		if args[2] != nil {
+			arg2 = args[2].(components.BillingAppActionRequest)
+		}
+		var arg3 []operations.Option
+		var variadicArgs []operations.Option
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockOpenMeterAppsSDK_ExecuteAppAction_Call) Return(executeAppActionResponse *operations.ExecuteAppActionResponse, err error) *MockOpenMeterAppsSDK_ExecuteAppAction_Call {
+	_c.Call.Return(executeAppActionResponse, err)
+	return _c
+}
+
+func (_c *MockOpenMeterAppsSDK_ExecuteAppAction_Call) RunAndReturn(run func(ctx context.Context, appID string, billingAppActionRequest components.BillingAppActionRequest, opts ...operations.Option) (*operations.ExecuteAppActionResponse, error)) *MockOpenMeterAppsSDK_ExecuteAppAction_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // GetApp provides a mock function for the type MockOpenMeterAppsSDK
 func (_mock *MockOpenMeterAppsSDK) GetApp(ctx context.Context, appID string, opts ...operations.Option) (*operations.GetAppResponse, error) {
 	var tmpRet mock.Arguments

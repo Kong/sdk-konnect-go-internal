@@ -9,17 +9,17 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// FeatureReference - The feature associated with the rate card.
-type FeatureReference struct {
+// BillingRateCardFeatureReference - The feature associated with the rate card.
+type BillingRateCardFeatureReference struct {
 	// ULID (Universally Unique Lexicographically Sortable Identifier).
 	ID string `json:"id"`
 }
 
-func (f *FeatureReference) GetID() string {
-	if f == nil {
+func (b *BillingRateCardFeatureReference) GetID() string {
+	if b == nil {
 		return ""
 	}
-	return f.ID
+	return b.ID
 }
 
 type PriceType string
@@ -606,7 +606,7 @@ type BillingRateCard struct {
 	// A key is a unique string that is used to identify a resource.
 	Key string `json:"key"`
 	// The feature associated with the rate card.
-	Feature *FeatureReference `json:"feature,omitempty"`
+	Feature *BillingRateCardFeatureReference `json:"feature,omitempty"`
 	// Overrides the containing plan or add-on currency for this rate card. When
 	// omitted, the containing resource currency applies.
 	Currency *string `json:"currency,omitempty"`
@@ -678,7 +678,7 @@ func (b *BillingRateCard) GetKey() string {
 	return b.Key
 }
 
-func (b *BillingRateCard) GetFeature() *FeatureReference {
+func (b *BillingRateCard) GetFeature() *BillingRateCardFeatureReference {
 	if b == nil {
 		return nil
 	}

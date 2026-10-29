@@ -1,0 +1,11 @@
+# BillingAppReconcileWebhookEventsActionRequest
+
+Request to reconcile the app's webhook events with the latest supported event
+set.
+
+
+## Fields
+
+| Field                                                                                                                                                    | Type                                                                                                                                                     | Required                                                                                                                                                 | Description                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ActionType`                                                                                                                                             | [components.BillingAppReconcileWebhookEventsActionRequestActionType](../../models/components/billingappreconcilewebhookeventsactionrequestactiontype.md) | :heavy_check_mark:                                                                                                                                       | The action to execute.                                                                                                                                   |

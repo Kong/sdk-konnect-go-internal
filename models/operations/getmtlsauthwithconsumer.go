@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -14,6 +15,19 @@ type GetMtlsAuthWithConsumerRequest struct {
 	ConsumerIDForNestedEntities string `pathParam:"style=simple,explode=false,name=ConsumerIdForNestedEntities"`
 	// ID of the MTLS-auth credential to lookup
 	MTLSAuthID string `pathParam:"style=simple,explode=false,name=MTLSAuthId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
+}
+
+func (g GetMtlsAuthWithConsumerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetMtlsAuthWithConsumerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *GetMtlsAuthWithConsumerRequest) GetControlPlaneID() string {
@@ -35,6 +49,13 @@ func (g *GetMtlsAuthWithConsumerRequest) GetMTLSAuthID() string {
 		return ""
 	}
 	return g.MTLSAuthID
+}
+
+func (g *GetMtlsAuthWithConsumerRequest) GetWorkspace() string {
+	if g == nil {
+		return ""
+	}
+	return g.Workspace
 }
 
 type GetMtlsAuthWithConsumerResponse struct {

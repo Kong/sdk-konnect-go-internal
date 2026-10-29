@@ -1,0 +1,15 @@
+# PayloadData
+
+The entities and threshold the event refers to.
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `EntitlementID`                                                        | `string`                                                               | :heavy_check_mark:                                                     | The identifier of the entitlement that triggered the event.            | 01G65Z755AFWAKHE12NY0CQ9FH                                             |
+| `Feature`                                                              | [components.PayloadFeature](../../models/components/payloadfeature.md) | :heavy_check_mark:                                                     | The feature the entitlement grants access to.                          |                                                                        |
+| `SubjectKey`                                                           | `string`                                                               | :heavy_check_mark:                                                     | The key of the subject the entitlement belongs to.                     |                                                                        |
+| `CustomerID`                                                           | `*string`                                                              | :heavy_minus_sign:                                                     | The identifier of the customer the subject belongs to, if any.         | 01G65Z755AFWAKHE12NY0CQ9FH                                             |
+| `Value`                                                                | [components.PayloadValue](../../models/components/payloadvalue.md)     | :heavy_check_mark:                                                     | The entitlement value at the time the event was generated.             |                                                                        |
+| `Threshold`                                                            | [components.Threshold](../../models/components/threshold.md)           | :heavy_check_mark:                                                     | The threshold the balance crossed.                                     |                                                                        |

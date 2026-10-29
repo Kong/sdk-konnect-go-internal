@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -14,8 +15,21 @@ type UpsertKeyWithKeySetRequest struct {
 	KeySetID string `pathParam:"style=simple,explode=false,name=KeySetId"`
 	// ID of the Key to lookup
 	KeyID string `pathParam:"style=simple,explode=false,name=KeyId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of the Key
 	KeyWithoutParents components.KeyWithoutParents `request:"mediaType=application/json"`
+}
+
+func (u UpsertKeyWithKeySetRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpsertKeyWithKeySetRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpsertKeyWithKeySetRequest) GetControlPlaneID() string {
@@ -37,6 +51,13 @@ func (u *UpsertKeyWithKeySetRequest) GetKeyID() string {
 		return ""
 	}
 	return u.KeyID
+}
+
+func (u *UpsertKeyWithKeySetRequest) GetWorkspace() string {
+	if u == nil {
+		return ""
+	}
+	return u.Workspace
 }
 
 func (u *UpsertKeyWithKeySetRequest) GetKeyWithoutParents() components.KeyWithoutParents {

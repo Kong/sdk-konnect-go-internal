@@ -2,7 +2,7 @@
 
 package sdkkonnectgo
 
-// Generated from OpenAPI doc version 3.15.0 and generator version 2.954.8
+// Generated from OpenAPI doc version 3.16.0 and generator version 2.954.8
 
 import (
 	"context"
@@ -374,7 +374,7 @@ type SDK struct {
 	OpenMeterLLMCost *OpenMeterLLMCost
 	// Meters specify how to aggregate events for billing and analytics purposes. Meters can be configured with multiple aggregation methods and groupings. Multiple meters can be created for the same event type, enabling flexible metering scenarios.
 	Meters *Meters
-	// Notification channels deliver notification events, such as entitlement balance threshold crossings, to external systems.
+	// Notification rules generate notification events, such as entitlement balance threshold crossings, and notification channels deliver them to external systems.
 	OpenMeterNotifications *OpenMeterNotifications
 	// Subscriptions are used to track usage of your product or service. Subscriptions can be individuals or organizations that can subscribe to plans and have access to features.
 	OpenMeterSubscriptions *OpenMeterSubscriptions
@@ -641,12 +641,12 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.6.0",
+		SDKVersion: "0.7.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.6.0 2.954.8 3.15.0 github.com/Kong/sdk-konnect-go",
-			SDKVersion:        "0.6.0",
+			UserAgent:         "speakeasy-sdk/go 0.7.0 2.954.8 3.16.0 github.com/Kong/sdk-konnect-go",
+			SDKVersion:        "0.7.0",
 			GenVersion:        "2.954.8",
-			OpenAPIDocVersion: "3.15.0",
+			OpenAPIDocVersion: "3.16.0",
 			ServerList:        ServerList,
 		},
 		hooks: hooks.New(),

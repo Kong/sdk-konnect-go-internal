@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -11,8 +12,21 @@ type UpdateConfigStoreRequest struct {
 	// The UUID of your control plane. This variable is available in the Konnect manager.
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
 	// Config Store identifier
-	ConfigStoreID     string                       `pathParam:"style=simple,explode=false,name=configStoreId"`
+	ConfigStoreID string `pathParam:"style=simple,explode=false,name=configStoreId"`
+	// The name of the workspace
+	Workspace         string                       `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	UpdateConfigStore components.UpdateConfigStore `request:"mediaType=application/json"`
+}
+
+func (u UpdateConfigStoreRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateConfigStoreRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateConfigStoreRequest) GetControlPlaneID() string {
@@ -27,6 +41,13 @@ func (u *UpdateConfigStoreRequest) GetConfigStoreID() string {
 		return ""
 	}
 	return u.ConfigStoreID
+}
+
+func (u *UpdateConfigStoreRequest) GetWorkspace() string {
+	if u == nil {
+		return ""
+	}
+	return u.Workspace
 }
 
 func (u *UpdateConfigStoreRequest) GetUpdateConfigStore() components.UpdateConfigStore {

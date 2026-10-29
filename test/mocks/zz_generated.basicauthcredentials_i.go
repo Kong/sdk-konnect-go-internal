@@ -130,89 +130,6 @@ func (_c *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumer_Call) RunAndRe
 	return _c
 }
 
-// CreateBasicAuthWithConsumerInWorkspace provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) CreateBasicAuthWithConsumerInWorkspace(ctx context.Context, request operations.CreateBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.CreateBasicAuthWithConsumerInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for CreateBasicAuthWithConsumerInWorkspace")
-	}
-
-	var r0 *operations.CreateBasicAuthWithConsumerInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) (*operations.CreateBasicAuthWithConsumerInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) *operations.CreateBasicAuthWithConsumerInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreateBasicAuthWithConsumerInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateBasicAuthWithConsumerInWorkspace'
-type MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreateBasicAuthWithConsumerInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreateBasicAuthWithConsumerInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) CreateBasicAuthWithConsumerInWorkspace(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call {
-	return &MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call{Call: _e.mock.On("CreateBasicAuthWithConsumerInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreateBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.CreateBasicAuthWithConsumerInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.CreateBasicAuthWithConsumerInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call) Return(createBasicAuthWithConsumerInWorkspaceResponse *operations.CreateBasicAuthWithConsumerInWorkspaceResponse, err error) *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(createBasicAuthWithConsumerInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.CreateBasicAuthWithConsumerInWorkspaceResponse, error)) *MockBasicAuthCredentialsSDK_CreateBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // DeleteBasicAuthWithConsumer provides a mock function for the type MockBasicAuthCredentialsSDK
 func (_mock *MockBasicAuthCredentialsSDK) DeleteBasicAuthWithConsumer(ctx context.Context, request operations.DeleteBasicAuthWithConsumerRequest, opts ...operations.Option) (*operations.DeleteBasicAuthWithConsumerResponse, error) {
 	var tmpRet mock.Arguments
@@ -296,8 +213,8 @@ func (_c *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumer_Call) RunAndRe
 	return _c
 }
 
-// DeleteBasicAuthWithConsumerInWorkspace provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) DeleteBasicAuthWithConsumerInWorkspace(ctx context.Context, request operations.DeleteBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteBasicAuthWithConsumerInWorkspaceResponse, error) {
+// GetBasicAuth provides a mock function for the type MockBasicAuthCredentialsSDK
+func (_mock *MockBasicAuthCredentialsSDK) GetBasicAuth(ctx context.Context, request operations.GetBasicAuthRequest, opts ...operations.Option) (*operations.GetBasicAuthResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -307,106 +224,23 @@ func (_mock *MockBasicAuthCredentialsSDK) DeleteBasicAuthWithConsumerInWorkspace
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for DeleteBasicAuthWithConsumerInWorkspace")
-	}
-
-	var r0 *operations.DeleteBasicAuthWithConsumerInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) (*operations.DeleteBasicAuthWithConsumerInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) *operations.DeleteBasicAuthWithConsumerInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeleteBasicAuthWithConsumerInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteBasicAuthWithConsumerInWorkspace'
-type MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeleteBasicAuthWithConsumerInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeleteBasicAuthWithConsumerInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) DeleteBasicAuthWithConsumerInWorkspace(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call {
-	return &MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call{Call: _e.mock.On("DeleteBasicAuthWithConsumerInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeleteBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.DeleteBasicAuthWithConsumerInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.DeleteBasicAuthWithConsumerInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call) Return(deleteBasicAuthWithConsumerInWorkspaceResponse *operations.DeleteBasicAuthWithConsumerInWorkspaceResponse, err error) *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(deleteBasicAuthWithConsumerInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteBasicAuthWithConsumerInWorkspaceResponse, error)) *MockBasicAuthCredentialsSDK_DeleteBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetBasicAuth provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) GetBasicAuth(ctx context.Context, basicAuthID string, controlPlaneID string, opts ...operations.Option) (*operations.GetBasicAuthResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, basicAuthID, controlPlaneID, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, basicAuthID, controlPlaneID)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for GetBasicAuth")
 	}
 
 	var r0 *operations.GetBasicAuthResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.GetBasicAuthResponse, error)); ok {
-		return returnFunc(ctx, basicAuthID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetBasicAuthRequest, ...operations.Option) (*operations.GetBasicAuthResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.GetBasicAuthResponse); ok {
-		r0 = returnFunc(ctx, basicAuthID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetBasicAuthRequest, ...operations.Option) *operations.GetBasicAuthResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.GetBasicAuthResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, basicAuthID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetBasicAuthRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -420,111 +254,22 @@ type MockBasicAuthCredentialsSDK_GetBasicAuth_Call struct {
 
 // GetBasicAuth is a helper method to define mock.On call
 //   - ctx context.Context
-//   - basicAuthID string
-//   - controlPlaneID string
+//   - request operations.GetBasicAuthRequest
 //   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) GetBasicAuth(ctx any, basicAuthID any, controlPlaneID any, opts ...any) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
+func (_e *MockBasicAuthCredentialsSDK_Expecter) GetBasicAuth(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
 	return &MockBasicAuthCredentialsSDK_GetBasicAuth_Call{Call: _e.mock.On("GetBasicAuth",
-		append([]any{ctx, basicAuthID, controlPlaneID}, opts...)...)}
-}
-
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuth_Call) Run(run func(ctx context.Context, basicAuthID string, controlPlaneID string, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuth_Call) Return(getBasicAuthResponse *operations.GetBasicAuthResponse, err error) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
-	_c.Call.Return(getBasicAuthResponse, err)
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuth_Call) RunAndReturn(run func(ctx context.Context, basicAuthID string, controlPlaneID string, opts ...operations.Option) (*operations.GetBasicAuthResponse, error)) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetBasicAuthInWorkspace provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) GetBasicAuthInWorkspace(ctx context.Context, request operations.GetBasicAuthInWorkspaceRequest, opts ...operations.Option) (*operations.GetBasicAuthInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetBasicAuthInWorkspace")
-	}
-
-	var r0 *operations.GetBasicAuthInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetBasicAuthInWorkspaceRequest, ...operations.Option) (*operations.GetBasicAuthInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetBasicAuthInWorkspaceRequest, ...operations.Option) *operations.GetBasicAuthInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetBasicAuthInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetBasicAuthInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetBasicAuthInWorkspace'
-type MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetBasicAuthInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetBasicAuthInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) GetBasicAuthInWorkspace(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call {
-	return &MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call{Call: _e.mock.On("GetBasicAuthInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetBasicAuthInWorkspaceRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call {
+func (_c *MockBasicAuthCredentialsSDK_GetBasicAuth_Call) Run(run func(ctx context.Context, request operations.GetBasicAuthRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.GetBasicAuthInWorkspaceRequest
+		var arg1 operations.GetBasicAuthRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.GetBasicAuthInWorkspaceRequest)
+			arg1 = args[1].(operations.GetBasicAuthRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -541,12 +286,12 @@ func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call) Run(run func
 	return _c
 }
 
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call) Return(getBasicAuthInWorkspaceResponse *operations.GetBasicAuthInWorkspaceResponse, err error) *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call {
-	_c.Call.Return(getBasicAuthInWorkspaceResponse, err)
+func (_c *MockBasicAuthCredentialsSDK_GetBasicAuth_Call) Return(getBasicAuthResponse *operations.GetBasicAuthResponse, err error) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
+	_c.Call.Return(getBasicAuthResponse, err)
 	return _c
 }
 
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetBasicAuthInWorkspaceRequest, opts ...operations.Option) (*operations.GetBasicAuthInWorkspaceResponse, error)) *MockBasicAuthCredentialsSDK_GetBasicAuthInWorkspace_Call {
+func (_c *MockBasicAuthCredentialsSDK_GetBasicAuth_Call) RunAndReturn(run func(ctx context.Context, request operations.GetBasicAuthRequest, opts ...operations.Option) (*operations.GetBasicAuthResponse, error)) *MockBasicAuthCredentialsSDK_GetBasicAuth_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -634,89 +379,6 @@ func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumer_Call) RunAndRetur
 	return _c
 }
 
-// GetBasicAuthWithConsumerInWorkspace provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) GetBasicAuthWithConsumerInWorkspace(ctx context.Context, request operations.GetBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.GetBasicAuthWithConsumerInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetBasicAuthWithConsumerInWorkspace")
-	}
-
-	var r0 *operations.GetBasicAuthWithConsumerInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) (*operations.GetBasicAuthWithConsumerInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) *operations.GetBasicAuthWithConsumerInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetBasicAuthWithConsumerInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetBasicAuthWithConsumerInWorkspace'
-type MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetBasicAuthWithConsumerInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetBasicAuthWithConsumerInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) GetBasicAuthWithConsumerInWorkspace(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call {
-	return &MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call{Call: _e.mock.On("GetBasicAuthWithConsumerInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.GetBasicAuthWithConsumerInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.GetBasicAuthWithConsumerInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call) Return(getBasicAuthWithConsumerInWorkspaceResponse *operations.GetBasicAuthWithConsumerInWorkspaceResponse, err error) *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(getBasicAuthWithConsumerInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.GetBasicAuthWithConsumerInWorkspaceResponse, error)) *MockBasicAuthCredentialsSDK_GetBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // ListBasicAuth provides a mock function for the type MockBasicAuthCredentialsSDK
 func (_mock *MockBasicAuthCredentialsSDK) ListBasicAuth(ctx context.Context, request operations.ListBasicAuthRequest, opts ...operations.Option) (*operations.ListBasicAuthResponse, error) {
 	var tmpRet mock.Arguments
@@ -796,89 +458,6 @@ func (_c *MockBasicAuthCredentialsSDK_ListBasicAuth_Call) Return(listBasicAuthRe
 }
 
 func (_c *MockBasicAuthCredentialsSDK_ListBasicAuth_Call) RunAndReturn(run func(ctx context.Context, request operations.ListBasicAuthRequest, opts ...operations.Option) (*operations.ListBasicAuthResponse, error)) *MockBasicAuthCredentialsSDK_ListBasicAuth_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// ListBasicAuthInWorkspace provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) ListBasicAuthInWorkspace(ctx context.Context, request operations.ListBasicAuthInWorkspaceRequest, opts ...operations.Option) (*operations.ListBasicAuthInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListBasicAuthInWorkspace")
-	}
-
-	var r0 *operations.ListBasicAuthInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListBasicAuthInWorkspaceRequest, ...operations.Option) (*operations.ListBasicAuthInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListBasicAuthInWorkspaceRequest, ...operations.Option) *operations.ListBasicAuthInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListBasicAuthInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListBasicAuthInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListBasicAuthInWorkspace'
-type MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListBasicAuthInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListBasicAuthInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) ListBasicAuthInWorkspace(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call {
-	return &MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call{Call: _e.mock.On("ListBasicAuthInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListBasicAuthInWorkspaceRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListBasicAuthInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListBasicAuthInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call) Return(listBasicAuthInWorkspaceResponse *operations.ListBasicAuthInWorkspaceResponse, err error) *MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call {
-	_c.Call.Return(listBasicAuthInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListBasicAuthInWorkspaceRequest, opts ...operations.Option) (*operations.ListBasicAuthInWorkspaceResponse, error)) *MockBasicAuthCredentialsSDK_ListBasicAuthInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -966,89 +545,6 @@ func (_c *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumer_Call) RunAndRetu
 	return _c
 }
 
-// ListBasicAuthWithConsumerInWorkspace provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) ListBasicAuthWithConsumerInWorkspace(ctx context.Context, request operations.ListBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.ListBasicAuthWithConsumerInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListBasicAuthWithConsumerInWorkspace")
-	}
-
-	var r0 *operations.ListBasicAuthWithConsumerInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) (*operations.ListBasicAuthWithConsumerInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) *operations.ListBasicAuthWithConsumerInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListBasicAuthWithConsumerInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListBasicAuthWithConsumerInWorkspace'
-type MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListBasicAuthWithConsumerInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListBasicAuthWithConsumerInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) ListBasicAuthWithConsumerInWorkspace(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call {
-	return &MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call{Call: _e.mock.On("ListBasicAuthWithConsumerInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListBasicAuthWithConsumerInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListBasicAuthWithConsumerInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call) Return(listBasicAuthWithConsumerInWorkspaceResponse *operations.ListBasicAuthWithConsumerInWorkspaceResponse, err error) *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(listBasicAuthWithConsumerInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.ListBasicAuthWithConsumerInWorkspaceResponse, error)) *MockBasicAuthCredentialsSDK_ListBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // UpsertBasicAuthWithConsumer provides a mock function for the type MockBasicAuthCredentialsSDK
 func (_mock *MockBasicAuthCredentialsSDK) UpsertBasicAuthWithConsumer(ctx context.Context, request operations.UpsertBasicAuthWithConsumerRequest, opts ...operations.Option) (*operations.UpsertBasicAuthWithConsumerResponse, error) {
 	var tmpRet mock.Arguments
@@ -1128,89 +624,6 @@ func (_c *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumer_Call) Return(u
 }
 
 func (_c *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumer_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertBasicAuthWithConsumerRequest, opts ...operations.Option) (*operations.UpsertBasicAuthWithConsumerResponse, error)) *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumer_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// UpsertBasicAuthWithConsumerInWorkspace provides a mock function for the type MockBasicAuthCredentialsSDK
-func (_mock *MockBasicAuthCredentialsSDK) UpsertBasicAuthWithConsumerInWorkspace(ctx context.Context, request operations.UpsertBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertBasicAuthWithConsumerInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertBasicAuthWithConsumerInWorkspace")
-	}
-
-	var r0 *operations.UpsertBasicAuthWithConsumerInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) (*operations.UpsertBasicAuthWithConsumerInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) *operations.UpsertBasicAuthWithConsumerInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertBasicAuthWithConsumerInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertBasicAuthWithConsumerInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertBasicAuthWithConsumerInWorkspace'
-type MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertBasicAuthWithConsumerInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertBasicAuthWithConsumerInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockBasicAuthCredentialsSDK_Expecter) UpsertBasicAuthWithConsumerInWorkspace(ctx any, request any, opts ...any) *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call {
-	return &MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call{Call: _e.mock.On("UpsertBasicAuthWithConsumerInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option)) *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertBasicAuthWithConsumerInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertBasicAuthWithConsumerInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call) Return(upsertBasicAuthWithConsumerInWorkspaceResponse *operations.UpsertBasicAuthWithConsumerInWorkspaceResponse, err error) *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call {
-	_c.Call.Return(upsertBasicAuthWithConsumerInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertBasicAuthWithConsumerInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertBasicAuthWithConsumerInWorkspaceResponse, error)) *MockBasicAuthCredentialsSDK_UpsertBasicAuthWithConsumerInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }

@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"net/http"
 )
 
@@ -13,6 +14,19 @@ type DeletePluginWithConsumerGroupRequest struct {
 	ConsumerGroupID string `pathParam:"style=simple,explode=false,name=ConsumerGroupId"`
 	// ID of the Plugin to lookup
 	PluginID string `pathParam:"style=simple,explode=false,name=PluginId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
+}
+
+func (d DeletePluginWithConsumerGroupRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePluginWithConsumerGroupRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeletePluginWithConsumerGroupRequest) GetControlPlaneID() string {
@@ -34,6 +48,13 @@ func (d *DeletePluginWithConsumerGroupRequest) GetPluginID() string {
 		return ""
 	}
 	return d.PluginID
+}
+
+func (d *DeletePluginWithConsumerGroupRequest) GetWorkspace() string {
+	if d == nil {
+		return ""
+	}
+	return d.Workspace
 }
 
 type DeletePluginWithConsumerGroupResponse struct {

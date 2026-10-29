@@ -217,13 +217,13 @@ func (s *Workspaces) ListWorkspaces(ctx context.Context, request operations.List
 		}
 	case httpRes.StatusCode == 400:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.BadRequestError
+			var out sdkerrors.KonnectCPLegacyBadRequestError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -239,13 +239,13 @@ func (s *Workspaces) ListWorkspaces(ctx context.Context, request operations.List
 		}
 	case httpRes.StatusCode == 401:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.UnauthorizedError
+			var out sdkerrors.KonnectCPLegacyUnauthorizedError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -261,13 +261,13 @@ func (s *Workspaces) ListWorkspaces(ctx context.Context, request operations.List
 		}
 	case httpRes.StatusCode == 403:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.ForbiddenError
+			var out sdkerrors.KonnectCPLegacyForbiddenError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -283,13 +283,13 @@ func (s *Workspaces) ListWorkspaces(ctx context.Context, request operations.List
 		}
 	case httpRes.StatusCode == 404:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.NotFoundError
+			var out sdkerrors.KonnectCPLegacyNotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -587,13 +587,13 @@ func (s *Workspaces) CreateWorkspace(ctx context.Context, controlPlaneID string,
 		}
 	case httpRes.StatusCode == 400:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.BadRequestError
+			var out sdkerrors.KonnectCPLegacyBadRequestError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -609,13 +609,13 @@ func (s *Workspaces) CreateWorkspace(ctx context.Context, controlPlaneID string,
 		}
 	case httpRes.StatusCode == 401:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.UnauthorizedError
+			var out sdkerrors.KonnectCPLegacyUnauthorizedError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -631,13 +631,13 @@ func (s *Workspaces) CreateWorkspace(ctx context.Context, controlPlaneID string,
 		}
 	case httpRes.StatusCode == 403:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.ForbiddenError
+			var out sdkerrors.KonnectCPLegacyForbiddenError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -653,13 +653,35 @@ func (s *Workspaces) CreateWorkspace(ctx context.Context, controlPlaneID string,
 		}
 	case httpRes.StatusCode == 404:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.NotFoundError
+			var out sdkerrors.KonnectCPLegacyNotFoundError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
+			}
+
+			out.RawResponse = httpRes
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out sdkerrors.KonnectCPLegacyConflictError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -929,13 +951,13 @@ func (s *Workspaces) GetWorkspace(ctx context.Context, controlPlaneID string, wo
 		}
 	case httpRes.StatusCode == 400:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.BadRequestError
+			var out sdkerrors.KonnectCPLegacyBadRequestError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -951,13 +973,13 @@ func (s *Workspaces) GetWorkspace(ctx context.Context, controlPlaneID string, wo
 		}
 	case httpRes.StatusCode == 401:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.UnauthorizedError
+			var out sdkerrors.KonnectCPLegacyUnauthorizedError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -973,13 +995,13 @@ func (s *Workspaces) GetWorkspace(ctx context.Context, controlPlaneID string, wo
 		}
 	case httpRes.StatusCode == 403:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.ForbiddenError
+			var out sdkerrors.KonnectCPLegacyForbiddenError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -995,13 +1017,13 @@ func (s *Workspaces) GetWorkspace(ctx context.Context, controlPlaneID string, wo
 		}
 	case httpRes.StatusCode == 404:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.NotFoundError
+			var out sdkerrors.KonnectCPLegacyNotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1117,6 +1139,7 @@ func (s *Workspaces) DeleteWorkspace(ctx context.Context, controlPlaneID string,
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
+		operations.SupportedOptionAcceptHeaderOverride,
 	}
 
 	for _, opt := range opts {
@@ -1161,7 +1184,12 @@ func (s *Workspaces) DeleteWorkspace(ctx context.Context, controlPlaneID string,
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/problem+json")
+	if o.AcceptHeaderOverride != nil {
+		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
+	} else {
+		req.Header.Set("Accept", "application/json;q=1, application/problem+json;q=0")
+	}
+
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
@@ -1274,13 +1302,13 @@ func (s *Workspaces) DeleteWorkspace(ctx context.Context, controlPlaneID string,
 		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 400:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.BadRequestError
+			var out sdkerrors.KonnectCPLegacyBadRequestError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1296,13 +1324,13 @@ func (s *Workspaces) DeleteWorkspace(ctx context.Context, controlPlaneID string,
 		}
 	case httpRes.StatusCode == 401:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.UnauthorizedError
+			var out sdkerrors.KonnectCPLegacyUnauthorizedError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1318,13 +1346,13 @@ func (s *Workspaces) DeleteWorkspace(ctx context.Context, controlPlaneID string,
 		}
 	case httpRes.StatusCode == 403:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.ForbiddenError
+			var out sdkerrors.KonnectCPLegacyForbiddenError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1340,13 +1368,13 @@ func (s *Workspaces) DeleteWorkspace(ctx context.Context, controlPlaneID string,
 		}
 	case httpRes.StatusCode == 404:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.NotFoundError
+			var out sdkerrors.KonnectCPLegacyNotFoundError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1640,13 +1668,13 @@ func (s *Workspaces) UpsertWorkspace(ctx context.Context, request operations.Ups
 		}
 	case httpRes.StatusCode == 400:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.BadRequestError
+			var out sdkerrors.KonnectCPLegacyBadRequestError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1662,13 +1690,13 @@ func (s *Workspaces) UpsertWorkspace(ctx context.Context, request operations.Ups
 		}
 	case httpRes.StatusCode == 401:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.UnauthorizedError
+			var out sdkerrors.KonnectCPLegacyUnauthorizedError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1684,13 +1712,13 @@ func (s *Workspaces) UpsertWorkspace(ctx context.Context, request operations.Ups
 		}
 	case httpRes.StatusCode == 403:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.ForbiddenError
+			var out sdkerrors.KonnectCPLegacyForbiddenError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1706,13 +1734,35 @@ func (s *Workspaces) UpsertWorkspace(ctx context.Context, request operations.Ups
 		}
 	case httpRes.StatusCode == 404:
 		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out sdkerrors.NotFoundError
+			var out sdkerrors.KonnectCPLegacyNotFoundError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
+			}
+
+			out.RawResponse = httpRes
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out sdkerrors.KonnectCPLegacyConflictError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}

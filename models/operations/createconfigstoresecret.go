@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -11,8 +12,21 @@ type CreateConfigStoreSecretRequest struct {
 	// The UUID of your control plane. This variable is available in the Konnect manager.
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
 	// Config Store identifier
-	ConfigStoreID           string                             `pathParam:"style=simple,explode=false,name=configStoreId"`
+	ConfigStoreID string `pathParam:"style=simple,explode=false,name=configStoreId"`
+	// The name of the workspace
+	Workspace               string                             `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	CreateConfigStoreSecret components.CreateConfigStoreSecret `request:"mediaType=application/json"`
+}
+
+func (c CreateConfigStoreSecretRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateConfigStoreSecretRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CreateConfigStoreSecretRequest) GetControlPlaneID() string {
@@ -27,6 +41,13 @@ func (c *CreateConfigStoreSecretRequest) GetConfigStoreID() string {
 		return ""
 	}
 	return c.ConfigStoreID
+}
+
+func (c *CreateConfigStoreSecretRequest) GetWorkspace() string {
+	if c == nil {
+		return ""
+	}
+	return c.Workspace
 }
 
 func (c *CreateConfigStoreSecretRequest) GetCreateConfigStoreSecret() components.CreateConfigStoreSecret {

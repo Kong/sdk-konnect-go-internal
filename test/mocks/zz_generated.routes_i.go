@@ -7,7 +7,6 @@ package mocks
 import (
 	"context"
 
-	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -49,12 +48,12 @@ func (_m *MockRoutesSDK) EXPECT() *MockRoutesSDK_Expecter {
 }
 
 // CreateRoute provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) CreateRoute(ctx context.Context, controlPlaneID string, route components.Route, opts ...operations.Option) (*operations.CreateRouteResponse, error) {
+func (_mock *MockRoutesSDK) CreateRoute(ctx context.Context, request operations.CreateRouteRequest, opts ...operations.Option) (*operations.CreateRouteResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, route, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, route)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -64,18 +63,18 @@ func (_mock *MockRoutesSDK) CreateRoute(ctx context.Context, controlPlaneID stri
 
 	var r0 *operations.CreateRouteResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.Route, ...operations.Option) (*operations.CreateRouteResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, route, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateRouteRequest, ...operations.Option) (*operations.CreateRouteResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.Route, ...operations.Option) *operations.CreateRouteResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, route, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateRouteRequest, ...operations.Option) *operations.CreateRouteResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.CreateRouteResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.Route, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, route, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateRouteRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -89,111 +88,22 @@ type MockRoutesSDK_CreateRoute_Call struct {
 
 // CreateRoute is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - route components.Route
+//   - request operations.CreateRouteRequest
 //   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) CreateRoute(ctx any, controlPlaneID any, route any, opts ...any) *MockRoutesSDK_CreateRoute_Call {
+func (_e *MockRoutesSDK_Expecter) CreateRoute(ctx any, request any, opts ...any) *MockRoutesSDK_CreateRoute_Call {
 	return &MockRoutesSDK_CreateRoute_Call{Call: _e.mock.On("CreateRoute",
-		append([]any{ctx, controlPlaneID, route}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_CreateRoute_Call) Run(run func(ctx context.Context, controlPlaneID string, route components.Route, opts ...operations.Option)) *MockRoutesSDK_CreateRoute_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 components.Route
-		if args[2] != nil {
-			arg2 = args[2].(components.Route)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_CreateRoute_Call) Return(createRouteResponse *operations.CreateRouteResponse, err error) *MockRoutesSDK_CreateRoute_Call {
-	_c.Call.Return(createRouteResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_CreateRoute_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, route components.Route, opts ...operations.Option) (*operations.CreateRouteResponse, error)) *MockRoutesSDK_CreateRoute_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// CreateRouteInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) CreateRouteInWorkspace(ctx context.Context, request operations.CreateRouteInWorkspaceRequest, opts ...operations.Option) (*operations.CreateRouteInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for CreateRouteInWorkspace")
-	}
-
-	var r0 *operations.CreateRouteInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateRouteInWorkspaceRequest, ...operations.Option) (*operations.CreateRouteInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateRouteInWorkspaceRequest, ...operations.Option) *operations.CreateRouteInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreateRouteInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateRouteInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_CreateRouteInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateRouteInWorkspace'
-type MockRoutesSDK_CreateRouteInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreateRouteInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreateRouteInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) CreateRouteInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_CreateRouteInWorkspace_Call {
-	return &MockRoutesSDK_CreateRouteInWorkspace_Call{Call: _e.mock.On("CreateRouteInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockRoutesSDK_CreateRouteInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreateRouteInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_CreateRouteInWorkspace_Call {
+func (_c *MockRoutesSDK_CreateRoute_Call) Run(run func(ctx context.Context, request operations.CreateRouteRequest, opts ...operations.Option)) *MockRoutesSDK_CreateRoute_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.CreateRouteInWorkspaceRequest
+		var arg1 operations.CreateRouteRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.CreateRouteInWorkspaceRequest)
+			arg1 = args[1].(operations.CreateRouteRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -210,12 +120,12 @@ func (_c *MockRoutesSDK_CreateRouteInWorkspace_Call) Run(run func(ctx context.Co
 	return _c
 }
 
-func (_c *MockRoutesSDK_CreateRouteInWorkspace_Call) Return(createRouteInWorkspaceResponse *operations.CreateRouteInWorkspaceResponse, err error) *MockRoutesSDK_CreateRouteInWorkspace_Call {
-	_c.Call.Return(createRouteInWorkspaceResponse, err)
+func (_c *MockRoutesSDK_CreateRoute_Call) Return(createRouteResponse *operations.CreateRouteResponse, err error) *MockRoutesSDK_CreateRoute_Call {
+	_c.Call.Return(createRouteResponse, err)
 	return _c
 }
 
-func (_c *MockRoutesSDK_CreateRouteInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateRouteInWorkspaceRequest, opts ...operations.Option) (*operations.CreateRouteInWorkspaceResponse, error)) *MockRoutesSDK_CreateRouteInWorkspace_Call {
+func (_c *MockRoutesSDK_CreateRoute_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateRouteRequest, opts ...operations.Option) (*operations.CreateRouteResponse, error)) *MockRoutesSDK_CreateRoute_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -303,8 +213,8 @@ func (_c *MockRoutesSDK_CreateRouteWithService_Call) RunAndReturn(run func(ctx c
 	return _c
 }
 
-// CreateRouteWithServiceInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) CreateRouteWithServiceInWorkspace(ctx context.Context, request operations.CreateRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.CreateRouteWithServiceInWorkspaceResponse, error) {
+// DeleteRoute provides a mock function for the type MockRoutesSDK
+func (_mock *MockRoutesSDK) DeleteRoute(ctx context.Context, request operations.DeleteRouteRequest, opts ...operations.Option) (*operations.DeleteRouteResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -314,106 +224,23 @@ func (_mock *MockRoutesSDK) CreateRouteWithServiceInWorkspace(ctx context.Contex
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for CreateRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.CreateRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.CreateRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.CreateRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.CreateRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateRouteWithServiceInWorkspace'
-type MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// CreateRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.CreateRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) CreateRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call {
-	return &MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call{Call: _e.mock.On("CreateRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.CreateRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.CreateRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.CreateRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call) Return(createRouteWithServiceInWorkspaceResponse *operations.CreateRouteWithServiceInWorkspaceResponse, err error) *MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(createRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.CreateRouteWithServiceInWorkspaceResponse, error)) *MockRoutesSDK_CreateRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// DeleteRoute provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) DeleteRoute(ctx context.Context, controlPlaneID string, routeID string, opts ...operations.Option) (*operations.DeleteRouteResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, routeID, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, routeID)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for DeleteRoute")
 	}
 
 	var r0 *operations.DeleteRouteResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.DeleteRouteResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, routeID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteRouteRequest, ...operations.Option) (*operations.DeleteRouteResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.DeleteRouteResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, routeID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteRouteRequest, ...operations.Option) *operations.DeleteRouteResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.DeleteRouteResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, routeID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteRouteRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -427,111 +254,22 @@ type MockRoutesSDK_DeleteRoute_Call struct {
 
 // DeleteRoute is a helper method to define mock.On call
 //   - ctx context.Context
-//   - controlPlaneID string
-//   - routeID string
+//   - request operations.DeleteRouteRequest
 //   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) DeleteRoute(ctx any, controlPlaneID any, routeID any, opts ...any) *MockRoutesSDK_DeleteRoute_Call {
+func (_e *MockRoutesSDK_Expecter) DeleteRoute(ctx any, request any, opts ...any) *MockRoutesSDK_DeleteRoute_Call {
 	return &MockRoutesSDK_DeleteRoute_Call{Call: _e.mock.On("DeleteRoute",
-		append([]any{ctx, controlPlaneID, routeID}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_DeleteRoute_Call) Run(run func(ctx context.Context, controlPlaneID string, routeID string, opts ...operations.Option)) *MockRoutesSDK_DeleteRoute_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_DeleteRoute_Call) Return(deleteRouteResponse *operations.DeleteRouteResponse, err error) *MockRoutesSDK_DeleteRoute_Call {
-	_c.Call.Return(deleteRouteResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_DeleteRoute_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, routeID string, opts ...operations.Option) (*operations.DeleteRouteResponse, error)) *MockRoutesSDK_DeleteRoute_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// DeleteRouteInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) DeleteRouteInWorkspace(ctx context.Context, request operations.DeleteRouteInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteRouteInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for DeleteRouteInWorkspace")
-	}
-
-	var r0 *operations.DeleteRouteInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteRouteInWorkspaceRequest, ...operations.Option) (*operations.DeleteRouteInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteRouteInWorkspaceRequest, ...operations.Option) *operations.DeleteRouteInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeleteRouteInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteRouteInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_DeleteRouteInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteRouteInWorkspace'
-type MockRoutesSDK_DeleteRouteInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeleteRouteInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeleteRouteInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) DeleteRouteInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_DeleteRouteInWorkspace_Call {
-	return &MockRoutesSDK_DeleteRouteInWorkspace_Call{Call: _e.mock.On("DeleteRouteInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockRoutesSDK_DeleteRouteInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeleteRouteInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_DeleteRouteInWorkspace_Call {
+func (_c *MockRoutesSDK_DeleteRoute_Call) Run(run func(ctx context.Context, request operations.DeleteRouteRequest, opts ...operations.Option)) *MockRoutesSDK_DeleteRoute_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.DeleteRouteInWorkspaceRequest
+		var arg1 operations.DeleteRouteRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.DeleteRouteInWorkspaceRequest)
+			arg1 = args[1].(operations.DeleteRouteRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -548,12 +286,12 @@ func (_c *MockRoutesSDK_DeleteRouteInWorkspace_Call) Run(run func(ctx context.Co
 	return _c
 }
 
-func (_c *MockRoutesSDK_DeleteRouteInWorkspace_Call) Return(deleteRouteInWorkspaceResponse *operations.DeleteRouteInWorkspaceResponse, err error) *MockRoutesSDK_DeleteRouteInWorkspace_Call {
-	_c.Call.Return(deleteRouteInWorkspaceResponse, err)
+func (_c *MockRoutesSDK_DeleteRoute_Call) Return(deleteRouteResponse *operations.DeleteRouteResponse, err error) *MockRoutesSDK_DeleteRoute_Call {
+	_c.Call.Return(deleteRouteResponse, err)
 	return _c
 }
 
-func (_c *MockRoutesSDK_DeleteRouteInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteRouteInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteRouteInWorkspaceResponse, error)) *MockRoutesSDK_DeleteRouteInWorkspace_Call {
+func (_c *MockRoutesSDK_DeleteRoute_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteRouteRequest, opts ...operations.Option) (*operations.DeleteRouteResponse, error)) *MockRoutesSDK_DeleteRoute_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -641,8 +379,8 @@ func (_c *MockRoutesSDK_DeleteRouteWithService_Call) RunAndReturn(run func(ctx c
 	return _c
 }
 
-// DeleteRouteWithServiceInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) DeleteRouteWithServiceInWorkspace(ctx context.Context, request operations.DeleteRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteRouteWithServiceInWorkspaceResponse, error) {
+// GetRoute provides a mock function for the type MockRoutesSDK
+func (_mock *MockRoutesSDK) GetRoute(ctx context.Context, request operations.GetRouteRequest, opts ...operations.Option) (*operations.GetRouteResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, request, opts)
@@ -652,106 +390,23 @@ func (_mock *MockRoutesSDK) DeleteRouteWithServiceInWorkspace(ctx context.Contex
 	ret := tmpRet
 
 	if len(ret) == 0 {
-		panic("no return value specified for DeleteRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.DeleteRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.DeleteRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.DeleteRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.DeleteRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.DeleteRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.DeleteRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteRouteWithServiceInWorkspace'
-type MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// DeleteRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.DeleteRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) DeleteRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call {
-	return &MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call{Call: _e.mock.On("DeleteRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.DeleteRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.DeleteRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.DeleteRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call) Return(deleteRouteWithServiceInWorkspaceResponse *operations.DeleteRouteWithServiceInWorkspaceResponse, err error) *MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(deleteRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.DeleteRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.DeleteRouteWithServiceInWorkspaceResponse, error)) *MockRoutesSDK_DeleteRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetRoute provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) GetRoute(ctx context.Context, routeID string, controlPlaneID string, opts ...operations.Option) (*operations.GetRouteResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, routeID, controlPlaneID, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, routeID, controlPlaneID)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
 		panic("no return value specified for GetRoute")
 	}
 
 	var r0 *operations.GetRouteResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.GetRouteResponse, error)); ok {
-		return returnFunc(ctx, routeID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetRouteRequest, ...operations.Option) (*operations.GetRouteResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.GetRouteResponse); ok {
-		r0 = returnFunc(ctx, routeID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetRouteRequest, ...operations.Option) *operations.GetRouteResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.GetRouteResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, routeID, controlPlaneID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetRouteRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -765,111 +420,22 @@ type MockRoutesSDK_GetRoute_Call struct {
 
 // GetRoute is a helper method to define mock.On call
 //   - ctx context.Context
-//   - routeID string
-//   - controlPlaneID string
+//   - request operations.GetRouteRequest
 //   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) GetRoute(ctx any, routeID any, controlPlaneID any, opts ...any) *MockRoutesSDK_GetRoute_Call {
+func (_e *MockRoutesSDK_Expecter) GetRoute(ctx any, request any, opts ...any) *MockRoutesSDK_GetRoute_Call {
 	return &MockRoutesSDK_GetRoute_Call{Call: _e.mock.On("GetRoute",
-		append([]any{ctx, routeID, controlPlaneID}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_GetRoute_Call) Run(run func(ctx context.Context, routeID string, controlPlaneID string, opts ...operations.Option)) *MockRoutesSDK_GetRoute_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 string
-		if args[2] != nil {
-			arg2 = args[2].(string)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_GetRoute_Call) Return(getRouteResponse *operations.GetRouteResponse, err error) *MockRoutesSDK_GetRoute_Call {
-	_c.Call.Return(getRouteResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_GetRoute_Call) RunAndReturn(run func(ctx context.Context, routeID string, controlPlaneID string, opts ...operations.Option) (*operations.GetRouteResponse, error)) *MockRoutesSDK_GetRoute_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetRouteInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) GetRouteInWorkspace(ctx context.Context, request operations.GetRouteInWorkspaceRequest, opts ...operations.Option) (*operations.GetRouteInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetRouteInWorkspace")
-	}
-
-	var r0 *operations.GetRouteInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetRouteInWorkspaceRequest, ...operations.Option) (*operations.GetRouteInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetRouteInWorkspaceRequest, ...operations.Option) *operations.GetRouteInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetRouteInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetRouteInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_GetRouteInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetRouteInWorkspace'
-type MockRoutesSDK_GetRouteInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetRouteInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetRouteInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) GetRouteInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_GetRouteInWorkspace_Call {
-	return &MockRoutesSDK_GetRouteInWorkspace_Call{Call: _e.mock.On("GetRouteInWorkspace",
 		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockRoutesSDK_GetRouteInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetRouteInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_GetRouteInWorkspace_Call {
+func (_c *MockRoutesSDK_GetRoute_Call) Run(run func(ctx context.Context, request operations.GetRouteRequest, opts ...operations.Option)) *MockRoutesSDK_GetRoute_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.GetRouteInWorkspaceRequest
+		var arg1 operations.GetRouteRequest
 		if args[1] != nil {
-			arg1 = args[1].(operations.GetRouteInWorkspaceRequest)
+			arg1 = args[1].(operations.GetRouteRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -886,12 +452,12 @@ func (_c *MockRoutesSDK_GetRouteInWorkspace_Call) Run(run func(ctx context.Conte
 	return _c
 }
 
-func (_c *MockRoutesSDK_GetRouteInWorkspace_Call) Return(getRouteInWorkspaceResponse *operations.GetRouteInWorkspaceResponse, err error) *MockRoutesSDK_GetRouteInWorkspace_Call {
-	_c.Call.Return(getRouteInWorkspaceResponse, err)
+func (_c *MockRoutesSDK_GetRoute_Call) Return(getRouteResponse *operations.GetRouteResponse, err error) *MockRoutesSDK_GetRoute_Call {
+	_c.Call.Return(getRouteResponse, err)
 	return _c
 }
 
-func (_c *MockRoutesSDK_GetRouteInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetRouteInWorkspaceRequest, opts ...operations.Option) (*operations.GetRouteInWorkspaceResponse, error)) *MockRoutesSDK_GetRouteInWorkspace_Call {
+func (_c *MockRoutesSDK_GetRoute_Call) RunAndReturn(run func(ctx context.Context, request operations.GetRouteRequest, opts ...operations.Option) (*operations.GetRouteResponse, error)) *MockRoutesSDK_GetRoute_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -979,89 +545,6 @@ func (_c *MockRoutesSDK_GetRouteWithService_Call) RunAndReturn(run func(ctx cont
 	return _c
 }
 
-// GetRouteWithServiceInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) GetRouteWithServiceInWorkspace(ctx context.Context, request operations.GetRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.GetRouteWithServiceInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.GetRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.GetRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.GetRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.GetRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_GetRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetRouteWithServiceInWorkspace'
-type MockRoutesSDK_GetRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// GetRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.GetRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) GetRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_GetRouteWithServiceInWorkspace_Call {
-	return &MockRoutesSDK_GetRouteWithServiceInWorkspace_Call{Call: _e.mock.On("GetRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_GetRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.GetRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_GetRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.GetRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.GetRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_GetRouteWithServiceInWorkspace_Call) Return(getRouteWithServiceInWorkspaceResponse *operations.GetRouteWithServiceInWorkspaceResponse, err error) *MockRoutesSDK_GetRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(getRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_GetRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.GetRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.GetRouteWithServiceInWorkspaceResponse, error)) *MockRoutesSDK_GetRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // ListRoute provides a mock function for the type MockRoutesSDK
 func (_mock *MockRoutesSDK) ListRoute(ctx context.Context, request operations.ListRouteRequest, opts ...operations.Option) (*operations.ListRouteResponse, error) {
 	var tmpRet mock.Arguments
@@ -1141,89 +624,6 @@ func (_c *MockRoutesSDK_ListRoute_Call) Return(listRouteResponse *operations.Lis
 }
 
 func (_c *MockRoutesSDK_ListRoute_Call) RunAndReturn(run func(ctx context.Context, request operations.ListRouteRequest, opts ...operations.Option) (*operations.ListRouteResponse, error)) *MockRoutesSDK_ListRoute_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// ListRouteInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) ListRouteInWorkspace(ctx context.Context, request operations.ListRouteInWorkspaceRequest, opts ...operations.Option) (*operations.ListRouteInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListRouteInWorkspace")
-	}
-
-	var r0 *operations.ListRouteInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListRouteInWorkspaceRequest, ...operations.Option) (*operations.ListRouteInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListRouteInWorkspaceRequest, ...operations.Option) *operations.ListRouteInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListRouteInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListRouteInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_ListRouteInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListRouteInWorkspace'
-type MockRoutesSDK_ListRouteInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListRouteInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListRouteInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) ListRouteInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_ListRouteInWorkspace_Call {
-	return &MockRoutesSDK_ListRouteInWorkspace_Call{Call: _e.mock.On("ListRouteInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_ListRouteInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListRouteInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_ListRouteInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListRouteInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListRouteInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_ListRouteInWorkspace_Call) Return(listRouteInWorkspaceResponse *operations.ListRouteInWorkspaceResponse, err error) *MockRoutesSDK_ListRouteInWorkspace_Call {
-	_c.Call.Return(listRouteInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_ListRouteInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListRouteInWorkspaceRequest, opts ...operations.Option) (*operations.ListRouteInWorkspaceResponse, error)) *MockRoutesSDK_ListRouteInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -1311,89 +711,6 @@ func (_c *MockRoutesSDK_ListRouteWithService_Call) RunAndReturn(run func(ctx con
 	return _c
 }
 
-// ListRouteWithServiceInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) ListRouteWithServiceInWorkspace(ctx context.Context, request operations.ListRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.ListRouteWithServiceInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ListRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.ListRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.ListRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.ListRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ListRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_ListRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ListRouteWithServiceInWorkspace'
-type MockRoutesSDK_ListRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// ListRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.ListRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) ListRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_ListRouteWithServiceInWorkspace_Call {
-	return &MockRoutesSDK_ListRouteWithServiceInWorkspace_Call{Call: _e.mock.On("ListRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_ListRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.ListRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_ListRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.ListRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.ListRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_ListRouteWithServiceInWorkspace_Call) Return(listRouteWithServiceInWorkspaceResponse *operations.ListRouteWithServiceInWorkspaceResponse, err error) *MockRoutesSDK_ListRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(listRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_ListRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.ListRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.ListRouteWithServiceInWorkspaceResponse, error)) *MockRoutesSDK_ListRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // SearchRoutes provides a mock function for the type MockRoutesSDK
 func (_mock *MockRoutesSDK) SearchRoutes(ctx context.Context, request operations.SearchRoutesRequest, opts ...operations.Option) (*operations.SearchRoutesResponse, error) {
 	var tmpRet mock.Arguments
@@ -1473,89 +790,6 @@ func (_c *MockRoutesSDK_SearchRoutes_Call) Return(searchRoutesResponse *operatio
 }
 
 func (_c *MockRoutesSDK_SearchRoutes_Call) RunAndReturn(run func(ctx context.Context, request operations.SearchRoutesRequest, opts ...operations.Option) (*operations.SearchRoutesResponse, error)) *MockRoutesSDK_SearchRoutes_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// SearchRoutesInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) SearchRoutesInWorkspace(ctx context.Context, request operations.SearchRoutesInWorkspaceRequest, opts ...operations.Option) (*operations.SearchRoutesInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for SearchRoutesInWorkspace")
-	}
-
-	var r0 *operations.SearchRoutesInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.SearchRoutesInWorkspaceRequest, ...operations.Option) (*operations.SearchRoutesInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.SearchRoutesInWorkspaceRequest, ...operations.Option) *operations.SearchRoutesInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.SearchRoutesInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.SearchRoutesInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_SearchRoutesInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'SearchRoutesInWorkspace'
-type MockRoutesSDK_SearchRoutesInWorkspace_Call struct {
-	*mock.Call
-}
-
-// SearchRoutesInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.SearchRoutesInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) SearchRoutesInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_SearchRoutesInWorkspace_Call {
-	return &MockRoutesSDK_SearchRoutesInWorkspace_Call{Call: _e.mock.On("SearchRoutesInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_SearchRoutesInWorkspace_Call) Run(run func(ctx context.Context, request operations.SearchRoutesInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_SearchRoutesInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.SearchRoutesInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.SearchRoutesInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_SearchRoutesInWorkspace_Call) Return(searchRoutesInWorkspaceResponse *operations.SearchRoutesInWorkspaceResponse, err error) *MockRoutesSDK_SearchRoutesInWorkspace_Call {
-	_c.Call.Return(searchRoutesInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_SearchRoutesInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.SearchRoutesInWorkspaceRequest, opts ...operations.Option) (*operations.SearchRoutesInWorkspaceResponse, error)) *MockRoutesSDK_SearchRoutesInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -1643,89 +877,6 @@ func (_c *MockRoutesSDK_UpsertRoute_Call) RunAndReturn(run func(ctx context.Cont
 	return _c
 }
 
-// UpsertRouteInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) UpsertRouteInWorkspace(ctx context.Context, request operations.UpsertRouteInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertRouteInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertRouteInWorkspace")
-	}
-
-	var r0 *operations.UpsertRouteInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertRouteInWorkspaceRequest, ...operations.Option) (*operations.UpsertRouteInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertRouteInWorkspaceRequest, ...operations.Option) *operations.UpsertRouteInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertRouteInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertRouteInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_UpsertRouteInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertRouteInWorkspace'
-type MockRoutesSDK_UpsertRouteInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertRouteInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertRouteInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) UpsertRouteInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_UpsertRouteInWorkspace_Call {
-	return &MockRoutesSDK_UpsertRouteInWorkspace_Call{Call: _e.mock.On("UpsertRouteInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_UpsertRouteInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertRouteInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_UpsertRouteInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertRouteInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertRouteInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_UpsertRouteInWorkspace_Call) Return(upsertRouteInWorkspaceResponse *operations.UpsertRouteInWorkspaceResponse, err error) *MockRoutesSDK_UpsertRouteInWorkspace_Call {
-	_c.Call.Return(upsertRouteInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_UpsertRouteInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertRouteInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertRouteInWorkspaceResponse, error)) *MockRoutesSDK_UpsertRouteInWorkspace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
 // UpsertRouteWithService provides a mock function for the type MockRoutesSDK
 func (_mock *MockRoutesSDK) UpsertRouteWithService(ctx context.Context, request operations.UpsertRouteWithServiceRequest, opts ...operations.Option) (*operations.UpsertRouteWithServiceResponse, error) {
 	var tmpRet mock.Arguments
@@ -1805,89 +956,6 @@ func (_c *MockRoutesSDK_UpsertRouteWithService_Call) Return(upsertRouteWithServi
 }
 
 func (_c *MockRoutesSDK_UpsertRouteWithService_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertRouteWithServiceRequest, opts ...operations.Option) (*operations.UpsertRouteWithServiceResponse, error)) *MockRoutesSDK_UpsertRouteWithService_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// UpsertRouteWithServiceInWorkspace provides a mock function for the type MockRoutesSDK
-func (_mock *MockRoutesSDK) UpsertRouteWithServiceInWorkspace(ctx context.Context, request operations.UpsertRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertRouteWithServiceInWorkspaceResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, request)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for UpsertRouteWithServiceInWorkspace")
-	}
-
-	var r0 *operations.UpsertRouteWithServiceInWorkspaceResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertRouteWithServiceInWorkspaceRequest, ...operations.Option) (*operations.UpsertRouteWithServiceInWorkspaceResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.UpsertRouteWithServiceInWorkspaceRequest, ...operations.Option) *operations.UpsertRouteWithServiceInWorkspaceResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.UpsertRouteWithServiceInWorkspaceResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.UpsertRouteWithServiceInWorkspaceRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpsertRouteWithServiceInWorkspace'
-type MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call struct {
-	*mock.Call
-}
-
-// UpsertRouteWithServiceInWorkspace is a helper method to define mock.On call
-//   - ctx context.Context
-//   - request operations.UpsertRouteWithServiceInWorkspaceRequest
-//   - opts ...operations.Option
-func (_e *MockRoutesSDK_Expecter) UpsertRouteWithServiceInWorkspace(ctx any, request any, opts ...any) *MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call {
-	return &MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call{Call: _e.mock.On("UpsertRouteWithServiceInWorkspace",
-		append([]any{ctx, request}, opts...)...)}
-}
-
-func (_c *MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call) Run(run func(ctx context.Context, request operations.UpsertRouteWithServiceInWorkspaceRequest, opts ...operations.Option)) *MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 operations.UpsertRouteWithServiceInWorkspaceRequest
-		if args[1] != nil {
-			arg1 = args[1].(operations.UpsertRouteWithServiceInWorkspaceRequest)
-		}
-		var arg2 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
-		}
-		arg2 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call) Return(upsertRouteWithServiceInWorkspaceResponse *operations.UpsertRouteWithServiceInWorkspaceResponse, err error) *MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call {
-	_c.Call.Return(upsertRouteWithServiceInWorkspaceResponse, err)
-	return _c
-}
-
-func (_c *MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call) RunAndReturn(run func(ctx context.Context, request operations.UpsertRouteWithServiceInWorkspaceRequest, opts ...operations.Option) (*operations.UpsertRouteWithServiceInWorkspaceResponse, error)) *MockRoutesSDK_UpsertRouteWithServiceInWorkspace_Call {
 	_c.Call.Return(run)
 	return _c
 }

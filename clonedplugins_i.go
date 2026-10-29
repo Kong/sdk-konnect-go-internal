@@ -17,13 +17,13 @@ type ClonedPluginsSDK interface {
 	// CreateClonedPlugin - Create a new Cloned Plugin
 	// Create a new Cloned Plugin
 	CreateClonedPlugin(ctx context.Context, controlPlaneID string, clonedPlugin components.ClonedPlugin, opts ...operations.Option) (*operations.CreateClonedPluginResponse, error)
+	// DeleteClonedPlugin - Delete a Cloned Plugin
+	// Delete a Cloned Plugin
+	DeleteClonedPlugin(ctx context.Context, controlPlaneID string, clonedPluginID string, opts ...operations.Option) (*operations.DeleteClonedPluginResponse, error)
 	// GetClonedPlugin - Get a Cloned Plugin
 	// Get a Cloned Plugin using ID or name.
 	GetClonedPlugin(ctx context.Context, clonedPluginID string, controlPlaneID string, opts ...operations.Option) (*operations.GetClonedPluginResponse, error)
 	// UpsertClonedPlugin - Upsert a Cloned Plugin
 	// Create or Update Cloned Plugin using ID or name.
 	UpsertClonedPlugin(ctx context.Context, request operations.UpsertClonedPluginRequest, opts ...operations.Option) (*operations.UpsertClonedPluginResponse, error)
-	// DeleteClonedPlugin - Delete a Cloned Plugin
-	// Delete a Cloned Plugin
-	DeleteClonedPlugin(ctx context.Context, controlPlaneID string, clonedPluginID string, opts ...operations.Option) (*operations.DeleteClonedPluginResponse, error)
 }

@@ -13,349 +13,19 @@ Secrets rotation can be managed using [TTLs](https://developer.konghq.com/gatewa
 
 ### Available Operations
 
-* [ListVaultInWorkspace](#listvaultinworkspace) - List all Vaults in a workspace
-* [CreateVaultInWorkspace](#createvaultinworkspace) - Create a new Vault in a workspace
-* [DeleteVaultInWorkspace](#deletevaultinworkspace) - Delete a Vault in a workspace
-* [GetVaultInWorkspace](#getvaultinworkspace) - Get a Vault in a workspace
-* [UpsertVaultInWorkspace](#upsertvaultinworkspace) - Upsert a Vault in a workspace
-* [ListVault](#listvault) - List all Vaults
-* [CreateVault](#createvault) - Create a new Vault
-* [DeleteVault](#deletevault) - Delete a Vault
-* [GetVault](#getvault) - Get a Vault
-* [UpsertVault](#upsertvault) - Upsert a Vault
+* [ListVault](#listvault) - List all Vaults in a workspace
+* [CreateVault](#createvault) - Create a new Vault in a workspace
+* [DeleteVault](#deletevault) - Delete a Vault in a workspace
+* [GetVault](#getvault) - Get a Vault in a workspace
+* [UpsertVault](#upsertvault) - Upsert a Vault in a workspace
 
-## ListVaultInWorkspace
+## ListVault
 
 List all Vaults in a workspace
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-vault-in-workspace" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Vaults.ListVaultInWorkspace(ctx, operations.ListVaultInWorkspaceRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Tags: sdkkonnectgo.Pointer("tag1,tag2"),
-        Workspace: "team-payments",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Object != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.ListVaultInWorkspaceRequest](../../models/operations/listvaultinworkspacerequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
-
-### Response
-
-**[*operations.ListVaultInWorkspaceResponse](../../models/operations/listvaultinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## CreateVaultInWorkspace
-
-Create a new Vault in a workspace
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="create-vault-in-workspace" method="post" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Vaults.CreateVaultInWorkspace(ctx, operations.CreateVaultInWorkspaceRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Workspace: "team-payments",
-        Vault: components.Vault{
-            Config: map[string]any{
-                "prefix": "ENV_PREFIX",
-            },
-            Description: sdkkonnectgo.Pointer("environment variable based vault"),
-            ID: sdkkonnectgo.Pointer("2747d1e5-8246-4f65-a939-b392f1ee17f8"),
-            Name: "env",
-            Prefix: "env",
-            Tags: []string{
-                "foo",
-                "bar",
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Vault != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.CreateVaultInWorkspaceRequest](../../models/operations/createvaultinworkspacerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
-
-### Response
-
-**[*operations.CreateVaultInWorkspaceResponse](../../models/operations/createvaultinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## DeleteVaultInWorkspace
-
-Delete a Vault in a workspace
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="delete-vault-in-workspace" method="delete" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults/{VaultId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Vaults.DeleteVaultInWorkspace(ctx, operations.DeleteVaultInWorkspaceRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        VaultID: "9d4d6d19-77c6-428e-a965-9bc9647633e9",
-        Workspace: "team-payments",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.DeleteVaultInWorkspaceRequest](../../models/operations/deletevaultinworkspacerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
-
-### Response
-
-**[*operations.DeleteVaultInWorkspaceResponse](../../models/operations/deletevaultinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## GetVaultInWorkspace
-
-Get a Vault using ID or prefix in a workspace.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-vault-in-workspace" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults/{VaultId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Vaults.GetVaultInWorkspace(ctx, operations.GetVaultInWorkspaceRequest{
-        VaultID: "9d4d6d19-77c6-428e-a965-9bc9647633e9",
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Workspace: "team-payments",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Vault != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.GetVaultInWorkspaceRequest](../../models/operations/getvaultinworkspacerequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
-
-### Response
-
-**[*operations.GetVaultInWorkspaceResponse](../../models/operations/getvaultinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## UpsertVaultInWorkspace
-
-Create or Update Vault using ID or prefix in a workspace.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="upsert-vault-in-workspace" method="put" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults/{VaultId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Vaults.UpsertVaultInWorkspace(ctx, operations.UpsertVaultInWorkspaceRequest{
-        VaultID: "9d4d6d19-77c6-428e-a965-9bc9647633e9",
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Workspace: "team-payments",
-        Vault: components.Vault{
-            Config: map[string]any{
-                "prefix": "ENV_PREFIX",
-            },
-            Description: sdkkonnectgo.Pointer("environment variable based vault"),
-            ID: sdkkonnectgo.Pointer("2747d1e5-8246-4f65-a939-b392f1ee17f8"),
-            Name: "env",
-            Prefix: "env",
-            Tags: []string{
-                "foo",
-                "bar",
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Vault != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.UpsertVaultInWorkspaceRequest](../../models/operations/upsertvaultinworkspacerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
-
-### Response
-
-**[*operations.UpsertVaultInWorkspaceResponse](../../models/operations/upsertvaultinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## ListVault
-
-List all Vaults
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-vault" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/vaults" -->
+<!-- UsageSnippet language="go" operationID="list-vault" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults" -->
 ```go
 package main
 
@@ -379,6 +49,7 @@ func main() {
     res, err := s.Vaults.ListVault(ctx, operations.ListVaultRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         Tags: sdkkonnectgo.Pointer("tag1,tag2"),
+        Workspace: "team-payments",
     })
     if err != nil {
         log.Fatal(err)
@@ -410,11 +81,11 @@ func main() {
 
 ## CreateVault
 
-Create a new Vault
+Create a new Vault in a workspace
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-vault" method="post" path="/v2/control-planes/{controlPlaneId}/core-entities/vaults" -->
+<!-- UsageSnippet language="go" operationID="create-vault" method="post" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults" -->
 ```go
 package main
 
@@ -422,6 +93,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -434,17 +106,21 @@ func main() {
         }),
     )
 
-    res, err := s.Vaults.CreateVault(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.Vault{
-        Config: map[string]any{
-            "prefix": "ENV_PREFIX",
-        },
-        Description: sdkkonnectgo.Pointer("environment variable based vault"),
-        ID: sdkkonnectgo.Pointer("2747d1e5-8246-4f65-a939-b392f1ee17f8"),
-        Name: "env",
-        Prefix: "env",
-        Tags: []string{
-            "foo",
-            "bar",
+    res, err := s.Vaults.CreateVault(ctx, operations.CreateVaultRequest{
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        Workspace: "team-payments",
+        Vault: components.Vault{
+            Config: map[string]any{
+                "prefix": "ENV_PREFIX",
+            },
+            Description: sdkkonnectgo.Pointer("environment variable based vault"),
+            ID: sdkkonnectgo.Pointer("2747d1e5-8246-4f65-a939-b392f1ee17f8"),
+            Name: "env",
+            Prefix: "env",
+            Tags: []string{
+                "foo",
+                "bar",
+            },
         },
     })
     if err != nil {
@@ -458,12 +134,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                           | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         | Example                                                                                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                                               | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                  | The context to use for the request.                                                                                                                                                                 |                                                                                                                                                                                                     |
-| `controlPlaneID`                                                                                                                                                                                    | `string`                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                  | The UUID of your control plane. This variable is available in the Konnect manager.                                                                                                                  | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                                                                                                                                                |
-| `vault`                                                                                                                                                                                             | [components.Vault](../../models/components/vault.md)                                                                                                                                                | :heavy_check_mark:                                                                                                                                                                                  | Description of the new Vault for creation                                                                                                                                                           | {<br/>"config": {<br/>"prefix": "ENV_PREFIX"<br/>},<br/>"description": "environment variable based vault",<br/>"id": "2747d1e5-8246-4f65-a939-b392f1ee17f8",<br/>"name": "env",<br/>"prefix": "env",<br/>"tags": [<br/>"foo",<br/>"bar"<br/>]<br/>} |
-| `opts`                                                                                                                                                                                              | [][operations.Option](../../models/operations/option.md)                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                  | The options for this request.                                                                                                                                                                       |                                                                                                                                                                                                     |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.CreateVaultRequest](../../models/operations/createvaultrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
@@ -478,11 +153,11 @@ func main() {
 
 ## DeleteVault
 
-Delete a Vault
+Delete a Vault in a workspace
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-vault" method="delete" path="/v2/control-planes/{controlPlaneId}/core-entities/vaults/{VaultId}" -->
+<!-- UsageSnippet language="go" operationID="delete-vault" method="delete" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults/{VaultId}" -->
 ```go
 package main
 
@@ -490,6 +165,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -502,7 +178,11 @@ func main() {
         }),
     )
 
-    res, err := s.Vaults.DeleteVault(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", "9d4d6d19-77c6-428e-a965-9bc9647633e9")
+    res, err := s.Vaults.DeleteVault(ctx, operations.DeleteVaultRequest{
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        VaultID: "9d4d6d19-77c6-428e-a965-9bc9647633e9",
+        Workspace: "team-payments",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -514,12 +194,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
-| `controlPlaneID`                                                                   | `string`                                                                           | :heavy_check_mark:                                                                 | The UUID of your control plane. This variable is available in the Konnect manager. | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                               |
-| `vaultID`                                                                          | `string`                                                                           | :heavy_check_mark:                                                                 | ID of the Vault to lookup                                                          | 9d4d6d19-77c6-428e-a965-9bc9647633e9                                               |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.DeleteVaultRequest](../../models/operations/deletevaultrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
@@ -534,11 +213,11 @@ func main() {
 
 ## GetVault
 
-Get a Vault using ID or prefix.
+Get a Vault using ID or prefix in a workspace.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-vault" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/vaults/{VaultId}" -->
+<!-- UsageSnippet language="go" operationID="get-vault" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults/{VaultId}" -->
 ```go
 package main
 
@@ -546,6 +225,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -558,7 +238,11 @@ func main() {
         }),
     )
 
-    res, err := s.Vaults.GetVault(ctx, "9d4d6d19-77c6-428e-a965-9bc9647633e9", "9524ec7d-36d9-465d-a8c5-83a3c9390458")
+    res, err := s.Vaults.GetVault(ctx, operations.GetVaultRequest{
+        VaultID: "9d4d6d19-77c6-428e-a965-9bc9647633e9",
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        Workspace: "team-payments",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -570,12 +254,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
-| `vaultID`                                                                          | `string`                                                                           | :heavy_check_mark:                                                                 | ID of the Vault to lookup                                                          | 9d4d6d19-77c6-428e-a965-9bc9647633e9                                               |
-| `controlPlaneID`                                                                   | `string`                                                                           | :heavy_check_mark:                                                                 | The UUID of your control plane. This variable is available in the Konnect manager. | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                               |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [operations.GetVaultRequest](../../models/operations/getvaultrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `opts`                                                                   | [][operations.Option](../../models/operations/option.md)                 | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
@@ -590,11 +273,11 @@ func main() {
 
 ## UpsertVault
 
-Create or Update Vault using ID or prefix.
+Create or Update Vault using ID or prefix in a workspace.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="upsert-vault" method="put" path="/v2/control-planes/{controlPlaneId}/core-entities/vaults/{VaultId}" -->
+<!-- UsageSnippet language="go" operationID="upsert-vault" method="put" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/vaults/{VaultId}" -->
 ```go
 package main
 
@@ -618,6 +301,7 @@ func main() {
     res, err := s.Vaults.UpsertVault(ctx, operations.UpsertVaultRequest{
         VaultID: "9d4d6d19-77c6-428e-a965-9bc9647633e9",
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        Workspace: "team-payments",
         Vault: components.Vault{
             Config: map[string]any{
                 "prefix": "ENV_PREFIX",

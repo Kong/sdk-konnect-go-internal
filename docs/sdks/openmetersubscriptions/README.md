@@ -82,7 +82,7 @@ func main() {
                                 "env": "test",
                             },
                             Key: "resource_key",
-                            Feature: &components.FeatureReference{
+                            Feature: &components.BillingRateCardFeatureReference{
                                 ID: "01G65Z755AFWAKHE12NY0CQ9FH",
                             },
                             Currency: sdkkonnectgo.Pointer("USD"),
