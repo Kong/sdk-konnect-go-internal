@@ -65,16 +65,16 @@ func main() {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequestError     | 400                           | application/problem+json      |
-| sdkerrors.UnauthorizedError   | 401                           | application/problem+json      |
-| sdkerrors.ForbiddenError      | 403                           | application/problem+json      |
-| sdkerrors.NotFoundError       | 404                           | application/problem+json      |
-| sdkerrors.InternalError       | 500                           | application/problem+json      |
-| sdkerrors.NotImplementedError | 501                           | application/problem+json      |
-| sdkerrors.ServiceUnavailable  | 503                           | application/problem+json      |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.KonnectCPLegacyBadRequestError   | 400                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyUnauthorizedError | 401                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyForbiddenError    | 403                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyNotFoundError     | 404                                        | application/json                           |
+| sdkerrors.InternalError                    | 500                                        | application/problem+json                   |
+| sdkerrors.NotImplementedError              | 501                                        | application/problem+json                   |
+| sdkerrors.ServiceUnavailable               | 503                                        | application/problem+json                   |
+| sdkerrors.SDKError                         | 4XX, 5XX                                   | \*/\*                                      |
 
 ## CreateWorkspace
 
@@ -134,15 +134,16 @@ func main() {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequestError     | 400                           | application/problem+json      |
-| sdkerrors.UnauthorizedError   | 401                           | application/problem+json      |
-| sdkerrors.ForbiddenError      | 403                           | application/problem+json      |
-| sdkerrors.NotFoundError       | 404                           | application/problem+json      |
-| sdkerrors.InternalError       | 500                           | application/problem+json      |
-| sdkerrors.NotImplementedError | 501                           | application/problem+json      |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.KonnectCPLegacyBadRequestError   | 400                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyUnauthorizedError | 401                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyForbiddenError    | 403                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyNotFoundError     | 404                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyConflictError     | 409                                        | application/json                           |
+| sdkerrors.InternalError                    | 500                                        | application/problem+json                   |
+| sdkerrors.NotImplementedError              | 501                                        | application/problem+json                   |
+| sdkerrors.SDKError                         | 4XX, 5XX                                   | \*/\*                                      |
 
 ## GetWorkspace
 
@@ -195,16 +196,16 @@ func main() {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequestError     | 400                           | application/problem+json      |
-| sdkerrors.UnauthorizedError   | 401                           | application/problem+json      |
-| sdkerrors.ForbiddenError      | 403                           | application/problem+json      |
-| sdkerrors.NotFoundError       | 404                           | application/problem+json      |
-| sdkerrors.InternalError       | 500                           | application/problem+json      |
-| sdkerrors.NotImplementedError | 501                           | application/problem+json      |
-| sdkerrors.ServiceUnavailable  | 503                           | application/problem+json      |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.KonnectCPLegacyBadRequestError   | 400                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyUnauthorizedError | 401                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyForbiddenError    | 403                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyNotFoundError     | 404                                        | application/json                           |
+| sdkerrors.InternalError                    | 500                                        | application/problem+json                   |
+| sdkerrors.NotImplementedError              | 501                                        | application/problem+json                   |
+| sdkerrors.ServiceUnavailable               | 503                                        | application/problem+json                   |
+| sdkerrors.SDKError                         | 4XX, 5XX                                   | \*/\*                                      |
 
 ## DeleteWorkspace
 
@@ -257,16 +258,16 @@ func main() {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequestError     | 400                           | application/problem+json      |
-| sdkerrors.UnauthorizedError   | 401                           | application/problem+json      |
-| sdkerrors.ForbiddenError      | 403                           | application/problem+json      |
-| sdkerrors.NotFoundError       | 404                           | application/problem+json      |
-| sdkerrors.InternalError       | 500                           | application/problem+json      |
-| sdkerrors.NotImplementedError | 501                           | application/problem+json      |
-| sdkerrors.ServiceUnavailable  | 503                           | application/problem+json      |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.KonnectCPLegacyBadRequestError   | 400                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyUnauthorizedError | 401                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyForbiddenError    | 403                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyNotFoundError     | 404                                        | application/json                           |
+| sdkerrors.InternalError                    | 500                                        | application/problem+json                   |
+| sdkerrors.NotImplementedError              | 501                                        | application/problem+json                   |
+| sdkerrors.ServiceUnavailable               | 503                                        | application/problem+json                   |
+| sdkerrors.SDKError                         | 4XX, 5XX                                   | \*/\*                                      |
 
 ## UpsertWorkspace
 
@@ -328,13 +329,14 @@ func main() {
 
 ### Errors
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequestError     | 400                           | application/problem+json      |
-| sdkerrors.UnauthorizedError   | 401                           | application/problem+json      |
-| sdkerrors.ForbiddenError      | 403                           | application/problem+json      |
-| sdkerrors.NotFoundError       | 404                           | application/problem+json      |
-| sdkerrors.InternalError       | 500                           | application/problem+json      |
-| sdkerrors.NotImplementedError | 501                           | application/problem+json      |
-| sdkerrors.ServiceUnavailable  | 503                           | application/problem+json      |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+| Error Type                                 | Status Code                                | Content Type                               |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| sdkerrors.KonnectCPLegacyBadRequestError   | 400                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyUnauthorizedError | 401                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyForbiddenError    | 403                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyNotFoundError     | 404                                        | application/json                           |
+| sdkerrors.KonnectCPLegacyConflictError     | 409                                        | application/json                           |
+| sdkerrors.InternalError                    | 500                                        | application/problem+json                   |
+| sdkerrors.NotImplementedError              | 501                                        | application/problem+json                   |
+| sdkerrors.ServiceUnavailable               | 503                                        | application/problem+json                   |
+| sdkerrors.SDKError                         | 4XX, 5XX                                   | \*/\*                                      |

@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"net/http"
 )
 
@@ -11,6 +12,19 @@ type DeleteCaCertificateRequest struct {
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
 	// ID of the CA Certificate to lookup
 	CACertificateID string `pathParam:"style=simple,explode=false,name=CACertificateId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
+}
+
+func (d DeleteCaCertificateRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteCaCertificateRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteCaCertificateRequest) GetControlPlaneID() string {
@@ -25,6 +39,13 @@ func (d *DeleteCaCertificateRequest) GetCACertificateID() string {
 		return ""
 	}
 	return d.CACertificateID
+}
+
+func (d *DeleteCaCertificateRequest) GetWorkspace() string {
+	if d == nil {
+		return ""
+	}
+	return d.Workspace
 }
 
 type DeleteCaCertificateResponse struct {

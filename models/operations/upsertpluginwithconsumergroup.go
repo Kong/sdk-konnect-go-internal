@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -14,8 +15,21 @@ type UpsertPluginWithConsumerGroupRequest struct {
 	ConsumerGroupID string `pathParam:"style=simple,explode=false,name=ConsumerGroupId"`
 	// ID of the Plugin to lookup
 	PluginID string `pathParam:"style=simple,explode=false,name=PluginId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of the Plugin
 	PluginWithoutParents components.PluginWithoutParents `request:"mediaType=application/json"`
+}
+
+func (u UpsertPluginWithConsumerGroupRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpsertPluginWithConsumerGroupRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpsertPluginWithConsumerGroupRequest) GetControlPlaneID() string {
@@ -37,6 +51,13 @@ func (u *UpsertPluginWithConsumerGroupRequest) GetPluginID() string {
 		return ""
 	}
 	return u.PluginID
+}
+
+func (u *UpsertPluginWithConsumerGroupRequest) GetWorkspace() string {
+	if u == nil {
+		return ""
+	}
+	return u.Workspace
 }
 
 func (u *UpsertPluginWithConsumerGroupRequest) GetPluginWithoutParents() components.PluginWithoutParents {

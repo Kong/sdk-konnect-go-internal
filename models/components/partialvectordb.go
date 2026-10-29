@@ -182,6 +182,7 @@ const (
 	PartialVectordbAuthProviderAws   PartialVectordbAuthProvider = "aws"
 	PartialVectordbAuthProviderAzure PartialVectordbAuthProvider = "azure"
 	PartialVectordbAuthProviderGcp   PartialVectordbAuthProvider = "gcp"
+	PartialVectordbAuthProviderOauth PartialVectordbAuthProvider = "oauth"
 )
 
 func (e PartialVectordbAuthProvider) ToPointer() *PartialVectordbAuthProvider {
@@ -192,11 +193,231 @@ func (e PartialVectordbAuthProvider) ToPointer() *PartialVectordbAuthProvider {
 func (e *PartialVectordbAuthProvider) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "aws", "azure", "gcp":
+		case "aws", "azure", "gcp", "oauth":
 			return true
 		}
 	}
 	return false
+}
+
+// PartialVectordbAuthMethod - Client authentication method used against the token endpoint.
+type PartialVectordbAuthMethod string
+
+const (
+	PartialVectordbAuthMethodClientSecretBasic PartialVectordbAuthMethod = "client_secret_basic"
+	PartialVectordbAuthMethodClientSecretJwt   PartialVectordbAuthMethod = "client_secret_jwt"
+	PartialVectordbAuthMethodClientSecretPost  PartialVectordbAuthMethod = "client_secret_post"
+)
+
+func (e PartialVectordbAuthMethod) ToPointer() *PartialVectordbAuthMethod {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PartialVectordbAuthMethod) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "client_secret_basic", "client_secret_jwt", "client_secret_post":
+			return true
+		}
+	}
+	return false
+}
+
+// PartialVectordbClientSecretJwtAlg - Signing algorithm used for `client_secret_jwt` client authentication.
+type PartialVectordbClientSecretJwtAlg string
+
+const (
+	PartialVectordbClientSecretJwtAlgHs256 PartialVectordbClientSecretJwtAlg = "HS256"
+	PartialVectordbClientSecretJwtAlgHs512 PartialVectordbClientSecretJwtAlg = "HS512"
+)
+
+func (e PartialVectordbClientSecretJwtAlg) ToPointer() *PartialVectordbClientSecretJwtAlg {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PartialVectordbClientSecretJwtAlg) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "HS256", "HS512":
+			return true
+		}
+	}
+	return false
+}
+
+// PartialVectordbGrantType - OAuth 2.0 grant type used to request access tokens.
+type PartialVectordbGrantType string
+
+const (
+	PartialVectordbGrantTypeClientCredentials PartialVectordbGrantType = "client_credentials"
+	PartialVectordbGrantTypePassword          PartialVectordbGrantType = "password"
+)
+
+func (e PartialVectordbGrantType) ToPointer() *PartialVectordbGrantType {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PartialVectordbGrantType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "client_credentials", "password":
+			return true
+		}
+	}
+	return false
+}
+
+// PartialVectordbOauth - OAuth 2.0 client configuration used to authenticate to Redis when `auth_provider` is set to `oauth`.
+type PartialVectordbOauth struct {
+	// Client authentication method used against the token endpoint.
+	AuthMethod *PartialVectordbAuthMethod `default:"client_secret_post" json:"auth_method"`
+	// OAuth 2.0 client ID.
+	ClientID *string `json:"client_id,omitempty"`
+	// OAuth 2.0 client secret.
+	ClientSecret *string `json:"client_secret,omitempty"`
+	// Signing algorithm used for `client_secret_jwt` client authentication.
+	ClientSecretJwtAlg *PartialVectordbClientSecretJwtAlg `default:"HS512" json:"client_secret_jwt_alg"`
+	// OAuth 2.0 grant type used to request access tokens.
+	GrantType *PartialVectordbGrantType `default:"client_credentials" json:"grant_type"`
+	// Resource owner password, used with the `password` grant type.
+	Password *string `json:"password,omitempty"`
+	// Static Redis ACL username sent with `AUTH <username> <token>`.
+	RedisUsername *string `json:"redis_username,omitempty"`
+	// JWT claim in the access token used to derive the Redis ACL username (for example, `oid` for Microsoft Entra ID).
+	RedisUsernameClaim *string `json:"redis_username_claim,omitempty"`
+	// OAuth 2.0 scopes to request.
+	Scopes []string `json:"scopes,omitempty"`
+	// Whether to verify the TLS certificate of the token endpoint.
+	SslVerify *bool `default:"true" json:"ssl_verify"`
+	// Timeout, in milliseconds, for requests to the token endpoint.
+	Timeout *int64 `default:"10000" json:"timeout"`
+	// OAuth 2.0 token endpoint URL used to request access tokens.
+	TokenEndpoint *string `json:"token_endpoint,omitempty"`
+	// Additional HTTP headers to send with the token request.
+	TokenHeaders map[string]string `json:"token_headers,omitempty"`
+	// Additional POST body arguments to send with the token request.
+	TokenPostArgs map[string]string `json:"token_post_args,omitempty"`
+	// Resource owner username, used with the `password` grant type.
+	Username *string `json:"username,omitempty"`
+}
+
+func (p PartialVectordbOauth) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartialVectordbOauth) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PartialVectordbOauth) GetAuthMethod() *PartialVectordbAuthMethod {
+	if p == nil {
+		return nil
+	}
+	return p.AuthMethod
+}
+
+func (p *PartialVectordbOauth) GetClientID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.ClientID
+}
+
+func (p *PartialVectordbOauth) GetClientSecret() *string {
+	if p == nil {
+		return nil
+	}
+	return p.ClientSecret
+}
+
+func (p *PartialVectordbOauth) GetClientSecretJwtAlg() *PartialVectordbClientSecretJwtAlg {
+	if p == nil {
+		return nil
+	}
+	return p.ClientSecretJwtAlg
+}
+
+func (p *PartialVectordbOauth) GetGrantType() *PartialVectordbGrantType {
+	if p == nil {
+		return nil
+	}
+	return p.GrantType
+}
+
+func (p *PartialVectordbOauth) GetPassword() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Password
+}
+
+func (p *PartialVectordbOauth) GetRedisUsername() *string {
+	if p == nil {
+		return nil
+	}
+	return p.RedisUsername
+}
+
+func (p *PartialVectordbOauth) GetRedisUsernameClaim() *string {
+	if p == nil {
+		return nil
+	}
+	return p.RedisUsernameClaim
+}
+
+func (p *PartialVectordbOauth) GetScopes() []string {
+	if p == nil {
+		return nil
+	}
+	return p.Scopes
+}
+
+func (p *PartialVectordbOauth) GetSslVerify() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.SslVerify
+}
+
+func (p *PartialVectordbOauth) GetTimeout() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Timeout
+}
+
+func (p *PartialVectordbOauth) GetTokenEndpoint() *string {
+	if p == nil {
+		return nil
+	}
+	return p.TokenEndpoint
+}
+
+func (p *PartialVectordbOauth) GetTokenHeaders() map[string]string {
+	if p == nil {
+		return nil
+	}
+	return p.TokenHeaders
+}
+
+func (p *PartialVectordbOauth) GetTokenPostArgs() map[string]string {
+	if p == nil {
+		return nil
+	}
+	return p.TokenPostArgs
+}
+
+func (p *PartialVectordbOauth) GetUsername() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Username
 }
 
 // PartialVectordbCloudAuthentication - Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
@@ -225,6 +446,8 @@ type PartialVectordbCloudAuthentication struct {
 	AzureTenantID *string `json:"azure_tenant_id,omitempty"`
 	// GCP Service Account JSON to be used for authentication when `auth_provider` is set to `gcp`.
 	GcpServiceAccountJSON *string `json:"gcp_service_account_json,omitempty"`
+	// OAuth 2.0 client configuration used to authenticate to Redis when `auth_provider` is set to `oauth`.
+	Oauth *PartialVectordbOauth `json:"oauth,omitempty"`
 }
 
 func (p PartialVectordbCloudAuthentication) MarshalJSON() ([]byte, error) {
@@ -322,6 +545,13 @@ func (p *PartialVectordbCloudAuthentication) GetGcpServiceAccountJSON() *string 
 	return p.GcpServiceAccountJSON
 }
 
+func (p *PartialVectordbCloudAuthentication) GetOauth() *PartialVectordbOauth {
+	if p == nil {
+		return nil
+	}
+	return p.Oauth
+}
+
 type PartialVectordbClusterNodes struct {
 	// A string representing a host name, such as example.com.
 	IP *string `default:"127.0.0.1" json:"ip"`
@@ -410,7 +640,7 @@ func (e *PartialVectordbSentinelRole) IsExact() bool {
 	return false
 }
 
-type Redis struct {
+type PartialVectordbRedis struct {
 	// Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
 	CloudAuthentication *PartialVectordbCloudAuthentication `json:"cloud_authentication,omitempty"`
 	// Maximum retry attempts for redirection.
@@ -457,169 +687,169 @@ type Redis struct {
 	Username *string `json:"username,omitempty"`
 }
 
-func (r Redis) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (p PartialVectordbRedis) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (r *Redis) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+func (p *PartialVectordbRedis) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *Redis) GetCloudAuthentication() *PartialVectordbCloudAuthentication {
-	if r == nil {
+func (p *PartialVectordbRedis) GetCloudAuthentication() *PartialVectordbCloudAuthentication {
+	if p == nil {
 		return nil
 	}
-	return r.CloudAuthentication
+	return p.CloudAuthentication
 }
 
-func (r *Redis) GetClusterMaxRedirections() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetClusterMaxRedirections() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.ClusterMaxRedirections
+	return p.ClusterMaxRedirections
 }
 
-func (r *Redis) GetClusterNodes() []PartialVectordbClusterNodes {
-	if r == nil {
+func (p *PartialVectordbRedis) GetClusterNodes() []PartialVectordbClusterNodes {
+	if p == nil {
 		return nil
 	}
-	return r.ClusterNodes
+	return p.ClusterNodes
 }
 
-func (r *Redis) GetConnectTimeout() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetConnectTimeout() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.ConnectTimeout
+	return p.ConnectTimeout
 }
 
-func (r *Redis) GetConnectionIsProxied() *bool {
-	if r == nil {
+func (p *PartialVectordbRedis) GetConnectionIsProxied() *bool {
+	if p == nil {
 		return nil
 	}
-	return r.ConnectionIsProxied
+	return p.ConnectionIsProxied
 }
 
-func (r *Redis) GetDatabase() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetDatabase() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.Database
+	return p.Database
 }
 
-func (r *Redis) GetHost() *string {
-	if r == nil {
+func (p *PartialVectordbRedis) GetHost() *string {
+	if p == nil {
 		return nil
 	}
-	return r.Host
+	return p.Host
 }
 
-func (r *Redis) GetKeepaliveBacklog() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetKeepaliveBacklog() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.KeepaliveBacklog
+	return p.KeepaliveBacklog
 }
 
-func (r *Redis) GetKeepalivePoolSize() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetKeepalivePoolSize() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.KeepalivePoolSize
+	return p.KeepalivePoolSize
 }
 
-func (r *Redis) GetPassword() *string {
-	if r == nil {
+func (p *PartialVectordbRedis) GetPassword() *string {
+	if p == nil {
 		return nil
 	}
-	return r.Password
+	return p.Password
 }
 
-func (r *Redis) GetPort() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetPort() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.Port
+	return p.Port
 }
 
-func (r *Redis) GetReadTimeout() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetReadTimeout() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.ReadTimeout
+	return p.ReadTimeout
 }
 
-func (r *Redis) GetSendTimeout() *int64 {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSendTimeout() *int64 {
+	if p == nil {
 		return nil
 	}
-	return r.SendTimeout
+	return p.SendTimeout
 }
 
-func (r *Redis) GetSentinelMaster() *string {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSentinelMaster() *string {
+	if p == nil {
 		return nil
 	}
-	return r.SentinelMaster
+	return p.SentinelMaster
 }
 
-func (r *Redis) GetSentinelNodes() []PartialVectordbSentinelNodes {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSentinelNodes() []PartialVectordbSentinelNodes {
+	if p == nil {
 		return nil
 	}
-	return r.SentinelNodes
+	return p.SentinelNodes
 }
 
-func (r *Redis) GetSentinelPassword() *string {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSentinelPassword() *string {
+	if p == nil {
 		return nil
 	}
-	return r.SentinelPassword
+	return p.SentinelPassword
 }
 
-func (r *Redis) GetSentinelRole() *PartialVectordbSentinelRole {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSentinelRole() *PartialVectordbSentinelRole {
+	if p == nil {
 		return nil
 	}
-	return r.SentinelRole
+	return p.SentinelRole
 }
 
-func (r *Redis) GetSentinelUsername() *string {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSentinelUsername() *string {
+	if p == nil {
 		return nil
 	}
-	return r.SentinelUsername
+	return p.SentinelUsername
 }
 
-func (r *Redis) GetServerName() *string {
-	if r == nil {
+func (p *PartialVectordbRedis) GetServerName() *string {
+	if p == nil {
 		return nil
 	}
-	return r.ServerName
+	return p.ServerName
 }
 
-func (r *Redis) GetSsl() *bool {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSsl() *bool {
+	if p == nil {
 		return nil
 	}
-	return r.Ssl
+	return p.Ssl
 }
 
-func (r *Redis) GetSslVerify() *bool {
-	if r == nil {
+func (p *PartialVectordbRedis) GetSslVerify() *bool {
+	if p == nil {
 		return nil
 	}
-	return r.SslVerify
+	return p.SslVerify
 }
 
-func (r *Redis) GetUsername() *string {
-	if r == nil {
+func (p *PartialVectordbRedis) GetUsername() *string {
+	if p == nil {
 		return nil
 	}
-	return r.Username
+	return p.Username
 }
 
 // PartialVectordbStrategy - which vector database driver to use
@@ -651,7 +881,7 @@ type PartialVectordbConfig struct {
 	// the distance metric to use for vector searches
 	DistanceMetric PartialVectordbDistanceMetric `json:"distance_metric"`
 	Pgvector       *Pgvector                     `json:"pgvector,omitempty"`
-	Redis          *Redis                        `json:"redis,omitempty"`
+	Redis          *PartialVectordbRedis         `json:"redis,omitempty"`
 	// which vector database driver to use
 	Strategy PartialVectordbStrategy `json:"strategy"`
 	// the default similarity threshold for accepting semantic search results (float). Higher threshold means more results are considered similar.
@@ -690,7 +920,7 @@ func (p *PartialVectordbConfig) GetPgvector() *Pgvector {
 	return p.Pgvector
 }
 
-func (p *PartialVectordbConfig) GetRedis() *Redis {
+func (p *PartialVectordbConfig) GetRedis() *PartialVectordbRedis {
 	if p == nil {
 		return nil
 	}

@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -14,8 +15,21 @@ type UpsertHmacAuthWithConsumerRequest struct {
 	ConsumerIDForNestedEntities string `pathParam:"style=simple,explode=false,name=ConsumerIdForNestedEntities"`
 	// ID of the HMAC-auth credential to lookup
 	HMACAuthID string `pathParam:"style=simple,explode=false,name=HMACAuthId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of the HMAC-auth credential
 	HMACAuthWithoutParents components.HMACAuthWithoutParents `request:"mediaType=application/json"`
+}
+
+func (u UpsertHmacAuthWithConsumerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpsertHmacAuthWithConsumerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpsertHmacAuthWithConsumerRequest) GetControlPlaneID() string {
@@ -37,6 +51,13 @@ func (u *UpsertHmacAuthWithConsumerRequest) GetHMACAuthID() string {
 		return ""
 	}
 	return u.HMACAuthID
+}
+
+func (u *UpsertHmacAuthWithConsumerRequest) GetWorkspace() string {
+	if u == nil {
+		return ""
+	}
+	return u.Workspace
 }
 
 func (u *UpsertHmacAuthWithConsumerRequest) GetHMACAuthWithoutParents() components.HMACAuthWithoutParents {

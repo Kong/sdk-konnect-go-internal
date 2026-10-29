@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -12,8 +13,21 @@ type CreateGraphqlRateLimitingAdvancedCostWithServiceRequest struct {
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
 	// ID of the Service to lookup
 	ServiceID string `pathParam:"style=simple,explode=false,name=ServiceId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of new GraphQL Cost Decoration for creation
 	GraphQLCostDecorationWithoutParents components.GraphQLCostDecorationWithoutParents `request:"mediaType=application/json"`
+}
+
+func (c CreateGraphqlRateLimitingAdvancedCostWithServiceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateGraphqlRateLimitingAdvancedCostWithServiceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CreateGraphqlRateLimitingAdvancedCostWithServiceRequest) GetControlPlaneID() string {
@@ -28,6 +42,13 @@ func (c *CreateGraphqlRateLimitingAdvancedCostWithServiceRequest) GetServiceID()
 		return ""
 	}
 	return c.ServiceID
+}
+
+func (c *CreateGraphqlRateLimitingAdvancedCostWithServiceRequest) GetWorkspace() string {
+	if c == nil {
+		return ""
+	}
+	return c.Workspace
 }
 
 func (c *CreateGraphqlRateLimitingAdvancedCostWithServiceRequest) GetGraphQLCostDecorationWithoutParents() components.GraphQLCostDecorationWithoutParents {

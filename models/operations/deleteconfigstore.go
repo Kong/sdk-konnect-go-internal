@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-// DeleteConfigStoreQueryParamForce - If true, delete specified config store and all secrets, even if there are secrets linked to the config store If false, do not allow deletion if there are secrets linked to the config store
+// DeleteConfigStoreQueryParamForce - If true, delete specified config store and all secrets, even if there are secrets linked to the config store. If false, do not allow deletion if there are secrets linked to the config store.
 type DeleteConfigStoreQueryParamForce string
 
 const (
@@ -41,8 +41,10 @@ type DeleteConfigStoreRequest struct {
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
 	// Config Store identifier
 	ConfigStoreID string `pathParam:"style=simple,explode=false,name=configStoreId"`
-	// If true, delete specified config store and all secrets, even if there are secrets linked to the config store If false, do not allow deletion if there are secrets linked to the config store
+	// If true, delete specified config store and all secrets, even if there are secrets linked to the config store. If false, do not allow deletion if there are secrets linked to the config store.
 	Force *DeleteConfigStoreQueryParamForce `default:"false" queryParam:"style=form,explode=true,name=force"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 }
 
 func (d DeleteConfigStoreRequest) MarshalJSON() ([]byte, error) {
@@ -75,6 +77,13 @@ func (d *DeleteConfigStoreRequest) GetForce() *DeleteConfigStoreQueryParamForce 
 		return nil
 	}
 	return d.Force
+}
+
+func (d *DeleteConfigStoreRequest) GetWorkspace() string {
+	if d == nil {
+		return ""
+	}
+	return d.Workspace
 }
 
 type DeleteConfigStoreResponse struct {

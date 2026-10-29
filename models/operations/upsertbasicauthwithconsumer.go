@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -14,8 +15,21 @@ type UpsertBasicAuthWithConsumerRequest struct {
 	ConsumerIDForNestedEntities string `pathParam:"style=simple,explode=false,name=ConsumerIdForNestedEntities"`
 	// ID of the Basic-auth credential to lookup
 	BasicAuthID string `pathParam:"style=simple,explode=false,name=BasicAuthId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of the Basic-auth credential
 	BasicAuthWithoutParents components.BasicAuthWithoutParents `request:"mediaType=application/json"`
+}
+
+func (u UpsertBasicAuthWithConsumerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpsertBasicAuthWithConsumerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpsertBasicAuthWithConsumerRequest) GetControlPlaneID() string {
@@ -37,6 +51,13 @@ func (u *UpsertBasicAuthWithConsumerRequest) GetBasicAuthID() string {
 		return ""
 	}
 	return u.BasicAuthID
+}
+
+func (u *UpsertBasicAuthWithConsumerRequest) GetWorkspace() string {
+	if u == nil {
+		return ""
+	}
+	return u.Workspace
 }
 
 func (u *UpsertBasicAuthWithConsumerRequest) GetBasicAuthWithoutParents() components.BasicAuthWithoutParents {

@@ -6,387 +6,19 @@ Some entities in Kong Gateway share common configuration settings that often nee
 
 ### Available Operations
 
-* [ListPartialInWorkspace](#listpartialinworkspace) - List all Partials in a workspace
-* [CreatePartialInWorkspace](#createpartialinworkspace) - Create a new Partial in a workspace
-* [DeletePartialInWorkspace](#deletepartialinworkspace) - Delete a Partial in a workspace
-* [GetPartialInWorkspace](#getpartialinworkspace) - Get a Partial in a workspace
-* [UpsertPartialInWorkspace](#upsertpartialinworkspace) - Upsert a Partial in a workspace
-* [ListPartial](#listpartial) - List all Partials
-* [CreatePartial](#createpartial) - Create a new Partial
-* [DeletePartial](#deletepartial) - Delete a Partial
-* [GetPartial](#getpartial) - Get a Partial
-* [UpsertPartial](#upsertpartial) - Upsert a Partial
+* [ListPartial](#listpartial) - List all Partials in a workspace
+* [CreatePartial](#createpartial) - Create a new Partial in a workspace
+* [DeletePartial](#deletepartial) - Delete a Partial in a workspace
+* [GetPartial](#getpartial) - Get a Partial in a workspace
+* [UpsertPartial](#upsertpartial) - Upsert a Partial in a workspace
 
-## ListPartialInWorkspace
+## ListPartial
 
 List all Partials in a workspace
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-partial-in-workspace" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Partials.ListPartialInWorkspace(ctx, operations.ListPartialInWorkspaceRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Tags: sdkkonnectgo.Pointer("tag1,tag2"),
-        Workspace: "team-payments",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Object != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.ListPartialInWorkspaceRequest](../../models/operations/listpartialinworkspacerequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
-
-### Response
-
-**[*operations.ListPartialInWorkspaceResponse](../../models/operations/listpartialinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## CreatePartialInWorkspace
-
-Create a new Partial in a workspace
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="create-partial-in-workspace" method="post" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Partials.CreatePartialInWorkspace(ctx, operations.CreatePartialInWorkspaceRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Workspace: "team-payments",
-        Partial: components.CreatePartialEmbeddings(
-            components.PartialEmbeddings{
-                Config: components.PartialEmbeddingsConfig{
-                    Auth: &components.PartialEmbeddingsAuth{
-                        HeaderName: sdkkonnectgo.Pointer("Authorization"),
-                        HeaderValue: sdkkonnectgo.Pointer("Bearer openai-api-key"),
-                    },
-                    Model: components.PartialEmbeddingsModel{
-                        Name: "text-embedding-3-small",
-                        Provider: components.PartialEmbeddingsProviderOpenai,
-                    },
-                },
-            },
-        ),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Partial != nil {
-        switch res.Partial.Type {
-            case components.PartialTypeEmbeddings:
-                // res.Partial.PartialEmbeddings is populated
-            case components.PartialTypeModel:
-                // res.Partial.PartialModel is populated
-            case components.PartialTypeRedisCe:
-                // res.Partial.PartialRedisCe is populated
-            case components.PartialTypeRedisEe:
-                // res.Partial.PartialRedisEe is populated
-            case components.PartialTypeVectordb:
-                // res.Partial.PartialVectordb is populated
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.CreatePartialInWorkspaceRequest](../../models/operations/createpartialinworkspacerequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
-
-### Response
-
-**[*operations.CreatePartialInWorkspaceResponse](../../models/operations/createpartialinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## DeletePartialInWorkspace
-
-Delete a Partial in a workspace
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="delete-partial-in-workspace" method="delete" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials/{PartialId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Partials.DeletePartialInWorkspace(ctx, operations.DeletePartialInWorkspaceRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        PartialID: "",
-        Workspace: "team-payments",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.DeletePartialInWorkspaceRequest](../../models/operations/deletepartialinworkspacerequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
-
-### Response
-
-**[*operations.DeletePartialInWorkspaceResponse](../../models/operations/deletepartialinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## GetPartialInWorkspace
-
-Get a Partial using ID in a workspace.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-partial-in-workspace" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials/{PartialId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Partials.GetPartialInWorkspace(ctx, operations.GetPartialInWorkspaceRequest{
-        PartialID: "",
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Workspace: "team-payments",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Partial != nil {
-        switch res.Partial.Type {
-            case components.PartialTypeEmbeddings:
-                // res.Partial.PartialEmbeddings is populated
-            case components.PartialTypeModel:
-                // res.Partial.PartialModel is populated
-            case components.PartialTypeRedisCe:
-                // res.Partial.PartialRedisCe is populated
-            case components.PartialTypeRedisEe:
-                // res.Partial.PartialRedisEe is populated
-            case components.PartialTypeVectordb:
-                // res.Partial.PartialVectordb is populated
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.GetPartialInWorkspaceRequest](../../models/operations/getpartialinworkspacerequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
-
-### Response
-
-**[*operations.GetPartialInWorkspaceResponse](../../models/operations/getpartialinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## UpsertPartialInWorkspace
-
-Create or Update Partial using ID in a workspace.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="upsert-partial-in-workspace" method="put" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials/{PartialId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Partials.UpsertPartialInWorkspace(ctx, operations.UpsertPartialInWorkspaceRequest{
-        PartialID: "",
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        Workspace: "team-payments",
-        Partial: components.CreatePartialEmbeddings(
-            components.PartialEmbeddings{
-                Config: components.PartialEmbeddingsConfig{
-                    Auth: &components.PartialEmbeddingsAuth{
-                        HeaderName: sdkkonnectgo.Pointer("Authorization"),
-                        HeaderValue: sdkkonnectgo.Pointer("Bearer openai-api-key"),
-                    },
-                    Model: components.PartialEmbeddingsModel{
-                        Name: "text-embedding-3-small",
-                        Provider: components.PartialEmbeddingsProviderOpenai,
-                    },
-                },
-            },
-        ),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Partial != nil {
-        switch res.Partial.Type {
-            case components.PartialTypeEmbeddings:
-                // res.Partial.PartialEmbeddings is populated
-            case components.PartialTypeModel:
-                // res.Partial.PartialModel is populated
-            case components.PartialTypeRedisCe:
-                // res.Partial.PartialRedisCe is populated
-            case components.PartialTypeRedisEe:
-                // res.Partial.PartialRedisEe is populated
-            case components.PartialTypeVectordb:
-                // res.Partial.PartialVectordb is populated
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `request`                                                                                                | [operations.UpsertPartialInWorkspaceRequest](../../models/operations/upsertpartialinworkspacerequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
-
-### Response
-
-**[*operations.UpsertPartialInWorkspaceResponse](../../models/operations/upsertpartialinworkspaceresponse.md), error**
-
-### Errors
-
-| Error Type                         | Status Code                        | Content Type                       |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| sdkerrors.GatewayUnauthorizedError | 401                                | application/json                   |
-| sdkerrors.SDKError                 | 4XX, 5XX                           | \*/\*                              |
-
-## ListPartial
-
-List all Partials
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-partial" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/partials" -->
+<!-- UsageSnippet language="go" operationID="list-partial" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials" -->
 ```go
 package main
 
@@ -410,6 +42,7 @@ func main() {
     res, err := s.Partials.ListPartial(ctx, operations.ListPartialRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         Tags: sdkkonnectgo.Pointer("tag1,tag2"),
+        Workspace: "team-payments",
     })
     if err != nil {
         log.Fatal(err)
@@ -441,11 +74,11 @@ func main() {
 
 ## CreatePartial
 
-Create a new Partial
+Create a new Partial in a workspace
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-partial" method="post" path="/v2/control-planes/{controlPlaneId}/core-entities/partials" -->
+<!-- UsageSnippet language="go" operationID="create-partial" method="post" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials" -->
 ```go
 package main
 
@@ -453,6 +86,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -465,20 +99,24 @@ func main() {
         }),
     )
 
-    res, err := s.Partials.CreatePartial(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.CreatePartialEmbeddings(
-        components.PartialEmbeddings{
-            Config: components.PartialEmbeddingsConfig{
-                Auth: &components.PartialEmbeddingsAuth{
-                    HeaderName: sdkkonnectgo.Pointer("Authorization"),
-                    HeaderValue: sdkkonnectgo.Pointer("Bearer openai-api-key"),
-                },
-                Model: components.PartialEmbeddingsModel{
-                    Name: "text-embedding-3-small",
-                    Provider: components.PartialEmbeddingsProviderOpenai,
+    res, err := s.Partials.CreatePartial(ctx, operations.CreatePartialRequest{
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        Workspace: "team-payments",
+        Partial: components.CreatePartialEmbeddings(
+            components.PartialEmbeddings{
+                Config: components.PartialEmbeddingsConfig{
+                    Auth: &components.PartialEmbeddingsAuth{
+                        HeaderName: sdkkonnectgo.Pointer("Authorization"),
+                        HeaderValue: sdkkonnectgo.Pointer("Bearer openai-api-key"),
+                    },
+                    Model: components.PartialEmbeddingsModel{
+                        Name: "text-embedding-3-small",
+                        Provider: components.PartialEmbeddingsProviderOpenai,
+                    },
                 },
             },
-        },
-    ))
+        ),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -502,12 +140,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
-| `controlPlaneID`                                                                   | `string`                                                                           | :heavy_check_mark:                                                                 | The UUID of your control plane. This variable is available in the Konnect manager. | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                               |
-| `partial`                                                                          | [components.Partial](../../models/components/partial.md)                           | :heavy_check_mark:                                                                 | Description of the new Partial for creation                                        |                                                                                    |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.CreatePartialRequest](../../models/operations/createpartialrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -522,11 +159,11 @@ func main() {
 
 ## DeletePartial
 
-Delete a Partial
+Delete a Partial in a workspace
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-partial" method="delete" path="/v2/control-planes/{controlPlaneId}/core-entities/partials/{PartialId}" -->
+<!-- UsageSnippet language="go" operationID="delete-partial" method="delete" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials/{PartialId}" -->
 ```go
 package main
 
@@ -534,6 +171,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -546,7 +184,11 @@ func main() {
         }),
     )
 
-    res, err := s.Partials.DeletePartial(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", "")
+    res, err := s.Partials.DeletePartial(ctx, operations.DeletePartialRequest{
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        PartialID: "",
+        Workspace: "team-payments",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -558,12 +200,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
-| `controlPlaneID`                                                                   | `string`                                                                           | :heavy_check_mark:                                                                 | The UUID of your control plane. This variable is available in the Konnect manager. | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                               |
-| `partialID`                                                                        | `string`                                                                           | :heavy_check_mark:                                                                 | ID of the Partial to lookup                                                        |                                                                                    |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.DeletePartialRequest](../../models/operations/deletepartialrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -578,11 +219,11 @@ func main() {
 
 ## GetPartial
 
-Get a Partial using ID.
+Get a Partial using ID in a workspace.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-partial" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/partials/{PartialId}" -->
+<!-- UsageSnippet language="go" operationID="get-partial" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials/{PartialId}" -->
 ```go
 package main
 
@@ -590,6 +231,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -602,7 +244,11 @@ func main() {
         }),
     )
 
-    res, err := s.Partials.GetPartial(ctx, "", "9524ec7d-36d9-465d-a8c5-83a3c9390458")
+    res, err := s.Partials.GetPartial(ctx, operations.GetPartialRequest{
+        PartialID: "",
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        Workspace: "team-payments",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -626,12 +272,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
-| `partialID`                                                                        | `string`                                                                           | :heavy_check_mark:                                                                 | ID of the Partial to lookup                                                        |                                                                                    |
-| `controlPlaneID`                                                                   | `string`                                                                           | :heavy_check_mark:                                                                 | The UUID of your control plane. This variable is available in the Konnect manager. | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                               |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [operations.GetPartialRequest](../../models/operations/getpartialrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -646,11 +291,11 @@ func main() {
 
 ## UpsertPartial
 
-Create or Update Partial using ID.
+Create or Update Partial using ID in a workspace.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="upsert-partial" method="put" path="/v2/control-planes/{controlPlaneId}/core-entities/partials/{PartialId}" -->
+<!-- UsageSnippet language="go" operationID="upsert-partial" method="put" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/partials/{PartialId}" -->
 ```go
 package main
 
@@ -674,6 +319,7 @@ func main() {
     res, err := s.Partials.UpsertPartial(ctx, operations.UpsertPartialRequest{
         PartialID: "",
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        Workspace: "team-payments",
         Partial: components.CreatePartialEmbeddings(
             components.PartialEmbeddings{
                 Config: components.PartialEmbeddingsConfig{

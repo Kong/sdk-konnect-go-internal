@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -14,6 +15,19 @@ type GetSniWithCertificateRequest struct {
 	CertificateID string `pathParam:"style=simple,explode=false,name=CertificateId"`
 	// ID of the SNI to lookup
 	SNIID string `pathParam:"style=simple,explode=false,name=SNIId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
+}
+
+func (g GetSniWithCertificateRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSniWithCertificateRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *GetSniWithCertificateRequest) GetControlPlaneID() string {
@@ -35,6 +49,13 @@ func (g *GetSniWithCertificateRequest) GetSNIID() string {
 		return ""
 	}
 	return g.SNIID
+}
+
+func (g *GetSniWithCertificateRequest) GetWorkspace() string {
+	if g == nil {
+		return ""
+	}
+	return g.Workspace
 }
 
 type GetSniWithCertificateResponse struct {

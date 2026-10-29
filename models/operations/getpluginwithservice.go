@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -14,8 +15,21 @@ type GetPluginWithServiceRequest struct {
 	ServiceID string `pathParam:"style=simple,explode=false,name=ServiceId"`
 	// ID of the Plugin to lookup
 	PluginID string `pathParam:"style=simple,explode=false,name=PluginId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Expand partials for the plugin.
 	ExpandPartials *bool `queryParam:"style=form,explode=true,name=expand_partials"`
+}
+
+func (g GetPluginWithServiceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPluginWithServiceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *GetPluginWithServiceRequest) GetControlPlaneID() string {
@@ -37,6 +51,13 @@ func (g *GetPluginWithServiceRequest) GetPluginID() string {
 		return ""
 	}
 	return g.PluginID
+}
+
+func (g *GetPluginWithServiceRequest) GetWorkspace() string {
+	if g == nil {
+		return ""
+	}
+	return g.Workspace
 }
 
 func (g *GetPluginWithServiceRequest) GetExpandPartials() *bool {

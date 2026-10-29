@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -12,8 +13,21 @@ type UpsertCaCertificateRequest struct {
 	CACertificateID string `pathParam:"style=simple,explode=false,name=CACertificateId"`
 	// The UUID of your control plane. This variable is available in the Konnect manager.
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 	// Description of the CA Certificate
 	CACertificate components.CACertificate `request:"mediaType=application/json"`
+}
+
+func (u UpsertCaCertificateRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpsertCaCertificateRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpsertCaCertificateRequest) GetCACertificateID() string {
@@ -28,6 +42,13 @@ func (u *UpsertCaCertificateRequest) GetControlPlaneID() string {
 		return ""
 	}
 	return u.ControlPlaneID
+}
+
+func (u *UpsertCaCertificateRequest) GetWorkspace() string {
+	if u == nil {
+		return ""
+	}
+	return u.Workspace
 }
 
 func (u *UpsertCaCertificateRequest) GetCACertificate() components.CACertificate {

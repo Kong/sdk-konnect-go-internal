@@ -3,6 +3,7 @@
 package operations
 
 import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -12,6 +13,19 @@ type GetCaCertificateRequest struct {
 	CACertificateID string `pathParam:"style=simple,explode=false,name=CACertificateId"`
 	// The UUID of your control plane. This variable is available in the Konnect manager.
 	ControlPlaneID string `pathParam:"style=simple,explode=false,name=controlPlaneId"`
+	// The name of the workspace
+	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
+}
+
+func (g GetCaCertificateRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCaCertificateRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *GetCaCertificateRequest) GetCACertificateID() string {
@@ -26,6 +40,13 @@ func (g *GetCaCertificateRequest) GetControlPlaneID() string {
 		return ""
 	}
 	return g.ControlPlaneID
+}
+
+func (g *GetCaCertificateRequest) GetWorkspace() string {
+	if g == nil {
+		return ""
+	}
+	return g.Workspace
 }
 
 type GetCaCertificateResponse struct {

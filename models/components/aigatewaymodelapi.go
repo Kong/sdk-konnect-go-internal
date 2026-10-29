@@ -64,12 +64,7 @@ type AIGatewayModelAPI struct {
 	type_ string `const:"api" json:"type"`
 	// Routing, logging, and load balancing configuration for the model.
 	Config AIGatewayModelAPIConfig `json:"config"`
-	// The capabilities this model supports. Set to a specific capability to
-	// restrict the model to that capability only, or to `*` to allow all
-	// capabilities that the targets support at the gateway's
-	// min_runtime_version. A capability that needs a newer
-	// min_runtime_version is left out of `*`.
-	//
+	// List of AI capabilities enabled for this API model.
 	Capabilities []Capabilities `json:"capabilities"`
 }
 
