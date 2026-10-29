@@ -3,7 +3,7 @@
 
 ## Supported Types
 
-### 
+###
 
 ```go
 resource := components.CreateResourceStr(string{/* values here */})

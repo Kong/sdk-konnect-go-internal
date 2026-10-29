@@ -7,13 +7,13 @@ This field is [referenceable](https://developer.konghq.com/gateway/entities/vaul
 
 ## Supported Types
 
-### 
+###
 
 ```go
 aiGatewayRedisCloudConfigurationPort := components.CreateAIGatewayRedisCloudConfigurationPortInteger(int64{/* values here */})
 ```
 
-### 
+###
 
 ```go
 aiGatewayRedisCloudConfigurationPort := components.CreateAIGatewayRedisCloudConfigurationPortStr(string{/* values here */})

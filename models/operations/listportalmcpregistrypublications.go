@@ -17,6 +17,15 @@ type ListPortalMcpRegistryPublicationsRequest struct {
 	// Filter publications returned in the response.
 	Filter *components.PortalMcpRegistryPublicationFilterParameters `queryParam:"style=deepObject,explode=true,name=filter"`
 	// Sorts a collection of MCP registry publications. Supported sort attributes are:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - mcp_registry_id
 	//
 	Sort *string `queryParam:"style=form,explode=true,name=sort"`

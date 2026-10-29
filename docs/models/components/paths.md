@@ -5,13 +5,13 @@ Selects which fields of the parsed record to decrypt. A maximum of 50 path entri
 
 ## Supported Types
 
-### 
+###
 
 ```go
 paths := components.CreatePathsArrayOfEventGatewayParsedRecordFieldPathsArray([]components.EventGatewayParsedRecordFieldPathsArray{/* values here */})
 ```
 
-### 
+###
 
 ```go
 paths := components.CreatePathsStr(string{/* values here */})

@@ -14,7 +14,7 @@ is saved now; changed items take effect at the requested time.
 billingSubscriptionMigrateTiming := components.CreateBillingSubscriptionMigrateTimingBillingSubscriptionEditTimingEnum(components.BillingSubscriptionEditTimingEnum{/* values here */})
 ```
 
-### 
+###
 
 ```go
 billingSubscriptionMigrateTiming := components.CreateBillingSubscriptionMigrateTimingDateTime(time.Time{/* values here */})

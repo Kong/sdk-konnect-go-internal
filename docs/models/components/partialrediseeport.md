@@ -5,13 +5,13 @@ An integer representing a port number between 0 and 65535, inclusive.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 partialRedisEePort := components.CreatePartialRedisEePortInteger(int64{/* values here */})
 ```
 
-### 
+###
 
 ```go
 partialRedisEePort := components.CreatePartialRedisEePortStr(string{/* values here */})

@@ -15,6 +15,15 @@ type ListCatalogCustomFieldSchemasRequest struct {
 	// Filters a collection of custom field schemas.
 	Filter *components.CustomFieldSchemaFilterParameters `queryParam:"style=deepObject,explode=true,name=filter"`
 	// Sorts a collection of custom field schemas. Supported sort attributes are:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - created_at
 	//   - updated_at
 	//   - name

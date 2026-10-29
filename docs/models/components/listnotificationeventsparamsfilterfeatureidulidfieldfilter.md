@@ -6,7 +6,7 @@ never match, not even with `neq`.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listNotificationEventsParamsFilterFeatureIDULIDFieldFilter := components.CreateListNotificationEventsParamsFilterFeatureIDULIDFieldFilterStr(string{/* values here */})

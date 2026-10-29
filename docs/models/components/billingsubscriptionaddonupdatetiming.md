@@ -12,7 +12,7 @@ this point.
 billingSubscriptionAddonUpdateTiming := components.CreateBillingSubscriptionAddonUpdateTimingBillingSubscriptionEditTimingEnum(components.BillingSubscriptionEditTimingEnum{/* values here */})
 ```
 
-### 
+###
 
 ```go
 billingSubscriptionAddonUpdateTiming := components.CreateBillingSubscriptionAddonUpdateTimingDateTime(time.Time{/* values here */})

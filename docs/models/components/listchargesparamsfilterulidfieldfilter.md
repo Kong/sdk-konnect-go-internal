@@ -5,7 +5,7 @@ Filter charges by the ID of their associated feature.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listChargesParamsFilterULIDFieldFilter := components.CreateListChargesParamsFilterULIDFieldFilterStr(string{/* values here */})

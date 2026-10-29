@@ -3,45 +3,56 @@ SHELL = bash
 
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 TOOLS_VERSIONS_FILE = $(PROJECT_DIR)/.tools_versions.yaml
-export MISE_DATA_DIR = $(PROJECT_DIR)/bin/
 
-# speakeasy's staticcheck v0.8.1 and mockery cannot read the export data from a newer Go.
-# Pin the toolchain to the version in go.mod so generation, compile tests and lint agree.
+# Keep generation tools on the SDK release toolchain.
 export GOTOOLCHAIN = go$(shell sed -n 's/^go //p' go.mod)
 
 MISE := $(shell which mise)
+MISE_FILE := .mise/config.toml
+
 .PHONY: mise
 mise:
 	@mise -V >/dev/null || (echo "mise - https://github.com/jdx/mise - not found. Please install it." && exit 1)
 
+.PHONY: mise-install
+mise-install: mise
+	@$(MISE) install -q $(DEP_VER)
+
+OS := $(shell uname | tr '[:upper:]' '[:lower:]')
+ARCH := $(shell uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')
+
 # Do not store yq's version in .tools_versions.yaml as it is used to get tool versions.
 # renovate: datasource=github-releases depName=mikefarah/yq
-YQ_VERSION = 4.43.1
-YQ = $(PROJECT_DIR)/bin/installs/yq/$(YQ_VERSION)/bin/yq
+YQ_VERSION = 4.49.2
+YQ = $(PROJECT_DIR)/bin/installs/github-mikefarah-yq/$(YQ_VERSION)/yq_$(OS)_$(ARCH)
 .PHONY: yq
-yq: mise # Download yq locally if necessary.
-	@$(MISE) plugin install --yes -q yq
-	@$(MISE) install -q yq@$(YQ_VERSION)
+yq: mise
+	MISE_DATA_DIR=$(PROJECT_DIR)/bin $(MAKE) mise-install DEP_VER=github:mikefarah/yq@$(YQ_VERSION)
 
 CONTROLLER_GEN_VERSION = $(shell $(YQ) -r '.controller-tools' < $(TOOLS_VERSIONS_FILE))
-CONTROLLER_GEN = $(PROJECT_DIR)/bin/installs/kube-controller-tools/$(CONTROLLER_GEN_VERSION)/bin/controller-gen
+CONTROLLER_GEN = $(PROJECT_DIR)/bin/installs/github-kubernetes-sigs-controller-tools/$(CONTROLLER_GEN_VERSION)/controller-gen
 .PHONY: controller-gen
-controller-gen: mise yq ## Download controller-gen locally if necessary.
-	@$(MISE) plugin install --yes -q kube-controller-tools
-	@$(MISE) install -q kube-controller-tools@$(CONTROLLER_GEN_VERSION)
+controller-gen: mise yq
+	MISE_DATA_DIR=$(PROJECT_DIR)/bin $(MAKE) mise-install DEP_VER=github:kubernetes-sigs/controller-tools@$(CONTROLLER_GEN_VERSION)
 
 MOCKERY_VERSION = $(shell $(YQ) -r '.mockery' < $(TOOLS_VERSIONS_FILE))
-MOCKERY = $(PROJECT_DIR)/bin/installs/mockery/$(MOCKERY_VERSION)/bin/mockery
+MOCKERY = $(PROJECT_DIR)/bin/installs/github-vektra-mockery/$(MOCKERY_VERSION)/mockery
 .PHONY: mockery
-mockery: mise yq ## Download mockery locally if necessary.
-	@$(MISE) plugin install --yes -q mockery https://github.com/cabify/asdf-mockery.git
-	@$(MISE) install -q mockery@$(MOCKERY_VERSION)
+mockery: mise yq
+	MISE_DATA_DIR=$(PROJECT_DIR)/bin $(MAKE) mise-install DEP_VER=github:vektra/mockery@$(MOCKERY_VERSION)
 
 IFACEMAKER_VERSION = $(shell $(YQ) -r '.ifacemaker' < $(TOOLS_VERSIONS_FILE))
 IFACEMAKER = $(PROJECT_DIR)/bin/ifacemaker
 .PHONY: ifacemaker
-ifacemaker: yq
-	GOBIN=$(PROJECT_DIR)/bin go install -v github.com/vburenin/ifacemaker@v$(IFACEMAKER_VERSION)
+ifacemaker: mise yq
+	GOBIN=$(PROJECT_DIR)/bin go install github.com/vburenin/ifacemaker@v$(IFACEMAKER_VERSION)
+
+# NOTE: speakeasy is not placed in $(PROJECT_DIR)/bin as it is being used in
+# GitHub workflows outside of this Makefile.
+SPEAKEASY_VERSION = $(shell $(YQ) -p toml -o yaml '.tools["github:speakeasy-api/speakeasy"].version' < $(MISE_FILE))
+.PHONY: speakeasy
+speakeasy: mise yq
+	$(MAKE) mise-install DEP_VER=github:speakeasy-api/speakeasy@$(SPEAKEASY_VERSION)
 
 # ------------------------------------------------------------------------------
 # Code generation
@@ -145,23 +156,37 @@ generate.deepcopy: controller-gen
 #       DeepCopy() for the types that need it and then using speakeasy to generate
 #       the final sdk code.
 # NOTE: add more types that need to have DeepCopy() generated.
+.PHONY: generate.sdk.speakeasy
+generate.sdk.speakeasy: speakeasy validate.kongctl-overlays
+	speakeasy run --skip-versioning --skip-testing --minimal --skip-upload-spec
+
 .PHONY: generate.sdk
 generate.sdk:
-	speakeasy run --skip-versioning --skip-testing --minimal --skip-upload-spec
+	$(SED) -i 's/[[:blank:]]*$$//' $(OPENAPI_FILE)
+	# Discard generated helpers tied to the previous input before Speakeasy compiles the refreshed SDK.
+	$(RM) models/components/zz_generated.deepcopy.go
+	$(MAKE) remove.interfaces
+	$(MAKE) remove.mocks
+	$(MAKE) generate.sdk.speakeasy
 	git add --update .
 	$(MAKE) generate.deepcopy
 	$(MAKE) _generate.omitempty
+	python3 kongctl-patches/apply.py post-generate .
 	go mod tidy
+	$(MAKE) generate.interfaces
+	$(MAKE) generate.mocks
+	go mod tidy
+	$(MAKE) format.generated-docs
+
+.PHONY: format.generated-docs
+format.generated-docs:
+	find docs -name '*.md' -exec $(SED) -i 's/^### $$/###/' {} +
 
 # NOTE: Use this when there are breaking changes in the generated SDK code
 #       that require the interfaces and mocks to be regenerated.
 .PHONY: generate.sdk.from-scratch
 generate.sdk.from-scratch:
-	$(MAKE) remove.interfaces
-	$(MAKE) remove.mocks
 	$(MAKE) generate.sdk
-	$(MAKE) generate.interfaces
-	$(MAKE) generate.mocks
 
 .PHONY: test
 test: test.unit test.integration
@@ -198,8 +223,7 @@ TYPES_TO_MOCK := $(shell grep -B 20 'rootSDK.*\*SDK' *.go | grep 'type.*struct' 
 .PHONY: remove.interfaces
 remove.interfaces:
 	@echo "Removing existing interfaces (to prevent breakage on breaking changes)..."
-	@$(foreach s, $(TYPES_TO_MOCK), \
-		rm -f $(shell echo $(s) | tr 'A-Z' 'a-z')_i.go; )
+	$(RM) $(wildcard *_i.go)
 
 .PHONY: generate.interfaces
 generate.interfaces: ifacemaker remove.interfaces
@@ -219,3 +243,10 @@ generate.mocks: mockery remove.mocks
 .PHONY: verify.diff
 verify.diff:
 	@$(PROJECT_DIR)/scripts/verify-diff.sh $(PROJECT_DIR)
+
+.PHONY: validate.kongctl-overlays
+validate.kongctl-overlays:
+	@for overlay in $(sort $(wildcard kongctl-patches/overlays/*.yaml)); do \
+		speakeasy overlay validate --overlay $$overlay; \
+		speakeasy overlay apply --strict --schema $(OPENAPI_FILE) --overlay $$overlay --out /dev/null; \
+	done

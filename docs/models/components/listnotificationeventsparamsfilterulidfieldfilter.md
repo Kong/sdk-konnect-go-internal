@@ -6,7 +6,7 @@ least one of the given channels. Only `eq` and `oeq` are supported.
 
 ## Supported Types
 
-### 
+###
 
 ```go
 listNotificationEventsParamsFilterULIDFieldFilter := components.CreateListNotificationEventsParamsFilterULIDFieldFilterStr(string{/* values here */})

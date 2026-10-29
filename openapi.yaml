@@ -46089,7 +46089,7 @@ components:
         env: test
       description: >
         Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
+        entity list or for searching across entity types.
 
 
         Keys must be of length 1-63 characters, and cannot start with "kong",
@@ -47551,7 +47551,7 @@ components:
       type: object
       description: >
         Defines the mappings between OpenID Connect (OIDC) claims and local
-        claims used by your application for 
+        claims used by your application for
 
         authentication.
       properties:
@@ -49057,7 +49057,7 @@ components:
       nullable: true
       description: >
         Labels store metadata of an entity that can be used for filtering an
-        entity list or for searching across entity types. 
+        entity list or for searching across entity types.
 
 
         Labels are intended to store **INTERNAL** metadata.
@@ -80213,7 +80213,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -86583,7 +86583,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -87084,7 +87084,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -87217,7 +87217,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -87435,7 +87435,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -87676,7 +87676,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -99273,7 +99273,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -99342,7 +99342,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -99503,7 +99503,7 @@ components:
             env: test
           description: >
             Labels store metadata of an entity that can be used for filtering an
-            entity list or for searching across entity types. 
+            entity list or for searching across entity types.
 
 
             Keys must be of length 1-63 characters, and cannot start with
@@ -125141,7 +125141,7 @@ components:
         filtering a list of objects.
 
 
-        Public labels are intended to store **PUBLIC** metadata. 
+        Public labels are intended to store **PUBLIC** metadata.
 
 
         Keys must be of length 1-63 characters, and cannot start with "kong",
@@ -128297,7 +128297,7 @@ components:
         "response_latency_p95"], dimensions: ["time"] }`
 
         - One metric plus one non-time dimension: `{ metrics: ["request_count"],
-        dimensions: ["time", "gateway_service"] }` 
+        dimensions: ["time", "gateway_service"] }`
 
 
         Either way, ensure that `time` is in the list of query dimensions.
@@ -140777,7 +140777,7 @@ components:
             Pass extra arguments from the client to the OpenID-Connect plugin.
             If arguments exist, the client can pass them using: - Query
             parameters - Request Body - Request Header  This parameter can be
-            used with `scope` values, like this: 
+            used with `scope` values, like this:
             `config.token_post_args_client=scope`  In this case, the token would
             take the `scope` value from the query parameter or from the request
             body or from the header and send it to the token endpoint.

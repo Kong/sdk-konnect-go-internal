@@ -9,7 +9,7 @@
 ingestMeteringEventsRequestBody := operations.CreateIngestMeteringEventsRequestBodyMeteringEvent(components.MeteringEvent{/* values here */})
 ```
 
-### 
+###
 
 ```go
 ingestMeteringEventsRequestBody := operations.CreateIngestMeteringEventsRequestBodyArrayOfMeteringEvent([]components.MeteringEvent{/* values here */})

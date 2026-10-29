@@ -13,7 +13,7 @@ type CreateAPIVersionRequest struct {
 	APIID string `pathParam:"style=simple,explode=false,name=apiId"`
 	// The format of the returned `spec.content`. Defaults to `json`.
 	//
-	SpecFormat              *components.SpecFormatSchema       `default:"json" queryParam:"style=form,explode=true,name=spec_format"`
+	SpecFormat              *components.SpecFormatSchema       `queryParam:"style=form,explode=true,name=spec_format"`
 	CreateAPIVersionRequest components.CreateAPIVersionRequest `request:"mediaType=application/json"`
 }
 
