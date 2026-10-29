@@ -67,12 +67,6 @@ func populateParsedParameters(pathParams interface{}, globals interface{}, parse
 			}
 		}
 
-		if fieldType.Type.Kind() == reflect.String && valType.Len() == 0 {
-			if defaultValue := parseDefaultTag(fieldType); defaultValue != nil {
-				valType = reflect.ValueOf(*defaultValue).Convert(fieldType.Type)
-			}
-		}
-
 		if ppTag.Serialization != "" {
 			vals, err := populateSerializedParams(ppTag, fieldType.Type, valType)
 			if err != nil {
