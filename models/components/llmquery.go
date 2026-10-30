@@ -103,6 +103,7 @@ type LLMQuery struct {
 	//
 	//
 	//
+	//
 	//   - 15m => tenSecondly, thirtySecondly, minutely
 	//   - 1h  => tenSecondly, thirtySecondly, minutely, fiveMinutely, tenMinutely
 	//   - 6h  => thirtySecondly, minutely, fiveMinutely, tenMinutely, thirtyMinutely, hourly
@@ -112,6 +113,7 @@ type LLMQuery struct {
 	//   - 30d => hourly, twoHourly, twelveHourly, daily, weekly
 	//
 	// For special time ranges:
+	//
 	//
 	//
 	//

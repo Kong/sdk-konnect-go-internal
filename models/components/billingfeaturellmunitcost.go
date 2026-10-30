@@ -32,27 +32,27 @@ func (e *BillingFeatureLLMUnitCostType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// TokenType - Static token type value. Use this when the feature tracks a single token type
+// BillingFeatureLLMUnitCostTokenType - Static token type value. Use this when the feature tracks a single token type
 // (e.g., only input tokens). `request` is an alias for `input`, `response` is an
 // alias for `output`. Mutually exclusive with `token_type_property`.
-type TokenType string
+type BillingFeatureLLMUnitCostTokenType string
 
 const (
-	TokenTypeInput      TokenType = "input"
-	TokenTypeOutput     TokenType = "output"
-	TokenTypeCacheRead  TokenType = "cache_read"
-	TokenTypeCacheWrite TokenType = "cache_write"
-	TokenTypeReasoning  TokenType = "reasoning"
-	TokenTypeRequest    TokenType = "request"
-	TokenTypeResponse   TokenType = "response"
+	BillingFeatureLLMUnitCostTokenTypeInput      BillingFeatureLLMUnitCostTokenType = "input"
+	BillingFeatureLLMUnitCostTokenTypeOutput     BillingFeatureLLMUnitCostTokenType = "output"
+	BillingFeatureLLMUnitCostTokenTypeCacheRead  BillingFeatureLLMUnitCostTokenType = "cache_read"
+	BillingFeatureLLMUnitCostTokenTypeCacheWrite BillingFeatureLLMUnitCostTokenType = "cache_write"
+	BillingFeatureLLMUnitCostTokenTypeReasoning  BillingFeatureLLMUnitCostTokenType = "reasoning"
+	BillingFeatureLLMUnitCostTokenTypeRequest    BillingFeatureLLMUnitCostTokenType = "request"
+	BillingFeatureLLMUnitCostTokenTypeResponse   BillingFeatureLLMUnitCostTokenType = "response"
 )
 
-func (e TokenType) ToPointer() *TokenType {
+func (e BillingFeatureLLMUnitCostTokenType) ToPointer() *BillingFeatureLLMUnitCostTokenType {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *TokenType) IsExact() bool {
+func (e *BillingFeatureLLMUnitCostTokenType) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "input", "output", "cache_read", "cache_write", "reasoning", "request", "response":
@@ -148,7 +148,7 @@ type BillingFeatureLLMUnitCost struct {
 	// Static token type value. Use this when the feature tracks a single token type
 	// (e.g., only input tokens). `request` is an alias for `input`, `response` is an
 	// alias for `output`. Mutually exclusive with `token_type_property`.
-	TokenType *TokenType `json:"token_type,omitempty"`
+	TokenType *BillingFeatureLLMUnitCostTokenType `json:"token_type,omitempty"`
 	// Resolved per-token pricing from the LLM cost database. Populated in responses
 	// when the provider and model can be determined, either from static values or from
 	// meter group-by filters with exact matches.
@@ -208,7 +208,7 @@ func (b *BillingFeatureLLMUnitCost) GetTokenTypeProperty() *string {
 	return b.TokenTypeProperty
 }
 
-func (b *BillingFeatureLLMUnitCost) GetTokenType() *TokenType {
+func (b *BillingFeatureLLMUnitCost) GetTokenType() *BillingFeatureLLMUnitCostTokenType {
 	if b == nil {
 		return nil
 	}
@@ -246,7 +246,7 @@ type BillingFeatureLLMUnitCostInput struct {
 	// Static token type value. Use this when the feature tracks a single token type
 	// (e.g., only input tokens). `request` is an alias for `input`, `response` is an
 	// alias for `output`. Mutually exclusive with `token_type_property`.
-	TokenType *TokenType `json:"token_type,omitempty"`
+	TokenType *BillingFeatureLLMUnitCostTokenType `json:"token_type,omitempty"`
 }
 
 func (b BillingFeatureLLMUnitCostInput) MarshalJSON() ([]byte, error) {
@@ -302,7 +302,7 @@ func (b *BillingFeatureLLMUnitCostInput) GetTokenTypeProperty() *string {
 	return b.TokenTypeProperty
 }
 
-func (b *BillingFeatureLLMUnitCostInput) GetTokenType() *TokenType {
+func (b *BillingFeatureLLMUnitCostInput) GetTokenType() *BillingFeatureLLMUnitCostTokenType {
 	if b == nil {
 		return nil
 	}

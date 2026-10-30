@@ -271,7 +271,7 @@ func main() {
         Upstreams: []components.Upstream{
             components.Upstream{
                 Healthchecks: &components.Healthchecks{
-                    Active: &components.Active{
+                    Active: &components.UpstreamActive{
                         Healthy: &components.Healthy{
                             HTTPStatuses: []int64{
                                 200,

@@ -14,6 +14,7 @@ Different relative times support different granularities:
 
 
 
+
   - 24h                                          => daily
   - 7d, current_week, previous_week              => daily, weekly
   - 30d, current_month, previous_month           => daily, weekly, monthly
@@ -23,6 +24,7 @@ Different relative times support different granularities:
 For absolute time ranges, daily will be used.
 
 Granularity values:
+
 
 
 

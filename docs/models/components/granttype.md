@@ -1,8 +1,6 @@
 # GrantType
 
-The OAuth 2.0 grant type used for authorization (e.g., `authorization_code`).
-Determines the flow the integration uses to request access tokens.
-
+OAuth 2.0 grant type
 
 ## Example Usage
 
@@ -12,11 +10,18 @@ import (
 )
 
 value := components.GrantTypeAuthorizationCode
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.GrantType("custom_value")
 ```
 
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `GrantTypeAuthorizationCode` | authorization_code           |
+| Name                                            | Value                                           |
+| ----------------------------------------------- | ----------------------------------------------- |
+| `GrantTypeAuthorizationCode`                    | authorization_code                              |
+| `GrantTypeImplicit`                             | implicit                                        |
+| `GrantTypeClientCredentials`                    | client_credentials                              |
+| `GrantTypeRefreshToken`                         | refresh_token                                   |
+| `GrantTypeUrnIetfParamsOauthGrantTypeJwtBearer` | urn:ietf:params:oauth:grant-type:jwt-bearer     |

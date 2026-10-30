@@ -6,6 +6,10 @@ package components
 type DefaultContent struct {
 	Pages    []string `json:"pages"`
 	Snippets []string `json:"snippets"`
+	// Names of the sidebar navigations created by this request. Navigations that already exist are not modified and are not included.
+	Navigations []string `json:"navigations,omitempty"`
+	// Whether this request applied the default customization. False when the portal already had customization, which is left unchanged.
+	Customization *bool `json:"customization,omitempty"`
 }
 
 func (d *DefaultContent) GetPages() []string {
@@ -20,4 +24,18 @@ func (d *DefaultContent) GetSnippets() []string {
 		return []string{}
 	}
 	return d.Snippets
+}
+
+func (d *DefaultContent) GetNavigations() []string {
+	if d == nil {
+		return nil
+	}
+	return d.Navigations
+}
+
+func (d *DefaultContent) GetCustomization() *bool {
+	if d == nil {
+		return nil
+	}
+	return d.Customization
 }

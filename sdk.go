@@ -99,7 +99,57 @@ type SDK struct {
 	// The plugins are synced to any Gateway Service that is currently linked or becomes linked to the Product Version.
 	// The optional `principals` property controls application-principal behavior for V3 API Catalog portals and applications. It defaults to disabled when omitted.
 	//
-	AppAuthStrategies       *AppAuthStrategies
+	AppAuthStrategies *AppAuthStrategies
+	// Connected Apps enable third-party applications to access Konnect APIs on behalf of an organization using OAuth 2.0. When enabled, a reserved auth server is created with predefined scopes.
+	ConnectedApps *ConnectedApps
+	// Auth Servers expose an OAuth 2.0 and OpenID Connect server interface for generating access tokens. The management API will give you the ability to create, configure and manage multiple Auth Servers per Konnect organization. Auth Servers are a regional Konnect entity.
+	AuthServer *AuthServer
+	// Claims are statements about the Client, included in tokens issued by the Auth Server. The management API will give you the ability to create, configure and manage multiple Claims per Auth Server, and include them in tokens based on the requested Scopes.
+	AuthServerClaims *AuthServerClaims
+	// Scopes define the extent of access that an access token grants to a Client. The management API will give you the ability to create, configure and manage multiple Scopes per Auth Server, and restrict their usage by Client.
+	AuthServerScopes *AuthServerScopes
+	// Clients represent the identity of machines, such as microservices, mobile apps, or scripts entity. The management API will give you the ability to create, configure and manage multiple Clients per Auth Server.
+	AuthServerClients *AuthServerClients
+	// Trusted IdPs allow an Auth Server to accept identity assertions from an external identity provider and exchange them for Konnect-issued tokens. The management API will give you the ability to configure the trusted IdP for an Auth Server.
+	AuthServerTrustedIDPs *AuthServerTrustedIDPs
+	// Quotas cap the number of admin-managed resources of a given type that a Konnect organization is allowed to create. Use this endpoint to create or update the configured limit for a quota type.
+	AdminQuotas *AdminQuotas
+	// Use a directory to group consumers around an identity, defined by organizational boundaries,
+	// such as a production directory or a development directory. Directories are connected to a
+	// [geographic region](https://docs.konghq.com/konnect/geo/) in Konnect. Centrally managed consumers defined in
+	// directories can be used across multiple control planes.
+	//
+	KongIdentityDirectories *KongIdentityDirectories
+	// Principals represent identities within a directory that can be authenticated and authorized.
+	// Each principal can have associated metadata and API keys for authentication purposes.
+	//
+	KongPrincipal *KongPrincipal
+	// Identities represent external authentication associations for a principal. Each identity links a principal
+	// to an external system such as an OIDC provider, an auth server client, a control plane consumer, or a custom identifier.
+	//
+	KongPrincipalIdentity *KongPrincipalIdentity
+	// Token vault credentials are the credentials that a principal has obtained by authorizing a token-vault provider. This resource is read-only: providers are authorized through the enrollment
+	// flow, not through this API, so only listing, retrieving, and de-authorizing (delete) are supported.
+	//
+	TokenVaultCredentials *TokenVaultCredentials
+	// Credentials are authentication secrets associated with principals. Supported credential types are
+	// API keys (system-generated or imported) and basic auth username/password pairs.
+	//
+	KongPrincipalCredential *KongPrincipalCredential
+	// Trusted IdPs configure the external identity providers a token-vault enabled directory trusts when
+	// validating tokens. A directory can trust several IdPs, each with a distinct issuer.
+	//
+	TrustedIDPs *TrustedIDPs
+	// Groups organize principals, or other groups, within a directory for authorization purposes.
+	//
+	PrincipalGroup *PrincipalGroup
+	// Vault providers configure credential providers for token-vault enabled directories.
+	//
+	TokenVaultProviders *TokenVaultProviders
+	// Vault keys are the public encryption keys used to protect token vault data for
+	// a token-vault enabled directory.
+	//
+	TokenVaultKeys          *TokenVaultKeys
 	API                     *API
 	APISpecification        *APISpecification
 	APIDocumentation        *APIDocumentation
@@ -493,6 +543,7 @@ type SDK struct {
 	//
 	//
 	//
+	//
 	//   <br>
 	//   A route can't have both `tls` and `tls_passthrough` protocols at same time.
 	//   <br><br>
@@ -708,6 +759,22 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Destinations = newDestinations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DCRProviders = newDCRProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AppAuthStrategies = newAppAuthStrategies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ConnectedApps = newConnectedApps(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServer = newAuthServer(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerClaims = newAuthServerClaims(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerScopes = newAuthServerScopes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerClients = newAuthServerClients(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerTrustedIDPs = newAuthServerTrustedIDPs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AdminQuotas = newAdminQuotas(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongIdentityDirectories = newKongIdentityDirectories(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipal = newKongPrincipal(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipalIdentity = newKongPrincipalIdentity(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultCredentials = newTokenVaultCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipalCredential = newKongPrincipalCredential(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TrustedIDPs = newTrustedIDPs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PrincipalGroup = newPrincipalGroup(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultProviders = newTokenVaultProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultKeys = newTokenVaultKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.API = newAPI(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APISpecification = newAPISpecification(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIDocumentation = newAPIDocumentation(sdk, sdk.sdkConfiguration, sdk.hooks)

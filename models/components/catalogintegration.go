@@ -57,6 +57,7 @@ type CatalogIntegration struct {
 	//
 	//
 	//
+	//
 	//   - Keys are globally unique, machine-readable identifiers for each resource type.
 	//   - Values are objects describing metadata about the resource type.
 	//
@@ -78,6 +79,7 @@ type CatalogIntegration struct {
 	//
 	APISpecProvider *CatalogIntegrationAPISpecProvider `json:"api_spec_provider"`
 	// Defines the event types across all resource types belonging to the integration that will be ingested into the catalog.
+	//
 	//
 	//
 	//

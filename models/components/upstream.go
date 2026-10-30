@@ -219,7 +219,7 @@ func (u *Unhealthy) GetTimeouts() *int64 {
 	return u.Timeouts
 }
 
-type Active struct {
+type UpstreamActive struct {
 	Concurrency *int64 `default:"10" json:"concurrency"`
 	// A map of header names to arrays of header values.
 	Headers map[string][]string `json:"headers,omitempty"`
@@ -234,78 +234,78 @@ type Active struct {
 	Unhealthy              *Unhealthy    `json:"unhealthy,omitempty"`
 }
 
-func (a Active) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (u UpstreamActive) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (a *Active) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+func (u *UpstreamActive) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *Active) GetConcurrency() *int64 {
-	if a == nil {
+func (u *UpstreamActive) GetConcurrency() *int64 {
+	if u == nil {
 		return nil
 	}
-	return a.Concurrency
+	return u.Concurrency
 }
 
-func (a *Active) GetHeaders() map[string][]string {
-	if a == nil {
+func (u *UpstreamActive) GetHeaders() map[string][]string {
+	if u == nil {
 		return nil
 	}
-	return a.Headers
+	return u.Headers
 }
 
-func (a *Active) GetHealthy() *Healthy {
-	if a == nil {
+func (u *UpstreamActive) GetHealthy() *Healthy {
+	if u == nil {
 		return nil
 	}
-	return a.Healthy
+	return u.Healthy
 }
 
-func (a *Active) GetHTTPPath() *string {
-	if a == nil {
+func (u *UpstreamActive) GetHTTPPath() *string {
+	if u == nil {
 		return nil
 	}
-	return a.HTTPPath
+	return u.HTTPPath
 }
 
-func (a *Active) GetHTTPSSni() *string {
-	if a == nil {
+func (u *UpstreamActive) GetHTTPSSni() *string {
+	if u == nil {
 		return nil
 	}
-	return a.HTTPSSni
+	return u.HTTPSSni
 }
 
-func (a *Active) GetHTTPSVerifyCertificate() *bool {
-	if a == nil {
+func (u *UpstreamActive) GetHTTPSVerifyCertificate() *bool {
+	if u == nil {
 		return nil
 	}
-	return a.HTTPSVerifyCertificate
+	return u.HTTPSVerifyCertificate
 }
 
-func (a *Active) GetTimeout() *float64 {
-	if a == nil {
+func (u *UpstreamActive) GetTimeout() *float64 {
+	if u == nil {
 		return nil
 	}
-	return a.Timeout
+	return u.Timeout
 }
 
-func (a *Active) GetType() *UpstreamType {
-	if a == nil {
+func (u *UpstreamActive) GetType() *UpstreamType {
+	if u == nil {
 		return nil
 	}
-	return a.Type
+	return u.Type
 }
 
-func (a *Active) GetUnhealthy() *Unhealthy {
-	if a == nil {
+func (u *UpstreamActive) GetUnhealthy() *Unhealthy {
+	if u == nil {
 		return nil
 	}
-	return a.Unhealthy
+	return u.Unhealthy
 }
 
 type UpstreamHealthy struct {
@@ -449,9 +449,9 @@ func (p *Passive) GetUnhealthy() *UpstreamUnhealthy {
 
 // Healthchecks - The array of healthchecks.
 type Healthchecks struct {
-	Active    *Active  `json:"active,omitempty"`
-	Passive   *Passive `json:"passive,omitempty"`
-	Threshold *float64 `default:"0" json:"threshold"`
+	Active    *UpstreamActive `json:"active,omitempty"`
+	Passive   *Passive        `json:"passive,omitempty"`
+	Threshold *float64        `default:"0" json:"threshold"`
 }
 
 func (h Healthchecks) MarshalJSON() ([]byte, error) {
@@ -465,7 +465,7 @@ func (h *Healthchecks) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (h *Healthchecks) GetActive() *Active {
+func (h *Healthchecks) GetActive() *UpstreamActive {
 	if h == nil {
 		return nil
 	}

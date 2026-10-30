@@ -218,6 +218,20 @@ func main() {
 * [GetACLWithConsumer](docs/sdks/acls/README.md#getaclwithconsumer) - Get an ACL associated with a Consumer in a workspace
 * [UpsertACLWithConsumer](docs/sdks/acls/README.md#upsertaclwithconsumer) - Upsert an ACL associated with a Consumer in a workspace
 
+### [AdminQuotas](docs/sdks/adminquotas/README.md)
+
+* [UpdateSliverOrgQuota](docs/sdks/adminquotas/README.md#updatesliverorgquota) - Create or update a quota
+* [PatchSliverOrgQuota](docs/sdks/adminquotas/README.md#patchsliverorgquota) - Partially update a quota
+* [ListSliverOrgQuotas](docs/sdks/adminquotas/README.md#listsliverorgquotas) - List quotas
+* [UpdateIdentityDirectoryQuota](docs/sdks/adminquotas/README.md#updateidentitydirectoryquota) - Create or update a directory-scoped quota
+* [PatchIdentityDirectoryQuota](docs/sdks/adminquotas/README.md#patchidentitydirectoryquota) - Partially update a directory-scoped quota
+* [DeleteIdentityDirectoryQuota](docs/sdks/adminquotas/README.md#deleteidentitydirectoryquota) - Delete a directory-scoped quota override
+* [ListIdentityDirectoryQuotas](docs/sdks/adminquotas/README.md#listidentitydirectoryquotas) - List directory-scoped quotas
+* [UpdateIdentityQuota](docs/sdks/adminquotas/README.md#updateidentityquota) - Create or update a quota
+* [PatchIdentityQuota](docs/sdks/adminquotas/README.md#patchidentityquota) - Partially update a quota
+* [DeleteIdentityQuota](docs/sdks/adminquotas/README.md#deleteidentityquota) - Delete a quota override
+* [ListIdentityQuotas](docs/sdks/adminquotas/README.md#listidentityquotas) - List quotas
+
 ### [AIGatewayAgents](docs/sdks/aigatewayagents/README.md)
 
 * [ListAiGatewayAgents](docs/sdks/aigatewayagents/README.md#listaigatewayagents) - List AI Gateway Agents
@@ -587,6 +601,63 @@ func main() {
 * [ReplacePortalAssetFavicon](docs/sdks/assets/README.md#replaceportalassetfavicon) - Replace Favicon
 * [GetPortalAssetFaviconRaw](docs/sdks/assets/README.md#getportalassetfaviconraw) - Get Favicon (Raw)
 
+### [AuthServer](docs/sdks/authserver/README.md)
+
+* [ListAuthServers](docs/sdks/authserver/README.md#listauthservers) - List all auth servers
+* [CreateAuthServer](docs/sdks/authserver/README.md#createauthserver) - Create a new auth server
+* [ListAuthServersComputed](docs/sdks/authserver/README.md#listauthserverscomputed) - List auth servers with computed attributes
+* [GetAuthServer](docs/sdks/authserver/README.md#getauthserver) - Get an auth server
+* [UpdateAuthServer](docs/sdks/authserver/README.md#updateauthserver) - Update an auth server
+* [DeleteAuthServer](docs/sdks/authserver/README.md#deleteauthserver) - Delete an auth server
+
+### [AuthServerClaims](docs/sdks/authserverclaims/README.md)
+
+* [ListAuthServerClaims](docs/sdks/authserverclaims/README.md#listauthserverclaims) - List all auth server claims
+* [CreateAuthServerClaim](docs/sdks/authserverclaims/README.md#createauthserverclaim) - Create a new auth server claim
+* [GetAuthServerClaim](docs/sdks/authserverclaims/README.md#getauthserverclaim) - Get an auth server claim
+* [UpdateAuthServerClaim](docs/sdks/authserverclaims/README.md#updateauthserverclaim) - Update an auth server claim
+* [DeleteAuthServerClaim](docs/sdks/authserverclaims/README.md#deleteauthserverclaim) - Delete an auth server claim
+
+### [AuthServerClients](docs/sdks/authserverclients/README.md)
+
+* [ListAuthServerClients](docs/sdks/authserverclients/README.md#listauthserverclients) - List all auth server clients
+* [CreateAuthServerClient](docs/sdks/authserverclients/README.md#createauthserverclient) - Create a new auth server client
+* [GetAuthServerClient](docs/sdks/authserverclients/README.md#getauthserverclient) - Get an auth server client
+* [UpdateAuthServerClient](docs/sdks/authserverclients/README.md#updateauthserverclient) - Update an auth server client
+* [ReplaceAuthServerClient](docs/sdks/authserverclients/README.md#replaceauthserverclient) - Replace an auth server client
+* [DeleteAuthServerClient](docs/sdks/authserverclients/README.md#deleteauthserverclient) - Delete an auth server client
+* [ListClientSecrets](docs/sdks/authserverclients/README.md#listclientsecrets) - List all client secrets
+* [CreateClientSecret](docs/sdks/authserverclients/README.md#createclientsecret) - Create a new client secret
+* [GetClientSecret](docs/sdks/authserverclients/README.md#getclientsecret) - Get a client secret
+* [UpdateClientSecret](docs/sdks/authserverclients/README.md#updateclientsecret) - Update a client secret
+* [DeleteClientSecret](docs/sdks/authserverclients/README.md#deleteclientsecret) - Delete a client secret
+* [ListClientJwks](docs/sdks/authserverclients/README.md#listclientjwks) - List all client JWKs
+* [CreateClientJwk](docs/sdks/authserverclients/README.md#createclientjwk) - Create a new client JWK
+* [GetClientJwk](docs/sdks/authserverclients/README.md#getclientjwk) - Get a client JWK
+* [DeleteClientJwk](docs/sdks/authserverclients/README.md#deleteclientjwk) - Delete a client JWK
+* [TestClaimForClient](docs/sdks/authserverclients/README.md#testclaimforclient) - Test a claim template for a client
+* [RefreshAuthServerClientSecret](docs/sdks/authserverclients/README.md#refreshauthserverclientsecret) - Refresh an auth server client secret
+* [ListAuthServerClientTokens](docs/sdks/authserverclients/README.md#listauthserverclienttokens) - List all auth server client tokens
+* [DeleteAllAuthServerClientTokens](docs/sdks/authserverclients/README.md#deleteallauthserverclienttokens) - Delete all auth server client tokens
+* [GetAuthServerClientToken](docs/sdks/authserverclients/README.md#getauthserverclienttoken) - Get an auth server client token
+* [DeleteAuthServerClientToken](docs/sdks/authserverclients/README.md#deleteauthserverclienttoken) - Delete an auth server client token
+
+### [AuthServerScopes](docs/sdks/authserverscopes/README.md)
+
+* [ListAuthServerScopes](docs/sdks/authserverscopes/README.md#listauthserverscopes) - List all auth server scopes
+* [CreateAuthServerScope](docs/sdks/authserverscopes/README.md#createauthserverscope) - Create a new auth server scope
+* [GetAuthServerScope](docs/sdks/authserverscopes/README.md#getauthserverscope) - Get an auth server scope
+* [UpdateAuthServerScope](docs/sdks/authserverscopes/README.md#updateauthserverscope) - Update an auth server scope
+* [DeleteAuthServerScope](docs/sdks/authserverscopes/README.md#deleteauthserverscope) - Delete an auth server scope
+
+### [AuthServerTrustedIdPs](docs/sdks/authservertrustedidps/README.md)
+
+* [ListAuthServerTrustedIdps](docs/sdks/authservertrustedidps/README.md#listauthservertrustedidps) - List all auth server trusted IdPs
+* [CreateAuthServerTrustedIdp](docs/sdks/authservertrustedidps/README.md#createauthservertrustedidp) - Create a new auth server trusted IdP
+* [GetAuthServerTrustedIdp](docs/sdks/authservertrustedidps/README.md#getauthservertrustedidp) - Get an auth server trusted IdP
+* [UpdateAuthServerTrustedIdp](docs/sdks/authservertrustedidps/README.md#updateauthservertrustedidp) - Update an auth server trusted IdP
+* [DeleteAuthServerTrustedIdp](docs/sdks/authservertrustedidps/README.md#deleteauthservertrustedidp) - Delete an auth server trusted IdP
+
 ### [AuthSettings](docs/sdks/authsettings/README.md)
 
 * [GetAuthenticationSettings](docs/sdks/authsettings/README.md#getauthenticationsettings) - Get Auth Settings
@@ -867,6 +938,22 @@ func main() {
 * [UpdateConfigStore](docs/sdks/configstores/README.md#updateconfigstore) - Update a Config Store in a workspace
 * [DeleteConfigStore](docs/sdks/configstores/README.md#deleteconfigstore) - Delete Config Store in a workspace
 
+### [ConnectedApps](docs/sdks/connectedapps/README.md)
+
+* [GetConnectedApps](docs/sdks/connectedapps/README.md#getconnectedapps) - Get Connected Apps configuration
+* [UpdateConnectedApps](docs/sdks/connectedapps/README.md#updateconnectedapps) - Enable or disable Connected Apps
+* [GetConnectedAppsJwks](docs/sdks/connectedapps/README.md#getconnectedappsjwks) - Get Connected Apps JWKS
+* [PatchKonnectConnectedApps](docs/sdks/connectedapps/README.md#patchkonnectconnectedapps) - Patch Konnect Connected Apps configuration
+* [ListKonnectConnectedAppSessionsAdmin](docs/sdks/connectedapps/README.md#listkonnectconnectedappsessionsadmin) - List Konnect Connected App sessions
+* [RevokeKonnectConnectedAppSessionAdmin](docs/sdks/connectedapps/README.md#revokekonnectconnectedappsessionadmin) - Revoke a Konnect Connected App session
+* [PatchPortalConnectedApps](docs/sdks/connectedapps/README.md#patchportalconnectedapps) - Patch Portal Connected Apps configuration
+* [ListPortalConnectedAppSessionsAdmin](docs/sdks/connectedapps/README.md#listportalconnectedappsessionsadmin) - List Portal Connected App sessions
+* [RevokePortalConnectedAppSessionAdmin](docs/sdks/connectedapps/README.md#revokeportalconnectedappsessionadmin) - Revoke a Portal Connected App session
+* [ListKonnectConnectedAppSessions](docs/sdks/connectedapps/README.md#listkonnectconnectedappsessions) - List caller's Konnect Connected App sessions
+* [RevokeKonnectConnectedAppSession](docs/sdks/connectedapps/README.md#revokekonnectconnectedappsession) - Revoke one of caller's Konnect App sessions
+* [ListPortalConnectedAppSessions](docs/sdks/connectedapps/README.md#listportalconnectedappsessions) - List caller's Portal Connected App sessions
+* [RevokePortalConnectedAppSession](docs/sdks/connectedapps/README.md#revokeportalconnectedappsession) - Revoke one of caller's Portal App sessions
+
 ### [ConsumerGroups](docs/sdks/consumergroups/README.md)
 
 * [ListConsumerGroup](docs/sdks/consumergroups/README.md#listconsumergroup) - List all Consumer Groups in a workspace
@@ -887,10 +974,10 @@ func main() {
 * [DeleteConsumer](docs/sdks/consumers/README.md#deleteconsumer) - Delete a Consumer in a workspace
 * [GetConsumer](docs/sdks/consumers/README.md#getconsumer) - Get a Consumer in a workspace
 * [UpsertConsumer](docs/sdks/consumers/README.md#upsertconsumer) - Upsert a Consumer in a workspace
-* [RemoveConsumerFromAllConsumerGroups](docs/sdks/consumers/README.md#removeconsumerfromallconsumergroups) - Remove consumer from all consumer groups in a workspace
-* [ListConsumerGroupsForConsumer](docs/sdks/consumers/README.md#listconsumergroupsforconsumer) - List all Consumer Groups a Consumer belongs to in a workspace
-* [AddConsumerToSpecificConsumerGroup](docs/sdks/consumers/README.md#addconsumertospecificconsumergroup) - Add consumer to a specific consumer group in a workspace
-* [RemoveConsumerFromConsumerGroup](docs/sdks/consumers/README.md#removeconsumerfromconsumergroup) - Remove consumer from consumer group in a workspace
+* [RemoveConsumerFromAllConsumerGroups](docs/sdks/consumers/README.md#removeconsumerfromallconsumergroups) - Remove consumer from all consumer groups
+* [ListConsumerGroupsForConsumer](docs/sdks/consumers/README.md#listconsumergroupsforconsumer) - List all Consumer Groups a Consumer belongs to
+* [AddConsumerToSpecificConsumerGroup](docs/sdks/consumers/README.md#addconsumertospecificconsumergroup) - Add consumer to a specific consumer group
+* [RemoveConsumerFromConsumerGroup](docs/sdks/consumers/README.md#removeconsumerfromconsumergroup) - Remove consumer from consumer group
 
 ### [ContextInterfaceCapabilityControls](docs/sdks/contextinterfacecapabilitycontrols/README.md)
 
@@ -1314,6 +1401,61 @@ func main() {
 * [DeleteKeySet](docs/sdks/keysets/README.md#deletekeyset) - Delete a KeySet in a workspace
 * [GetKeySet](docs/sdks/keysets/README.md#getkeyset) - Get a KeySet in a workspace
 * [UpsertKeySet](docs/sdks/keysets/README.md#upsertkeyset) - Upsert a KeySet in a workspace
+
+### [KongIdentityDirectories](docs/sdks/kongidentitydirectories/README.md)
+
+* [CreateDirectory](docs/sdks/kongidentitydirectories/README.md#createdirectory) - Create a new Directory
+* [ListKongDirectories](docs/sdks/kongidentitydirectories/README.md#listkongdirectories) - List all directories
+* [UpdateDirectory](docs/sdks/kongidentitydirectories/README.md#updatedirectory) - Update a Directory
+* [ReplaceDirectory](docs/sdks/kongidentitydirectories/README.md#replacedirectory) - Replace a Directory
+* [GetDirectory](docs/sdks/kongidentitydirectories/README.md#getdirectory) - Get a Directory
+* [DeleteDirectory](docs/sdks/kongidentitydirectories/README.md#deletedirectory) - Delete a Directory
+* [GetRealmConfig](docs/sdks/kongidentitydirectories/README.md#getrealmconfig) - Get the realm configuration of a Directory
+* [ReplaceRealmConfig](docs/sdks/kongidentitydirectories/README.md#replacerealmconfig) - Replace Directory realm configuration
+
+### [KongPrincipal](docs/sdks/kongprincipal/README.md)
+
+* [CreatePrincipal](docs/sdks/kongprincipal/README.md#createprincipal) - Create a Principal in a Directory
+* [ListPrincipals](docs/sdks/kongprincipal/README.md#listprincipals) - List all the Principals of a Directory
+* [ListPrincipalsComputed](docs/sdks/kongprincipal/README.md#listprincipalscomputed) - List principals with computed attributes
+* [ImportOrgChart](docs/sdks/kongprincipal/README.md#importorgchart) - Import user principals from a canonical CSV
+* [UpdatePrincipal](docs/sdks/kongprincipal/README.md#updateprincipal) - Update a Principal
+* [ReplacePrincipal](docs/sdks/kongprincipal/README.md#replaceprincipal) - Replace a Principal
+* [GetPrincipal](docs/sdks/kongprincipal/README.md#getprincipal) - Get a Principal
+* [DeletePrincipal](docs/sdks/kongprincipal/README.md#deleteprincipal) - Delete a Principal
+* [ListPrincipalGroups](docs/sdks/kongprincipal/README.md#listprincipalgroups) - List the groups of a principal
+* [GetOrgChartRoot](docs/sdks/kongprincipal/README.md#getorgchartroot) - Get the root of an imported org chart
+
+### [KongPrincipalCredential](docs/sdks/kongprincipalcredential/README.md)
+
+* [ListPrincipalBasicAuths](docs/sdks/kongprincipalcredential/README.md#listprincipalbasicauths) - List all basic auth credentials
+* [CreatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#createprincipalbasicauth) - Create a basic auth credential
+* [GetPrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#getprincipalbasicauth) - Get a basic auth credential
+* [UpdatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#updateprincipalbasicauth) - Update a basic auth credential
+* [ReplacePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#replaceprincipalbasicauth) - Replace a basic auth credential
+* [DeletePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#deleteprincipalbasicauth) - Delete a basic auth credential
+* [ListPasswords](docs/sdks/kongprincipalcredential/README.md#listpasswords) - List all passwords for a basic auth
+* [CreatePassword](docs/sdks/kongprincipalcredential/README.md#createpassword) - Create a password for a basic auth credential
+* [DeleteAllPasswords](docs/sdks/kongprincipalcredential/README.md#deleteallpasswords) - Delete all passwords for a basic auth
+* [GetPassword](docs/sdks/kongprincipalcredential/README.md#getpassword) - Get a password
+* [UpdatePassword](docs/sdks/kongprincipalcredential/README.md#updatepassword) - Update a password
+* [ReplacePassword](docs/sdks/kongprincipalcredential/README.md#replacepassword) - Replace a password
+* [DeletePassword](docs/sdks/kongprincipalcredential/README.md#deletepassword) - Delete a password
+* [CreatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#createprincipalkey) - Create a principal API key
+* [ListPrincipalKeys](docs/sdks/kongprincipalcredential/README.md#listprincipalkeys) - List all API keys for a principal
+* [UpdatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#updateprincipalkey) - Update a principal API key
+* [GetIdentityKey](docs/sdks/kongprincipalcredential/README.md#getidentitykey) - Get a principal API key
+* [DeletePrincipalKey](docs/sdks/kongprincipalcredential/README.md#deleteprincipalkey) - Delete an API key
+* [ListAPIKeys](docs/sdks/kongprincipalcredential/README.md#listapikeys) - List all API keys
+
+### [KongPrincipalIdentity](docs/sdks/kongprincipalidentity/README.md)
+
+* [ListIdentities](docs/sdks/kongprincipalidentity/README.md#listidentities) - List all identities for a principal
+* [CreateIdentity](docs/sdks/kongprincipalidentity/README.md#createidentity) - Create an identity for a principal
+* [GetIdentity](docs/sdks/kongprincipalidentity/README.md#getidentity) - Get an identity
+* [ReplaceIdentity](docs/sdks/kongprincipalidentity/README.md#replaceidentity) - Replace an identity
+* [UpdateIdentity](docs/sdks/kongprincipalidentity/README.md#updateidentity) - Update an identity
+* [DeleteIdentity](docs/sdks/kongprincipalidentity/README.md#deleteidentity) - Delete an identity
 
 ### [ManagedSystemAccountsRoles](docs/sdks/managedsystemaccountsroles/README.md)
 
@@ -1773,6 +1915,24 @@ func main() {
 * [UpdatePortalIPAllowList](docs/sdks/portalsipallowlist/README.md#updateportalipallowlist) - Update an IP allow list for a portal
 * [DeletePortalIPAllowList](docs/sdks/portalsipallowlist/README.md#deleteportalipallowlist) - Delete an IP allow list from a portal
 
+### [PrincipalGroup](docs/sdks/principalgroup/README.md)
+
+* [CreateGroup](docs/sdks/principalgroup/README.md#creategroup) - Create a Group in a Directory
+* [ListGroups](docs/sdks/principalgroup/README.md#listgroups) - List all the Groups of a Directory
+* [GetGroup](docs/sdks/principalgroup/README.md#getgroup) - Get a Group
+* [ReplaceGroup](docs/sdks/principalgroup/README.md#replacegroup) - Replace a Group
+* [DeleteGroup](docs/sdks/principalgroup/README.md#deletegroup) - Delete a Group
+* [ListGroupMembership](docs/sdks/principalgroup/README.md#listgroupmembership) - List a Group's membership
+* [CreateGroupMembershipEntry](docs/sdks/principalgroup/README.md#creategroupmembershipentry) - Add a member to a Group
+* [BatchCreateGroupMembershipEntries](docs/sdks/principalgroup/README.md#batchcreategroupmembershipentries) - Add multiple members to a Group
+* [GetGroupMembershipEntry](docs/sdks/principalgroup/README.md#getgroupmembershipentry) - Get a Group membership entry
+* [DeleteGroupMembershipEntry](docs/sdks/principalgroup/README.md#deletegroupmembershipentry) - Remove a member from a Group
+* [CreateGroupKey](docs/sdks/principalgroup/README.md#creategroupkey) - Create a group API key
+* [ListGroupKeys](docs/sdks/principalgroup/README.md#listgroupkeys) - List all API keys for a group
+* [UpdateGroupKey](docs/sdks/principalgroup/README.md#updategroupkey) - Update a group API key
+* [GetGroupKey](docs/sdks/principalgroup/README.md#getgroupkey) - Get a group API key
+* [DeleteGroupKey](docs/sdks/principalgroup/README.md#deletegroupkey) - Delete an API key
+
 ### [Quotas](docs/sdks/quotas/README.md)
 
 * [ListDefaultQuotas](docs/sdks/quotas/README.md#listdefaultquotas) - List Default Quotas
@@ -1974,6 +2134,47 @@ func main() {
 * [GetTeam](docs/sdks/teams/README.md#getteam) - Get a Team
 * [UpdateTeam](docs/sdks/teams/README.md#updateteam) - Update Team
 * [DeleteTeam](docs/sdks/teams/README.md#deleteteam) - Delete Team
+
+### [TokenVaultCredentials](docs/sdks/tokenvaultcredentials/README.md)
+
+* [ListVaultCredentials](docs/sdks/tokenvaultcredentials/README.md#listvaultcredentials) - List vault credentials for a principal
+* [GetVaultCredential](docs/sdks/tokenvaultcredentials/README.md#getvaultcredential) - Get a vault credential
+* [DeleteVaultCredential](docs/sdks/tokenvaultcredentials/README.md#deletevaultcredential) - De-authorize a provider from a principal
+
+### [TokenVaultKeys](docs/sdks/tokenvaultkeys/README.md)
+
+* [CreateVaultKey](docs/sdks/tokenvaultkeys/README.md#createvaultkey) - Create a vault key
+* [ListVaultKeys](docs/sdks/tokenvaultkeys/README.md#listvaultkeys) - List vault keys
+* [GetVaultKey](docs/sdks/tokenvaultkeys/README.md#getvaultkey) - Get a vault key
+* [UpdateVaultKey](docs/sdks/tokenvaultkeys/README.md#updatevaultkey) - Update a vault key
+* [DeleteVaultKey](docs/sdks/tokenvaultkeys/README.md#deletevaultkey) - Delete a vault key
+
+### [TokenVaultProviders](docs/sdks/tokenvaultproviders/README.md)
+
+* [CreateVaultProvider](docs/sdks/tokenvaultproviders/README.md#createvaultprovider) - Create a vault provider
+* [ListVaultProviders](docs/sdks/tokenvaultproviders/README.md#listvaultproviders) - List vault providers
+* [GetVaultProvider](docs/sdks/tokenvaultproviders/README.md#getvaultprovider) - Get a vault provider
+* [UpdateVaultProvider](docs/sdks/tokenvaultproviders/README.md#updatevaultprovider) - Update a vault provider
+* [ReplaceVaultProvider](docs/sdks/tokenvaultproviders/README.md#replacevaultprovider) - Replace a vault provider
+* [DeleteVaultProvider](docs/sdks/tokenvaultproviders/README.md#deletevaultprovider) - Delete a vault provider
+* [CreateVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#createvaultprovidercredential) - Create a shared credential for a provider
+* [ListVaultProviderCredentials](docs/sdks/tokenvaultproviders/README.md#listvaultprovidercredentials) - List credential metadata for a provider
+* [GetVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#getvaultprovidercredential) - Get a specific credential
+* [UpdateVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#updatevaultprovidercredential) - Update a shared credential's value
+* [DeleteVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#deletevaultprovidercredential) - Delete a specific provider credential
+* [ListCredentialProviderTemplates](docs/sdks/tokenvaultproviders/README.md#listcredentialprovidertemplates) - List credential provider templates
+* [GetCredentialProviderTemplate](docs/sdks/tokenvaultproviders/README.md#getcredentialprovidertemplate) - Get a credential provider template
+
+### [TrustedIdPs](docs/sdks/trustedidps/README.md)
+
+* [ListTrustedIdps](docs/sdks/trustedidps/README.md#listtrustedidps) - List all trusted IdPs
+* [CreateTrustedIdp](docs/sdks/trustedidps/README.md#createtrustedidp) - Create a new trusted IdP
+* [ListTrustedIdpsComputed](docs/sdks/trustedidps/README.md#listtrustedidpscomputed) - List trusted IdPs with computed attributes
+* [GetTrustedIdp](docs/sdks/trustedidps/README.md#gettrustedidp) - Get a trusted IdP
+* [UpdateTrustedIdp](docs/sdks/trustedidps/README.md#updatetrustedidp) - Update a trusted IdP
+* [PatchTrustedIdp](docs/sdks/trustedidps/README.md#patchtrustedidp) - Partially update a trusted IdP
+* [DeleteTrustedIdp](docs/sdks/trustedidps/README.md#deletetrustedidp) - Delete a trusted IdP
+* [ListTrustedIdpPrincipals](docs/sdks/trustedidps/README.md#listtrustedidpprincipals) - List principals of a trusted IdP
 
 ### [Upstreams](docs/sdks/upstreams/README.md)
 

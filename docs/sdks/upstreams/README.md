@@ -107,7 +107,7 @@ func main() {
         Workspace: "team-payments",
         Upstream: components.Upstream{
             Healthchecks: &components.Healthchecks{
-                Active: &components.Active{
+                Active: &components.UpstreamActive{
                     Healthy: &components.Healthy{
                         HTTPStatuses: []int64{
                             200,
@@ -345,7 +345,7 @@ func main() {
         Workspace: "team-payments",
         Upstream: components.Upstream{
             Healthchecks: &components.Healthchecks{
-                Active: &components.Active{
+                Active: &components.UpstreamActive{
                     Healthy: &components.Healthy{
                         HTTPStatuses: []int64{
                             200,

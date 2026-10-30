@@ -2108,25 +2108,25 @@ func (e *SessionStorage) IsExact() bool {
 	return false
 }
 
-// TokenEndpointAuthMethod - The token endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-type TokenEndpointAuthMethod string
+// AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod - The token endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
+type AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod string
 
 const (
-	TokenEndpointAuthMethodClientSecretBasic       TokenEndpointAuthMethod = "client_secret_basic"
-	TokenEndpointAuthMethodClientSecretJwt         TokenEndpointAuthMethod = "client_secret_jwt"
-	TokenEndpointAuthMethodClientSecretPost        TokenEndpointAuthMethod = "client_secret_post"
-	TokenEndpointAuthMethodNone                    TokenEndpointAuthMethod = "none"
-	TokenEndpointAuthMethodPrivateKeyJwt           TokenEndpointAuthMethod = "private_key_jwt"
-	TokenEndpointAuthMethodSelfSignedTLSClientAuth TokenEndpointAuthMethod = "self_signed_tls_client_auth"
-	TokenEndpointAuthMethodTLSClientAuth           TokenEndpointAuthMethod = "tls_client_auth"
+	AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethodClientSecretBasic       AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod = "client_secret_basic"
+	AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethodClientSecretJwt         AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod = "client_secret_jwt"
+	AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethodClientSecretPost        AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod = "client_secret_post"
+	AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethodNone                    AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod = "none"
+	AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethodPrivateKeyJwt           AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod = "private_key_jwt"
+	AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethodSelfSignedTLSClientAuth AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod = "self_signed_tls_client_auth"
+	AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethodTLSClientAuth           AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod = "tls_client_auth"
 )
 
-func (e TokenEndpointAuthMethod) ToPointer() *TokenEndpointAuthMethod {
+func (e AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod) ToPointer() *AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *TokenEndpointAuthMethod) IsExact() bool {
+func (e *AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "client_secret_basic", "client_secret_jwt", "client_secret_post", "none", "private_key_jwt", "self_signed_tls_client_auth", "tls_client_auth":
@@ -3103,7 +3103,7 @@ type AIGWOpenIDConnectGeneratedConfigOutput struct {
 	// The token endpoint. If set it overrides the value in `token_endpoint` returned by the discovery endpoint.
 	TokenEndpoint *string `json:"token_endpoint,omitempty"`
 	// The token endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-	TokenEndpointAuthMethod *TokenEndpointAuthMethod `json:"token_endpoint_auth_method,omitempty"`
+	TokenEndpointAuthMethod *AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod `json:"token_endpoint_auth_method,omitempty"`
 	// Details on how to accept tokens from other identity providers.
 	TokenExchange *TokenExchange `json:"token_exchange,omitempty"`
 	// Endpoint used to perform the legacy token exchange.
@@ -4517,7 +4517,7 @@ func (a *AIGWOpenIDConnectGeneratedConfigOutput) GetTokenEndpoint() *string {
 	return a.TokenEndpoint
 }
 
-func (a *AIGWOpenIDConnectGeneratedConfigOutput) GetTokenEndpointAuthMethod() *TokenEndpointAuthMethod {
+func (a *AIGWOpenIDConnectGeneratedConfigOutput) GetTokenEndpointAuthMethod() *AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod {
 	if a == nil {
 		return nil
 	}
@@ -5208,7 +5208,7 @@ type AIGWOpenIDConnectGeneratedConfig struct {
 	// The token endpoint. If set it overrides the value in `token_endpoint` returned by the discovery endpoint.
 	TokenEndpoint *string `json:"token_endpoint,omitempty"`
 	// The token endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-	TokenEndpointAuthMethod *TokenEndpointAuthMethod `json:"token_endpoint_auth_method,omitempty"`
+	TokenEndpointAuthMethod *AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod `json:"token_endpoint_auth_method,omitempty"`
 	// Details on how to accept tokens from other identity providers.
 	TokenExchange *TokenExchange `json:"token_exchange,omitempty"`
 	// Endpoint used to perform the legacy token exchange.
@@ -6643,7 +6643,7 @@ func (a *AIGWOpenIDConnectGeneratedConfig) GetTokenEndpoint() *string {
 	return a.TokenEndpoint
 }
 
-func (a *AIGWOpenIDConnectGeneratedConfig) GetTokenEndpointAuthMethod() *TokenEndpointAuthMethod {
+func (a *AIGWOpenIDConnectGeneratedConfig) GetTokenEndpointAuthMethod() *AIGWOpenIDConnectGeneratedConfigTokenEndpointAuthMethod {
 	if a == nil {
 		return nil
 	}

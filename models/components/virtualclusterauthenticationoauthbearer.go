@@ -57,6 +57,7 @@ type VirtualClusterAuthenticationOauthBearer struct {
 	//
 	//
 	//
+	//
 	//   validation
 	// * validate_forward - pass authentication from the client through proxy to the backend cluster.
 	//
@@ -68,8 +69,10 @@ type VirtualClusterAuthenticationOauthBearer struct {
 	//
 	//
 	//
+	//
 	//   Proxy does the validation before forwarding it to the client.
 	// * terminate - terminate authentication at the proxy level and originate authentication to the backend cluster
+	//
 	//
 	//
 	//

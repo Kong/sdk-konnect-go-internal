@@ -12,6 +12,7 @@ Defines a behavior when record key is not valid.
 
 
 
+
   to help to identify the clients violating schema.
 
 

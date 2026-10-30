@@ -26,6 +26,7 @@ type ListPortalMcpRegistryPublicationsRequest struct {
 	//
 	//
 	//
+	//
 	//   - mcp_registry_id
 	//
 	Sort *string `queryParam:"style=form,explode=true,name=sort"`

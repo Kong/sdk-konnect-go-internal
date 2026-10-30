@@ -1487,9 +1487,14 @@ func (s *Consumers) UpsertConsumer(ctx context.Context, request operations.Upser
 
 }
 
-// RemoveConsumerFromAllConsumerGroups - Remove consumer from all consumer groups in a workspace
-// Removes a consumer from all Consumer Groups. This operation does not delete the consumer group in a workspace.
-func (s *Consumers) RemoveConsumerFromAllConsumerGroups(ctx context.Context, request operations.RemoveConsumerFromAllConsumerGroupsRequest, opts ...operations.Option) (*operations.RemoveConsumerFromAllConsumerGroupsResponse, error) {
+// RemoveConsumerFromAllConsumerGroups - Remove consumer from all consumer groups
+// Removes a consumer from all Consumer Groups. This operation does not delete the consumer group.
+func (s *Consumers) RemoveConsumerFromAllConsumerGroups(ctx context.Context, controlPlaneID string, consumerID string, opts ...operations.Option) (*operations.RemoveConsumerFromAllConsumerGroupsResponse, error) {
+	request := operations.RemoveConsumerFromAllConsumerGroupsRequest{
+		ControlPlaneID: controlPlaneID,
+		ConsumerID:     consumerID,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1508,7 +1513,7 @@ func (s *Consumers) RemoveConsumerFromAllConsumerGroups(ctx context.Context, req
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/consumers/{ConsumerId}/consumer_groups", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerId}/consumer_groups", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1675,8 +1680,8 @@ func (s *Consumers) RemoveConsumerFromAllConsumerGroups(ctx context.Context, req
 
 }
 
-// ListConsumerGroupsForConsumer - List all Consumer Groups a Consumer belongs to in a workspace
-// List all Consumer Groups a Consumer belongs to in a workspace
+// ListConsumerGroupsForConsumer - List all Consumer Groups a Consumer belongs to
+// List all Consumer Groups a Consumer belongs to
 func (s *Consumers) ListConsumerGroupsForConsumer(ctx context.Context, request operations.ListConsumerGroupsForConsumerRequest, opts ...operations.Option) (*operations.ListConsumerGroupsForConsumerResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1696,7 +1701,7 @@ func (s *Consumers) ListConsumerGroupsForConsumer(ctx context.Context, request o
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/consumers/{ConsumerId}/consumer_groups", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerId}/consumer_groups", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1884,8 +1889,8 @@ func (s *Consumers) ListConsumerGroupsForConsumer(ctx context.Context, request o
 
 }
 
-// AddConsumerToSpecificConsumerGroup - Add consumer to a specific consumer group in a workspace
-// Add a consumer to a consumer group in a workspace
+// AddConsumerToSpecificConsumerGroup - Add consumer to a specific consumer group
+// Add a consumer to a consumer group
 func (s *Consumers) AddConsumerToSpecificConsumerGroup(ctx context.Context, request operations.AddConsumerToSpecificConsumerGroupRequest, opts ...operations.Option) (*operations.AddConsumerToSpecificConsumerGroupResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1905,7 +1910,7 @@ func (s *Consumers) AddConsumerToSpecificConsumerGroup(ctx context.Context, requ
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/consumers/{ConsumerId}/consumer_groups", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerId}/consumer_groups", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -2096,8 +2101,8 @@ func (s *Consumers) AddConsumerToSpecificConsumerGroup(ctx context.Context, requ
 
 }
 
-// RemoveConsumerFromConsumerGroup - Remove consumer from consumer group in a workspace
-// Removes a consumer from a Consumer Group. This operation does not delete the consumer group in a workspace.
+// RemoveConsumerFromConsumerGroup - Remove consumer from consumer group
+// Removes a consumer from a Consumer Group. This operation does not delete the consumer group.
 func (s *Consumers) RemoveConsumerFromConsumerGroup(ctx context.Context, request operations.RemoveConsumerFromConsumerGroupRequest, opts ...operations.Option) (*operations.RemoveConsumerFromConsumerGroupResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -2117,7 +2122,7 @@ func (s *Consumers) RemoveConsumerFromConsumerGroup(ctx context.Context, request
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/consumers/{ConsumerId}/consumer_groups/{ConsumerGroupId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/consumers/{ConsumerId}/consumer_groups/{ConsumerGroupId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

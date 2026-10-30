@@ -220,6 +220,7 @@ type ScorecardServiceFilterParameters struct {
 	//
 	//
 	//
+	//
 	//   - `filter[custom_fields.owner]`
 	//   - `filter[custom_fields.owner][neq]=kong`
 	//   - `filter[custom_fields.dashboard.link][contains]=https`

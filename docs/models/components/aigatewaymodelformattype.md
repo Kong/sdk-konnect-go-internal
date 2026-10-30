@@ -1,6 +1,7 @@
 # AIGatewayModelFormatType
 
-The format type.
+The request and response format this model supports. Set to a specific format to restrict the model to that format only, or to `*` to allow all formats that the targets support at the gateway's min_runtime_version. A format that needs a newer min_runtime_version is left out of `*`. The `*` format never includes passthrough.
+
 
 ## Example Usage
 

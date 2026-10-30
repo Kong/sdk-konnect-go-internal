@@ -10,6 +10,18 @@ import (
 // Quota - Organization-specific quota overrides linked to a default quota.
 type Quota struct {
 	ID string `json:"id"`
+	// The scope a quota limit applies to.
+	Scope QuotaScope `json:"scope"`
+	// Null when scope is default.
+	OrgID *string `json:"org_id"`
+	// Null when scope is org or default.
+	DirectoryID *string `json:"directory_id"`
+	QuotaType   string  `json:"quota_type"`
+	QuotaValue  int64   `json:"quota_value"`
+	// An ISO-8601 timestamp representation of entity creation date.
+	CreatedAt time.Time `json:"created_at"`
+	// An ISO-8601 timestamp representation of entity update date.
+	UpdatedAt time.Time `json:"updated_at"`
 	// Identifies the kind of quota. The API may return additional qualifier values over time as new quota types are introduced.
 	//
 	Qualifier QuotaQualifier `json:"qualifier"`
@@ -20,10 +32,6 @@ type Quota struct {
 	// The value of a quota. Must be a non-negative integer. The interpretation of the value depends on the quota qualifier.
 	//
 	Value int64 `json:"value"`
-	// An ISO-8601 timestamp representation of entity creation date.
-	CreatedAt time.Time `json:"created_at"`
-	// An ISO-8601 timestamp representation of entity update date.
-	UpdatedAt time.Time `json:"updated_at"`
 }
 
 func (q Quota) MarshalJSON() ([]byte, error) {
@@ -42,6 +50,55 @@ func (q *Quota) GetID() string {
 		return ""
 	}
 	return q.ID
+}
+
+func (q *Quota) GetScope() QuotaScope {
+	if q == nil {
+		return QuotaScope("")
+	}
+	return q.Scope
+}
+
+func (q *Quota) GetOrgID() *string {
+	if q == nil {
+		return nil
+	}
+	return q.OrgID
+}
+
+func (q *Quota) GetDirectoryID() *string {
+	if q == nil {
+		return nil
+	}
+	return q.DirectoryID
+}
+
+func (q *Quota) GetQuotaType() string {
+	if q == nil {
+		return ""
+	}
+	return q.QuotaType
+}
+
+func (q *Quota) GetQuotaValue() int64 {
+	if q == nil {
+		return 0
+	}
+	return q.QuotaValue
+}
+
+func (q *Quota) GetCreatedAt() time.Time {
+	if q == nil {
+		return time.Time{}
+	}
+	return q.CreatedAt
+}
+
+func (q *Quota) GetUpdatedAt() time.Time {
+	if q == nil {
+		return time.Time{}
+	}
+	return q.UpdatedAt
 }
 
 func (q *Quota) GetQualifier() QuotaQualifier {
@@ -70,18 +127,4 @@ func (q *Quota) GetValue() int64 {
 		return 0
 	}
 	return q.Value
-}
-
-func (q *Quota) GetCreatedAt() time.Time {
-	if q == nil {
-		return time.Time{}
-	}
-	return q.CreatedAt
-}
-
-func (q *Quota) GetUpdatedAt() time.Time {
-	if q == nil {
-		return time.Time{}
-	}
-	return q.UpdatedAt
 }

@@ -32,28 +32,28 @@ func (e *OverridableConfig) IsExact() bool {
 	return false
 }
 
-// GrantType - The OAuth 2.0 grant type used for authorization (e.g., `authorization_code`).
+// OAuthGrantType - The OAuth 2.0 grant type used for authorization (e.g., `authorization_code`).
 // Determines the flow the integration uses to request access tokens.
-type GrantType string
+type OAuthGrantType string
 
 const (
-	GrantTypeAuthorizationCode GrantType = "authorization_code"
+	OAuthGrantTypeAuthorizationCode OAuthGrantType = "authorization_code"
 )
 
-func (e GrantType) ToPointer() *GrantType {
+func (e OAuthGrantType) ToPointer() *OAuthGrantType {
 	return &e
 }
-func (e *GrantType) UnmarshalJSON(data []byte) error {
+func (e *OAuthGrantType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "authorization_code":
-		*e = GrantType(v)
+		*e = OAuthGrantType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GrantType: %v", v)
+		return fmt.Errorf("invalid value for OAuthGrantType: %v", v)
 	}
 }
 
@@ -107,7 +107,7 @@ type OAuthConfig1 struct {
 	// The OAuth 2.0 grant type used for authorization (e.g., `authorization_code`).
 	// Determines the flow the integration uses to request access tokens.
 	//
-	GrantType GrantType `json:"grant_type"`
+	GrantType OAuthGrantType `json:"grant_type"`
 	// The OAuth client identifier registered with the integration provider.
 	ClientID              string                `json:"client_id"`
 	AuthorizationEndpoint AuthorizationEndpoint `json:"authorization_endpoint"`
@@ -137,9 +137,9 @@ func (o *OAuthConfig1) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *OAuthConfig1) GetGrantType() GrantType {
+func (o *OAuthConfig1) GetGrantType() OAuthGrantType {
 	if o == nil {
-		return GrantType("")
+		return OAuthGrantType("")
 	}
 	return o.GrantType
 }

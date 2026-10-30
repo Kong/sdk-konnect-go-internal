@@ -1,0 +1,9 @@
+# DeleteIdentityDirectoryQuotaRequest
+
+
+## Fields
+
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `DirectoryID`                                                                                  | `string`                                                                                       | :heavy_check_mark:                                                                             | ID of the directory                                                                            |
+| `QuotaType`                                                                                    | [components.IdentityDirectoryQuotaType](../../models/components/identitydirectoryquotatype.md) | :heavy_check_mark:                                                                             | The type of directory-scoped resource the quota applies to                                     |

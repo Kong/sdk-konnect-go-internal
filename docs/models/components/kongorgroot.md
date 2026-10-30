@@ -1,0 +1,17 @@
+# KongOrgRoot
+
+The root of an imported org chart: the user principal the most recent
+import flagged as the chart root, together with the team the root
+manages (the top-level node of the chart). The root is marked by an
+`kong:org_root` custom identity on the user, which moves to a new principal
+on re-import. `root` is null and `managed_team` is null when the
+directory has no imported org chart.
+
+
+
+## Fields
+
+| Field                                                                                                                                                                                 | Type                                                                                                                                                                                  | Required                                                                                                                                                                              | Description                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Root`                                                                                                                                                                                | [*components.Root](../../models/components/root.md)                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                    | The flagged root principal; is_org_root is always true.                                                                                                                               |
+| `ManagedTeam`                                                                                                                                                                         | [*components.ManagedTeam](../../models/components/managedteam.md)                                                                                                                     | :heavy_check_mark:                                                                                                                                                                    | The team whose team_manager identity names the root — the<br/>top-level node directly below the root. Null when the root<br/>manages no team. A user manages at most one team per directory.<br/> |

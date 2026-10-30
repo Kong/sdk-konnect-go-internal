@@ -1,20 +1,11 @@
 # Type
 
-The type of the integration for categorization
-
-## Example Usage
-
-```go
-import (
-	"github.com/Kong/sdk-konnect-go/models/components"
-)
-
-value := components.TypeTracking
-```
+Filter using **one** of the following operators: `eq`, `oeq`
 
 
-## Values
+## Fields
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `TypeTracking` | tracking       |
+| Field                                         | Type                                          | Required                                      | Description                                   |
+| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
+| `Eq`                                          | `*string`                                     | :heavy_minus_sign:                            | The field exactly matches the provided value. |
+| `Oeq`                                         | `*string`                                     | :heavy_minus_sign:                            | The field matches any of the provided values. |

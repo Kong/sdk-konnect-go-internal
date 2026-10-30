@@ -46,6 +46,7 @@ type UpdateVirtualClusterRequest struct {
 	//
 	//
 	//
+	//
 	//   and does not forward ACL-related commands to the backend cluster.
 	//   Note that if there are no ACL policies configured, all access is denied.
 	// - `passthrough` tells the gateway to forward all ACL-related commands.

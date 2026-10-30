@@ -17,6 +17,7 @@ Different relative times support different granularities:
 
 
 
+
   - 1d  => daily
   - 7d  => daily, weekly
   - 3w  => daily, weekly
@@ -25,6 +26,7 @@ Different relative times support different granularities:
   - 1y  => daily, weekly
 
 For special time ranges:
+
 
 
 

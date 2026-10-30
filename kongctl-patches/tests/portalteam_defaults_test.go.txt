@@ -10,6 +10,8 @@ func TestPortalTeamRequestsPreserveMembershipManagement(t *testing.T) {
 	disabled, enabled := false, true
 	for _, value := range []*bool{nil, &disabled, &enabled} {
 		for name, request := range map[string]any{
+			"organization create": CreateTeam{Name: "team", KonnectManaged: value},
+			"organization update": UpdateTeam{KonnectManaged: value},
 			"create": PortalCreateTeamRequest{Name: "team", KonnectManaged: value},
 			"update": PortalUpdateTeamRequest{KonnectManaged: value},
 		} {
@@ -44,6 +46,17 @@ func TestPortalTeamRequestsPreserveMembershipManagement(t *testing.T) {
 	if create.KonnectManaged != nil || update.KonnectManaged != nil {
 		t.Fatal("decoding an omitted field must not introduce membership management")
 	}
+	var organizationCreate CreateTeam
+	if err := json.Unmarshal([]byte(`{"name":"team"}`), &organizationCreate); err != nil {
+		t.Fatal(err)
+	}
+	var organizationUpdate UpdateTeam
+	if err := json.Unmarshal([]byte(`{"name":"renamed"}`), &organizationUpdate); err != nil {
+		t.Fatal(err)
+	}
+	if organizationCreate.KonnectManaged != nil || organizationUpdate.KonnectManaged != nil {
+		t.Fatal("decoding an omitted field must not introduce organization membership management")
+	}
 }
 
 // These fields are present only in the internal SDK.
@@ -53,8 +66,6 @@ func TestInternalRequestsPreserveOptionalBooleans(t *testing.T) {
 		fieldName string
 		jsonName  string
 	}{
-		"team create":   {&CreateTeam{Name: "team"}, "KonnectManaged", "konnect_managed"},
-		"team update":   {&UpdateTeam{}, "KonnectManaged", "konnect_managed"},
 		"portal create": {&CreatePortal{Name: "portal"}, "CreateDefaultContent", "create_default_content"},
 	} {
 		t.Run(name, func(t *testing.T) {
