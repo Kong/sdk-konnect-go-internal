@@ -17,6 +17,9 @@ type AIGatewayPoliciesSDK interface {
 	// GetAiGatewayPolicySchema - Get an AI Gateway Policy Schema
 	// Returns the details of a specific AI Gateway policy schema using the schema name.
 	GetAiGatewayPolicySchema(ctx context.Context, gatewayID string, policySchemaName string, opts ...operations.Option) (*operations.GetAiGatewayPolicySchemaResponse, error)
+	// ValidateAiGatewayExpression - Validate an AI Gateway CEL Expression
+	// Validates a CEL expression for the `expressions` field or the `condition` field of a policy. Send exactly one of `expression` or `condition`.
+	ValidateAiGatewayExpression(ctx context.Context, gatewayID string, aiGatewayValidateExpressionRequest components.AIGatewayValidateExpressionRequest, opts ...operations.Option) (*operations.ValidateAiGatewayExpressionResponse, error)
 	// ListAiGatewayPolicies - List AI Gateway Policies
 	// Returns a list of policies configured for the AI Gateway.
 	ListAiGatewayPolicies(ctx context.Context, request operations.ListAiGatewayPoliciesRequest, opts ...operations.Option) (*operations.ListAiGatewayPoliciesResponse, error)

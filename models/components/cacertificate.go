@@ -10,14 +10,8 @@ type CACertificate struct {
 	CertDigest *string `json:"cert_digest,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// An optional set of strings associated with the Certificate for grouping and filtering.
 	Tags []string `json:"tags,omitempty"`
 	// Unix epoch when the resource was last updated.
@@ -45,25 +39,11 @@ func (c *CACertificate) GetCreatedAt() *int64 {
 	return c.CreatedAt
 }
 
-func (c *CACertificate) GetDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Description
-}
-
 func (c *CACertificate) GetID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.ID
-}
-
-func (c *CACertificate) GetManagedBy() map[string]string {
-	if c == nil {
-		return nil
-	}
-	return c.ManagedBy
 }
 
 func (c *CACertificate) GetTags() []string {

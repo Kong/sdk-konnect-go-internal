@@ -41,12 +41,38 @@ func (c *Colors) GetPrimary() *string {
 	return c.Primary
 }
 
+// BorderRadius - The corner roundness to apply to this portal's theme.
+type BorderRadius string
+
+const (
+	BorderRadiusSoft  BorderRadius = "soft"
+	BorderRadiusSharp BorderRadius = "sharp"
+	BorderRadiusRound BorderRadius = "round"
+)
+
+func (e BorderRadius) ToPointer() *BorderRadius {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *BorderRadius) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "soft", "sharp", "round":
+			return true
+		}
+	}
+	return false
+}
+
 // Theme - The theme settings for this portal.
 type Theme struct {
-	// The theme name to apply to this portal. Supported names are 'ocean', 'mesa', and 'grove'. If another name is provided or this property is omitted, the portal uses the default 'ocean' theme.
+	// The theme name to apply to this portal. Supported names are 'mesa', 'grove', 'pebble', or 'ocean'. If another name is provided or this property is omitted, the portal uses the default 'ocean' theme.
 	Name   *string                  `default:"ocean" json:"name"`
 	Mode   *PortalCustomizationMode `json:"mode,omitempty"`
 	Colors *Colors                  `json:"colors,omitempty"`
+	// The corner roundness to apply to this portal's theme.
+	BorderRadius *BorderRadius `json:"border_radius,omitempty"`
 }
 
 func (t Theme) MarshalJSON() ([]byte, error) {
@@ -81,23 +107,11 @@ func (t *Theme) GetColors() *Colors {
 	return t.Colors
 }
 
-type Js struct {
-	Custom  *string  `json:"custom,omitempty"`
-	Scripts []string `json:"scripts,omitempty"`
-}
-
-func (j *Js) GetCustom() *string {
-	if j == nil {
+func (t *Theme) GetBorderRadius() *BorderRadius {
+	if t == nil {
 		return nil
 	}
-	return j.Custom
-}
-
-func (j *Js) GetScripts() []string {
-	if j == nil {
-		return nil
-	}
-	return j.Scripts
+	return t.BorderRadius
 }
 
 type Menu struct {
@@ -243,29 +257,6 @@ func (p *PortalCustomizationSpecRenderer) GetTryItUIAudience() *PortalCustomizat
 	return p.TryItUIAudience
 }
 
-type Footer struct {
-	// The unique name of a snippet in the portal to render in place of the default footer.
-	SnippetName *string `json:"snippet_name"`
-}
-
-func (f *Footer) GetSnippetName() *string {
-	if f == nil {
-		return nil
-	}
-	return f.SnippetName
-}
-
-type PortalLayout struct {
-	Footer *Footer `json:"footer,omitempty"`
-}
-
-func (p *PortalLayout) GetFooter() *Footer {
-	if p == nil {
-		return nil
-	}
-	return p.Footer
-}
-
 // PortalCustomization - The custom settings of this portal
 type PortalCustomization struct {
 	// The theme settings for this portal.
@@ -275,12 +266,10 @@ type PortalCustomization struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Layout *string `json:"layout,omitempty"`
 	CSS    *string `json:"css,omitempty"`
-	Js     *Js     `json:"js,omitempty"`
 	Menu   *Menu   `json:"menu,omitempty"`
 	// The spec renderer settings of this portal
 	SpecRenderer *PortalCustomizationSpecRenderer `json:"spec_renderer,omitempty"`
 	Robots       *string                          `json:"robots,omitempty"`
-	PortalLayout *PortalLayout                    `json:"portal_layout,omitempty"`
 }
 
 func (p *PortalCustomization) GetTheme() *Theme {
@@ -304,13 +293,6 @@ func (p *PortalCustomization) GetCSS() *string {
 	return p.CSS
 }
 
-func (p *PortalCustomization) GetJs() *Js {
-	if p == nil {
-		return nil
-	}
-	return p.Js
-}
-
 func (p *PortalCustomization) GetMenu() *Menu {
 	if p == nil {
 		return nil
@@ -330,11 +312,4 @@ func (p *PortalCustomization) GetRobots() *string {
 		return nil
 	}
 	return p.Robots
-}
-
-func (p *PortalCustomization) GetPortalLayout() *PortalLayout {
-	if p == nil {
-		return nil
-	}
-	return p.PortalLayout
 }

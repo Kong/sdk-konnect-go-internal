@@ -365,6 +365,7 @@ func main() {
 
 * [ListAiGatewayAvailablePolicies](docs/sdks/aigatewaypolicies/README.md#listaigatewayavailablepolicies) - List AI Gateway Available Policies
 * [GetAiGatewayPolicySchema](docs/sdks/aigatewaypolicies/README.md#getaigatewaypolicyschema) - Get an AI Gateway Policy Schema
+* [ValidateAiGatewayExpression](docs/sdks/aigatewaypolicies/README.md#validateaigatewayexpression) - Validate an AI Gateway CEL Expression
 * [ListAiGatewayPolicies](docs/sdks/aigatewaypolicies/README.md#listaigatewaypolicies) - List AI Gateway Policies
 * [CreateAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#createaigatewaypolicy) - Create an AI Gateway Policy
 * [GetAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#getaigatewaypolicy) - Get an AI Gateway Policy
@@ -398,14 +399,12 @@ func main() {
 * [ListAiGateways](docs/sdks/aigateways/README.md#listaigateways) - List AI Gateways
 * [CreateAiGateway](docs/sdks/aigateways/README.md#createaigateway) - Create an AI Gateway
 * [ListAiGatewayRuntimeVersions](docs/sdks/aigateways/README.md#listaigatewayruntimeversions) - List AI Gateway Runtime Versions
+* [GetAiGatewayRuntimeDefault](docs/sdks/aigateways/README.md#getaigatewayruntimedefault) - Get an AI Gateway Runtime Default
+* [UpdateAiGatewayRuntimeDefault](docs/sdks/aigateways/README.md#updateaigatewayruntimedefault) - Update an AI Gateway Runtime Default
 * [GetAiGateway](docs/sdks/aigateways/README.md#getaigateway) - Get an AI Gateway
 * [UpdateAiGateway](docs/sdks/aigateways/README.md#updateaigateway) - Update an AI Gateway
 * [PatchAiGateway](docs/sdks/aigateways/README.md#patchaigateway) - Patch an AI Gateway
 * [DeleteAiGateway](docs/sdks/aigateways/README.md#deleteaigateway) - Delete an AI Gateway
-
-### [AIManager](docs/sdks/aimanager/README.md)
-
-* [ListVirtualKeys](docs/sdks/aimanager/README.md#listvirtualkeys) - Get Control Plane Virtual Keys
 
 ### [AISettings](docs/sdks/aisettings/README.md)
 
@@ -420,7 +419,6 @@ func main() {
 * [FetchAPI](docs/sdks/api/README.md#fetchapi) - Get an API
 * [UpdateAPI](docs/sdks/api/README.md#updateapi) - Update API
 * [DeleteAPI](docs/sdks/api/README.md#deleteapi) - Delete API
-* [ListApisComputed](docs/sdks/api/README.md#listapiscomputed) - List APIs computed
 * [ListAPIRegistrations](docs/sdks/api/README.md#listapiregistrations) - List API Registrations
 
 ### [APIAttributes](docs/sdks/apiattributes/README.md)
@@ -435,14 +433,6 @@ func main() {
 * [UpdateAPIDocument](docs/sdks/apidocumentation/README.md#updateapidocument) - Update API Document
 * [DeleteAPIDocument](docs/sdks/apidocumentation/README.md#deleteapidocument) - Delete API Documentation
 * [MoveAPIDocument](docs/sdks/apidocumentation/README.md#moveapidocument) - Move API Documentation
-
-### [APIEnvironment](docs/sdks/apienvironment/README.md)
-
-* [ListAPIEnvironments](docs/sdks/apienvironment/README.md#listapienvironments) - List API Environments
-* [CreateAPIEnvironment](docs/sdks/apienvironment/README.md#createapienvironment) - Add an API Environment
-* [FetchAPIEnvironment](docs/sdks/apienvironment/README.md#fetchapienvironment) - Get an API Environment
-* [UpdateAPIEnvironment](docs/sdks/apienvironment/README.md#updateapienvironment) - Update an API Environment
-* [DeleteAPIEnvironment](docs/sdks/apienvironment/README.md#deleteapienvironment) - Remove an API Environment
 
 ### [APIImage](docs/sdks/apiimage/README.md)
 
@@ -500,7 +490,6 @@ func main() {
 * [GetAPIPackage](docs/sdks/apipackages/README.md#getapipackage) - Get API Package
 * [PatchAPIPackage](docs/sdks/apipackages/README.md#patchapipackage) - Patch API Package
 * [DeleteAPIPackage](docs/sdks/apipackages/README.md#deleteapipackage) - Delete API Package
-* [ListAPIPackageRegistrations](docs/sdks/apipackages/README.md#listapipackageregistrations) - List API Package Registrations
 
 ### [APIPublication](docs/sdks/apipublication/README.md)
 
@@ -512,9 +501,6 @@ func main() {
 * [PublishAPIPackageToPortal](docs/sdks/apipublication/README.md#publishapipackagetoportal) - Publish API Package
 * [FetchAPIPackagePublication](docs/sdks/apipublication/README.md#fetchapipackagepublication) - Get an API Package Publication
 * [DeleteAPIPackagePublication](docs/sdks/apipublication/README.md#deleteapipackagepublication) - Delete API Package Publication
-* [PublishAPIToPortalInEnvironment](docs/sdks/apipublication/README.md#publishapitoportalinenvironment) - Publish API in an Environment
-* [FetchPublicationInEnvironment](docs/sdks/apipublication/README.md#fetchpublicationinenvironment) - Get a Publication in an Environment
-* [DeletePublicationInEnvironment](docs/sdks/apipublication/README.md#deletepublicationinenvironment) - Delete Publication in an Environment
 
 ### [APISpecification](docs/sdks/apispecification/README.md)
 
@@ -565,16 +551,12 @@ func main() {
 
 ### [Applications](docs/sdks/applications/README.md)
 
-* [ListApplicationGroups](docs/sdks/applications/README.md#listapplicationgroups) - List Application Groups
-* [GetApplicationGroup](docs/sdks/applications/README.md#getapplicationgroup) - Get an Application Group
 * [CreateApplication](docs/sdks/applications/README.md#createapplication) - Create Application
 * [ListApplications](docs/sdks/applications/README.md#listapplications) - List Applications
 * [GetApplication](docs/sdks/applications/README.md#getapplication) - Get an Application by Portal
 * [UpdateApplication](docs/sdks/applications/README.md#updateapplication) - Update Application
 * [DeleteApplication](docs/sdks/applications/README.md#deleteapplication) - Delete Application by Portal
 * [ListDevelopersByApplication](docs/sdks/applications/README.md#listdevelopersbyapplication) - List Developers by Application
-* [AddDeveloperToApplication](docs/sdks/applications/README.md#adddevelopertoapplication) - Add Developer to Application
-* [RemoveDeveloperFromApplication](docs/sdks/applications/README.md#removedeveloperfromapplication) - Remove Developer from Application
 * [GetApplicationUnscoped](docs/sdks/applications/README.md#getapplicationunscoped) - Get an Application
 * [ListCredentialsByApplication](docs/sdks/applications/README.md#listcredentialsbyapplication) - List Credentials by Application
 
@@ -586,6 +568,49 @@ func main() {
 * [GetPortalAssetFavicon](docs/sdks/assets/README.md#getportalassetfavicon) - Get Favicon
 * [ReplacePortalAssetFavicon](docs/sdks/assets/README.md#replaceportalassetfavicon) - Replace Favicon
 * [GetPortalAssetFaviconRaw](docs/sdks/assets/README.md#getportalassetfaviconraw) - Get Favicon (Raw)
+
+### [AuthServer](docs/sdks/authserver/README.md)
+
+* [ListAuthServers](docs/sdks/authserver/README.md#listauthservers) - List all auth servers
+* [CreateAuthServer](docs/sdks/authserver/README.md#createauthserver) - Create a new auth server
+* [GetAuthServer](docs/sdks/authserver/README.md#getauthserver) - Get an auth server
+* [UpdateAuthServer](docs/sdks/authserver/README.md#updateauthserver) - Update an auth server
+* [DeleteAuthServer](docs/sdks/authserver/README.md#deleteauthserver) - Delete an auth server
+
+### [AuthServerClaims](docs/sdks/authserverclaims/README.md)
+
+* [ListAuthServerClaims](docs/sdks/authserverclaims/README.md#listauthserverclaims) - List all auth server claims
+* [CreateAuthServerClaim](docs/sdks/authserverclaims/README.md#createauthserverclaim) - Create a new auth server claim
+* [GetAuthServerClaim](docs/sdks/authserverclaims/README.md#getauthserverclaim) - Get an auth server claim
+* [UpdateAuthServerClaim](docs/sdks/authserverclaims/README.md#updateauthserverclaim) - Update an auth server claim
+* [DeleteAuthServerClaim](docs/sdks/authserverclaims/README.md#deleteauthserverclaim) - Delete an auth server claim
+
+### [AuthServerClients](docs/sdks/authserverclients/README.md)
+
+* [ListAuthServerClients](docs/sdks/authserverclients/README.md#listauthserverclients) - List all auth server clients
+* [CreateAuthServerClient](docs/sdks/authserverclients/README.md#createauthserverclient) - Create a new auth server client
+* [GetAuthServerClient](docs/sdks/authserverclients/README.md#getauthserverclient) - Get an auth server client
+* [UpdateAuthServerClient](docs/sdks/authserverclients/README.md#updateauthserverclient) - Update an auth server client
+* [ReplaceAuthServerClient](docs/sdks/authserverclients/README.md#replaceauthserverclient) - Replace an auth server client
+* [DeleteAuthServerClient](docs/sdks/authserverclients/README.md#deleteauthserverclient) - Delete an auth server client
+* [ListClientSecrets](docs/sdks/authserverclients/README.md#listclientsecrets) - List all client secrets
+* [CreateClientSecret](docs/sdks/authserverclients/README.md#createclientsecret) - Create a new client secret
+* [GetClientSecret](docs/sdks/authserverclients/README.md#getclientsecret) - Get a client secret
+* [UpdateClientSecret](docs/sdks/authserverclients/README.md#updateclientsecret) - Update a client secret
+* [DeleteClientSecret](docs/sdks/authserverclients/README.md#deleteclientsecret) - Delete a client secret
+* [TestClaimForClient](docs/sdks/authserverclients/README.md#testclaimforclient) - Test a claim template for a client
+* [ListAuthServerClientTokens](docs/sdks/authserverclients/README.md#listauthserverclienttokens) - List all auth server client tokens
+* [DeleteAllAuthServerClientTokens](docs/sdks/authserverclients/README.md#deleteallauthserverclienttokens) - Delete all auth server client tokens
+* [GetAuthServerClientToken](docs/sdks/authserverclients/README.md#getauthserverclienttoken) - Get an auth server client token
+* [DeleteAuthServerClientToken](docs/sdks/authserverclients/README.md#deleteauthserverclienttoken) - Delete an auth server client token
+
+### [AuthServerScopes](docs/sdks/authserverscopes/README.md)
+
+* [ListAuthServerScopes](docs/sdks/authserverscopes/README.md#listauthserverscopes) - List all auth server scopes
+* [CreateAuthServerScope](docs/sdks/authserverscopes/README.md#createauthserverscope) - Create a new auth server scope
+* [GetAuthServerScope](docs/sdks/authserverscopes/README.md#getauthserverscope) - Get an auth server scope
+* [UpdateAuthServerScope](docs/sdks/authserverscopes/README.md#updateauthserverscope) - Update an auth server scope
+* [DeleteAuthServerScope](docs/sdks/authserverscopes/README.md#deleteauthserverscope) - Delete an auth server scope
 
 ### [AuthSettings](docs/sdks/authsettings/README.md)
 
@@ -607,18 +632,11 @@ func main() {
 * [GetTeamGroupMappings](docs/sdks/authsettings/README.md#getteamgroupmappings) - Get a Team Group Mappings
 * [PatchTeamGroupMappings](docs/sdks/authsettings/README.md#patchteamgroupmappings) - Patch Mappings by Team ID
 
-### [Auth0](docs/sdks/auth0/README.md)
-
-* [PostAuth0UserMfaSettingsInternal](docs/sdks/auth0/README.md#postauth0usermfasettingsinternal) - Get Auth0 User MFA Settings (Internal)
-
 ### [Authentication](docs/sdks/authentication/README.md)
 
 * [RefreshToken](docs/sdks/authentication/README.md#refreshtoken) - Refresh Token
 * [Logout](docs/sdks/authentication/README.md#logout) - Log Out
 * [AuthenticateSso](docs/sdks/authentication/README.md#authenticatesso) - SSO Callback
-* [ExchangeAuthorizationCode](docs/sdks/authentication/README.md#exchangeauthorizationcode) - Exchange Authorization Code
-* [CreateDiscoveryCode](docs/sdks/authentication/README.md#creatediscoverycode) - Create Organization Discovery Code
-* [ExchangeDiscoveryCode](docs/sdks/authentication/README.md#exchangediscoverycode) - Exchange Organization Discovery Code
 
 ### [Aws](docs/sdks/aws/README.md)
 
@@ -636,11 +654,11 @@ func main() {
 
 ### [CACertificates](docs/sdks/cacertificates/README.md)
 
-* [ListCaCertificate](docs/sdks/cacertificates/README.md#listcacertificate) - List all CA Certificates in a workspace
-* [CreateCaCertificate](docs/sdks/cacertificates/README.md#createcacertificate) - Create a new CA Certificate in a workspace
-* [DeleteCaCertificate](docs/sdks/cacertificates/README.md#deletecacertificate) - Delete a CA Certificate in a workspace
-* [GetCaCertificate](docs/sdks/cacertificates/README.md#getcacertificate) - Get a CA Certificate in a workspace
-* [UpsertCaCertificate](docs/sdks/cacertificates/README.md#upsertcacertificate) - Upsert a CA Certificate in a workspace
+* [ListCaCertificate](docs/sdks/cacertificates/README.md#listcacertificate) - List all CA Certificates
+* [CreateCaCertificate](docs/sdks/cacertificates/README.md#createcacertificate) - Create a new CA Certificate
+* [DeleteCaCertificate](docs/sdks/cacertificates/README.md#deletecacertificate) - Delete a CA Certificate
+* [GetCaCertificate](docs/sdks/cacertificates/README.md#getcacertificate) - Get a CA Certificate
+* [UpsertCaCertificate](docs/sdks/cacertificates/README.md#upsertcacertificate) - Upsert a CA Certificate
 
 ### [CatalogAIModelImplementations](docs/sdks/catalogaimodelimplementations/README.md)
 
@@ -648,15 +666,6 @@ func main() {
 * [CreateAiModelImplementation](docs/sdks/catalogaimodelimplementations/README.md#createaimodelimplementation) - Create AI Model implementation
 * [GetAiModelImplementation](docs/sdks/catalogaimodelimplementations/README.md#getaimodelimplementation) - Get AI Model implementation
 * [DeleteAiModelImplementation](docs/sdks/catalogaimodelimplementations/README.md#deleteaimodelimplementation) - Delete AI Model implementation
-
-### [CatalogAIModelSources](docs/sdks/catalogaimodelsources/README.md)
-
-* [GetAiModelSource](docs/sdks/catalogaimodelsources/README.md#getaimodelsource) - Get AI Model source
-* [CreateAiModelSource](docs/sdks/catalogaimodelsources/README.md#createaimodelsource) - Create AI Model source
-* [ReplaceAiModelSource](docs/sdks/catalogaimodelsources/README.md#replaceaimodelsource) - Replace AI Model source
-* [UpdateAiModelSource](docs/sdks/catalogaimodelsources/README.md#updateaimodelsource) - Update AI Model source
-* [DeleteAiModelSource](docs/sdks/catalogaimodelsources/README.md#deleteaimodelsource) - Delete AI Model source
-* [GetAiModelSourcePreview](docs/sdks/catalogaimodelsources/README.md#getaimodelsourcepreview) - Get AI Model source preview
 
 ### [CatalogAIModelSpecs](docs/sdks/catalogaimodelspecs/README.md)
 
@@ -685,11 +694,7 @@ func main() {
 
 ### [CatalogIntegrations](docs/sdks/catalogintegrations/README.md)
 
-* [CreateCatalogIntegration](docs/sdks/catalogintegrations/README.md#createcatalogintegration) - Create Integration
 * [ListCatalogIntegrations](docs/sdks/catalogintegrations/README.md#listcatalogintegrations) - List Integrations
-* [GetCatalogIntegration](docs/sdks/catalogintegrations/README.md#getcatalogintegration) - Get Integration
-* [UpdateCatalogIntegration](docs/sdks/catalogintegrations/README.md#updatecatalogintegration) - Update Integration
-* [DeleteCatalogIntegration](docs/sdks/catalogintegrations/README.md#deletecatalogintegration) - Delete Integration
 
 ### [CatalogMCPImplementations](docs/sdks/catalogmcpimplementations/README.md)
 
@@ -697,15 +702,6 @@ func main() {
 * [CreateMcpImplementation](docs/sdks/catalogmcpimplementations/README.md#createmcpimplementation) - Create MCP implementation
 * [GetMcpImplementation](docs/sdks/catalogmcpimplementations/README.md#getmcpimplementation) - Get MCP implementation
 * [DeleteMcpImplementation](docs/sdks/catalogmcpimplementations/README.md#deletemcpimplementation) - Delete MCP implementation
-
-### [CatalogMCPSources](docs/sdks/catalogmcpsources/README.md)
-
-* [GetMcpSource](docs/sdks/catalogmcpsources/README.md#getmcpsource) - Get MCP source
-* [CreateMcpSource](docs/sdks/catalogmcpsources/README.md#createmcpsource) - Create MCP source
-* [ReplaceMcpSource](docs/sdks/catalogmcpsources/README.md#replacemcpsource) - Replace MCP source
-* [UpdateMcpSource](docs/sdks/catalogmcpsources/README.md#updatemcpsource) - Update MCP source
-* [DeleteMcpSource](docs/sdks/catalogmcpsources/README.md#deletemcpsource) - Delete MCP source
-* [GetMcpSourcePreview](docs/sdks/catalogmcpsources/README.md#getmcpsourcepreview) - Get MCP source preview
 
 ### [CatalogMCPVersions](docs/sdks/catalogmcpversions/README.md)
 
@@ -740,9 +736,6 @@ func main() {
 
 * [ListResources](docs/sdks/catalogresources/README.md#listresources) - List Resources
 * [FetchResource](docs/sdks/catalogresources/README.md#fetchresource) - Get a Resource
-* [InitializeResource](docs/sdks/catalogresources/README.md#initializeresource) - Initialize Resource
-* [UpsertResources](docs/sdks/catalogresources/README.md#upsertresources) - Upsert Resources
-* [DeleteResources](docs/sdks/catalogresources/README.md#deleteresources) - Delete Resources
 * [UpdateResource](docs/sdks/catalogresources/README.md#updateresource) - Update Resource
 
 ### [CatalogServiceAPIMappings](docs/sdks/catalogserviceapimappings/README.md)
@@ -752,29 +745,6 @@ func main() {
 * [GetCatalogServiceAPIMapping](docs/sdks/catalogserviceapimappings/README.md#getcatalogserviceapimapping) - Get API Mapping for a Service
 * [DeleteCatalogServiceAPIMapping](docs/sdks/catalogserviceapimappings/README.md#deletecatalogserviceapimapping) - Delete API Mapping for a Service
 * [ListServiceMappingsForAPI](docs/sdks/catalogserviceapimappings/README.md#listservicemappingsforapi) - List Service Mappings for an API
-
-### [CatalogServiceAPISpecs](docs/sdks/catalogserviceapispecs/README.md)
-
-* [CreateCatalogServiceAPISpec](docs/sdks/catalogserviceapispecs/README.md#createcatalogserviceapispec) - Create API spec
-* [ListCatalogServiceAPISpecs](docs/sdks/catalogserviceapispecs/README.md#listcatalogserviceapispecs) - List Catalog Service API Specs
-* [PreviewCatalogServiceAPISpec](docs/sdks/catalogserviceapispecs/README.md#previewcatalogserviceapispec) - Preview API Spec
-* [FetchCatalogServiceAPISpec](docs/sdks/catalogserviceapispecs/README.md#fetchcatalogserviceapispec) - Get an API spec
-* [UpdateCatalogServiceAPISpec](docs/sdks/catalogserviceapispecs/README.md#updatecatalogserviceapispec) - Update API Spec
-* [DeleteCatalogServiceAPISpec](docs/sdks/catalogserviceapispecs/README.md#deletecatalogserviceapispec) - Delete API Spec
-* [FetchCatalogServiceAPISpecContents](docs/sdks/catalogserviceapispecs/README.md#fetchcatalogserviceapispeccontents) - Get an API Spec Contents
-
-### [CatalogServiceCustomFields](docs/sdks/catalogservicecustomfields/README.md)
-
-* [ListCatalogCustomFieldSchemas](docs/sdks/catalogservicecustomfields/README.md#listcatalogcustomfieldschemas) - List Catalog Custom Field Schemas
-
-### [CatalogServiceDocuments](docs/sdks/catalogservicedocuments/README.md)
-
-* [CreateCatalogServiceDocument](docs/sdks/catalogservicedocuments/README.md#createcatalogservicedocument) - Create Service Document
-* [ListCatalogServiceDocuments](docs/sdks/catalogservicedocuments/README.md#listcatalogservicedocuments) - List Catalog Service Documents
-* [FetchCatalogServiceDocument](docs/sdks/catalogservicedocuments/README.md#fetchcatalogservicedocument) - Get a Catalog Service Document
-* [UpdateCatalogServiceDocument](docs/sdks/catalogservicedocuments/README.md#updatecatalogservicedocument) - Update Catalog Service Document
-* [DeleteCatalogServiceDocument](docs/sdks/catalogservicedocuments/README.md#deletecatalogservicedocument) - Delete Catalog Service Document
-* [MoveCatalogServiceDocument](docs/sdks/catalogservicedocuments/README.md#movecatalogservicedocument) - Move Catalog Service Document
 
 ### [CatalogServiceResources](docs/sdks/catalogserviceresources/README.md)
 
@@ -853,19 +823,27 @@ func main() {
 
 ### [ConfigStoreSecrets](docs/sdks/configstoresecrets/README.md)
 
-* [CreateConfigStoreSecret](docs/sdks/configstoresecrets/README.md#createconfigstoresecret) - Create Config Store Secret in a workspace
-* [ListConfigStoreSecrets](docs/sdks/configstoresecrets/README.md#listconfigstoresecrets) - List Config Store Secrets in a workspace
-* [GetConfigStoreSecret](docs/sdks/configstoresecrets/README.md#getconfigstoresecret) - Get a Config Store Secret in a workspace
-* [UpdateConfigStoreSecret](docs/sdks/configstoresecrets/README.md#updateconfigstoresecret) - Update Config Store Secret in a workspace
-* [DeleteConfigStoreSecret](docs/sdks/configstoresecrets/README.md#deleteconfigstoresecret) - Delete Config Store Secret in a workspace
+* [CreateConfigStoreSecret](docs/sdks/configstoresecrets/README.md#createconfigstoresecret) - Create Config Store Secret
+* [ListConfigStoreSecrets](docs/sdks/configstoresecrets/README.md#listconfigstoresecrets) - List Config Store Secrets
+* [GetConfigStoreSecret](docs/sdks/configstoresecrets/README.md#getconfigstoresecret) - Get a Config Store Secret
+* [UpdateConfigStoreSecret](docs/sdks/configstoresecrets/README.md#updateconfigstoresecret) - Update Config Store Secret
+* [DeleteConfigStoreSecret](docs/sdks/configstoresecrets/README.md#deleteconfigstoresecret) - Delete Config Store Secret
 
 ### [ConfigStores](docs/sdks/configstores/README.md)
 
-* [ListConfigStores](docs/sdks/configstores/README.md#listconfigstores) - List all Config Stores for a workspace
-* [CreateConfigStore](docs/sdks/configstores/README.md#createconfigstore) - Create Config Store in a workspace
-* [GetConfigStore](docs/sdks/configstores/README.md#getconfigstore) - Get a Config Store in a workspace
-* [UpdateConfigStore](docs/sdks/configstores/README.md#updateconfigstore) - Update a Config Store in a workspace
-* [DeleteConfigStore](docs/sdks/configstores/README.md#deleteconfigstore) - Delete Config Store in a workspace
+* [ListConfigStores](docs/sdks/configstores/README.md#listconfigstores) - List all config stores for a control plane
+* [CreateConfigStore](docs/sdks/configstores/README.md#createconfigstore) - Create Config Store
+* [GetConfigStore](docs/sdks/configstores/README.md#getconfigstore) - Get a Config Store
+* [UpdateConfigStore](docs/sdks/configstores/README.md#updateconfigstore) - Update an individual Config Store
+* [DeleteConfigStore](docs/sdks/configstores/README.md#deleteconfigstore) - Delete Config Store
+
+### [ConnectedApps](docs/sdks/connectedapps/README.md)
+
+* [PatchPortalConnectedApps](docs/sdks/connectedapps/README.md#patchportalconnectedapps) - Patch Portal Connected Apps configuration
+* [ListPortalConnectedAppSessionsAdmin](docs/sdks/connectedapps/README.md#listportalconnectedappsessionsadmin) - List Portal Connected App sessions
+* [RevokePortalConnectedAppSessionAdmin](docs/sdks/connectedapps/README.md#revokeportalconnectedappsessionadmin) - Revoke a Portal Connected App session
+* [ListPortalConnectedAppSessions](docs/sdks/connectedapps/README.md#listportalconnectedappsessions) - List caller's Portal Connected App sessions
+* [RevokePortalConnectedAppSession](docs/sdks/connectedapps/README.md#revokeportalconnectedappsession) - Revoke one of caller's Portal App sessions
 
 ### [ConsumerGroups](docs/sdks/consumergroups/README.md)
 
@@ -881,7 +859,6 @@ func main() {
 
 ### [Consumers](docs/sdks/consumers/README.md)
 
-* [SearchConsumers](docs/sdks/consumers/README.md#searchconsumers) - Search Consumers in a workspace
 * [ListConsumer](docs/sdks/consumers/README.md#listconsumer) - List all Consumers in a workspace
 * [CreateConsumer](docs/sdks/consumers/README.md#createconsumer) - Create a new Consumer in a workspace
 * [DeleteConsumer](docs/sdks/consumers/README.md#deleteconsumer) - Delete a Consumer in a workspace
@@ -907,20 +884,6 @@ func main() {
 * [PatchContextInterface](docs/sdks/contextinterfaces/README.md#patchcontextinterface) - Partially Update Context Interface
 * [DeleteContextInterface](docs/sdks/contextinterfaces/README.md#deletecontextinterface) - Delete Context Interface
 * [ListContextInterfacesByContextSource](docs/sdks/contextinterfaces/README.md#listcontextinterfacesbycontextsource) - List Context Source Context Interfaces
-* [GetMcpServerStatus](docs/sdks/contextinterfaces/README.md#getmcpserverstatus) - Get Context Interface Deployment Status
-* [GetContextInterfaceGeneratedCode](docs/sdks/contextinterfaces/README.md#getcontextinterfacegeneratedcode) - Get Generated Code for a Context Interface
-
-### [ContextProviderCredentials](docs/sdks/contextprovidercredentials/README.md)
-
-* [ListContextProviderCredentials](docs/sdks/contextprovidercredentials/README.md#listcontextprovidercredentials) - List Context Provider Credentials
-* [CreateContextProviderCredential](docs/sdks/contextprovidercredentials/README.md#createcontextprovidercredential) - Create a Context Provider Credential
-* [GetContextProviderCredential](docs/sdks/contextprovidercredentials/README.md#getcontextprovidercredential) - Get a Context Provider Credential
-* [PatchContextProviderCredential](docs/sdks/contextprovidercredentials/README.md#patchcontextprovidercredential) - Update a Context Provider Credential
-* [DeleteContextProviderCredential](docs/sdks/contextprovidercredentials/README.md#deletecontextprovidercredential) - Delete a Context Provider Credential
-
-### [ContextSourceContents](docs/sdks/contextsourcecontents/README.md)
-
-* [GetContextSourceContents](docs/sdks/contextsourcecontents/README.md#getcontextsourcecontents) - Get Context Source Contents
 
 ### [ContextSourceMappings](docs/sdks/contextsourcemappings/README.md)
 
@@ -945,8 +908,6 @@ func main() {
 * [PostControlPlanesIDGroupMembershipsRemove](docs/sdks/controlplanegroups/README.md#postcontrolplanesidgroupmembershipsremove) - Remove Control Plane Group Members
 * [GetControlPlanesIDGroupMemberStatus](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupmemberstatus) - Get Control Plane Group Member Status
 * [GetControlPlanesIDGroupStatus](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupstatus) - Get Control Plane Group Status
-* [GetControlPlaneGroupSettings](docs/sdks/controlplanegroups/README.md#getcontrolplanegroupsettings) - Get Control Plane Group Settings
-* [PutControlPlaneGroupSettings](docs/sdks/controlplanegroups/README.md#putcontrolplanegroupsettings) - Upsert Control Plane Group Settings
 
 ### [ControlPlaneMappings](docs/sdks/controlplanemappings/README.md)
 
@@ -972,8 +933,6 @@ func main() {
 * [GetControlPlane](docs/sdks/controlplanes/README.md#getcontrolplane) - Get a Control Plane
 * [UpdateControlPlane](docs/sdks/controlplanes/README.md#updatecontrolplane) - Update Control Plane
 * [DeleteControlPlane](docs/sdks/controlplanes/README.md#deletecontrolplane) - Delete Control Plane
-* [GetControlPlaneSettings](docs/sdks/controlplanes/README.md#getcontrolplanesettings) - Get Control Plane Settings
-* [PutControlPlaneSettings](docs/sdks/controlplanes/README.md#putcontrolplanesettings) - Upsert Control Plane Settings
 
 ### [CriteriaTemplates](docs/sdks/criteriatemplates/README.md)
 
@@ -1003,14 +962,6 @@ func main() {
 * [DashboardsUpdate](docs/sdks/dashboards/README.md#dashboardsupdate) - Update an existing dashboard
 * [DashboardsDelete](docs/sdks/dashboards/README.md#dashboardsdelete) - Delete an existing dashboard
 
-### [DataPlaneNodeLogLevelOperations](docs/sdks/dataplanenodelogleveloperations/README.md)
-
-* [ListDataplaneNodeLogLevelOperations](docs/sdks/dataplanenodelogleveloperations/README.md#listdataplanenodelogleveloperations) - List Data Plane Node Log Level Operations
-* [CreateDataplaneNodeLogLevelOperation](docs/sdks/dataplanenodelogleveloperations/README.md#createdataplanenodelogleveloperation) - Create a data plane node log level operation
-* [GetDataplaneNodeLogLevelOperation](docs/sdks/dataplanenodelogleveloperations/README.md#getdataplanenodelogleveloperation) - Get a data plane node log level operation
-* [ListDataplaneNodeLogLevelOperationResults](docs/sdks/dataplanenodelogleveloperations/README.md#listdataplanenodelogleveloperationresults) - List results of a data plane node log level operation
-* [GetDataplaneNodeLogLevelOperationResult](docs/sdks/dataplanenodelogleveloperations/README.md#getdataplanenodelogleveloperationresult) - Get result of a data plane node log level operation
-
 ### [DCRProviders](docs/sdks/dcrproviders/README.md)
 
 * [CreateDcrProvider](docs/sdks/dcrproviders/README.md#createdcrprovider) - Create DCR provider
@@ -1019,21 +970,6 @@ func main() {
 * [UpdateDcrProvider](docs/sdks/dcrproviders/README.md#updatedcrprovider) - Update DCR provider
 * [DeleteDcrProvider](docs/sdks/dcrproviders/README.md#deletedcrprovider) - Delete DCR provider
 * [VerifyDcrProvider](docs/sdks/dcrproviders/README.md#verifydcrprovider) - Verify DCR provider configuration
-
-### [~~DebugSessions~~](docs/sdks/debugsessions/README.md)
-
-* [~~ListDebugSessions~~](docs/sdks/debugsessions/README.md#listdebugsessions) - List all debug sessions for a control plane :warning: **Deprecated**
-* [~~CreateDebugSession~~](docs/sdks/debugsessions/README.md#createdebugsession) - Create Debug Session :warning: **Deprecated**
-* [~~GetDebugSession~~](docs/sdks/debugsessions/README.md#getdebugsession) - Fetch a Debug Session :warning: **Deprecated**
-* [~~DeleteDebugSession~~](docs/sdks/debugsessions/README.md#deletedebugsession) - Delete a Debug Session :warning: **Deprecated**
-* [~~StopDebugSession~~](docs/sdks/debugsessions/README.md#stopdebugsession) - Stops an active Debug Session :warning: **Deprecated**
-
-### [DeclarativeConfiguration](docs/sdks/declarativeconfiguration/README.md)
-
-* [UpsertDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#upsertdeclarativeconfig) - Create or Update the declarative config
-* [GetDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#getdeclarativeconfig) - Get the declarative configuration
-* [DeleteDeclarativeConfig](docs/sdks/declarativeconfiguration/README.md#deletedeclarativeconfig) - Delete the declarative config
-* [ValidateControlPlaneConfig](docs/sdks/declarativeconfiguration/README.md#validatecontrolplaneconfig) - Validate a control plane configuration
 
 ### [DegraphqlRoutes](docs/sdks/degraphqlroutes/README.md)
 
@@ -1056,8 +992,8 @@ func main() {
 * [RotateDestinationSecret](docs/sdks/destinations/README.md#rotatedestinationsecret) - Rotate the destination signing secret
 * [GetDestinationDelivery](docs/sdks/destinations/README.md#getdestinationdelivery) - Get a delivery and its attempts
 * [ResendDestinationDelivery](docs/sdks/destinations/README.md#resenddestinationdelivery) - Resend a delivery
-* [ListDestinationSubscriptions](docs/sdks/destinations/README.md#listdestinationsubscriptions) - List the org subscriptions of a destination
-* [ListDeliveries](docs/sdks/destinations/README.md#listdeliveries) - List deliveries of the organization
+* [ListDestinationSubscriptions](docs/sdks/destinations/README.md#listdestinationsubscriptions) - List destination subscriptions
+* [ListDeliveries](docs/sdks/destinations/README.md#listdeliveries) - List delivery history
 
 ### [DeviceAuthorizationGrant](docs/sdks/deviceauthorizationgrant/README.md)
 
@@ -1150,22 +1086,6 @@ func main() {
 * [UpdateEventGatewayTLSTrustBundle](docs/sdks/eventgatewaytlstrustbundles/README.md#updateeventgatewaytlstrustbundle) - Update TLS Trust Bundle
 * [DeleteEventGatewayTLSTrustBundle](docs/sdks/eventgatewaytlstrustbundles/README.md#deleteeventgatewaytlstrustbundle) - Delete TLS Trust Bundle
 
-### [EventGatewayVaultSecrets](docs/sdks/eventgatewayvaultsecrets/README.md)
-
-* [ListEventGatewayVaultSecrets](docs/sdks/eventgatewayvaultsecrets/README.md#listeventgatewayvaultsecrets) - List Vault Secrets
-* [CreateEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#createeventgatewayvaultsecret) - Create Vault Secret
-* [GetEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#geteventgatewayvaultsecret) - Get Vault Secret
-* [UpdateEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#updateeventgatewayvaultsecret) - Update Vault Secret
-* [DeleteEventGatewayVaultSecret](docs/sdks/eventgatewayvaultsecrets/README.md#deleteeventgatewayvaultsecret) - Delete Vault Secret
-
-### [EventGatewayVaults](docs/sdks/eventgatewayvaults/README.md)
-
-* [ListEventGatewayVaults](docs/sdks/eventgatewayvaults/README.md#listeventgatewayvaults) - List Vaults
-* [CreateEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#createeventgatewayvault) - Create Vault
-* [GetEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#geteventgatewayvault) - Get a Vault
-* [UpdateEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#updateeventgatewayvault) - Update Vault
-* [DeleteEventGatewayVault](docs/sdks/eventgatewayvaults/README.md#deleteeventgatewayvault) - Delete Vault
-
 ### [EventGatewayVirtualClusterConsumePolicies](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md)
 
 * [ListEventGatewayVirtualClusterConsumePolicies](docs/sdks/eventgatewayvirtualclusterconsumepolicies/README.md#listeventgatewayvirtualclusterconsumepolicies) - List Consume Policies for Virtual Cluster
@@ -1241,20 +1161,10 @@ func main() {
 * [ListHmacAuth](docs/sdks/hmacauthcredentials/README.md#listhmacauth) - List all HMAC-auth credentials in a workspace
 * [GetHmacAuth](docs/sdks/hmacauthcredentials/README.md#gethmacauth) - Get a HMAC-auth credential in a workspace
 
-### [Identity](docs/sdks/identity/README.md)
-
-* [AuthorizeConnectedApp](docs/sdks/identity/README.md#authorizeconnectedapp) - Authorize Connected App
-
 ### [ImpersonationSettings](docs/sdks/impersonationsettings/README.md)
 
 * [GetImpersonationSettings](docs/sdks/impersonationsettings/README.md#getimpersonationsettings) - Get Impersonation Settings
 * [UpdateImpersonationSettings](docs/sdks/impersonationsettings/README.md#updateimpersonationsettings) - Update Impersonation Settings
-
-### [IntegrationEvents](docs/sdks/integrationevents/README.md)
-
-* [ListIntegrationEvents](docs/sdks/integrationevents/README.md#listintegrationevents) - List Integration Events
-* [CreateIntegrationEvents](docs/sdks/integrationevents/README.md#createintegrationevents) - Bulk Create Integration Events
-* [ListCatalogServiceIntegrationEvents](docs/sdks/integrationevents/README.md#listcatalogserviceintegrationevents) - List a catalog service integration Events
 
 ### [IntegrationInstanceAuthConfig](docs/sdks/integrationinstanceauthconfig/README.md)
 
@@ -1267,10 +1177,6 @@ func main() {
 * [CreateIntegrationInstanceAuthCredential](docs/sdks/integrationinstanceauthcredentials/README.md#createintegrationinstanceauthcredential) - Create Integration Instance Auth Credential
 * [GetIntegrationInstanceAuthCredential](docs/sdks/integrationinstanceauthcredentials/README.md#getintegrationinstanceauthcredential) - Get Integration Instance Auth Credential
 * [DeleteIntegrationInstanceAuthCredential](docs/sdks/integrationinstanceauthcredentials/README.md#deleteintegrationinstanceauthcredential) - Delete Integration Instance Auth Credential
-
-### [IntegrationInstanceProxy](docs/sdks/integrationinstanceproxy/README.md)
-
-* [IntegrationInstanceProxyRequest](docs/sdks/integrationinstanceproxy/README.md#integrationinstanceproxyrequest) - Integration Instance Proxy Request
 
 ### [IntegrationInstances](docs/sdks/integrationinstances/README.md)
 
@@ -1315,6 +1221,56 @@ func main() {
 * [GetKeySet](docs/sdks/keysets/README.md#getkeyset) - Get a KeySet in a workspace
 * [UpsertKeySet](docs/sdks/keysets/README.md#upsertkeyset) - Upsert a KeySet in a workspace
 
+### [KongIdentityDirectories](docs/sdks/kongidentitydirectories/README.md)
+
+* [CreateDirectory](docs/sdks/kongidentitydirectories/README.md#createdirectory) - Create a new Directory
+* [ListKongDirectories](docs/sdks/kongidentitydirectories/README.md#listkongdirectories) - List all directories
+* [UpdateDirectory](docs/sdks/kongidentitydirectories/README.md#updatedirectory) - Update a Directory
+* [ReplaceDirectory](docs/sdks/kongidentitydirectories/README.md#replacedirectory) - Replace a Directory
+* [GetDirectory](docs/sdks/kongidentitydirectories/README.md#getdirectory) - Get a Directory
+* [DeleteDirectory](docs/sdks/kongidentitydirectories/README.md#deletedirectory) - Delete a Directory
+
+### [KongPrincipal](docs/sdks/kongprincipal/README.md)
+
+* [CreatePrincipal](docs/sdks/kongprincipal/README.md#createprincipal) - Create a Principal in a Directory
+* [ListPrincipals](docs/sdks/kongprincipal/README.md#listprincipals) - List all the Principals of a Directory
+* [ImportOrgChart](docs/sdks/kongprincipal/README.md#importorgchart) - Import user principals from a canonical CSV
+* [UpdatePrincipal](docs/sdks/kongprincipal/README.md#updateprincipal) - Update a Principal
+* [ReplacePrincipal](docs/sdks/kongprincipal/README.md#replaceprincipal) - Replace a Principal
+* [GetPrincipal](docs/sdks/kongprincipal/README.md#getprincipal) - Get a Principal
+* [DeletePrincipal](docs/sdks/kongprincipal/README.md#deleteprincipal) - Delete a Principal
+* [ListPrincipalGroups](docs/sdks/kongprincipal/README.md#listprincipalgroups) - List the groups of a principal
+
+### [KongPrincipalCredential](docs/sdks/kongprincipalcredential/README.md)
+
+* [ListPrincipalBasicAuths](docs/sdks/kongprincipalcredential/README.md#listprincipalbasicauths) - List all basic auth credentials
+* [CreatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#createprincipalbasicauth) - Create a basic auth credential
+* [GetPrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#getprincipalbasicauth) - Get a basic auth credential
+* [UpdatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#updateprincipalbasicauth) - Update a basic auth credential
+* [ReplacePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#replaceprincipalbasicauth) - Replace a basic auth credential
+* [DeletePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#deleteprincipalbasicauth) - Delete a basic auth credential
+* [ListPasswords](docs/sdks/kongprincipalcredential/README.md#listpasswords) - List all passwords for a basic auth
+* [CreatePassword](docs/sdks/kongprincipalcredential/README.md#createpassword) - Create a password for a basic auth credential
+* [DeleteAllPasswords](docs/sdks/kongprincipalcredential/README.md#deleteallpasswords) - Delete all passwords for a basic auth
+* [GetPassword](docs/sdks/kongprincipalcredential/README.md#getpassword) - Get a password
+* [UpdatePassword](docs/sdks/kongprincipalcredential/README.md#updatepassword) - Update a password
+* [ReplacePassword](docs/sdks/kongprincipalcredential/README.md#replacepassword) - Replace a password
+* [DeletePassword](docs/sdks/kongprincipalcredential/README.md#deletepassword) - Delete a password
+* [CreatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#createprincipalkey) - Create a principal API key
+* [ListPrincipalKeys](docs/sdks/kongprincipalcredential/README.md#listprincipalkeys) - List all API keys for a principal
+* [UpdatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#updateprincipalkey) - Update a principal API key
+* [GetIdentityKey](docs/sdks/kongprincipalcredential/README.md#getidentitykey) - Get a principal API key
+* [DeletePrincipalKey](docs/sdks/kongprincipalcredential/README.md#deleteprincipalkey) - Delete an API key
+
+### [KongPrincipalIdentity](docs/sdks/kongprincipalidentity/README.md)
+
+* [ListIdentities](docs/sdks/kongprincipalidentity/README.md#listidentities) - List all identities for a principal
+* [CreateIdentity](docs/sdks/kongprincipalidentity/README.md#createidentity) - Create an identity for a principal
+* [GetIdentity](docs/sdks/kongprincipalidentity/README.md#getidentity) - Get an identity
+* [ReplaceIdentity](docs/sdks/kongprincipalidentity/README.md#replaceidentity) - Replace an identity
+* [UpdateIdentity](docs/sdks/kongprincipalidentity/README.md#updateidentity) - Update an identity
+* [DeleteIdentity](docs/sdks/kongprincipalidentity/README.md#deleteidentity) - Delete an identity
+
 ### [ManagedSystemAccountsRoles](docs/sdks/managedsystemaccountsroles/README.md)
 
 * [GetSystemAccountsAssignedRolesInternal](docs/sdks/managedsystemaccountsroles/README.md#getsystemaccountsassignedrolesinternal) - List Roles (Internal)
@@ -1339,7 +1295,6 @@ func main() {
 * [DeleteUsersMe](docs/sdks/me/README.md#deleteusersme) - Delete My User Account
 * [PatchUsersMe](docs/sdks/me/README.md#patchusersme) - Update My User Account
 * [GetUsersMePermissions](docs/sdks/me/README.md#getusersmepermissions) - Get My Permissions
-* [RetrieveUsersMePermissions](docs/sdks/me/README.md#retrieveusersmepermissions) - Retrieve My Permissions
 * [GetOrganizationsMe](docs/sdks/me/README.md#getorganizationsme) - Get My Organization
 * [UpdateOrganizationsMe](docs/sdks/me/README.md#updateorganizationsme) - Update My Organization
 
@@ -1351,9 +1306,6 @@ func main() {
 * [DeleteMeshControlPlane](docs/sdks/mesh/README.md#deletemeshcontrolplane) - Delete the control plane
 * [UpdateCp](docs/sdks/mesh/README.md#updatecp) - Update a whole control plane
 * [PatchMeshControlPlane](docs/sdks/mesh/README.md#patchmeshcontrolplane) - Patch parts of control plane
-* [ListMeshControlPlaneReadinessReports](docs/sdks/mesh/README.md#listmeshcontrolplanereadinessreports) - List upgrade readiness reports
-* [ScanMeshControlPlane](docs/sdks/mesh/README.md#scanmeshcontrolplane) - Scan a control plane for upgrade readiness
-* [GetMeshControlPlaneReadinessReport](docs/sdks/mesh/README.md#getmeshcontrolplanereadinessreport) - Get an upgrade readiness report
 
 ### [MeteringEvents](docs/sdks/meteringevents/README.md)
 
@@ -1402,7 +1354,6 @@ func main() {
 * [GetApp](docs/sdks/openmeterapps/README.md#getapp) - Get app
 * [UninstallApp](docs/sdks/openmeterapps/README.md#uninstallapp) - Uninstall app
 * [UpdateApp](docs/sdks/openmeterapps/README.md#updateapp) - Update app
-* [ExecuteAppAction](docs/sdks/openmeterapps/README.md#executeappaction) - Execute app action
 
 ### [OpenMeterBillingSettings](docs/sdks/openmeterbillingsettings/README.md)
 
@@ -1503,15 +1454,6 @@ func main() {
 * [GetBillingNotificationChannel](docs/sdks/openmeternotifications/README.md#getbillingnotificationchannel) - Get notification channel
 * [UpdateBillingNotificationChannel](docs/sdks/openmeternotifications/README.md#updatebillingnotificationchannel) - Update notification channel
 * [DeleteBillingNotificationChannel](docs/sdks/openmeternotifications/README.md#deletebillingnotificationchannel) - Delete notification channel
-* [ListBillingNotificationEvents](docs/sdks/openmeternotifications/README.md#listbillingnotificationevents) - List notification events
-* [GetBillingNotificationEvent](docs/sdks/openmeternotifications/README.md#getbillingnotificationevent) - Get notification event
-* [ResendBillingNotificationEvent](docs/sdks/openmeternotifications/README.md#resendbillingnotificationevent) - Resend notification event
-* [ListBillingNotificationRules](docs/sdks/openmeternotifications/README.md#listbillingnotificationrules) - List notification rules
-* [CreateBillingNotificationRule](docs/sdks/openmeternotifications/README.md#createbillingnotificationrule) - Create notification rule
-* [GetBillingNotificationRule](docs/sdks/openmeternotifications/README.md#getbillingnotificationrule) - Get notification rule
-* [UpdateBillingNotificationRule](docs/sdks/openmeternotifications/README.md#updatebillingnotificationrule) - Update notification rule
-* [DeleteBillingNotificationRule](docs/sdks/openmeternotifications/README.md#deletebillingnotificationrule) - Delete notification rule
-* [TestBillingNotificationRule](docs/sdks/openmeternotifications/README.md#testbillingnotificationrule) - Test notification rule
 
 ### [OpenMeterProductCatalog](docs/sdks/openmeterproductcatalog/README.md)
 
@@ -1540,10 +1482,8 @@ func main() {
 * [CreateSubscription](docs/sdks/openmetersubscriptions/README.md#createsubscription) - Create subscription
 * [ListSubscriptions](docs/sdks/openmetersubscriptions/README.md#listsubscriptions) - List subscriptions
 * [GetSubscription](docs/sdks/openmetersubscriptions/README.md#getsubscription) - Get subscription
-* [CreateSubscriptionAddon](docs/sdks/openmetersubscriptions/README.md#createsubscriptionaddon) - Create a new subscription add-on
 * [ListSubscriptionAddons](docs/sdks/openmetersubscriptions/README.md#listsubscriptionaddons) - List subscription addons
 * [GetSubscriptionAddon](docs/sdks/openmetersubscriptions/README.md#getsubscriptionaddon) - Get add-on association for subscription
-* [UpdateSubscriptionAddon](docs/sdks/openmetersubscriptions/README.md#updatesubscriptionaddon) - Update subscription addon
 * [CancelSubscription](docs/sdks/openmetersubscriptions/README.md#cancelsubscription) - Cancel subscription
 * [ChangeSubscription](docs/sdks/openmetersubscriptions/README.md#changesubscription) - Change subscription
 * [EditSubscription](docs/sdks/openmetersubscriptions/README.md#editsubscription) - Edit subscription
@@ -1562,17 +1502,12 @@ func main() {
 
 ### [OrgConfigurations](docs/sdks/orgconfigurations/README.md)
 
-* [ListOrgConfigurations](docs/sdks/orgconfigurations/README.md#listorgconfigurations) - List available org configurations
-* [ListOrgSubscriptions](docs/sdks/orgconfigurations/README.md#listorgsubscriptions) - List the org subscriptions of an event type
+* [ListOrgConfigurations](docs/sdks/orgconfigurations/README.md#listorgconfigurations) - List available org events
+* [ListOrgSubscriptions](docs/sdks/orgconfigurations/README.md#listorgsubscriptions) - List org subscriptions
 * [CreateOrgSubscription](docs/sdks/orgconfigurations/README.md#createorgsubscription) - Create an org subscription
 * [GetOrgSubscription](docs/sdks/orgconfigurations/README.md#getorgsubscription) - Get an org subscription
 * [UpdateOrgSubscription](docs/sdks/orgconfigurations/README.md#updateorgsubscription) - Update an org subscription
 * [DeleteOrgSubscription](docs/sdks/orgconfigurations/README.md#deleteorgsubscription) - Delete an org subscription
-
-### [OrganizationFeature](docs/sdks/organizationfeature/README.md)
-
-* [GetOrganizationFeature](docs/sdks/organizationfeature/README.md#getorganizationfeature) - Get Feature Configuration
-* [UpsertOrganizationFeature](docs/sdks/organizationfeature/README.md#upsertorganizationfeature) - Upsert Feature Configuration
 
 ### [Pages](docs/sdks/pages/README.md)
 
@@ -1601,7 +1536,6 @@ func main() {
 
 ### [Plugins](docs/sdks/plugins/README.md)
 
-* [SearchPlugins](docs/sdks/plugins/README.md#searchplugins) - Search Plugins in a workspace
 * [ListPluginWithConsumerGroup](docs/sdks/plugins/README.md#listpluginwithconsumergroup) - List all Plugins associated with a Consumer Group in a workspace
 * [CreatePluginWithConsumerGroup](docs/sdks/plugins/README.md#createpluginwithconsumergroup) - Create a new Plugin associated with a Consumer Group in a workspace
 * [DeletePluginWithConsumerGroup](docs/sdks/plugins/README.md#deletepluginwithconsumergroup) - Delete a a Plugin associated with a Consumer Group in a workspace
@@ -1711,12 +1645,6 @@ func main() {
 * [UpsertPortalIntegrations](docs/sdks/portalintegrations/README.md#upsertportalintegrations) - Replace Integration Configurations
 * [UpdatePortalIntegrations](docs/sdks/portalintegrations/README.md#updateportalintegrations) - Update Integration Configurations
 
-### [PortalMCPRegistryPublications](docs/sdks/portalmcpregistrypublications/README.md)
-
-* [ListPortalMcpRegistryPublications](docs/sdks/portalmcpregistrypublications/README.md#listportalmcpregistrypublications) - List portal MCP registry publications
-* [ListPortalMcpRegistries](docs/sdks/portalmcpregistrypublications/README.md#listportalmcpregistries) - List MCP Registries
-* [ListPortalComputedMcpRegistries](docs/sdks/portalmcpregistrypublications/README.md#listportalcomputedmcpregistries) - List computed MCP Registries
-
 ### [PortalNavigation](docs/sdks/portalnavigation/README.md)
 
 * [ListPortalNavigations](docs/sdks/portalnavigation/README.md#listportalnavigations) - List Navigation configurations
@@ -1773,22 +1701,23 @@ func main() {
 * [UpdatePortalIPAllowList](docs/sdks/portalsipallowlist/README.md#updateportalipallowlist) - Update an IP allow list for a portal
 * [DeletePortalIPAllowList](docs/sdks/portalsipallowlist/README.md#deleteportalipallowlist) - Delete an IP allow list from a portal
 
-### [Quotas](docs/sdks/quotas/README.md)
+### [PrincipalGroup](docs/sdks/principalgroup/README.md)
 
-* [ListDefaultQuotas](docs/sdks/quotas/README.md#listdefaultquotas) - List Default Quotas
-* [ListQuotas](docs/sdks/quotas/README.md#listquotas) - List Quotas
-* [CreateQuota](docs/sdks/quotas/README.md#createquota) - Create Quota
-* [FetchQuota](docs/sdks/quotas/README.md#fetchquota) - Get a Quota
-* [UpdateQuota](docs/sdks/quotas/README.md#updatequota) - Update Quota
-
-### [ResourceActions](docs/sdks/resourceactions/README.md)
-
-* [ListResourceActions](docs/sdks/resourceactions/README.md#listresourceactions) - List Resource Actions
-
-### [ResourceIngestion](docs/sdks/resourceingestion/README.md)
-
-* [ScheduleResourceIngestion](docs/sdks/resourceingestion/README.md#scheduleresourceingestion) - Schedule Resource Ingestion
-* [FetchResourceIngestion](docs/sdks/resourceingestion/README.md#fetchresourceingestion) - Get a Resource Ingestion
+* [CreateGroup](docs/sdks/principalgroup/README.md#creategroup) - Create a Group in a Directory
+* [ListGroups](docs/sdks/principalgroup/README.md#listgroups) - List all the Groups of a Directory
+* [GetGroup](docs/sdks/principalgroup/README.md#getgroup) - Get a Group
+* [ReplaceGroup](docs/sdks/principalgroup/README.md#replacegroup) - Replace a Group
+* [DeleteGroup](docs/sdks/principalgroup/README.md#deletegroup) - Delete a Group
+* [ListGroupMembership](docs/sdks/principalgroup/README.md#listgroupmembership) - List a Group's membership
+* [CreateGroupMembershipEntry](docs/sdks/principalgroup/README.md#creategroupmembershipentry) - Add a member to a Group
+* [BatchCreateGroupMembershipEntries](docs/sdks/principalgroup/README.md#batchcreategroupmembershipentries) - Add multiple members to a Group
+* [GetGroupMembershipEntry](docs/sdks/principalgroup/README.md#getgroupmembershipentry) - Get a Group membership entry
+* [DeleteGroupMembershipEntry](docs/sdks/principalgroup/README.md#deletegroupmembershipentry) - Remove a member from a Group
+* [CreateGroupKey](docs/sdks/principalgroup/README.md#creategroupkey) - Create a group API key
+* [ListGroupKeys](docs/sdks/principalgroup/README.md#listgroupkeys) - List all API keys for a group
+* [UpdateGroupKey](docs/sdks/principalgroup/README.md#updategroupkey) - Update a group API key
+* [GetGroupKey](docs/sdks/principalgroup/README.md#getgroupkey) - Get a group API key
+* [DeleteGroupKey](docs/sdks/principalgroup/README.md#deletegroupkey) - Delete an API key
 
 ### [Roles](docs/sdks/roles/README.md)
 
@@ -1804,7 +1733,6 @@ func main() {
 
 ### [Routes](docs/sdks/routes/README.md)
 
-* [SearchRoutes](docs/sdks/routes/README.md#searchroutes) - Search Routes in a workspace
 * [ListRoute](docs/sdks/routes/README.md#listroute) - List all Routes in a workspace
 * [CreateRoute](docs/sdks/routes/README.md#createroute) - Create a new Route in a workspace
 * [DeleteRoute](docs/sdks/routes/README.md#deleteroute) - Delete a Route in a workspace
@@ -1818,9 +1746,7 @@ func main() {
 
 ### [Schemas](docs/sdks/schemas/README.md)
 
-* [FetchCoreEntityJSONSchema](docs/sdks/schemas/README.md#fetchcoreentityjsonschema) - Get core entity JSON schema
-* [ValidatePluginExpression](docs/sdks/schemas/README.md#validatepluginexpression) - Validate a plugin expression
-* [ValidatePluginCondition](docs/sdks/schemas/README.md#validateplugincondition) - Validate a plugin condition
+* [ValidateExpression](docs/sdks/schemas/README.md#validateexpression) - Validate a CEL expression
 * [ValidateEntitySchema](docs/sdks/schemas/README.md#validateentityschema) - Validate entity schema
 * [FetchPartialSchema](docs/sdks/schemas/README.md#fetchpartialschema) - Get partial schema
 
@@ -1832,7 +1758,6 @@ func main() {
 * [FetchScorecard](docs/sdks/scorecards/README.md#fetchscorecard) - Get a Scorecard
 * [UpdateScorecard](docs/sdks/scorecards/README.md#updatescorecard) - Update Scorecard
 * [DeleteScorecard](docs/sdks/scorecards/README.md#deletescorecard) - Delete Scorecard
-* [ScheduleScorecardEvaluation](docs/sdks/scorecards/README.md#schedulescorecardevaluation) - Schedule Scorecard Evaluation
 * [ListScorecardServices](docs/sdks/scorecards/README.md#listscorecardservices) - List Scorecard Services
 * [ListScorecardCriteria](docs/sdks/scorecards/README.md#listscorecardcriteria) - List Scorecard Criteria
 * [ListScorecardCriteriaServices](docs/sdks/scorecards/README.md#listscorecardcriteriaservices) - List Scorecard Criteria Services
@@ -1841,7 +1766,6 @@ func main() {
 
 ### [Services](docs/sdks/services/README.md)
 
-* [SearchServices](docs/sdks/services/README.md#searchservices) - Search Services in a workspace
 * [ListService](docs/sdks/services/README.md#listservice) - List all Services in a workspace
 * [CreateService](docs/sdks/services/README.md#createservice) - Create a new Service in a workspace
 * [DeleteService](docs/sdks/services/README.md#deleteservice) - Delete a Service in a workspace
@@ -1851,18 +1775,6 @@ func main() {
 ### [SignalingAPIs](docs/sdks/signalingapis/README.md)
 
 * [ListDeployedContextInterfaceSkillArtifacts](docs/sdks/signalingapis/README.md#listdeployedcontextinterfaceskillartifacts) - List Skill Artifacts By Control Plane
-
-### [SkillArtifacts](docs/sdks/skillartifacts/README.md)
-
-* [ListContextInterfaceSkillArtifacts](docs/sdks/skillartifacts/README.md#listcontextinterfaceskillartifacts) - List Skill Artifacts
-
-### [SkillPreview](docs/sdks/skillpreview/README.md)
-
-* [PreviewContextInterfaceSkill](docs/sdks/skillpreview/README.md#previewcontextinterfaceskill) - Preview a Skill
-
-### [SkillSync](docs/sdks/skillsync/README.md)
-
-* [SyncContextInterfaceSkill](docs/sdks/skillsync/README.md#synccontextinterfaceskill) - Sync Skill
 
 ### [Skills](docs/sdks/skills/README.md)
 
@@ -1901,26 +1813,6 @@ func main() {
 * [PostAuth0RegisterInternal](docs/sdks/ssoauth0/README.md#postauth0registerinternal) - Create Organization (Internal)
 * [GetAuth0OrganizationsInternal](docs/sdks/ssoauth0/README.md#getauth0organizationsinternal) - List Organizations (Internal)
 
-### [SuggestedResourceActions](docs/sdks/suggestedresourceactions/README.md)
-
-* [ListSuggestedResourceAction](docs/sdks/suggestedresourceactions/README.md#listsuggestedresourceaction) - List Suggested Resource Actions
-* [GetSuggestedResourceAction](docs/sdks/suggestedresourceactions/README.md#getsuggestedresourceaction) - Get a Suggested Resource Action
-* [UpdateSuggestedResourceAction](docs/sdks/suggestedresourceactions/README.md#updatesuggestedresourceaction) - Update Suggested Resource Action
-
-### [SuggestionRuleErrors](docs/sdks/suggestionruleerrors/README.md)
-
-* [ListSuggestionRuleErrors](docs/sdks/suggestionruleerrors/README.md#listsuggestionruleerrors) - List Suggestion Rule Errors
-
-### [SuggestionRules](docs/sdks/suggestionrules/README.md)
-
-* [ListSystemIntegrationSuggestionRule](docs/sdks/suggestionrules/README.md#listsystemintegrationsuggestionrule) - List System Suggestion Rules
-* [CreateIntegrationSuggestionRule](docs/sdks/suggestionrules/README.md#createintegrationsuggestionrule) - Create Suggestion Rule
-* [ListIntegrationSuggestionRule](docs/sdks/suggestionrules/README.md#listintegrationsuggestionrule) - List Suggestion Rules
-* [GetIntegrationSuggestionRule](docs/sdks/suggestionrules/README.md#getintegrationsuggestionrule) - Get a Suggestion Rule
-* [UpdateIntegrationSuggestionRule](docs/sdks/suggestionrules/README.md#updateintegrationsuggestionrule) - Update Suggestion Rule
-* [DeleteIntegrationSuggestionRule](docs/sdks/suggestionrules/README.md#deleteintegrationsuggestionrule) - Delete Suggestion Rule
-* [TestSuggestionRule](docs/sdks/suggestionrules/README.md#testsuggestionrule) - Test a Suggestion Rule Configuration
-
 ### [SystemAccounts](docs/sdks/systemaccounts/README.md)
 
 * [GetSystemAccounts](docs/sdks/systemaccounts/README.md#getsystemaccounts) - List System Accounts
@@ -1953,7 +1845,7 @@ func main() {
 
 ### [Targets](docs/sdks/targets/README.md)
 
-* [ListTargets](docs/sdks/targets/README.md#listtargets) - List all targets for a control plane in a workspace
+* [ListTargets](docs/sdks/targets/README.md#listtargets) - List all targets for a control plane
 * [ListTargetWithUpstream](docs/sdks/targets/README.md#listtargetwithupstream) - List all Targets associated with an Upstream in a workspace
 * [CreateTargetWithUpstream](docs/sdks/targets/README.md#createtargetwithupstream) - Create a new Target associated with an Upstream in a workspace
 * [DeleteTargetWithUpstream](docs/sdks/targets/README.md#deletetargetwithupstream) - Delete a a Target associated with an Upstream in a workspace
@@ -1975,6 +1867,46 @@ func main() {
 * [UpdateTeam](docs/sdks/teams/README.md#updateteam) - Update Team
 * [DeleteTeam](docs/sdks/teams/README.md#deleteteam) - Delete Team
 
+### [TokenVaultCredentials](docs/sdks/tokenvaultcredentials/README.md)
+
+* [ListVaultCredentials](docs/sdks/tokenvaultcredentials/README.md#listvaultcredentials) - List vault credentials for a principal
+* [GetVaultCredential](docs/sdks/tokenvaultcredentials/README.md#getvaultcredential) - Get a vault credential
+* [DeleteVaultCredential](docs/sdks/tokenvaultcredentials/README.md#deletevaultcredential) - De-authorize a provider from a principal
+
+### [TokenVaultKeys](docs/sdks/tokenvaultkeys/README.md)
+
+* [CreateVaultKey](docs/sdks/tokenvaultkeys/README.md#createvaultkey) - Create a vault key
+* [ListVaultKeys](docs/sdks/tokenvaultkeys/README.md#listvaultkeys) - List vault keys
+* [GetVaultKey](docs/sdks/tokenvaultkeys/README.md#getvaultkey) - Get a vault key
+* [UpdateVaultKey](docs/sdks/tokenvaultkeys/README.md#updatevaultkey) - Update a vault key
+* [DeleteVaultKey](docs/sdks/tokenvaultkeys/README.md#deletevaultkey) - Delete a vault key
+
+### [TokenVaultProviders](docs/sdks/tokenvaultproviders/README.md)
+
+* [CreateVaultProvider](docs/sdks/tokenvaultproviders/README.md#createvaultprovider) - Create a vault provider
+* [ListVaultProviders](docs/sdks/tokenvaultproviders/README.md#listvaultproviders) - List vault providers
+* [GetVaultProvider](docs/sdks/tokenvaultproviders/README.md#getvaultprovider) - Get a vault provider
+* [UpdateVaultProvider](docs/sdks/tokenvaultproviders/README.md#updatevaultprovider) - Update a vault provider
+* [ReplaceVaultProvider](docs/sdks/tokenvaultproviders/README.md#replacevaultprovider) - Replace a vault provider
+* [DeleteVaultProvider](docs/sdks/tokenvaultproviders/README.md#deletevaultprovider) - Delete a vault provider
+* [CreateVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#createvaultprovidercredential) - Create a shared credential for a provider
+* [ListVaultProviderCredentials](docs/sdks/tokenvaultproviders/README.md#listvaultprovidercredentials) - List credential metadata for a provider
+* [GetVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#getvaultprovidercredential) - Get a specific credential
+* [UpdateVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#updatevaultprovidercredential) - Update a shared credential's value
+* [DeleteVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#deletevaultprovidercredential) - Delete a specific provider credential
+* [ListCredentialProviderTemplates](docs/sdks/tokenvaultproviders/README.md#listcredentialprovidertemplates) - List credential provider templates
+* [GetCredentialProviderTemplate](docs/sdks/tokenvaultproviders/README.md#getcredentialprovidertemplate) - Get a credential provider template
+
+### [TrustedIdPs](docs/sdks/trustedidps/README.md)
+
+* [ListTrustedIdps](docs/sdks/trustedidps/README.md#listtrustedidps) - List all trusted IdPs
+* [CreateTrustedIdp](docs/sdks/trustedidps/README.md#createtrustedidp) - Create a new trusted IdP
+* [GetTrustedIdp](docs/sdks/trustedidps/README.md#gettrustedidp) - Get a trusted IdP
+* [UpdateTrustedIdp](docs/sdks/trustedidps/README.md#updatetrustedidp) - Update a trusted IdP
+* [PatchTrustedIdp](docs/sdks/trustedidps/README.md#patchtrustedidp) - Partially update a trusted IdP
+* [DeleteTrustedIdp](docs/sdks/trustedidps/README.md#deletetrustedidp) - Delete a trusted IdP
+* [ListTrustedIdpPrincipals](docs/sdks/trustedidps/README.md#listtrustedidpprincipals) - List principals of a trusted IdP
+
 ### [Upstreams](docs/sdks/upstreams/README.md)
 
 * [ListUpstream](docs/sdks/upstreams/README.md#listupstream) - List all Upstreams in a workspace
@@ -1990,7 +1922,6 @@ func main() {
 * [GetUser](docs/sdks/users/README.md#getuser) - Get a User
 * [UpdateUser](docs/sdks/users/README.md#updateuser) - Update User
 * [DeleteUser](docs/sdks/users/README.md#deleteuser) - Delete User
-* [DeleteUserMfas](docs/sdks/users/README.md#deleteusermfas) - Delete User MFA
 
 ### [Vaults](docs/sdks/vaults/README.md)
 
@@ -1999,28 +1930,6 @@ func main() {
 * [DeleteVault](docs/sdks/vaults/README.md#deletevault) - Delete a Vault in a workspace
 * [GetVault](docs/sdks/vaults/README.md#getvault) - Get a Vault in a workspace
 * [UpsertVault](docs/sdks/vaults/README.md#upsertvault) - Upsert a Vault in a workspace
-
-### [Vulnerabilities](docs/sdks/vulnerabilities/README.md)
-
-* [ListVulnerabilityScans](docs/sdks/vulnerabilities/README.md#listvulnerabilityscans) - List Vulnerability Scans
-* [CreateVulnerabilityScan](docs/sdks/vulnerabilities/README.md#createvulnerabilityscan) - Create Vulnerability Scan
-* [FetchVulnerabilityScan](docs/sdks/vulnerabilities/README.md#fetchvulnerabilityscan) - Get a Vulnerability Scan
-* [ListVulnerabilityScanVulnerabilities](docs/sdks/vulnerabilities/README.md#listvulnerabilityscanvulnerabilities) - List Vulnerability Scan Vulnerabilities
-* [ListServiceVulnerabilityScans](docs/sdks/vulnerabilities/README.md#listservicevulnerabilityscans) - List Service Vulnerability Scans
-* [FetchServiceVulnerabilityScan](docs/sdks/vulnerabilities/README.md#fetchservicevulnerabilityscan) - Get a Service Vulnerability Scan
-* [ListVulnerabilities](docs/sdks/vulnerabilities/README.md#listvulnerabilities) - List Vulnerabilities
-* [FetchVulnerability](docs/sdks/vulnerabilities/README.md#fetchvulnerability) - Get Vulnerability
-* [ListVulnerabilityServices](docs/sdks/vulnerabilities/README.md#listvulnerabilityservices) - List Vulnerability Services
-* [ListVulnerabilityInstances](docs/sdks/vulnerabilities/README.md#listvulnerabilityinstances) - List Vulnerability Instances
-* [ListServiceVulnerabilities](docs/sdks/vulnerabilities/README.md#listservicevulnerabilities) - List Service Vulnerabilities
-* [FetchServiceVulnerability](docs/sdks/vulnerabilities/README.md#fetchservicevulnerability) - Get Service Vulnerability
-* [ListServiceVulnerabilityInstances](docs/sdks/vulnerabilities/README.md#listservicevulnerabilityinstances) - List Service Vulnerability Instances
-* [PutServiceVulnerabilitySeverityOverride](docs/sdks/vulnerabilities/README.md#putservicevulnerabilityseverityoverride) - Put Service Vulnerability Severity Override
-* [DeleteServiceVulnerabilitySeverityOverride](docs/sdks/vulnerabilities/README.md#deleteservicevulnerabilityseverityoverride) - Delete Vulnerability Severity Override
-* [PutServiceVulnerabilityDismissal](docs/sdks/vulnerabilities/README.md#putservicevulnerabilitydismissal) - Put Service Vulnerability Dismissal
-* [DeleteServiceVulnerabilityDismissal](docs/sdks/vulnerabilities/README.md#deleteservicevulnerabilitydismissal) - Delete Service Vulnerability Dismissal
-* [ListCatalogVulnerabilityServices](docs/sdks/vulnerabilities/README.md#listcatalogvulnerabilityservices) - List Catalog Vulnerability-Services
-* [QueryVulnerabilitiesMetrics](docs/sdks/vulnerabilities/README.md#queryvulnerabilitiesmetrics) - Query Vulnerabilities Metrics
 
 ### [Workspaces](docs/sdks/workspaces/README.md)
 

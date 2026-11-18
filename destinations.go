@@ -33,7 +33,7 @@ func newDestinations(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hoo
 }
 
 // ListDestinations - List destinations
-// List the http destinations of an organization, newest first. filter[event_type] returns only the destinations with an enabled org subscription to that event type.
+// Returns the organization's destinations, with the newest destinations first. Use the event type filter to list destinations with an enabled subscription for a specific event type.
 func (s *Destinations) ListDestinations(ctx context.Context, request operations.ListDestinationsRequest, opts ...operations.Option) (*operations.ListDestinationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -308,7 +308,8 @@ func (s *Destinations) ListDestinations(ctx context.Context, request operations.
 }
 
 // CreateDestination - Create a destination
-// Create an http destination for the organization. The new destination is pending verification: the request does not call the endpoint. A successful delivery, or a successful test, enables the destination. The answer holds the signing secret once. An organization holds at most 50 destinations, in every state; creating one beyond the limit answers 409.
+// Creates an HTTP destination for organization event notifications. You can create up to 50 destinations for an organization.
+// The response includes the signing secret. Save it when you create the destination; later responses do not include it.
 func (s *Destinations) CreateDestination(ctx context.Context, request components.DestinationCreatePayload, opts ...operations.Option) (*operations.CreateDestinationResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -608,7 +609,7 @@ func (s *Destinations) CreateDestination(ctx context.Context, request components
 }
 
 // GetDestination - Get a destination
-// Get one http destination.
+// Show a destination's details. Does not return sensitive keys such as signing secret.
 func (s *Destinations) GetDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.GetDestinationResponse, error) {
 	request := operations.GetDestinationRequest{
 		DestinationID: destinationID,
@@ -883,7 +884,7 @@ func (s *Destinations) GetDestination(ctx context.Context, destinationID string,
 }
 
 // UpdateDestination - Update a destination
-// Update one http destination. A change of the url follows the rules of the create request. It does not verify the destination again, and it does not change the state or the signing key. A destination in any state can change to enabled or disabled; enabling a destination that is pending verification skips the verification. A concurrent change of the destination answers 409.
+// Update a destination's parameters
 func (s *Destinations) UpdateDestination(ctx context.Context, destinationID string, destinationUpdatePayload components.DestinationUpdatePayload, opts ...operations.Option) (*operations.UpdateDestinationResponse, error) {
 	request := operations.UpdateDestinationRequest{
 		DestinationID:            destinationID,
@@ -1210,7 +1211,9 @@ func (s *Destinations) UpdateDestination(ctx context.Context, destinationID stri
 }
 
 // DeleteDestination - Delete a destination
-// Delete one http destination. The request removes the destination from every org subscription that holds it, and deletes an org subscription that holds no other destination. It also deletes the signing keys and all the deliveries of the destination. It cannot be undone.
+// Deletes the destination and removes it from all subscriptions that use it.
+// If this leaves a subscription with no destinations, that subscription is also deleted.
+// This action also deletes the destination's signing keys and delivery history. You cannot undo this action.
 func (s *Destinations) DeleteDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.DeleteDestinationResponse, error) {
 	request := operations.DeleteDestinationRequest{
 		DestinationID: destinationID,
@@ -1466,7 +1469,8 @@ func (s *Destinations) DeleteDestination(ctx context.Context, destinationID stri
 }
 
 // TestDestination - Test a destination
-// Execute a destination connection test. The test is one delivery with the mode test. It gets one attempt and no retry, and its outcome is visible in the delivery log. The answer comes before the attempt, so the delivery in the answer is still scheduled. A test that succeeds enables a destination that is pending verification, after the attempt and not in the answer. A disabled destination answers 409. A test within 5 seconds of another test of the same destination answers 429.
+// Trigger a test delivery to a destination. The test outcome is returned in the "Delivery history" endpoint.
+// Tests may be triggered every 5 seconds.
 func (s *Destinations) TestDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.TestDestinationResponse, error) {
 	request := operations.TestDestinationRequest{
 		DestinationID: destinationID,
@@ -1785,7 +1789,7 @@ func (s *Destinations) TestDestination(ctx context.Context, destinationID string
 }
 
 // RotateDestinationSecret - Rotate the destination signing secret
-// Rotate the signing secret of an http destination. The new secret is returned once, in this response. The replaced secret stays valid for an overlap of 24 hours, so the consumer can switch without losing a delivery. A rotation during that overlap answers 409.
+// Creates a new signing secret for the HTTP destination. The response includes the new secret only once. The previous secret remains valid for 24 hours so you can update your integration.
 func (s *Destinations) RotateDestinationSecret(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.RotateDestinationSecretResponse, error) {
 	request := operations.RotateDestinationSecretRequest{
 		DestinationID: destinationID,
@@ -2082,7 +2086,7 @@ func (s *Destinations) RotateDestinationSecret(ctx context.Context, destinationI
 }
 
 // GetDestinationDelivery - Get a delivery and its attempts
-// Get one delivery of a destination and all its attempts.
+// Show a notification's delivery status, including information about each delivery attempt.
 func (s *Destinations) GetDestinationDelivery(ctx context.Context, destinationID string, deliveryID string, opts ...operations.Option) (*operations.GetDestinationDeliveryResponse, error) {
 	request := operations.GetDestinationDeliveryRequest{
 		DestinationID: destinationID,
@@ -2254,12 +2258,12 @@ func (s *Destinations) GetDestinationDelivery(ctx context.Context, destinationID
 				return nil, err
 			}
 
-			var out components.DeliveryDetailResponse
+			var out components.DeliveryDetail
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DeliveryDetailResponse = &out
+			res.DeliveryDetail = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2358,7 +2362,8 @@ func (s *Destinations) GetDestinationDelivery(ctx context.Context, destinationID
 }
 
 // ResendDestinationDelivery - Resend a delivery
-// Trigger a manual redelivery of one delivery. The resend is a new delivery with its own delivery ID, so its webhook-id header differs from the one of the original delivery. The payload is the same bytes as the payload of the original delivery, and the new delivery keeps its event_id. The resend keeps the mode of the original delivery. A delivery without a payload, as a delivery that failed to render, answers 400. A disabled destination answers 409, and so does a delivery that is still scheduled and not expired, which includes a delivery that waits for a retry. A resend within 5 seconds of another delivery of the same event to the same destination answers 429.
+// Trigger a redelivery of a failed notification. The redelivery has a new delivery ID in the "Delivery history" endpoint.
+// The payload is identical to the original delivery, including the `event_id` which can be used to deduplicate notifications.
 func (s *Destinations) ResendDestinationDelivery(ctx context.Context, destinationID string, deliveryID string, opts ...operations.Option) (*operations.ResendDestinationDeliveryResponse, error) {
 	request := operations.ResendDestinationDeliveryRequest{
 		DestinationID: destinationID,
@@ -2699,13 +2704,9 @@ func (s *Destinations) ResendDestinationDelivery(ctx context.Context, destinatio
 
 }
 
-// ListDestinationSubscriptions - List the org subscriptions of a destination
-// List the org subscriptions that hold one destination, for every event type, enabled or paused, oldest first. Each subscription lists all its destinations. The list is not paginated.
-func (s *Destinations) ListDestinationSubscriptions(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error) {
-	request := operations.ListDestinationSubscriptionsRequest{
-		DestinationID: destinationID,
-	}
-
+// ListDestinationSubscriptions - List destination subscriptions
+// Returns the organization's subscriptions that use this destination.
+func (s *Destinations) ListDestinationSubscriptions(ctx context.Context, request operations.ListDestinationSubscriptionsRequest, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2756,6 +2757,10 @@ func (s *Destinations) ListDestinationSubscriptions(ctx context.Context, destina
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -2884,6 +2889,28 @@ func (s *Destinations) ListDestinationSubscriptions(ctx context.Context, destina
 			}
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out sdkerrors.BadRequestError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
+			}
+
+			out.RawResponse = httpRes
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
@@ -2974,8 +3001,8 @@ func (s *Destinations) ListDestinationSubscriptions(ctx context.Context, destina
 
 }
 
-// ListDeliveries - List deliveries of the organization
-// List the deliveries of all the destinations of the organization, newest first. Without a filter, the list holds every delivery of the organization. Each delivery names its destination. filter[destination_id] keeps the deliveries of one destination. A destination that does not exist, or that belongs to another organization, gives an empty list, not a 404. The payload is present on the detail view only.
+// ListDeliveries - List delivery history
+// List the deliveries for all destinations in this organization. To filter to a specific destination, use `filter[destination_id][eq]`
 func (s *Destinations) ListDeliveries(ctx context.Context, request operations.ListDeliveriesRequest, opts ...operations.Option) (*operations.ListDeliveriesResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

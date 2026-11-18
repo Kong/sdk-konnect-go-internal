@@ -20,10 +20,6 @@ const (
 	RoleNameDiscoveryAdmin            RoleName = "Discovery Admin"
 	RoleNameDiscoveryViewer           RoleName = "Discovery Viewer"
 	RoleNameEditor                    RoleName = "Editor"
-	RoleNameEnvironmentsAdmin         RoleName = "Environments Admin"
-	RoleNameEnvironmentsCreator       RoleName = "Environments Creator"
-	RoleNameEnvironmentsUser          RoleName = "Environments User"
-	RoleNameEnvironmentsViewer        RoleName = "Environments Viewer"
 	RoleNameGatewayServiceAdmin       RoleName = "Gateway Service Admin"
 	RoleNameIntegrationAdmin          RoleName = "Integration Admin"
 	RoleNameIntegrationViewer         RoleName = "Integration Viewer"
@@ -60,7 +56,7 @@ func (e RoleName) ToPointer() *RoleName {
 func (e *RoleName) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "Admin", "Appearance Maintainer", "Application Registration", "Certificate Admin", "Cloud Gateway Cluster Admin", "Cloud Gateway Cluster Viewer", "Consumer Admin", "Connector", "Creator", "Debug Session Creator", "Deployer", "Discovery Admin", "Discovery Viewer", "Editor", "Environments Admin", "Environments Creator", "Environments User", "Environments Viewer", "Gateway Service Admin", "Integration Admin", "Integration Viewer", "Key Admin", "Maintainer", "Network Admin", "Network Creator", "Network Viewer", "Plugin Admin", "Plugins Admin", "Product Publisher", "Publisher", "Route Admin", "SNI Admin", "Scorecard Admin", "Scorecard Viewer", "Service Admin", "Service Creator", "Service Viewer", "Upstream Admin", "Vault Admin", "Viewer", "Registration Approver", "Content Editor", "Add On Admin", "Add On Viewer":
+		case "Admin", "Appearance Maintainer", "Application Registration", "Certificate Admin", "Cloud Gateway Cluster Admin", "Cloud Gateway Cluster Viewer", "Consumer Admin", "Connector", "Creator", "Debug Session Creator", "Deployer", "Discovery Admin", "Discovery Viewer", "Editor", "Gateway Service Admin", "Integration Admin", "Integration Viewer", "Key Admin", "Maintainer", "Network Admin", "Network Creator", "Network Viewer", "Plugin Admin", "Plugins Admin", "Product Publisher", "Publisher", "Route Admin", "SNI Admin", "Scorecard Admin", "Scorecard Viewer", "Service Admin", "Service Creator", "Service Viewer", "Upstream Admin", "Vault Admin", "Viewer", "Registration Approver", "Content Editor", "Add On Admin", "Add On Viewer":
 			return true
 		}
 	}
@@ -72,7 +68,6 @@ type EntityTypeName string
 
 const (
 	EntityTypeNameAddOns                    EntityTypeName = "Add Ons"
-	EntityTypeNameAgents                    EntityTypeName = "Agents"
 	EntityTypeNameApIs                      EntityTypeName = "APIs"
 	EntityTypeNameAPIProducts               EntityTypeName = "API Products"
 	EntityTypeNameApplicationAuthStrategies EntityTypeName = "Application Auth Strategies"
@@ -80,7 +75,6 @@ const (
 	EntityTypeNameControlPlanes             EntityTypeName = "Control Planes"
 	EntityTypeNameDashboards                EntityTypeName = "Dashboards"
 	EntityTypeNameDcrProviders              EntityTypeName = "DCR Providers"
-	EntityTypeNameEnvironments              EntityTypeName = "Environments"
 	EntityTypeNameMeshControlPlanes         EntityTypeName = "Mesh Control Planes"
 	EntityTypeNameNetworks                  EntityTypeName = "Networks"
 	EntityTypeNamePortals                   EntityTypeName = "Portals"
@@ -97,7 +91,7 @@ func (e EntityTypeName) ToPointer() *EntityTypeName {
 func (e *EntityTypeName) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "Add Ons", "Agents", "APIs", "API Products", "Application Auth Strategies", "Audit Logs", "Control Planes", "Dashboards", "DCR Providers", "Environments", "Mesh Control Planes", "Networks", "Portals", "Reports", "Service Hub", "Auth Servers":
+		case "Add Ons", "APIs", "API Products", "Application Auth Strategies", "Audit Logs", "Control Planes", "Dashboards", "DCR Providers", "Mesh Control Planes", "Networks", "Portals", "Reports", "Service Hub", "Auth Servers":
 			return true
 		}
 	}
@@ -132,11 +126,11 @@ func (e *AssignRoleEntityRegion) IsExact() bool {
 	return false
 }
 
-// AssignRole - An assigned role is a role that has been assigned to a user or team.
+// AssignRole - An assigned role is a role that has been assigned to a user or team. Exactly one of `entity_id` or `entity_ids` must be provided.
 type AssignRole struct {
 	// The desired role.
 	RoleName *RoleName `json:"role_name,omitempty"`
-	// The ID of the entity.
+	// The ID of the entity. Mutually exclusive with `entity_ids`.
 	EntityID *string `json:"entity_id,omitempty"`
 	// The IDs of the entities associated with this role assignment. Mutually exclusive with entity_id; exactly one of entity_id or entity_ids must be provided.
 	EntityIds []string `json:"entity_ids,omitempty"`

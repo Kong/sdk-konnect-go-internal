@@ -108,8 +108,6 @@ func main() {
         SamlAuthEnabled: sdkkonnectgo.Pointer(false),
         IdpMappingEnabled: sdkkonnectgo.Pointer(true),
         KonnectMappingEnabled: sdkkonnectgo.Pointer(false),
-        IdleSessionLogoutMinutes: sdkkonnectgo.Pointer[int64](60),
-        MaximumSessionLogoutMinutes: sdkkonnectgo.Pointer[int64](480),
     })
     if err != nil {
         log.Fatal(err)

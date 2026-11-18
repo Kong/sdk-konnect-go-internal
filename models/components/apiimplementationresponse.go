@@ -17,12 +17,6 @@ type APIImplementationResponseControlPlaneReference struct {
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
 	UpdatedAt time.Time `json:"updated_at"`
-	// UUID of the organization environment this implementation is scoped to.
-	// Must be an environment associated with the API. Required when the API
-	// has multiple associated environments (`400` if omitted).
-	// Returns `404` if the UUID is unknown or not associated with the API.
-	//
-	EnvironmentID *string `json:"environment_id,omitempty"`
 	// A Control plane that implements an API
 	ControlPlane *APIImplementationControlPlane `json:"control_plane,omitempty"`
 }
@@ -59,13 +53,6 @@ func (a *APIImplementationResponseControlPlaneReference) GetUpdatedAt() time.Tim
 	return a.UpdatedAt
 }
 
-func (a *APIImplementationResponseControlPlaneReference) GetEnvironmentID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.EnvironmentID
-}
-
 func (a *APIImplementationResponseControlPlaneReference) GetControlPlane() *APIImplementationControlPlane {
 	if a == nil {
 		return nil
@@ -81,12 +68,6 @@ type APIImplementationResponseServiceReference struct {
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.
 	UpdatedAt time.Time `json:"updated_at"`
-	// UUID of the organization environment this implementation is scoped to.
-	// Must be an environment associated with the API. Required when the API
-	// has multiple associated environments (`400` if omitted).
-	// Returns `404` if the UUID is unknown or not associated with the API.
-	//
-	EnvironmentID *string `json:"environment_id,omitempty"`
 	// A Gateway service that implements an API
 	Service *APIImplementationService `json:"service,omitempty"`
 }
@@ -121,13 +102,6 @@ func (a *APIImplementationResponseServiceReference) GetUpdatedAt() time.Time {
 		return time.Time{}
 	}
 	return a.UpdatedAt
-}
-
-func (a *APIImplementationResponseServiceReference) GetEnvironmentID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.EnvironmentID
 }
 
 func (a *APIImplementationResponseServiceReference) GetService() *APIImplementationService {

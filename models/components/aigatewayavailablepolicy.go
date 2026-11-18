@@ -31,6 +31,8 @@ func (e *Scopes) IsExact() bool {
 type AIGatewayAvailablePolicy struct {
 	Name   string   `json:"name"`
 	Scopes []Scopes `json:"scopes"`
+	// The minimum AI Gateway runtime version that supports this policy.
+	MinRuntimeVersion *string `json:"min_runtime_version,omitempty"`
 }
 
 func (a *AIGatewayAvailablePolicy) GetName() string {
@@ -45,4 +47,11 @@ func (a *AIGatewayAvailablePolicy) GetScopes() []Scopes {
 		return []Scopes{}
 	}
 	return a.Scopes
+}
+
+func (a *AIGatewayAvailablePolicy) GetMinRuntimeVersion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.MinRuntimeVersion
 }

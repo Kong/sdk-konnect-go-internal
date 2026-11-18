@@ -26,9 +26,4 @@ type UsersSDK interface {
 	// DeleteUser - Delete User
 	// Deletes an individual user. Returns 404 if the requested user was not found.
 	DeleteUser(ctx context.Context, userID string, opts ...operations.Option) (*operations.DeleteUserResponse, error)
-	// DeleteUserMfas - Delete User MFA
-	// Deletes all secondary factors for multi-factor authentication (MFA), of the user.
-	//
-	// If set, this operation will use either [Security.PersonalAccessToken] or [Security.KonnectAccessToken] from the global security.
-	DeleteUserMfas(ctx context.Context, userID string, opts ...operations.Option) (*operations.DeleteUserMfasResponse, error)
 }

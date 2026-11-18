@@ -31,8 +31,7 @@ func newConfigStores(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hoo
 	}
 }
 
-// ListConfigStores - List all Config Stores for a workspace
-// Returns a collection of all Config Stores associated with a workspace.
+// ListConfigStores - List all config stores for a control plane
 func (s *ConfigStores) ListConfigStores(ctx context.Context, request operations.ListConfigStoresRequest, opts ...operations.Option) (*operations.ListConfigStoresResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -52,7 +51,7 @@ func (s *ConfigStores) ListConfigStores(ctx context.Context, request operations.
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -306,9 +305,14 @@ func (s *ConfigStores) ListConfigStores(ctx context.Context, request operations.
 
 }
 
-// CreateConfigStore - Create Config Store in a workspace
-// Create a Config Store in a workspace.
-func (s *ConfigStores) CreateConfigStore(ctx context.Context, request operations.CreateConfigStoreRequest, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error) {
+// CreateConfigStore - Create Config Store
+// Create a Config Store
+func (s *ConfigStores) CreateConfigStore(ctx context.Context, controlPlaneID string, createConfigStore components.CreateConfigStore, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error) {
+	request := operations.CreateConfigStoreRequest{
+		ControlPlaneID:    controlPlaneID,
+		CreateConfigStore: createConfigStore,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -327,7 +331,7 @@ func (s *ConfigStores) CreateConfigStore(ctx context.Context, request operations
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -606,9 +610,14 @@ func (s *ConfigStores) CreateConfigStore(ctx context.Context, request operations
 
 }
 
-// GetConfigStore - Get a Config Store in a workspace
-// Returns a Config Store in a workspace.
-func (s *ConfigStores) GetConfigStore(ctx context.Context, request operations.GetConfigStoreRequest, opts ...operations.Option) (*operations.GetConfigStoreResponse, error) {
+// GetConfigStore - Get a Config Store
+// Returns a Config Store
+func (s *ConfigStores) GetConfigStore(ctx context.Context, controlPlaneID string, configStoreID string, opts ...operations.Option) (*operations.GetConfigStoreResponse, error) {
+	request := operations.GetConfigStoreRequest{
+		ControlPlaneID: controlPlaneID,
+		ConfigStoreID:  configStoreID,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -627,7 +636,7 @@ func (s *ConfigStores) GetConfigStore(ctx context.Context, request operations.Ge
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -831,28 +840,6 @@ func (s *ConfigStores) GetConfigStore(ctx context.Context, request operations.Ge
 			}
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
-			}
-
-			out.RawResponse = httpRes
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
@@ -877,8 +864,8 @@ func (s *ConfigStores) GetConfigStore(ctx context.Context, request operations.Ge
 
 }
 
-// UpdateConfigStore - Update a Config Store in a workspace
-// Updates a Config Store in a workspace.
+// UpdateConfigStore - Update an individual Config Store
+// Updates a Config Store
 func (s *ConfigStores) UpdateConfigStore(ctx context.Context, request operations.UpdateConfigStoreRequest, opts ...operations.Option) (*operations.UpdateConfigStoreResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -898,7 +885,7 @@ func (s *ConfigStores) UpdateConfigStore(ctx context.Context, request operations
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1199,8 +1186,8 @@ func (s *ConfigStores) UpdateConfigStore(ctx context.Context, request operations
 
 }
 
-// DeleteConfigStore - Delete Config Store in a workspace
-// Removes a Config Store in a workspace.
+// DeleteConfigStore - Delete Config Store
+// Removes a config store
 func (s *ConfigStores) DeleteConfigStore(ctx context.Context, request operations.DeleteConfigStoreRequest, opts ...operations.Option) (*operations.DeleteConfigStoreResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1220,7 +1207,7 @@ func (s *ConfigStores) DeleteConfigStore(ctx context.Context, request operations
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

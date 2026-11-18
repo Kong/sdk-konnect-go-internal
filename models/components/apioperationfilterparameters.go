@@ -7,8 +7,6 @@ type APIOperationFilterParameters struct {
 	Method *StringFieldFilter `queryParam:"name=method"`
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`, `contains`, `ocontains`
 	Path *StringFieldFilter `queryParam:"name=path"`
-	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
-	EnvironmentsID *UUIDFieldFilter `queryParam:"name=environments.id"`
 }
 
 func (a *APIOperationFilterParameters) GetMethod() *StringFieldFilter {
@@ -23,11 +21,4 @@ func (a *APIOperationFilterParameters) GetPath() *StringFieldFilter {
 		return nil
 	}
 	return a.Path
-}
-
-func (a *APIOperationFilterParameters) GetEnvironmentsID() *UUIDFieldFilter {
-	if a == nil {
-		return nil
-	}
-	return a.EnvironmentsID
 }

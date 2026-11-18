@@ -6,45 +6,45 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type AdvancedFiltersField string
+type Field string
 
 const (
-	AdvancedFiltersFieldAiGateway                 AdvancedFiltersField = "ai_gateway"
-	AdvancedFiltersFieldAiGatewayConsumer         AdvancedFiltersField = "ai_gateway_consumer"
-	AdvancedFiltersFieldAiGatewayConsumerGroup    AdvancedFiltersField = "ai_gateway_consumer_group"
-	AdvancedFiltersFieldAiGatewayDataPlaneNode    AdvancedFiltersField = "ai_gateway_data_plane_node"
-	AdvancedFiltersFieldAPI                       AdvancedFiltersField = "api"
-	AdvancedFiltersFieldAPIPackage                AdvancedFiltersField = "api_package"
-	AdvancedFiltersFieldAPIProduct                AdvancedFiltersField = "api_product"
-	AdvancedFiltersFieldAPIProductVersion         AdvancedFiltersField = "api_product_version"
-	AdvancedFiltersFieldApplication               AdvancedFiltersField = "application"
-	AdvancedFiltersFieldCacheStatus               AdvancedFiltersField = "cache_status"
-	AdvancedFiltersFieldConsumer                  AdvancedFiltersField = "consumer"
-	AdvancedFiltersFieldConsumerGroup             AdvancedFiltersField = "consumer_group"
-	AdvancedFiltersFieldControlPlane              AdvancedFiltersField = "control_plane"
-	AdvancedFiltersFieldControlPlaneGroup         AdvancedFiltersField = "control_plane_group"
-	AdvancedFiltersFieldCountryCode               AdvancedFiltersField = "country_code"
-	AdvancedFiltersFieldDataPlaneNode             AdvancedFiltersField = "data_plane_node"
-	AdvancedFiltersFieldDataPlaneNodeVersion      AdvancedFiltersField = "data_plane_node_version"
-	AdvancedFiltersFieldGatewayService            AdvancedFiltersField = "gateway_service"
-	AdvancedFiltersFieldOidcCredential            AdvancedFiltersField = "oidc_credential"
-	AdvancedFiltersFieldPortal                    AdvancedFiltersField = "portal"
-	AdvancedFiltersFieldPrincipal                 AdvancedFiltersField = "principal"
-	AdvancedFiltersFieldRealm                     AdvancedFiltersField = "realm"
-	AdvancedFiltersFieldResponseSource            AdvancedFiltersField = "response_source"
-	AdvancedFiltersFieldRoute                     AdvancedFiltersField = "route"
-	AdvancedFiltersFieldStatusCode                AdvancedFiltersField = "status_code"
-	AdvancedFiltersFieldStatusCodeGrouped         AdvancedFiltersField = "status_code_grouped"
-	AdvancedFiltersFieldUpstreamStatusCode        AdvancedFiltersField = "upstream_status_code"
-	AdvancedFiltersFieldUpstreamStatusCodeGrouped AdvancedFiltersField = "upstream_status_code_grouped"
+	FieldAiGateway                 Field = "ai_gateway"
+	FieldAiGatewayConsumer         Field = "ai_gateway_consumer"
+	FieldAiGatewayConsumerGroup    Field = "ai_gateway_consumer_group"
+	FieldAiGatewayDataPlaneNode    Field = "ai_gateway_data_plane_node"
+	FieldAPI                       Field = "api"
+	FieldAPIPackage                Field = "api_package"
+	FieldAPIProduct                Field = "api_product"
+	FieldAPIProductVersion         Field = "api_product_version"
+	FieldApplication               Field = "application"
+	FieldCacheStatus               Field = "cache_status"
+	FieldConsumer                  Field = "consumer"
+	FieldConsumerGroup             Field = "consumer_group"
+	FieldControlPlane              Field = "control_plane"
+	FieldControlPlaneGroup         Field = "control_plane_group"
+	FieldCountryCode               Field = "country_code"
+	FieldDataPlaneNode             Field = "data_plane_node"
+	FieldDataPlaneNodeVersion      Field = "data_plane_node_version"
+	FieldGatewayService            Field = "gateway_service"
+	FieldOidcCredential            Field = "oidc_credential"
+	FieldPortal                    Field = "portal"
+	FieldPrincipal                 Field = "principal"
+	FieldRealm                     Field = "realm"
+	FieldResponseSource            Field = "response_source"
+	FieldRoute                     Field = "route"
+	FieldStatusCode                Field = "status_code"
+	FieldStatusCodeGrouped         Field = "status_code_grouped"
+	FieldUpstreamStatusCode        Field = "upstream_status_code"
+	FieldUpstreamStatusCodeGrouped Field = "upstream_status_code_grouped"
 )
 
-func (e AdvancedFiltersField) ToPointer() *AdvancedFiltersField {
+func (e Field) ToPointer() *Field {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AdvancedFiltersField) IsExact() bool {
+func (e *Field) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "ai_gateway", "ai_gateway_consumer", "ai_gateway_consumer_group", "ai_gateway_data_plane_node", "api", "api_package", "api_product", "api_product_version", "application", "cache_status", "consumer", "consumer_group", "control_plane", "control_plane_group", "country_code", "data_plane_node", "data_plane_node_version", "gateway_service", "oidc_credential", "portal", "principal", "realm", "response_source", "route", "status_code", "status_code_grouped", "upstream_status_code", "upstream_status_code_grouped":
@@ -79,9 +79,9 @@ func (e *Operator) IsExact() bool {
 }
 
 type AdvancedFilters struct {
-	Field    AdvancedFiltersField `json:"field"`
-	Operator Operator             `json:"operator"`
-	Value    any                  `json:"value,omitempty"`
+	Field    Field    `json:"field"`
+	Operator Operator `json:"operator"`
+	Value    any      `json:"value,omitempty"`
 }
 
 func (a AdvancedFilters) MarshalJSON() ([]byte, error) {
@@ -95,9 +95,9 @@ func (a *AdvancedFilters) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AdvancedFilters) GetField() AdvancedFiltersField {
+func (a *AdvancedFilters) GetField() Field {
 	if a == nil {
-		return AdvancedFiltersField("")
+		return Field("")
 	}
 	return a.Field
 }

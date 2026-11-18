@@ -41,10 +41,6 @@ func (c *CreateSkillRequest) GetSourceRaw() *RawSkillSourcePayload {
 	return c.GetSource().RawSkillSourcePayload
 }
 
-func (c *CreateSkillRequest) GetSourceGithub() *GithubSkillSourcePayload {
-	return c.GetSource().GithubSkillSourcePayload
-}
-
 func (c *CreateSkillRequest) GetLabels() map[string]string {
 	if c == nil {
 		return map[string]string{}

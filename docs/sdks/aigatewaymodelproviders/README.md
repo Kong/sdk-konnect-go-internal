@@ -137,6 +137,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDatabricks is populated
             case components.AIGatewayModelProviderTypeDeepseek:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDeepseek is populated
+            case components.AIGatewayModelProviderTypeFireworks:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderFireworks is populated
             case components.AIGatewayModelProviderTypeGemini:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderGemini is populated
             case components.AIGatewayModelProviderTypeHuggingface:
@@ -145,6 +147,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderKimi is populated
             case components.AIGatewayModelProviderTypeLlama2:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderLlama2 is populated
+            case components.AIGatewayModelProviderTypeMeta:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMeta is populated
             case components.AIGatewayModelProviderTypeMistral:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMistral is populated
             case components.AIGatewayModelProviderTypeOllama:
@@ -159,6 +163,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderXai is populated
             case components.AIGatewayModelProviderTypeSagemaker:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderSagemaker is populated
+            case components.AIGatewayModelProviderTypeTogetherai:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTogetherai is populated
             case components.AIGatewayModelProviderTypeTypesafe:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTypesafe is populated
         }
@@ -241,6 +247,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDatabricks is populated
             case components.AIGatewayModelProviderTypeDeepseek:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDeepseek is populated
+            case components.AIGatewayModelProviderTypeFireworks:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderFireworks is populated
             case components.AIGatewayModelProviderTypeGemini:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderGemini is populated
             case components.AIGatewayModelProviderTypeHuggingface:
@@ -249,6 +257,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderKimi is populated
             case components.AIGatewayModelProviderTypeLlama2:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderLlama2 is populated
+            case components.AIGatewayModelProviderTypeMeta:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMeta is populated
             case components.AIGatewayModelProviderTypeMistral:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMistral is populated
             case components.AIGatewayModelProviderTypeOllama:
@@ -263,6 +273,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderXai is populated
             case components.AIGatewayModelProviderTypeSagemaker:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderSagemaker is populated
+            case components.AIGatewayModelProviderTypeTogetherai:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTogetherai is populated
             case components.AIGatewayModelProviderTypeTypesafe:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTypesafe is populated
         }
@@ -357,6 +369,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDatabricks is populated
             case components.AIGatewayModelProviderTypeDeepseek:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDeepseek is populated
+            case components.AIGatewayModelProviderTypeFireworks:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderFireworks is populated
             case components.AIGatewayModelProviderTypeGemini:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderGemini is populated
             case components.AIGatewayModelProviderTypeHuggingface:
@@ -365,6 +379,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderKimi is populated
             case components.AIGatewayModelProviderTypeLlama2:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderLlama2 is populated
+            case components.AIGatewayModelProviderTypeMeta:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMeta is populated
             case components.AIGatewayModelProviderTypeMistral:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMistral is populated
             case components.AIGatewayModelProviderTypeOllama:
@@ -379,6 +395,8 @@ func main() {
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderXai is populated
             case components.AIGatewayModelProviderTypeSagemaker:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderSagemaker is populated
+            case components.AIGatewayModelProviderTypeTogetherai:
+                // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTogetherai is populated
             case components.AIGatewayModelProviderTypeTypesafe:
                 // res.AIGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTypesafe is populated
         }

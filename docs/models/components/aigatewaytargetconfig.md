@@ -59,6 +59,12 @@ aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigDatabricks(compon
 aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigDeepseek(components.AIGatewayTargetDeepseekConfig{/* values here */})
 ```
 
+### AIGatewayTargetFireworksConfig
+
+```go
+aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigFireworks(components.AIGatewayTargetFireworksConfig{/* values here */})
+```
+
 ### AIGatewayTargetGeminiConfig
 
 ```go
@@ -81,6 +87,12 @@ aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigKimi(components.A
 
 ```go
 aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigLlama2(components.AIGatewayTargetLlama2Config{/* values here */})
+```
+
+### AIGatewayTargetMetaConfig
+
+```go
+aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigMeta(components.AIGatewayTargetMetaConfig{/* values here */})
 ```
 
 ### AIGatewayTargetMistralConfig
@@ -125,6 +137,12 @@ aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigXai(components.AI
 aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigSagemaker(components.AIGatewayTargetSagemakerConfig{/* values here */})
 ```
 
+### AIGatewayTargetTogetheraiConfig
+
+```go
+aiGatewayTargetConfig := components.CreateAIGatewayTargetConfigTogetherai(components.AIGatewayTargetTogetheraiConfig{/* values here */})
+```
+
 ### AIGatewayTargetTypesafeConfig
 
 ```go
@@ -155,6 +173,8 @@ switch aiGatewayTargetConfig.Type {
 		// aiGatewayTargetConfig.AIGatewayTargetDatabricksConfig is populated
 	case components.AIGatewayTargetConfigTypeDeepseek:
 		// aiGatewayTargetConfig.AIGatewayTargetDeepseekConfig is populated
+	case components.AIGatewayTargetConfigTypeFireworks:
+		// aiGatewayTargetConfig.AIGatewayTargetFireworksConfig is populated
 	case components.AIGatewayTargetConfigTypeGemini:
 		// aiGatewayTargetConfig.AIGatewayTargetGeminiConfig is populated
 	case components.AIGatewayTargetConfigTypeHuggingface:
@@ -163,6 +183,8 @@ switch aiGatewayTargetConfig.Type {
 		// aiGatewayTargetConfig.AIGatewayTargetKimiConfig is populated
 	case components.AIGatewayTargetConfigTypeLlama2:
 		// aiGatewayTargetConfig.AIGatewayTargetLlama2Config is populated
+	case components.AIGatewayTargetConfigTypeMeta:
+		// aiGatewayTargetConfig.AIGatewayTargetMetaConfig is populated
 	case components.AIGatewayTargetConfigTypeMistral:
 		// aiGatewayTargetConfig.AIGatewayTargetMistralConfig is populated
 	case components.AIGatewayTargetConfigTypeOllama:
@@ -177,6 +199,8 @@ switch aiGatewayTargetConfig.Type {
 		// aiGatewayTargetConfig.AIGatewayTargetXaiConfig is populated
 	case components.AIGatewayTargetConfigTypeSagemaker:
 		// aiGatewayTargetConfig.AIGatewayTargetSagemakerConfig is populated
+	case components.AIGatewayTargetConfigTypeTogetherai:
+		// aiGatewayTargetConfig.AIGatewayTargetTogetheraiConfig is populated
 	case components.AIGatewayTargetConfigTypeTypesafe:
 		// aiGatewayTargetConfig.AIGatewayTargetTypesafeConfig is populated
 }

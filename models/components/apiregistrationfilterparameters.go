@@ -17,8 +17,6 @@ type APIRegistrationFilterParameters struct {
 	ApplicationOwnerType *StringFieldFilter `queryParam:"name=application_owner_type"`
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
 	ApplicationOwnerID *UUIDFieldFilter `queryParam:"name=application_owner_id"`
-	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
-	EnvironmentID *UUIDFieldFilter `queryParam:"name=environment.id"`
 }
 
 func (a *APIRegistrationFilterParameters) GetStatus() *StringFieldFilter {
@@ -68,11 +66,4 @@ func (a *APIRegistrationFilterParameters) GetApplicationOwnerID() *UUIDFieldFilt
 		return nil
 	}
 	return a.ApplicationOwnerID
-}
-
-func (a *APIRegistrationFilterParameters) GetEnvironmentID() *UUIDFieldFilter {
-	if a == nil {
-		return nil
-	}
-	return a.EnvironmentID
 }

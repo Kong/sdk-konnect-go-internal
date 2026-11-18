@@ -17,8 +17,6 @@ type APIFilterParameters struct {
 	CreatedAt *DateTimeFieldFilter `queryParam:"name=created_at"`
 	// Filters on the given datetime (RFC-3339) field value.
 	UpdatedAt *DateTimeFieldFilter `queryParam:"name=updated_at"`
-	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
-	EnvironmentsID *UUIDFieldFilter `queryParam:"name=environments.id"`
 }
 
 func (a *APIFilterParameters) GetID() *UUIDFieldFilter {
@@ -75,11 +73,4 @@ func (a *APIFilterParameters) GetUpdatedAt() *DateTimeFieldFilter {
 		return nil
 	}
 	return a.UpdatedAt
-}
-
-func (a *APIFilterParameters) GetEnvironmentsID() *UUIDFieldFilter {
-	if a == nil {
-		return nil
-	}
-	return a.EnvironmentsID
 }

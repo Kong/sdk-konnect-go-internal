@@ -2,7 +2,7 @@
 
 package components
 
-// OrgConfigurationListResponse - A list response for all org scoped events of the organization.
+// OrgConfigurationListResponse - A list of objects representing an available event
 type OrgConfigurationListResponse struct {
 	Data []OrgConfiguration `json:"data"`
 }

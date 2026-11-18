@@ -7,6 +7,8 @@ import (
 )
 
 // SchemaRegistryConfluentConfigSensitiveDataAwareSchemaType - The format of the message.
+//
+// **`any` requires a minimum runtime version of `1.3`**.
 type SchemaRegistryConfluentConfigSensitiveDataAwareSchemaType string
 
 const (
@@ -33,6 +35,8 @@ func (e *SchemaRegistryConfluentConfigSensitiveDataAwareSchemaType) IsExact() bo
 // SchemaRegistryConfluentConfigSensitiveDataAware - The configuration of [Confluent Schema Registry](https://github.com/confluentinc/schema-registry)
 type SchemaRegistryConfluentConfigSensitiveDataAware struct {
 	// The format of the message.
+	//
+	// **`any` requires a minimum runtime version of `1.3`**.
 	SchemaType SchemaRegistryConfluentConfigSensitiveDataAwareSchemaType `json:"schema_type"`
 	// The endpoint of the Confluent schema registry.
 	Endpoint string `json:"endpoint"`
@@ -40,6 +44,8 @@ type SchemaRegistryConfluentConfigSensitiveDataAware struct {
 	//
 	TimeoutSeconds *int64 `default:"10" json:"timeout_seconds"`
 	// The authentication configuration for the schema registry.
+	// The Event Gateway only requires read-only access to the schema registry to fetch schemas for validation, so we recommend using credentials with read-only scope.
+	//
 	Authentication *SchemaRegistryAuthenticationSensitiveDataAwareScheme `json:"authentication,omitempty"`
 }
 

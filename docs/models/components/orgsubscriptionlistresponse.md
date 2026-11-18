@@ -1,6 +1,6 @@
 # OrgSubscriptionListResponse
 
-Every org subscription of one event type, or every org subscription that holds one destination.
+A paginated list of the org subscriptions of one event type, or of the org subscriptions that hold one destination.
 
 
 ## Fields
@@ -8,3 +8,4 @@ Every org subscription of one event type, or every org subscription that holds o
 | Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `Data`                                                                     | [][components.OrgSubscription](../../models/components/orgsubscription.md) | :heavy_check_mark:                                                         | N/A                                                                        |
+| `Meta`                                                                     | [components.CursorMeta](../../models/components/cursormeta.md)             | :heavy_check_mark:                                                         | Pagination metadata.                                                       |

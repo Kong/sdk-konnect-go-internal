@@ -69,6 +69,17 @@ func (e *AIGatewayMCPServerListenerResponseAllowedVersions) IsExact() bool {
 type AIGatewayMCPServerListenerResponseCache struct {
 	// A cache hint Kong emits on a cacheable operation it serves.
 	ToolsList *AIGatewayMCPServerCacheHint `json:"tools_list,omitempty"`
+	// Cache hint emitted on `prompts/list` results. `cache_scope: public` is rejected when
+	// `default_prompt_acls` or a prompt's own `access.acls` filters the list per subject.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	PromptsList *AIGatewayMCPServerCacheHint `json:"prompts_list,omitempty"`
+	// Cache hint emitted on `resources/list` and `resources/templates/list` results.
+	// `cache_scope: public` is rejected when `default_resource_acls` or a resource's own
+	// `access.acls` filters either list per subject.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	ResourcesList *AIGatewayMCPServerCacheHint `json:"resources_list,omitempty"`
 	// A cache hint Kong emits on a cacheable operation it serves.
 	Discover *AIGatewayMCPServerCacheHint `json:"discover,omitempty"`
 }
@@ -91,6 +102,20 @@ func (a *AIGatewayMCPServerListenerResponseCache) GetToolsList() *AIGatewayMCPSe
 	return a.ToolsList
 }
 
+func (a *AIGatewayMCPServerListenerResponseCache) GetPromptsList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.PromptsList
+}
+
+func (a *AIGatewayMCPServerListenerResponseCache) GetResourcesList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.ResourcesList
+}
+
 func (a *AIGatewayMCPServerListenerResponseCache) GetDiscover() *AIGatewayMCPServerCacheHint {
 	if a == nil {
 		return nil
@@ -104,7 +129,7 @@ type AIGatewayMCPServerListenerResponseAIGatewayMCPServerKongListenerConfig stru
 	// of `hosts`, `paths`, `methods`, or `headers` must be set so the route can match
 	// incoming requests.
 	//
-	Route *AIGatewayMCPServerRouteWithMatcher `json:"route,omitempty"`
+	Route AIGatewayMCPServerRouteWithMatcher `json:"route"`
 	// Configuration for AI Gateway logging.
 	Logging *AIGatewayMCPServerListenerResponseLogging `json:"logging,omitempty"`
 	// Maximum size of request body to parse. Set to 0 for unlimited.
@@ -130,15 +155,15 @@ func (a AIGatewayMCPServerListenerResponseAIGatewayMCPServerKongListenerConfig) 
 }
 
 func (a *AIGatewayMCPServerListenerResponseAIGatewayMCPServerKongListenerConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"route"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayMCPServerListenerResponseAIGatewayMCPServerKongListenerConfig) GetRoute() *AIGatewayMCPServerRouteWithMatcher {
+func (a *AIGatewayMCPServerListenerResponseAIGatewayMCPServerKongListenerConfig) GetRoute() AIGatewayMCPServerRouteWithMatcher {
 	if a == nil {
-		return nil
+		return AIGatewayMCPServerRouteWithMatcher{}
 	}
 	return a.Route
 }
@@ -207,7 +232,9 @@ type AIGatewayMCPServerListenerResponse struct {
 	Labels map[string]string `json:"labels,omitempty"`
 	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
 	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
+	// Keys must be 1–63 characters long, start and end with an alphanumeric character, and may contain dashes (`-`), underscores (`_`), and dots (`.`).
+	// Values must be 1–127 characters long and must not be empty.
+	// Keys and values must not contain spaces or control characters.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// The Token Vault Datastore holding this entity's credential storage: the directory credentials

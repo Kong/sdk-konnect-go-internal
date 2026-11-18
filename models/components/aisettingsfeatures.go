@@ -6,48 +6,6 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// PortalAgent - Portal Agent config
-type PortalAgent struct {
-	// Whether the Portal Agent is enabled or not
-	Enabled *bool `default:"false" json:"enabled"`
-	// The display name for the Portal Agent, shown to developers in the portal
-	DisplayName *string `default:"AI" json:"display_name"`
-	// The audience allowed to interact with the Portal Agent. Currently only `all` (available to every developer, including unauthenticated ones) is supported. `authenticated` (restricted to signed-in developers only) is planned for a future release.
-	Audience *PortalAgentAudience `default:"all" json:"audience"`
-}
-
-func (p PortalAgent) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *PortalAgent) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (p *PortalAgent) GetEnabled() *bool {
-	if p == nil {
-		return nil
-	}
-	return p.Enabled
-}
-
-func (p *PortalAgent) GetDisplayName() *string {
-	if p == nil {
-		return nil
-	}
-	return p.DisplayName
-}
-
-func (p *PortalAgent) GetAudience() *PortalAgentAudience {
-	if p == nil {
-		return nil
-	}
-	return p.Audience
-}
-
 // AiSearch - AI Search config
 type AiSearch struct {
 	// Whether AI Search is enabled or not
@@ -107,24 +65,15 @@ func (a *AISettingsFeaturesMcpServer) GetWriteOperationsEnabled() *bool {
 
 // AISettingsFeatures - AI features configuration. When top-level `enabled` is false, every feature toggle here is automatically reset to false.
 type AISettingsFeatures struct {
-	// Portal Agent config
-	PortalAgent *PortalAgent `json:"portal_agent,omitempty"`
 	// AI Search config
-	AiSearch *AiSearch `json:"ai_search,omitempty"`
+	AiSearch AiSearch `json:"ai_search"`
 	// AI Features config
 	McpServer AISettingsFeaturesMcpServer `json:"mcp_server"`
 }
 
-func (a *AISettingsFeatures) GetPortalAgent() *PortalAgent {
+func (a *AISettingsFeatures) GetAiSearch() AiSearch {
 	if a == nil {
-		return nil
-	}
-	return a.PortalAgent
-}
-
-func (a *AISettingsFeatures) GetAiSearch() *AiSearch {
-	if a == nil {
-		return nil
+		return AiSearch{}
 	}
 	return a.AiSearch
 }

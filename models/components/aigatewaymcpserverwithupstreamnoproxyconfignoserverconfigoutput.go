@@ -37,6 +37,31 @@ func (l *Logging) GetAudits() *bool {
 	return l.Audits
 }
 
+// AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol - The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+//
+// **Requires a minimum runtime version of `2.4`**.
+type AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol string
+
+const (
+	AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocolHTTP  AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol = "http"
+	AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocolHTTPS AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol = "https"
+)
+
+func (e AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol) ToPointer() *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "http", "https":
+			return true
+		}
+	}
+	return false
+}
+
 // AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput - Routing, logging, and request body size limits for the MCP Server.
 type AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput struct {
 	// Route configuration for an MCP Server that terminates its own listener. At least one
@@ -51,7 +76,24 @@ type AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput struct {
 	// Helper field to set protocol, host, port and path of the upstream service using a URL.
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
-	URL string `json:"url"`
+	URL *string `json:"url,omitempty"`
+	// List of targets the upstream load balances requests across.
+	// Replaces `url`: set exactly one of `url` or `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Targets []AIGatewayUpstreamTarget `json:"targets,omitempty"`
+	// Load balancing configuration for `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Balancer *AIGatewayUpstreamBalancerConfig `json:"balancer,omitempty"`
+	// The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Protocol *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol `json:"protocol,omitempty"`
+	// The path prefix of requests sent to the `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Path *string `json:"path,omitempty"`
 	// Configuration applied when proxying to the upstream service, including authentication.
 	Upstream *AIGatewayUpstreamConfigOutput `json:"upstream,omitempty"`
 	// Client certificates used for mutual TLS (mTLS) authentication with the upstream MCP server,
@@ -82,7 +124,7 @@ func (a AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) Marshal
 }
 
 func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -109,11 +151,67 @@ func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetMax
 	return a.MaxRequestBodySize
 }
 
-func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetURL() string {
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.URL
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetTargets() []AIGatewayUpstreamTarget {
+	if a == nil {
+		return nil
+	}
+	return a.Targets
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetBalancer() *AIGatewayUpstreamBalancerConfig {
+	if a == nil {
+		return nil
+	}
+	return a.Balancer
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetBalancerConsistentHashing() *AIGatewayUpstreamBalancerConsistentHashingConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerConsistentHashingConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetBalancerLeastConnections() *AIGatewayUpstreamBalancerLeastConnectionsConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLeastConnectionsConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetBalancerLowestLatency() *AIGatewayUpstreamBalancerLowestLatencyConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLowestLatencyConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetBalancerRoundRobin() *AIGatewayUpstreamBalancerRoundRobinConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerRoundRobinConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetProtocol() *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol {
+	if a == nil {
+		return nil
+	}
+	return a.Protocol
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetPath() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Path
 }
 
 func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetUpstream() *AIGatewayUpstreamConfigOutput {
@@ -151,7 +249,24 @@ type AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig struct {
 	// Helper field to set protocol, host, port and path of the upstream service using a URL.
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
-	URL string `json:"url"`
+	URL *string `json:"url,omitempty"`
+	// List of targets the upstream load balances requests across.
+	// Replaces `url`: set exactly one of `url` or `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Targets []AIGatewayUpstreamTarget `json:"targets,omitempty"`
+	// Load balancing configuration for `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Balancer *AIGatewayUpstreamBalancerConfig `json:"balancer,omitempty"`
+	// The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Protocol *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol `json:"protocol,omitempty"`
+	// The path prefix of requests sent to the `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Path *string `json:"path,omitempty"`
 	// Configuration applied when proxying to the upstream service, including authentication.
 	Upstream *AIGatewayUpstreamConfig `json:"upstream,omitempty"`
 	// Client certificates used for mutual TLS (mTLS) authentication with the upstream MCP server,
@@ -182,7 +297,7 @@ func (a AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) MarshalJSON()
 }
 
 func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -209,11 +324,67 @@ func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetMaxReques
 	return a.MaxRequestBodySize
 }
 
-func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetURL() string {
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetURL() *string {
 	if a == nil {
-		return ""
+		return nil
 	}
 	return a.URL
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetTargets() []AIGatewayUpstreamTarget {
+	if a == nil {
+		return nil
+	}
+	return a.Targets
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetBalancer() *AIGatewayUpstreamBalancerConfig {
+	if a == nil {
+		return nil
+	}
+	return a.Balancer
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetBalancerConsistentHashing() *AIGatewayUpstreamBalancerConsistentHashingConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerConsistentHashingConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetBalancerLeastConnections() *AIGatewayUpstreamBalancerLeastConnectionsConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLeastConnectionsConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetBalancerLowestLatency() *AIGatewayUpstreamBalancerLowestLatencyConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLowestLatencyConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetBalancerRoundRobin() *AIGatewayUpstreamBalancerRoundRobinConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerRoundRobinConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetProtocol() *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol {
+	if a == nil {
+		return nil
+	}
+	return a.Protocol
+}
+
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetPath() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Path
 }
 
 func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetUpstream() *AIGatewayUpstreamConfig {

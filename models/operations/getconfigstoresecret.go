@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
@@ -15,19 +14,6 @@ type GetConfigStoreSecretRequest struct {
 	ConfigStoreID string `pathParam:"style=simple,explode=false,name=configStoreId"`
 	// Config Store Secret key
 	Key string `pathParam:"style=simple,explode=false,name=key"`
-	// The name of the workspace
-	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
-}
-
-func (g GetConfigStoreSecretRequest) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(g, "", false)
-}
-
-func (g *GetConfigStoreSecretRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (g *GetConfigStoreSecretRequest) GetControlPlaneID() string {
@@ -49,13 +35,6 @@ func (g *GetConfigStoreSecretRequest) GetKey() string {
 		return ""
 	}
 	return g.Key
-}
-
-func (g *GetConfigStoreSecretRequest) GetWorkspace() string {
-	if g == nil {
-		return ""
-	}
-	return g.Workspace
 }
 
 type GetConfigStoreSecretResponse struct {

@@ -414,15 +414,6 @@ func main() {
             "use2-az3",
         },
         CidrBlock: "10.0.0.0/8",
-        Firewall: &components.NetworkFirewallConfig{
-            AllowedCidrBlocks: []string{
-                "10.0.0.0/8",
-            },
-            DeniedCidrBlocks: []string{
-                "10.100.0.0/16",
-            },
-        },
-        DdosProtection: sdkkonnectgo.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -540,14 +531,6 @@ func main() {
 
     res, err := s.CloudGateways.UpdateNetwork(ctx, "36ae63d3-efd1-4bec-b246-62aa5d3f5695", components.PatchNetworkRequest{
         Name: sdkkonnectgo.Pointer("us-east-2 network"),
-        Firewall: &components.NetworkFirewallConfig{
-            AllowedCidrBlocks: []string{
-                "10.0.0.0/8",
-            },
-            DeniedCidrBlocks: []string{
-                "10.100.0.0/16",
-            },
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -2465,7 +2448,7 @@ func main() {
     )
 
     res, err := s.CloudGateways.CreateResourceConfiguration(ctx, components.CreateResourceConfigurationRequest{
-        Qualifier: components.ResourceConfigurationQualifierAutoPilotBaseRpsMaxValue,
+        Qualifier: components.ResourceConfigurationQualifierDataPlaneGroupIdleTimeoutMinutes,
         Value: 45,
     })
     if err != nil {
@@ -2583,7 +2566,7 @@ func main() {
     )
 
     res, err := s.CloudGateways.UpdateResourceConfiguration(ctx, "9678f205-49a1-47bb-82d9-d01cafa42a0d", components.PatchResourceConfigurationRequest{
-        Qualifier: components.ResourceConfigurationQualifierAutoPilotBaseRpsMaxValue,
+        Qualifier: components.ResourceConfigurationQualifierDataPlaneGroupIdleTimeoutMinutes,
         Value: 45,
     })
     if err != nil {

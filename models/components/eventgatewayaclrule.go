@@ -33,20 +33,20 @@ func (e *EventGatewayACLRuleResourceType) IsExact() bool {
 	return false
 }
 
-// EventGatewayACLRuleAction - How to handle the request if the rule matches
-type EventGatewayACLRuleAction string
+// Action - How to handle the request if the rule matches
+type Action string
 
 const (
-	EventGatewayACLRuleActionAllow EventGatewayACLRuleAction = "allow"
-	EventGatewayACLRuleActionDeny  EventGatewayACLRuleAction = "deny"
+	ActionAllow Action = "allow"
+	ActionDeny  Action = "deny"
 )
 
-func (e EventGatewayACLRuleAction) ToPointer() *EventGatewayACLRuleAction {
+func (e Action) ToPointer() *Action {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *EventGatewayACLRuleAction) IsExact() bool {
+func (e *Action) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "allow", "deny":
@@ -132,7 +132,7 @@ type EventGatewayACLRule struct {
 	// This rule applies to access only for type of resource
 	ResourceType EventGatewayACLRuleResourceType `json:"resource_type"`
 	// How to handle the request if the rule matches
-	Action EventGatewayACLRuleAction `json:"action"`
+	Action Action `json:"action"`
 	// Types of Kafka operations to match against. Note that not every operation can apply to every resource type.
 	Operations []EventGatewayACLOperation `json:"operations"`
 	// If any of these entries match, the resource name matches for this rule. A maximum of 50 entries are allowed.
@@ -157,9 +157,9 @@ func (e *EventGatewayACLRule) GetResourceType() EventGatewayACLRuleResourceType 
 	return e.ResourceType
 }
 
-func (e *EventGatewayACLRule) GetAction() EventGatewayACLRuleAction {
+func (e *EventGatewayACLRule) GetAction() Action {
 	if e == nil {
-		return EventGatewayACLRuleAction("")
+		return Action("")
 	}
 	return e.Action
 }

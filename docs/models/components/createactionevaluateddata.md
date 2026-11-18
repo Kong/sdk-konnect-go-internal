@@ -1,9 +1,0 @@
-# CreateActionEvaluatedData
-
-
-## Fields
-
-| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `Service`                                                                                            | [components.CatalogServiceSuggestion](../../models/components/catalogservicesuggestion.md)           | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
-| `Resource`                                                                                           | [components.CreateActionEvaluatedResource](../../models/components/createactionevaluatedresource.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

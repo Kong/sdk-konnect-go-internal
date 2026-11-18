@@ -31,46 +31,46 @@ func (e *Datasource) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type AdvancedQueryDimensions string
+type Dimensions string
 
 const (
-	AdvancedQueryDimensionsAiGateway                 AdvancedQueryDimensions = "ai_gateway"
-	AdvancedQueryDimensionsAiGatewayConsumer         AdvancedQueryDimensions = "ai_gateway_consumer"
-	AdvancedQueryDimensionsAiGatewayConsumerGroup    AdvancedQueryDimensions = "ai_gateway_consumer_group"
-	AdvancedQueryDimensionsAiGatewayDataPlaneNode    AdvancedQueryDimensions = "ai_gateway_data_plane_node"
-	AdvancedQueryDimensionsAPI                       AdvancedQueryDimensions = "api"
-	AdvancedQueryDimensionsAPIPackage                AdvancedQueryDimensions = "api_package"
-	AdvancedQueryDimensionsAPIProduct                AdvancedQueryDimensions = "api_product"
-	AdvancedQueryDimensionsAPIProductVersion         AdvancedQueryDimensions = "api_product_version"
-	AdvancedQueryDimensionsApplication               AdvancedQueryDimensions = "application"
-	AdvancedQueryDimensionsCacheStatus               AdvancedQueryDimensions = "cache_status"
-	AdvancedQueryDimensionsConsumer                  AdvancedQueryDimensions = "consumer"
-	AdvancedQueryDimensionsConsumerGroup             AdvancedQueryDimensions = "consumer_group"
-	AdvancedQueryDimensionsControlPlane              AdvancedQueryDimensions = "control_plane"
-	AdvancedQueryDimensionsControlPlaneGroup         AdvancedQueryDimensions = "control_plane_group"
-	AdvancedQueryDimensionsCountryCode               AdvancedQueryDimensions = "country_code"
-	AdvancedQueryDimensionsDataPlaneNode             AdvancedQueryDimensions = "data_plane_node"
-	AdvancedQueryDimensionsDataPlaneNodeVersion      AdvancedQueryDimensions = "data_plane_node_version"
-	AdvancedQueryDimensionsGatewayService            AdvancedQueryDimensions = "gateway_service"
-	AdvancedQueryDimensionsOidcCredential            AdvancedQueryDimensions = "oidc_credential"
-	AdvancedQueryDimensionsPortal                    AdvancedQueryDimensions = "portal"
-	AdvancedQueryDimensionsPrincipal                 AdvancedQueryDimensions = "principal"
-	AdvancedQueryDimensionsRealm                     AdvancedQueryDimensions = "realm"
-	AdvancedQueryDimensionsResponseSource            AdvancedQueryDimensions = "response_source"
-	AdvancedQueryDimensionsRoute                     AdvancedQueryDimensions = "route"
-	AdvancedQueryDimensionsStatusCode                AdvancedQueryDimensions = "status_code"
-	AdvancedQueryDimensionsStatusCodeGrouped         AdvancedQueryDimensions = "status_code_grouped"
-	AdvancedQueryDimensionsTime                      AdvancedQueryDimensions = "time"
-	AdvancedQueryDimensionsUpstreamStatusCode        AdvancedQueryDimensions = "upstream_status_code"
-	AdvancedQueryDimensionsUpstreamStatusCodeGrouped AdvancedQueryDimensions = "upstream_status_code_grouped"
+	DimensionsAiGateway                 Dimensions = "ai_gateway"
+	DimensionsAiGatewayConsumer         Dimensions = "ai_gateway_consumer"
+	DimensionsAiGatewayConsumerGroup    Dimensions = "ai_gateway_consumer_group"
+	DimensionsAiGatewayDataPlaneNode    Dimensions = "ai_gateway_data_plane_node"
+	DimensionsAPI                       Dimensions = "api"
+	DimensionsAPIPackage                Dimensions = "api_package"
+	DimensionsAPIProduct                Dimensions = "api_product"
+	DimensionsAPIProductVersion         Dimensions = "api_product_version"
+	DimensionsApplication               Dimensions = "application"
+	DimensionsCacheStatus               Dimensions = "cache_status"
+	DimensionsConsumer                  Dimensions = "consumer"
+	DimensionsConsumerGroup             Dimensions = "consumer_group"
+	DimensionsControlPlane              Dimensions = "control_plane"
+	DimensionsControlPlaneGroup         Dimensions = "control_plane_group"
+	DimensionsCountryCode               Dimensions = "country_code"
+	DimensionsDataPlaneNode             Dimensions = "data_plane_node"
+	DimensionsDataPlaneNodeVersion      Dimensions = "data_plane_node_version"
+	DimensionsGatewayService            Dimensions = "gateway_service"
+	DimensionsOidcCredential            Dimensions = "oidc_credential"
+	DimensionsPortal                    Dimensions = "portal"
+	DimensionsPrincipal                 Dimensions = "principal"
+	DimensionsRealm                     Dimensions = "realm"
+	DimensionsResponseSource            Dimensions = "response_source"
+	DimensionsRoute                     Dimensions = "route"
+	DimensionsStatusCode                Dimensions = "status_code"
+	DimensionsStatusCodeGrouped         Dimensions = "status_code_grouped"
+	DimensionsTime                      Dimensions = "time"
+	DimensionsUpstreamStatusCode        Dimensions = "upstream_status_code"
+	DimensionsUpstreamStatusCodeGrouped Dimensions = "upstream_status_code_grouped"
 )
 
-func (e AdvancedQueryDimensions) ToPointer() *AdvancedQueryDimensions {
+func (e Dimensions) ToPointer() *Dimensions {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AdvancedQueryDimensions) IsExact() bool {
+func (e *Dimensions) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "ai_gateway", "ai_gateway_consumer", "ai_gateway_consumer_group", "ai_gateway_data_plane_node", "api", "api_package", "api_product", "api_product_version", "application", "cache_status", "consumer", "consumer_group", "control_plane", "control_plane_group", "country_code", "data_plane_node", "data_plane_node_version", "gateway_service", "oidc_credential", "portal", "principal", "realm", "response_source", "route", "status_code", "status_code_grouped", "time", "upstream_status_code", "upstream_status_code_grouped":
@@ -87,7 +87,7 @@ type AdvancedQuery struct {
 	//
 	Metrics []AdvancedMetrics `json:"metrics,omitempty"`
 	// List of attributes or entity types to group by.
-	Dimensions []AdvancedQueryDimensions `json:"dimensions,omitempty"`
+	Dimensions []Dimensions `json:"dimensions,omitempty"`
 	// A list of filters to apply to the query.
 	Filters []AdvancedFilters `json:"filters,omitempty"`
 	// Force time grouping into buckets of the specified duration.  Only has an effect if "time" is in the "dimensions" list.
@@ -143,7 +143,7 @@ func (a *AdvancedQuery) GetMetrics() []AdvancedMetrics {
 	return a.Metrics
 }
 
-func (a *AdvancedQuery) GetDimensions() []AdvancedQueryDimensions {
+func (a *AdvancedQuery) GetDimensions() []Dimensions {
 	if a == nil {
 		return nil
 	}

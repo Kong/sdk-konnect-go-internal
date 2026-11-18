@@ -5,16 +5,10 @@ package components
 type CustomPlugin struct {
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// The handler for the given custom plugin.
 	Handler string `json:"handler"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// The name to associate with the given custom plugin. Consider using a distinct prefix for custom plugins to avoid naming conflicts with new bundled plugins in future Kong releases.
 	Name string `json:"name"`
 	// The schema for the given custom plugin.
@@ -32,13 +26,6 @@ func (c *CustomPlugin) GetCreatedAt() *int64 {
 	return c.CreatedAt
 }
 
-func (c *CustomPlugin) GetDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Description
-}
-
 func (c *CustomPlugin) GetHandler() string {
 	if c == nil {
 		return ""
@@ -51,13 +38,6 @@ func (c *CustomPlugin) GetID() *string {
 		return nil
 	}
 	return c.ID
-}
-
-func (c *CustomPlugin) GetManagedBy() map[string]string {
-	if c == nil {
-		return nil
-	}
-	return c.ManagedBy
 }
 
 func (c *CustomPlugin) GetName() string {

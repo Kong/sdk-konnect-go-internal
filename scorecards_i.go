@@ -29,9 +29,6 @@ type ScorecardsSDK interface {
 	// DeleteScorecard - Delete Scorecard
 	// Deletes a scorecard.
 	DeleteScorecard(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteScorecardResponse, error)
-	// ScheduleScorecardEvaluation - Schedule Scorecard Evaluation
-	// Schedules an evaluation of the scorecard selected services.
-	ScheduleScorecardEvaluation(ctx context.Context, id string, opts ...operations.Option) (*operations.ScheduleScorecardEvaluationResponse, error)
 	// ListScorecardServices - List Scorecard Services
 	// Lists services targeted by a scorecard.
 	ListScorecardServices(ctx context.Context, request operations.ListScorecardServicesRequest, opts ...operations.Option) (*operations.ListScorecardServicesResponse, error)

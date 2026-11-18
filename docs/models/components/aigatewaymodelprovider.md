@@ -57,6 +57,12 @@ aiGatewayModelProvider := components.CreateAIGatewayModelProviderDatabricks(comp
 aiGatewayModelProvider := components.CreateAIGatewayModelProviderDeepseek(components.AIGatewayModelProviderAIGatewayModelProviderDeepseek{/* values here */})
 ```
 
+### AIGatewayModelProviderAIGatewayModelProviderFireworks
+
+```go
+aiGatewayModelProvider := components.CreateAIGatewayModelProviderFireworks(components.AIGatewayModelProviderAIGatewayModelProviderFireworks{/* values here */})
+```
+
 ### AIGatewayModelProviderAIGatewayModelProviderGemini
 
 ```go
@@ -79,6 +85,12 @@ aiGatewayModelProvider := components.CreateAIGatewayModelProviderKimi(components
 
 ```go
 aiGatewayModelProvider := components.CreateAIGatewayModelProviderLlama2(components.AIGatewayModelProviderAIGatewayModelProviderLlama2{/* values here */})
+```
+
+### AIGatewayModelProviderAIGatewayModelProviderMeta
+
+```go
+aiGatewayModelProvider := components.CreateAIGatewayModelProviderMeta(components.AIGatewayModelProviderAIGatewayModelProviderMeta{/* values here */})
 ```
 
 ### AIGatewayModelProviderAIGatewayModelProviderMistral
@@ -123,6 +135,12 @@ aiGatewayModelProvider := components.CreateAIGatewayModelProviderXai(components.
 aiGatewayModelProvider := components.CreateAIGatewayModelProviderSagemaker(components.AIGatewayModelProviderAIGatewayModelProviderSagemaker{/* values here */})
 ```
 
+### AIGatewayModelProviderAIGatewayModelProviderTogetherai
+
+```go
+aiGatewayModelProvider := components.CreateAIGatewayModelProviderTogetherai(components.AIGatewayModelProviderAIGatewayModelProviderTogetherai{/* values here */})
+```
+
 ### AIGatewayModelProviderAIGatewayModelProviderTypesafe
 
 ```go
@@ -153,6 +171,8 @@ switch aiGatewayModelProvider.Type {
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDatabricks is populated
 	case components.AIGatewayModelProviderTypeDeepseek:
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderDeepseek is populated
+	case components.AIGatewayModelProviderTypeFireworks:
+		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderFireworks is populated
 	case components.AIGatewayModelProviderTypeGemini:
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderGemini is populated
 	case components.AIGatewayModelProviderTypeHuggingface:
@@ -161,6 +181,8 @@ switch aiGatewayModelProvider.Type {
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderKimi is populated
 	case components.AIGatewayModelProviderTypeLlama2:
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderLlama2 is populated
+	case components.AIGatewayModelProviderTypeMeta:
+		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMeta is populated
 	case components.AIGatewayModelProviderTypeMistral:
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderMistral is populated
 	case components.AIGatewayModelProviderTypeOllama:
@@ -175,6 +197,8 @@ switch aiGatewayModelProvider.Type {
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderXai is populated
 	case components.AIGatewayModelProviderTypeSagemaker:
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderSagemaker is populated
+	case components.AIGatewayModelProviderTypeTogetherai:
+		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTogetherai is populated
 	case components.AIGatewayModelProviderTypeTypesafe:
 		// aiGatewayModelProvider.AIGatewayModelProviderAIGatewayModelProviderTypesafe is populated
 }

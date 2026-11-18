@@ -2,6 +2,10 @@
 
 package components
 
+import (
+	"github.com/Kong/sdk-konnect-go/internal/utils"
+)
+
 // EntityRegion - Region of the entity.
 type EntityRegion string
 
@@ -36,7 +40,7 @@ type AssignedRole struct {
 	ID *string `json:"id,omitempty"`
 	// Name of the role being assigned.
 	RoleName *string `json:"role_name,omitempty"`
-	// A RBAC entity ID.
+	// A RBAC entity ID. Deprecated in favor of entity_ids
 	EntityID *string `json:"entity_id,omitempty"`
 	// The IDs of the entities associated with this role assignment. Mutually exclusive with entity_id; exactly one of entity_id or entity_ids must be provided.
 	EntityIds []string `json:"entity_ids,omitempty"`
@@ -44,6 +48,22 @@ type AssignedRole struct {
 	EntityTypeName *string `json:"entity_type_name,omitempty"`
 	// Region of the entity.
 	EntityRegion *EntityRegion `json:"entity_region,omitempty"`
+	// **Pre-release Feature**
+	// This feature is currently in beta and is subject to change.
+	//
+	// Indicates that the role is assigned and removed only by Konnect.
+	KonnectManaged *bool `default:"false" json:"konnect_managed"`
+}
+
+func (a AssignedRole) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AssignedRole) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (a *AssignedRole) GetID() *string {
@@ -86,4 +106,11 @@ func (a *AssignedRole) GetEntityRegion() *EntityRegion {
 		return nil
 	}
 	return a.EntityRegion
+}
+
+func (a *AssignedRole) GetKonnectManaged() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.KonnectManaged
 }

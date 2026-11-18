@@ -118,8 +118,6 @@ type Skill struct {
 	Source SkillSource `json:"source"`
 	// The current validation status of the skill. `pending` means the content has not yet been read and validated.
 	Status SkillStatus `json:"status"`
-	// The promoted revision of the skill's content — the only revision ever served.
-	Version *string `json:"version"`
 	// The outcome of the most recent attempt to fetch the skill's content from its source. `null` for sources whose content is supplied inline.
 	SyncStatus *SyncStatus `json:"sync_status"`
 	// The reason the skill failed validation. `null` unless `status` is `invalid`.
@@ -201,22 +199,11 @@ func (s *Skill) GetSourceRaw() *RawSkillSource {
 	return s.GetSource().RawSkillSource
 }
 
-func (s *Skill) GetSourceGithub() *GithubSkillSource {
-	return s.GetSource().GithubSkillSource
-}
-
 func (s *Skill) GetStatus() SkillStatus {
 	if s == nil {
 		return SkillStatus("")
 	}
 	return s.Status
-}
-
-func (s *Skill) GetVersion() *string {
-	if s == nil {
-		return nil
-	}
-	return s.Version
 }
 
 func (s *Skill) GetSyncStatus() *SyncStatus {

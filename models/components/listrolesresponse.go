@@ -76,23 +76,23 @@ func (e *ListRolesResponseDescription) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Apiviewer struct {
+type ListRolesResponseApiviewer struct {
 	Name        ListRolesResponseServicesName `json:"name"`
 	Description ListRolesResponseDescription  `json:"description"`
 }
 
-func (a *Apiviewer) GetName() ListRolesResponseServicesName {
-	if a == nil {
+func (l *ListRolesResponseApiviewer) GetName() ListRolesResponseServicesName {
+	if l == nil {
 		return ListRolesResponseServicesName("")
 	}
-	return a.Name
+	return l.Name
 }
 
-func (a *Apiviewer) GetDescription() ListRolesResponseDescription {
-	if a == nil {
+func (l *ListRolesResponseApiviewer) GetDescription() ListRolesResponseDescription {
+	if l == nil {
 		return ListRolesResponseDescription("")
 	}
-	return a.Description
+	return l.Description
 }
 
 type ListRolesResponseServicesRolesName string
@@ -141,71 +141,71 @@ func (e *ListRolesResponseServicesDescription) UnmarshalJSON(data []byte) error 
 	}
 }
 
-type Apiconsumer struct {
+type ListRolesResponseApiconsumer struct {
 	Name        ListRolesResponseServicesRolesName   `json:"name"`
 	Description ListRolesResponseServicesDescription `json:"description"`
 }
 
-func (a *Apiconsumer) GetName() ListRolesResponseServicesRolesName {
-	if a == nil {
+func (l *ListRolesResponseApiconsumer) GetName() ListRolesResponseServicesRolesName {
+	if l == nil {
 		return ListRolesResponseServicesRolesName("")
 	}
-	return a.Name
+	return l.Name
 }
 
-func (a *Apiconsumer) GetDescription() ListRolesResponseServicesDescription {
-	if a == nil {
+func (l *ListRolesResponseApiconsumer) GetDescription() ListRolesResponseServicesDescription {
+	if l == nil {
 		return ListRolesResponseServicesDescription("")
 	}
-	return a.Description
+	return l.Description
 }
 
 type ListRolesResponseRoles struct {
-	Apiviewer   Apiviewer   `json:"apiviewer"`
-	Apiconsumer Apiconsumer `json:"apiconsumer"`
+	Apiviewer   ListRolesResponseApiviewer   `json:"apiviewer"`
+	Apiconsumer ListRolesResponseApiconsumer `json:"apiconsumer"`
 }
 
-func (l *ListRolesResponseRoles) GetApiviewer() Apiviewer {
+func (l *ListRolesResponseRoles) GetApiviewer() ListRolesResponseApiviewer {
 	if l == nil {
-		return Apiviewer{}
+		return ListRolesResponseApiviewer{}
 	}
 	return l.Apiviewer
 }
 
-func (l *ListRolesResponseRoles) GetApiconsumer() Apiconsumer {
+func (l *ListRolesResponseRoles) GetApiconsumer() ListRolesResponseApiconsumer {
 	if l == nil {
-		return Apiconsumer{}
+		return ListRolesResponseApiconsumer{}
 	}
 	return l.Apiconsumer
 }
 
-type Services struct {
+type ListRolesResponseServices struct {
 	Name  ListRolesResponseName  `json:"name"`
 	Roles ListRolesResponseRoles `json:"roles"`
 }
 
-func (s *Services) GetName() ListRolesResponseName {
-	if s == nil {
+func (l *ListRolesResponseServices) GetName() ListRolesResponseName {
+	if l == nil {
 		return ListRolesResponseName("")
 	}
-	return s.Name
+	return l.Name
 }
 
-func (s *Services) GetRoles() ListRolesResponseRoles {
-	if s == nil {
+func (l *ListRolesResponseServices) GetRoles() ListRolesResponseRoles {
+	if l == nil {
 		return ListRolesResponseRoles{}
 	}
-	return s.Roles
+	return l.Roles
 }
 
 // ListRolesResponse - The set of roles available to associate with resources and assign to teams.
 type ListRolesResponse struct {
-	Services Services `json:"services"`
+	Services ListRolesResponseServices `json:"services"`
 }
 
-func (l *ListRolesResponse) GetServices() Services {
+func (l *ListRolesResponse) GetServices() ListRolesResponseServices {
 	if l == nil {
-		return Services{}
+		return ListRolesResponseServices{}
 	}
 	return l.Services
 }

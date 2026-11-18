@@ -9,7 +9,7 @@ To disable a target, post a new one with `weight=0`, or use the `DELETE` method 
 
 ### Available Operations
 
-* [ListTargets](#listtargets) - List all targets for a control plane in a workspace
+* [ListTargets](#listtargets) - List all targets for a control plane
 * [ListTargetWithUpstream](#listtargetwithupstream) - List all Targets associated with an Upstream in a workspace
 * [CreateTargetWithUpstream](#createtargetwithupstream) - Create a new Target associated with an Upstream in a workspace
 * [DeleteTargetWithUpstream](#deletetargetwithupstream) - Delete a a Target associated with an Upstream in a workspace
@@ -22,7 +22,7 @@ Returns a collection of all targets for a control plane.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-targets" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/targets" -->
+<!-- UsageSnippet language="go" operationID="list-targets" method="get" path="/v2/control-planes/{controlPlaneId}/core-entities/targets" -->
 ```go
 package main
 
@@ -46,7 +46,6 @@ func main() {
     res, err := s.Targets.ListTargets(ctx, operations.ListTargetsRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         Tags: sdkkonnectgo.Pointer("tag1,tag2"),
-        Workspace: "team-payments",
     })
     if err != nil {
         log.Fatal(err)

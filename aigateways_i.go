@@ -20,6 +20,12 @@ type AIGatewaysSDK interface {
 	// ListAiGatewayRuntimeVersions - List AI Gateway Runtime Versions
 	// Returns a list of AI Gateway runtime versions which affects API behavior and compatibility.
 	ListAiGatewayRuntimeVersions(ctx context.Context, opts ...operations.Option) (*operations.ListAiGatewayRuntimeVersionsResponse, error)
+	// GetAiGatewayRuntimeDefault - Get an AI Gateway Runtime Default
+	// Returns the minimum runtime version that a new AI Gateway of this deployment type gets. Only service clients can use this endpoint.
+	GetAiGatewayRuntimeDefault(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, opts ...operations.Option) (*operations.GetAiGatewayRuntimeDefaultResponse, error)
+	// UpdateAiGatewayRuntimeDefault - Update an AI Gateway Runtime Default
+	// Sets the minimum runtime version that a new AI Gateway of this deployment type gets. Existing AI Gateways keep their minimum runtime version. Only service clients can use this endpoint.
+	UpdateAiGatewayRuntimeDefault(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, aiGatewayRuntimeDefault components.AIGatewayRuntimeDefault, opts ...operations.Option) (*operations.UpdateAiGatewayRuntimeDefaultResponse, error)
 	// GetAiGateway - Get an AI Gateway
 	// Returns the details of a specific AI Gateway.
 	GetAiGateway(ctx context.Context, gatewayID string, opts ...operations.Option) (*operations.GetAiGatewayResponse, error)

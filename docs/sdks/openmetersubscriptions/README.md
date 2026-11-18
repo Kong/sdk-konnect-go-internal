@@ -9,10 +9,8 @@ Subscriptions are used to track usage of your product or service. Subscriptions 
 * [CreateSubscription](#createsubscription) - Create subscription
 * [ListSubscriptions](#listsubscriptions) - List subscriptions
 * [GetSubscription](#getsubscription) - Get subscription
-* [CreateSubscriptionAddon](#createsubscriptionaddon) - Create a new subscription add-on
 * [ListSubscriptionAddons](#listsubscriptionaddons) - List subscription addons
 * [GetSubscriptionAddon](#getsubscriptionaddon) - Get add-on association for subscription
-* [UpdateSubscriptionAddon](#updatesubscriptionaddon) - Update subscription addon
 * [CancelSubscription](#cancelsubscription) - Cancel subscription
 * [ChangeSubscription](#changesubscription) - Change subscription
 * [EditSubscription](#editsubscription) - Edit subscription
@@ -82,7 +80,7 @@ func main() {
                                 "env": "test",
                             },
                             Key: "resource_key",
-                            Feature: &components.BillingRateCardFeatureReference{
+                            Feature: &components.FeatureReference{
                                 ID: "01G65Z755AFWAKHE12NY0CQ9FH",
                             },
                             Currency: sdkkonnectgo.Pointer("USD"),
@@ -275,77 +273,6 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## CreateSubscriptionAddon
-
-Add add-on to a subscription.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="create-subscription-addon" method="post" path="/v3/openmeter/subscriptions/{subscriptionId}/addons" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.OpenMeterSubscriptions.CreateSubscriptionAddon(ctx, "01G65Z755AFWAKHE12NY0CQ9FH", components.CreateSubscriptionAddonRequest{
-        Labels: map[string]string{
-            "env": "test",
-        },
-        Addon: components.CreateSubscriptionAddonRequestAddOn{
-            ID: "01G65Z755AFWAKHE12NY0CQ9FH",
-        },
-        Quantity: 207252,
-        Timing: components.CreateCreateSubscriptionAddonRequestTimingBillingSubscriptionEditTimingEnum(
-            components.BillingSubscriptionEditTimingEnumImmediate,
-        ),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.SubscriptionAddon != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            | Example                                                                                                |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |                                                                                                        |
-| `subscriptionID`                                                                                       | `string`                                                                                               | :heavy_check_mark:                                                                                     | N/A                                                                                                    | 01G65Z755AFWAKHE12NY0CQ9FH                                                                             |
-| `createSubscriptionAddonRequest`                                                                       | [components.CreateSubscriptionAddonRequest](../../models/components/createsubscriptionaddonrequest.md) | :heavy_check_mark:                                                                                     | N/A                                                                                                    |                                                                                                        |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |                                                                                                        |
-
-### Response
-
-**[*operations.CreateSubscriptionAddonResponse](../../models/operations/createsubscriptionaddonresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
 ## ListSubscriptionAddons
 
 **Pre-release Endpoint**
@@ -471,77 +398,6 @@ func main() {
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## UpdateSubscriptionAddon
-
-Update a subscription add-on. Only the quantity is mutable; the timing controls
-when the new quantity takes effect. A new entry is appended to the add-on's
-timeline.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="update-subscription-addon" method="patch" path="/v3/openmeter/subscriptions/{subscriptionId}/addons/{subscriptionAddonId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.OpenMeterSubscriptions.UpdateSubscriptionAddon(ctx, operations.UpdateSubscriptionAddonRequest{
-        SubscriptionID: "01G65Z755AFWAKHE12NY0CQ9FH",
-        SubscriptionAddonID: "01G65Z755AFWAKHE12NY0CQ9FH",
-        BillingSubscriptionAddonUpdate: components.BillingSubscriptionAddonUpdate{
-            Quantity: 757008,
-            Timing: components.CreateBillingSubscriptionAddonUpdateTimingBillingSubscriptionEditTimingEnum(
-                components.BillingSubscriptionEditTimingEnumImmediate,
-            ),
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.SubscriptionAddon != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.UpdateSubscriptionAddonRequest](../../models/operations/updatesubscriptionaddonrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
-
-### Response
-
-**[*operations.UpdateSubscriptionAddonResponse](../../models/operations/updatesubscriptionaddonresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CancelSubscription

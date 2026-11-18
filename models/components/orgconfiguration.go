@@ -2,13 +2,13 @@
 
 package components
 
-// OrgConfiguration - Properties of an org scoped event.
+// OrgConfiguration - An organization event type that you can subscribe to.
 type OrgConfiguration struct {
-	// Name of the event type. Use it in the org subscription operations.
+	// Event type identifier. Use this value to create or list subscriptions for the event. Use the list org configurations operation to find the valid values.
 	EventType        string `json:"event_type"`
 	EventTitle       string `json:"event_title"`
 	EventDescription string `json:"event_description"`
-	// Namespace of an org scoped event. It lists the same values as NotificationNamespace, internal ones included, because the platform API dev spec cannot reference a schema that has internal values.
+	// Category that identifies the organization event's area of the product.
 	EventNamespace OrgConfigurationNamespace `json:"event_namespace"`
 }
 

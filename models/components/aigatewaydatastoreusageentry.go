@@ -3,8 +3,14 @@
 package components
 
 // AIGatewayDatastoreUsageEntryType - The kind of entity holding the reference. A policy holds one in its `datastores` array. A
-// model holds one when its balancer is `semantic`. An MCP server, a model provider, or an
+// model holds one for each Datastore it references. An MCP server, a model provider, or an
 // auth strategy holds one when it stores credentials in the Token Vault.
+//
+// **`auth_strategy` requires a minimum runtime version of `2.3`**.
+//
+// **`mcp_server` requires a minimum runtime version of `2.3`**.
+//
+// **`model_provider` requires a minimum runtime version of `2.3`**.
 type AIGatewayDatastoreUsageEntryType string
 
 const (
@@ -33,9 +39,14 @@ func (e *AIGatewayDatastoreUsageEntryType) IsExact() bool {
 // AIGatewayDatastoreUsageEntry - Identity of an entity that references an AI Gateway Datastore.
 type AIGatewayDatastoreUsageEntry struct {
 	// The kind of entity holding the reference. A policy holds one in its `datastores` array. A
-	// model holds one when its balancer is `semantic`. An MCP server, a model provider, or an
+	// model holds one for each Datastore it references. An MCP server, a model provider, or an
 	// auth strategy holds one when it stores credentials in the Token Vault.
 	//
+	// **`auth_strategy` requires a minimum runtime version of `2.3`**.
+	//
+	// **`mcp_server` requires a minimum runtime version of `2.3`**.
+	//
+	// **`model_provider` requires a minimum runtime version of `2.3`**.
 	Type AIGatewayDatastoreUsageEntryType `json:"type"`
 	// Contains a unique identifier used for this resource.
 	ID          string `json:"id"`

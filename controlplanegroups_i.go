@@ -29,10 +29,4 @@ type ControlPlaneGroupsSDK interface {
 	// GetControlPlanesIDGroupStatus - Get Control Plane Group Status
 	// Returns the status of a control plane group, including existing conflicts.
 	GetControlPlanesIDGroupStatus(ctx context.Context, controlPlaneID string, opts ...operations.Option) (*operations.GetControlPlanesIDGroupStatusResponse, error)
-	// GetControlPlaneGroupSettings - Get Control Plane Group Settings
-	// Returns the settings of a control plane group.
-	GetControlPlaneGroupSettings(ctx context.Context, controlPlaneID string, opts ...operations.Option) (*operations.GetControlPlaneGroupSettingsResponse, error)
-	// PutControlPlaneGroupSettings - Upsert Control Plane Group Settings
-	// Updates the settings of a control plane group. If the settings do not exist, they will be created.
-	PutControlPlaneGroupSettings(ctx context.Context, controlPlaneID string, groupSettings *components.GroupSettings, opts ...operations.Option) (*operations.PutControlPlaneGroupSettingsResponse, error)
 }

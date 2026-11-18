@@ -18,13 +18,32 @@ type AIGatewayMCPServerListenerConsumer struct {
 	// operation (`initialize`, `tools/list`, `tools/call`) is allowed, and before any tool-level
 	// `default_tool_acls` or per-tool `access.acls` check is evaluated.
 	//
-	Acls *AIGatewayMCPACLs `json:"acls,omitempty"`
+	Acls *AIGatewayMCPServerACLs `json:"acls,omitempty"`
 	// Default per-tool access control rules for allowing or denying consumer groups access to
 	// tools. Evaluated only for callers that already passed the server-level `acls` check above.
 	// Applies to every tool exposed by this MCP Server unless a specific tool overrides it via
 	// that tool's own `access.acls`.
 	//
 	DefaultToolAcls *AIGatewayMCPACLs `json:"default_tool_acls,omitempty"`
+	// Default per-prompt access control rules for allowing or denying consumer groups access to
+	// prompts. Evaluated only for callers that already passed the server-level `acls` check
+	// above. Applies to every prompt exposed by this MCP Server unless a specific prompt
+	// overrides it via that prompt's own `access.acls`. Prompts a caller is denied are omitted
+	// from `prompts/list` and rejected on `prompts/get`. When unset, prompts are governed only
+	// by the server-level `acls`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	DefaultPromptAcls *AIGatewayMCPACLs `json:"default_prompt_acls,omitempty"`
+	// Default per-resource access control rules for allowing or denying consumer groups access
+	// to resources and resource templates. Evaluated only for callers that already passed the
+	// server-level `acls` check above. Applies to every resource exposed by this MCP Server
+	// unless a specific resource overrides it via that resource's own `access.acls`. Resources a
+	// caller is denied are omitted from `resources/list` and `resources/templates/list` and
+	// rejected on `resources/read` and `resources/subscribe`. When unset, resources are governed
+	// only by the server-level `acls`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	DefaultResourceAcls *AIGatewayMCPACLs `json:"default_resource_acls,omitempty"`
 	// List of identity providers for granting access to the MCP server.
 	// At most 1 identity provider of each identity provider type can be referenced.
 	//
@@ -56,7 +75,7 @@ func (a *AIGatewayMCPServerListenerConsumer) GetACLAttributeType() *string {
 	return types.Pointer("consumer")
 }
 
-func (a *AIGatewayMCPServerListenerConsumer) GetAcls() *AIGatewayMCPACLs {
+func (a *AIGatewayMCPServerListenerConsumer) GetAcls() *AIGatewayMCPServerACLs {
 	if a == nil {
 		return nil
 	}
@@ -68,6 +87,20 @@ func (a *AIGatewayMCPServerListenerConsumer) GetDefaultToolAcls() *AIGatewayMCPA
 		return nil
 	}
 	return a.DefaultToolAcls
+}
+
+func (a *AIGatewayMCPServerListenerConsumer) GetDefaultPromptAcls() *AIGatewayMCPACLs {
+	if a == nil {
+		return nil
+	}
+	return a.DefaultPromptAcls
+}
+
+func (a *AIGatewayMCPServerListenerConsumer) GetDefaultResourceAcls() *AIGatewayMCPACLs {
+	if a == nil {
+		return nil
+	}
+	return a.DefaultResourceAcls
 }
 
 func (a *AIGatewayMCPServerListenerConsumer) GetIdentityProviders() []string {

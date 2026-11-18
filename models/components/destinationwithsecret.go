@@ -3,159 +3,74 @@
 package components
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
-	"time"
 )
 
-// DestinationWithSecret - An http destination with its new plaintext signing secret. The signing secret is present once, when the request created the destination; it is never stored or returned in plain form again.
+type DestinationWithSecretType string
+
+const (
+	DestinationWithSecretTypeHTTP DestinationWithSecretType = "http"
+)
+
+// DestinationWithSecret - A single http destination with its new signing secret.
 type DestinationWithSecret struct {
-	// UUID v7 identifier of the destination.
-	ID   string `json:"id"`
-	Name string `json:"name"`
-	// Type of the destination. Only http is supported.
-	Type DestinationType `json:"type"`
-	// Lifecycle state of the destination.
-	State DestinationState `json:"state"`
-	// Endpoint URL of the destination.
-	URL *string `json:"url,omitempty"`
-	// Host part of the target URL.
-	URLHost *string `json:"url_host,omitempty"`
-	// Names of the configured custom headers. Values are never returned.
-	CustomHeaderNames []string   `json:"custom_header_names,omitempty"`
-	LastSuccessAt     *time.Time `json:"last_success_at,omitempty"`
-	LastFailureAt     *time.Time `json:"last_failure_at,omitempty"`
-	LastFailureReason *string    `json:"last_failure_reason,omitempty"`
-	// An ISO-8601 timestamp representation of entity creation date.
-	CreatedAt time.Time `json:"created_at"`
-	// An ISO-8601 timestamp representation of entity update date.
-	UpdatedAt      time.Time `json:"updated_at"`
-	SigningEnabled bool      `json:"signing_enabled"`
-	// Signing algorithm of the signing key.
-	SigningAlgo *DestinationSigningAlgo `json:"signing_algo,omitempty"`
-	VerifiedAt  *time.Time              `json:"verified_at,omitempty"`
-	// What the consumer verifies the signatures with, shown once so the administrator can copy it to the consumer: the shared secret (whsec_ prefix) of an hmac-sha256 key, or the public key (whpk_ prefix) of an ed25519 key. The ed25519 private key is never returned.
-	SigningSecret *string `json:"signing_secret,omitempty"`
+	HTTPDestinationWithSecret *HTTPDestinationWithSecret `queryParam:"inline" union:"member"`
+
+	Type DestinationWithSecretType
 }
 
-func (d DestinationWithSecret) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
-}
+func CreateDestinationWithSecretHTTP(http HTTPDestinationWithSecret) DestinationWithSecret {
+	typ := DestinationWithSecretTypeHTTP
 
-func (d *DestinationWithSecret) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
-		return err
+	typStr := HTTPDestinationWithSecretType(typ)
+	http.Type = typStr
+
+	return DestinationWithSecret{
+		HTTPDestinationWithSecret: &http,
+		Type:                      typ,
 	}
-	return nil
 }
 
-func (d *DestinationWithSecret) GetID() string {
-	if d == nil {
-		return ""
+func (u *DestinationWithSecret) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = DestinationWithSecret{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	type discriminator struct {
+		Type string `json:"type"`
 	}
-	return d.ID
-}
 
-func (d *DestinationWithSecret) GetName() string {
-	if d == nil {
-		return ""
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
 	}
-	return d.Name
-}
 
-func (d *DestinationWithSecret) GetType() DestinationType {
-	if d == nil {
-		return DestinationType("")
-	}
-	return d.Type
-}
+	switch dis.Type {
+	case "http":
+		httpDestinationWithSecret := new(HTTPDestinationWithSecret)
+		if err := utils.UnmarshalJSON(data, &httpDestinationWithSecret, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == http) type HTTPDestinationWithSecret within DestinationWithSecret: %w", string(data), err)
+		}
 
-func (d *DestinationWithSecret) GetState() DestinationState {
-	if d == nil {
-		return DestinationState("")
-	}
-	return d.State
-}
-
-func (d *DestinationWithSecret) GetURL() *string {
-	if d == nil {
+		u.HTTPDestinationWithSecret = httpDestinationWithSecret
+		u.Type = DestinationWithSecretTypeHTTP
 		return nil
 	}
-	return d.URL
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for DestinationWithSecret", string(data))
 }
 
-func (d *DestinationWithSecret) GetURLHost() *string {
-	if d == nil {
-		return nil
+func (u DestinationWithSecret) MarshalJSON() ([]byte, error) {
+	if u.HTTPDestinationWithSecret != nil {
+		return utils.MarshalJSON(u.HTTPDestinationWithSecret, "", true)
 	}
-	return d.URLHost
-}
 
-func (d *DestinationWithSecret) GetCustomHeaderNames() []string {
-	if d == nil {
-		return nil
-	}
-	return d.CustomHeaderNames
-}
-
-func (d *DestinationWithSecret) GetLastSuccessAt() *time.Time {
-	if d == nil {
-		return nil
-	}
-	return d.LastSuccessAt
-}
-
-func (d *DestinationWithSecret) GetLastFailureAt() *time.Time {
-	if d == nil {
-		return nil
-	}
-	return d.LastFailureAt
-}
-
-func (d *DestinationWithSecret) GetLastFailureReason() *string {
-	if d == nil {
-		return nil
-	}
-	return d.LastFailureReason
-}
-
-func (d *DestinationWithSecret) GetCreatedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.CreatedAt
-}
-
-func (d *DestinationWithSecret) GetUpdatedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.UpdatedAt
-}
-
-func (d *DestinationWithSecret) GetSigningEnabled() bool {
-	if d == nil {
-		return false
-	}
-	return d.SigningEnabled
-}
-
-func (d *DestinationWithSecret) GetSigningAlgo() *DestinationSigningAlgo {
-	if d == nil {
-		return nil
-	}
-	return d.SigningAlgo
-}
-
-func (d *DestinationWithSecret) GetVerifiedAt() *time.Time {
-	if d == nil {
-		return nil
-	}
-	return d.VerifiedAt
-}
-
-func (d *DestinationWithSecret) GetSigningSecret() *string {
-	if d == nil {
-		return nil
-	}
-	return d.SigningSecret
+	return nil, errors.New("could not marshal union type DestinationWithSecret: all fields are null")
 }

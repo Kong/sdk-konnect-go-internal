@@ -1,9 +1,0 @@
-# ApplicationAuthStrategiesRoles
-
-
-## Fields
-
-| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `Name`                                                                                                           | [components.ApplicationAuthStrategiesRolesName](../../models/components/applicationauthstrategiesrolesname.md)   | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
-| `Roles`                                                                                                          | [components.ApplicationAuthStrategiesRolesRoles](../../models/components/applicationauthstrategiesrolesroles.md) | :heavy_check_mark:                                                                                               | N/A                                                                                                              |

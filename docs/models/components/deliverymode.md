@@ -1,6 +1,6 @@
 # DeliveryMode
 
-Traffic mode of a delivery.
+Indicates whether the delivery is for a live event or a test.
 
 ## Example Usage
 

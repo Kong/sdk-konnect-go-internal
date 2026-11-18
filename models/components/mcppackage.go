@@ -2,26 +2,26 @@
 
 package components
 
-// MCPPackageRegistry - Package registry details
-type MCPPackageRegistry struct {
+// Registry - Package registry details
+type Registry struct {
 	// Registry type indicating how to download packages (e.g., 'npm', 'pypi', 'oci', 'nuget', 'mcpb')
 	Type string `json:"type"`
 	// Base URL of the package registry
 	BaseURL *string `json:"base_url,omitempty"`
 }
 
-func (m *MCPPackageRegistry) GetType() string {
-	if m == nil {
+func (r *Registry) GetType() string {
+	if r == nil {
 		return ""
 	}
-	return m.Type
+	return r.Type
 }
 
-func (m *MCPPackageRegistry) GetBaseURL() *string {
-	if m == nil {
+func (r *Registry) GetBaseURL() *string {
+	if r == nil {
 		return nil
 	}
-	return m.BaseURL
+	return r.BaseURL
 }
 
 // Runtime configuration for executing the package
@@ -48,7 +48,7 @@ func (r *Runtime) GetArguments() []MCPArgument {
 
 type MCPPackage struct {
 	// Package registry details
-	Registry MCPPackageRegistry `json:"registry"`
+	Registry Registry `json:"registry"`
 	// Package identifier — either a package name or URL
 	Identifier string `json:"identifier"`
 	// Package version. Must be a specific version.
@@ -64,9 +64,9 @@ type MCPPackage struct {
 	EnvironmentVariables []MCPKeyValueInput `json:"environment_variables,omitempty"`
 }
 
-func (m *MCPPackage) GetRegistry() MCPPackageRegistry {
+func (m *MCPPackage) GetRegistry() Registry {
 	if m == nil {
-		return MCPPackageRegistry{}
+		return Registry{}
 	}
 	return m.Registry
 }

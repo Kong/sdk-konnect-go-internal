@@ -5,20 +5,15 @@ package sdkkonnectgo
 import (
 	"context"
 
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 )
 
 // SchemasSDK is a generated interface.
 type SchemasSDK interface {
-	// FetchCoreEntityJSONSchema - Get core entity JSON schema
-	// Returns the JSON schema for a Kong Gateway core entity.
-	FetchCoreEntityJSONSchema(ctx context.Context, controlPlaneID string, entityName string, opts ...operations.Option) (*operations.FetchCoreEntityJSONSchemaResponse, error)
-	// ValidatePluginExpression - Validate a plugin expression
-	// Validates a CEL expression for the `expressions` field of a plugin.
-	ValidatePluginExpression(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginExpressionRequestBody, opts ...operations.Option) (*operations.ValidatePluginExpressionResponse, error)
-	// ValidatePluginCondition - Validate a plugin condition
-	// Validates a CEL expression for the `condition` field of a plugin.
-	ValidatePluginCondition(ctx context.Context, controlPlaneID string, requestBody operations.ValidatePluginConditionRequestBody, opts ...operations.Option) (*operations.ValidatePluginConditionResponse, error)
+	// ValidateExpression - Validate a CEL expression
+	// Validates a CEL expression for the `expressions` field or the `condition` field of a plugin. Send exactly one of `expression` or `condition`.
+	ValidateExpression(ctx context.Context, controlPlaneID string, validateExpressionBodyRequest components.ValidateExpressionBodyRequest, opts ...operations.Option) (*operations.ValidateExpressionResponse, error)
 	// ValidateEntitySchema - Validate entity schema
 	// Validate schema for an entity
 	ValidateEntitySchema(ctx context.Context, request operations.ValidateEntitySchemaRequest, opts ...operations.Option) (*operations.ValidateEntitySchemaResponse, error)

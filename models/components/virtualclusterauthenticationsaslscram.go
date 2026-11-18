@@ -6,20 +6,20 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// Algorithm - The algorithm used for SASL/SCRAM authentication.
-type Algorithm string
+// VirtualClusterAuthenticationSaslScramAlgorithm - The algorithm used for SASL/SCRAM authentication.
+type VirtualClusterAuthenticationSaslScramAlgorithm string
 
 const (
-	AlgorithmSha256 Algorithm = "sha256"
-	AlgorithmSha512 Algorithm = "sha512"
+	VirtualClusterAuthenticationSaslScramAlgorithmSha256 VirtualClusterAuthenticationSaslScramAlgorithm = "sha256"
+	VirtualClusterAuthenticationSaslScramAlgorithmSha512 VirtualClusterAuthenticationSaslScramAlgorithm = "sha512"
 )
 
-func (e Algorithm) ToPointer() *Algorithm {
+func (e VirtualClusterAuthenticationSaslScramAlgorithm) ToPointer() *VirtualClusterAuthenticationSaslScramAlgorithm {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Algorithm) IsExact() bool {
+func (e *VirtualClusterAuthenticationSaslScramAlgorithm) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "sha256", "sha512":
@@ -34,7 +34,7 @@ type VirtualClusterAuthenticationSaslScram struct {
 	//lint:ignore U1000 accessed via reflection for JSON marshaling
 	type_ string `const:"sasl_scram" json:"type"`
 	// The algorithm used for SASL/SCRAM authentication.
-	Algorithm Algorithm `json:"algorithm"`
+	Algorithm VirtualClusterAuthenticationSaslScramAlgorithm `json:"algorithm"`
 	// Fetches principal metadata from Kong Identity after successful authentication.
 	// The principal is looked up by a custom key matched against the authenticated identity.
 	//
@@ -57,9 +57,9 @@ func (v *VirtualClusterAuthenticationSaslScram) GetType() string {
 	return "sasl_scram"
 }
 
-func (v *VirtualClusterAuthenticationSaslScram) GetAlgorithm() Algorithm {
+func (v *VirtualClusterAuthenticationSaslScram) GetAlgorithm() VirtualClusterAuthenticationSaslScramAlgorithm {
 	if v == nil {
-		return Algorithm("")
+		return VirtualClusterAuthenticationSaslScramAlgorithm("")
 	}
 	return v.Algorithm
 }

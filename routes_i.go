@@ -10,9 +10,6 @@ import (
 
 // RoutesSDK is a generated interface.
 type RoutesSDK interface {
-	// SearchRoutes - Search Routes in a workspace
-	// Search Routes in a workspace
-	SearchRoutes(ctx context.Context, request operations.SearchRoutesRequest, opts ...operations.Option) (*operations.SearchRoutesResponse, error)
 	// ListRoute - List all Routes in a workspace
 	// List all Routes in a workspace
 	ListRoute(ctx context.Context, request operations.ListRouteRequest, opts ...operations.Option) (*operations.ListRouteResponse, error)

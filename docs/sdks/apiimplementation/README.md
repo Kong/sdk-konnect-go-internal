@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    res, err := s.APIImplementation.CreateAPIImplementation(ctx, "9f5061ce-78f6-4452-9108-ad7c02821fd5", components.CreateAPIImplementationServiceReferenceInput(
-        components.ServiceReferenceInput{
+    res, err := s.APIImplementation.CreateAPIImplementation(ctx, "9f5061ce-78f6-4452-9108-ad7c02821fd5", components.CreateAPIImplementationServiceReference(
+        components.ServiceReference{
             Service: &components.APIImplementationService{
                 ControlPlaneID: "9f5061ce-78f6-4452-9108-ad7c02821fd5",
                 ID: "7710d5c4-d902-410b-992f-18b814155b53",

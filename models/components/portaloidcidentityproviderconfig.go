@@ -18,7 +18,11 @@ type PortalOIDCIdentityProviderConfig struct {
 	// authentication.
 	//
 	ClaimMappings *OIDCIdentityProviderClaimMappings `json:"claim_mappings,omitempty"`
-	// The back-channel logout settings for the OIDC identity provider.
+	// The back-channel logout settings for the OIDC identity provider. To receive logout notifications, set
+	// your identity provider's back-channel logout URL to your portal's URL followed by
+	// `/api/v3/developer/backchannel-logout`, for example
+	// `https://my-portal.example.com/api/v3/developer/backchannel-logout`.
+	//
 	BackchannelLogout *OIDCIdentityProviderBackChannelLogout `json:"backchannel_logout,omitempty"`
 }
 

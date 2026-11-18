@@ -66,7 +66,7 @@ type UpsertServiceResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Successfully upserted Service
-	Service *components.ServiceOutput
+	Service *components.Service
 }
 
 func (u *UpsertServiceResponse) GetContentType() string {
@@ -90,7 +90,7 @@ func (u *UpsertServiceResponse) GetRawResponse() *http.Response {
 	return u.RawResponse
 }
 
-func (u *UpsertServiceResponse) GetService() *components.ServiceOutput {
+func (u *UpsertServiceResponse) GetService() *components.Service {
 	if u == nil {
 		return nil
 	}

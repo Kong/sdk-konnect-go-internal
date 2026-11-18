@@ -11,8 +11,6 @@
 * [PatchContextInterface](#patchcontextinterface) - Partially Update Context Interface
 * [DeleteContextInterface](#deletecontextinterface) - Delete Context Interface
 * [ListContextInterfacesByContextSource](#listcontextinterfacesbycontextsource) - List Context Source Context Interfaces
-* [GetMcpServerStatus](#getmcpserverstatus) - Get Context Interface Deployment Status
-* [GetContextInterfaceGeneratedCode](#getcontextinterfacegeneratedcode) - Get Generated Code for a Context Interface
 
 ## ListContextInterfaces
 
@@ -445,123 +443,6 @@ func main() {
 ### Response
 
 **[*operations.ListContextInterfacesByContextSourceResponse](../../models/operations/listcontextinterfacesbycontextsourceresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## GetMcpServerStatus
-
-Returns the current aggregated deployment status of a Context Interface.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-mcp-server-status" method="get" path="/v1/context-interfaces/{interfaceId}/status" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.ContextInterfaces.GetMcpServerStatus(ctx, "e3bb4453-e73c-413b-964a-bd160b2101c7")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.MCPServerStatusResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `interfaceID`                                            | `string`                                                 | :heavy_check_mark:                                       | The ID of the Context Interface.                         |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.GetMcpServerStatusResponse](../../models/operations/getmcpserverstatusresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## GetContextInterfaceGeneratedCode
-
-Returns the generated MCP server code for a Context Interface.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-context-interface-generated-code" method="get" path="/v1/context-interfaces/{interfaceId}/code" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.ContextInterfaces.GetContextInterfaceGeneratedCode(ctx, "4753504d-70a8-4257-b956-66c5b49a1582")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.MCPServerCodeResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `interfaceID`                                            | `string`                                                 | :heavy_check_mark:                                       | The ID of the Context Interface.                         |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.GetContextInterfaceGeneratedCodeResponse](../../models/operations/getcontextinterfacegeneratedcoderesponse.md), error**
 
 ### Errors
 

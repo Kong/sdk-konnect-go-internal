@@ -5,24 +5,25 @@ package sdkkonnectgo
 import (
 	"context"
 
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 )
 
 // CACertificatesSDK is a generated interface.
 type CACertificatesSDK interface {
-	// ListCaCertificate - List all CA Certificates in a workspace
-	// List all CA Certificates in a workspace
+	// ListCaCertificate - List all CA Certificates
+	// List all CA Certificates
 	ListCaCertificate(ctx context.Context, request operations.ListCaCertificateRequest, opts ...operations.Option) (*operations.ListCaCertificateResponse, error)
-	// CreateCaCertificate - Create a new CA Certificate in a workspace
-	// Create a new CA Certificate in a workspace
-	CreateCaCertificate(ctx context.Context, request operations.CreateCaCertificateRequest, opts ...operations.Option) (*operations.CreateCaCertificateResponse, error)
-	// DeleteCaCertificate - Delete a CA Certificate in a workspace
-	// Delete a CA Certificate in a workspace
-	DeleteCaCertificate(ctx context.Context, request operations.DeleteCaCertificateRequest, opts ...operations.Option) (*operations.DeleteCaCertificateResponse, error)
-	// GetCaCertificate - Get a CA Certificate in a workspace
-	// Get a CA Certificate using ID in a workspace.
-	GetCaCertificate(ctx context.Context, request operations.GetCaCertificateRequest, opts ...operations.Option) (*operations.GetCaCertificateResponse, error)
-	// UpsertCaCertificate - Upsert a CA Certificate in a workspace
-	// Create or Update CA Certificate using ID in a workspace.
+	// CreateCaCertificate - Create a new CA Certificate
+	// Create a new CA Certificate
+	CreateCaCertificate(ctx context.Context, controlPlaneID string, caCertificate components.CACertificate, opts ...operations.Option) (*operations.CreateCaCertificateResponse, error)
+	// DeleteCaCertificate - Delete a CA Certificate
+	// Delete a CA Certificate
+	DeleteCaCertificate(ctx context.Context, controlPlaneID string, caCertificateID string, opts ...operations.Option) (*operations.DeleteCaCertificateResponse, error)
+	// GetCaCertificate - Get a CA Certificate
+	// Get a CA Certificate using ID.
+	GetCaCertificate(ctx context.Context, caCertificateID string, controlPlaneID string, opts ...operations.Option) (*operations.GetCaCertificateResponse, error)
+	// UpsertCaCertificate - Upsert a CA Certificate
+	// Create or Update CA Certificate using ID.
 	UpsertCaCertificate(ctx context.Context, request operations.UpsertCaCertificateRequest, opts ...operations.Option) (*operations.UpsertCaCertificateResponse, error)
 }

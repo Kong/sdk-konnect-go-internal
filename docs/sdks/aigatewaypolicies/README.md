@@ -8,6 +8,7 @@ Policies that control security, rate-limiting, and guardrail behavior for the AI
 
 * [ListAiGatewayAvailablePolicies](#listaigatewayavailablepolicies) - List AI Gateway Available Policies
 * [GetAiGatewayPolicySchema](#getaigatewaypolicyschema) - Get an AI Gateway Policy Schema
+* [ValidateAiGatewayExpression](#validateaigatewayexpression) - Validate an AI Gateway CEL Expression
 * [ListAiGatewayPolicies](#listaigatewaypolicies) - List AI Gateway Policies
 * [CreateAiGatewayPolicy](#createaigatewaypolicy) - Create an AI Gateway Policy
 * [GetAiGatewayPolicy](#getaigatewaypolicy) - Get an AI Gateway Policy
@@ -129,6 +130,69 @@ func main() {
 | sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
 | sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.NotFoundError        | 404                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## ValidateAiGatewayExpression
+
+Validates a CEL expression for the `expressions` field or the `condition` field of a policy. Send exactly one of `expression` or `condition`.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="validate-ai-gateway-expression" method="post" path="/v1/ai-gateways/{gatewayId}/expressions/validate" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGatewayPolicies.ValidateAiGatewayExpression(ctx, "bf138ba2-c9b1-4229-b268-04d9d8a6410b", components.CreateAIGatewayValidateExpressionRequestAIGatewayValidateConditionRequest(
+        components.AIGatewayValidateConditionRequest{
+            Condition: "http.method == \"GET\"",
+        },
+    ))
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    | Example                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |                                                                                                                |
+| `gatewayID`                                                                                                    | `string`                                                                                                       | :heavy_check_mark:                                                                                             | The unique ID of the AI Gateway.                                                                               | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                                                                           |
+| `aiGatewayValidateExpressionRequest`                                                                           | [components.AIGatewayValidateExpressionRequest](../../models/components/aigatewayvalidateexpressionrequest.md) | :heavy_check_mark:                                                                                             | N/A                                                                                                            |                                                                                                                |
+| `opts`                                                                                                         | [][operations.Option](../../models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |                                                                                                                |
+
+### Response
+
+**[*operations.ValidateAiGatewayExpressionResponse](../../models/operations/validateaigatewayexpressionresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.BadRequestError      | 400                            | application/problem+json       |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
 | sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
 

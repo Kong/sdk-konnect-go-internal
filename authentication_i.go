@@ -5,7 +5,6 @@ package sdkkonnectgo
 import (
 	"context"
 
-	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 )
 
@@ -20,22 +19,4 @@ type AuthenticationSDK interface {
 	// AuthenticateSso - SSO Callback
 	// Callback for authenticating via an organization's IdP
 	AuthenticateSso(ctx context.Context, organizationLoginPath string, returnTo *string, opts ...operations.Option) (*operations.AuthenticateSsoResponse, error)
-	// ExchangeAuthorizationCode - Exchange Authorization Code
-	// This endpoint exchanges an authorization code for access and refresh tokens.
-	//
-	// If set, this operation will use [Security.ServiceAccessToken] from the global security.
-	ExchangeAuthorizationCode(ctx context.Context, request components.ExchangeCodeRequest, opts ...operations.Option) (*operations.ExchangeAuthorizationCodeResponse, error)
-	// CreateDiscoveryCode - Create Organization Discovery Code
-	// Mints a short-lived, single-use organization discovery code for the caller's
-	// organization and returns the callback URL, with the code embedded as an
-	// `org_code` query parameter, for the client to redirect the browser to.
-	//
-	// If set, this operation will use [Security.ServiceAccessToken] from the global security.
-	CreateDiscoveryCode(ctx context.Context, request components.DiscoveryCodeRequest, opts ...operations.Option) (*operations.CreateDiscoveryCodeResponse, error)
-	// ExchangeDiscoveryCode - Exchange Organization Discovery Code
-	// Exchanges a single-use organization discovery code for the organization and
-	// user it was minted for. The code is consumed on exchange.
-	//
-	// If set, this operation will use [Security.ServiceAccessToken] from the global security.
-	ExchangeDiscoveryCode(ctx context.Context, request components.DiscoveryExchangeRequest, opts ...operations.Option) (*operations.ExchangeDiscoveryCodeResponse, error)
 }

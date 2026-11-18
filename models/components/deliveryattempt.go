@@ -11,7 +11,7 @@ import (
 type DeliveryAttempt struct {
 	// Sequence number of the attempt within the delivery.
 	ID int64 `json:"id"`
-	// Lifecycle state of a delivery attempt. The delivery worker owns the values it writes.
+	// Lifecycle state of a delivery attempt.
 	Status DeliveryAttemptStatus `json:"status"`
 	// When the attempt was recorded, after the response.
 	CreatedAt      time.Time `json:"created_at"`

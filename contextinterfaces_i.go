@@ -32,10 +32,4 @@ type ContextInterfacesSDK interface {
 	// ListContextInterfacesByContextSource - List Context Source Context Interfaces
 	// List Context Interfaces which are mapped by the provided Context Source ID in the path parameter
 	ListContextInterfacesByContextSource(ctx context.Context, request operations.ListContextInterfacesByContextSourceRequest, opts ...operations.Option) (*operations.ListContextInterfacesByContextSourceResponse, error)
-	// GetMcpServerStatus - Get Context Interface Deployment Status
-	// Returns the current aggregated deployment status of a Context Interface.
-	GetMcpServerStatus(ctx context.Context, interfaceID string, opts ...operations.Option) (*operations.GetMcpServerStatusResponse, error)
-	// GetContextInterfaceGeneratedCode - Get Generated Code for a Context Interface
-	// Returns the generated MCP server code for a Context Interface.
-	GetContextInterfaceGeneratedCode(ctx context.Context, interfaceID string, opts ...operations.Option) (*operations.GetContextInterfaceGeneratedCodeResponse, error)
 }

@@ -57,7 +57,7 @@ type CreateServiceResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Successfully created Service
-	Service *components.ServiceOutput
+	Service *components.Service
 }
 
 func (c *CreateServiceResponse) GetContentType() string {
@@ -81,7 +81,7 @@ func (c *CreateServiceResponse) GetRawResponse() *http.Response {
 	return c.RawResponse
 }
 
-func (c *CreateServiceResponse) GetService() *components.ServiceOutput {
+func (c *CreateServiceResponse) GetService() *components.Service {
 	if c == nil {
 		return nil
 	}

@@ -76,33 +76,6 @@ func (g *GetNodeCompatibilityStatus) GetIssues() []NodeCompatibilityIssue {
 	return g.Issues
 }
 
-type GetNodeDynamicLogging struct {
-	OperationID  *string `json:"operation_id,omitempty"`
-	LogLevel     *string `json:"log_level,omitempty"`
-	TTLRemaining *int64  `json:"ttl_remaining,omitempty"`
-}
-
-func (g *GetNodeDynamicLogging) GetOperationID() *string {
-	if g == nil {
-		return nil
-	}
-	return g.OperationID
-}
-
-func (g *GetNodeDynamicLogging) GetLogLevel() *string {
-	if g == nil {
-		return nil
-	}
-	return g.LogLevel
-}
-
-func (g *GetNodeDynamicLogging) GetTTLRemaining() *int64 {
-	if g == nil {
-		return nil
-	}
-	return g.TTLRemaining
-}
-
 type Item struct {
 	ID                  *string                     `json:"id,omitempty"`
 	Version             *string                     `json:"version,omitempty"`
@@ -115,9 +88,6 @@ type Item struct {
 	ConfigSync          *GetNodeConfigSync          `json:"config_sync,omitempty"`
 	Errors              []NodeError                 `json:"errors,omitempty"`
 	CompatibilityStatus *GetNodeCompatibilityStatus `json:"compatibility_status,omitempty"`
-	// The current log level of the node.
-	LogLevel       *string                `json:"log_level,omitempty"`
-	DynamicLogging *GetNodeDynamicLogging `json:"dynamic_logging,omitempty"`
 }
 
 func (i *Item) GetID() *string {
@@ -195,20 +165,6 @@ func (i *Item) GetCompatibilityStatus() *GetNodeCompatibilityStatus {
 		return nil
 	}
 	return i.CompatibilityStatus
-}
-
-func (i *Item) GetLogLevel() *string {
-	if i == nil {
-		return nil
-	}
-	return i.LogLevel
-}
-
-func (i *Item) GetDynamicLogging() *GetNodeDynamicLogging {
-	if i == nil {
-		return nil
-	}
-	return i.DynamicLogging
 }
 
 // GetNode - Example response

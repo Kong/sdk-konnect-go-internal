@@ -11,24 +11,24 @@ import (
 type APIImplementationType string
 
 const (
-	APIImplementationTypeServiceReferenceInput APIImplementationType = "Service Reference_input"
+	APIImplementationTypeServiceReference      APIImplementationType = "Service Reference"
 	APIImplementationTypeControlPlaneReference APIImplementationType = "Control Plane Reference"
 )
 
 // APIImplementation - An entity that implements an API
 type APIImplementation struct {
-	ServiceReferenceInput *ServiceReferenceInput `queryParam:"inline" union:"member"`
+	ServiceReference      *ServiceReference      `queryParam:"inline" union:"member"`
 	ControlPlaneReference *ControlPlaneReference `queryParam:"inline" union:"member"`
 
 	Type APIImplementationType
 }
 
-func CreateAPIImplementationServiceReferenceInput(serviceReferenceInput ServiceReferenceInput) APIImplementation {
-	typ := APIImplementationTypeServiceReferenceInput
+func CreateAPIImplementationServiceReference(serviceReference ServiceReference) APIImplementation {
+	typ := APIImplementationTypeServiceReference
 
 	return APIImplementation{
-		ServiceReferenceInput: &serviceReferenceInput,
-		Type:                  typ,
+		ServiceReference: &serviceReference,
+		Type:             typ,
 	}
 }
 
@@ -50,10 +50,10 @@ func (u *APIImplementation) UnmarshalJSON(data []byte) (err error) {
 		}
 	}()
 
-	var serviceReferenceInput ServiceReferenceInput = ServiceReferenceInput{}
-	if err := utils.UnmarshalJSON(data, &serviceReferenceInput, "", true, nil); err == nil {
-		u.ServiceReferenceInput = &serviceReferenceInput
-		u.Type = APIImplementationTypeServiceReferenceInput
+	var serviceReference ServiceReference = ServiceReference{}
+	if err := utils.UnmarshalJSON(data, &serviceReference, "", true, nil); err == nil {
+		u.ServiceReference = &serviceReference
+		u.Type = APIImplementationTypeServiceReference
 		return nil
 	}
 
@@ -68,8 +68,8 @@ func (u *APIImplementation) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (u APIImplementation) MarshalJSON() ([]byte, error) {
-	if u.ServiceReferenceInput != nil {
-		return utils.MarshalJSON(u.ServiceReferenceInput, "", true)
+	if u.ServiceReference != nil {
+		return utils.MarshalJSON(u.ServiceReference, "", true)
 	}
 
 	if u.ControlPlaneReference != nil {

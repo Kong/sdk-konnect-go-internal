@@ -5,6 +5,6 @@ Pagination metadata with exact total. Useful when the collection size is inexpen
 
 ## Fields
 
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `Page`                                                                                   | [components.CursorMetaWithTotalPage](../../models/components/cursormetawithtotalpage.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| Field                                              | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `Page`                                             | [components.Page](../../models/components/page.md) | :heavy_check_mark:                                 | N/A                                                |

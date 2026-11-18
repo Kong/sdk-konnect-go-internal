@@ -2,16 +2,14 @@
 
 package components
 
-// DeliveryStatus - Lifecycle state of a delivery. A scheduled delivery waits for its next attempt, or is being sent. A delivery that reached its expiry time before an attempt settled it is expired. No delivery shows in_flight yet, because the status ignores the lease of a worker, and nothing cancels a delivery, so no delivery is canceled. A filter accepts both values and keeps nothing.
+// DeliveryStatus - Delivery status. scheduled means delivery is pending; succeeded means delivery completed successfully; failed means delivery attempts ended without success; expired means the delivery reached its expiry time before it succeeded.
 type DeliveryStatus string
 
 const (
 	DeliveryStatusScheduled DeliveryStatus = "scheduled"
-	DeliveryStatusInFlight  DeliveryStatus = "in_flight"
 	DeliveryStatusSucceeded DeliveryStatus = "succeeded"
 	DeliveryStatusFailed    DeliveryStatus = "failed"
 	DeliveryStatusExpired   DeliveryStatus = "expired"
-	DeliveryStatusCanceled  DeliveryStatus = "canceled"
 )
 
 func (e DeliveryStatus) ToPointer() *DeliveryStatus {
@@ -22,7 +20,7 @@ func (e DeliveryStatus) ToPointer() *DeliveryStatus {
 func (e *DeliveryStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "scheduled", "in_flight", "succeeded", "failed", "expired", "canceled":
+		case "scheduled", "succeeded", "failed", "expired":
 			return true
 		}
 	}

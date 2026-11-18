@@ -6,8 +6,8 @@ Operations related to org scoped notifications and their org subscriptions. The 
 
 ### Available Operations
 
-* [ListOrgConfigurations](#listorgconfigurations) - List available org configurations
-* [ListOrgSubscriptions](#listorgsubscriptions) - List the org subscriptions of an event type
+* [ListOrgConfigurations](#listorgconfigurations) - List available org events
+* [ListOrgSubscriptions](#listorgsubscriptions) - List org subscriptions
 * [CreateOrgSubscription](#createorgsubscription) - Create an org subscription
 * [GetOrgSubscription](#getorgsubscription) - Get an org subscription
 * [UpdateOrgSubscription](#updateorgsubscription) - Update an org subscription
@@ -15,7 +15,8 @@ Operations related to org scoped notifications and their org subscriptions. The 
 
 ## ListOrgConfigurations
 
-List the org scoped events of the organization. An org scoped event sends its notification to the http destinations that an org admin subscribes to it, with the org subscription operations. No user can switch the http channel of an org scoped notification on or off. Only an org admin can use this operation.
+Returns the organization event types that you can subscribe to, with each event's title, description, and namespace.
+Only available to organization administrators.
 
 ### Example Usage
 
@@ -70,7 +71,8 @@ func main() {
 
 ## ListOrgSubscriptions
 
-List the org subscriptions of one org scoped event type, enabled or paused. Only an org admin can use this operation.
+List existing organization subscriptions, including the subscription destinations.
+Only available to organization administrators.
 
 ### Example Usage
 
@@ -82,6 +84,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -94,7 +97,11 @@ func main() {
         }),
     )
 
-    res, err := s.OrgConfigurations.ListOrgSubscriptions(ctx, "invoice-ready")
+    res, err := s.OrgConfigurations.ListOrgSubscriptions(ctx, operations.ListOrgSubscriptionsRequest{
+        EventID: "invoice-ready",
+        PageBefore: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+        PageAfter: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -106,11 +113,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
-| `eventID`                                                | `string`                                                 | :heavy_check_mark:                                       | Formatted string ID of the notification event.           | invoice-ready                                            |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.ListOrgSubscriptionsRequest](../../models/operations/listorgsubscriptionsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 ### Response
 
@@ -120,6 +127,7 @@ func main() {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
@@ -127,7 +135,9 @@ func main() {
 
 ## CreateOrgSubscription
 
-Subscribe one or more http destinations to one org scoped event type for the regions and the entities that the request names. The request makes one subscription that holds all the destinations, so one update changes them together. When a destination does not exist, is being deleted or is not an http destination, the request answers 400 and makes no subscription. A destination can be in more than one subscription of the same event type: it still gets one delivery for each event. A subscription applies to the whole organization: no user can switch it on or off. The event type must be org scoped and must have an http template. Only an org admin can use this operation.
+Create a subscription for an org scoped event.
+The event ID to subscribe is placed in the URL. A destination may be used in multiple subscriptions.
+Only available to organization administrators.
 
 ### Example Usage
 
@@ -197,7 +207,8 @@ func main() {
 
 ## GetOrgSubscription
 
-Get one org subscription of an event type. Only an org admin can use this operation.
+Fetch the details of a single org scoped subscription.
+Only available to organization administrators.
 
 ### Example Usage
 
@@ -255,7 +266,8 @@ func main() {
 
 ## UpdateOrgSubscription
 
-Replace the name, the destinations, the regions, the entities and the enabled flag of an org subscription. The request names all five. The destinations of the request replace the stored destinations. When a destination does not exist, is being deleted or is not an http destination, the request answers 400 and changes nothing. The enabled flag applies to all the destinations of the subscription. Only an org admin can use this operation.
+Update the details of an org scoped subscription.
+Only available to organization administrators.
 
 ### Example Usage
 
@@ -283,18 +295,7 @@ func main() {
     res, err := s.OrgConfigurations.UpdateOrgSubscription(ctx, operations.UpdateOrgSubscriptionRequest{
         EventID: "invoice-ready",
         SubscriptionID: "fa4719bc-b16a-4b07-a385-6f5fba92fbbf",
-        OrgSubscriptionUpdatePayload: components.OrgSubscriptionUpdatePayload{
-            DestinationIds: []string{
-                "c1c16fb7-821b-47fc-8e98-d62169595727",
-                "e77e5ebf-dc9b-4898-86a7-1df8224525dd",
-            },
-            Regions: []components.NotificationRegion{
-                components.NotificationRegionUs,
-            },
-            Entities: []string{},
-            Enabled: true,
-            Name: "<value>",
-        },
+        OrgSubscriptionUpdatePayload: components.OrgSubscriptionUpdatePayload{},
     })
     if err != nil {
         log.Fatal(err)
@@ -329,7 +330,8 @@ func main() {
 
 ## DeleteOrgSubscription
 
-Delete one org subscription of an event type. Only an org admin can use this operation.
+Delete an org scoped subscription.
+Only available to organization administrators.
 
 ### Example Usage
 

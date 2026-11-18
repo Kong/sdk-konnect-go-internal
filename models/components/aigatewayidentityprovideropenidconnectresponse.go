@@ -7,26 +7,26 @@ import (
 	"time"
 )
 
-type AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods string
+type AuthMethods string
 
 const (
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsAuthorizationCode AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "authorization_code"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsBearer            AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "bearer"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsClientCredentials AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "client_credentials"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsIntrospection     AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "introspection"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsKongOauth2        AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "kong_oauth2"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsPassword          AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "password"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsRefreshToken      AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "refresh_token"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsSession           AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "session"
-	AIGatewayIdentityProviderOpenIDConnectResponseAuthMethodsUserinfo          AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods = "userinfo"
+	AuthMethodsAuthorizationCode AuthMethods = "authorization_code"
+	AuthMethodsBearer            AuthMethods = "bearer"
+	AuthMethodsClientCredentials AuthMethods = "client_credentials"
+	AuthMethodsIntrospection     AuthMethods = "introspection"
+	AuthMethodsKongOauth2        AuthMethods = "kong_oauth2"
+	AuthMethodsPassword          AuthMethods = "password"
+	AuthMethodsRefreshToken      AuthMethods = "refresh_token"
+	AuthMethodsSession           AuthMethods = "session"
+	AuthMethodsUserinfo          AuthMethods = "userinfo"
 )
 
-func (e AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods) ToPointer() *AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods {
+func (e AuthMethods) ToPointer() *AuthMethods {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods) IsExact() bool {
+func (e *AuthMethods) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "authorization_code", "bearer", "client_credentials", "introspection", "kong_oauth2", "password", "refresh_token", "session", "userinfo":
@@ -36,30 +36,30 @@ func (e *AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods) IsExact() bo
 	return false
 }
 
-type AIGatewayIdentityProviderOpenIDConnectResponseClientAlg string
+type ClientAlg string
 
 const (
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgHs256 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "HS256"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgHs384 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "HS384"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgHs512 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "HS512"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgRs256 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "RS256"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgRs384 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "RS384"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgRs512 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "RS512"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgEs256 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "ES256"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgEs384 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "ES384"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgEs512 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "ES512"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgPs256 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "PS256"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgPs384 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "PS384"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgPs512 AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "PS512"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAlgEdDsa AIGatewayIdentityProviderOpenIDConnectResponseClientAlg = "EdDSA"
+	ClientAlgHs256 ClientAlg = "HS256"
+	ClientAlgHs384 ClientAlg = "HS384"
+	ClientAlgHs512 ClientAlg = "HS512"
+	ClientAlgRs256 ClientAlg = "RS256"
+	ClientAlgRs384 ClientAlg = "RS384"
+	ClientAlgRs512 ClientAlg = "RS512"
+	ClientAlgEs256 ClientAlg = "ES256"
+	ClientAlgEs384 ClientAlg = "ES384"
+	ClientAlgEs512 ClientAlg = "ES512"
+	ClientAlgPs256 ClientAlg = "PS256"
+	ClientAlgPs384 ClientAlg = "PS384"
+	ClientAlgPs512 ClientAlg = "PS512"
+	ClientAlgEdDsa ClientAlg = "EdDSA"
 )
 
-func (e AIGatewayIdentityProviderOpenIDConnectResponseClientAlg) ToPointer() *AIGatewayIdentityProviderOpenIDConnectResponseClientAlg {
+func (e ClientAlg) ToPointer() *ClientAlg {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayIdentityProviderOpenIDConnectResponseClientAlg) IsExact() bool {
+func (e *ClientAlg) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "HS256", "HS384", "HS512", "RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "PS256", "PS384", "PS512", "EdDSA":
@@ -69,24 +69,24 @@ func (e *AIGatewayIdentityProviderOpenIDConnectResponseClientAlg) IsExact() bool
 	return false
 }
 
-type AIGatewayIdentityProviderOpenIDConnectResponseClientAuth string
+type ClientAuth string
 
 const (
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAuthClientSecretBasic       AIGatewayIdentityProviderOpenIDConnectResponseClientAuth = "client_secret_basic"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAuthClientSecretPost        AIGatewayIdentityProviderOpenIDConnectResponseClientAuth = "client_secret_post"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAuthClientSecretJwt         AIGatewayIdentityProviderOpenIDConnectResponseClientAuth = "client_secret_jwt"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAuthPrivateKeyJwt           AIGatewayIdentityProviderOpenIDConnectResponseClientAuth = "private_key_jwt"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAuthTLSClientAuth           AIGatewayIdentityProviderOpenIDConnectResponseClientAuth = "tls_client_auth"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAuthSelfSignedTLSClientAuth AIGatewayIdentityProviderOpenIDConnectResponseClientAuth = "self_signed_tls_client_auth"
-	AIGatewayIdentityProviderOpenIDConnectResponseClientAuthNone                    AIGatewayIdentityProviderOpenIDConnectResponseClientAuth = "none"
+	ClientAuthClientSecretBasic       ClientAuth = "client_secret_basic"
+	ClientAuthClientSecretPost        ClientAuth = "client_secret_post"
+	ClientAuthClientSecretJwt         ClientAuth = "client_secret_jwt"
+	ClientAuthPrivateKeyJwt           ClientAuth = "private_key_jwt"
+	ClientAuthTLSClientAuth           ClientAuth = "tls_client_auth"
+	ClientAuthSelfSignedTLSClientAuth ClientAuth = "self_signed_tls_client_auth"
+	ClientAuthNone                    ClientAuth = "none"
 )
 
-func (e AIGatewayIdentityProviderOpenIDConnectResponseClientAuth) ToPointer() *AIGatewayIdentityProviderOpenIDConnectResponseClientAuth {
+func (e ClientAuth) ToPointer() *ClientAuth {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayIdentityProviderOpenIDConnectResponseClientAuth) IsExact() bool {
+func (e *ClientAuth) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "client_secret_basic", "client_secret_post", "client_secret_jwt", "private_key_jwt", "tls_client_auth", "self_signed_tls_client_auth", "none":
@@ -96,20 +96,20 @@ func (e *AIGatewayIdentityProviderOpenIDConnectResponseClientAuth) IsExact() boo
 	return false
 }
 
-type AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy string
+type ConsumerBy string
 
 const (
-	AIGatewayIdentityProviderOpenIDConnectResponseConsumerByID       AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy = "id"
-	AIGatewayIdentityProviderOpenIDConnectResponseConsumerByUsername AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy = "username"
-	AIGatewayIdentityProviderOpenIDConnectResponseConsumerByCustomID AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy = "custom_id"
+	ConsumerByID       ConsumerBy = "id"
+	ConsumerByUsername ConsumerBy = "username"
+	ConsumerByCustomID ConsumerBy = "custom_id"
 )
 
-func (e AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy) ToPointer() *AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy {
+func (e ConsumerBy) ToPointer() *ConsumerBy {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy) IsExact() bool {
+func (e *ConsumerBy) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "id", "username", "custom_id":
@@ -119,36 +119,36 @@ func (e *AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy) IsExact() boo
 	return false
 }
 
-type AIGatewayIdentityProviderOpenIDConnectResponseUpstreamHeaders struct {
+type UpstreamHeaders struct {
 	// The name of the header.
 	Header string `json:"header"`
 	// The path of the header value.
 	Path []string `json:"path"`
 }
 
-func (a AIGatewayIdentityProviderOpenIDConnectResponseUpstreamHeaders) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (u UpstreamHeaders) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseUpstreamHeaders) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"header", "path"}); err != nil {
+func (u *UpstreamHeaders) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"header", "path"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseUpstreamHeaders) GetHeader() string {
-	if a == nil {
+func (u *UpstreamHeaders) GetHeader() string {
+	if u == nil {
 		return ""
 	}
-	return a.Header
+	return u.Header
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseUpstreamHeaders) GetPath() []string {
-	if a == nil {
+func (u *UpstreamHeaders) GetPath() []string {
+	if u == nil {
 		return []string{}
 	}
-	return a.Path
+	return u.Path
 }
 
 // AIGatewayIdentityProviderOpenIDConnectResponsePrincipals - Map a request to a Kong Identity principal after token verification.
@@ -243,15 +243,15 @@ func (a *AIGatewayIdentityProviderOpenIDConnectResponsePrincipals) GetErrorOnMis
 // See: https://developer.konghq.com/plugins/openid-connect/reference/ for the list of properties
 type AIGatewayIdentityProviderOpenIDConnectResponseConfig struct {
 	// Types of credentials/grants to enable.
-	AuthMethods []AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods `json:"auth_methods,omitempty"`
+	AuthMethods []AuthMethods `json:"auth_methods,omitempty"`
 	// An array of strings representing the client id for the OpenID Connect provider.
 	// When multiple values are provided, the client ID and secrets pairs correspond based on their locations in the array.
 	//
 	ClientID []string `json:"client_id,omitempty"`
 	// Algorithm to use for `client_secret_jwt` or `private_key_jwt` authentication.
-	ClientAlg []AIGatewayIdentityProviderOpenIDConnectResponseClientAlg `json:"client_alg,omitempty"`
+	ClientAlg []ClientAlg `json:"client_alg,omitempty"`
 	// Client authentication methods used with the identity provider.
-	ClientAuth []AIGatewayIdentityProviderOpenIDConnectResponseClientAuth `json:"client_auth,omitempty"`
+	ClientAuth []ClientAuth `json:"client_auth,omitempty"`
 	// An array containing an array of string paths representing the location of the claim in a nested object.
 	// For example, to map to user.info.id, set [ "user", "info", "id" ].
 	//
@@ -264,7 +264,7 @@ type AIGatewayIdentityProviderOpenIDConnectResponseConfig struct {
 	//
 	ConsumerGroupsOptional *bool `default:"false" json:"consumer_groups_optional"`
 	// Consumer fields used when mapping a token claim to a Kong consumer.
-	ConsumerBy []AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy `json:"consumer_by,omitempty"`
+	ConsumerBy []ConsumerBy `json:"consumer_by,omitempty"`
 	// Do not terminate the request if consumer mapping fails.
 	//
 	ConsumerOptional *bool `default:"false" json:"consumer_optional"`
@@ -308,7 +308,7 @@ type AIGatewayIdentityProviderOpenIDConnectResponseConfig struct {
 	// Comma-separated hosts that bypass the configured proxies.
 	NoProxy *string `json:"no_proxy,omitempty"`
 	// Map token claims to upstream headers using path-based access.
-	UpstreamHeaders []AIGatewayIdentityProviderOpenIDConnectResponseUpstreamHeaders `json:"upstream_headers,omitempty"`
+	UpstreamHeaders []UpstreamHeaders `json:"upstream_headers,omitempty"`
 	// Salt used for generating the cache key that is used for caching the token endpoint requests.
 	//
 	CacheTokensSalt string `json:"cache_tokens_salt"`
@@ -328,7 +328,7 @@ func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) UnmarshalJSON(dat
 	return nil
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetAuthMethods() []AIGatewayIdentityProviderOpenIDConnectResponseAuthMethods {
+func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetAuthMethods() []AuthMethods {
 	if a == nil {
 		return nil
 	}
@@ -342,14 +342,14 @@ func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetClientID() []s
 	return a.ClientID
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetClientAlg() []AIGatewayIdentityProviderOpenIDConnectResponseClientAlg {
+func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetClientAlg() []ClientAlg {
 	if a == nil {
 		return nil
 	}
 	return a.ClientAlg
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetClientAuth() []AIGatewayIdentityProviderOpenIDConnectResponseClientAuth {
+func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetClientAuth() []ClientAuth {
 	if a == nil {
 		return nil
 	}
@@ -377,7 +377,7 @@ func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetConsumerGroups
 	return a.ConsumerGroupsOptional
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetConsumerBy() []AIGatewayIdentityProviderOpenIDConnectResponseConsumerBy {
+func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetConsumerBy() []ConsumerBy {
 	if a == nil {
 		return nil
 	}
@@ -517,7 +517,7 @@ func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetNoProxy() *str
 	return a.NoProxy
 }
 
-func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetUpstreamHeaders() []AIGatewayIdentityProviderOpenIDConnectResponseUpstreamHeaders {
+func (a *AIGatewayIdentityProviderOpenIDConnectResponseConfig) GetUpstreamHeaders() []UpstreamHeaders {
 	if a == nil {
 		return nil
 	}
@@ -562,7 +562,9 @@ type AIGatewayIdentityProviderOpenIDConnectResponse struct {
 	Labels map[string]string `json:"labels,omitempty"`
 	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
 	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
+	// Keys must be 1–63 characters long, start and end with an alphanumeric character, and may contain dashes (`-`), underscores (`_`), and dots (`.`).
+	// Values must be 1–127 characters long and must not be empty.
+	// Keys and values must not contain spaces or control characters.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	//lint:ignore U1000 accessed via reflection for JSON marshaling

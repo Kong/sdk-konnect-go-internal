@@ -29,6 +29,31 @@ func (e *UpdateAIGatewayAgentRequestType) IsExact() bool {
 	return false
 }
 
+// UpdateAIGatewayAgentRequestProtocol - The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+//
+// **Requires a minimum runtime version of `2.4`**.
+type UpdateAIGatewayAgentRequestProtocol string
+
+const (
+	UpdateAIGatewayAgentRequestProtocolHTTP  UpdateAIGatewayAgentRequestProtocol = "http"
+	UpdateAIGatewayAgentRequestProtocolHTTPS UpdateAIGatewayAgentRequestProtocol = "https"
+)
+
+func (e UpdateAIGatewayAgentRequestProtocol) ToPointer() *UpdateAIGatewayAgentRequestProtocol {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *UpdateAIGatewayAgentRequestProtocol) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "http", "https":
+			return true
+		}
+	}
+	return false
+}
+
 // UpdateAIGatewayAgentRequestLogging - Configuration for AI Gateway logging.
 type UpdateAIGatewayAgentRequestLogging struct {
 	Payloads *bool `default:"false" json:"payloads"`
@@ -66,7 +91,24 @@ type UpdateAIGatewayAgentRequestConfig struct {
 	// Helper field to set protocol, host, port and path of the upstream A2A Agent using a URL.
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
-	URL string `json:"url"`
+	URL *string `json:"url,omitempty"`
+	// List of targets the upstream load balances requests across.
+	// Replaces `url`: set exactly one of `url` or `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Targets []AIGatewayUpstreamTarget `json:"targets,omitempty"`
+	// Load balancing configuration for `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Balancer *AIGatewayUpstreamBalancerConfig `json:"balancer,omitempty"`
+	// The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Protocol *UpdateAIGatewayAgentRequestProtocol `json:"protocol,omitempty"`
+	// The path prefix of requests sent to the `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Path *string `json:"path,omitempty"`
 	// Configuration applied when proxying to the upstream service, including authentication.
 	Upstream *AIGatewayUpstreamConfig `json:"upstream,omitempty"`
 	// Configuration for an AI Gateway route.
@@ -112,11 +154,67 @@ func (u *UpdateAIGatewayAgentRequestConfig) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *UpdateAIGatewayAgentRequestConfig) GetURL() string {
+func (u *UpdateAIGatewayAgentRequestConfig) GetURL() *string {
 	if u == nil {
-		return ""
+		return nil
 	}
 	return u.URL
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetTargets() []AIGatewayUpstreamTarget {
+	if u == nil {
+		return nil
+	}
+	return u.Targets
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetBalancer() *AIGatewayUpstreamBalancerConfig {
+	if u == nil {
+		return nil
+	}
+	return u.Balancer
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetBalancerConsistentHashing() *AIGatewayUpstreamBalancerConsistentHashingConfig {
+	if v := u.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerConsistentHashingConfig
+	}
+	return nil
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetBalancerLeastConnections() *AIGatewayUpstreamBalancerLeastConnectionsConfig {
+	if v := u.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLeastConnectionsConfig
+	}
+	return nil
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetBalancerLowestLatency() *AIGatewayUpstreamBalancerLowestLatencyConfig {
+	if v := u.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLowestLatencyConfig
+	}
+	return nil
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetBalancerRoundRobin() *AIGatewayUpstreamBalancerRoundRobinConfig {
+	if v := u.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerRoundRobinConfig
+	}
+	return nil
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetProtocol() *UpdateAIGatewayAgentRequestProtocol {
+	if u == nil {
+		return nil
+	}
+	return u.Protocol
+}
+
+func (u *UpdateAIGatewayAgentRequestConfig) GetPath() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Path
 }
 
 func (u *UpdateAIGatewayAgentRequestConfig) GetUpstream() *AIGatewayUpstreamConfig {
@@ -192,7 +290,9 @@ type UpdateAIGatewayAgentRequest struct {
 	Labels map[string]string `json:"labels,omitempty"`
 	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
 	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
+	// Keys must be 1–63 characters long, start and end with an alphanumeric character, and may contain dashes (`-`), underscores (`_`), and dots (`.`).
+	// Values must be 1–127 characters long and must not be empty.
+	// Keys and values must not contain spaces or control characters.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
 }

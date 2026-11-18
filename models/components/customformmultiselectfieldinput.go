@@ -71,7 +71,7 @@ type CustomFormMultiSelectFieldInput struct {
 	Description *string                             `json:"description,omitempty"`
 	Required    *bool                               `default:"false" json:"required"`
 	// Available choices presented to the developer.
-	Options []CustomFormSelectOption `json:"options"`
+	Options []CustomFormSelectOptionInput `json:"options"`
 }
 
 func (c CustomFormMultiSelectFieldInput) MarshalJSON() ([]byte, error) {
@@ -134,9 +134,9 @@ func (c *CustomFormMultiSelectFieldInput) GetRequired() *bool {
 	return c.Required
 }
 
-func (c *CustomFormMultiSelectFieldInput) GetOptions() []CustomFormSelectOption {
+func (c *CustomFormMultiSelectFieldInput) GetOptions() []CustomFormSelectOptionInput {
 	if c == nil {
-		return []CustomFormSelectOption{}
+		return []CustomFormSelectOptionInput{}
 	}
 	return c.Options
 }

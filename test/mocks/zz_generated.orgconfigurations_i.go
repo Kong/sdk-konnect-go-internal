@@ -393,12 +393,12 @@ func (_c *MockOrgConfigurationsSDK_ListOrgConfigurations_Call) RunAndReturn(run 
 }
 
 // ListOrgSubscriptions provides a mock function for the type MockOrgConfigurationsSDK
-func (_mock *MockOrgConfigurationsSDK) ListOrgSubscriptions(ctx context.Context, eventID string, opts ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error) {
+func (_mock *MockOrgConfigurationsSDK) ListOrgSubscriptions(ctx context.Context, request operations.ListOrgSubscriptionsRequest, opts ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, eventID, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, eventID)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -408,18 +408,18 @@ func (_mock *MockOrgConfigurationsSDK) ListOrgSubscriptions(ctx context.Context,
 
 	var r0 *operations.ListOrgSubscriptionsResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error)); ok {
-		return returnFunc(ctx, eventID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListOrgSubscriptionsRequest, ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...operations.Option) *operations.ListOrgSubscriptionsResponse); ok {
-		r0 = returnFunc(ctx, eventID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListOrgSubscriptionsRequest, ...operations.Option) *operations.ListOrgSubscriptionsResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.ListOrgSubscriptionsResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, eventID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListOrgSubscriptionsRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -433,22 +433,22 @@ type MockOrgConfigurationsSDK_ListOrgSubscriptions_Call struct {
 
 // ListOrgSubscriptions is a helper method to define mock.On call
 //   - ctx context.Context
-//   - eventID string
+//   - request operations.ListOrgSubscriptionsRequest
 //   - opts ...operations.Option
-func (_e *MockOrgConfigurationsSDK_Expecter) ListOrgSubscriptions(ctx any, eventID any, opts ...any) *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call {
+func (_e *MockOrgConfigurationsSDK_Expecter) ListOrgSubscriptions(ctx any, request any, opts ...any) *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call {
 	return &MockOrgConfigurationsSDK_ListOrgSubscriptions_Call{Call: _e.mock.On("ListOrgSubscriptions",
-		append([]any{ctx, eventID}, opts...)...)}
+		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call) Run(run func(ctx context.Context, eventID string, opts ...operations.Option)) *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call {
+func (_c *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call) Run(run func(ctx context.Context, request operations.ListOrgSubscriptionsRequest, opts ...operations.Option)) *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 string
+		var arg1 operations.ListOrgSubscriptionsRequest
 		if args[1] != nil {
-			arg1 = args[1].(string)
+			arg1 = args[1].(operations.ListOrgSubscriptionsRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -470,7 +470,7 @@ func (_c *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call) Return(listOrgSubs
 	return _c
 }
 
-func (_c *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call) RunAndReturn(run func(ctx context.Context, eventID string, opts ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error)) *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call {
+func (_c *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call) RunAndReturn(run func(ctx context.Context, request operations.ListOrgSubscriptionsRequest, opts ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error)) *MockOrgConfigurationsSDK_ListOrgSubscriptions_Call {
 	_c.Call.Return(run)
 	return _c
 }

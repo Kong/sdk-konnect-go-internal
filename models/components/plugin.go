@@ -100,28 +100,28 @@ func (p *Partials) GetPath() *string {
 	return p.Path
 }
 
-// PluginProtocols - A string representing a protocol, such as HTTP or HTTPS.
-type PluginProtocols string
+// Protocols - A string representing a protocol, such as HTTP or HTTPS.
+type Protocols string
 
 const (
-	PluginProtocolsGrpc           PluginProtocols = "grpc"
-	PluginProtocolsGrpcs          PluginProtocols = "grpcs"
-	PluginProtocolsHTTP           PluginProtocols = "http"
-	PluginProtocolsHTTPS          PluginProtocols = "https"
-	PluginProtocolsTCP            PluginProtocols = "tcp"
-	PluginProtocolsTLS            PluginProtocols = "tls"
-	PluginProtocolsTLSPassthrough PluginProtocols = "tls_passthrough"
-	PluginProtocolsUDP            PluginProtocols = "udp"
-	PluginProtocolsWs             PluginProtocols = "ws"
-	PluginProtocolsWss            PluginProtocols = "wss"
+	ProtocolsGrpc           Protocols = "grpc"
+	ProtocolsGrpcs          Protocols = "grpcs"
+	ProtocolsHTTP           Protocols = "http"
+	ProtocolsHTTPS          Protocols = "https"
+	ProtocolsTCP            Protocols = "tcp"
+	ProtocolsTLS            Protocols = "tls"
+	ProtocolsTLSPassthrough Protocols = "tls_passthrough"
+	ProtocolsUDP            Protocols = "udp"
+	ProtocolsWs             Protocols = "ws"
+	ProtocolsWss            Protocols = "wss"
 )
 
-func (e PluginProtocols) ToPointer() *PluginProtocols {
+func (e Protocols) ToPointer() *Protocols {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *PluginProtocols) IsExact() bool {
+func (e *Protocols) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "grpc", "grpcs", "http", "https", "tcp", "tls", "tls_passthrough", "udp", "ws", "wss":
@@ -157,8 +157,6 @@ func (p *PluginService) GetID() *string {
 
 // A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.
 type Plugin struct {
-	// Arbitrary JSON data for UI configuration. Konnect only field, not synced to the Gateway.
-	UIData map[string]any `json:"__ui_data,omitempty"`
 	// An expression used for conditional control over plugin execution. If the expression evaluates to `true` during the request flow, the plugin is executed; otherwise, it is skipped.
 	Condition *string `json:"condition,omitempty"`
 	// The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
@@ -169,25 +167,19 @@ type Plugin struct {
 	ConsumerGroup *PluginConsumerGroup `json:"consumer_group,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// Whether the plugin is applied.
 	Enabled *bool `default:"true" json:"enabled"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
 	// A unique string representing a UTF-8 encoded name.
 	InstanceName *string `json:"instance_name,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.
 	Name     string    `json:"name"`
 	Ordering *Ordering `json:"ordering,omitempty"`
 	// A list of partials to be used by the plugin.
 	Partials []Partials `json:"partials,omitempty"`
 	// A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.
-	Protocols []PluginProtocols `json:"protocols,omitempty"`
+	Protocols []Protocols `json:"protocols,omitempty"`
 	// If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.
 	Route *PluginRoute `json:"route,omitempty"`
 	// If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.
@@ -207,13 +199,6 @@ func (p *Plugin) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (p *Plugin) GetUIData() map[string]any {
-	if p == nil {
-		return nil
-	}
-	return p.UIData
 }
 
 func (p *Plugin) GetCondition() *string {
@@ -251,13 +236,6 @@ func (p *Plugin) GetCreatedAt() *int64 {
 	return p.CreatedAt
 }
 
-func (p *Plugin) GetDescription() *string {
-	if p == nil {
-		return nil
-	}
-	return p.Description
-}
-
 func (p *Plugin) GetEnabled() *bool {
 	if p == nil {
 		return nil
@@ -277,13 +255,6 @@ func (p *Plugin) GetInstanceName() *string {
 		return nil
 	}
 	return p.InstanceName
-}
-
-func (p *Plugin) GetManagedBy() map[string]string {
-	if p == nil {
-		return nil
-	}
-	return p.ManagedBy
 }
 
 func (p *Plugin) GetName() string {
@@ -307,7 +278,7 @@ func (p *Plugin) GetPartials() []Partials {
 	return p.Partials
 }
 
-func (p *Plugin) GetProtocols() []PluginProtocols {
+func (p *Plugin) GetProtocols() []Protocols {
 	if p == nil {
 		return nil
 	}

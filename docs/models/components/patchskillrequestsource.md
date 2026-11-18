@@ -11,12 +11,6 @@ Replaces the existing source in its entirety — partial updates to individual s
 patchSkillRequestSource := components.CreatePatchSkillRequestSourceRaw(components.RawSkillSourcePayload{/* values here */})
 ```
 
-### GithubSkillSourcePayload
-
-```go
-patchSkillRequestSource := components.CreatePatchSkillRequestSourceGithub(components.GithubSkillSourcePayload{/* values here */})
-```
-
 ## Union Discrimination
 
 Use the `Type` field to determine which variant is active, then access the corresponding field:
@@ -25,7 +19,5 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch patchSkillRequestSource.Type {
 	case components.PatchSkillRequestSourceTypeRaw:
 		// patchSkillRequestSource.RawSkillSourcePayload is populated
-	case components.PatchSkillRequestSourceTypeGithub:
-		// patchSkillRequestSource.GithubSkillSourcePayload is populated
 }
 ```

@@ -36,7 +36,7 @@ type GetDestinationDeliveryResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// A single delivery and all its attempts.
-	DeliveryDetailResponse *components.DeliveryDetailResponse
+	DeliveryDetail *components.DeliveryDetail
 }
 
 func (g *GetDestinationDeliveryResponse) GetContentType() string {
@@ -60,9 +60,9 @@ func (g *GetDestinationDeliveryResponse) GetRawResponse() *http.Response {
 	return g.RawResponse
 }
 
-func (g *GetDestinationDeliveryResponse) GetDeliveryDetailResponse() *components.DeliveryDetailResponse {
+func (g *GetDestinationDeliveryResponse) GetDeliveryDetail() *components.DeliveryDetail {
 	if g == nil {
 		return nil
 	}
-	return g.DeliveryDetailResponse
+	return g.DeliveryDetail
 }

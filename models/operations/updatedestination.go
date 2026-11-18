@@ -66,3 +66,10 @@ func (u *UpdateDestinationResponse) GetDestination() *components.Destination {
 	}
 	return u.Destination
 }
+
+func (u *UpdateDestinationResponse) GetDestinationHTTP() *components.HTTPDestination {
+	if v := u.GetDestination(); v != nil {
+		return v.HTTPDestination
+	}
+	return nil
+}

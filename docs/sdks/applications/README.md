@@ -6,138 +6,14 @@ APIs related to Konnect Developer Portal Applications.
 
 ### Available Operations
 
-* [ListApplicationGroups](#listapplicationgroups) - List Application Groups
-* [GetApplicationGroup](#getapplicationgroup) - Get an Application Group
 * [CreateApplication](#createapplication) - Create Application
 * [ListApplications](#listapplications) - List Applications
 * [GetApplication](#getapplication) - Get an Application by Portal
 * [UpdateApplication](#updateapplication) - Update Application
 * [DeleteApplication](#deleteapplication) - Delete Application by Portal
 * [ListDevelopersByApplication](#listdevelopersbyapplication) - List Developers by Application
-* [AddDeveloperToApplication](#adddevelopertoapplication) - Add Developer to Application
-* [RemoveDeveloperFromApplication](#removedeveloperfromapplication) - Remove Developer from Application
 * [GetApplicationUnscoped](#getapplicationunscoped) - Get an Application
 * [ListCredentialsByApplication](#listcredentialsbyapplication) - List Credentials by Application
-
-## ListApplicationGroups
-
-Lists the application groups in this portal. An application group links the applications that represent one logical consumer across environments under a single identity, and its `name` is derived from those member applications. This is a read-only resource: groups are created and deleted through the application lifecycle, and the derived `name` is changed by updating a member application — there is no create, update, or delete operation for a group.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-application-groups" method="get" path="/v3/portals/{portalId}/application-groups" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Applications.ListApplicationGroups(ctx, operations.ListApplicationGroupsRequest{
-        PortalID: "f32d905a-ed33-46a3-a093-d8f536af9a8a",
-        PageSize: sdkkonnectgo.Pointer[int64](10),
-        PageNumber: sdkkonnectgo.Pointer[int64](1),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListApplicationGroupsResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [operations.ListApplicationGroupsRequest](../../models/operations/listapplicationgroupsrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
-
-### Response
-
-**[*operations.ListApplicationGroupsResponse](../../models/operations/listapplicationgroupsresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## GetApplicationGroup
-
-Returns a single application group in this portal, including its member applications. The group's `name` is derived from its members.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-application-group" method="get" path="/v3/portals/{portalId}/application-groups/{applicationGroupId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Applications.GetApplicationGroup(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", "32c0e2a3-18f4-4426-a49b-b17e46ddc341")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.GetApplicationGroupResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
-| `portalID`                                               | `string`                                                 | :heavy_check_mark:                                       | ID of the portal.                                        | f32d905a-ed33-46a3-a093-d8f536af9a8a                     |
-| `applicationGroupID`                                     | `string`                                                 | :heavy_check_mark:                                       | ID of the application group.                             |                                                          |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
-
-### Response
-
-**[*operations.GetApplicationGroupResponse](../../models/operations/getapplicationgroupresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreateApplication
 
@@ -172,7 +48,6 @@ func main() {
             "env": sdkkonnectgo.Pointer("production"),
         },
         AuthStrategyID: sdkkonnectgo.Pointer("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
-        EnvironmentID: sdkkonnectgo.Pointer("2747d1e5-8246-4f65-a939-b392f1ee17f8"),
         Owner: components.ApplicationOwner{
             Type: components.ApplicationOwnerTypeDeveloper,
             ID: "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7",
@@ -195,12 +70,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                       | Type                                                                                                                                                                                                                                                                                                                                                            | Required                                                                                                                                                                                                                                                                                                                                                        | Description                                                                                                                                                                                                                                                                                                                                                     | Example                                                                                                                                                                                                                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                                                                                                                                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                              | The context to use for the request.                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                 |
-| `portalID`                                                                                                                                                                                                                                                                                                                                                      | `string`                                                                                                                                                                                                                                                                                                                                                        | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                              | ID of the portal.                                                                                                                                                                                                                                                                                                                                               | f32d905a-ed33-46a3-a093-d8f536af9a8a                                                                                                                                                                                                                                                                                                                            |
-| `createApplicationRequest`                                                                                                                                                                                                                                                                                                                                      | [components.CreateApplicationRequest](../../models/components/createapplicationrequest.md)                                                                                                                                                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                              | Create an application for a portal.                                                                                                                                                                                                                                                                                                                             | {<br/>"name": "Portal Application",<br/>"description": "A portal application provisioned for a developer by a Portal Admin.",<br/>"labels": {<br/>"env": "production"<br/>},<br/>"auth_strategy_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",<br/>"environment_id": "2747d1e5-8246-4f65-a939-b392f1ee17f8",<br/>"owner": {<br/>"id": "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7",<br/>"type": "developer"<br/>}<br/>} |
-| `opts`                                                                                                                                                                                                                                                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                              | The options for this request.                                                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                 |
+| Parameter                                                                                                                                                                                                                                                                                             | Type                                                                                                                                                                                                                                                                                                  | Required                                                                                                                                                                                                                                                                                              | Description                                                                                                                                                                                                                                                                                           | Example                                                                                                                                                                                                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                    | The context to use for the request.                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                       |
+| `portalID`                                                                                                                                                                                                                                                                                            | `string`                                                                                                                                                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                                                                                                    | ID of the portal.                                                                                                                                                                                                                                                                                     | f32d905a-ed33-46a3-a093-d8f536af9a8a                                                                                                                                                                                                                                                                  |
+| `createApplicationRequest`                                                                                                                                                                                                                                                                            | [components.CreateApplicationRequest](../../models/components/createapplicationrequest.md)                                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                                                                                                                    | Create an application for a portal.                                                                                                                                                                                                                                                                   | {<br/>"name": "Portal Application",<br/>"description": "A portal application provisioned for a developer by a Portal Admin.",<br/>"labels": {<br/>"env": "production"<br/>},<br/>"auth_strategy_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",<br/>"owner": {<br/>"id": "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7",<br/>"type": "developer"<br/>}<br/>} |
+| `opts`                                                                                                                                                                                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                                                                                    | The options for this request.                                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                       |
 
 ### Response
 
@@ -532,132 +407,6 @@ func main() {
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## AddDeveloperToApplication
-
-Add a developer as an owner of the application.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="add-developer-to-application" method="put" path="/v3/portals/{portalId}/applications/{applicationId}/developers/{developerId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Applications.AddDeveloperToApplication(ctx, operations.AddDeveloperToApplicationRequest{
-        PortalID: "f32d905a-ed33-46a3-a093-d8f536af9a8a",
-        ApplicationID: "c7bcdeec-712f-489e-bf59-089562d1b47d",
-        DeveloperID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ApplicationDeveloperDetailed != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `request`                                                                                                  | [operations.AddDeveloperToApplicationRequest](../../models/operations/adddevelopertoapplicationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
-
-### Response
-
-**[*operations.AddDeveloperToApplicationResponse](../../models/operations/adddevelopertoapplicationresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## RemoveDeveloperFromApplication
-
-Remove a developer from an application. There must be at least one remaining owner.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="remove-developer-from-application" method="delete" path="/v3/portals/{portalId}/applications/{applicationId}/developers/{developerId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Applications.RemoveDeveloperFromApplication(ctx, operations.RemoveDeveloperFromApplicationRequest{
-        PortalID: "f32d905a-ed33-46a3-a093-d8f536af9a8a",
-        ApplicationID: "0ab74604-816a-435f-8240-956d63ae7400",
-        DeveloperID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
-| `request`                                                                                                            | [operations.RemoveDeveloperFromApplicationRequest](../../models/operations/removedeveloperfromapplicationrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
-
-### Response
-
-**[*operations.RemoveDeveloperFromApplicationResponse](../../models/operations/removedeveloperfromapplicationresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetApplicationUnscoped

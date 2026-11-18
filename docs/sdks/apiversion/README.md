@@ -25,7 +25,6 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -38,13 +37,10 @@ func main() {
         }),
     )
 
-    res, err := s.APIVersion.CreateAPIVersion(ctx, operations.CreateAPIVersionRequest{
-        APIID: "9f5061ce-78f6-4452-9108-ad7c02821fd5",
-        CreateAPIVersionRequest: components.CreateAPIVersionRequest{
-            Version: sdkkonnectgo.Pointer("1.0.0"),
-            Spec: components.CreateAPIVersionRequestSpec{
-                Content: sdkkonnectgo.Pointer("{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Example API\",\"version\":\"1.0.0\"},\"paths\":{\"/example\":{\"get\":{\"summary\":\"Example endpoint\",\"responses\":{\"200\":{\"description\":\"Successful response\"}}}}}}"),
-            },
+    res, err := s.APIVersion.CreateAPIVersion(ctx, "9f5061ce-78f6-4452-9108-ad7c02821fd5", components.CreateAPIVersionRequest{
+        Version: sdkkonnectgo.Pointer("1.0.0"),
+        Spec: components.CreateAPIVersionRequestSpec{
+            Content: sdkkonnectgo.Pointer("{\"openapi\":\"3.0.3\",\"info\":{\"title\":\"Example API\",\"version\":\"1.0.0\"},\"paths\":{\"/example\":{\"get\":{\"summary\":\"Example endpoint\",\"responses\":{\"200\":{\"description\":\"Successful response\"}}}}}}"),
         },
     })
     if err != nil {
@@ -58,11 +54,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.CreateAPIVersionRequest](../../models/operations/createapiversionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |                                                                                          |
+| `apiID`                                                                                  | `string`                                                                                 | :heavy_check_mark:                                                                       | The UUID API identifier                                                                  | 9f5061ce-78f6-4452-9108-ad7c02821fd5                                                     |
+| `createAPIVersionRequest`                                                                | [components.CreateAPIVersionRequest](../../models/components/createapiversionrequest.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |                                                                                          |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |                                                                                          |
 
 ### Response
 
@@ -159,7 +156,6 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -172,10 +168,7 @@ func main() {
         }),
     )
 
-    res, err := s.APIVersion.FetchAPIVersion(ctx, operations.FetchAPIVersionRequest{
-        APIID: "9f5061ce-78f6-4452-9108-ad7c02821fd5",
-        VersionID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
-    })
+    res, err := s.APIVersion.FetchAPIVersion(ctx, "9f5061ce-78f6-4452-9108-ad7c02821fd5", "d32d905a-ed33-46a3-a093-d8f536af9a8a")
     if err != nil {
         log.Fatal(err)
     }
@@ -187,11 +180,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.FetchAPIVersionRequest](../../models/operations/fetchapiversionrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][operations.Option](../../models/operations/option.md)                               | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `apiID`                                                  | `string`                                                 | :heavy_check_mark:                                       | The UUID API identifier                                  | 9f5061ce-78f6-4452-9108-ad7c02821fd5                     |
+| `versionID`                                              | `string`                                                 | :heavy_check_mark:                                       | The API version identifier                               | d32d905a-ed33-46a3-a093-d8f536af9a8a                     |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
 ### Response
 

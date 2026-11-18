@@ -115,7 +115,7 @@ func main() {
                     Rules: []components.EventGatewayACLRule{
                         components.EventGatewayACLRule{
                             ResourceType: components.EventGatewayACLRuleResourceTypeCluster,
-                            Action: components.EventGatewayACLRuleActionAllow,
+                            Action: components.ActionAllow,
                             Operations: []components.EventGatewayACLOperation{
                                 components.EventGatewayACLOperation{
                                     Name: components.EventGatewayACLOperationNameRead,

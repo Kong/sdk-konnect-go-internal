@@ -6,48 +6,6 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AISettingsRequestFeaturesPortalAgent - Portal Agent configuration
-type AISettingsRequestFeaturesPortalAgent struct {
-	// Whether the Portal Agent is enabled or not
-	Enabled *bool `default:"false" json:"enabled"`
-	// The display name for the Portal Agent, shown to developers in the portal
-	DisplayName *string `default:"AI" json:"display_name"`
-	// The audience allowed to interact with the Portal Agent. Currently only `all` (available to every developer, including unauthenticated ones) is supported. `authenticated` (restricted to signed-in developers only) is planned for a future release.
-	Audience *PortalAgentAudienceNullable `default:"all" json:"audience"`
-}
-
-func (a AISettingsRequestFeaturesPortalAgent) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AISettingsRequestFeaturesPortalAgent) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AISettingsRequestFeaturesPortalAgent) GetEnabled() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.Enabled
-}
-
-func (a *AISettingsRequestFeaturesPortalAgent) GetDisplayName() *string {
-	if a == nil {
-		return nil
-	}
-	return a.DisplayName
-}
-
-func (a *AISettingsRequestFeaturesPortalAgent) GetAudience() *PortalAgentAudienceNullable {
-	if a == nil {
-		return nil
-	}
-	return a.Audience
-}
-
 // AISettingsRequestFeaturesAISearch - AI Search configuration
 type AISettingsRequestFeaturesAISearch struct {
 	// Whether AI Search is enabled or not
@@ -107,19 +65,10 @@ func (a *AISettingsRequestFeaturesMcpServer) GetWriteOperationsEnabled() *bool {
 
 // AISettingsRequestFeatures - AI Features configuration. Only nullable when top-level `enabled` is false. When top-level `enabled` is false, every feature toggle here is automatically reset to false.
 type AISettingsRequestFeatures struct {
-	// Portal Agent configuration
-	PortalAgent *AISettingsRequestFeaturesPortalAgent `json:"portal_agent,omitempty"`
 	// AI Search configuration
 	AiSearch *AISettingsRequestFeaturesAISearch `json:"ai_search,omitempty"`
 	// MCP Server configuration
 	McpServer *AISettingsRequestFeaturesMcpServer `json:"mcp_server,omitempty"`
-}
-
-func (a *AISettingsRequestFeatures) GetPortalAgent() *AISettingsRequestFeaturesPortalAgent {
-	if a == nil {
-		return nil
-	}
-	return a.PortalAgent
 }
 
 func (a *AISettingsRequestFeatures) GetAiSearch() *AISettingsRequestFeaturesAISearch {

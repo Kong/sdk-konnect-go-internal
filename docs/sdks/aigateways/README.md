@@ -9,6 +9,8 @@ API related to the management of Konnect AI Gateway resources.
 * [ListAiGateways](#listaigateways) - List AI Gateways
 * [CreateAiGateway](#createaigateway) - Create an AI Gateway
 * [ListAiGatewayRuntimeVersions](#listaigatewayruntimeversions) - List AI Gateway Runtime Versions
+* [GetAiGatewayRuntimeDefault](#getaigatewayruntimedefault) - Get an AI Gateway Runtime Default
+* [UpdateAiGatewayRuntimeDefault](#updateaigatewayruntimedefault) - Update an AI Gateway Runtime Default
 * [GetAiGateway](#getaigateway) - Get an AI Gateway
 * [UpdateAiGateway](#updateaigateway) - Update an AI Gateway
 * [PatchAiGateway](#patchaigateway) - Patch an AI Gateway
@@ -200,6 +202,125 @@ func main() {
 
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## GetAiGatewayRuntimeDefault
+
+Returns the minimum runtime version that a new AI Gateway of this deployment type gets. Only service clients can use this endpoint.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-runtime-default" method="get" path="/v1/ai-gateways-runtime-defaults/{deploymentType}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGateways.GetAiGatewayRuntimeDefault(ctx, components.AIGatewayRuntimeDefaultDeploymentTypeServerless)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.AIGatewayRuntimeDefault != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          | Example                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |                                                                                                                      |
+| `deploymentType`                                                                                                     | [components.AIGatewayRuntimeDefaultDeploymentType](../../models/components/aigatewayruntimedefaultdeploymenttype.md) | :heavy_check_mark:                                                                                                   | The deployment type that the runtime default applies to.                                                             | serverless                                                                                                           |
+| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |                                                                                                                      |
+
+### Response
+
+**[*operations.GetAiGatewayRuntimeDefaultResponse](../../models/operations/getaigatewayruntimedefaultresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.BadRequestError      | 400                            | application/problem+json       |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## UpdateAiGatewayRuntimeDefault
+
+Sets the minimum runtime version that a new AI Gateway of this deployment type gets. Existing AI Gateways keep their minimum runtime version. Only service clients can use this endpoint.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="update-ai-gateway-runtime-default" method="put" path="/v1/ai-gateways-runtime-defaults/{deploymentType}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGateways.UpdateAiGatewayRuntimeDefault(ctx, components.AIGatewayRuntimeDefaultDeploymentTypeServerless, components.AIGatewayRuntimeDefault{
+        MinRuntimeVersion: "2.3",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.AIGatewayRuntimeDefault != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          | Example                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |                                                                                                                      |
+| `deploymentType`                                                                                                     | [components.AIGatewayRuntimeDefaultDeploymentType](../../models/components/aigatewayruntimedefaultdeploymenttype.md) | :heavy_check_mark:                                                                                                   | The deployment type that the runtime default applies to.                                                             | serverless                                                                                                           |
+| `aiGatewayRuntimeDefault`                                                                                            | [components.AIGatewayRuntimeDefault](../../models/components/aigatewayruntimedefault.md)                             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |                                                                                                                      |
+| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |                                                                                                                      |
+
+### Response
+
+**[*operations.UpdateAiGatewayRuntimeDefaultResponse](../../models/operations/updateaigatewayruntimedefaultresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.BadRequestError      | 400                            | application/problem+json       |
 | sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
 | sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |

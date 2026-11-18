@@ -11,12 +11,6 @@ import (
 
 // ApplicationsSDK is a generated interface.
 type ApplicationsSDK interface {
-	// ListApplicationGroups - List Application Groups
-	// Lists the application groups in this portal. An application group links the applications that represent one logical consumer across environments under a single identity, and its `name` is derived from those member applications. This is a read-only resource: groups are created and deleted through the application lifecycle, and the derived `name` is changed by updating a member application — there is no create, update, or delete operation for a group.
-	ListApplicationGroups(ctx context.Context, request operations.ListApplicationGroupsRequest, opts ...operations.Option) (*operations.ListApplicationGroupsResponse, error)
-	// GetApplicationGroup - Get an Application Group
-	// Returns a single application group in this portal, including its member applications. The group's `name` is derived from its members.
-	GetApplicationGroup(ctx context.Context, portalID string, applicationGroupID string, opts ...operations.Option) (*operations.GetApplicationGroupResponse, error)
 	// CreateApplication - Create Application
 	// Creates a new application for this portal. The application must be assigned to a developer or a team. An application can be registered for various APIs, issuing credentials for API access. If using DCR, an application will be linked to an Identity Provider's application by its `client_id`.
 	CreateApplication(ctx context.Context, portalID string, createApplicationRequest components.CreateApplicationRequest, opts ...operations.Option) (*operations.CreateApplicationResponse, error)
@@ -35,12 +29,6 @@ type ApplicationsSDK interface {
 	// ListDevelopersByApplication - List Developers by Application
 	// Lists each developer that can access the given application for this portal.
 	ListDevelopersByApplication(ctx context.Context, request operations.ListDevelopersByApplicationRequest, opts ...operations.Option) (*operations.ListDevelopersByApplicationResponse, error)
-	// AddDeveloperToApplication - Add Developer to Application
-	// Add a developer as an owner of the application.
-	AddDeveloperToApplication(ctx context.Context, request operations.AddDeveloperToApplicationRequest, opts ...operations.Option) (*operations.AddDeveloperToApplicationResponse, error)
-	// RemoveDeveloperFromApplication - Remove Developer from Application
-	// Remove a developer from an application. There must be at least one remaining owner.
-	RemoveDeveloperFromApplication(ctx context.Context, request operations.RemoveDeveloperFromApplicationRequest, opts ...operations.Option) (*operations.RemoveDeveloperFromApplicationResponse, error)
 	// GetApplicationUnscoped - Get an Application
 	// Returns the configuration of a single application in any portal. If an application is linked to a DCR Provider, the `dcr_provider.id` and `client_id` can be used to correlate it. An application manages a set of credentials and registrations for specific APIs.
 	GetApplicationUnscoped(ctx context.Context, applicationID string, opts ...operations.Option) (*operations.GetApplicationUnscopedResponse, error)

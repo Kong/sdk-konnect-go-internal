@@ -123,11 +123,6 @@ func main() {
                 },
             },
         },
-        PortalLayout: &components.PortalLayout{
-            Footer: &components.Footer{
-                SnippetName: sdkkonnectgo.Pointer("my-snippet"),
-            },
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -222,11 +217,6 @@ func main() {
                     Visibility: components.VisibilityPublic,
                     External: true,
                 },
-            },
-        },
-        PortalLayout: &components.PortalLayout{
-            Footer: &components.Footer{
-                SnippetName: sdkkonnectgo.Pointer("my-snippet"),
             },
         },
     })

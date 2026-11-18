@@ -184,8 +184,6 @@ func main() {
         switch res.Skill.Source.Type {
             case components.SkillSourceTypeRaw:
                 // res.Skill.Source.RawSkillSource is populated
-            case components.SkillSourceTypeGithub:
-                // res.Skill.Source.GithubSkillSource is populated
         }
 
     }
@@ -269,8 +267,6 @@ func main() {
         switch res.Skill.Source.Type {
             case components.SkillSourceTypeRaw:
                 // res.Skill.Source.RawSkillSource is populated
-            case components.SkillSourceTypeGithub:
-                // res.Skill.Source.GithubSkillSource is populated
         }
 
     }
@@ -541,8 +537,6 @@ func main() {
         switch res.Skill.Source.Type {
             case components.SkillSourceTypeRaw:
                 // res.Skill.Source.RawSkillSource is populated
-            case components.SkillSourceTypeGithub:
-                // res.Skill.Source.GithubSkillSource is populated
         }
 
     }

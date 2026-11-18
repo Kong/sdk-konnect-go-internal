@@ -1,9 +1,6 @@
 # Force
 
-If true, allows operations to be removed from the current version when using access control enforcement.
-If false, operations removal will be rejected with a 409 error.
-Omitting the value means true.
-
+If true, delete the specified auth server and all its associated resources. If false, only allow deletion if no clients, scopes or claims are associated with the auth server.
 
 ## Example Usage
 

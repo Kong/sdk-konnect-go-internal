@@ -17,15 +17,9 @@ type BasicAuth struct {
 	Consumer *BasicAuthConsumer `json:"consumer,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
-	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
-	Password  string            `json:"password"`
+	ID       *string `json:"id,omitempty"`
+	Password string  `json:"password"`
 	// A set of strings representing tags.
 	Tags     []string `json:"tags,omitempty"`
 	Username string   `json:"username"`
@@ -45,25 +39,11 @@ func (b *BasicAuth) GetCreatedAt() *int64 {
 	return b.CreatedAt
 }
 
-func (b *BasicAuth) GetDescription() *string {
-	if b == nil {
-		return nil
-	}
-	return b.Description
-}
-
 func (b *BasicAuth) GetID() *string {
 	if b == nil {
 		return nil
 	}
 	return b.ID
-}
-
-func (b *BasicAuth) GetManagedBy() map[string]string {
-	if b == nil {
-		return nil
-	}
-	return b.ManagedBy
 }
 
 func (b *BasicAuth) GetPassword() string {

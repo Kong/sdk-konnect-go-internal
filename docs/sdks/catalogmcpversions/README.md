@@ -252,7 +252,7 @@ func main() {
         },
         Packages: []components.MCPPackage{
             components.MCPPackage{
-                Registry: components.MCPPackageRegistry{
+                Registry: components.Registry{
                     Type: "npm",
                     BaseURL: sdkkonnectgo.Pointer("https://registry.npmjs.org"),
                 },
@@ -364,7 +364,7 @@ func main() {
         Remotes: []components.MCPRemoteTransport{},
         Packages: []components.MCPPackage{
             components.MCPPackage{
-                Registry: components.MCPPackageRegistry{
+                Registry: components.Registry{
                     Type: "npm",
                     BaseURL: sdkkonnectgo.Pointer("https://registry.npmjs.org"),
                 },

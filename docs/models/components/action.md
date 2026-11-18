@@ -1,10 +1,24 @@
 # Action
 
-The action configuration for this system suggestion rule.
+How to handle the request if the rule matches
+
+## Example Usage
+
+```go
+import (
+	"github.com/Kong/sdk-konnect-go/models/components"
+)
+
+value := components.ActionAllow
+
+// Open enum: custom values can be created with a direct type cast
+custom := components.Action("custom_value")
+```
 
 
-## Fields
+## Values
 
-| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `Type`                                                                                     | [components.SystemSuggestionRuleType](../../models/components/systemsuggestionruletype.md) | :heavy_check_mark:                                                                         | The type of action this system suggestion rule performs                                    |
+| Name          | Value         |
+| ------------- | ------------- |
+| `ActionAllow` | allow         |
+| `ActionDeny`  | deny          |

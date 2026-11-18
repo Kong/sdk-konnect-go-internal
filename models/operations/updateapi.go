@@ -10,20 +10,20 @@ import (
 	"net/http"
 )
 
-// Force - If true, allows operations to be removed from the current version when using access control enforcement.
+// UpdateAPIQueryParamForce - If true, allows operations to be removed from the current version when using access control enforcement.
 // If false, operations removal will be rejected with a 409 error.
 // Omitting the value means true.
-type Force string
+type UpdateAPIQueryParamForce string
 
 const (
-	ForceTrue  Force = "true"
-	ForceFalse Force = "false"
+	UpdateAPIQueryParamForceTrue  UpdateAPIQueryParamForce = "true"
+	UpdateAPIQueryParamForceFalse UpdateAPIQueryParamForce = "false"
 )
 
-func (e Force) ToPointer() *Force {
+func (e UpdateAPIQueryParamForce) ToPointer() *UpdateAPIQueryParamForce {
 	return &e
 }
-func (e *Force) UnmarshalJSON(data []byte) error {
+func (e *UpdateAPIQueryParamForce) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -32,10 +32,10 @@ func (e *Force) UnmarshalJSON(data []byte) error {
 	case "true":
 		fallthrough
 	case "false":
-		*e = Force(v)
+		*e = UpdateAPIQueryParamForce(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Force: %v", v)
+		return fmt.Errorf("invalid value for UpdateAPIQueryParamForce: %v", v)
 	}
 }
 
@@ -46,7 +46,7 @@ type UpdateAPIRequest struct {
 	// If false, operations removal will be rejected with a 409 error.
 	// Omitting the value means true.
 	//
-	Force            *Force                      `default:"false" queryParam:"style=form,explode=true,name=force"`
+	Force            *UpdateAPIQueryParamForce   `default:"false" queryParam:"style=form,explode=true,name=force"`
 	UpdateAPIRequest components.UpdateAPIRequest `request:"mediaType=application/json"`
 }
 
@@ -68,7 +68,7 @@ func (u *UpdateAPIRequest) GetAPIID() string {
 	return u.APIID
 }
 
-func (u *UpdateAPIRequest) GetForce() *Force {
+func (u *UpdateAPIRequest) GetForce() *UpdateAPIQueryParamForce {
 	if u == nil {
 		return nil
 	}

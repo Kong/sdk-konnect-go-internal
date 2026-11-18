@@ -17,9 +17,6 @@ type OpenMeterSubscriptionsSDK interface {
 	ListSubscriptions(ctx context.Context, request operations.ListSubscriptionsRequest, opts ...operations.Option) (*operations.ListSubscriptionsResponse, error)
 	// GetSubscription - Get subscription
 	GetSubscription(ctx context.Context, subscriptionID string, opts ...operations.Option) (*operations.GetSubscriptionResponse, error)
-	// CreateSubscriptionAddon - Create a new subscription add-on
-	// Add add-on to a subscription.
-	CreateSubscriptionAddon(ctx context.Context, subscriptionID string, createSubscriptionAddonRequest components.CreateSubscriptionAddonRequest, opts ...operations.Option) (*operations.CreateSubscriptionAddonResponse, error)
 	// ListSubscriptionAddons - List subscription addons
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
@@ -32,11 +29,6 @@ type OpenMeterSubscriptionsSDK interface {
 	//
 	// Get an add-on association for a subscription.
 	GetSubscriptionAddon(ctx context.Context, subscriptionID string, subscriptionAddonID string, opts ...operations.Option) (*operations.GetSubscriptionAddonResponse, error)
-	// UpdateSubscriptionAddon - Update subscription addon
-	// Update a subscription add-on. Only the quantity is mutable; the timing controls
-	// when the new quantity takes effect. A new entry is appended to the add-on's
-	// timeline.
-	UpdateSubscriptionAddon(ctx context.Context, request operations.UpdateSubscriptionAddonRequest, opts ...operations.Option) (*operations.UpdateSubscriptionAddonResponse, error)
 	// CancelSubscription - Cancel subscription
 	// Cancels the subscription. Will result in a scheduling conflict if there are
 	// other subscriptions scheduled to start after the cancelation time.

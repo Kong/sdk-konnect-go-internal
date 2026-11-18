@@ -7,12 +7,12 @@ import (
 	"github.com/Kong/sdk-konnect-go/models/components"
 )
 
-value := components.RolesDescriptionThisRoleGrantsFullWriteAccessToAdministerCertificates
+value := components.RolesDescriptionAccessToReadOnlyPermissionsToAddOns
 ```
 
 
 ## Values
 
-| Name                                                                    | Value                                                                   |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `RolesDescriptionThisRoleGrantsFullWriteAccessToAdministerCertificates` | This role grants full write access to administer certificates.          |
+| Name                                                  | Value                                                 |
+| ----------------------------------------------------- | ----------------------------------------------------- |
+| `RolesDescriptionAccessToReadOnlyPermissionsToAddOns` | Access to read-only permissions to add-ons.           |

@@ -10,20 +10,20 @@ import (
 	"net/http"
 )
 
-// QueryParamForce - If true, allows operations to be removed from the current version when using access control enforcement.
+// UpdateAPIVersionQueryParamForce - If true, allows operations to be removed from the current version when using access control enforcement.
 // If false, operations removal will be rejected with a 409 error.
 // Omitting the value (i.e., setting `?force`) means true.
-type QueryParamForce string
+type UpdateAPIVersionQueryParamForce string
 
 const (
-	QueryParamForceTrue  QueryParamForce = "true"
-	QueryParamForceFalse QueryParamForce = "false"
+	UpdateAPIVersionQueryParamForceTrue  UpdateAPIVersionQueryParamForce = "true"
+	UpdateAPIVersionQueryParamForceFalse UpdateAPIVersionQueryParamForce = "false"
 )
 
-func (e QueryParamForce) ToPointer() *QueryParamForce {
+func (e UpdateAPIVersionQueryParamForce) ToPointer() *UpdateAPIVersionQueryParamForce {
 	return &e
 }
-func (e *QueryParamForce) UnmarshalJSON(data []byte) error {
+func (e *UpdateAPIVersionQueryParamForce) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -32,10 +32,10 @@ func (e *QueryParamForce) UnmarshalJSON(data []byte) error {
 	case "true":
 		fallthrough
 	case "false":
-		*e = QueryParamForce(v)
+		*e = UpdateAPIVersionQueryParamForce(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamForce: %v", v)
+		return fmt.Errorf("invalid value for UpdateAPIVersionQueryParamForce: %v", v)
 	}
 }
 
@@ -48,11 +48,8 @@ type UpdateAPIVersionRequest struct {
 	// If false, operations removal will be rejected with a 409 error.
 	// Omitting the value (i.e., setting `?force`) means true.
 	//
-	Force *QueryParamForce `default:"false" queryParam:"style=form,explode=true,name=force"`
-	// The format of the returned `spec.content`. Defaults to `json`.
-	//
-	SpecFormat        *components.SpecFormatSchema `default:"json" queryParam:"style=form,explode=true,name=spec_format"`
-	APIVersionRequest components.APIVersionRequest `request:"mediaType=application/json"`
+	Force             *UpdateAPIVersionQueryParamForce `default:"false" queryParam:"style=form,explode=true,name=force"`
+	APIVersionRequest components.APIVersionRequest     `request:"mediaType=application/json"`
 }
 
 func (u UpdateAPIVersionRequest) MarshalJSON() ([]byte, error) {
@@ -80,18 +77,11 @@ func (u *UpdateAPIVersionRequest) GetVersionID() string {
 	return u.VersionID
 }
 
-func (u *UpdateAPIVersionRequest) GetForce() *QueryParamForce {
+func (u *UpdateAPIVersionRequest) GetForce() *UpdateAPIVersionQueryParamForce {
 	if u == nil {
 		return nil
 	}
 	return u.Force
-}
-
-func (u *UpdateAPIVersionRequest) GetSpecFormat() *components.SpecFormatSchema {
-	if u == nil {
-		return nil
-	}
-	return u.SpecFormat
 }
 
 func (u *UpdateAPIVersionRequest) GetAPIVersionRequest() components.APIVersionRequest {

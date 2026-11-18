@@ -1,8 +1,0 @@
-# PreviewContextInterfaceSkillRequestBody
-
-
-## Fields
-
-| Field                                                                                                                    | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `Source`                                                                                                                 | [components.SkillSourcePayload](../../models/components/skillsourcepayload.md)                                           | :heavy_check_mark:                                                                                                       | Where the skill's content comes from, used in create and update requests. The shape of `config` is determined by `type`. |

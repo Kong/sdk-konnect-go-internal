@@ -5,6 +5,7 @@ package sdkkonnectgo
 import (
 	"context"
 
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 )
 
@@ -12,14 +13,14 @@ import (
 type APIVersionSDK interface {
 	// CreateAPIVersion - Create API Version
 	// Creates a version (OpenAPI or AsyncAPI) for an API.
-	CreateAPIVersion(ctx context.Context, request operations.CreateAPIVersionRequest, opts ...operations.Option) (*operations.CreateAPIVersionResponse, error)
+	CreateAPIVersion(ctx context.Context, apiID string, createAPIVersionRequest components.CreateAPIVersionRequest, opts ...operations.Option) (*operations.CreateAPIVersionResponse, error)
 	// ListAPIVersions - List API Versions
 	// Returns a list of versions for an API. The version can be of type OpenAPI or AsyncAPI.
 	// **Note:** You can only have one version for an API.
 	ListAPIVersions(ctx context.Context, request operations.ListAPIVersionsRequest, opts ...operations.Option) (*operations.ListAPIVersionsResponse, error)
 	// FetchAPIVersion - Get an API Version
 	// Fetches the version (OpenAPI or AsyncAPI) of an API.
-	FetchAPIVersion(ctx context.Context, request operations.FetchAPIVersionRequest, opts ...operations.Option) (*operations.FetchAPIVersionResponse, error)
+	FetchAPIVersion(ctx context.Context, apiID string, versionID string, opts ...operations.Option) (*operations.FetchAPIVersionResponse, error)
 	// UpdateAPIVersion - Update API Version
 	// Updates the version (OpenAPI or AsyncAPI) of an API.
 	UpdateAPIVersion(ctx context.Context, request operations.UpdateAPIVersionRequest, opts ...operations.Option) (*operations.UpdateAPIVersionResponse, error)

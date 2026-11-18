@@ -148,15 +148,15 @@ func (c *CriteriaTemplateSimpleSchema) GetDefinition() map[string]CriteriaTempla
 	return c.Definition
 }
 
-type CriteriaTemplateSchemaEmptySchema struct {
+type EmptySchema struct {
 }
 
-func (c CriteriaTemplateSchemaEmptySchema) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (e EmptySchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (c *CriteriaTemplateSchemaEmptySchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+func (e *EmptySchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -165,25 +165,25 @@ func (c *CriteriaTemplateSchemaEmptySchema) UnmarshalJSON(data []byte) error {
 type CriteriaTemplateSchemaUnionType string
 
 const (
-	CriteriaTemplateSchemaUnionTypeCriteriaTemplateSchemaEmptySchema CriteriaTemplateSchemaUnionType = "CriteriaTemplateSchema_EmptySchema"
-	CriteriaTemplateSchemaUnionTypeCriteriaTemplateSimpleSchema      CriteriaTemplateSchemaUnionType = "CriteriaTemplateSimpleSchema"
-	CriteriaTemplateSchemaUnionTypeCriteriaTemplateJSONSchema        CriteriaTemplateSchemaUnionType = "CriteriaTemplateJSONSchema"
+	CriteriaTemplateSchemaUnionTypeEmptySchema                  CriteriaTemplateSchemaUnionType = "EmptySchema"
+	CriteriaTemplateSchemaUnionTypeCriteriaTemplateSimpleSchema CriteriaTemplateSchemaUnionType = "CriteriaTemplateSimpleSchema"
+	CriteriaTemplateSchemaUnionTypeCriteriaTemplateJSONSchema   CriteriaTemplateSchemaUnionType = "CriteriaTemplateJSONSchema"
 )
 
 type CriteriaTemplateSchema struct {
-	CriteriaTemplateSchemaEmptySchema *CriteriaTemplateSchemaEmptySchema `queryParam:"inline" union:"member"`
-	CriteriaTemplateSimpleSchema      *CriteriaTemplateSimpleSchema      `queryParam:"inline" union:"member"`
-	CriteriaTemplateJSONSchema        *CriteriaTemplateJSONSchema        `queryParam:"inline" union:"member"`
+	EmptySchema                  *EmptySchema                  `queryParam:"inline" union:"member"`
+	CriteriaTemplateSimpleSchema *CriteriaTemplateSimpleSchema `queryParam:"inline" union:"member"`
+	CriteriaTemplateJSONSchema   *CriteriaTemplateJSONSchema   `queryParam:"inline" union:"member"`
 
 	Type CriteriaTemplateSchemaUnionType
 }
 
-func CreateCriteriaTemplateSchemaCriteriaTemplateSchemaEmptySchema(criteriaTemplateSchemaEmptySchema CriteriaTemplateSchemaEmptySchema) CriteriaTemplateSchema {
-	typ := CriteriaTemplateSchemaUnionTypeCriteriaTemplateSchemaEmptySchema
+func CreateCriteriaTemplateSchemaEmptySchema(emptySchema EmptySchema) CriteriaTemplateSchema {
+	typ := CriteriaTemplateSchemaUnionTypeEmptySchema
 
 	return CriteriaTemplateSchema{
-		CriteriaTemplateSchemaEmptySchema: &criteriaTemplateSchemaEmptySchema,
-		Type:                              typ,
+		EmptySchema: &emptySchema,
+		Type:        typ,
 	}
 }
 
@@ -228,10 +228,10 @@ func (u *CriteriaTemplateSchema) UnmarshalJSON(data []byte) (err error) {
 		return nil
 	}
 
-	var criteriaTemplateSchemaEmptySchema CriteriaTemplateSchemaEmptySchema = CriteriaTemplateSchemaEmptySchema{}
-	if err := utils.UnmarshalJSON(data, &criteriaTemplateSchemaEmptySchema, "", true, nil); err == nil {
-		u.CriteriaTemplateSchemaEmptySchema = &criteriaTemplateSchemaEmptySchema
-		u.Type = CriteriaTemplateSchemaUnionTypeCriteriaTemplateSchemaEmptySchema
+	var emptySchema EmptySchema = EmptySchema{}
+	if err := utils.UnmarshalJSON(data, &emptySchema, "", true, nil); err == nil {
+		u.EmptySchema = &emptySchema
+		u.Type = CriteriaTemplateSchemaUnionTypeEmptySchema
 		return nil
 	}
 
@@ -239,8 +239,8 @@ func (u *CriteriaTemplateSchema) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (u CriteriaTemplateSchema) MarshalJSON() ([]byte, error) {
-	if u.CriteriaTemplateSchemaEmptySchema != nil {
-		return utils.MarshalJSON(u.CriteriaTemplateSchemaEmptySchema, "", true)
+	if u.EmptySchema != nil {
+		return utils.MarshalJSON(u.EmptySchema, "", true)
 	}
 
 	if u.CriteriaTemplateSimpleSchema != nil {
