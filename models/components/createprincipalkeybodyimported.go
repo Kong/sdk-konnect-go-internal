@@ -4,6 +4,7 @@ package components
 
 import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
+	"github.com/Kong/sdk-konnect-go/optionalnullable"
 	"time"
 )
 
@@ -14,8 +15,10 @@ type CreatePrincipalKeyBodyImported struct {
 	//
 	Name   *string `json:"name,omitempty"`
 	Secret string  `json:"secret"`
+	// Management metadata accepted by the Identity API for imported keys.
+	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// An ISO-8601 timestamp representation of entity expiration date.
-	ExpiresAt *time.Time `json:"expires_at,omitempty"`
+	ExpiresAt optionalnullable.OptionalNullable[time.Time] `json:"expires_at,omitempty"`
 }
 
 func (c CreatePrincipalKeyBodyImported) MarshalJSON() ([]byte, error) {
@@ -47,7 +50,7 @@ func (c *CreatePrincipalKeyBodyImported) GetSecret() string {
 	return c.Secret
 }
 
-func (c *CreatePrincipalKeyBodyImported) GetExpiresAt() *time.Time {
+func (c *CreatePrincipalKeyBodyImported) GetExpiresAt() optionalnullable.OptionalNullable[time.Time] {
 	if c == nil {
 		return nil
 	}

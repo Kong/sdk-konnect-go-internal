@@ -14,6 +14,10 @@ MISE := $(shell which mise)
 mise:
 	@mise -V >/dev/null || (echo "mise - https://github.com/jdx/mise - not found. Please install it." && exit 1)
 
+.PHONY: mise-install
+mise-install: mise
+	@$(MISE) install -q $(DEP_VER)
+
 # Do not store yq's version in .tools_versions.yaml as it is used to get tool versions.
 # renovate: datasource=github-releases depName=mikefarah/yq
 YQ_VERSION = 4.43.1
@@ -42,6 +46,12 @@ IFACEMAKER = $(PROJECT_DIR)/bin/ifacemaker
 .PHONY: ifacemaker
 ifacemaker: yq
 	GOBIN=$(PROJECT_DIR)/bin go install -v github.com/vburenin/ifacemaker@v$(IFACEMAKER_VERSION)
+
+MISE_FILE = $(PROJECT_DIR)/.mise/config.toml
+SPEAKEASY_VERSION = $(shell $(YQ) -p toml -o yaml '.tools["github:speakeasy-api/speakeasy"].version' < $(MISE_FILE))
+.PHONY: speakeasy
+speakeasy: mise yq
+	$(MAKE) mise-install DEP_VER=github:speakeasy-api/speakeasy@$(SPEAKEASY_VERSION)
 
 # ------------------------------------------------------------------------------
 # Code generation
@@ -143,12 +153,18 @@ generate.deepcopy: controller-gen
 #       DeepCopy() for the types that need it and then using speakeasy to generate
 #       the final sdk code.
 # NOTE: add more types that need to have DeepCopy() generated.
+.PHONY: generate.sdk.speakeasy
+generate.sdk.speakeasy: speakeasy validate.kongctl-overlays
+	speakeasy run --skip-versioning --skip-testing --minimal --skip-upload-spec
+
 .PHONY: generate.sdk
 generate.sdk:
-	speakeasy run --skip-versioning --skip-testing --minimal --skip-upload-spec
+	$(MAKE) generate.sdk.speakeasy
 	git add --update .
 	$(MAKE) generate.deepcopy
 	$(MAKE) _generate.omitempty
+	python3 kongctl-patches/apply.py post-generate .
+	$(MAKE) test.kongctl-patches
 	go mod tidy
 
 # NOTE: Use this when there are breaking changes in the generated SDK code
@@ -217,3 +233,14 @@ generate.mocks: mockery remove.mocks
 .PHONY: verify.diff
 verify.diff:
 	@$(PROJECT_DIR)/scripts/verify-diff.sh $(PROJECT_DIR)
+
+.PHONY: validate.kongctl-overlays
+validate.kongctl-overlays:
+	@for overlay in $(sort $(wildcard kongctl-patches/overlays/*.yaml)); do \
+		speakeasy overlay validate --overlay $$overlay; \
+		speakeasy overlay apply --strict --schema $(OPENAPI_FILE) --overlay $$overlay --out /dev/null; \
+	done
+
+.PHONY: test.kongctl-patches
+test.kongctl-patches:
+	CGO_ENABLED=0 go test -count=1 -tags=kongctl_sdk_patched .
