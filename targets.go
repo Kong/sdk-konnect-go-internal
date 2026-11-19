@@ -33,7 +33,7 @@ func newTargets(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Ho
 	}
 }
 
-// ListTargets - List all targets for a control plane in a workspace
+// ListTargets - List all targets for a control plane
 // Returns a collection of all targets for a control plane.
 func (s *Targets) ListTargets(ctx context.Context, request operations.ListTargetsRequest, opts ...operations.Option) (*operations.ListTargetsResponse, error) {
 	o := operations.Options{}
@@ -54,7 +54,7 @@ func (s *Targets) ListTargets(ctx context.Context, request operations.ListTarget
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/{workspace}/targets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/core-entities/targets", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -2,7 +2,7 @@
 
 package sdkkonnectgo
 
-// Generated from OpenAPI doc version 3.16.0 and generator version 2.954.8
+// Generated from OpenAPI doc version 3.21.2 and generator version 2.961.1
 
 import (
 	"context"
@@ -58,11 +58,8 @@ type SDK struct {
 	ControlPlanes                *ControlPlanes
 	ControlPlaneGroups           *ControlPlaneGroups
 	ControlPlaneResourceQuotas   *ControlPlaneResourceQuotas
-	OrganizationFeature          *OrganizationFeature
-	AIManager                    *AIManager
 	Workspaces                   *Workspaces
 	SSOAuth0                     *SSOAuth0
-	Auth0                        *Auth0
 	Users                        *Users
 	DeviceAuthorizationGrant     *DeviceAuthorizationGrant
 	ImpersonationSettings        *ImpersonationSettings
@@ -80,9 +77,7 @@ type SDK struct {
 	Authentication               *Authentication
 	Aws                          *Aws
 	PersonalAccessTokens         *PersonalAccessTokens
-	// API for connected apps authorization.
-	Identity      *Identity
-	CloudGateways *CloudGateways
+	CloudGateways                *CloudGateways
 	// Operations related to notifications
 	Notifications *Notifications
 	// Operations related to org scoped notifications and their org subscriptions. The http channel of an org scoped notification is set up for the whole organization, and no user can switch it on or off. Only an org admin can use these operations. The routes exist only when http destinations are enabled.
@@ -99,7 +94,53 @@ type SDK struct {
 	// The plugins are synced to any Gateway Service that is currently linked or becomes linked to the Product Version.
 	// The optional `principals` property controls application-principal behavior for V3 API Catalog portals and applications. It defaults to disabled when omitted.
 	//
-	AppAuthStrategies       *AppAuthStrategies
+	AppAuthStrategies *AppAuthStrategies
+	// Connected Apps enable third-party applications to access Konnect APIs on behalf of an organization using OAuth 2.0. When enabled, a reserved auth server is created with predefined scopes.
+	ConnectedApps *ConnectedApps
+	// Auth Servers expose an OAuth 2.0 and OpenID Connect server interface for generating access tokens. The management API will give you the ability to create, configure and manage multiple Auth Servers per Konnect organization. Auth Servers are a regional Konnect entity.
+	AuthServer *AuthServer
+	// Claims are statements about the Client, included in tokens issued by the Auth Server. The management API will give you the ability to create, configure and manage multiple Claims per Auth Server, and include them in tokens based on the requested Scopes.
+	AuthServerClaims *AuthServerClaims
+	// Scopes define the extent of access that an access token grants to a Client. The management API will give you the ability to create, configure and manage multiple Scopes per Auth Server, and restrict their usage by Client.
+	AuthServerScopes *AuthServerScopes
+	// Clients represent the identity of machines, such as microservices, mobile apps, or scripts entity. The management API will give you the ability to create, configure and manage multiple Clients per Auth Server.
+	AuthServerClients *AuthServerClients
+	// Use a directory to group consumers around an identity, defined by organizational boundaries,
+	// such as a production directory or a development directory. Directories are connected to a
+	// [geographic region](https://docs.konghq.com/konnect/geo/) in Konnect. Centrally managed consumers defined in
+	// directories can be used across multiple control planes.
+	//
+	KongIdentityDirectories *KongIdentityDirectories
+	// Principals represent identities within a directory that can be authenticated and authorized.
+	// Each principal can have associated metadata and API keys for authentication purposes.
+	//
+	KongPrincipal *KongPrincipal
+	// Identities represent external authentication associations for a principal. Each identity links a principal
+	// to an external system such as an OIDC provider, an auth server client, a control plane consumer, or a custom identifier.
+	//
+	KongPrincipalIdentity *KongPrincipalIdentity
+	// Token vault credentials are the credentials that a principal has obtained by authorizing a token-vault provider. This resource is read-only: providers are authorized through the enrollment
+	// flow, not through this API, so only listing, retrieving, and de-authorizing (delete) are supported.
+	//
+	TokenVaultCredentials *TokenVaultCredentials
+	// Credentials are authentication secrets associated with principals. Supported credential types are
+	// API keys (system-generated or imported) and basic auth username/password pairs.
+	//
+	KongPrincipalCredential *KongPrincipalCredential
+	// Trusted IdPs configure the external identity providers a token-vault enabled directory trusts when
+	// validating tokens. A directory can trust several IdPs, each with a distinct issuer.
+	//
+	TrustedIDPs *TrustedIDPs
+	// Groups organize principals, or other groups, within a directory for authorization purposes.
+	//
+	PrincipalGroup *PrincipalGroup
+	// Vault providers configure credential providers for token-vault enabled directories.
+	//
+	TokenVaultProviders *TokenVaultProviders
+	// Vault keys are the public encryption keys used to protect token vault data for
+	// a token-vault enabled directory.
+	//
+	TokenVaultKeys          *TokenVaultKeys
 	API                     *API
 	APISpecification        *APISpecification
 	APIDocumentation        *APIDocumentation
@@ -107,7 +148,6 @@ type SDK struct {
 	APIPublication          *APIPublication
 	APIImage                *APIImage
 	APIImplementation       *APIImplementation
-	APIEnvironment          *APIEnvironment
 	APIOperations           *APIOperations
 	APIAttributes           *APIAttributes
 	APIPackages             *APIPackages
@@ -153,9 +193,7 @@ type SDK struct {
 	PortalEmails *PortalEmails
 	// APIs related to Konnect Portal IP Allow List.
 	PortalsIPAllowList *PortalsIPAllowList
-	// APIs related to MCP registry publications on Konnect Developer Portals.
-	PortalMCPRegistryPublications *PortalMCPRegistryPublications
-	PortalForms                   *PortalForms
+	PortalForms        *PortalForms
 	// Create and maintain a centralized catalog of all services running in your organization.
 	// Add custom fields and map resources from across your organization to provide a 360-degree overview of your services.
 	//
@@ -173,11 +211,6 @@ type SDK struct {
 	// - `Incident Management Resources`: Alerts setup within your incident management platform to notify individuals regarding issues with the service
 	//
 	CatalogServices *CatalogServices
-	// Attach API specifications which describe the interface and behavior of the service.
-	// These specifications describe service API constracts for internal or external consumption.
-	// You may attach an API specification by uploading a file, providing a link to the specification, or my mapping a resource from a API spec compliant integration.
-	//
-	CatalogServiceAPISpecs *CatalogServiceAPISpecs
 	// Integrations are applications, either Konnect-internal or external, which extend the functionality of the Service Catalog.
 	// Install and authorize an integration to discover the resources across your organization which support your services.
 	// Map relevant resources to your services to provide a rich view of cataloged services.
@@ -245,50 +278,6 @@ type SDK struct {
 	// Learn more about scorecards by visiting our [documentation](https://developer.konghq.com/service-catalog/scorecards/).
 	//
 	Scorecards *Scorecards
-	// Get details and trigger resource ingestion from authorized integrations.
-	// Resource ingestion allows for manually syncing resources from authorized integrations.
-	// It provides details on when the resources were last synced from an authorized integration.
-	//
-	ResourceIngestion *ResourceIngestion
-	// Resource actions provides an overview of actions taken on resources.
-	// It provides information on when one of the following actions are taken on a resource:
-	// - Map
-	// - Unmap
-	// - Archive
-	// - Restore
-	//
-	ResourceActions *ResourceActions
-	// The integration instance proxy allows requests to be made to the authorized integration instance.
-	// The APIs which are allowed to be proxied to the integration instances are defined in the `proxies` section of the Integration.
-	//
-	IntegrationInstanceProxy *IntegrationInstanceProxy
-	// Suggestion rules allow for automated management of resources.
-	// Suggestion rule can be configured to:
-	// - Map resources to existing catalog service
-	// - Map resources to a new catalog service
-	// - Archive resources
-	//
-	// System suggestion rules are built-in rules which are configured and managed by Kong.
-	//
-	SuggestionRules *SuggestionRules
-	// Suggestion rule errors describes errors which have occured when a suggestion rule was evaluated on a resource.
-	// An error may occur due to syntax errors on the configured suggestion rule, or various other runtime errors.
-	//
-	SuggestionRuleErrors *SuggestionRuleErrors
-	// Integration events represent the activity within an integration instance.
-	//
-	IntegrationEvents *IntegrationEvents
-	// Attach documentation for your services to communicate it's architecture, support details, release notes, and usage examples, to help others understand and integrate with the service.
-	//
-	CatalogServiceDocuments *CatalogServiceDocuments
-	// Provides suggested actions to take on resources. Suggested actions are generated from suggestion rules.
-	//
-	SuggestedResourceActions *SuggestedResourceActions
-	// Retrieving, analyzing, and managing software vulnerabilities.
-	//
-	Vulnerabilities *Vulnerabilities
-	// Manage custom fields for catalog services.
-	CatalogServiceCustomFields *CatalogServiceCustomFields
 	// Service API mappings represent the link between Service and API entities.
 	// Once an API is mapped to a Service, a rich view of the linked APIs will be presented on the APIs tab of the Catalog Service.
 	// Similarly, Services mapped to an API will be listed on the API overview page under Catalog.
@@ -296,9 +285,6 @@ type SDK struct {
 	// If a mapped API is unlinked from a Service, the mapping will be deleted.
 	//
 	CatalogServiceAPIMappings *CatalogServiceAPIMappings
-	// Organization quotas and system default quota definitions used for usage limits and governance in the Service Catalog.
-	//
-	Quotas *Quotas
 	// Create an Event Gateway Control Plane, used to store Event Gateway configuration
 	//
 	EventGateways *EventGateways
@@ -315,8 +301,6 @@ type SDK struct {
 	// Multiple Kafka clusters can be proxied through a single Kong Event Gateway.
 	//
 	EventGatewayBackendClusters *EventGatewayBackendClusters
-	EventGatewayVaults          *EventGatewayVaults
-	EventGatewayVaultSecrets    *EventGatewayVaultSecrets
 	// Configure a schema registry that can be used to validate payloads when producing/consuming messages
 	//
 	EventGatewaySchemaRegistries *EventGatewaySchemaRegistries
@@ -382,16 +366,11 @@ type SDK struct {
 	OpenMeterTax                       *OpenMeterTax
 	ContextInterfaces                  *ContextInterfaces
 	ContextSources                     *ContextSources
-	ContextSourceContents              *ContextSourceContents
 	MCPServers                         *MCPServers
 	Skills                             *Skills
 	ContextSourceMappings              *ContextSourceMappings
 	ContextInterfaceCapabilityControls *ContextInterfaceCapabilityControls
 	ControlPlaneMappings               *ControlPlaneMappings
-	SkillPreview                       *SkillPreview
-	SkillSync                          *SkillSync
-	SkillArtifacts                     *SkillArtifacts
-	ContextProviderCredentials         *ContextProviderCredentials
 	MCPServerRuntime                   *MCPServerRuntime
 	SignalingAPIs                      *SignalingAPIs
 	// API related to the management of Konnect AI Gateway resources.
@@ -445,29 +424,78 @@ type SDK struct {
 	CatalogAIModelSpecs *CatalogAIModelSpecs
 	// Link an AI Model to an AI Gateway model.
 	CatalogAIModelImplementations *CatalogAIModelImplementations
-	// Manage what sources and generates AI Model versions.
-	CatalogAIModelSources *CatalogAIModelSources
 	// Manage MCPs - a catalogable proxy for AI Gateway MCPs
 	CatalogMCPs *CatalogMCPs
 	// Manage an MCP's version.
 	CatalogMCPVersions *CatalogMCPVersions
 	// Link an MCP to an AI Gateway MCP.
 	CatalogMCPImplementations *CatalogMCPImplementations
-	// Manage what sources and generates MCP versions.
-	CatalogMCPSources *CatalogMCPSources
+	// Usage events record each call to an AI model. These operations report and list the events, total them, forecast the month's spend, and list the values seen in each field.
+	UsageEvents *UsageEvents
+	// Budgets set spending limits, or exemptions from them, for parts of the organization's usage. These operations manage budgets and their notification rules, and read balances, firings, and notification events.
+	Budgets *Budgets
+	// Notification channels are the email recipient lists and Slack incoming webhooks that budget alerts go to. These operations manage the channels and send test messages.
+	NotificationChannels *NotificationChannels
+	// Exports copy the organization's cost and usage data into files to download. These operations manage one-time exports and export schedules, and download the files.
+	Exports *Exports
+	// The attribution plugin turns request headers and identity claims into cost tags on an AI Gateway. These operations install, update, and remove it per AI Gateway, and list the installations.
+	AttributionPlugins *AttributionPlugins
+	// DP Nodes
+	DPNodes *DPNodes
+	// DP Certificates
+	DPCertificates *DPCertificates
+	// Custom Plugin Schemas
+	CustomPluginSchemas *CustomPluginSchemas
+	// A target is an IP address or hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly.
+	// <br><br>
+	// To disable a target, post a new one with `weight=0`, or use the `DELETE` method to accomplish the same.
+	//
+	Targets *Targets
+	// Config Stores
+	ConfigStores *ConfigStores
+	// Config Store Secrets
+	ConfigStoreSecrets   *ConfigStoreSecrets
+	Schemas              *Schemas
+	ACLs                 *ACLs
+	BasicAuthCredentials *BasicAuthCredentials
+	// A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong Gateway to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service.
+	// <br><br>
+	// Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames.
+	// <br><br>
+	// If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string.
+	//
+	Certificates *Certificates
+	// An SNI object represents a many-to-one mapping of hostnames to a certificate.
+	// <br><br>
+	// A certificate object can have many hostnames associated with it. When Kong Gateway receives an SSL request, it uses the SNI field in the Client Hello to look up the certificate object based on the SNI associated with the certificate.
+	SNIs *SNIs
+	// Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem.
+	// By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
+	ConsumerGroups *ConsumerGroups
+	// A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.
+	// You can find more information about available plugins and which values each plugin accepts at the [Plugin Hub](https://developer.konghq.com/plugins/).
+	// <br><br>
+	// When adding a plugin configuration to a service, the plugin will run on every request made by a client to that service. If a plugin needs to be tuned to different values for some specific consumers, you can do so by creating a separate plugin instance that specifies both the service and the consumer, through the service and consumer fields.
+	Plugins *Plugins
 	// The consumer object represents a consumer - or a user - of a service.
 	// You can either rely on Kong Gateway as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong Gateway and your existing primary datastore.
 	//
-	Consumers *Consumers
-	// Service entities are abstractions of your microservice interfaces or formal APIs. For example, a service could be a data transformation microservice or a billing API.
-	// <br><br>
-	// The main attribute of a service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually.
-	// <br><br>
-	// Services are associated to routes, and a single service can have many routes associated with it. Routes are entrypoints in Kong Gateway which define rules to match client requests. Once a route is matched, Kong Gateway proxies the request to its associated service. See the [Route documentation](https://developer.konghq.com/gateway/entities/route/) for a detailed explanation of how Kong proxies traffic.
-	// <br><br>
-	// Services can be both [tagged and filtered by tags](https://developer.konghq.com/admin-api/).
+	Consumers              *Consumers
+	HMACAuthCredentials    *HMACAuthCredentials
+	JWTs                   *JWTs
+	APIKeys                *APIKeys
+	MTLSAuthCredentials    *MTLSAuthCredentials
+	DegraphqlRoutes        *DegraphqlRoutes
+	GraphQLCostDecorations *GraphQLCostDecorations
+	// A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
 	//
-	Services *Services
+	KeySets *KeySets
+	// A key object holds a representation of asymmetric keys in various formats. When Kong Gateway or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
+	//
+	Keys *Keys
+	// Some entities in Kong Gateway share common configuration settings that often need to be repeated. For example, multiple plugins that connect to Redis may require the same connection settings. Without Partials, you would need to replicate this configuration across all plugins. If the settings change, you would need to update each plugin individually.
+	Partials     *Partials
+	PartialLinks *PartialLinks
 	// Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the route.
 	// <br><br>
 	// The combination of routes and services, and the separation of concerns between them, offers a powerful routing mechanism with which it is possible to define fine-grained entrypoints in Kong Gateway leading to different upstream services of your infrastructure.
@@ -491,65 +519,15 @@ type SDK struct {
 	// - [Configure routes using expressions](https://developer.konghq.com/gateway/routing/expressions/)
 	//
 	Routes *Routes
-	// A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.
-	// You can find more information about available plugins and which values each plugin accepts at the [Plugin Hub](https://developer.konghq.com/plugins/).
+	// Service entities are abstractions of your microservice interfaces or formal APIs. For example, a service could be a data transformation microservice or a billing API.
 	// <br><br>
-	// When adding a plugin configuration to a service, the plugin will run on every request made by a client to that service. If a plugin needs to be tuned to different values for some specific consumers, you can do so by creating a separate plugin instance that specifies both the service and the consumer, through the service and consumer fields.
-	Plugins *Plugins
-	// DP Nodes
-	DPNodes *DPNodes
-	// DP Certificates
-	DPCertificates                  *DPCertificates
-	DataPlaneNodeLogLevelOperations *DataPlaneNodeLogLevelOperations
-	// Custom Plugin Schemas
-	CustomPluginSchemas *CustomPluginSchemas
-	Schemas             *Schemas
-	// A target is an IP address or hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly.
+	// The main attribute of a service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually.
 	// <br><br>
-	// To disable a target, post a new one with `weight=0`, or use the `DELETE` method to accomplish the same.
+	// Services are associated to routes, and a single service can have many routes associated with it. Routes are entrypoints in Kong Gateway which define rules to match client requests. Once a route is matched, Kong Gateway proxies the request to its associated service. See the [Route documentation](https://developer.konghq.com/gateway/entities/route/) for a detailed explanation of how Kong proxies traffic.
+	// <br><br>
+	// Services can be both [tagged and filtered by tags](https://developer.konghq.com/admin-api/).
 	//
-	Targets *Targets
-	// Config Stores
-	ConfigStores *ConfigStores
-	// Config Store Secrets
-	ConfigStoreSecrets *ConfigStoreSecrets
-	// Debug Sessions
-	DebugSessions            *DebugSessions
-	DeclarativeConfiguration *DeclarativeConfiguration
-	ACLs                     *ACLs
-	BasicAuthCredentials     *BasicAuthCredentials
-	// A CA certificate object represents a trusted certificate authority.
-	// These objects are used by Kong Gateway to verify the validity of a client or server certificate.
-	CACertificates *CACertificates
-	// A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong Gateway to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service.
-	// <br><br>
-	// Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames.
-	// <br><br>
-	// If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string.
-	//
-	Certificates *Certificates
-	// An SNI object represents a many-to-one mapping of hostnames to a certificate.
-	// <br><br>
-	// A certificate object can have many hostnames associated with it. When Kong Gateway receives an SSL request, it uses the SNI field in the Client Hello to look up the certificate object based on the SNI associated with the certificate.
-	SNIs *SNIs
-	// Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem.
-	// By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
-	ConsumerGroups         *ConsumerGroups
-	HMACAuthCredentials    *HMACAuthCredentials
-	JWTs                   *JWTs
-	APIKeys                *APIKeys
-	MTLSAuthCredentials    *MTLSAuthCredentials
-	DegraphqlRoutes        *DegraphqlRoutes
-	GraphQLCostDecorations *GraphQLCostDecorations
-	// A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
-	//
-	KeySets *KeySets
-	// A key object holds a representation of asymmetric keys in various formats. When Kong Gateway or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
-	//
-	Keys *Keys
-	// Some entities in Kong Gateway share common configuration settings that often need to be repeated. For example, multiple plugins that connect to Redis may require the same connection settings. Without Partials, you would need to replicate this configuration across all plugins. If the settings change, you would need to update each plugin individually.
-	Partials     *Partials
-	PartialLinks *PartialLinks
+	Services *Services
 	// The upstream object represents a virtual hostname and can be used to load balance incoming requests over multiple services (targets).
 	// <br><br>
 	// An upstream also includes a [health checker](https://developer.konghq.com/gateway/traffic-control/health-checks-circuit-breakers/), which can enable and disable targets based on their ability or inability to serve requests.
@@ -563,9 +541,12 @@ type SDK struct {
 	// <br><br>
 	// Secrets rotation can be managed using [TTLs](https://developer.konghq.com/gateway/entities/vault/).
 	//
-	Vaults        *Vaults
-	ClonedPlugins *ClonedPlugins
-	CustomPlugins *CustomPlugins
+	Vaults *Vaults
+	// A CA certificate object represents a trusted certificate authority.
+	// These objects are used by Kong Gateway to verify the validity of a client or server certificate.
+	CACertificates *CACertificates
+	ClonedPlugins  *ClonedPlugins
+	CustomPlugins  *CustomPlugins
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -643,10 +624,10 @@ func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		SDKVersion: "0.7.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.7.0 2.954.8 3.16.0 github.com/Kong/sdk-konnect-go",
+			UserAgent:         "speakeasy-sdk/go 0.7.0 2.961.1 3.21.2 github.com/Kong/sdk-konnect-go",
 			SDKVersion:        "0.7.0",
-			GenVersion:        "2.954.8",
-			OpenAPIDocVersion: "3.16.0",
+			GenVersion:        "2.961.1",
+			OpenAPIDocVersion: "3.21.2",
 			ServerList:        ServerList,
 		},
 		hooks: hooks.New(),
@@ -670,11 +651,8 @@ func New(opts ...SDKOption) *SDK {
 	sdk.ControlPlanes = newControlPlanes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ControlPlaneGroups = newControlPlaneGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ControlPlaneResourceQuotas = newControlPlaneResourceQuotas(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OrganizationFeature = newOrganizationFeature(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIManager = newAIManager(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Workspaces = newWorkspaces(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.SSOAuth0 = newSSOAuth0(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Auth0 = newAuth0(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Users = newUsers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DeviceAuthorizationGrant = newDeviceAuthorizationGrant(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ImpersonationSettings = newImpersonationSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -692,13 +670,26 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Authentication = newAuthentication(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Aws = newAws(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PersonalAccessTokens = newPersonalAccessTokens(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Identity = newIdentity(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CloudGateways = newCloudGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Notifications = newNotifications(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.OrgConfigurations = newOrgConfigurations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Destinations = newDestinations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DCRProviders = newDCRProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AppAuthStrategies = newAppAuthStrategies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ConnectedApps = newConnectedApps(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServer = newAuthServer(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerClaims = newAuthServerClaims(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerScopes = newAuthServerScopes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerClients = newAuthServerClients(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongIdentityDirectories = newKongIdentityDirectories(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipal = newKongPrincipal(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipalIdentity = newKongPrincipalIdentity(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultCredentials = newTokenVaultCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipalCredential = newKongPrincipalCredential(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TrustedIDPs = newTrustedIDPs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PrincipalGroup = newPrincipalGroup(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultProviders = newTokenVaultProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultKeys = newTokenVaultKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.API = newAPI(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APISpecification = newAPISpecification(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIDocumentation = newAPIDocumentation(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -706,7 +697,6 @@ func New(opts ...SDKOption) *SDK {
 	sdk.APIPublication = newAPIPublication(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIImage = newAPIImage(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIImplementation = newAPIImplementation(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIEnvironment = newAPIEnvironment(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIOperations = newAPIOperations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIAttributes = newAPIAttributes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIPackages = newAPIPackages(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -734,10 +724,8 @@ func New(opts ...SDKOption) *SDK {
 	sdk.PortalAuditLogs = newPortalAuditLogs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PortalEmails = newPortalEmails(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PortalsIPAllowList = newPortalsIPAllowList(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalMCPRegistryPublications = newPortalMCPRegistryPublications(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PortalForms = newPortalForms(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogServices = newCatalogServices(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogServiceAPISpecs = newCatalogServiceAPISpecs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogIntegrations = newCatalogIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.IntegrationInstances = newIntegrationInstances(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.IntegrationInstanceAuthCredentials = newIntegrationInstanceAuthCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -748,24 +736,11 @@ func New(opts ...SDKOption) *SDK {
 	sdk.CatalogServiceResources = newCatalogServiceResources(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CriteriaTemplates = newCriteriaTemplates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Scorecards = newScorecards(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ResourceIngestion = newResourceIngestion(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ResourceActions = newResourceActions(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.IntegrationInstanceProxy = newIntegrationInstanceProxy(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SuggestionRules = newSuggestionRules(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SuggestionRuleErrors = newSuggestionRuleErrors(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.IntegrationEvents = newIntegrationEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogServiceDocuments = newCatalogServiceDocuments(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SuggestedResourceActions = newSuggestedResourceActions(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Vulnerabilities = newVulnerabilities(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogServiceCustomFields = newCatalogServiceCustomFields(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogServiceAPIMappings = newCatalogServiceAPIMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Quotas = newQuotas(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EventGateways = newEventGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EventGatewayListeners = newEventGatewayListeners(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EventGatewayVirtualClusters = newEventGatewayVirtualClusters(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EventGatewayBackendClusters = newEventGatewayBackendClusters(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayVaults = newEventGatewayVaults(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayVaultSecrets = newEventGatewayVaultSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EventGatewaySchemaRegistries = newEventGatewaySchemaRegistries(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EventGatewayNodes = newEventGatewayNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EventGatewayListenerPolicies = newEventGatewayListenerPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -791,16 +766,11 @@ func New(opts ...SDKOption) *SDK {
 	sdk.OpenMeterTax = newOpenMeterTax(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ContextInterfaces = newContextInterfaces(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ContextSources = newContextSources(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ContextSourceContents = newContextSourceContents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.MCPServers = newMCPServers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Skills = newSkills(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ContextSourceMappings = newContextSourceMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ContextInterfaceCapabilityControls = newContextInterfaceCapabilityControls(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ControlPlaneMappings = newControlPlaneMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SkillPreview = newSkillPreview(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SkillSync = newSkillSync(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SkillArtifacts = newSkillArtifacts(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ContextProviderCredentials = newContextProviderCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.MCPServerRuntime = newMCPServerRuntime(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.SignalingAPIs = newSignalingAPIs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGateways = newAIGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -830,31 +800,28 @@ func New(opts ...SDKOption) *SDK {
 	sdk.CatalogAIModelVersions = newCatalogAIModelVersions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogAIModelSpecs = newCatalogAIModelSpecs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogAIModelImplementations = newCatalogAIModelImplementations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogAIModelSources = newCatalogAIModelSources(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogMCPs = newCatalogMCPs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogMCPVersions = newCatalogMCPVersions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogMCPImplementations = newCatalogMCPImplementations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogMCPSources = newCatalogMCPSources(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Consumers = newConsumers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Services = newServices(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Routes = newRoutes(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Plugins = newPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.UsageEvents = newUsageEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Budgets = newBudgets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.NotificationChannels = newNotificationChannels(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Exports = newExports(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AttributionPlugins = newAttributionPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DPNodes = newDPNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DPCertificates = newDPCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.DataPlaneNodeLogLevelOperations = newDataPlaneNodeLogLevelOperations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CustomPluginSchemas = newCustomPluginSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Schemas = newSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Targets = newTargets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ConfigStores = newConfigStores(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ConfigStoreSecrets = newConfigStoreSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.DebugSessions = newDebugSessions(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.DeclarativeConfiguration = newDeclarativeConfiguration(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Schemas = newSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ACLs = newACLs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.BasicAuthCredentials = newBasicAuthCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CACertificates = newCACertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Certificates = newCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.SNIs = newSNIs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ConsumerGroups = newConsumerGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Plugins = newPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Consumers = newConsumers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.HMACAuthCredentials = newHMACAuthCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.JWTs = newJWTs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.APIKeys = newAPIKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -865,8 +832,11 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Keys = newKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Partials = newPartials(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PartialLinks = newPartialLinks(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Routes = newRoutes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Services = newServices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Upstreams = newUpstreams(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Vaults = newVaults(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CACertificates = newCACertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ClonedPlugins = newClonedPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CustomPlugins = newCustomPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
 

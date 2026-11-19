@@ -7,10 +7,6 @@ type ClonedPlugin struct {
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// The name to associate with the cloned plugin. Consider using a distinct prefix for cloned plugins to avoid naming conflicts with new bundled plugins in future Kong releases.
 	Name string `json:"name"`
 	// The plugin execution priority. If not set, it will inherit the priority of the referenced plugin.
@@ -35,13 +31,6 @@ func (c *ClonedPlugin) GetID() *string {
 		return nil
 	}
 	return c.ID
-}
-
-func (c *ClonedPlugin) GetManagedBy() map[string]string {
-	if c == nil {
-		return nil
-	}
-	return c.ManagedBy
 }
 
 func (c *ClonedPlugin) GetName() string {

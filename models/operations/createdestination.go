@@ -45,3 +45,10 @@ func (c *CreateDestinationResponse) GetDestinationWithSecret() *components.Desti
 	}
 	return c.DestinationWithSecret
 }
+
+func (c *CreateDestinationResponse) GetDestinationWithSecretHTTP() *components.HTTPDestinationWithSecret {
+	if v := c.GetDestinationWithSecret(); v != nil {
+		return v.HTTPDestinationWithSecret
+	}
+	return nil
+}

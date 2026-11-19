@@ -11,12 +11,6 @@ Where the skill's content comes from, used in create and update requests. The sh
 skillSourcePayload := components.CreateSkillSourcePayloadRaw(components.RawSkillSourcePayload{/* values here */})
 ```
 
-### GithubSkillSourcePayload
-
-```go
-skillSourcePayload := components.CreateSkillSourcePayloadGithub(components.GithubSkillSourcePayload{/* values here */})
-```
-
 ## Union Discrimination
 
 Use the `Type` field to determine which variant is active, then access the corresponding field:
@@ -25,7 +19,5 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch skillSourcePayload.Type {
 	case components.SkillSourcePayloadTypeRaw:
 		// skillSourcePayload.RawSkillSourcePayload is populated
-	case components.SkillSourcePayloadTypeGithub:
-		// skillSourcePayload.GithubSkillSourcePayload is populated
 }
 ```

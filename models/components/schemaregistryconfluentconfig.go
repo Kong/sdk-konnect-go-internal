@@ -7,6 +7,8 @@ import (
 )
 
 // SchemaType - The format of the message.
+//
+// **`any` requires a minimum runtime version of `1.3`**.
 type SchemaType string
 
 const (
@@ -33,6 +35,8 @@ func (e *SchemaType) IsExact() bool {
 // SchemaRegistryConfluentConfig - The configuration of [Confluent Schema Registry](https://github.com/confluentinc/schema-registry)
 type SchemaRegistryConfluentConfig struct {
 	// The format of the message.
+	//
+	// **`any` requires a minimum runtime version of `1.3`**.
 	SchemaType SchemaType `json:"schema_type"`
 	// The endpoint of the Confluent schema registry.
 	Endpoint string `json:"endpoint"`
@@ -40,6 +44,8 @@ type SchemaRegistryConfluentConfig struct {
 	//
 	TimeoutSeconds *int64 `default:"10" json:"timeout_seconds"`
 	// The authentication configuration for the schema registry.
+	// The Event Gateway only requires read-only access to the schema registry to fetch schemas for validation, so we recommend using credentials with read-only scope.
+	//
 	Authentication *SchemaRegistryAuthenticationScheme `json:"authentication,omitempty"`
 }
 

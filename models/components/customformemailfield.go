@@ -3,33 +3,8 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
-
-type CustomFormEmailFieldType string
-
-const (
-	CustomFormEmailFieldTypeEmail CustomFormEmailFieldType = "email"
-)
-
-func (e CustomFormEmailFieldType) ToPointer() *CustomFormEmailFieldType {
-	return &e
-}
-func (e *CustomFormEmailFieldType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "email":
-		*e = CustomFormEmailFieldType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CustomFormEmailFieldType: %v", v)
-	}
-}
 
 // CustomFormEmailField - An email address field. Rejects values that aren't a valid email format.
 type CustomFormEmailField struct {
@@ -38,16 +13,19 @@ type CustomFormEmailField struct {
 	//
 	// Used to match up stored responses across edits.
 	//
-	Name        string                   `json:"name"`
-	Type        CustomFormEmailFieldType `json:"type"`
-	Label       string                   `json:"label"`
-	Placeholder *string                  `json:"placeholder,omitempty"`
-	Description *string                  `json:"description,omitempty"`
-	Required    *bool                    `default:"false" json:"required"`
+	Name string `json:"name"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_       string  `const:"email" json:"type"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Required    *bool   `default:"false" json:"required"`
 	// Marks a field that comes with the form by default.
 	//
 	// Built-in fields can't be removed, retyped, or relabeled, but their
-	// `placeholder`, `description`, and `required` settings can still be changed.
+	// Built-in fields can't be removed, retyped, or relabeled, and built-in
+	// inputs are always `required`. Their `placeholder` and `description`
+	// settings can still be changed.
 	//
 	// This flag is read-only — it's returned by the API but can't be set when
 	// creating or updating a form.
@@ -73,11 +51,8 @@ func (c *CustomFormEmailField) GetName() string {
 	return c.Name
 }
 
-func (c *CustomFormEmailField) GetType() CustomFormEmailFieldType {
-	if c == nil {
-		return CustomFormEmailFieldType("")
-	}
-	return c.Type
+func (c *CustomFormEmailField) GetType() string {
+	return "email"
 }
 
 func (c *CustomFormEmailField) GetLabel() string {

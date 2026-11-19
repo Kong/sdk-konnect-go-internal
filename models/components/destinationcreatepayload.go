@@ -2,42 +2,75 @@
 
 package components
 
-// DestinationCreatePayload - Properties of a destination to create.
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/Kong/sdk-konnect-go/internal/utils"
+)
+
+type DestinationCreatePayloadType string
+
+const (
+	DestinationCreatePayloadTypeHTTP DestinationCreatePayloadType = "http"
+)
+
+// DestinationCreatePayload - Request body schema for creating a destination.
 type DestinationCreatePayload struct {
-	// Name of the destination, 1 to 255 characters after the service trims it.
-	Name string `json:"name"`
-	// Type of the destination. Only http is supported.
-	Type DestinationType `json:"type"`
-	// Full https endpoint URL of the destination, at most 2048 characters, without user information. A private or loopback address is refused, and so is a name that does not resolve to a public address.
-	URL string `json:"url"`
-	// Custom headers of the destination, at most 10. A name is an HTTP token, and a value has at most 1024 bytes and no control character. The values are stored as an encrypted credential and are never returned. The Standard Webhooks headers and the transport headers are reserved.
-	CustomHeaders map[string]string `json:"custom_headers,omitempty"`
+	HTTPDestinationCreatePayload *HTTPDestinationCreatePayload `queryParam:"inline" union:"member"`
+
+	Type DestinationCreatePayloadType
 }
 
-func (d *DestinationCreatePayload) GetName() string {
-	if d == nil {
-		return ""
+func CreateDestinationCreatePayloadHTTP(http HTTPDestinationCreatePayload) DestinationCreatePayload {
+	typ := DestinationCreatePayloadTypeHTTP
+
+	typStr := HTTPDestinationCreatePayloadType(typ)
+	http.Type = typStr
+
+	return DestinationCreatePayload{
+		HTTPDestinationCreatePayload: &http,
+		Type:                         typ,
 	}
-	return d.Name
 }
 
-func (d *DestinationCreatePayload) GetType() DestinationType {
-	if d == nil {
-		return DestinationType("")
+func (u *DestinationCreatePayload) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = DestinationCreatePayload{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	type discriminator struct {
+		Type string `json:"type"`
 	}
-	return d.Type
-}
 
-func (d *DestinationCreatePayload) GetURL() string {
-	if d == nil {
-		return ""
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
 	}
-	return d.URL
-}
 
-func (d *DestinationCreatePayload) GetCustomHeaders() map[string]string {
-	if d == nil {
+	switch dis.Type {
+	case "http":
+		httpDestinationCreatePayload := new(HTTPDestinationCreatePayload)
+		if err := utils.UnmarshalJSON(data, &httpDestinationCreatePayload, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == http) type HTTPDestinationCreatePayload within DestinationCreatePayload: %w", string(data), err)
+		}
+
+		u.HTTPDestinationCreatePayload = httpDestinationCreatePayload
+		u.Type = DestinationCreatePayloadTypeHTTP
 		return nil
 	}
-	return d.CustomHeaders
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for DestinationCreatePayload", string(data))
+}
+
+func (u DestinationCreatePayload) MarshalJSON() ([]byte, error) {
+	if u.HTTPDestinationCreatePayload != nil {
+		return utils.MarshalJSON(u.HTTPDestinationCreatePayload, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type DestinationCreatePayload: all fields are null")
 }

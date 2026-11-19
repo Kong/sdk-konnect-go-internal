@@ -16,7 +16,6 @@ Learn more about scorecards by visiting our [documentation](https://developer.ko
 * [FetchScorecard](#fetchscorecard) - Get a Scorecard
 * [UpdateScorecard](#updatescorecard) - Update Scorecard
 * [DeleteScorecard](#deletescorecard) - Delete Scorecard
-* [ScheduleScorecardEvaluation](#schedulescorecardevaluation) - Schedule Scorecard Evaluation
 * [ListScorecardServices](#listscorecardservices) - List Scorecard Services
 * [ListScorecardCriteria](#listscorecardcriteria) - List Scorecard Criteria
 * [ListScorecardCriteriaServices](#listscorecardcriteriaservices) - List Scorecard Criteria Services
@@ -443,64 +442,6 @@ func main() {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ScheduleScorecardEvaluation
-
-Schedules an evaluation of the scorecard selected services.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="schedule-scorecard-evaluation" method="post" path="/v1/scorecards/{id}/schedule-evaluation" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Scorecards.ScheduleScorecardEvaluation(ctx, "f3704e4c-104d-4f21-998a-20d4364c893f")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
-| `id`                                                     | `string`                                                 | :heavy_check_mark:                                       | The `id` of the scorecard.                               | f3704e4c-104d-4f21-998a-20d4364c893f                     |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
-
-### Response
-
-**[*operations.ScheduleScorecardEvaluationResponse](../../models/operations/schedulescorecardevaluationresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |

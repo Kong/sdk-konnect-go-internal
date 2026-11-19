@@ -3,125 +3,73 @@
 package components
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
-	"time"
 )
 
-// Destination - Properties of an http destination. Secrets are never part of the response.
+type DestinationType string
+
+const (
+	DestinationTypeHTTP DestinationType = "http"
+)
+
 type Destination struct {
-	// UUID v7 identifier of the destination.
-	ID   string `json:"id"`
-	Name string `json:"name"`
-	// Type of the destination. Only http is supported.
-	Type DestinationType `json:"type"`
-	// Lifecycle state of the destination.
-	State DestinationState `json:"state"`
-	// Endpoint URL of the destination.
-	URL *string `json:"url,omitempty"`
-	// Host part of the target URL.
-	URLHost *string `json:"url_host,omitempty"`
-	// Names of the configured custom headers. Values are never returned.
-	CustomHeaderNames []string   `json:"custom_header_names,omitempty"`
-	LastSuccessAt     *time.Time `json:"last_success_at,omitempty"`
-	LastFailureAt     *time.Time `json:"last_failure_at,omitempty"`
-	LastFailureReason *string    `json:"last_failure_reason,omitempty"`
-	// An ISO-8601 timestamp representation of entity creation date.
-	CreatedAt time.Time `json:"created_at"`
-	// An ISO-8601 timestamp representation of entity update date.
-	UpdatedAt time.Time `json:"updated_at"`
+	HTTPDestination *HTTPDestination `queryParam:"inline" union:"member"`
+
+	Type DestinationType
 }
 
-func (d Destination) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
-}
+func CreateDestinationHTTP(http HTTPDestination) Destination {
+	typ := DestinationTypeHTTP
 
-func (d *Destination) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
-		return err
+	typStr := Type(typ)
+	http.Type = typStr
+
+	return Destination{
+		HTTPDestination: &http,
+		Type:            typ,
 	}
-	return nil
 }
 
-func (d *Destination) GetID() string {
-	if d == nil {
-		return ""
+func (u *Destination) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Destination{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	type discriminator struct {
+		Type string `json:"type"`
 	}
-	return d.ID
-}
 
-func (d *Destination) GetName() string {
-	if d == nil {
-		return ""
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
 	}
-	return d.Name
-}
 
-func (d *Destination) GetType() DestinationType {
-	if d == nil {
-		return DestinationType("")
-	}
-	return d.Type
-}
+	switch dis.Type {
+	case "http":
+		httpDestination := new(HTTPDestination)
+		if err := utils.UnmarshalJSON(data, &httpDestination, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == http) type HTTPDestination within Destination: %w", string(data), err)
+		}
 
-func (d *Destination) GetState() DestinationState {
-	if d == nil {
-		return DestinationState("")
-	}
-	return d.State
-}
-
-func (d *Destination) GetURL() *string {
-	if d == nil {
+		u.HTTPDestination = httpDestination
+		u.Type = DestinationTypeHTTP
 		return nil
 	}
-	return d.URL
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Destination", string(data))
 }
 
-func (d *Destination) GetURLHost() *string {
-	if d == nil {
-		return nil
+func (u Destination) MarshalJSON() ([]byte, error) {
+	if u.HTTPDestination != nil {
+		return utils.MarshalJSON(u.HTTPDestination, "", true)
 	}
-	return d.URLHost
-}
 
-func (d *Destination) GetCustomHeaderNames() []string {
-	if d == nil {
-		return nil
-	}
-	return d.CustomHeaderNames
-}
-
-func (d *Destination) GetLastSuccessAt() *time.Time {
-	if d == nil {
-		return nil
-	}
-	return d.LastSuccessAt
-}
-
-func (d *Destination) GetLastFailureAt() *time.Time {
-	if d == nil {
-		return nil
-	}
-	return d.LastFailureAt
-}
-
-func (d *Destination) GetLastFailureReason() *string {
-	if d == nil {
-		return nil
-	}
-	return d.LastFailureReason
-}
-
-func (d *Destination) GetCreatedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.CreatedAt
-}
-
-func (d *Destination) GetUpdatedAt() time.Time {
-	if d == nil {
-		return time.Time{}
-	}
-	return d.UpdatedAt
+	return nil, errors.New("could not marshal union type Destination: all fields are null")
 }

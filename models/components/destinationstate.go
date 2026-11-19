@@ -2,7 +2,7 @@
 
 package components
 
-// DestinationState - Lifecycle state of the destination.
+// DestinationState - Destination status. pending_verification means the destination is waiting for verification; enabled means it can receive notifications; disabled means it is paused; disabled_system means it was disabled automatically.
 type DestinationState string
 
 const (

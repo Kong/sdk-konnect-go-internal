@@ -23,7 +23,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 		log.Fatal(err)

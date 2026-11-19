@@ -1,9 +1,0 @@
-# TestSuggestionRuleRequest
-
-
-## Fields
-
-| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `Integration`                                                                                | `string`                                                                                     | :heavy_check_mark:                                                                           | Machine name of the integration.                                                             | gateway-manager                                                                              |
-| `TestSuggestionRulePayload`                                                                  | [components.TestSuggestionRulePayload](../../models/components/testsuggestionrulepayload.md) | :heavy_check_mark:                                                                           | Request body schema for testing a suggestion rule configuration against an integration data. |                                                                                              |

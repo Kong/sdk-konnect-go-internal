@@ -1,6 +1,6 @@
 # DeliveryAttemptStatus
 
-Lifecycle state of a delivery attempt. The delivery worker owns the values it writes.
+Lifecycle state of a delivery attempt.
 
 ## Example Usage
 

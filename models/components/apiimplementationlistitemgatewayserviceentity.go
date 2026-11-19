@@ -17,9 +17,6 @@ type APIImplementationListItemGatewayServiceEntity struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	// The API identifier.
 	APIID string `json:"api_id"`
-	// The environment this record is scoped to.
-	//
-	Environment *APIEnvironmentRef `json:"environment,omitempty"`
 	// A Gateway service that implements an API
 	Service *APIImplementationService `json:"service,omitempty"`
 }
@@ -61,13 +58,6 @@ func (a *APIImplementationListItemGatewayServiceEntity) GetAPIID() string {
 		return ""
 	}
 	return a.APIID
-}
-
-func (a *APIImplementationListItemGatewayServiceEntity) GetEnvironment() *APIEnvironmentRef {
-	if a == nil {
-		return nil
-	}
-	return a.Environment
 }
 
 func (a *APIImplementationListItemGatewayServiceEntity) GetService() *APIImplementationService {

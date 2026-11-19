@@ -17,15 +17,9 @@ type HMACAuthWithoutParents struct {
 	Consumer *HMACAuthWithoutParentsConsumer `json:"consumer,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
-	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
-	Secret    *string           `json:"secret,omitempty"`
+	ID     *string `json:"id,omitempty"`
+	Secret *string `json:"secret,omitempty"`
 	// A set of strings representing tags.
 	Tags     []string `json:"tags,omitempty"`
 	Username string   `json:"username"`
@@ -45,25 +39,11 @@ func (h *HMACAuthWithoutParents) GetCreatedAt() *int64 {
 	return h.CreatedAt
 }
 
-func (h *HMACAuthWithoutParents) GetDescription() *string {
-	if h == nil {
-		return nil
-	}
-	return h.Description
-}
-
 func (h *HMACAuthWithoutParents) GetID() *string {
 	if h == nil {
 		return nil
 	}
 	return h.ID
-}
-
-func (h *HMACAuthWithoutParents) GetManagedBy() map[string]string {
-	if h == nil {
-		return nil
-	}
-	return h.ManagedBy
 }
 
 func (h *HMACAuthWithoutParents) GetSecret() *string {

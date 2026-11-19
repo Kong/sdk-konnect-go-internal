@@ -2,9 +2,9 @@
 
 package components
 
-// DestinationSecret - A newly generated plaintext signing secret.
+// DestinationSecret - Newly generated signing secret for the destination.
 type DestinationSecret struct {
-	// What the consumer verifies the signatures with, shown once so the administrator can copy it to the consumer: the shared secret (whsec_ prefix) of an hmac-sha256 key, or the public key (whpk_ prefix) of an ed25519 key. The ed25519 private key is never returned.
+	// Secret used to verify that an HTTP notification was sent by Kong.
 	SigningSecret string `json:"signing_secret"`
 }
 

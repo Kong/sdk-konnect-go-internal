@@ -38,31 +38,4 @@ type APIPublicationSDK interface {
 	// DeleteAPIPackagePublication - Delete API Package Publication
 	// Unpublish an API Package from a portal.
 	DeleteAPIPackagePublication(ctx context.Context, apiPackageID string, portalID string, opts ...operations.Option) (*operations.DeleteAPIPackagePublicationResponse, error)
-	// PublishAPIToPortalInEnvironment - Publish API in an Environment
-	// Publish an API to a portal in a specific environment. The environment is identified
-	// by UUID and must be associated with the API. The publication is uniquely
-	// identified by `(api, environment, portal)`.
-	//
-	// The legacy `/apis/{apiId}/publications/{portalId}` path resolves to the API's sole
-	// associated environment when it has exactly one; when the API has multiple
-	// environments, that path returns `400` and this path must be used instead.
-	PublishAPIToPortalInEnvironment(ctx context.Context, request operations.PublishAPIToPortalInEnvironmentRequest, opts ...operations.Option) (*operations.PublishAPIToPortalInEnvironmentResponse, error)
-	// FetchPublicationInEnvironment - Get a Publication in an Environment
-	// Retrieve an API's publication in a portal for a specific environment. The
-	// environment is identified by UUID and must be associated with the API.
-	// If the API is not published to the portal in that environment, a 404 response is
-	// returned.
-	//
-	// The legacy `/apis/{apiId}/publications/{portalId}` path resolves to the API's sole
-	// associated environment when it has exactly one; when the API has multiple
-	// environments, that path returns `400` and this path must be used instead.
-	FetchPublicationInEnvironment(ctx context.Context, request operations.FetchPublicationInEnvironmentRequest, opts ...operations.Option) (*operations.FetchPublicationInEnvironmentResponse, error)
-	// DeletePublicationInEnvironment - Delete Publication in an Environment
-	// Unpublish an API from a portal in a specific environment. The environment is
-	// identified by UUID and must be associated with the API.
-	//
-	// The legacy `/apis/{apiId}/publications/{portalId}` path resolves to the API's sole
-	// associated environment when it has exactly one; when the API has multiple
-	// environments, that path returns `400` and this path must be used instead.
-	DeletePublicationInEnvironment(ctx context.Context, request operations.DeletePublicationInEnvironmentRequest, opts ...operations.Option) (*operations.DeletePublicationInEnvironmentResponse, error)
 }

@@ -41,37 +41,4 @@ type OpenMeterNotificationsSDK interface {
 	//
 	// Delete a notification channel by id.
 	DeleteBillingNotificationChannel(ctx context.Context, notificationChannelID string, opts ...operations.Option) (*operations.DeleteBillingNotificationChannelResponse, error)
-	// ListBillingNotificationEvents - List notification events
-	// List all notification events.
-	ListBillingNotificationEvents(ctx context.Context, request operations.ListBillingNotificationEventsRequest, opts ...operations.Option) (*operations.ListBillingNotificationEventsResponse, error)
-	// GetBillingNotificationEvent - Get notification event
-	// Get a notification event by id.
-	GetBillingNotificationEvent(ctx context.Context, notificationEventID string, opts ...operations.Option) (*operations.GetBillingNotificationEventResponse, error)
-	// ResendBillingNotificationEvent - Resend notification event
-	// Resend a notification event to the channels of the rule that generated it.
-	//
-	// Delivery is asynchronous: the request marks the selected channels for redelivery
-	// and returns immediately. Channels whose delivery is still pending or already
-	// being resent are left untouched.
-	ResendBillingNotificationEvent(ctx context.Context, notificationEventID string, resendBillingNotificationEventRequest components.ResendBillingNotificationEventRequest, opts ...operations.Option) (*operations.ResendBillingNotificationEventResponse, error)
-	// ListBillingNotificationRules - List notification rules
-	// List all notification rules.
-	ListBillingNotificationRules(ctx context.Context, request operations.ListBillingNotificationRulesRequest, opts ...operations.Option) (*operations.ListBillingNotificationRulesResponse, error)
-	// CreateBillingNotificationRule - Create notification rule
-	// Create a notification rule.
-	CreateBillingNotificationRule(ctx context.Context, request components.BillingNotificationRuleRequest, opts ...operations.Option) (*operations.CreateBillingNotificationRuleResponse, error)
-	// GetBillingNotificationRule - Get notification rule
-	// Get a notification rule by id.
-	GetBillingNotificationRule(ctx context.Context, notificationRuleID string, opts ...operations.Option) (*operations.GetBillingNotificationRuleResponse, error)
-	// UpdateBillingNotificationRule - Update notification rule
-	// Update a notification rule by id.
-	UpdateBillingNotificationRule(ctx context.Context, notificationRuleID string, billingNotificationRuleRequest components.BillingNotificationRuleRequest, opts ...operations.Option) (*operations.UpdateBillingNotificationRuleResponse, error)
-	// DeleteBillingNotificationRule - Delete notification rule
-	// Delete a notification rule by id.
-	DeleteBillingNotificationRule(ctx context.Context, notificationRuleID string, opts ...operations.Option) (*operations.DeleteBillingNotificationRuleResponse, error)
-	// TestBillingNotificationRule - Test notification rule
-	// Test a notification rule by generating an event with sample data and delivering
-	// it to the rule's channels. The test event is persisted and listed like any other
-	// event.
-	TestBillingNotificationRule(ctx context.Context, notificationRuleID string, opts ...operations.Option) (*operations.TestBillingNotificationRuleResponse, error)
 }

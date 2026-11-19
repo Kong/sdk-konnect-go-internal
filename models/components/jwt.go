@@ -65,17 +65,11 @@ type Jwt struct {
 	Consumer  *JWTConsumer  `json:"consumer,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
-	ID  *string `json:"id,omitempty"`
-	Key *string `json:"key,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy    map[string]string `json:"managed_by,omitempty"`
-	RsaPublicKey *string           `json:"rsa_public_key,omitempty"`
-	Secret       *string           `json:"secret,omitempty"`
+	ID           *string `json:"id,omitempty"`
+	Key          *string `json:"key,omitempty"`
+	RsaPublicKey *string `json:"rsa_public_key,omitempty"`
+	Secret       *string `json:"secret,omitempty"`
 	// A set of strings representing tags.
 	Tags []string `json:"tags,omitempty"`
 }
@@ -112,13 +106,6 @@ func (j *Jwt) GetCreatedAt() *int64 {
 	return j.CreatedAt
 }
 
-func (j *Jwt) GetDescription() *string {
-	if j == nil {
-		return nil
-	}
-	return j.Description
-}
-
 func (j *Jwt) GetID() *string {
 	if j == nil {
 		return nil
@@ -131,13 +118,6 @@ func (j *Jwt) GetKey() *string {
 		return nil
 	}
 	return j.Key
-}
-
-func (j *Jwt) GetManagedBy() map[string]string {
-	if j == nil {
-		return nil
-	}
-	return j.ManagedBy
 }
 
 func (j *Jwt) GetRsaPublicKey() *string {

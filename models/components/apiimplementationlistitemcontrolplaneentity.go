@@ -17,9 +17,6 @@ type APIImplementationListItemControlPlaneEntity struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	// The API identifier.
 	APIID string `json:"api_id"`
-	// The environment this record is scoped to.
-	//
-	Environment *APIEnvironmentRef `json:"environment,omitempty"`
 	// A Control plane that implements an API
 	ControlPlane APIImplementationControlPlane `json:"control_plane"`
 }
@@ -61,13 +58,6 @@ func (a *APIImplementationListItemControlPlaneEntity) GetAPIID() string {
 		return ""
 	}
 	return a.APIID
-}
-
-func (a *APIImplementationListItemControlPlaneEntity) GetEnvironment() *APIEnvironmentRef {
-	if a == nil {
-		return nil
-	}
-	return a.Environment
 }
 
 func (a *APIImplementationListItemControlPlaneEntity) GetControlPlane() APIImplementationControlPlane {

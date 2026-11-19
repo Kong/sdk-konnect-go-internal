@@ -2,74 +2,57 @@
 
 package components
 
-// DestinationUpdatePayloadState - Administrative state of the destination. Only enabled and disabled are settable through this field. Enabled takes a destination that the system disabled (disabled_system) back into service, with a clean failure streak.
-type DestinationUpdatePayloadState string
-
-const (
-	DestinationUpdatePayloadStateEnabled  DestinationUpdatePayloadState = "enabled"
-	DestinationUpdatePayloadStateDisabled DestinationUpdatePayloadState = "disabled"
+import (
+	"errors"
+	"fmt"
+	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-func (e DestinationUpdatePayloadState) ToPointer() *DestinationUpdatePayloadState {
-	return &e
-}
+type DestinationUpdatePayloadType string
 
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *DestinationUpdatePayloadState) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "enabled", "disabled":
-			return true
-		}
-	}
-	return false
-}
+const (
+	DestinationUpdatePayloadTypeHTTPDestinationUpdatePayload DestinationUpdatePayloadType = "HttpDestinationUpdatePayload"
+)
 
-// DestinationUpdatePayload - Properties of a destination to update.
+// DestinationUpdatePayload - Request body schema for updating a destination.
 type DestinationUpdatePayload struct {
-	// Type of the destination. The type of a destination cannot change: a request that names another type than the one of the destination is refused.
-	Type *DestinationType `json:"type,omitempty"`
-	// Name of the destination.
-	Name *string `json:"name,omitempty"`
-	// Full target URL. See the create request.
-	URL *string `json:"url,omitempty"`
-	// Custom headers of the destination. They replace the stored headers; an empty object removes them.
-	CustomHeaders map[string]string `json:"custom_headers,omitempty"`
-	// Administrative state of the destination. Only enabled and disabled are settable through this field. Enabled takes a destination that the system disabled (disabled_system) back into service, with a clean failure streak.
-	State *DestinationUpdatePayloadState `json:"state,omitempty"`
+	HTTPDestinationUpdatePayload *HTTPDestinationUpdatePayload `queryParam:"inline" union:"member"`
+
+	Type DestinationUpdatePayloadType
 }
 
-func (d *DestinationUpdatePayload) GetType() *DestinationType {
-	if d == nil {
-		return nil
+func CreateDestinationUpdatePayloadHTTPDestinationUpdatePayload(httpDestinationUpdatePayload HTTPDestinationUpdatePayload) DestinationUpdatePayload {
+	typ := DestinationUpdatePayloadTypeHTTPDestinationUpdatePayload
+
+	return DestinationUpdatePayload{
+		HTTPDestinationUpdatePayload: &httpDestinationUpdatePayload,
+		Type:                         typ,
 	}
-	return d.Type
 }
 
-func (d *DestinationUpdatePayload) GetName() *string {
-	if d == nil {
+func (u *DestinationUpdatePayload) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = DestinationUpdatePayload{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var httpDestinationUpdatePayload HTTPDestinationUpdatePayload = HTTPDestinationUpdatePayload{}
+	if err := utils.UnmarshalJSON(data, &httpDestinationUpdatePayload, "", true, nil); err == nil {
+		u.HTTPDestinationUpdatePayload = &httpDestinationUpdatePayload
+		u.Type = DestinationUpdatePayloadTypeHTTPDestinationUpdatePayload
 		return nil
 	}
-	return d.Name
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for DestinationUpdatePayload", string(data))
 }
 
-func (d *DestinationUpdatePayload) GetURL() *string {
-	if d == nil {
-		return nil
+func (u DestinationUpdatePayload) MarshalJSON() ([]byte, error) {
+	if u.HTTPDestinationUpdatePayload != nil {
+		return utils.MarshalJSON(u.HTTPDestinationUpdatePayload, "", true)
 	}
-	return d.URL
-}
 
-func (d *DestinationUpdatePayload) GetCustomHeaders() map[string]string {
-	if d == nil {
-		return nil
-	}
-	return d.CustomHeaders
-}
-
-func (d *DestinationUpdatePayload) GetState() *DestinationUpdatePayloadState {
-	if d == nil {
-		return nil
-	}
-	return d.State
+	return nil, errors.New("could not marshal union type DestinationUpdatePayload: all fields are null")
 }

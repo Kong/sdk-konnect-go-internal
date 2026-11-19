@@ -10,9 +10,6 @@ import (
 
 // PluginsSDK is a generated interface.
 type PluginsSDK interface {
-	// SearchPlugins - Search Plugins in a workspace
-	// Search Plugins in a workspace
-	SearchPlugins(ctx context.Context, request operations.SearchPluginsRequest, opts ...operations.Option) (*operations.SearchPluginsResponse, error)
 	// ListPluginWithConsumerGroup - List all Plugins associated with a Consumer Group in a workspace
 	// List all Plugins associated with a Consumer Group in a workspace
 	ListPluginWithConsumerGroup(ctx context.Context, request operations.ListPluginWithConsumerGroupRequest, opts ...operations.Option) (*operations.ListPluginWithConsumerGroupResponse, error)

@@ -10,6 +10,10 @@ import (
 type ListDestinationSubscriptionsRequest struct {
 	// ID of the http destination, a UUID v7.
 	DestinationID string `pathParam:"style=simple,explode=false,name=destinationId"`
+	// Request the next page of data, starting with the item before this parameter.
+	PageBefore *string `queryParam:"style=form,explode=true,name=page[before]"`
+	// Request the next page of data, starting with the item after this parameter.
+	PageAfter *string `queryParam:"style=form,explode=true,name=page[after]"`
 }
 
 func (l *ListDestinationSubscriptionsRequest) GetDestinationID() string {
@@ -19,6 +23,20 @@ func (l *ListDestinationSubscriptionsRequest) GetDestinationID() string {
 	return l.DestinationID
 }
 
+func (l *ListDestinationSubscriptionsRequest) GetPageBefore() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PageBefore
+}
+
+func (l *ListDestinationSubscriptionsRequest) GetPageAfter() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PageAfter
+}
+
 type ListDestinationSubscriptionsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -26,7 +44,7 @@ type ListDestinationSubscriptionsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// Every org subscription of one event type, or every org subscription that holds one destination.
+	// A paginated list of the org subscriptions of one event type, or of the org subscriptions that hold one destination.
 	OrgSubscriptionListResponse *components.OrgSubscriptionListResponse
 }
 

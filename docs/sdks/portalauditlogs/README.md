@@ -156,7 +156,6 @@ func main() {
 
     res, err := s.PortalAuditLogs.UpdatePortalAuditLogWebhook(ctx, "f32d905a-ed33-46a3-a093-d8f536af9a8a", &components.UpdatePortalAuditLogWebhook{
         Enabled: sdkkonnectgo.Pointer(true),
-        IncludePrincipalName: sdkkonnectgo.Pointer(true),
     })
     if err != nil {
         log.Fatal(err)

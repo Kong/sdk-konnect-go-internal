@@ -2,17 +2,17 @@
 
 package components
 
-// OrgSubscriptionCreatePayload - Properties of the org subscription to create. The subscription holds all the destinations of the request.
+// OrgSubscriptionCreatePayload - Defines which destinations receive an event and the regions and entities for which notifications are sent.
 type OrgSubscriptionCreatePayload struct {
-	// UUID v7 identifiers of the http destinations that receive the event type, at least one and at most 50, none twice.
+	// IDs of 1 to 50 HTTP destinations that receive this event. Each ID must be unique.
 	DestinationIds []string `json:"destination_ids"`
-	// The regions of the event. Use '*' for every region.
+	// Regions for which notifications are sent. Use `*` for all regions.
 	Regions []NotificationRegion `json:"regions"`
-	// The entities of the event. Use '*' for every entity.
+	// Entity IDs for which notifications are sent. Use `*` for all entities.
 	Entities []string `json:"entities"`
-	// False creates the subscription paused.
+	// Set to false to create the subscription in a paused state.
 	Enabled bool `json:"enabled"`
-	// User provided name of the subscription.
+	// Name that identifies the subscription.
 	Name string `json:"name"`
 }
 

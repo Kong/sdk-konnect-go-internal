@@ -12,7 +12,6 @@ const (
 	NotificationNamespaceRegionalEventNamespace NotificationNamespace = "regional-event-namespace"
 	NotificationNamespaceGatewayManager         NotificationNamespace = "gateway-manager"
 	NotificationNamespaceAdvancedAnalytics      NotificationNamespace = "advanced-analytics"
-	NotificationNamespaceAiManagement           NotificationNamespace = "ai-management"
 )
 
 func (e NotificationNamespace) ToPointer() *NotificationNamespace {
@@ -23,7 +22,7 @@ func (e NotificationNamespace) ToPointer() *NotificationNamespace {
 func (e *NotificationNamespace) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "plan-and-usage", "organization", "dev-portal", "cloud-gateways", "regional-event-namespace", "gateway-manager", "advanced-analytics", "ai-management":
+		case "plan-and-usage", "organization", "dev-portal", "cloud-gateways", "regional-event-namespace", "gateway-manager", "advanced-analytics":
 			return true
 		}
 	}

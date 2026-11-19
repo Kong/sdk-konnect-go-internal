@@ -16,17 +16,11 @@ func (d *DegraphqlRouteService) GetID() *string {
 type DegraphqlRoute struct {
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
-	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string     `json:"managed_by,omitempty"`
-	Methods   []string              `json:"methods,omitempty"`
-	Query     string                `json:"query"`
-	Service   DegraphqlRouteService `json:"service"`
+	ID      *string               `json:"id,omitempty"`
+	Methods []string              `json:"methods,omitempty"`
+	Query   string                `json:"query"`
+	Service DegraphqlRouteService `json:"service"`
 	// Unix epoch when the resource was last updated.
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
 	URI       string `json:"uri"`
@@ -39,25 +33,11 @@ func (d *DegraphqlRoute) GetCreatedAt() *int64 {
 	return d.CreatedAt
 }
 
-func (d *DegraphqlRoute) GetDescription() *string {
-	if d == nil {
-		return nil
-	}
-	return d.Description
-}
-
 func (d *DegraphqlRoute) GetID() *string {
 	if d == nil {
 		return nil
 	}
 	return d.ID
-}
-
-func (d *DegraphqlRoute) GetManagedBy() map[string]string {
-	if d == nil {
-		return nil
-	}
-	return d.ManagedBy
 }
 
 func (d *DegraphqlRoute) GetMethods() []string {

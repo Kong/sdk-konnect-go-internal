@@ -1,6 +1,6 @@
 # Eq
 
-Filters on the given plugin scope value with an exact match.
+The value to match.
 
 ## Example Usage
 
@@ -9,7 +9,7 @@ import (
 	"github.com/Kong/sdk-konnect-go/models/components"
 )
 
-value := components.EqRoute
+value := components.EqPrincipal
 
 // Open enum: custom values can be created with a direct type cast
 custom := components.Eq("custom_value")
@@ -18,10 +18,8 @@ custom := components.Eq("custom_value")
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `EqRoute`         | route             |
-| `EqService`       | service           |
-| `EqConsumer`      | consumer          |
-| `EqConsumerGroup` | consumer_group    |
-| `EqGlobal`        | global            |
+| Name          | Value         |
+| ------------- | ------------- |
+| `EqPrincipal` | principal     |
+| `EqConsumer`  | consumer      |
+| `EqOidc`      | oidc          |

@@ -2,7 +2,7 @@
 
 package components
 
-// OrgConfigurationNamespace - Namespace of an org scoped event. It lists the same values as NotificationNamespace, internal ones included, because the platform API dev spec cannot reference a schema that has internal values.
+// OrgConfigurationNamespace - Category that identifies the organization event's area of the product.
 type OrgConfigurationNamespace string
 
 const (

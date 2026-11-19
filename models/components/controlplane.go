@@ -15,8 +15,6 @@ const (
 	ControlPlaneClusterTypeClusterTypeK8SIngressController  ControlPlaneClusterType = "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER"
 	ControlPlaneClusterTypeClusterTypeControlPlaneGroup     ControlPlaneClusterType = "CLUSTER_TYPE_CONTROL_PLANE_GROUP"
 	ControlPlaneClusterTypeClusterTypeServerless            ControlPlaneClusterType = "CLUSTER_TYPE_SERVERLESS"
-	ControlPlaneClusterTypeClusterTypeHTTPGateway           ControlPlaneClusterType = "CLUSTER_TYPE_HTTP_GATEWAY"
-	ControlPlaneClusterTypeClusterTypeEventGateway          ControlPlaneClusterType = "CLUSTER_TYPE_EVENT_GATEWAY"
 	ControlPlaneClusterTypeClusterTypeKafkaNativeEventProxy ControlPlaneClusterType = "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY"
 	ControlPlaneClusterTypeClusterTypeCloudAPIGateway       ControlPlaneClusterType = "CLUSTER_TYPE_CLOUD_API_GATEWAY"
 	ControlPlaneClusterTypeClusterTypeServerlessV1          ControlPlaneClusterType = "CLUSTER_TYPE_SERVERLESS_V1"
@@ -30,7 +28,7 @@ func (e ControlPlaneClusterType) ToPointer() *ControlPlaneClusterType {
 func (e *ControlPlaneClusterType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "CLUSTER_TYPE_CONTROL_PLANE", "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER", "CLUSTER_TYPE_CONTROL_PLANE_GROUP", "CLUSTER_TYPE_SERVERLESS", "CLUSTER_TYPE_HTTP_GATEWAY", "CLUSTER_TYPE_EVENT_GATEWAY", "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY", "CLUSTER_TYPE_CLOUD_API_GATEWAY", "CLUSTER_TYPE_SERVERLESS_V1":
+		case "CLUSTER_TYPE_CONTROL_PLANE", "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER", "CLUSTER_TYPE_CONTROL_PLANE_GROUP", "CLUSTER_TYPE_SERVERLESS", "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY", "CLUSTER_TYPE_CLOUD_API_GATEWAY", "CLUSTER_TYPE_SERVERLESS_V1":
 			return true
 		}
 	}
@@ -67,13 +65,24 @@ type Config struct {
 	// Telemetry Endpoint.
 	TelemetryEndpoint string `json:"telemetry_endpoint"`
 	// The ClusterType value of the cluster associated with the Control Plane.
-	ClusterType ControlPlaneClusterType `json:"cluster_type"`
+	ClusterType *ControlPlaneClusterType `default:"CLUSTER_TYPE_CONTROL_PLANE" json:"cluster_type"`
 	// The auth type value of the cluster associated with the Runtime Group.
-	AuthType ControlPlaneAuthType `json:"auth_type"`
+	AuthType *ControlPlaneAuthType `default:"pinned_client_certs" json:"auth_type"`
 	// Whether the Control Plane can be used for cloud-gateways.
-	CloudGateway bool `json:"cloud_gateway"`
+	CloudGateway *bool `default:"false" json:"cloud_gateway"`
 	// Array of proxy URLs associated with reaching the data-planes connected to a control-plane.
 	ProxyUrls []ProxyURL `json:"proxy_urls"`
+}
+
+func (c Config) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *Config) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *Config) GetControlPlaneEndpoint() string {
@@ -90,23 +99,23 @@ func (c *Config) GetTelemetryEndpoint() string {
 	return c.TelemetryEndpoint
 }
 
-func (c *Config) GetClusterType() ControlPlaneClusterType {
+func (c *Config) GetClusterType() *ControlPlaneClusterType {
 	if c == nil {
-		return ControlPlaneClusterType("")
+		return nil
 	}
 	return c.ClusterType
 }
 
-func (c *Config) GetAuthType() ControlPlaneAuthType {
+func (c *Config) GetAuthType() *ControlPlaneAuthType {
 	if c == nil {
-		return ControlPlaneAuthType("")
+		return nil
 	}
 	return c.AuthType
 }
 
-func (c *Config) GetCloudGateway() bool {
+func (c *Config) GetCloudGateway() *bool {
 	if c == nil {
-		return false
+		return nil
 	}
 	return c.CloudGateway
 }

@@ -20,14 +20,8 @@ type Sni struct {
 	Certificate SNICertificate `json:"certificate"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// The SNI name to associate with the given certificate.
 	Name string `json:"name"`
 	// An optional set of strings associated with the SNIs for grouping and filtering.
@@ -50,25 +44,11 @@ func (s *Sni) GetCreatedAt() *int64 {
 	return s.CreatedAt
 }
 
-func (s *Sni) GetDescription() *string {
-	if s == nil {
-		return nil
-	}
-	return s.Description
-}
-
 func (s *Sni) GetID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ID
-}
-
-func (s *Sni) GetManagedBy() map[string]string {
-	if s == nil {
-		return nil
-	}
-	return s.ManagedBy
 }
 
 func (s *Sni) GetName() string {

@@ -7,6 +7,7 @@ package mocks
 import (
 	"context"
 
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -48,12 +49,12 @@ func (_m *MockConfigStoresSDK) EXPECT() *MockConfigStoresSDK_Expecter {
 }
 
 // CreateConfigStore provides a mock function for the type MockConfigStoresSDK
-func (_mock *MockConfigStoresSDK) CreateConfigStore(ctx context.Context, request operations.CreateConfigStoreRequest, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error) {
+func (_mock *MockConfigStoresSDK) CreateConfigStore(ctx context.Context, controlPlaneID string, createConfigStore components.CreateConfigStore, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
+		tmpRet = _mock.Called(ctx, controlPlaneID, createConfigStore, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, request)
+		tmpRet = _mock.Called(ctx, controlPlaneID, createConfigStore)
 	}
 	ret := tmpRet
 
@@ -63,18 +64,18 @@ func (_mock *MockConfigStoresSDK) CreateConfigStore(ctx context.Context, request
 
 	var r0 *operations.CreateConfigStoreResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateConfigStoreRequest, ...operations.Option) (*operations.CreateConfigStoreResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.CreateConfigStore, ...operations.Option) (*operations.CreateConfigStoreResponse, error)); ok {
+		return returnFunc(ctx, controlPlaneID, createConfigStore, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateConfigStoreRequest, ...operations.Option) *operations.CreateConfigStoreResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.CreateConfigStore, ...operations.Option) *operations.CreateConfigStoreResponse); ok {
+		r0 = returnFunc(ctx, controlPlaneID, createConfigStore, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.CreateConfigStoreResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateConfigStoreRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.CreateConfigStore, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, controlPlaneID, createConfigStore, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -88,33 +89,39 @@ type MockConfigStoresSDK_CreateConfigStore_Call struct {
 
 // CreateConfigStore is a helper method to define mock.On call
 //   - ctx context.Context
-//   - request operations.CreateConfigStoreRequest
+//   - controlPlaneID string
+//   - createConfigStore components.CreateConfigStore
 //   - opts ...operations.Option
-func (_e *MockConfigStoresSDK_Expecter) CreateConfigStore(ctx any, request any, opts ...any) *MockConfigStoresSDK_CreateConfigStore_Call {
+func (_e *MockConfigStoresSDK_Expecter) CreateConfigStore(ctx any, controlPlaneID any, createConfigStore any, opts ...any) *MockConfigStoresSDK_CreateConfigStore_Call {
 	return &MockConfigStoresSDK_CreateConfigStore_Call{Call: _e.mock.On("CreateConfigStore",
-		append([]any{ctx, request}, opts...)...)}
+		append([]any{ctx, controlPlaneID, createConfigStore}, opts...)...)}
 }
 
-func (_c *MockConfigStoresSDK_CreateConfigStore_Call) Run(run func(ctx context.Context, request operations.CreateConfigStoreRequest, opts ...operations.Option)) *MockConfigStoresSDK_CreateConfigStore_Call {
+func (_c *MockConfigStoresSDK_CreateConfigStore_Call) Run(run func(ctx context.Context, controlPlaneID string, createConfigStore components.CreateConfigStore, opts ...operations.Option)) *MockConfigStoresSDK_CreateConfigStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.CreateConfigStoreRequest
+		var arg1 string
 		if args[1] != nil {
-			arg1 = args[1].(operations.CreateConfigStoreRequest)
+			arg1 = args[1].(string)
 		}
-		var arg2 []operations.Option
+		var arg2 components.CreateConfigStore
+		if args[2] != nil {
+			arg2 = args[2].(components.CreateConfigStore)
+		}
+		var arg3 []operations.Option
 		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
 		}
-		arg2 = variadicArgs
+		arg3 = variadicArgs
 		run(
 			arg0,
 			arg1,
-			arg2...,
+			arg2,
+			arg3...,
 		)
 	})
 	return _c
@@ -125,7 +132,7 @@ func (_c *MockConfigStoresSDK_CreateConfigStore_Call) Return(createConfigStoreRe
 	return _c
 }
 
-func (_c *MockConfigStoresSDK_CreateConfigStore_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateConfigStoreRequest, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error)) *MockConfigStoresSDK_CreateConfigStore_Call {
+func (_c *MockConfigStoresSDK_CreateConfigStore_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, createConfigStore components.CreateConfigStore, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error)) *MockConfigStoresSDK_CreateConfigStore_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -214,12 +221,12 @@ func (_c *MockConfigStoresSDK_DeleteConfigStore_Call) RunAndReturn(run func(ctx 
 }
 
 // GetConfigStore provides a mock function for the type MockConfigStoresSDK
-func (_mock *MockConfigStoresSDK) GetConfigStore(ctx context.Context, request operations.GetConfigStoreRequest, opts ...operations.Option) (*operations.GetConfigStoreResponse, error) {
+func (_mock *MockConfigStoresSDK) GetConfigStore(ctx context.Context, controlPlaneID string, configStoreID string, opts ...operations.Option) (*operations.GetConfigStoreResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
+		tmpRet = _mock.Called(ctx, controlPlaneID, configStoreID, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, request)
+		tmpRet = _mock.Called(ctx, controlPlaneID, configStoreID)
 	}
 	ret := tmpRet
 
@@ -229,18 +236,18 @@ func (_mock *MockConfigStoresSDK) GetConfigStore(ctx context.Context, request op
 
 	var r0 *operations.GetConfigStoreResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetConfigStoreRequest, ...operations.Option) (*operations.GetConfigStoreResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.GetConfigStoreResponse, error)); ok {
+		return returnFunc(ctx, controlPlaneID, configStoreID, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.GetConfigStoreRequest, ...operations.Option) *operations.GetConfigStoreResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.GetConfigStoreResponse); ok {
+		r0 = returnFunc(ctx, controlPlaneID, configStoreID, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.GetConfigStoreResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.GetConfigStoreRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, controlPlaneID, configStoreID, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -254,33 +261,39 @@ type MockConfigStoresSDK_GetConfigStore_Call struct {
 
 // GetConfigStore is a helper method to define mock.On call
 //   - ctx context.Context
-//   - request operations.GetConfigStoreRequest
+//   - controlPlaneID string
+//   - configStoreID string
 //   - opts ...operations.Option
-func (_e *MockConfigStoresSDK_Expecter) GetConfigStore(ctx any, request any, opts ...any) *MockConfigStoresSDK_GetConfigStore_Call {
+func (_e *MockConfigStoresSDK_Expecter) GetConfigStore(ctx any, controlPlaneID any, configStoreID any, opts ...any) *MockConfigStoresSDK_GetConfigStore_Call {
 	return &MockConfigStoresSDK_GetConfigStore_Call{Call: _e.mock.On("GetConfigStore",
-		append([]any{ctx, request}, opts...)...)}
+		append([]any{ctx, controlPlaneID, configStoreID}, opts...)...)}
 }
 
-func (_c *MockConfigStoresSDK_GetConfigStore_Call) Run(run func(ctx context.Context, request operations.GetConfigStoreRequest, opts ...operations.Option)) *MockConfigStoresSDK_GetConfigStore_Call {
+func (_c *MockConfigStoresSDK_GetConfigStore_Call) Run(run func(ctx context.Context, controlPlaneID string, configStoreID string, opts ...operations.Option)) *MockConfigStoresSDK_GetConfigStore_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.GetConfigStoreRequest
+		var arg1 string
 		if args[1] != nil {
-			arg1 = args[1].(operations.GetConfigStoreRequest)
+			arg1 = args[1].(string)
 		}
-		var arg2 []operations.Option
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []operations.Option
 		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
 		}
-		arg2 = variadicArgs
+		arg3 = variadicArgs
 		run(
 			arg0,
 			arg1,
-			arg2...,
+			arg2,
+			arg3...,
 		)
 	})
 	return _c
@@ -291,7 +304,7 @@ func (_c *MockConfigStoresSDK_GetConfigStore_Call) Return(getConfigStoreResponse
 	return _c
 }
 
-func (_c *MockConfigStoresSDK_GetConfigStore_Call) RunAndReturn(run func(ctx context.Context, request operations.GetConfigStoreRequest, opts ...operations.Option) (*operations.GetConfigStoreResponse, error)) *MockConfigStoresSDK_GetConfigStore_Call {
+func (_c *MockConfigStoresSDK_GetConfigStore_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, configStoreID string, opts ...operations.Option) (*operations.GetConfigStoreResponse, error)) *MockConfigStoresSDK_GetConfigStore_Call {
 	_c.Call.Return(run)
 	return _c
 }

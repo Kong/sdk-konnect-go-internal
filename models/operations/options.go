@@ -21,15 +21,14 @@ const (
 type AcceptHeaderEnum string
 
 const (
-	AcceptHeaderEnumApplicationJson                           AcceptHeaderEnum = "application/json"
-	AcceptHeaderEnumApplicationProblemPlusJson                AcceptHeaderEnum = "application/problem+json"
-	AcceptHeaderEnumImageJpeg                                 AcceptHeaderEnum = "image/jpeg"
-	AcceptHeaderEnumImagePng                                  AcceptHeaderEnum = "image/png"
-	AcceptHeaderEnumImageSvgPlusXml                           AcceptHeaderEnum = "image/svg+xml"
-	AcceptHeaderEnumApplicationYaml                           AcceptHeaderEnum = "application/yaml"
-	AcceptHeaderEnumApplicationVndKonnectDocumentTreePlusJson AcceptHeaderEnum = "application/vnd.konnect.document-tree+json"
-	AcceptHeaderEnumTextCsv                                   AcceptHeaderEnum = "text/csv"
-	AcceptHeaderEnumWildcardRootWildcard                      AcceptHeaderEnum = "*/*"
+	AcceptHeaderEnumApplicationJson            AcceptHeaderEnum = "application/json"
+	AcceptHeaderEnumApplicationProblemPlusJson AcceptHeaderEnum = "application/problem+json"
+	AcceptHeaderEnumImageJpeg                  AcceptHeaderEnum = "image/jpeg"
+	AcceptHeaderEnumImagePng                   AcceptHeaderEnum = "image/png"
+	AcceptHeaderEnumImageSvgPlusXml            AcceptHeaderEnum = "image/svg+xml"
+	AcceptHeaderEnumTextCsv                    AcceptHeaderEnum = "text/csv"
+	AcceptHeaderEnumApplicationYaml            AcceptHeaderEnum = "application/yaml"
+	AcceptHeaderEnumWildcardRootWildcard       AcceptHeaderEnum = "*/*"
 )
 
 func (e AcceptHeaderEnum) ToPointer() *AcceptHeaderEnum {

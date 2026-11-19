@@ -494,8 +494,6 @@ type Upstream struct {
 	ClientCertificate *UpstreamClientCertificate `json:"client_certificate,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`.
 	HashFallback *HashFallback `default:"none" json:"hash_fallback"`
 	// The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
@@ -522,10 +520,6 @@ type Upstream struct {
 	HostHeader *string `json:"host_header,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// This is a hostname, which must be equal to the `host` of a Service.
 	Name string `json:"name"`
 	// The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`.
@@ -572,13 +566,6 @@ func (u *Upstream) GetCreatedAt() *int64 {
 		return nil
 	}
 	return u.CreatedAt
-}
-
-func (u *Upstream) GetDescription() *string {
-	if u == nil {
-		return nil
-	}
-	return u.Description
 }
 
 func (u *Upstream) GetHashFallback() *HashFallback {
@@ -670,13 +657,6 @@ func (u *Upstream) GetID() *string {
 		return nil
 	}
 	return u.ID
-}
-
-func (u *Upstream) GetManagedBy() map[string]string {
-	if u == nil {
-		return nil
-	}
-	return u.ManagedBy
 }
 
 func (u *Upstream) GetName() string {

@@ -72,9 +72,6 @@ type PublicationListItem struct {
 	APIID string `json:"api_id"`
 	// The portal identifier.
 	PortalIds []string `json:"portal_ids"`
-	// The environment this record is scoped to.
-	//
-	Environment *APIEnvironmentRef `json:"environment,omitempty"`
 	// Whether the application registration auto approval on this portal for the api is enabled. If set to false, fallbacks on portal's auto_approve_applications value.
 	AutoApproveRegistrations bool `json:"auto_approve_registrations"`
 	// The type of entity that is being published. Can be either an API or an API Package.
@@ -127,13 +124,6 @@ func (p *PublicationListItem) GetPortalIds() []string {
 		return []string{}
 	}
 	return p.PortalIds
-}
-
-func (p *PublicationListItem) GetEnvironment() *APIEnvironmentRef {
-	if p == nil {
-		return nil
-	}
-	return p.Environment
 }
 
 func (p *PublicationListItem) GetAutoApproveRegistrations() bool {

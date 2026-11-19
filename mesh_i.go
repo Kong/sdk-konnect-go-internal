@@ -29,13 +29,4 @@ type MeshSDK interface {
 	// PatchMeshControlPlane - Patch parts of control plane
 	// Update an individual control plane.
 	PatchMeshControlPlane(ctx context.Context, cpID string, updateMeshControlPlaneRequest components.UpdateMeshControlPlaneRequest, opts ...operations.Option) (*operations.PatchMeshControlPlaneResponse, error)
-	// ListMeshControlPlaneReadinessReports - List upgrade readiness reports
-	// Returns the upgrade readiness reports stored for a control plane, newest first. A control plane with no completed scan returns an empty collection. The collection is bounded rather than unbounded: the service keeps a limited number of reports for one control plane and removes a report once it passes its retention window, so page numbers stay usable.
-	ListMeshControlPlaneReadinessReports(ctx context.Context, request operations.ListMeshControlPlaneReadinessReportsRequest, opts ...operations.Option) (*operations.ListMeshControlPlaneReadinessReportsResponse, error)
-	// ScanMeshControlPlane - Scan a control plane for upgrade readiness
-	// Scans a control plane for upgrade readiness and returns the id of the report for that scan. Read the report at the Location for what the scan found. A scan runs with the credentials of the caller, so it reports only what the caller can already read. A control plane already running version 3 is refused.
-	ScanMeshControlPlane(ctx context.Context, cpID string, opts ...operations.Option) (*operations.ScanMeshControlPlaneResponse, error)
-	// GetMeshControlPlaneReadinessReport - Get an upgrade readiness report
-	// Returns one upgrade readiness report of a control plane. A report that has a result carries what the scan found; one that has a failure_reason instead explains why there is nothing to report.
-	GetMeshControlPlaneReadinessReport(ctx context.Context, cpID string, reportID string, opts ...operations.Option) (*operations.GetMeshControlPlaneReadinessReportResponse, error)
 }

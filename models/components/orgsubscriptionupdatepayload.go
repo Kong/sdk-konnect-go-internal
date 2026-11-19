@@ -2,51 +2,51 @@
 
 package components
 
-// OrgSubscriptionUpdatePayload - Properties of an org subscription to update. The values replace the stored values.
+// OrgSubscriptionUpdatePayload - Properties of an org subscription to update. Include only the properties that you want to change. A property that you do not include keeps its current value. A property that you include replaces the current value.
 type OrgSubscriptionUpdatePayload struct {
-	// UUID v7 identifiers of the http destinations that receive the event type, at least one and at most 50, none twice. They replace the stored destinations.
-	DestinationIds []string `json:"destination_ids"`
-	// The regions of the event. They replace the stored regions.
-	Regions []NotificationRegion `json:"regions"`
-	// The entities of the event. They replace the stored entities.
-	Entities []string `json:"entities"`
-	// False pauses the subscription without removing it.
-	Enabled bool `json:"enabled"`
-	// User provided name of the subscription.
-	Name string `json:"name"`
+	// IDs of 1 to 50 HTTP destinations that receive this event. Each ID must be unique. This list replaces the current destinations.
+	DestinationIds []string `json:"destination_ids,omitempty"`
+	// Regions for which notifications are sent. Use `*` for all regions. This replaces the current regions.
+	Regions []NotificationRegion `json:"regions,omitempty"`
+	// Entity IDs for which notifications are sent. Use `*` for all entities. This replaces the current entities.
+	Entities []string `json:"entities,omitempty"`
+	// Set to false to pause the subscription without deleting it.
+	Enabled *bool `json:"enabled,omitempty"`
+	// Name that identifies the subscription.
+	Name *string `json:"name,omitempty"`
 }
 
 func (o *OrgSubscriptionUpdatePayload) GetDestinationIds() []string {
 	if o == nil {
-		return []string{}
+		return nil
 	}
 	return o.DestinationIds
 }
 
 func (o *OrgSubscriptionUpdatePayload) GetRegions() []NotificationRegion {
 	if o == nil {
-		return []NotificationRegion{}
+		return nil
 	}
 	return o.Regions
 }
 
 func (o *OrgSubscriptionUpdatePayload) GetEntities() []string {
 	if o == nil {
-		return []string{}
+		return nil
 	}
 	return o.Entities
 }
 
-func (o *OrgSubscriptionUpdatePayload) GetEnabled() bool {
+func (o *OrgSubscriptionUpdatePayload) GetEnabled() *bool {
 	if o == nil {
-		return false
+		return nil
 	}
 	return o.Enabled
 }
 
-func (o *OrgSubscriptionUpdatePayload) GetName() string {
+func (o *OrgSubscriptionUpdatePayload) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }

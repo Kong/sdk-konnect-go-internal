@@ -31,8 +31,8 @@ func newConfigStoreSecrets(rootSDK *SDK, sdkConfig config.SDKConfiguration, hook
 	}
 }
 
-// CreateConfigStoreSecret - Create Config Store Secret in a workspace
-// Creates a secret for a Config Store in a workspace.
+// CreateConfigStoreSecret - Create Config Store Secret
+// Creates a secret for a Config Store.
 func (s *ConfigStoreSecrets) CreateConfigStoreSecret(ctx context.Context, request operations.CreateConfigStoreSecretRequest, opts ...operations.Option) (*operations.CreateConfigStoreSecretResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -52,7 +52,7 @@ func (s *ConfigStoreSecrets) CreateConfigStoreSecret(ctx context.Context, reques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -354,8 +354,8 @@ func (s *ConfigStoreSecrets) CreateConfigStoreSecret(ctx context.Context, reques
 
 }
 
-// ListConfigStoreSecrets - List Config Store Secrets in a workspace
-// Returns a collection of all secrets for a Config Store in a workspace.
+// ListConfigStoreSecrets - List Config Store Secrets
+// Returns a collection of all secrets for a Config Store.
 func (s *ConfigStoreSecrets) ListConfigStoreSecrets(ctx context.Context, request operations.ListConfigStoreSecretsRequest, opts ...operations.Option) (*operations.ListConfigStoreSecretsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -375,7 +375,7 @@ func (s *ConfigStoreSecrets) ListConfigStoreSecrets(ctx context.Context, request
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -651,8 +651,8 @@ func (s *ConfigStoreSecrets) ListConfigStoreSecrets(ctx context.Context, request
 
 }
 
-// GetConfigStoreSecret - Get a Config Store Secret in a workspace
-// Returns the secret entity for the Config Store in a workspace. Secret values once stored cannot be retrieved.
+// GetConfigStoreSecret - Get a Config Store Secret
+// Returns the secret entity for the Config Store. Secret values once stored cannot be retrieved.
 func (s *ConfigStoreSecrets) GetConfigStoreSecret(ctx context.Context, request operations.GetConfigStoreSecretRequest, opts ...operations.Option) (*operations.GetConfigStoreSecretResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -672,7 +672,7 @@ func (s *ConfigStoreSecrets) GetConfigStoreSecret(ctx context.Context, request o
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets/{key}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets/{key}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -922,8 +922,8 @@ func (s *ConfigStoreSecrets) GetConfigStoreSecret(ctx context.Context, request o
 
 }
 
-// UpdateConfigStoreSecret - Update Config Store Secret in a workspace
-// Updates a secret for a Config Store in a workspace.
+// UpdateConfigStoreSecret - Update Config Store Secret
+// Updates a secret for a Config Store.
 func (s *ConfigStoreSecrets) UpdateConfigStoreSecret(ctx context.Context, request operations.UpdateConfigStoreSecretRequest, opts ...operations.Option) (*operations.UpdateConfigStoreSecretResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -943,7 +943,7 @@ func (s *ConfigStoreSecrets) UpdateConfigStoreSecret(ctx context.Context, reques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets/{key}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets/{key}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1247,8 +1247,8 @@ func (s *ConfigStoreSecrets) UpdateConfigStoreSecret(ctx context.Context, reques
 
 }
 
-// DeleteConfigStoreSecret - Delete Config Store Secret in a workspace
-// Removes a secret from a Config Store in a workspace.
+// DeleteConfigStoreSecret - Delete Config Store Secret
+// Removes a secret from a Config Store.
 func (s *ConfigStoreSecrets) DeleteConfigStoreSecret(ctx context.Context, request operations.DeleteConfigStoreSecretRequest, opts ...operations.Option) (*operations.DeleteConfigStoreSecretResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1268,7 +1268,7 @@ func (s *ConfigStoreSecrets) DeleteConfigStoreSecret(ctx context.Context, reques
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets/{key}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets/{key}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -28,4 +28,3 @@ custom := components.EntityTypes("custom_value")
 | `EntityTypesAlertingEvents`      | alerting-events                  |
 | `EntityTypesKaiEnablement`       | kai-enablement                   |
 | `EntityTypesEnterpriseTrial`     | enterprise-trial                 |
-| `EntityTypesAiRequest`           | ai-request                       |

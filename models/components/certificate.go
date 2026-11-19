@@ -10,19 +10,13 @@ type Certificate struct {
 	CertAlt *string `json:"cert_alt,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
 	// PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
 	Key string `json:"key"`
 	// PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
-	KeyAlt *string `json:"key_alt,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
-	Snis      []string          `json:"snis,omitempty"`
+	KeyAlt *string  `json:"key_alt,omitempty"`
+	Snis   []string `json:"snis,omitempty"`
 	// An optional set of strings associated with the Certificate for grouping and filtering.
 	Tags []string `json:"tags,omitempty"`
 	// Unix epoch when the resource was last updated.
@@ -50,13 +44,6 @@ func (c *Certificate) GetCreatedAt() *int64 {
 	return c.CreatedAt
 }
 
-func (c *Certificate) GetDescription() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Description
-}
-
 func (c *Certificate) GetID() *string {
 	if c == nil {
 		return nil
@@ -76,13 +63,6 @@ func (c *Certificate) GetKeyAlt() *string {
 		return nil
 	}
 	return c.KeyAlt
-}
-
-func (c *Certificate) GetManagedBy() map[string]string {
-	if c == nil {
-		return nil
-	}
-	return c.ManagedBy
 }
 
 func (c *Certificate) GetSnis() []string {

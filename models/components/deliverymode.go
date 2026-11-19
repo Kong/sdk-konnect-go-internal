@@ -2,7 +2,7 @@
 
 package components
 
-// DeliveryMode - Traffic mode of a delivery.
+// DeliveryMode - Indicates whether the delivery is for a live event or a test.
 type DeliveryMode string
 
 const (

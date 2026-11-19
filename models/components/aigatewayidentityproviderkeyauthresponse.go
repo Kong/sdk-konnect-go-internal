@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-// AIGatewayIdentityProviderKeyAuthResponsePrincipals - Authenticate against Kong Identity instead of local credentials.
+// Principals - Authenticate against Kong Identity instead of local credentials.
 // Mutually exclusive with identity realms.
-type AIGatewayIdentityProviderKeyAuthResponsePrincipals struct {
+type Principals struct {
 	// When true, authenticate against Kong Identity instead of local credentials.
 	Enabled *bool `default:"false" json:"enabled"`
 	// The Kong Identity directory instance to authenticate against.
@@ -20,36 +20,36 @@ type AIGatewayIdentityProviderKeyAuthResponsePrincipals struct {
 	ErrorOnMiss *bool `default:"true" json:"error_on_miss"`
 }
 
-func (a AIGatewayIdentityProviderKeyAuthResponsePrincipals) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (p Principals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+func (p *Principals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) GetEnabled() *bool {
-	if a == nil {
+func (p *Principals) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return a.Enabled
+	return p.Enabled
 }
 
-func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) GetDirectory() *string {
-	if a == nil {
+func (p *Principals) GetDirectory() *string {
+	if p == nil {
 		return nil
 	}
-	return a.Directory
+	return p.Directory
 }
 
-func (a *AIGatewayIdentityProviderKeyAuthResponsePrincipals) GetErrorOnMiss() *bool {
-	if a == nil {
+func (p *Principals) GetErrorOnMiss() *bool {
+	if p == nil {
 		return nil
 	}
-	return a.ErrorOnMiss
+	return p.ErrorOnMiss
 }
 
 // AIGatewayIdentityProviderKeyAuthResponseConfig - Configuration for the Kong Key auth identity provider.
@@ -76,8 +76,8 @@ type AIGatewayIdentityProviderKeyAuthResponseConfig struct {
 	// Authenticate against Kong Identity instead of local credentials.
 	// Mutually exclusive with identity realms.
 	//
-	Principals           *AIGatewayIdentityProviderKeyAuthResponsePrincipals `json:"principals,omitempty"`
-	AdditionalProperties map[string]any                                      `additionalProperties:"true" json:"-"`
+	Principals           *Principals    `json:"principals,omitempty"`
+	AdditionalProperties map[string]any `additionalProperties:"true" json:"-"`
 }
 
 func (a AIGatewayIdentityProviderKeyAuthResponseConfig) MarshalJSON() ([]byte, error) {
@@ -126,7 +126,7 @@ func (a *AIGatewayIdentityProviderKeyAuthResponseConfig) GetKeyNames() []string 
 	return a.KeyNames
 }
 
-func (a *AIGatewayIdentityProviderKeyAuthResponseConfig) GetPrincipals() *AIGatewayIdentityProviderKeyAuthResponsePrincipals {
+func (a *AIGatewayIdentityProviderKeyAuthResponseConfig) GetPrincipals() *Principals {
 	if a == nil {
 		return nil
 	}
@@ -157,7 +157,9 @@ type AIGatewayIdentityProviderKeyAuthResponse struct {
 	Labels map[string]string `json:"labels,omitempty"`
 	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
 	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
+	// Keys must be 1–63 characters long, start and end with an alphanumeric character, and may contain dashes (`-`), underscores (`_`), and dots (`.`).
+	// Values must be 1–127 characters long and must not be empty.
+	// Keys and values must not contain spaces or control characters.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	//lint:ignore U1000 accessed via reflection for JSON marshaling

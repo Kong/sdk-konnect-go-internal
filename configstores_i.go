@@ -5,24 +5,24 @@ package sdkkonnectgo
 import (
 	"context"
 
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 )
 
 // ConfigStoresSDK is a generated interface.
 type ConfigStoresSDK interface {
-	// ListConfigStores - List all Config Stores for a workspace
-	// Returns a collection of all Config Stores associated with a workspace.
+	// ListConfigStores - List all config stores for a control plane
 	ListConfigStores(ctx context.Context, request operations.ListConfigStoresRequest, opts ...operations.Option) (*operations.ListConfigStoresResponse, error)
-	// CreateConfigStore - Create Config Store in a workspace
-	// Create a Config Store in a workspace.
-	CreateConfigStore(ctx context.Context, request operations.CreateConfigStoreRequest, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error)
-	// GetConfigStore - Get a Config Store in a workspace
-	// Returns a Config Store in a workspace.
-	GetConfigStore(ctx context.Context, request operations.GetConfigStoreRequest, opts ...operations.Option) (*operations.GetConfigStoreResponse, error)
-	// UpdateConfigStore - Update a Config Store in a workspace
-	// Updates a Config Store in a workspace.
+	// CreateConfigStore - Create Config Store
+	// Create a Config Store
+	CreateConfigStore(ctx context.Context, controlPlaneID string, createConfigStore components.CreateConfigStore, opts ...operations.Option) (*operations.CreateConfigStoreResponse, error)
+	// GetConfigStore - Get a Config Store
+	// Returns a Config Store
+	GetConfigStore(ctx context.Context, controlPlaneID string, configStoreID string, opts ...operations.Option) (*operations.GetConfigStoreResponse, error)
+	// UpdateConfigStore - Update an individual Config Store
+	// Updates a Config Store
 	UpdateConfigStore(ctx context.Context, request operations.UpdateConfigStoreRequest, opts ...operations.Option) (*operations.UpdateConfigStoreResponse, error)
-	// DeleteConfigStore - Delete Config Store in a workspace
-	// Removes a Config Store in a workspace.
+	// DeleteConfigStore - Delete Config Store
+	// Removes a config store
 	DeleteConfigStore(ctx context.Context, request operations.DeleteConfigStoreRequest, opts ...operations.Option) (*operations.DeleteConfigStoreResponse, error)
 }

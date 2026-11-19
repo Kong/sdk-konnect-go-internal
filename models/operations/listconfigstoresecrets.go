@@ -17,8 +17,6 @@ type ListConfigStoreSecretsRequest struct {
 	Size *int64 `default:"100" queryParam:"style=form,explode=true,name=size"`
 	// Offset from which to return the next set of resources. Use the value of the 'offset' field from the response of a list operation as input here to paginate through all the resources
 	Offset *string `queryParam:"style=form,explode=true,name=offset"`
-	// The name of the workspace
-	Workspace string `default:"default" pathParam:"style=simple,explode=false,name=workspace"`
 }
 
 func (l ListConfigStoreSecretsRequest) MarshalJSON() ([]byte, error) {
@@ -58,13 +56,6 @@ func (l *ListConfigStoreSecretsRequest) GetOffset() *string {
 		return nil
 	}
 	return l.Offset
-}
-
-func (l *ListConfigStoreSecretsRequest) GetWorkspace() string {
-	if l == nil {
-		return ""
-	}
-	return l.Workspace
 }
 
 type ListConfigStoreSecretsResponse struct {

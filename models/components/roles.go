@@ -7,2905 +7,774 @@ import (
 	"fmt"
 )
 
-type RolesName string
+type RolesServiceHubRolesScorecardViewerServiceID string
 
 const (
-	RolesNameControlPlanes RolesName = "Control Planes"
+	RolesServiceHubRolesScorecardViewerServiceIDTheServiceID RolesServiceHubRolesScorecardViewerServiceID = "The service id"
 )
 
-func (e RolesName) ToPointer() *RolesName {
+func (e RolesServiceHubRolesScorecardViewerServiceID) ToPointer() *RolesServiceHubRolesScorecardViewerServiceID {
 	return &e
 }
-func (e *RolesName) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesScorecardViewerServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Control Planes":
-		*e = RolesName(v)
+	case "The service id":
+		*e = RolesServiceHubRolesScorecardViewerServiceID(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesName: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesScorecardViewerServiceID: %v", v)
 	}
 }
 
-type RolesControlPlanesName string
-
-const (
-	RolesControlPlanesNameAdmin RolesControlPlanesName = "Admin"
-)
-
-func (e RolesControlPlanesName) ToPointer() *RolesControlPlanesName {
-	return &e
-}
-func (e *RolesControlPlanesName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Admin":
-		*e = RolesControlPlanesName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesName: %v", v)
-	}
+type RolesServiceHubRolesScorecardViewerPositionalIds struct {
+	ServiceID *RolesServiceHubRolesScorecardViewerServiceID `json:"service_id,omitempty"`
 }
 
-type RolesControlPlanesRolesAdminDescription string
-
-const (
-	RolesControlPlanesRolesAdminDescriptionThisRoleGrantsFullWriteAccessToAllEntitiesWithinAControlPlane RolesControlPlanesRolesAdminDescription = "This role grants full write access to all entities within a control plane."
-)
-
-func (e RolesControlPlanesRolesAdminDescription) ToPointer() *RolesControlPlanesRolesAdminDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesAdminDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to all entities within a control plane.":
-		*e = RolesControlPlanesRolesAdminDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesAdminDescription: %v", v)
-	}
-}
-
-type RolesControlPlanesAdmin struct {
-	Name        RolesControlPlanesName                  `json:"name"`
-	Description RolesControlPlanesRolesAdminDescription `json:"description"`
-}
-
-func (r *RolesControlPlanesAdmin) GetName() RolesControlPlanesName {
+func (r *RolesServiceHubRolesScorecardViewerPositionalIds) GetServiceID() *RolesServiceHubRolesScorecardViewerServiceID {
 	if r == nil {
-		return RolesControlPlanesName("")
+		return nil
 	}
-	return r.Name
+	return r.ServiceID
 }
 
-func (r *RolesControlPlanesAdmin) GetDescription() RolesControlPlanesRolesAdminDescription {
-	if r == nil {
-		return RolesControlPlanesRolesAdminDescription("")
-	}
-	return r.Description
-}
-
-type RolesControlPlanesRolesName string
+type RolesServiceHubRolesScorecardViewerName string
 
 const (
-	RolesControlPlanesRolesNameCertificateAdmin RolesControlPlanesRolesName = "Certificate Admin"
+	RolesServiceHubRolesScorecardViewerNameScorecardViewer RolesServiceHubRolesScorecardViewerName = "Scorecard Viewer"
 )
 
-func (e RolesControlPlanesRolesName) ToPointer() *RolesControlPlanesRolesName {
+func (e RolesServiceHubRolesScorecardViewerName) ToPointer() *RolesServiceHubRolesScorecardViewerName {
 	return &e
 }
-func (e *RolesControlPlanesRolesName) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesScorecardViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Certificate Admin":
-		*e = RolesControlPlanesRolesName(v)
+	case "Scorecard Viewer":
+		*e = RolesServiceHubRolesScorecardViewerName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesName: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesScorecardViewerName: %v", v)
 	}
 }
 
-type RolesDescription string
+type RolesServiceHubRolesScorecardViewerDescription string
 
 const (
-	RolesDescriptionThisRoleGrantsFullWriteAccessToAdministerCertificates RolesDescription = "This role grants full write access to administer certificates."
+	RolesServiceHubRolesScorecardViewerDescriptionAccessToAllReadPermissionsRelatedToServiceCatalogScorecardsThisImplicitlyGrantsAccessToListAllServicesWithinTheCatalog RolesServiceHubRolesScorecardViewerDescription = "Access to all read permissions related to Service Catalog scorecards. This implicitly grants access to list all services within the catalog."
 )
 
-func (e RolesDescription) ToPointer() *RolesDescription {
+func (e RolesServiceHubRolesScorecardViewerDescription) ToPointer() *RolesServiceHubRolesScorecardViewerDescription {
 	return &e
 }
-func (e *RolesDescription) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesScorecardViewerDescription) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "This role grants full write access to administer certificates.":
-		*e = RolesDescription(v)
+	case "Access to all read permissions related to Service Catalog scorecards. This implicitly grants access to list all services within the catalog.":
+		*e = RolesServiceHubRolesScorecardViewerDescription(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesDescription: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesScorecardViewerDescription: %v", v)
 	}
 }
 
-type CertificateAdmin struct {
-	Name        RolesControlPlanesRolesName `json:"name"`
-	Description RolesDescription            `json:"description"`
+type ScorecardViewer struct {
+	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
+	PositionalIds []RolesServiceHubRolesScorecardViewerPositionalIds `json:"positional_ids,omitempty"`
+	Name          RolesServiceHubRolesScorecardViewerName            `json:"name"`
+	Description   RolesServiceHubRolesScorecardViewerDescription     `json:"description"`
 }
 
-func (c *CertificateAdmin) GetName() RolesControlPlanesRolesName {
-	if c == nil {
-		return RolesControlPlanesRolesName("")
-	}
-	return c.Name
-}
-
-func (c *CertificateAdmin) GetDescription() RolesDescription {
-	if c == nil {
-		return RolesDescription("")
-	}
-	return c.Description
-}
-
-type RolesControlPlanesRolesConsumerAdminName string
-
-const (
-	RolesControlPlanesRolesConsumerAdminNameConsumerAdmin RolesControlPlanesRolesConsumerAdminName = "Consumer Admin"
-)
-
-func (e RolesControlPlanesRolesConsumerAdminName) ToPointer() *RolesControlPlanesRolesConsumerAdminName {
-	return &e
-}
-func (e *RolesControlPlanesRolesConsumerAdminName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Consumer Admin":
-		*e = RolesControlPlanesRolesConsumerAdminName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesConsumerAdminName: %v", v)
-	}
-}
-
-// RolesControlPlanesDescription - This role grants full write access to administer Consumers. Can configure plugins and view plugin partials for Consumers they have access to. Cannot create or modify global plugins or plugins outside their scope.
-type RolesControlPlanesDescription string
-
-const (
-	RolesControlPlanesDescriptionThisRoleGrantsFullWriteAccessToAdministerConsumers RolesControlPlanesDescription = "This role grants full write access to administer consumers."
-)
-
-func (e RolesControlPlanesDescription) ToPointer() *RolesControlPlanesDescription {
-	return &e
-}
-func (e *RolesControlPlanesDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to administer consumers.":
-		*e = RolesControlPlanesDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesDescription: %v", v)
-	}
-}
-
-type ConsumerAdmin struct {
-	Name RolesControlPlanesRolesConsumerAdminName `json:"name"`
-	// This role grants full write access to administer Consumers. Can configure plugins and view plugin partials for Consumers they have access to. Cannot create or modify global plugins or plugins outside their scope.
-	Description RolesControlPlanesDescription `json:"description"`
-}
-
-func (c *ConsumerAdmin) GetName() RolesControlPlanesRolesConsumerAdminName {
-	if c == nil {
-		return RolesControlPlanesRolesConsumerAdminName("")
-	}
-	return c.Name
-}
-
-func (c *ConsumerAdmin) GetDescription() RolesControlPlanesDescription {
-	if c == nil {
-		return RolesControlPlanesDescription("")
-	}
-	return c.Description
-}
-
-type RolesControlPlanesRolesCreatorName string
-
-const (
-	RolesControlPlanesRolesCreatorNameCreator RolesControlPlanesRolesCreatorName = "Creator"
-)
-
-func (e RolesControlPlanesRolesCreatorName) ToPointer() *RolesControlPlanesRolesCreatorName {
-	return &e
-}
-func (e *RolesControlPlanesRolesCreatorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Creator":
-		*e = RolesControlPlanesRolesCreatorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesCreatorName: %v", v)
-	}
-}
-
-type RolesControlPlanesRolesDescription string
-
-const (
-	RolesControlPlanesRolesDescriptionCreatesANewControlPlaneInAnOrganizationTheCreatorBecomesTheOwnerOfTheControlPlaneTheyCreate RolesControlPlanesRolesDescription = "Creates a new Control Plane in an organization. The creator becomes the owner of the Control Plane they create."
-)
-
-func (e RolesControlPlanesRolesDescription) ToPointer() *RolesControlPlanesRolesDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Creates a new Control Plane in an organization. The creator becomes the owner of the Control Plane they create.":
-		*e = RolesControlPlanesRolesDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesDescription: %v", v)
-	}
-}
-
-type RolesControlPlanesCreator struct {
-	Name        RolesControlPlanesRolesCreatorName `json:"name"`
-	Description RolesControlPlanesRolesDescription `json:"description"`
-}
-
-func (r *RolesControlPlanesCreator) GetName() RolesControlPlanesRolesCreatorName {
-	if r == nil {
-		return RolesControlPlanesRolesCreatorName("")
-	}
-	return r.Name
-}
-
-func (r *RolesControlPlanesCreator) GetDescription() RolesControlPlanesRolesDescription {
-	if r == nil {
-		return RolesControlPlanesRolesDescription("")
-	}
-	return r.Description
-}
-
-type RolesControlPlanesRolesDebugSessionCreatorName string
-
-const (
-	RolesControlPlanesRolesDebugSessionCreatorNameDebugSessionCreator RolesControlPlanesRolesDebugSessionCreatorName = "Debug Session Creator"
-)
-
-func (e RolesControlPlanesRolesDebugSessionCreatorName) ToPointer() *RolesControlPlanesRolesDebugSessionCreatorName {
-	return &e
-}
-func (e *RolesControlPlanesRolesDebugSessionCreatorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Debug Session Creator":
-		*e = RolesControlPlanesRolesDebugSessionCreatorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesDebugSessionCreatorName: %v", v)
-	}
-}
-
-type RolesControlPlanesRolesDebugSessionCreatorDescription string
-
-const (
-	RolesControlPlanesRolesDebugSessionCreatorDescriptionThisRoleGrantsAccessToCreateDebugSessionsThisRoleAlsoGrantsReadOnlyAccessToAllEntitiesWithinAControlPlane RolesControlPlanesRolesDebugSessionCreatorDescription = "This role grants access to create debug sessions. This role also grants read-only access to all entities within a control plane."
-)
-
-func (e RolesControlPlanesRolesDebugSessionCreatorDescription) ToPointer() *RolesControlPlanesRolesDebugSessionCreatorDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesDebugSessionCreatorDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants access to create debug sessions. This role also grants read-only access to all entities within a control plane.":
-		*e = RolesControlPlanesRolesDebugSessionCreatorDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesDebugSessionCreatorDescription: %v", v)
-	}
-}
-
-type DebugSessionCreator struct {
-	Name        RolesControlPlanesRolesDebugSessionCreatorName        `json:"name"`
-	Description RolesControlPlanesRolesDebugSessionCreatorDescription `json:"description"`
-}
-
-func (d *DebugSessionCreator) GetName() RolesControlPlanesRolesDebugSessionCreatorName {
-	if d == nil {
-		return RolesControlPlanesRolesDebugSessionCreatorName("")
-	}
-	return d.Name
-}
-
-func (d *DebugSessionCreator) GetDescription() RolesControlPlanesRolesDebugSessionCreatorDescription {
-	if d == nil {
-		return RolesControlPlanesRolesDebugSessionCreatorDescription("")
-	}
-	return d.Description
-}
-
-type RolesControlPlanesRolesDeployerName string
-
-const (
-	RolesControlPlanesRolesDeployerNameDeployer RolesControlPlanesRolesDeployerName = "Deployer"
-)
-
-func (e RolesControlPlanesRolesDeployerName) ToPointer() *RolesControlPlanesRolesDeployerName {
-	return &e
-}
-func (e *RolesControlPlanesRolesDeployerName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Deployer":
-		*e = RolesControlPlanesRolesDeployerName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesDeployerName: %v", v)
-	}
-}
-
-type RolesControlPlanesRolesDeployerDescription string
-
-const (
-	RolesControlPlanesRolesDeployerDescriptionThisRoleGrantsFullWriteAccessToAdministerServicesRoutesAndPluginsNecessaryToDeployServicesInServiceHub RolesControlPlanesRolesDeployerDescription = "This role grants full write access to administer services, routes and plugins necessary to deploy services in Service Hub."
-)
-
-func (e RolesControlPlanesRolesDeployerDescription) ToPointer() *RolesControlPlanesRolesDeployerDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesDeployerDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to administer services, routes and plugins necessary to deploy services in Service Hub.":
-		*e = RolesControlPlanesRolesDeployerDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesDeployerDescription: %v", v)
-	}
-}
-
-type Deployer struct {
-	Name        RolesControlPlanesRolesDeployerName        `json:"name"`
-	Description RolesControlPlanesRolesDeployerDescription `json:"description"`
-}
-
-func (d *Deployer) GetName() RolesControlPlanesRolesDeployerName {
-	if d == nil {
-		return RolesControlPlanesRolesDeployerName("")
-	}
-	return d.Name
-}
-
-func (d *Deployer) GetDescription() RolesControlPlanesRolesDeployerDescription {
-	if d == nil {
-		return RolesControlPlanesRolesDeployerDescription("")
-	}
-	return d.Description
-}
-
-type RolesControlPlanesRolesGatewayServiceAdminName string
-
-const (
-	RolesControlPlanesRolesGatewayServiceAdminNameGatewayServiceAdmin RolesControlPlanesRolesGatewayServiceAdminName = "Gateway Service Admin"
-)
-
-func (e RolesControlPlanesRolesGatewayServiceAdminName) ToPointer() *RolesControlPlanesRolesGatewayServiceAdminName {
-	return &e
-}
-func (e *RolesControlPlanesRolesGatewayServiceAdminName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Gateway Service Admin":
-		*e = RolesControlPlanesRolesGatewayServiceAdminName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesGatewayServiceAdminName: %v", v)
-	}
-}
-
-// RolesControlPlanesRolesGatewayServiceAdminDescription - This role grants full write access to administer Gateway Services. Can configure plugins and view plugin partials for Services they have access to. Cannot create or modify global plugins or plugins outside their scope.
-type RolesControlPlanesRolesGatewayServiceAdminDescription string
-
-const (
-	RolesControlPlanesRolesGatewayServiceAdminDescriptionThisRoleGrantsFullWriteAccessToAdministerGatewayServices RolesControlPlanesRolesGatewayServiceAdminDescription = "This role grants full write access to administer gateway services."
-)
-
-func (e RolesControlPlanesRolesGatewayServiceAdminDescription) ToPointer() *RolesControlPlanesRolesGatewayServiceAdminDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesGatewayServiceAdminDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to administer gateway services.":
-		*e = RolesControlPlanesRolesGatewayServiceAdminDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesGatewayServiceAdminDescription: %v", v)
-	}
-}
-
-type GatewayServiceAdmin struct {
-	Name RolesControlPlanesRolesGatewayServiceAdminName `json:"name"`
-	// This role grants full write access to administer Gateway Services. Can configure plugins and view plugin partials for Services they have access to. Cannot create or modify global plugins or plugins outside their scope.
-	Description RolesControlPlanesRolesGatewayServiceAdminDescription `json:"description"`
-}
-
-func (g *GatewayServiceAdmin) GetName() RolesControlPlanesRolesGatewayServiceAdminName {
-	if g == nil {
-		return RolesControlPlanesRolesGatewayServiceAdminName("")
-	}
-	return g.Name
-}
-
-func (g *GatewayServiceAdmin) GetDescription() RolesControlPlanesRolesGatewayServiceAdminDescription {
-	if g == nil {
-		return RolesControlPlanesRolesGatewayServiceAdminDescription("")
-	}
-	return g.Description
-}
-
-type RolesControlPlanesRolesPluginAdminName string
-
-const (
-	RolesControlPlanesRolesPluginAdminNamePluginAdmin RolesControlPlanesRolesPluginAdminName = "Plugin Admin"
-)
-
-func (e RolesControlPlanesRolesPluginAdminName) ToPointer() *RolesControlPlanesRolesPluginAdminName {
-	return &e
-}
-func (e *RolesControlPlanesRolesPluginAdminName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Plugin Admin":
-		*e = RolesControlPlanesRolesPluginAdminName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesPluginAdminName: %v", v)
-	}
-}
-
-// RolesControlPlanesRolesPluginAdminDescription - Can configure plugins at any scope (global, Service, Route, or Consumer) within a Control Plane Group. Also has write access to plugin partials.
-type RolesControlPlanesRolesPluginAdminDescription string
-
-const (
-	RolesControlPlanesRolesPluginAdminDescriptionThisRoleGrantsFullWriteAccessToAdministerPlugins RolesControlPlanesRolesPluginAdminDescription = "This role grants full write access to administer plugins."
-)
-
-func (e RolesControlPlanesRolesPluginAdminDescription) ToPointer() *RolesControlPlanesRolesPluginAdminDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesPluginAdminDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to administer plugins.":
-		*e = RolesControlPlanesRolesPluginAdminDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesPluginAdminDescription: %v", v)
-	}
-}
-
-type PluginAdmin struct {
-	Name RolesControlPlanesRolesPluginAdminName `json:"name"`
-	// Can configure plugins at any scope (global, Service, Route, or Consumer) within a Control Plane Group. Also has write access to plugin partials.
-	Description RolesControlPlanesRolesPluginAdminDescription `json:"description"`
-}
-
-func (p *PluginAdmin) GetName() RolesControlPlanesRolesPluginAdminName {
-	if p == nil {
-		return RolesControlPlanesRolesPluginAdminName("")
-	}
-	return p.Name
-}
-
-func (p *PluginAdmin) GetDescription() RolesControlPlanesRolesPluginAdminDescription {
-	if p == nil {
-		return RolesControlPlanesRolesPluginAdminDescription("")
-	}
-	return p.Description
-}
-
-type RolesControlPlanesRolesRouteAdminName string
-
-const (
-	RolesControlPlanesRolesRouteAdminNameRouteAdmin RolesControlPlanesRolesRouteAdminName = "Route Admin"
-)
-
-func (e RolesControlPlanesRolesRouteAdminName) ToPointer() *RolesControlPlanesRolesRouteAdminName {
-	return &e
-}
-func (e *RolesControlPlanesRolesRouteAdminName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Route Admin":
-		*e = RolesControlPlanesRolesRouteAdminName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesRouteAdminName: %v", v)
-	}
-}
-
-// RolesControlPlanesRolesRouteAdminDescription - This role grants full write access to administer Routes. Can configure plugins and view plugin partials for Routes they have access to. Cannot create or modify global plugins or plugins outside their scope.
-type RolesControlPlanesRolesRouteAdminDescription string
-
-const (
-	RolesControlPlanesRolesRouteAdminDescriptionThisRoleGrantsFullWriteAccessToAdministerRoutes RolesControlPlanesRolesRouteAdminDescription = "This role grants full write access to administer routes."
-)
-
-func (e RolesControlPlanesRolesRouteAdminDescription) ToPointer() *RolesControlPlanesRolesRouteAdminDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesRouteAdminDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to administer routes.":
-		*e = RolesControlPlanesRolesRouteAdminDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesRouteAdminDescription: %v", v)
-	}
-}
-
-type RouteAdmin struct {
-	Name RolesControlPlanesRolesRouteAdminName `json:"name"`
-	// This role grants full write access to administer Routes. Can configure plugins and view plugin partials for Routes they have access to. Cannot create or modify global plugins or plugins outside their scope.
-	Description RolesControlPlanesRolesRouteAdminDescription `json:"description"`
-}
-
-func (r *RouteAdmin) GetName() RolesControlPlanesRolesRouteAdminName {
-	if r == nil {
-		return RolesControlPlanesRolesRouteAdminName("")
-	}
-	return r.Name
-}
-
-func (r *RouteAdmin) GetDescription() RolesControlPlanesRolesRouteAdminDescription {
-	if r == nil {
-		return RolesControlPlanesRolesRouteAdminDescription("")
-	}
-	return r.Description
-}
-
-type RolesControlPlanesRolesSniAdminName string
-
-const (
-	RolesControlPlanesRolesSniAdminNameSniAdmin RolesControlPlanesRolesSniAdminName = "SNI Admin"
-)
-
-func (e RolesControlPlanesRolesSniAdminName) ToPointer() *RolesControlPlanesRolesSniAdminName {
-	return &e
-}
-func (e *RolesControlPlanesRolesSniAdminName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "SNI Admin":
-		*e = RolesControlPlanesRolesSniAdminName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesSniAdminName: %v", v)
-	}
-}
-
-type RolesControlPlanesRolesSniAdminDescription string
-
-const (
-	RolesControlPlanesRolesSniAdminDescriptionThisRoleGrantsFullWriteAccessToAdministerSnIs RolesControlPlanesRolesSniAdminDescription = "This role grants full write access to administer SNIs."
-)
-
-func (e RolesControlPlanesRolesSniAdminDescription) ToPointer() *RolesControlPlanesRolesSniAdminDescription {
-	return &e
-}
-func (e *RolesControlPlanesRolesSniAdminDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to administer SNIs.":
-		*e = RolesControlPlanesRolesSniAdminDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesSniAdminDescription: %v", v)
-	}
-}
-
-type SniAdmin struct {
-	Name        RolesControlPlanesRolesSniAdminName        `json:"name"`
-	Description RolesControlPlanesRolesSniAdminDescription `json:"description"`
-}
-
-func (s *SniAdmin) GetName() RolesControlPlanesRolesSniAdminName {
+func (s *ScorecardViewer) GetPositionalIds() []RolesServiceHubRolesScorecardViewerPositionalIds {
 	if s == nil {
-		return RolesControlPlanesRolesSniAdminName("")
+		return nil
+	}
+	return s.PositionalIds
+}
+
+func (s *ScorecardViewer) GetName() RolesServiceHubRolesScorecardViewerName {
+	if s == nil {
+		return RolesServiceHubRolesScorecardViewerName("")
 	}
 	return s.Name
 }
 
-func (s *SniAdmin) GetDescription() RolesControlPlanesRolesSniAdminDescription {
+func (s *ScorecardViewer) GetDescription() RolesServiceHubRolesScorecardViewerDescription {
 	if s == nil {
-		return RolesControlPlanesRolesSniAdminDescription("")
+		return RolesServiceHubRolesScorecardViewerDescription("")
 	}
 	return s.Description
 }
 
-type RolesControlPlanesRolesUpstreamAdminName string
+type RolesServiceHubRolesServiceAdminServiceID string
 
 const (
-	RolesControlPlanesRolesUpstreamAdminNameUpstreamAdmin RolesControlPlanesRolesUpstreamAdminName = "Upstream Admin"
+	RolesServiceHubRolesServiceAdminServiceIDTheServiceID RolesServiceHubRolesServiceAdminServiceID = "The service id"
 )
 
-func (e RolesControlPlanesRolesUpstreamAdminName) ToPointer() *RolesControlPlanesRolesUpstreamAdminName {
+func (e RolesServiceHubRolesServiceAdminServiceID) ToPointer() *RolesServiceHubRolesServiceAdminServiceID {
 	return &e
 }
-func (e *RolesControlPlanesRolesUpstreamAdminName) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceAdminServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Upstream Admin":
-		*e = RolesControlPlanesRolesUpstreamAdminName(v)
+	case "The service id":
+		*e = RolesServiceHubRolesServiceAdminServiceID(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesUpstreamAdminName: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceAdminServiceID: %v", v)
 	}
 }
 
-type RolesControlPlanesRolesUpstreamAdminDescription string
+type RolesServiceHubRolesServiceAdminPositionalIds struct {
+	ServiceID *RolesServiceHubRolesServiceAdminServiceID `json:"service_id,omitempty"`
+}
+
+func (r *RolesServiceHubRolesServiceAdminPositionalIds) GetServiceID() *RolesServiceHubRolesServiceAdminServiceID {
+	if r == nil {
+		return nil
+	}
+	return r.ServiceID
+}
+
+type RolesServiceHubRolesServiceAdminName string
 
 const (
-	RolesControlPlanesRolesUpstreamAdminDescriptionThisRoleGrantsFullWriteAccessToAdministerUpstreams RolesControlPlanesRolesUpstreamAdminDescription = "This role grants full write access to administer upstreams."
+	RolesServiceHubRolesServiceAdminNameServiceAdmin RolesServiceHubRolesServiceAdminName = "Service Admin"
 )
 
-func (e RolesControlPlanesRolesUpstreamAdminDescription) ToPointer() *RolesControlPlanesRolesUpstreamAdminDescription {
+func (e RolesServiceHubRolesServiceAdminName) ToPointer() *RolesServiceHubRolesServiceAdminName {
 	return &e
 }
-func (e *RolesControlPlanesRolesUpstreamAdminDescription) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceAdminName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "This role grants full write access to administer upstreams.":
-		*e = RolesControlPlanesRolesUpstreamAdminDescription(v)
+	case "Service Admin":
+		*e = RolesServiceHubRolesServiceAdminName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesUpstreamAdminDescription: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceAdminName: %v", v)
 	}
 }
 
-type UpstreamAdmin struct {
-	Name        RolesControlPlanesRolesUpstreamAdminName        `json:"name"`
-	Description RolesControlPlanesRolesUpstreamAdminDescription `json:"description"`
-}
-
-func (u *UpstreamAdmin) GetName() RolesControlPlanesRolesUpstreamAdminName {
-	if u == nil {
-		return RolesControlPlanesRolesUpstreamAdminName("")
-	}
-	return u.Name
-}
-
-func (u *UpstreamAdmin) GetDescription() RolesControlPlanesRolesUpstreamAdminDescription {
-	if u == nil {
-		return RolesControlPlanesRolesUpstreamAdminDescription("")
-	}
-	return u.Description
-}
-
-type RolesControlPlanesRolesViewerName string
+type RolesServiceHubRolesServiceAdminDescription string
 
 const (
-	RolesControlPlanesRolesViewerNameViewer RolesControlPlanesRolesViewerName = "Viewer"
+	RolesServiceHubRolesServiceAdminDescriptionAccessToAllReadAndWritePermissionsRelatedToAServiceCatalogServiceOrResource RolesServiceHubRolesServiceAdminDescription = "Access to all read and write permissions related to a Service Catalog service or resource."
 )
 
-func (e RolesControlPlanesRolesViewerName) ToPointer() *RolesControlPlanesRolesViewerName {
+func (e RolesServiceHubRolesServiceAdminDescription) ToPointer() *RolesServiceHubRolesServiceAdminDescription {
 	return &e
 }
-func (e *RolesControlPlanesRolesViewerName) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceAdminDescription) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Viewer":
-		*e = RolesControlPlanesRolesViewerName(v)
+	case "Access to all read and write permissions related to a Service Catalog service or resource.":
+		*e = RolesServiceHubRolesServiceAdminDescription(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesViewerName: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceAdminDescription: %v", v)
 	}
 }
 
-// RolesControlPlanesRolesViewerDescription - This role grants read-only access to all the configurations of a Control Plane Group and corresponding Data Plane nodes. Includes read-only access to plugin partials within accessible scopes.
-type RolesControlPlanesRolesViewerDescription string
+type ServiceAdmin struct {
+	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
+	PositionalIds []RolesServiceHubRolesServiceAdminPositionalIds `json:"positional_ids,omitempty"`
+	Name          RolesServiceHubRolesServiceAdminName            `json:"name"`
+	Description   RolesServiceHubRolesServiceAdminDescription     `json:"description"`
+}
+
+func (s *ServiceAdmin) GetPositionalIds() []RolesServiceHubRolesServiceAdminPositionalIds {
+	if s == nil {
+		return nil
+	}
+	return s.PositionalIds
+}
+
+func (s *ServiceAdmin) GetName() RolesServiceHubRolesServiceAdminName {
+	if s == nil {
+		return RolesServiceHubRolesServiceAdminName("")
+	}
+	return s.Name
+}
+
+func (s *ServiceAdmin) GetDescription() RolesServiceHubRolesServiceAdminDescription {
+	if s == nil {
+		return RolesServiceHubRolesServiceAdminDescription("")
+	}
+	return s.Description
+}
+
+type RolesServiceHubRolesServiceCreatorServiceID string
 
 const (
-	RolesControlPlanesRolesViewerDescriptionThisRoleGrantsReadOnlyAccessToAllEntitiesWithinAControlPlane RolesControlPlanesRolesViewerDescription = "This role grants read only access to all entities within a control plane."
+	RolesServiceHubRolesServiceCreatorServiceIDTheServiceID RolesServiceHubRolesServiceCreatorServiceID = "The service id"
 )
 
-func (e RolesControlPlanesRolesViewerDescription) ToPointer() *RolesControlPlanesRolesViewerDescription {
+func (e RolesServiceHubRolesServiceCreatorServiceID) ToPointer() *RolesServiceHubRolesServiceCreatorServiceID {
 	return &e
 }
-func (e *RolesControlPlanesRolesViewerDescription) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceCreatorServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "This role grants read only access to all entities within a control plane.":
-		*e = RolesControlPlanesRolesViewerDescription(v)
+	case "The service id":
+		*e = RolesServiceHubRolesServiceCreatorServiceID(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesControlPlanesRolesViewerDescription: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceCreatorServiceID: %v", v)
 	}
 }
 
-type RolesControlPlanesViewer struct {
-	Name RolesControlPlanesRolesViewerName `json:"name"`
-	// This role grants read-only access to all the configurations of a Control Plane Group and corresponding Data Plane nodes. Includes read-only access to plugin partials within accessible scopes.
-	Description RolesControlPlanesRolesViewerDescription `json:"description"`
+type RolesServiceHubRolesServiceCreatorPositionalIds struct {
+	ServiceID *RolesServiceHubRolesServiceCreatorServiceID `json:"service_id,omitempty"`
 }
 
-func (r *RolesControlPlanesViewer) GetName() RolesControlPlanesRolesViewerName {
-	if r == nil {
-		return RolesControlPlanesRolesViewerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesControlPlanesViewer) GetDescription() RolesControlPlanesRolesViewerDescription {
-	if r == nil {
-		return RolesControlPlanesRolesViewerDescription("")
-	}
-	return r.Description
-}
-
-type RolesControlPlanesRoles struct {
-	Admin               *RolesControlPlanesAdmin   `json:"admin,omitempty"`
-	CertificateAdmin    *CertificateAdmin          `json:"certificate_admin,omitempty"`
-	ConsumerAdmin       *ConsumerAdmin             `json:"consumer_admin,omitempty"`
-	Creator             *RolesControlPlanesCreator `json:"creator,omitempty"`
-	DebugSessionCreator *DebugSessionCreator       `json:"debug_session_creator,omitempty"`
-	Deployer            *Deployer                  `json:"deployer,omitempty"`
-	GatewayServiceAdmin *GatewayServiceAdmin       `json:"gateway_service_admin,omitempty"`
-	PluginAdmin         *PluginAdmin               `json:"plugin_admin,omitempty"`
-	RouteAdmin          *RouteAdmin                `json:"route_admin,omitempty"`
-	SniAdmin            *SniAdmin                  `json:"sni_admin,omitempty"`
-	UpstreamAdmin       *UpstreamAdmin             `json:"upstream_admin,omitempty"`
-	Viewer              *RolesControlPlanesViewer  `json:"viewer,omitempty"`
-}
-
-func (r *RolesControlPlanesRoles) GetAdmin() *RolesControlPlanesAdmin {
+func (r *RolesServiceHubRolesServiceCreatorPositionalIds) GetServiceID() *RolesServiceHubRolesServiceCreatorServiceID {
 	if r == nil {
 		return nil
 	}
-	return r.Admin
+	return r.ServiceID
 }
 
-func (r *RolesControlPlanesRoles) GetCertificateAdmin() *CertificateAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.CertificateAdmin
-}
-
-func (r *RolesControlPlanesRoles) GetConsumerAdmin() *ConsumerAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.ConsumerAdmin
-}
-
-func (r *RolesControlPlanesRoles) GetCreator() *RolesControlPlanesCreator {
-	if r == nil {
-		return nil
-	}
-	return r.Creator
-}
-
-func (r *RolesControlPlanesRoles) GetDebugSessionCreator() *DebugSessionCreator {
-	if r == nil {
-		return nil
-	}
-	return r.DebugSessionCreator
-}
-
-func (r *RolesControlPlanesRoles) GetDeployer() *Deployer {
-	if r == nil {
-		return nil
-	}
-	return r.Deployer
-}
-
-func (r *RolesControlPlanesRoles) GetGatewayServiceAdmin() *GatewayServiceAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.GatewayServiceAdmin
-}
-
-func (r *RolesControlPlanesRoles) GetPluginAdmin() *PluginAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.PluginAdmin
-}
-
-func (r *RolesControlPlanesRoles) GetRouteAdmin() *RouteAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.RouteAdmin
-}
-
-func (r *RolesControlPlanesRoles) GetSniAdmin() *SniAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.SniAdmin
-}
-
-func (r *RolesControlPlanesRoles) GetUpstreamAdmin() *UpstreamAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.UpstreamAdmin
-}
-
-func (r *RolesControlPlanesRoles) GetViewer() *RolesControlPlanesViewer {
-	if r == nil {
-		return nil
-	}
-	return r.Viewer
-}
-
-type ControlPlanes struct {
-	Name  RolesName               `json:"name"`
-	Roles RolesControlPlanesRoles `json:"roles"`
-}
-
-func (c *ControlPlanes) GetName() RolesName {
-	if c == nil {
-		return RolesName("")
-	}
-	return c.Name
-}
-
-func (c *ControlPlanes) GetRoles() RolesControlPlanesRoles {
-	if c == nil {
-		return RolesControlPlanesRoles{}
-	}
-	return c.Roles
-}
-
-type RolesAPIProductsName string
+type RolesServiceHubRolesServiceCreatorName string
 
 const (
-	RolesAPIProductsNameAPIProducts RolesAPIProductsName = "API Products"
+	RolesServiceHubRolesServiceCreatorNameServiceCreator RolesServiceHubRolesServiceCreatorName = "Service Creator"
 )
 
-func (e RolesAPIProductsName) ToPointer() *RolesAPIProductsName {
+func (e RolesServiceHubRolesServiceCreatorName) ToPointer() *RolesServiceHubRolesServiceCreatorName {
 	return &e
 }
-func (e *RolesAPIProductsName) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceCreatorName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "API Products":
-		*e = RolesAPIProductsName(v)
+	case "Service Creator":
+		*e = RolesServiceHubRolesServiceCreatorName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsName: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceCreatorName: %v", v)
 	}
 }
 
-type RolesAPIProductsRolesName string
+type RolesServiceHubRolesServiceCreatorDescription string
 
 const (
-	RolesAPIProductsRolesNameAdmin RolesAPIProductsRolesName = "Admin"
+	RolesServiceHubRolesServiceCreatorDescriptionAccessToCreatingNewServiceCatalogServices RolesServiceHubRolesServiceCreatorDescription = "Access to creating new Service Catalog services."
 )
 
-func (e RolesAPIProductsRolesName) ToPointer() *RolesAPIProductsRolesName {
+func (e RolesServiceHubRolesServiceCreatorDescription) ToPointer() *RolesServiceHubRolesServiceCreatorDescription {
 	return &e
 }
-func (e *RolesAPIProductsRolesName) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceCreatorDescription) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Admin":
-		*e = RolesAPIProductsRolesName(v)
+	case "Access to creating new Service Catalog services.":
+		*e = RolesServiceHubRolesServiceCreatorDescription(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesName: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceCreatorDescription: %v", v)
 	}
 }
 
-type RolesAPIProductsDescription string
+type ServiceCreator struct {
+	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
+	PositionalIds []RolesServiceHubRolesServiceCreatorPositionalIds `json:"positional_ids,omitempty"`
+	Name          RolesServiceHubRolesServiceCreatorName            `json:"name"`
+	Description   RolesServiceHubRolesServiceCreatorDescription     `json:"description"`
+}
+
+func (s *ServiceCreator) GetPositionalIds() []RolesServiceHubRolesServiceCreatorPositionalIds {
+	if s == nil {
+		return nil
+	}
+	return s.PositionalIds
+}
+
+func (s *ServiceCreator) GetName() RolesServiceHubRolesServiceCreatorName {
+	if s == nil {
+		return RolesServiceHubRolesServiceCreatorName("")
+	}
+	return s.Name
+}
+
+func (s *ServiceCreator) GetDescription() RolesServiceHubRolesServiceCreatorDescription {
+	if s == nil {
+		return RolesServiceHubRolesServiceCreatorDescription("")
+	}
+	return s.Description
+}
+
+type RolesServiceHubRolesServiceViewerServiceID string
 
 const (
-	RolesAPIProductsDescriptionThisRoleGrantsFullWriteAccessToAnAPIProductAndItsVersions RolesAPIProductsDescription = "This role grants full write access to an API product and its versions."
+	RolesServiceHubRolesServiceViewerServiceIDTheServiceID RolesServiceHubRolesServiceViewerServiceID = "The service id"
 )
 
-func (e RolesAPIProductsDescription) ToPointer() *RolesAPIProductsDescription {
+func (e RolesServiceHubRolesServiceViewerServiceID) ToPointer() *RolesServiceHubRolesServiceViewerServiceID {
 	return &e
 }
-func (e *RolesAPIProductsDescription) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceViewerServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "This role grants full write access to an API product and its versions.":
-		*e = RolesAPIProductsDescription(v)
+	case "The service id":
+		*e = RolesServiceHubRolesServiceViewerServiceID(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsDescription: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceViewerServiceID: %v", v)
 	}
 }
 
-type RolesAdmin struct {
-	Name        RolesAPIProductsRolesName   `json:"name"`
-	Description RolesAPIProductsDescription `json:"description"`
+type RolesServiceHubRolesServiceViewerPositionalIds struct {
+	ServiceID *RolesServiceHubRolesServiceViewerServiceID `json:"service_id,omitempty"`
 }
 
-func (r *RolesAdmin) GetName() RolesAPIProductsRolesName {
+func (r *RolesServiceHubRolesServiceViewerPositionalIds) GetServiceID() *RolesServiceHubRolesServiceViewerServiceID {
 	if r == nil {
-		return RolesAPIProductsRolesName("")
+		return nil
 	}
-	return r.Name
+	return r.ServiceID
 }
 
-func (r *RolesAdmin) GetDescription() RolesAPIProductsDescription {
-	if r == nil {
-		return RolesAPIProductsDescription("")
-	}
-	return r.Description
-}
-
-type RolesAPIProductsRolesApplicationRegistrationName string
+type RolesServiceHubRolesServiceViewerName string
 
 const (
-	RolesAPIProductsRolesApplicationRegistrationNameApplicationRegistration RolesAPIProductsRolesApplicationRegistrationName = "Application Registration"
+	RolesServiceHubRolesServiceViewerNameServiceViewer RolesServiceHubRolesServiceViewerName = "Service Viewer"
 )
 
-func (e RolesAPIProductsRolesApplicationRegistrationName) ToPointer() *RolesAPIProductsRolesApplicationRegistrationName {
+func (e RolesServiceHubRolesServiceViewerName) ToPointer() *RolesServiceHubRolesServiceViewerName {
 	return &e
 }
-func (e *RolesAPIProductsRolesApplicationRegistrationName) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Application Registration":
-		*e = RolesAPIProductsRolesApplicationRegistrationName(v)
+	case "Service Viewer":
+		*e = RolesServiceHubRolesServiceViewerName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesApplicationRegistrationName: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceViewerName: %v", v)
 	}
 }
 
-type RolesAPIProductsRolesDescription string
+type RolesServiceHubRolesServiceViewerDescription string
 
 const (
-	RolesAPIProductsRolesDescriptionThisRoleGrantsPermissionToEnableAndDisableApplicationRegistrationOnAnAPIProduct RolesAPIProductsRolesDescription = "This role grants permission to enable and disable application registration on an API product."
+	RolesServiceHubRolesServiceViewerDescriptionAccessToReadOnlyPermissionsToServiceCatalogServicesAndResources RolesServiceHubRolesServiceViewerDescription = "Access to read-only permissions to Service Catalog services and resources."
 )
 
-func (e RolesAPIProductsRolesDescription) ToPointer() *RolesAPIProductsRolesDescription {
+func (e RolesServiceHubRolesServiceViewerDescription) ToPointer() *RolesServiceHubRolesServiceViewerDescription {
 	return &e
 }
-func (e *RolesAPIProductsRolesDescription) UnmarshalJSON(data []byte) error {
+func (e *RolesServiceHubRolesServiceViewerDescription) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "This role grants permission to enable and disable application registration on an API product.":
-		*e = RolesAPIProductsRolesDescription(v)
+	case "Access to read-only permissions to Service Catalog services and resources.":
+		*e = RolesServiceHubRolesServiceViewerDescription(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesDescription: %v", v)
+		return fmt.Errorf("invalid value for RolesServiceHubRolesServiceViewerDescription: %v", v)
 	}
 }
 
-type RolesApplicationRegistration struct {
-	Name        RolesAPIProductsRolesApplicationRegistrationName `json:"name"`
-	Description RolesAPIProductsRolesDescription                 `json:"description"`
+type ServiceViewer struct {
+	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
+	PositionalIds []RolesServiceHubRolesServiceViewerPositionalIds `json:"positional_ids,omitempty"`
+	Name          RolesServiceHubRolesServiceViewerName            `json:"name"`
+	Description   RolesServiceHubRolesServiceViewerDescription     `json:"description"`
 }
 
-func (r *RolesApplicationRegistration) GetName() RolesAPIProductsRolesApplicationRegistrationName {
+func (s *ServiceViewer) GetPositionalIds() []RolesServiceHubRolesServiceViewerPositionalIds {
+	if s == nil {
+		return nil
+	}
+	return s.PositionalIds
+}
+
+func (s *ServiceViewer) GetName() RolesServiceHubRolesServiceViewerName {
+	if s == nil {
+		return RolesServiceHubRolesServiceViewerName("")
+	}
+	return s.Name
+}
+
+func (s *ServiceViewer) GetDescription() RolesServiceHubRolesServiceViewerDescription {
+	if s == nil {
+		return RolesServiceHubRolesServiceViewerDescription("")
+	}
+	return s.Description
+}
+
+type RolesServiceHubRoles struct {
+	DiscoveryAdmin    *DiscoveryAdmin    `json:"discovery_admin,omitempty"`
+	DiscoveryViewer   *DiscoveryViewer   `json:"discovery_viewer,omitempty"`
+	IntegrationAdmin  *IntegrationAdmin  `json:"integration_admin,omitempty"`
+	IntegrationViewer *IntegrationViewer `json:"integration_viewer,omitempty"`
+	ScorecardAdmin    *ScorecardAdmin    `json:"scorecard_admin,omitempty"`
+	ScorecardViewer   *ScorecardViewer   `json:"scorecard_viewer,omitempty"`
+	ServiceAdmin      *ServiceAdmin      `json:"service_admin,omitempty"`
+	ServiceCreator    *ServiceCreator    `json:"service_creator,omitempty"`
+	ServiceViewer     *ServiceViewer     `json:"service_viewer,omitempty"`
+}
+
+func (r *RolesServiceHubRoles) GetDiscoveryAdmin() *DiscoveryAdmin {
 	if r == nil {
-		return RolesAPIProductsRolesApplicationRegistrationName("")
+		return nil
 	}
-	return r.Name
+	return r.DiscoveryAdmin
 }
 
-func (r *RolesApplicationRegistration) GetDescription() RolesAPIProductsRolesDescription {
+func (r *RolesServiceHubRoles) GetDiscoveryViewer() *DiscoveryViewer {
 	if r == nil {
-		return RolesAPIProductsRolesDescription("")
+		return nil
 	}
-	return r.Description
+	return r.DiscoveryViewer
 }
 
-type RolesAPIProductsRolesCreatorName string
+func (r *RolesServiceHubRoles) GetIntegrationAdmin() *IntegrationAdmin {
+	if r == nil {
+		return nil
+	}
+	return r.IntegrationAdmin
+}
+
+func (r *RolesServiceHubRoles) GetIntegrationViewer() *IntegrationViewer {
+	if r == nil {
+		return nil
+	}
+	return r.IntegrationViewer
+}
+
+func (r *RolesServiceHubRoles) GetScorecardAdmin() *ScorecardAdmin {
+	if r == nil {
+		return nil
+	}
+	return r.ScorecardAdmin
+}
+
+func (r *RolesServiceHubRoles) GetScorecardViewer() *ScorecardViewer {
+	if r == nil {
+		return nil
+	}
+	return r.ScorecardViewer
+}
+
+func (r *RolesServiceHubRoles) GetServiceAdmin() *ServiceAdmin {
+	if r == nil {
+		return nil
+	}
+	return r.ServiceAdmin
+}
+
+func (r *RolesServiceHubRoles) GetServiceCreator() *ServiceCreator {
+	if r == nil {
+		return nil
+	}
+	return r.ServiceCreator
+}
+
+func (r *RolesServiceHubRoles) GetServiceViewer() *ServiceViewer {
+	if r == nil {
+		return nil
+	}
+	return r.ServiceViewer
+}
+
+type ServiceHub struct {
+	Name  RolesServiceHubName  `json:"name"`
+	Roles RolesServiceHubRoles `json:"roles"`
+}
+
+func (s *ServiceHub) GetName() RolesServiceHubName {
+	if s == nil {
+		return RolesServiceHubName("")
+	}
+	return s.Name
+}
+
+func (s *ServiceHub) GetRoles() RolesServiceHubRoles {
+	if s == nil {
+		return RolesServiceHubRoles{}
+	}
+	return s.Roles
+}
+
+type RolesServicesName string
 
 const (
-	RolesAPIProductsRolesCreatorNameCreator RolesAPIProductsRolesCreatorName = "Creator"
+	RolesServicesNameServices RolesServicesName = "Services"
 )
 
-func (e RolesAPIProductsRolesCreatorName) ToPointer() *RolesAPIProductsRolesCreatorName {
+func (e RolesServicesName) ToPointer() *RolesServicesName {
 	return &e
 }
-func (e *RolesAPIProductsRolesCreatorName) UnmarshalJSON(data []byte) error {
+func (e *RolesServicesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Creator":
-		*e = RolesAPIProductsRolesCreatorName(v)
+	case "Services":
+		*e = RolesServicesName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesCreatorName: %v", v)
+		return fmt.Errorf("invalid value for RolesServicesName: %v", v)
 	}
 }
 
-type RolesAPIProductsRolesCreatorDescription string
+type RolesServicesRolesName string
 
 const (
-	RolesAPIProductsRolesCreatorDescriptionThisAccessIsRequiredToCreateAPIProductsThisAccessIsNotForCreatingSubEntitiesSuchAsVersionsAPISpecsEtc RolesAPIProductsRolesCreatorDescription = "This access is required to create API products. This access is not for creating sub-entities such as versions, API specs, etc."
+	RolesServicesRolesNameAPIConsumer RolesServicesRolesName = "API Consumer"
 )
 
-func (e RolesAPIProductsRolesCreatorDescription) ToPointer() *RolesAPIProductsRolesCreatorDescription {
+func (e RolesServicesRolesName) ToPointer() *RolesServicesRolesName {
 	return &e
 }
-func (e *RolesAPIProductsRolesCreatorDescription) UnmarshalJSON(data []byte) error {
+func (e *RolesServicesRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "This access is required to create API products. This access is not for creating sub-entities such as versions, API specs, etc.":
-		*e = RolesAPIProductsRolesCreatorDescription(v)
+	case "API Consumer":
+		*e = RolesServicesRolesName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesCreatorDescription: %v", v)
+		return fmt.Errorf("invalid value for RolesServicesRolesName: %v", v)
 	}
 }
 
-type RolesCreator struct {
-	Name        RolesAPIProductsRolesCreatorName        `json:"name"`
-	Description RolesAPIProductsRolesCreatorDescription `json:"description"`
-}
-
-func (r *RolesCreator) GetName() RolesAPIProductsRolesCreatorName {
-	if r == nil {
-		return RolesAPIProductsRolesCreatorName("")
-	}
-	return r.Name
-}
-
-func (r *RolesCreator) GetDescription() RolesAPIProductsRolesCreatorDescription {
-	if r == nil {
-		return RolesAPIProductsRolesCreatorDescription("")
-	}
-	return r.Description
-}
-
-type RolesAPIProductsRolesDeployerName string
+type RolesServicesDescription string
 
 const (
-	RolesAPIProductsRolesDeployerNameDeployer RolesAPIProductsRolesDeployerName = "Deployer"
+	RolesServicesDescriptionAPIConsumersCanMakeCallsToTheGivenAPIProduct RolesServicesDescription = "API Consumers can make calls to the given API Product"
 )
 
-func (e RolesAPIProductsRolesDeployerName) ToPointer() *RolesAPIProductsRolesDeployerName {
+func (e RolesServicesDescription) ToPointer() *RolesServicesDescription {
 	return &e
 }
-func (e *RolesAPIProductsRolesDeployerName) UnmarshalJSON(data []byte) error {
+func (e *RolesServicesDescription) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Deployer":
-		*e = RolesAPIProductsRolesDeployerName(v)
+	case "API Consumers can make calls to the given API Product":
+		*e = RolesServicesDescription(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesDeployerName: %v", v)
+		return fmt.Errorf("invalid value for RolesServicesDescription: %v", v)
 	}
 }
 
-type RolesAPIProductsRolesDeployerDescription string
-
-const (
-	RolesAPIProductsRolesDeployerDescriptionThisRoleGrantsPermissionToDeployAndRemoveAnAPIProductFromAControlPlane RolesAPIProductsRolesDeployerDescription = "This role grants permission to deploy and remove an API product from a control plane."
-)
-
-func (e RolesAPIProductsRolesDeployerDescription) ToPointer() *RolesAPIProductsRolesDeployerDescription {
-	return &e
-}
-func (e *RolesAPIProductsRolesDeployerDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants permission to deploy and remove an API product from a control plane.":
-		*e = RolesAPIProductsRolesDeployerDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesDeployerDescription: %v", v)
-	}
+type APIConsumer struct {
+	Name        RolesServicesRolesName   `json:"name"`
+	Description RolesServicesDescription `json:"description"`
 }
 
-type RolesDeployer struct {
-	Name        RolesAPIProductsRolesDeployerName        `json:"name"`
-	Description RolesAPIProductsRolesDeployerDescription `json:"description"`
-}
-
-func (r *RolesDeployer) GetName() RolesAPIProductsRolesDeployerName {
-	if r == nil {
-		return RolesAPIProductsRolesDeployerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesDeployer) GetDescription() RolesAPIProductsRolesDeployerDescription {
-	if r == nil {
-		return RolesAPIProductsRolesDeployerDescription("")
-	}
-	return r.Description
-}
-
-type RolesAPIProductsRolesMaintainerName string
-
-const (
-	RolesAPIProductsRolesMaintainerNameMaintainer RolesAPIProductsRolesMaintainerName = "Maintainer"
-)
-
-func (e RolesAPIProductsRolesMaintainerName) ToPointer() *RolesAPIProductsRolesMaintainerName {
-	return &e
-}
-func (e *RolesAPIProductsRolesMaintainerName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Maintainer":
-		*e = RolesAPIProductsRolesMaintainerName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesMaintainerName: %v", v)
-	}
-}
-
-type RolesAPIProductsRolesMaintainerDescription string
-
-const (
-	RolesAPIProductsRolesMaintainerDescriptionThisRoleGrantsAllWritePermissionToManageAnAPIProductAndToAdministerPlugins RolesAPIProductsRolesMaintainerDescription = "This role grants all write permission to manage an API product and to administer plugins."
-)
-
-func (e RolesAPIProductsRolesMaintainerDescription) ToPointer() *RolesAPIProductsRolesMaintainerDescription {
-	return &e
-}
-func (e *RolesAPIProductsRolesMaintainerDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants all write permission to manage an API product and to administer plugins.":
-		*e = RolesAPIProductsRolesMaintainerDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesMaintainerDescription: %v", v)
-	}
-}
-
-type RolesMaintainer struct {
-	Name        RolesAPIProductsRolesMaintainerName        `json:"name"`
-	Description RolesAPIProductsRolesMaintainerDescription `json:"description"`
-}
-
-func (r *RolesMaintainer) GetName() RolesAPIProductsRolesMaintainerName {
-	if r == nil {
-		return RolesAPIProductsRolesMaintainerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesMaintainer) GetDescription() RolesAPIProductsRolesMaintainerDescription {
-	if r == nil {
-		return RolesAPIProductsRolesMaintainerDescription("")
-	}
-	return r.Description
-}
-
-type RolesAPIProductsRolesPluginsAdminName string
-
-const (
-	RolesAPIProductsRolesPluginsAdminNamePluginsAdmin RolesAPIProductsRolesPluginsAdminName = "Plugins Admin"
-)
-
-func (e RolesAPIProductsRolesPluginsAdminName) ToPointer() *RolesAPIProductsRolesPluginsAdminName {
-	return &e
-}
-func (e *RolesAPIProductsRolesPluginsAdminName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Plugins Admin":
-		*e = RolesAPIProductsRolesPluginsAdminName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesPluginsAdminName: %v", v)
-	}
-}
-
-type RolesAPIProductsRolesPluginsAdminDescription string
-
-const (
-	RolesAPIProductsRolesPluginsAdminDescriptionThisRoleGrantsFullWritePermissionToAdministerPlugins RolesAPIProductsRolesPluginsAdminDescription = "This role grants full write permission to administer plugins."
-)
-
-func (e RolesAPIProductsRolesPluginsAdminDescription) ToPointer() *RolesAPIProductsRolesPluginsAdminDescription {
-	return &e
-}
-func (e *RolesAPIProductsRolesPluginsAdminDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write permission to administer plugins.":
-		*e = RolesAPIProductsRolesPluginsAdminDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesPluginsAdminDescription: %v", v)
-	}
-}
-
-type PluginsAdmin struct {
-	Name        RolesAPIProductsRolesPluginsAdminName        `json:"name"`
-	Description RolesAPIProductsRolesPluginsAdminDescription `json:"description"`
-}
-
-func (p *PluginsAdmin) GetName() RolesAPIProductsRolesPluginsAdminName {
-	if p == nil {
-		return RolesAPIProductsRolesPluginsAdminName("")
-	}
-	return p.Name
-}
-
-func (p *PluginsAdmin) GetDescription() RolesAPIProductsRolesPluginsAdminDescription {
-	if p == nil {
-		return RolesAPIProductsRolesPluginsAdminDescription("")
-	}
-	return p.Description
-}
-
-type RolesAPIProductsRolesPublisherName string
-
-const (
-	RolesAPIProductsRolesPublisherNamePublisher RolesAPIProductsRolesPublisherName = "Publisher"
-)
-
-func (e RolesAPIProductsRolesPublisherName) ToPointer() *RolesAPIProductsRolesPublisherName {
-	return &e
-}
-func (e *RolesAPIProductsRolesPublisherName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Publisher":
-		*e = RolesAPIProductsRolesPublisherName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesPublisherName: %v", v)
-	}
-}
-
-type RolesAPIProductsRolesPublisherDescription string
-
-const (
-	RolesAPIProductsRolesPublisherDescriptionThisRoleGrantsPermissionToPublishAnAPIProductToOneOrMorePortals RolesAPIProductsRolesPublisherDescription = "This role grants permission to publish an API product to one or more portals."
-)
-
-func (e RolesAPIProductsRolesPublisherDescription) ToPointer() *RolesAPIProductsRolesPublisherDescription {
-	return &e
-}
-func (e *RolesAPIProductsRolesPublisherDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants permission to publish an API product to one or more portals.":
-		*e = RolesAPIProductsRolesPublisherDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesPublisherDescription: %v", v)
-	}
-}
-
-type Publisher struct {
-	Name        RolesAPIProductsRolesPublisherName        `json:"name"`
-	Description RolesAPIProductsRolesPublisherDescription `json:"description"`
-}
-
-func (p *Publisher) GetName() RolesAPIProductsRolesPublisherName {
-	if p == nil {
-		return RolesAPIProductsRolesPublisherName("")
-	}
-	return p.Name
-}
-
-func (p *Publisher) GetDescription() RolesAPIProductsRolesPublisherDescription {
-	if p == nil {
-		return RolesAPIProductsRolesPublisherDescription("")
-	}
-	return p.Description
-}
-
-type RolesAPIProductsRolesViewerName string
-
-const (
-	RolesAPIProductsRolesViewerNameViewer RolesAPIProductsRolesViewerName = "Viewer"
-)
-
-func (e RolesAPIProductsRolesViewerName) ToPointer() *RolesAPIProductsRolesViewerName {
-	return &e
-}
-func (e *RolesAPIProductsRolesViewerName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Viewer":
-		*e = RolesAPIProductsRolesViewerName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesViewerName: %v", v)
-	}
-}
-
-type RolesAPIProductsRolesViewerDescription string
-
-const (
-	RolesAPIProductsRolesViewerDescriptionViewerHasReadOnlyAccessToAnAPIProductAndItsSubEntities RolesAPIProductsRolesViewerDescription = "Viewer has read-only access to an API product and its sub-entities."
-)
-
-func (e RolesAPIProductsRolesViewerDescription) ToPointer() *RolesAPIProductsRolesViewerDescription {
-	return &e
-}
-func (e *RolesAPIProductsRolesViewerDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Viewer has read-only access to an API product and its sub-entities.":
-		*e = RolesAPIProductsRolesViewerDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAPIProductsRolesViewerDescription: %v", v)
-	}
-}
-
-type RolesViewer struct {
-	Name        RolesAPIProductsRolesViewerName        `json:"name"`
-	Description RolesAPIProductsRolesViewerDescription `json:"description"`
-}
-
-func (r *RolesViewer) GetName() RolesAPIProductsRolesViewerName {
-	if r == nil {
-		return RolesAPIProductsRolesViewerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesViewer) GetDescription() RolesAPIProductsRolesViewerDescription {
-	if r == nil {
-		return RolesAPIProductsRolesViewerDescription("")
-	}
-	return r.Description
-}
-
-type RolesRoles struct {
-	Admin                   *RolesAdmin                   `json:"admin,omitempty"`
-	ApplicationRegistration *RolesApplicationRegistration `json:"application_registration,omitempty"`
-	Creator                 *RolesCreator                 `json:"creator,omitempty"`
-	Deployer                *RolesDeployer                `json:"deployer,omitempty"`
-	Maintainer              *RolesMaintainer              `json:"maintainer,omitempty"`
-	PluginsAdmin            *PluginsAdmin                 `json:"plugins_admin,omitempty"`
-	Publisher               *Publisher                    `json:"publisher,omitempty"`
-	Viewer                  *RolesViewer                  `json:"viewer,omitempty"`
-}
-
-func (r *RolesRoles) GetAdmin() *RolesAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.Admin
-}
-
-func (r *RolesRoles) GetApplicationRegistration() *RolesApplicationRegistration {
-	if r == nil {
-		return nil
-	}
-	return r.ApplicationRegistration
-}
-
-func (r *RolesRoles) GetCreator() *RolesCreator {
-	if r == nil {
-		return nil
-	}
-	return r.Creator
-}
-
-func (r *RolesRoles) GetDeployer() *RolesDeployer {
-	if r == nil {
-		return nil
-	}
-	return r.Deployer
-}
-
-func (r *RolesRoles) GetMaintainer() *RolesMaintainer {
-	if r == nil {
-		return nil
-	}
-	return r.Maintainer
-}
-
-func (r *RolesRoles) GetPluginsAdmin() *PluginsAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.PluginsAdmin
-}
-
-func (r *RolesRoles) GetPublisher() *Publisher {
-	if r == nil {
-		return nil
-	}
-	return r.Publisher
-}
-
-func (r *RolesRoles) GetViewer() *RolesViewer {
-	if r == nil {
-		return nil
-	}
-	return r.Viewer
-}
-
-type APIProducts struct {
-	Name  RolesAPIProductsName `json:"name"`
-	Roles RolesRoles           `json:"roles"`
-}
-
-func (a *APIProducts) GetName() RolesAPIProductsName {
+func (a *APIConsumer) GetName() RolesServicesRolesName {
 	if a == nil {
-		return RolesAPIProductsName("")
+		return RolesServicesRolesName("")
 	}
 	return a.Name
 }
 
-func (a *APIProducts) GetRoles() RolesRoles {
+func (a *APIConsumer) GetDescription() RolesServicesDescription {
 	if a == nil {
-		return RolesRoles{}
+		return RolesServicesDescription("")
 	}
-	return a.Roles
+	return a.Description
 }
 
-type RolesAuditLogsName string
+type RolesServicesRolesAPIViewerName string
 
 const (
-	RolesAuditLogsNameAuditLogs RolesAuditLogsName = "Audit Logs"
+	RolesServicesRolesAPIViewerNameAPIViewer RolesServicesRolesAPIViewerName = "API Viewer"
 )
 
-func (e RolesAuditLogsName) ToPointer() *RolesAuditLogsName {
+func (e RolesServicesRolesAPIViewerName) ToPointer() *RolesServicesRolesAPIViewerName {
 	return &e
 }
-func (e *RolesAuditLogsName) UnmarshalJSON(data []byte) error {
+func (e *RolesServicesRolesAPIViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Audit Logs":
-		*e = RolesAuditLogsName(v)
+	case "API Viewer":
+		*e = RolesServicesRolesAPIViewerName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAuditLogsName: %v", v)
+		return fmt.Errorf("invalid value for RolesServicesRolesAPIViewerName: %v", v)
 	}
 }
 
-type RolesAuditLogsRolesName string
+type RolesServicesRolesDescription string
 
 const (
-	RolesAuditLogsRolesNameAdmin RolesAuditLogsRolesName = "Admin"
+	RolesServicesRolesDescriptionAPIViewersHaveReadOnlyAccessToTheDocumentationOfAnAPIProductInAPortal RolesServicesRolesDescription = "API Viewers have read-only access to the documentation of an API Product in a portal"
 )
 
-func (e RolesAuditLogsRolesName) ToPointer() *RolesAuditLogsRolesName {
+func (e RolesServicesRolesDescription) ToPointer() *RolesServicesRolesDescription {
 	return &e
 }
-func (e *RolesAuditLogsRolesName) UnmarshalJSON(data []byte) error {
+func (e *RolesServicesRolesDescription) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "Admin":
-		*e = RolesAuditLogsRolesName(v)
+	case "API Viewers have read-only access to the documentation of an API Product in a portal":
+		*e = RolesServicesRolesDescription(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAuditLogsRolesName: %v", v)
+		return fmt.Errorf("invalid value for RolesServicesRolesDescription: %v", v)
 	}
 }
 
-type RolesAuditLogsDescription string
-
-const (
-	RolesAuditLogsDescriptionThisRoleGrantsFullWriteAccessToTheAuditLogConfiguration RolesAuditLogsDescription = "This role grants full write access to the Audit log configuration."
-)
-
-func (e RolesAuditLogsDescription) ToPointer() *RolesAuditLogsDescription {
-	return &e
-}
-func (e *RolesAuditLogsDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to the Audit log configuration.":
-		*e = RolesAuditLogsDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAuditLogsDescription: %v", v)
-	}
+type APIViewer struct {
+	Name        RolesServicesRolesAPIViewerName `json:"name"`
+	Description RolesServicesRolesDescription   `json:"description"`
 }
 
-type RolesAuditLogsAdmin struct {
-	Name        RolesAuditLogsRolesName   `json:"name"`
-	Description RolesAuditLogsDescription `json:"description"`
-}
-
-func (r *RolesAuditLogsAdmin) GetName() RolesAuditLogsRolesName {
-	if r == nil {
-		return RolesAuditLogsRolesName("")
-	}
-	return r.Name
-}
-
-func (r *RolesAuditLogsAdmin) GetDescription() RolesAuditLogsDescription {
-	if r == nil {
-		return RolesAuditLogsDescription("")
-	}
-	return r.Description
-}
-
-type RolesAuditLogsRolesViewerName string
-
-const (
-	RolesAuditLogsRolesViewerNameViewer RolesAuditLogsRolesViewerName = "Viewer"
-)
-
-func (e RolesAuditLogsRolesViewerName) ToPointer() *RolesAuditLogsRolesViewerName {
-	return &e
-}
-func (e *RolesAuditLogsRolesViewerName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Viewer":
-		*e = RolesAuditLogsRolesViewerName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAuditLogsRolesViewerName: %v", v)
-	}
-}
-
-type RolesAuditLogsRolesDescription string
-
-const (
-	RolesAuditLogsRolesDescriptionThisRoleGrantsReadAccessToTheAuditLogConfiguration RolesAuditLogsRolesDescription = "This role grants read access to the Audit log configuration."
-)
-
-func (e RolesAuditLogsRolesDescription) ToPointer() *RolesAuditLogsRolesDescription {
-	return &e
-}
-func (e *RolesAuditLogsRolesDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants read access to the Audit log configuration.":
-		*e = RolesAuditLogsRolesDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesAuditLogsRolesDescription: %v", v)
-	}
-}
-
-type RolesAuditLogsViewer struct {
-	Name        RolesAuditLogsRolesViewerName  `json:"name"`
-	Description RolesAuditLogsRolesDescription `json:"description"`
-}
-
-func (r *RolesAuditLogsViewer) GetName() RolesAuditLogsRolesViewerName {
-	if r == nil {
-		return RolesAuditLogsRolesViewerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesAuditLogsViewer) GetDescription() RolesAuditLogsRolesDescription {
-	if r == nil {
-		return RolesAuditLogsRolesDescription("")
-	}
-	return r.Description
-}
-
-type RolesAuditLogsRoles struct {
-	Admin  *RolesAuditLogsAdmin  `json:"admin,omitempty"`
-	Viewer *RolesAuditLogsViewer `json:"viewer,omitempty"`
-}
-
-func (r *RolesAuditLogsRoles) GetAdmin() *RolesAuditLogsAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.Admin
-}
-
-func (r *RolesAuditLogsRoles) GetViewer() *RolesAuditLogsViewer {
-	if r == nil {
-		return nil
-	}
-	return r.Viewer
-}
-
-type AuditLogs struct {
-	Name  RolesAuditLogsName  `json:"name"`
-	Roles RolesAuditLogsRoles `json:"roles"`
-}
-
-func (a *AuditLogs) GetName() RolesAuditLogsName {
+func (a *APIViewer) GetName() RolesServicesRolesAPIViewerName {
 	if a == nil {
-		return RolesAuditLogsName("")
+		return RolesServicesRolesAPIViewerName("")
 	}
 	return a.Name
 }
 
-func (a *AuditLogs) GetRoles() RolesAuditLogsRoles {
+func (a *APIViewer) GetDescription() RolesServicesRolesDescription {
 	if a == nil {
-		return RolesAuditLogsRoles{}
+		return RolesServicesRolesDescription("")
 	}
-	return a.Roles
+	return a.Description
 }
 
-type RolesIdentityName string
-
-const (
-	RolesIdentityNameIdentity RolesIdentityName = "Identity"
-)
-
-func (e RolesIdentityName) ToPointer() *RolesIdentityName {
-	return &e
-}
-func (e *RolesIdentityName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Identity":
-		*e = RolesIdentityName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesIdentityName: %v", v)
-	}
+type RolesServicesRoles struct {
+	APIConsumer *APIConsumer `json:"api_consumer,omitempty"`
+	APIViewer   *APIViewer   `json:"api_viewer,omitempty"`
 }
 
-type RolesIdentityRolesName string
-
-const (
-	RolesIdentityRolesNameAdmin RolesIdentityRolesName = "Admin"
-)
-
-func (e RolesIdentityRolesName) ToPointer() *RolesIdentityRolesName {
-	return &e
-}
-func (e *RolesIdentityRolesName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Admin":
-		*e = RolesIdentityRolesName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesIdentityRolesName: %v", v)
-	}
-}
-
-type RolesIdentityDescription string
-
-const (
-	RolesIdentityDescriptionThisRoleGrantsFullWriteAccessToTheIdentityConfiguration RolesIdentityDescription = "This role grants full write access to the Identity configuration."
-)
-
-func (e RolesIdentityDescription) ToPointer() *RolesIdentityDescription {
-	return &e
-}
-func (e *RolesIdentityDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to the Identity configuration.":
-		*e = RolesIdentityDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesIdentityDescription: %v", v)
-	}
-}
-
-type RolesIdentityAdmin struct {
-	Name        RolesIdentityRolesName   `json:"name"`
-	Description RolesIdentityDescription `json:"description"`
-}
-
-func (r *RolesIdentityAdmin) GetName() RolesIdentityRolesName {
-	if r == nil {
-		return RolesIdentityRolesName("")
-	}
-	return r.Name
-}
-
-func (r *RolesIdentityAdmin) GetDescription() RolesIdentityDescription {
-	if r == nil {
-		return RolesIdentityDescription("")
-	}
-	return r.Description
-}
-
-type RolesIdentityRoles struct {
-	Admin *RolesIdentityAdmin `json:"admin,omitempty"`
-}
-
-func (r *RolesIdentityRoles) GetAdmin() *RolesIdentityAdmin {
+func (r *RolesServicesRoles) GetAPIConsumer() *APIConsumer {
 	if r == nil {
 		return nil
 	}
-	return r.Admin
+	return r.APIConsumer
 }
 
-type Identity struct {
-	Name  RolesIdentityName  `json:"name"`
-	Roles RolesIdentityRoles `json:"roles"`
-}
-
-func (i *Identity) GetName() RolesIdentityName {
-	if i == nil {
-		return RolesIdentityName("")
-	}
-	return i.Name
-}
-
-func (i *Identity) GetRoles() RolesIdentityRoles {
-	if i == nil {
-		return RolesIdentityRoles{}
-	}
-	return i.Roles
-}
-
-type RolesMeshControlPlanesName string
-
-const (
-	RolesMeshControlPlanesNameMeshControlPlane RolesMeshControlPlanesName = "Mesh Control Plane"
-)
-
-func (e RolesMeshControlPlanesName) ToPointer() *RolesMeshControlPlanesName {
-	return &e
-}
-func (e *RolesMeshControlPlanesName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Mesh Control Plane":
-		*e = RolesMeshControlPlanesName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesName: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesRolesName string
-
-const (
-	RolesMeshControlPlanesRolesNameAdmin RolesMeshControlPlanesRolesName = "Admin"
-)
-
-func (e RolesMeshControlPlanesRolesName) ToPointer() *RolesMeshControlPlanesRolesName {
-	return &e
-}
-func (e *RolesMeshControlPlanesRolesName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Admin":
-		*e = RolesMeshControlPlanesRolesName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesRolesName: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesDescription string
-
-const (
-	RolesMeshControlPlanesDescriptionThisRoleGrantsFullWriteAccessToTheRelatedToMeshControlPlanes RolesMeshControlPlanesDescription = "This role grants full write access to the related to Mesh control planes."
-)
-
-func (e RolesMeshControlPlanesDescription) ToPointer() *RolesMeshControlPlanesDescription {
-	return &e
-}
-func (e *RolesMeshControlPlanesDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants full write access to the related to Mesh control planes.":
-		*e = RolesMeshControlPlanesDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesDescription: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesAdmin struct {
-	Name        RolesMeshControlPlanesRolesName   `json:"name"`
-	Description RolesMeshControlPlanesDescription `json:"description"`
-}
-
-func (r *RolesMeshControlPlanesAdmin) GetName() RolesMeshControlPlanesRolesName {
-	if r == nil {
-		return RolesMeshControlPlanesRolesName("")
-	}
-	return r.Name
-}
-
-func (r *RolesMeshControlPlanesAdmin) GetDescription() RolesMeshControlPlanesDescription {
-	if r == nil {
-		return RolesMeshControlPlanesDescription("")
-	}
-	return r.Description
-}
-
-type RolesMeshControlPlanesRolesConnectorName string
-
-const (
-	RolesMeshControlPlanesRolesConnectorNameConnector RolesMeshControlPlanesRolesConnectorName = "Connector"
-)
-
-func (e RolesMeshControlPlanesRolesConnectorName) ToPointer() *RolesMeshControlPlanesRolesConnectorName {
-	return &e
-}
-func (e *RolesMeshControlPlanesRolesConnectorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Connector":
-		*e = RolesMeshControlPlanesRolesConnectorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesRolesConnectorName: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesRolesDescription string
-
-const (
-	RolesMeshControlPlanesRolesDescriptionThisRoleGrantsAMeshZoneToConnectToTheMeshControlPlaneInKonnect RolesMeshControlPlanesRolesDescription = "This role grants a mesh zone to connect to the mesh control plane in Konnect."
-)
-
-func (e RolesMeshControlPlanesRolesDescription) ToPointer() *RolesMeshControlPlanesRolesDescription {
-	return &e
-}
-func (e *RolesMeshControlPlanesRolesDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants a mesh zone to connect to the mesh control plane in Konnect.":
-		*e = RolesMeshControlPlanesRolesDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesRolesDescription: %v", v)
-	}
-}
-
-type Connector struct {
-	Name        RolesMeshControlPlanesRolesConnectorName `json:"name"`
-	Description RolesMeshControlPlanesRolesDescription   `json:"description"`
-}
-
-func (c *Connector) GetName() RolesMeshControlPlanesRolesConnectorName {
-	if c == nil {
-		return RolesMeshControlPlanesRolesConnectorName("")
-	}
-	return c.Name
-}
-
-func (c *Connector) GetDescription() RolesMeshControlPlanesRolesDescription {
-	if c == nil {
-		return RolesMeshControlPlanesRolesDescription("")
-	}
-	return c.Description
-}
-
-type RolesMeshControlPlanesRolesCreatorName string
-
-const (
-	RolesMeshControlPlanesRolesCreatorNameCreator RolesMeshControlPlanesRolesCreatorName = "Creator"
-)
-
-func (e RolesMeshControlPlanesRolesCreatorName) ToPointer() *RolesMeshControlPlanesRolesCreatorName {
-	return &e
-}
-func (e *RolesMeshControlPlanesRolesCreatorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Creator":
-		*e = RolesMeshControlPlanesRolesCreatorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesRolesCreatorName: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesRolesCreatorDescription string
-
-const (
-	RolesMeshControlPlanesRolesCreatorDescriptionThisRoleGrantsAccessToCreateNewMeshControlPlanes RolesMeshControlPlanesRolesCreatorDescription = "This role grants access to create new Mesh control planes."
-)
-
-func (e RolesMeshControlPlanesRolesCreatorDescription) ToPointer() *RolesMeshControlPlanesRolesCreatorDescription {
-	return &e
-}
-func (e *RolesMeshControlPlanesRolesCreatorDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants access to create new Mesh control planes.":
-		*e = RolesMeshControlPlanesRolesCreatorDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesRolesCreatorDescription: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesCreator struct {
-	Name        RolesMeshControlPlanesRolesCreatorName        `json:"name"`
-	Description RolesMeshControlPlanesRolesCreatorDescription `json:"description"`
-}
-
-func (r *RolesMeshControlPlanesCreator) GetName() RolesMeshControlPlanesRolesCreatorName {
-	if r == nil {
-		return RolesMeshControlPlanesRolesCreatorName("")
-	}
-	return r.Name
-}
-
-func (r *RolesMeshControlPlanesCreator) GetDescription() RolesMeshControlPlanesRolesCreatorDescription {
-	if r == nil {
-		return RolesMeshControlPlanesRolesCreatorDescription("")
-	}
-	return r.Description
-}
-
-type RolesMeshControlPlanesRolesViewerName string
-
-const (
-	RolesMeshControlPlanesRolesViewerNameViewer RolesMeshControlPlanesRolesViewerName = "Viewer"
-)
-
-func (e RolesMeshControlPlanesRolesViewerName) ToPointer() *RolesMeshControlPlanesRolesViewerName {
-	return &e
-}
-func (e *RolesMeshControlPlanesRolesViewerName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Viewer":
-		*e = RolesMeshControlPlanesRolesViewerName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesRolesViewerName: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesRolesViewerDescription string
-
-const (
-	RolesMeshControlPlanesRolesViewerDescriptionThisRoleGrantsAccessToReadOnlyPermissionsToMeshControlPlanes RolesMeshControlPlanesRolesViewerDescription = "This role grants access to read-only permissions to Mesh control planes."
-)
-
-func (e RolesMeshControlPlanesRolesViewerDescription) ToPointer() *RolesMeshControlPlanesRolesViewerDescription {
-	return &e
-}
-func (e *RolesMeshControlPlanesRolesViewerDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "This role grants access to read-only permissions to Mesh control planes.":
-		*e = RolesMeshControlPlanesRolesViewerDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesMeshControlPlanesRolesViewerDescription: %v", v)
-	}
-}
-
-type RolesMeshControlPlanesViewer struct {
-	Name        RolesMeshControlPlanesRolesViewerName        `json:"name"`
-	Description RolesMeshControlPlanesRolesViewerDescription `json:"description"`
-}
-
-func (r *RolesMeshControlPlanesViewer) GetName() RolesMeshControlPlanesRolesViewerName {
-	if r == nil {
-		return RolesMeshControlPlanesRolesViewerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesMeshControlPlanesViewer) GetDescription() RolesMeshControlPlanesRolesViewerDescription {
-	if r == nil {
-		return RolesMeshControlPlanesRolesViewerDescription("")
-	}
-	return r.Description
-}
-
-type RolesMeshControlPlanesRoles struct {
-	Admin     *RolesMeshControlPlanesAdmin   `json:"admin,omitempty"`
-	Connector *Connector                     `json:"connector,omitempty"`
-	Creator   *RolesMeshControlPlanesCreator `json:"creator,omitempty"`
-	Viewer    *RolesMeshControlPlanesViewer  `json:"viewer,omitempty"`
-}
-
-func (r *RolesMeshControlPlanesRoles) GetAdmin() *RolesMeshControlPlanesAdmin {
+func (r *RolesServicesRoles) GetAPIViewer() *APIViewer {
 	if r == nil {
 		return nil
 	}
-	return r.Admin
+	return r.APIViewer
 }
 
-func (r *RolesMeshControlPlanesRoles) GetConnector() *Connector {
-	if r == nil {
-		return nil
-	}
-	return r.Connector
-}
-
-func (r *RolesMeshControlPlanesRoles) GetCreator() *RolesMeshControlPlanesCreator {
-	if r == nil {
-		return nil
-	}
-	return r.Creator
-}
-
-func (r *RolesMeshControlPlanesRoles) GetViewer() *RolesMeshControlPlanesViewer {
-	if r == nil {
-		return nil
-	}
-	return r.Viewer
-}
-
-type MeshControlPlanes struct {
-	Name  RolesMeshControlPlanesName  `json:"name"`
-	Roles RolesMeshControlPlanesRoles `json:"roles"`
-}
-
-func (m *MeshControlPlanes) GetName() RolesMeshControlPlanesName {
-	if m == nil {
-		return RolesMeshControlPlanesName("")
-	}
-	return m.Name
-}
-
-func (m *MeshControlPlanes) GetRoles() RolesMeshControlPlanesRoles {
-	if m == nil {
-		return RolesMeshControlPlanesRoles{}
-	}
-	return m.Roles
-}
-
-type RolesDashboardsName string
-
-const (
-	RolesDashboardsNameDashboards RolesDashboardsName = "Dashboards"
-)
-
-func (e RolesDashboardsName) ToPointer() *RolesDashboardsName {
-	return &e
-}
-func (e *RolesDashboardsName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Dashboards":
-		*e = RolesDashboardsName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsName: %v", v)
-	}
-}
-
-type RolesDashboardsRolesName string
-
-const (
-	RolesDashboardsRolesNameAdmin RolesDashboardsRolesName = "Admin"
-)
-
-func (e RolesDashboardsRolesName) ToPointer() *RolesDashboardsRolesName {
-	return &e
-}
-func (e *RolesDashboardsRolesName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Admin":
-		*e = RolesDashboardsRolesName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsRolesName: %v", v)
-	}
-}
-
-type RolesDashboardsDescription string
-
-const (
-	RolesDashboardsDescriptionAllowsUsersToEditDeleteAndShareADashboardInKonnectAnalytics RolesDashboardsDescription = "Allows users to edit, delete, and share a Dashboard in Konnect Analytics."
-)
-
-func (e RolesDashboardsDescription) ToPointer() *RolesDashboardsDescription {
-	return &e
-}
-func (e *RolesDashboardsDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to edit, delete, and share a Dashboard in Konnect Analytics.":
-		*e = RolesDashboardsDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsDescription: %v", v)
-	}
-}
-
-type RolesDashboardsAdmin struct {
-	Name        RolesDashboardsRolesName   `json:"name"`
-	Description RolesDashboardsDescription `json:"description"`
-}
-
-func (r *RolesDashboardsAdmin) GetName() RolesDashboardsRolesName {
-	if r == nil {
-		return RolesDashboardsRolesName("")
-	}
-	return r.Name
-}
-
-func (r *RolesDashboardsAdmin) GetDescription() RolesDashboardsDescription {
-	if r == nil {
-		return RolesDashboardsDescription("")
-	}
-	return r.Description
-}
-
-type RolesDashboardsRolesCreatorName string
-
-const (
-	RolesDashboardsRolesCreatorNameCreator RolesDashboardsRolesCreatorName = "Creator"
-)
-
-func (e RolesDashboardsRolesCreatorName) ToPointer() *RolesDashboardsRolesCreatorName {
-	return &e
-}
-func (e *RolesDashboardsRolesCreatorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Creator":
-		*e = RolesDashboardsRolesCreatorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsRolesCreatorName: %v", v)
-	}
-}
-
-type RolesDashboardsRolesDescription string
-
-const (
-	RolesDashboardsRolesDescriptionAllowsUsersToCreateANewDashboardInKonnectAnalytics RolesDashboardsRolesDescription = "Allows users to create a new Dashboard in Konnect Analytics."
-)
-
-func (e RolesDashboardsRolesDescription) ToPointer() *RolesDashboardsRolesDescription {
-	return &e
-}
-func (e *RolesDashboardsRolesDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to create a new Dashboard in Konnect Analytics.":
-		*e = RolesDashboardsRolesDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsRolesDescription: %v", v)
-	}
-}
-
-type RolesDashboardsCreator struct {
-	Name        RolesDashboardsRolesCreatorName `json:"name"`
-	Description RolesDashboardsRolesDescription `json:"description"`
-}
-
-func (r *RolesDashboardsCreator) GetName() RolesDashboardsRolesCreatorName {
-	if r == nil {
-		return RolesDashboardsRolesCreatorName("")
-	}
-	return r.Name
-}
-
-func (r *RolesDashboardsCreator) GetDescription() RolesDashboardsRolesDescription {
-	if r == nil {
-		return RolesDashboardsRolesDescription("")
-	}
-	return r.Description
-}
-
-type RolesDashboardsRolesEditorName string
-
-const (
-	RolesDashboardsRolesEditorNameEditor RolesDashboardsRolesEditorName = "Editor"
-)
-
-func (e RolesDashboardsRolesEditorName) ToPointer() *RolesDashboardsRolesEditorName {
-	return &e
-}
-func (e *RolesDashboardsRolesEditorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Editor":
-		*e = RolesDashboardsRolesEditorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsRolesEditorName: %v", v)
-	}
-}
-
-type RolesDashboardsRolesEditorDescription string
-
-const (
-	RolesDashboardsRolesEditorDescriptionAllowsUsersToEditADashboardInKonnectAnalytics RolesDashboardsRolesEditorDescription = "Allows users to edit a Dashboard in Konnect Analytics."
-)
-
-func (e RolesDashboardsRolesEditorDescription) ToPointer() *RolesDashboardsRolesEditorDescription {
-	return &e
-}
-func (e *RolesDashboardsRolesEditorDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to edit a Dashboard in Konnect Analytics.":
-		*e = RolesDashboardsRolesEditorDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsRolesEditorDescription: %v", v)
-	}
-}
-
-type Editor struct {
-	Name        RolesDashboardsRolesEditorName        `json:"name"`
-	Description RolesDashboardsRolesEditorDescription `json:"description"`
-}
-
-func (e *Editor) GetName() RolesDashboardsRolesEditorName {
-	if e == nil {
-		return RolesDashboardsRolesEditorName("")
-	}
-	return e.Name
-}
-
-func (e *Editor) GetDescription() RolesDashboardsRolesEditorDescription {
-	if e == nil {
-		return RolesDashboardsRolesEditorDescription("")
-	}
-	return e.Description
-}
-
-type RolesDashboardsRolesViewerName string
-
-const (
-	RolesDashboardsRolesViewerNameViewer RolesDashboardsRolesViewerName = "Viewer"
-)
-
-func (e RolesDashboardsRolesViewerName) ToPointer() *RolesDashboardsRolesViewerName {
-	return &e
-}
-func (e *RolesDashboardsRolesViewerName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Viewer":
-		*e = RolesDashboardsRolesViewerName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsRolesViewerName: %v", v)
-	}
-}
-
-type RolesDashboardsRolesViewerDescription string
-
-const (
-	RolesDashboardsRolesViewerDescriptionAllowsUsersToViewAnyDashboardsContentInKonnectAnalytics RolesDashboardsRolesViewerDescription = "Allows users to view any Dashboards content in Konnect Analytics."
-)
-
-func (e RolesDashboardsRolesViewerDescription) ToPointer() *RolesDashboardsRolesViewerDescription {
-	return &e
-}
-func (e *RolesDashboardsRolesViewerDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to view any Dashboards content in Konnect Analytics.":
-		*e = RolesDashboardsRolesViewerDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesDashboardsRolesViewerDescription: %v", v)
-	}
-}
-
-type RolesDashboardsViewer struct {
-	Name        RolesDashboardsRolesViewerName        `json:"name"`
-	Description RolesDashboardsRolesViewerDescription `json:"description"`
-}
-
-func (r *RolesDashboardsViewer) GetName() RolesDashboardsRolesViewerName {
-	if r == nil {
-		return RolesDashboardsRolesViewerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesDashboardsViewer) GetDescription() RolesDashboardsRolesViewerDescription {
-	if r == nil {
-		return RolesDashboardsRolesViewerDescription("")
-	}
-	return r.Description
-}
-
-type RolesDashboardsRoles struct {
-	Admin   *RolesDashboardsAdmin   `json:"admin,omitempty"`
-	Creator *RolesDashboardsCreator `json:"creator,omitempty"`
-	Editor  *Editor                 `json:"editor,omitempty"`
-	Viewer  *RolesDashboardsViewer  `json:"viewer,omitempty"`
-}
-
-func (r *RolesDashboardsRoles) GetAdmin() *RolesDashboardsAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.Admin
-}
-
-func (r *RolesDashboardsRoles) GetCreator() *RolesDashboardsCreator {
-	if r == nil {
-		return nil
-	}
-	return r.Creator
-}
-
-func (r *RolesDashboardsRoles) GetEditor() *Editor {
-	if r == nil {
-		return nil
-	}
-	return r.Editor
-}
-
-func (r *RolesDashboardsRoles) GetViewer() *RolesDashboardsViewer {
-	if r == nil {
-		return nil
-	}
-	return r.Viewer
-}
-
-type Dashboards struct {
-	Name  RolesDashboardsName  `json:"name"`
-	Roles RolesDashboardsRoles `json:"roles"`
-}
-
-func (d *Dashboards) GetName() RolesDashboardsName {
-	if d == nil {
-		return RolesDashboardsName("")
-	}
-	return d.Name
-}
-
-func (d *Dashboards) GetRoles() RolesDashboardsRoles {
-	if d == nil {
-		return RolesDashboardsRoles{}
-	}
-	return d.Roles
-}
-
-type RolesReportsName string
-
-const (
-	RolesReportsNameReports RolesReportsName = "Reports"
-)
-
-func (e RolesReportsName) ToPointer() *RolesReportsName {
-	return &e
-}
-func (e *RolesReportsName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Reports":
-		*e = RolesReportsName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsName: %v", v)
-	}
-}
-
-type RolesReportsRolesName string
-
-const (
-	RolesReportsRolesNameAdmin RolesReportsRolesName = "Admin"
-)
-
-func (e RolesReportsRolesName) ToPointer() *RolesReportsRolesName {
-	return &e
-}
-func (e *RolesReportsRolesName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Admin":
-		*e = RolesReportsRolesName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsRolesName: %v", v)
-	}
-}
-
-type RolesReportsDescription string
-
-const (
-	RolesReportsDescriptionAllowsUsersToEditDeleteAndShareAReportInKonnectAnalytics RolesReportsDescription = "Allows users to edit, delete, and share a Report in Konnect Analytics."
-)
-
-func (e RolesReportsDescription) ToPointer() *RolesReportsDescription {
-	return &e
-}
-func (e *RolesReportsDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to edit, delete, and share a Report in Konnect Analytics.":
-		*e = RolesReportsDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsDescription: %v", v)
-	}
-}
-
-type RolesReportsAdmin struct {
-	Name        RolesReportsRolesName   `json:"name"`
-	Description RolesReportsDescription `json:"description"`
-}
-
-func (r *RolesReportsAdmin) GetName() RolesReportsRolesName {
-	if r == nil {
-		return RolesReportsRolesName("")
-	}
-	return r.Name
-}
-
-func (r *RolesReportsAdmin) GetDescription() RolesReportsDescription {
-	if r == nil {
-		return RolesReportsDescription("")
-	}
-	return r.Description
-}
-
-type RolesReportsRolesCreatorName string
-
-const (
-	RolesReportsRolesCreatorNameCreator RolesReportsRolesCreatorName = "Creator"
-)
-
-func (e RolesReportsRolesCreatorName) ToPointer() *RolesReportsRolesCreatorName {
-	return &e
-}
-func (e *RolesReportsRolesCreatorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Creator":
-		*e = RolesReportsRolesCreatorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsRolesCreatorName: %v", v)
-	}
-}
-
-type RolesReportsRolesDescription string
-
-const (
-	RolesReportsRolesDescriptionAllowsUsersToCreateANewReportInKonnectAnalytics RolesReportsRolesDescription = "Allows users to create a new Report in Konnect Analytics."
-)
-
-func (e RolesReportsRolesDescription) ToPointer() *RolesReportsRolesDescription {
-	return &e
-}
-func (e *RolesReportsRolesDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to create a new Report in Konnect Analytics.":
-		*e = RolesReportsRolesDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsRolesDescription: %v", v)
-	}
-}
-
-type RolesReportsCreator struct {
-	Name        RolesReportsRolesCreatorName `json:"name"`
-	Description RolesReportsRolesDescription `json:"description"`
-}
-
-func (r *RolesReportsCreator) GetName() RolesReportsRolesCreatorName {
-	if r == nil {
-		return RolesReportsRolesCreatorName("")
-	}
-	return r.Name
-}
-
-func (r *RolesReportsCreator) GetDescription() RolesReportsRolesDescription {
-	if r == nil {
-		return RolesReportsRolesDescription("")
-	}
-	return r.Description
-}
-
-type RolesReportsRolesEditorName string
-
-const (
-	RolesReportsRolesEditorNameEditor RolesReportsRolesEditorName = "Editor"
-)
-
-func (e RolesReportsRolesEditorName) ToPointer() *RolesReportsRolesEditorName {
-	return &e
-}
-func (e *RolesReportsRolesEditorName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Editor":
-		*e = RolesReportsRolesEditorName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsRolesEditorName: %v", v)
-	}
-}
-
-type RolesReportsRolesEditorDescription string
-
-const (
-	RolesReportsRolesEditorDescriptionAllowsUsersToEditAReportInKonnectAnalytics RolesReportsRolesEditorDescription = "Allows users to edit a Report in Konnect Analytics."
-)
-
-func (e RolesReportsRolesEditorDescription) ToPointer() *RolesReportsRolesEditorDescription {
-	return &e
-}
-func (e *RolesReportsRolesEditorDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to edit a Report in Konnect Analytics.":
-		*e = RolesReportsRolesEditorDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsRolesEditorDescription: %v", v)
-	}
-}
-
-type RolesEditor struct {
-	Name        RolesReportsRolesEditorName        `json:"name"`
-	Description RolesReportsRolesEditorDescription `json:"description"`
-}
-
-func (r *RolesEditor) GetName() RolesReportsRolesEditorName {
-	if r == nil {
-		return RolesReportsRolesEditorName("")
-	}
-	return r.Name
-}
-
-func (r *RolesEditor) GetDescription() RolesReportsRolesEditorDescription {
-	if r == nil {
-		return RolesReportsRolesEditorDescription("")
-	}
-	return r.Description
-}
-
-type RolesReportsRolesViewerName string
-
-const (
-	RolesReportsRolesViewerNameViewer RolesReportsRolesViewerName = "Viewer"
-)
-
-func (e RolesReportsRolesViewerName) ToPointer() *RolesReportsRolesViewerName {
-	return &e
-}
-func (e *RolesReportsRolesViewerName) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Viewer":
-		*e = RolesReportsRolesViewerName(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsRolesViewerName: %v", v)
-	}
-}
-
-type RolesReportsRolesViewerDescription string
-
-const (
-	RolesReportsRolesViewerDescriptionAllowsUsersToViewAReportInKonnectAnalytics RolesReportsRolesViewerDescription = "Allows users to view a Report in Konnect Analytics."
-)
-
-func (e RolesReportsRolesViewerDescription) ToPointer() *RolesReportsRolesViewerDescription {
-	return &e
-}
-func (e *RolesReportsRolesViewerDescription) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Allows users to view a Report in Konnect Analytics.":
-		*e = RolesReportsRolesViewerDescription(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for RolesReportsRolesViewerDescription: %v", v)
-	}
-}
-
-type RolesReportsViewer struct {
-	Name        RolesReportsRolesViewerName        `json:"name"`
-	Description RolesReportsRolesViewerDescription `json:"description"`
-}
-
-func (r *RolesReportsViewer) GetName() RolesReportsRolesViewerName {
-	if r == nil {
-		return RolesReportsRolesViewerName("")
-	}
-	return r.Name
-}
-
-func (r *RolesReportsViewer) GetDescription() RolesReportsRolesViewerDescription {
-	if r == nil {
-		return RolesReportsRolesViewerDescription("")
-	}
-	return r.Description
-}
-
-type RolesReportsRoles struct {
-	Admin   *RolesReportsAdmin   `json:"admin,omitempty"`
-	Creator *RolesReportsCreator `json:"creator,omitempty"`
-	Editor  *RolesEditor         `json:"editor,omitempty"`
-	Viewer  *RolesReportsViewer  `json:"viewer,omitempty"`
-}
-
-func (r *RolesReportsRoles) GetAdmin() *RolesReportsAdmin {
-	if r == nil {
-		return nil
-	}
-	return r.Admin
-}
-
-func (r *RolesReportsRoles) GetCreator() *RolesReportsCreator {
-	if r == nil {
-		return nil
-	}
-	return r.Creator
-}
-
-func (r *RolesReportsRoles) GetEditor() *RolesEditor {
-	if r == nil {
-		return nil
-	}
-	return r.Editor
-}
-
-func (r *RolesReportsRoles) GetViewer() *RolesReportsViewer {
-	if r == nil {
-		return nil
-	}
-	return r.Viewer
-}
-
-type Reports struct {
-	Name  RolesReportsName  `json:"name"`
-	Roles RolesReportsRoles `json:"roles"`
+type Services struct {
+	Name  RolesServicesName  `json:"name"`
+	Roles RolesServicesRoles `json:"roles"`
 }
 
-func (r *Reports) GetName() RolesReportsName {
-	if r == nil {
-		return RolesReportsName("")
+func (s *Services) GetName() RolesServicesName {
+	if s == nil {
+		return RolesServicesName("")
 	}
-	return r.Name
+	return s.Name
 }
 
-func (r *Reports) GetRoles() RolesReportsRoles {
-	if r == nil {
-		return RolesReportsRoles{}
+func (s *Services) GetRoles() RolesServicesRoles {
+	if s == nil {
+		return RolesServicesRoles{}
 	}
-	return r.Roles
+	return s.Roles
 }
 
 // Roles - The predefined, or system managed, roles.
 type Roles struct {
-	ControlPlanes             *ControlPlanes                  `json:"control_planes,omitempty"`
-	APIProducts               *APIProducts                    `json:"api_products,omitempty"`
-	Portals                   *PortalsRoles                   `json:"portals,omitempty"`
-	ApplicationAuthStrategies *ApplicationAuthStrategiesRoles `json:"application_auth_strategies,omitempty"`
-	DcrProviders              *DCRProvidersRoles              `json:"dcr_providers,omitempty"`
-	AuditLogs                 *AuditLogs                      `json:"audit_logs,omitempty"`
-	Identity                  *Identity                       `json:"identity,omitempty"`
-	MeshControlPlanes         *MeshControlPlanes              `json:"mesh_control_planes,omitempty"`
-	Dashboards                *Dashboards                     `json:"dashboards,omitempty"`
-	Reports                   *Reports                        `json:"reports,omitempty"`
+	AddOns            *AddOns            `json:"add_ons,omitempty"`
+	Agents            *Agents            `json:"agents,omitempty"`
+	AiGateways        *AiGateways        `json:"ai_gateways,omitempty"`
+	AiModels          *AiModels          `json:"ai_models,omitempty"`
+	APIProducts       *APIProducts       `json:"api_products,omitempty"`
+	Apis              *Apis              `json:"apis,omitempty"`
+	AuditLogs         *AuditLogs         `json:"audit_logs,omitempty"`
+	AuthServers       *AuthServers       `json:"auth_servers,omitempty"`
+	ContextInterfaces *ContextInterfaces `json:"context_interfaces,omitempty"`
+	ControlPlanes     *ControlPlanes     `json:"control_planes,omitempty"`
+	Dashboards        *Dashboards        `json:"dashboards,omitempty"`
+	Directories       *Directories       `json:"directories,omitempty"`
+	EventGateway      *EventGateway      `json:"event_gateway,omitempty"`
+	Identity          *Identity          `json:"identity,omitempty"`
+	McpServers        *McpServers        `json:"mcp_servers,omitempty"`
+	MeshControlPlanes *MeshControlPlanes `json:"mesh_control_planes,omitempty"`
+	Metering          *Metering          `json:"metering,omitempty"`
+	Networks          *Networks          `json:"networks,omitempty"`
+	Reports           *Reports           `json:"reports,omitempty"`
+	ServiceHub        *ServiceHub        `json:"service_hub,omitempty"`
+	Services          *Services          `json:"services,omitempty"`
 }
 
-func (r *Roles) GetControlPlanes() *ControlPlanes {
+func (r *Roles) GetAddOns() *AddOns {
 	if r == nil {
 		return nil
 	}
-	return r.ControlPlanes
+	return r.AddOns
+}
+
+func (r *Roles) GetAgents() *Agents {
+	if r == nil {
+		return nil
+	}
+	return r.Agents
+}
+
+func (r *Roles) GetAiGateways() *AiGateways {
+	if r == nil {
+		return nil
+	}
+	return r.AiGateways
+}
+
+func (r *Roles) GetAiModels() *AiModels {
+	if r == nil {
+		return nil
+	}
+	return r.AiModels
 }
 
 func (r *Roles) GetAPIProducts() *APIProducts {
@@ -2915,25 +784,11 @@ func (r *Roles) GetAPIProducts() *APIProducts {
 	return r.APIProducts
 }
 
-func (r *Roles) GetPortals() *PortalsRoles {
+func (r *Roles) GetApis() *Apis {
 	if r == nil {
 		return nil
 	}
-	return r.Portals
-}
-
-func (r *Roles) GetApplicationAuthStrategies() *ApplicationAuthStrategiesRoles {
-	if r == nil {
-		return nil
-	}
-	return r.ApplicationAuthStrategies
-}
-
-func (r *Roles) GetDcrProviders() *DCRProvidersRoles {
-	if r == nil {
-		return nil
-	}
-	return r.DcrProviders
+	return r.Apis
 }
 
 func (r *Roles) GetAuditLogs() *AuditLogs {
@@ -2943,18 +798,25 @@ func (r *Roles) GetAuditLogs() *AuditLogs {
 	return r.AuditLogs
 }
 
-func (r *Roles) GetIdentity() *Identity {
+func (r *Roles) GetAuthServers() *AuthServers {
 	if r == nil {
 		return nil
 	}
-	return r.Identity
+	return r.AuthServers
 }
 
-func (r *Roles) GetMeshControlPlanes() *MeshControlPlanes {
+func (r *Roles) GetContextInterfaces() *ContextInterfaces {
 	if r == nil {
 		return nil
 	}
-	return r.MeshControlPlanes
+	return r.ContextInterfaces
+}
+
+func (r *Roles) GetControlPlanes() *ControlPlanes {
+	if r == nil {
+		return nil
+	}
+	return r.ControlPlanes
 }
 
 func (r *Roles) GetDashboards() *Dashboards {
@@ -2964,9 +826,72 @@ func (r *Roles) GetDashboards() *Dashboards {
 	return r.Dashboards
 }
 
+func (r *Roles) GetDirectories() *Directories {
+	if r == nil {
+		return nil
+	}
+	return r.Directories
+}
+
+func (r *Roles) GetEventGateway() *EventGateway {
+	if r == nil {
+		return nil
+	}
+	return r.EventGateway
+}
+
+func (r *Roles) GetIdentity() *Identity {
+	if r == nil {
+		return nil
+	}
+	return r.Identity
+}
+
+func (r *Roles) GetMcpServers() *McpServers {
+	if r == nil {
+		return nil
+	}
+	return r.McpServers
+}
+
+func (r *Roles) GetMeshControlPlanes() *MeshControlPlanes {
+	if r == nil {
+		return nil
+	}
+	return r.MeshControlPlanes
+}
+
+func (r *Roles) GetMetering() *Metering {
+	if r == nil {
+		return nil
+	}
+	return r.Metering
+}
+
+func (r *Roles) GetNetworks() *Networks {
+	if r == nil {
+		return nil
+	}
+	return r.Networks
+}
+
 func (r *Roles) GetReports() *Reports {
 	if r == nil {
 		return nil
 	}
 	return r.Reports
+}
+
+func (r *Roles) GetServiceHub() *ServiceHub {
+	if r == nil {
+		return nil
+	}
+	return r.ServiceHub
+}
+
+func (r *Roles) GetServices() *Services {
+	if r == nil {
+		return nil
+	}
+	return r.Services
 }

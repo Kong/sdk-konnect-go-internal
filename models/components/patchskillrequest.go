@@ -12,14 +12,12 @@ import (
 type PatchSkillRequestSourceType string
 
 const (
-	PatchSkillRequestSourceTypeRaw    PatchSkillRequestSourceType = "raw"
-	PatchSkillRequestSourceTypeGithub PatchSkillRequestSourceType = "github"
+	PatchSkillRequestSourceTypeRaw PatchSkillRequestSourceType = "raw"
 )
 
 // PatchSkillRequestSource - Replaces the existing source in its entirety — partial updates to individual source attributes are not supported. The source `type` cannot be changed after creation.
 type PatchSkillRequestSource struct {
-	RawSkillSourcePayload    *RawSkillSourcePayload    `queryParam:"inline" union:"member"`
-	GithubSkillSourcePayload *GithubSkillSourcePayload `queryParam:"inline" union:"member"`
+	RawSkillSourcePayload *RawSkillSourcePayload `queryParam:"inline" union:"member"`
 
 	Type PatchSkillRequestSourceType
 }
@@ -33,18 +31,6 @@ func CreatePatchSkillRequestSourceRaw(raw RawSkillSourcePayload) PatchSkillReque
 	return PatchSkillRequestSource{
 		RawSkillSourcePayload: &raw,
 		Type:                  typ,
-	}
-}
-
-func CreatePatchSkillRequestSourceGithub(github GithubSkillSourcePayload) PatchSkillRequestSource {
-	typ := PatchSkillRequestSourceTypeGithub
-
-	typStr := GithubSkillSourcePayloadType(typ)
-	github.Type = typStr
-
-	return PatchSkillRequestSource{
-		GithubSkillSourcePayload: &github,
-		Type:                     typ,
 	}
 }
 
@@ -76,15 +62,6 @@ func (u *PatchSkillRequestSource) UnmarshalJSON(data []byte) (err error) {
 		u.RawSkillSourcePayload = rawSkillSourcePayload
 		u.Type = PatchSkillRequestSourceTypeRaw
 		return nil
-	case "github":
-		githubSkillSourcePayload := new(GithubSkillSourcePayload)
-		if err := utils.UnmarshalJSON(data, &githubSkillSourcePayload, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == github) type GithubSkillSourcePayload within PatchSkillRequestSource: %w", string(data), err)
-		}
-
-		u.GithubSkillSourcePayload = githubSkillSourcePayload
-		u.Type = PatchSkillRequestSourceTypeGithub
-		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for PatchSkillRequestSource", string(data))
@@ -93,10 +70,6 @@ func (u *PatchSkillRequestSource) UnmarshalJSON(data []byte) (err error) {
 func (u PatchSkillRequestSource) MarshalJSON() ([]byte, error) {
 	if u.RawSkillSourcePayload != nil {
 		return utils.MarshalJSON(u.RawSkillSourcePayload, "", true)
-	}
-
-	if u.GithubSkillSourcePayload != nil {
-		return utils.MarshalJSON(u.GithubSkillSourcePayload, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type PatchSkillRequestSource: all fields are null")
@@ -140,13 +113,6 @@ func (p *PatchSkillRequest) GetSource() *PatchSkillRequestSource {
 func (p *PatchSkillRequest) GetSourceRaw() *RawSkillSourcePayload {
 	if v := p.GetSource(); v != nil {
 		return v.RawSkillSourcePayload
-	}
-	return nil
-}
-
-func (p *PatchSkillRequest) GetSourceGithub() *GithubSkillSourcePayload {
-	if v := p.GetSource(); v != nil {
-		return v.GithubSkillSourcePayload
 	}
 	return nil
 }

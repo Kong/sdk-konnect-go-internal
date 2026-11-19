@@ -25,7 +25,6 @@ func (e *CatalogIntegrationVisibility) IsExact() bool {
 	return false
 }
 
-// CatalogIntegration - A response containing a single integration object.
 type CatalogIntegration struct {
 	// The machine name of the integration that uniquely identifies it within the catalog.
 	Name string `json:"name"`
@@ -74,38 +73,6 @@ type CatalogIntegration struct {
 	//   - Values are a map of event type definitions.
 	//
 	Events map[string]map[string]IntegrationResourceEvent `json:"events"`
-	// Defines how an integration behaves as a source provider of Catalog Service Incidents.
-	// Incidents are entities that can be attached to Catalog Services via an integration's Resource mapping.
-	// When an integration implements this capability, it can act as a source type for Incident data.
-	// In this role, the integration becomes the source of truth for the incident data.
-	// When an incident is attached to a Catalog Service using this source type, the platform relies on the external system to provide and update the incident data.
-	// A null value indicates the given integration does not act as a source provider of incidents.
-	//
-	IncidentProvider *CatalogIntegrationIncidentProvider `json:"incident_provider,omitempty"`
-	// Defines how an integration behaves as a source provider of Catalog Service On-Call schedules.
-	// On-Call schedules are entities that can be attached to Catalog Services via an integration's Resource mapping.
-	// When an integration implements this capability, it can act as a source type for On-Call data.
-	// In this role, the integration becomes the source of truth for the on-call schedule data.
-	// When an on-call schedule is attached to a Catalog Service using this source type, the platform relies on the external system to provide and update the on-call schedule data.
-	// A null value indicates the given integration does not act as a source provider of on-call schedules.
-	//
-	OnCallProvider *CatalogIntegrationOnCallProvider `json:"on_call_provider,omitempty"`
-	// Defines how an integration behaves as a source provider of Catalog Service Pull Requests.
-	// Pull Requests are entities that can be attached to Catalog Services via an integration's Resource mapping.
-	// When an integration implements this capability, it can act as a source type for Pull Request data.
-	// In this role, the integration becomes the source of truth for the pull request data.
-	// When a pull request is attached to a Catalog Service using this source type, the platform relies on the external system to provide and update the pull request data.
-	// A null value indicates the given integration does not act as a source provider of pull requests.
-	//
-	PullRequestProvider *CatalogIntegrationPullRequestProvider `json:"pull_request_provider,omitempty"`
-	// Defines how an integration behaves as a source provider of Catalog Service Workflows.
-	// Workflows are entities that can be attached to Catalog Services via an integration's Resource mapping.
-	// When an integration implements this capability, it can act as a source type for Workflow data.
-	// In this role, the integration becomes the source of truth for the workflow data.
-	// When a workflow is attached to a Catalog Service using this source type, the platform relies on the external system to provide and update the workflow data.
-	// A null value indicates the given integration does not act as a source provider of workflows.
-	//
-	WorkflowProvider *CatalogIntegrationWorkflowProvider `json:"workflow_provider,omitempty"`
 }
 
 func (c *CatalogIntegration) GetName() string {
@@ -190,32 +157,4 @@ func (c *CatalogIntegration) GetEvents() map[string]map[string]IntegrationResour
 		return nil
 	}
 	return c.Events
-}
-
-func (c *CatalogIntegration) GetIncidentProvider() *CatalogIntegrationIncidentProvider {
-	if c == nil {
-		return nil
-	}
-	return c.IncidentProvider
-}
-
-func (c *CatalogIntegration) GetOnCallProvider() *CatalogIntegrationOnCallProvider {
-	if c == nil {
-		return nil
-	}
-	return c.OnCallProvider
-}
-
-func (c *CatalogIntegration) GetPullRequestProvider() *CatalogIntegrationPullRequestProvider {
-	if c == nil {
-		return nil
-	}
-	return c.PullRequestProvider
-}
-
-func (c *CatalogIntegration) GetWorkflowProvider() *CatalogIntegrationWorkflowProvider {
-	if c == nil {
-		return nil
-	}
-	return c.WorkflowProvider
 }

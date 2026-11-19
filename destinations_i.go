@@ -12,36 +12,41 @@ import (
 // DestinationsSDK is a generated interface.
 type DestinationsSDK interface {
 	// ListDestinations - List destinations
-	// List the http destinations of an organization, newest first. filter[event_type] returns only the destinations with an enabled org subscription to that event type.
+	// Returns the organization's destinations, with the newest destinations first. Use the event type filter to list destinations with an enabled subscription for a specific event type.
 	ListDestinations(ctx context.Context, request operations.ListDestinationsRequest, opts ...operations.Option) (*operations.ListDestinationsResponse, error)
 	// CreateDestination - Create a destination
-	// Create an http destination for the organization. The new destination is pending verification: the request does not call the endpoint. A successful delivery, or a successful test, enables the destination. The answer holds the signing secret once. An organization holds at most 50 destinations, in every state; creating one beyond the limit answers 409.
+	// Creates an HTTP destination for organization event notifications. You can create up to 50 destinations for an organization.
+	// The response includes the signing secret. Save it when you create the destination; later responses do not include it.
 	CreateDestination(ctx context.Context, request components.DestinationCreatePayload, opts ...operations.Option) (*operations.CreateDestinationResponse, error)
 	// GetDestination - Get a destination
-	// Get one http destination.
+	// Show a destination's details. Does not return sensitive keys such as signing secret.
 	GetDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.GetDestinationResponse, error)
 	// UpdateDestination - Update a destination
-	// Update one http destination. A change of the url follows the rules of the create request. It does not verify the destination again, and it does not change the state or the signing key. A destination in any state can change to enabled or disabled; enabling a destination that is pending verification skips the verification. A concurrent change of the destination answers 409.
+	// Update a destination's parameters
 	UpdateDestination(ctx context.Context, destinationID string, destinationUpdatePayload components.DestinationUpdatePayload, opts ...operations.Option) (*operations.UpdateDestinationResponse, error)
 	// DeleteDestination - Delete a destination
-	// Delete one http destination. The request removes the destination from every org subscription that holds it, and deletes an org subscription that holds no other destination. It also deletes the signing keys and all the deliveries of the destination. It cannot be undone.
+	// Deletes the destination and removes it from all subscriptions that use it.
+	// If this leaves a subscription with no destinations, that subscription is also deleted.
+	// This action also deletes the destination's signing keys and delivery history. You cannot undo this action.
 	DeleteDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.DeleteDestinationResponse, error)
 	// TestDestination - Test a destination
-	// Execute a destination connection test. The test is one delivery with the mode test. It gets one attempt and no retry, and its outcome is visible in the delivery log. The answer comes before the attempt, so the delivery in the answer is still scheduled. A test that succeeds enables a destination that is pending verification, after the attempt and not in the answer. A disabled destination answers 409. A test within 5 seconds of another test of the same destination answers 429.
+	// Trigger a test delivery to a destination. The test outcome is returned in the "Delivery history" endpoint.
+	// Tests may be triggered every 5 seconds.
 	TestDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.TestDestinationResponse, error)
 	// RotateDestinationSecret - Rotate the destination signing secret
-	// Rotate the signing secret of an http destination. The new secret is returned once, in this response. The replaced secret stays valid for an overlap of 24 hours, so the consumer can switch without losing a delivery. A rotation during that overlap answers 409.
+	// Creates a new signing secret for the HTTP destination. The response includes the new secret only once. The previous secret remains valid for 24 hours so you can update your integration.
 	RotateDestinationSecret(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.RotateDestinationSecretResponse, error)
 	// GetDestinationDelivery - Get a delivery and its attempts
-	// Get one delivery of a destination and all its attempts.
+	// Show a notification's delivery status, including information about each delivery attempt.
 	GetDestinationDelivery(ctx context.Context, destinationID string, deliveryID string, opts ...operations.Option) (*operations.GetDestinationDeliveryResponse, error)
 	// ResendDestinationDelivery - Resend a delivery
-	// Trigger a manual redelivery of one delivery. The resend is a new delivery with its own delivery ID, so its webhook-id header differs from the one of the original delivery. The payload is the same bytes as the payload of the original delivery, and the new delivery keeps its event_id. The resend keeps the mode of the original delivery. A delivery without a payload, as a delivery that failed to render, answers 400. A disabled destination answers 409, and so does a delivery that is still scheduled and not expired, which includes a delivery that waits for a retry. A resend within 5 seconds of another delivery of the same event to the same destination answers 429.
+	// Trigger a redelivery of a failed notification. The redelivery has a new delivery ID in the "Delivery history" endpoint.
+	// The payload is identical to the original delivery, including the `event_id` which can be used to deduplicate notifications.
 	ResendDestinationDelivery(ctx context.Context, destinationID string, deliveryID string, opts ...operations.Option) (*operations.ResendDestinationDeliveryResponse, error)
-	// ListDestinationSubscriptions - List the org subscriptions of a destination
-	// List the org subscriptions that hold one destination, for every event type, enabled or paused, oldest first. Each subscription lists all its destinations. The list is not paginated.
-	ListDestinationSubscriptions(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error)
-	// ListDeliveries - List deliveries of the organization
-	// List the deliveries of all the destinations of the organization, newest first. Without a filter, the list holds every delivery of the organization. Each delivery names its destination. filter[destination_id] keeps the deliveries of one destination. A destination that does not exist, or that belongs to another organization, gives an empty list, not a 404. The payload is present on the detail view only.
+	// ListDestinationSubscriptions - List destination subscriptions
+	// Returns the organization's subscriptions that use this destination.
+	ListDestinationSubscriptions(ctx context.Context, request operations.ListDestinationSubscriptionsRequest, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error)
+	// ListDeliveries - List delivery history
+	// List the deliveries for all destinations in this organization. To filter to a specific destination, use `filter[destination_id][eq]`
 	ListDeliveries(ctx context.Context, request operations.ListDeliveriesRequest, opts ...operations.Option) (*operations.ListDeliveriesResponse, error)
 }

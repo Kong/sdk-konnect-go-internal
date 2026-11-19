@@ -2,7 +2,7 @@
 
 package components
 
-type CursorMetaWithTotalPage struct {
+type Page struct {
 	// URI to the first page
 	First *string `json:"first,omitempty"`
 	// URI to the last page
@@ -17,56 +17,56 @@ type CursorMetaWithTotalPage struct {
 	Total float64 `json:"total"`
 }
 
-func (c *CursorMetaWithTotalPage) GetFirst() *string {
-	if c == nil {
+func (p *Page) GetFirst() *string {
+	if p == nil {
 		return nil
 	}
-	return c.First
+	return p.First
 }
 
-func (c *CursorMetaWithTotalPage) GetLast() *string {
-	if c == nil {
+func (p *Page) GetLast() *string {
+	if p == nil {
 		return nil
 	}
-	return c.Last
+	return p.Last
 }
 
-func (c *CursorMetaWithTotalPage) GetNext() *string {
-	if c == nil {
+func (p *Page) GetNext() *string {
+	if p == nil {
 		return nil
 	}
-	return c.Next
+	return p.Next
 }
 
-func (c *CursorMetaWithTotalPage) GetPrevious() *string {
-	if c == nil {
+func (p *Page) GetPrevious() *string {
+	if p == nil {
 		return nil
 	}
-	return c.Previous
+	return p.Previous
 }
 
-func (c *CursorMetaWithTotalPage) GetSize() float64 {
-	if c == nil {
+func (p *Page) GetSize() float64 {
+	if p == nil {
 		return 0.0
 	}
-	return c.Size
+	return p.Size
 }
 
-func (c *CursorMetaWithTotalPage) GetTotal() float64 {
-	if c == nil {
+func (p *Page) GetTotal() float64 {
+	if p == nil {
 		return 0.0
 	}
-	return c.Total
+	return p.Total
 }
 
 // CursorMetaWithTotal - Pagination metadata with exact total. Useful when the collection size is inexpensive to provide.
 type CursorMetaWithTotal struct {
-	Page CursorMetaWithTotalPage `json:"page"`
+	Page Page `json:"page"`
 }
 
-func (c *CursorMetaWithTotal) GetPage() CursorMetaWithTotalPage {
+func (c *CursorMetaWithTotal) GetPage() Page {
 	if c == nil {
-		return CursorMetaWithTotalPage{}
+		return Page{}
 	}
 	return c.Page
 }

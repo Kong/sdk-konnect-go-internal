@@ -7,19 +7,22 @@ import (
 	"time"
 )
 
-// OrgSubscription - The subscription of one or more http destinations to one org scoped event type, for some regions and some entities.
+// OrgSubscription - Subscription that sends an organization event to one or more destinations for the selected regions and entities.
 type OrgSubscription struct {
 	// UUID v7 identifier of the subscription.
 	ID string `json:"id"`
-	// User provided name of the subscription.
+	// Name that identifies the subscription.
 	Name string `json:"name"`
-	// Name of the event type.
+	// Event type sent by this subscription.
 	EventType string `json:"event_type"`
-	// UUID v7 identifiers of the http destinations that receive the event type, sorted. A delete of a destination removes it from the list, and a subscription that no destination is left in is deleted.
-	DestinationIds []string             `json:"destination_ids"`
-	Regions        []NotificationRegion `json:"regions"`
-	Entities       []string             `json:"entities"`
-	Enabled        bool                 `json:"enabled"`
+	// IDs of the HTTP destinations that receive this event. Deleting a destination removes its ID from this list. The subscription is deleted if no destinations remain.
+	DestinationIds []string `json:"destination_ids"`
+	// Regions for which this subscription sends notifications. `*` represents all regions.
+	Regions []NotificationRegion `json:"regions"`
+	// Entity IDs for which this subscription sends notifications. `*` represents all entities.
+	Entities []string `json:"entities"`
+	// Indicates whether this subscription sends notifications.
+	Enabled bool `json:"enabled"`
 	// An ISO-8601 timestamp representation of entity creation date.
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8601 timestamp representation of entity update date.

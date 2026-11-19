@@ -68,9 +68,6 @@ func (a *APIPublicationListItemAPIPublicationSpecRenderer) GetTryItUIAudience() 
 
 // APIPublicationListItem - An API publication in a portal
 type APIPublicationListItem struct {
-	// The environment this record is scoped to.
-	//
-	Environment *APIEnvironmentRef `json:"environment,omitempty"`
 	// The API identifier.
 	APIID string `json:"api_id"`
 	// The portal identifier.
@@ -113,13 +110,6 @@ func (a *APIPublicationListItem) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (a *APIPublicationListItem) GetEnvironment() *APIEnvironmentRef {
-	if a == nil {
-		return nil
-	}
-	return a.Environment
 }
 
 func (a *APIPublicationListItem) GetAPIID() string {

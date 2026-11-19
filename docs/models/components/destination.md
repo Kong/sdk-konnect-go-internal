@@ -1,21 +1,21 @@
 # Destination
 
-Properties of an http destination. Secrets are never part of the response.
 
+## Supported Types
 
-## Fields
+### HTTPDestination
 
-| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                | Example                                                                    |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ID`                                                                       | `string`                                                                   | :heavy_check_mark:                                                         | UUID v7 identifier of the destination.                                     |                                                                            |
-| `Name`                                                                     | `string`                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |
-| `Type`                                                                     | [components.DestinationType](../../models/components/destinationtype.md)   | :heavy_check_mark:                                                         | Type of the destination. Only http is supported.                           |                                                                            |
-| `State`                                                                    | [components.DestinationState](../../models/components/destinationstate.md) | :heavy_check_mark:                                                         | Lifecycle state of the destination.                                        |                                                                            |
-| `URL`                                                                      | `*string`                                                                  | :heavy_minus_sign:                                                         | Endpoint URL of the destination.                                           |                                                                            |
-| `URLHost`                                                                  | `*string`                                                                  | :heavy_minus_sign:                                                         | Host part of the target URL.                                               |                                                                            |
-| `CustomHeaderNames`                                                        | []`string`                                                                 | :heavy_minus_sign:                                                         | Names of the configured custom headers. Values are never returned.         |                                                                            |
-| `LastSuccessAt`                                                            | [*time.Time](https://pkg.go.dev/time#Time)                                 | :heavy_minus_sign:                                                         | N/A                                                                        |                                                                            |
-| `LastFailureAt`                                                            | [*time.Time](https://pkg.go.dev/time#Time)                                 | :heavy_minus_sign:                                                         | N/A                                                                        |                                                                            |
-| `LastFailureReason`                                                        | `*string`                                                                  | :heavy_minus_sign:                                                         | N/A                                                                        |                                                                            |
-| `CreatedAt`                                                                | [time.Time](https://pkg.go.dev/time#Time)                                  | :heavy_check_mark:                                                         | An ISO-8601 timestamp representation of entity creation date.              | 2022-11-04T20:10:06.927Z                                                   |
-| `UpdatedAt`                                                                | [time.Time](https://pkg.go.dev/time#Time)                                  | :heavy_check_mark:                                                         | An ISO-8601 timestamp representation of entity update date.                | 2022-11-04T20:10:06.927Z                                                   |
+```go
+destination := components.CreateDestinationHTTP(components.HTTPDestination{/* values here */})
+```
+
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch destination.Type {
+	case components.DestinationTypeHTTP:
+		// destination.HTTPDestination is populated
+}
+```

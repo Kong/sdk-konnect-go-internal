@@ -7,7 +7,34 @@ import (
 	"time"
 )
 
-// Delivery - Properties of a delivery. The payload is present only on the detail view.
+// FailureReason - Reason why delivery did not succeed: render_failed means the notification could not be prepared; http_error means the endpoint returned an unsuccessful HTTP response; retries_exhausted means no more attempts will be made; destination_inactive means the destination could not receive notifications; client_error means the request was rejected; expired means the delivery reached its expiry time.
+type FailureReason string
+
+const (
+	FailureReasonRenderFailed        FailureReason = "render_failed"
+	FailureReasonHTTPError           FailureReason = "http_error"
+	FailureReasonRetriesExhausted    FailureReason = "retries_exhausted"
+	FailureReasonDestinationInactive FailureReason = "destination_inactive"
+	FailureReasonClientError         FailureReason = "client_error"
+	FailureReasonExpired             FailureReason = "expired"
+)
+
+func (e FailureReason) ToPointer() *FailureReason {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *FailureReason) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "render_failed", "http_error", "retries_exhausted", "destination_inactive", "client_error", "expired":
+			return true
+		}
+	}
+	return false
+}
+
+// Delivery - A single delivery.
 type Delivery struct {
 	// UUID v7 identifier of the delivery.
 	ID string `json:"id"`
@@ -19,21 +46,22 @@ type Delivery struct {
 	EventType string `json:"event_type"`
 	// When the event happened, not when it was sent.
 	EventOccurredAt *time.Time `json:"event_occurred_at,omitempty"`
-	Region          *string    `json:"region,omitempty"`
-	// Traffic mode of a delivery.
+	// Region where the delivery was created, in uppercase. For example, `US` or `EU`.
+	Region *string `json:"region,omitempty"`
+	// Indicates whether the delivery is for a live event or a test.
 	Mode DeliveryMode `json:"mode"`
-	// Lifecycle state of a delivery. A scheduled delivery waits for its next attempt, or is being sent. A delivery that reached its expiry time before an attempt settled it is expired. No delivery shows in_flight yet, because the status ignores the lease of a worker, and nothing cancels a delivery, so no delivery is canceled. A filter accepts both values and keeps nothing.
+	// Delivery status. scheduled means delivery is pending; succeeded means delivery completed successfully; failed means delivery attempts ended without success; expired means the delivery reached its expiry time before it succeeded.
 	Status DeliveryStatus `json:"status"`
 	// Number of attempts made so far.
 	AttemptCount int64 `json:"attempt_count"`
-	// Reason of the failure, one of render_failed, http_error, retries_exhausted, destination_inactive, client_error or expired. A delivery that waits for a retry can already hold a reason.
-	FailureReason *string `json:"failure_reason,omitempty"`
+	// Reason why delivery did not succeed: render_failed means the notification could not be prepared; http_error means the endpoint returned an unsuccessful HTTP response; retries_exhausted means no more attempts will be made; destination_inactive means the destination could not receive notifications; client_error means the request was rejected; expired means the delivery reached its expiry time.
+	FailureReason *FailureReason `json:"failure_reason,omitempty"`
 	// HTTP status code of the last attempt.
 	LastStatusCode *int64 `json:"last_status_code,omitempty"`
-	// The exact bytes that were sent. Present on the detail view only.
+	// The payload sent to the destination. Present when fetching a single delivery only.
 	Payload       *string    `json:"payload,omitempty"`
 	NextAttemptAt *time.Time `json:"next_attempt_at,omitempty"`
-	// Deadline of the delivery.
+	// Time after which no more delivery attempts are made.
 	ExpiresAt   time.Time  `json:"expires_at"`
 	CompletedAt *time.Time `json:"completed_at,omitempty"`
 	// An ISO-8601 timestamp representation of entity creation date.
@@ -116,7 +144,7 @@ func (d *Delivery) GetAttemptCount() int64 {
 	return d.AttemptCount
 }
 
-func (d *Delivery) GetFailureReason() *string {
+func (d *Delivery) GetFailureReason() *FailureReason {
 	if d == nil {
 		return nil
 	}

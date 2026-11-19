@@ -297,6 +297,89 @@ func (_c *MockAIGatewaysSDK_GetAiGateway_Call) RunAndReturn(run func(ctx context
 	return _c
 }
 
+// GetAiGatewayRuntimeDefault provides a mock function for the type MockAIGatewaysSDK
+func (_mock *MockAIGatewaysSDK) GetAiGatewayRuntimeDefault(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, opts ...operations.Option) (*operations.GetAiGatewayRuntimeDefaultResponse, error) {
+	var tmpRet mock.Arguments
+	if len(opts) > 0 {
+		tmpRet = _mock.Called(ctx, deploymentType, opts)
+	} else {
+		tmpRet = _mock.Called(ctx, deploymentType)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetAiGatewayRuntimeDefault")
+	}
+
+	var r0 *operations.GetAiGatewayRuntimeDefaultResponse
+	var r1 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, components.AIGatewayRuntimeDefaultDeploymentType, ...operations.Option) (*operations.GetAiGatewayRuntimeDefaultResponse, error)); ok {
+		return returnFunc(ctx, deploymentType, opts...)
+	}
+	if returnFunc, ok := ret.Get(0).(func(context.Context, components.AIGatewayRuntimeDefaultDeploymentType, ...operations.Option) *operations.GetAiGatewayRuntimeDefaultResponse); ok {
+		r0 = returnFunc(ctx, deploymentType, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operations.GetAiGatewayRuntimeDefaultResponse)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(context.Context, components.AIGatewayRuntimeDefaultDeploymentType, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, deploymentType, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+	return r0, r1
+}
+
+// MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetAiGatewayRuntimeDefault'
+type MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call struct {
+	*mock.Call
+}
+
+// GetAiGatewayRuntimeDefault is a helper method to define mock.On call
+//   - ctx context.Context
+//   - deploymentType components.AIGatewayRuntimeDefaultDeploymentType
+//   - opts ...operations.Option
+func (_e *MockAIGatewaysSDK_Expecter) GetAiGatewayRuntimeDefault(ctx any, deploymentType any, opts ...any) *MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call {
+	return &MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call{Call: _e.mock.On("GetAiGatewayRuntimeDefault",
+		append([]any{ctx, deploymentType}, opts...)...)}
+}
+
+func (_c *MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call) Run(run func(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, opts ...operations.Option)) *MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 components.AIGatewayRuntimeDefaultDeploymentType
+		if args[1] != nil {
+			arg1 = args[1].(components.AIGatewayRuntimeDefaultDeploymentType)
+		}
+		var arg2 []operations.Option
+		var variadicArgs []operations.Option
+		if len(args) > 2 {
+			variadicArgs = args[2].([]operations.Option)
+		}
+		arg2 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call) Return(getAiGatewayRuntimeDefaultResponse *operations.GetAiGatewayRuntimeDefaultResponse, err error) *MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call {
+	_c.Call.Return(getAiGatewayRuntimeDefaultResponse, err)
+	return _c
+}
+
+func (_c *MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call) RunAndReturn(run func(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, opts ...operations.Option) (*operations.GetAiGatewayRuntimeDefaultResponse, error)) *MockAIGatewaysSDK_GetAiGatewayRuntimeDefault_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // ListAiGatewayRuntimeVersions provides a mock function for the type MockAIGatewaysSDK
 func (_mock *MockAIGatewaysSDK) ListAiGatewayRuntimeVersions(ctx context.Context, opts ...operations.Option) (*operations.ListAiGatewayRuntimeVersionsResponse, error) {
 	var tmpRet mock.Arguments
@@ -637,6 +720,95 @@ func (_c *MockAIGatewaysSDK_UpdateAiGateway_Call) Return(updateAiGatewayResponse
 }
 
 func (_c *MockAIGatewaysSDK_UpdateAiGateway_Call) RunAndReturn(run func(ctx context.Context, gatewayID string, updateAIGatewayRequest components.UpdateAIGatewayRequest, opts ...operations.Option) (*operations.UpdateAiGatewayResponse, error)) *MockAIGatewaysSDK_UpdateAiGateway_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// UpdateAiGatewayRuntimeDefault provides a mock function for the type MockAIGatewaysSDK
+func (_mock *MockAIGatewaysSDK) UpdateAiGatewayRuntimeDefault(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, aiGatewayRuntimeDefault components.AIGatewayRuntimeDefault, opts ...operations.Option) (*operations.UpdateAiGatewayRuntimeDefaultResponse, error) {
+	var tmpRet mock.Arguments
+	if len(opts) > 0 {
+		tmpRet = _mock.Called(ctx, deploymentType, aiGatewayRuntimeDefault, opts)
+	} else {
+		tmpRet = _mock.Called(ctx, deploymentType, aiGatewayRuntimeDefault)
+	}
+	ret := tmpRet
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateAiGatewayRuntimeDefault")
+	}
+
+	var r0 *operations.UpdateAiGatewayRuntimeDefaultResponse
+	var r1 error
+	if returnFunc, ok := ret.Get(0).(func(context.Context, components.AIGatewayRuntimeDefaultDeploymentType, components.AIGatewayRuntimeDefault, ...operations.Option) (*operations.UpdateAiGatewayRuntimeDefaultResponse, error)); ok {
+		return returnFunc(ctx, deploymentType, aiGatewayRuntimeDefault, opts...)
+	}
+	if returnFunc, ok := ret.Get(0).(func(context.Context, components.AIGatewayRuntimeDefaultDeploymentType, components.AIGatewayRuntimeDefault, ...operations.Option) *operations.UpdateAiGatewayRuntimeDefaultResponse); ok {
+		r0 = returnFunc(ctx, deploymentType, aiGatewayRuntimeDefault, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*operations.UpdateAiGatewayRuntimeDefaultResponse)
+		}
+	}
+	if returnFunc, ok := ret.Get(1).(func(context.Context, components.AIGatewayRuntimeDefaultDeploymentType, components.AIGatewayRuntimeDefault, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, deploymentType, aiGatewayRuntimeDefault, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+	return r0, r1
+}
+
+// MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateAiGatewayRuntimeDefault'
+type MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call struct {
+	*mock.Call
+}
+
+// UpdateAiGatewayRuntimeDefault is a helper method to define mock.On call
+//   - ctx context.Context
+//   - deploymentType components.AIGatewayRuntimeDefaultDeploymentType
+//   - aiGatewayRuntimeDefault components.AIGatewayRuntimeDefault
+//   - opts ...operations.Option
+func (_e *MockAIGatewaysSDK_Expecter) UpdateAiGatewayRuntimeDefault(ctx any, deploymentType any, aiGatewayRuntimeDefault any, opts ...any) *MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call {
+	return &MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call{Call: _e.mock.On("UpdateAiGatewayRuntimeDefault",
+		append([]any{ctx, deploymentType, aiGatewayRuntimeDefault}, opts...)...)}
+}
+
+func (_c *MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call) Run(run func(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, aiGatewayRuntimeDefault components.AIGatewayRuntimeDefault, opts ...operations.Option)) *MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		var arg0 context.Context
+		if args[0] != nil {
+			arg0 = args[0].(context.Context)
+		}
+		var arg1 components.AIGatewayRuntimeDefaultDeploymentType
+		if args[1] != nil {
+			arg1 = args[1].(components.AIGatewayRuntimeDefaultDeploymentType)
+		}
+		var arg2 components.AIGatewayRuntimeDefault
+		if args[2] != nil {
+			arg2 = args[2].(components.AIGatewayRuntimeDefault)
+		}
+		var arg3 []operations.Option
+		var variadicArgs []operations.Option
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
+		}
+		arg3 = variadicArgs
+		run(
+			arg0,
+			arg1,
+			arg2,
+			arg3...,
+		)
+	})
+	return _c
+}
+
+func (_c *MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call) Return(updateAiGatewayRuntimeDefaultResponse *operations.UpdateAiGatewayRuntimeDefaultResponse, err error) *MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call {
+	_c.Call.Return(updateAiGatewayRuntimeDefaultResponse, err)
+	return _c
+}
+
+func (_c *MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call) RunAndReturn(run func(ctx context.Context, deploymentType components.AIGatewayRuntimeDefaultDeploymentType, aiGatewayRuntimeDefault components.AIGatewayRuntimeDefault, opts ...operations.Option) (*operations.UpdateAiGatewayRuntimeDefaultResponse, error)) *MockAIGatewaysSDK_UpdateAiGatewayRuntimeDefault_Call {
 	_c.Call.Return(run)
 	return _c
 }

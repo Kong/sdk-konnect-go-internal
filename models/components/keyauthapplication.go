@@ -46,8 +46,6 @@ type KeyAuthApplication struct {
 	AuthStrategy AuthStrategyKeyAuth `json:"auth_strategy"`
 	// Information about the portal the application is in.
 	Portal KeyAuthApplicationPortal `json:"portal"`
-	// The environment this application is scoped to.
-	Environment *ApplicationEnvironment `json:"environment,omitempty"`
 	// The number of API registrations that are associated with the application. Registrations of any status are included in the count.
 	RegistrationCount float64           `json:"registration_count"`
 	Owner             *ApplicationOwner `json:"owner,omitempty"`
@@ -111,13 +109,6 @@ func (k *KeyAuthApplication) GetPortal() KeyAuthApplicationPortal {
 		return KeyAuthApplicationPortal{}
 	}
 	return k.Portal
-}
-
-func (k *KeyAuthApplication) GetEnvironment() *ApplicationEnvironment {
-	if k == nil {
-		return nil
-	}
-	return k.Environment
 }
 
 func (k *KeyAuthApplication) GetRegistrationCount() float64 {

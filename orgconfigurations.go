@@ -32,8 +32,9 @@ func newOrgConfigurations(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks
 	}
 }
 
-// ListOrgConfigurations - List available org configurations
-// List the org scoped events of the organization. An org scoped event sends its notification to the http destinations that an org admin subscribes to it, with the org subscription operations. No user can switch the http channel of an org scoped notification on or off. Only an org admin can use this operation.
+// ListOrgConfigurations - List available org events
+// Returns the organization event types that you can subscribe to, with each event's title, description, and namespace.
+// Only available to organization administrators.
 func (s *OrgConfigurations) ListOrgConfigurations(ctx context.Context, opts ...operations.Option) (*operations.ListOrgConfigurationsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -281,13 +282,10 @@ func (s *OrgConfigurations) ListOrgConfigurations(ctx context.Context, opts ...o
 
 }
 
-// ListOrgSubscriptions - List the org subscriptions of an event type
-// List the org subscriptions of one org scoped event type, enabled or paused. Only an org admin can use this operation.
-func (s *OrgConfigurations) ListOrgSubscriptions(ctx context.Context, eventID string, opts ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error) {
-	request := operations.ListOrgSubscriptionsRequest{
-		EventID: eventID,
-	}
-
+// ListOrgSubscriptions - List org subscriptions
+// List existing organization subscriptions, including the subscription destinations.
+// Only available to organization administrators.
+func (s *OrgConfigurations) ListOrgSubscriptions(ctx context.Context, request operations.ListOrgSubscriptionsRequest, opts ...operations.Option) (*operations.ListOrgSubscriptionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -338,6 +336,10 @@ func (s *OrgConfigurations) ListOrgSubscriptions(ctx context.Context, eventID st
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -466,6 +468,28 @@ func (s *OrgConfigurations) ListOrgSubscriptions(ctx context.Context, eventID st
 			}
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
+	case httpRes.StatusCode == 400:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out sdkerrors.BadRequestError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
+			}
+
+			out.RawResponse = httpRes
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
@@ -557,7 +581,9 @@ func (s *OrgConfigurations) ListOrgSubscriptions(ctx context.Context, eventID st
 }
 
 // CreateOrgSubscription - Create an org subscription
-// Subscribe one or more http destinations to one org scoped event type for the regions and the entities that the request names. The request makes one subscription that holds all the destinations, so one update changes them together. When a destination does not exist, is being deleted or is not an http destination, the request answers 400 and makes no subscription. A destination can be in more than one subscription of the same event type: it still gets one delivery for each event. A subscription applies to the whole organization: no user can switch it on or off. The event type must be org scoped and must have an http template. Only an org admin can use this operation.
+// Create a subscription for an org scoped event.
+// The event ID to subscribe is placed in the URL. A destination may be used in multiple subscriptions.
+// Only available to organization administrators.
 func (s *OrgConfigurations) CreateOrgSubscription(ctx context.Context, eventID string, orgSubscriptionCreatePayload components.OrgSubscriptionCreatePayload, opts ...operations.Option) (*operations.CreateOrgSubscriptionResponse, error) {
 	request := operations.CreateOrgSubscriptionRequest{
 		EventID:                      eventID,
@@ -862,7 +888,8 @@ func (s *OrgConfigurations) CreateOrgSubscription(ctx context.Context, eventID s
 }
 
 // GetOrgSubscription - Get an org subscription
-// Get one org subscription of an event type. Only an org admin can use this operation.
+// Fetch the details of a single org scoped subscription.
+// Only available to organization administrators.
 func (s *OrgConfigurations) GetOrgSubscription(ctx context.Context, eventID string, subscriptionID string, opts ...operations.Option) (*operations.GetOrgSubscriptionResponse, error) {
 	request := operations.GetOrgSubscriptionRequest{
 		EventID:        eventID,
@@ -1138,7 +1165,8 @@ func (s *OrgConfigurations) GetOrgSubscription(ctx context.Context, eventID stri
 }
 
 // UpdateOrgSubscription - Update an org subscription
-// Replace the name, the destinations, the regions, the entities and the enabled flag of an org subscription. The request names all five. The destinations of the request replace the stored destinations. When a destination does not exist, is being deleted or is not an http destination, the request answers 400 and changes nothing. The enabled flag applies to all the destinations of the subscription. Only an org admin can use this operation.
+// Update the details of an org scoped subscription.
+// Only available to organization administrators.
 func (s *OrgConfigurations) UpdateOrgSubscription(ctx context.Context, request operations.UpdateOrgSubscriptionRequest, opts ...operations.Option) (*operations.UpdateOrgSubscriptionResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -1438,7 +1466,8 @@ func (s *OrgConfigurations) UpdateOrgSubscription(ctx context.Context, request o
 }
 
 // DeleteOrgSubscription - Delete an org subscription
-// Delete one org subscription of an event type. Only an org admin can use this operation.
+// Delete an org scoped subscription.
+// Only available to organization administrators.
 func (s *OrgConfigurations) DeleteOrgSubscription(ctx context.Context, eventID string, subscriptionID string, opts ...operations.Option) (*operations.DeleteOrgSubscriptionResponse, error) {
 	request := operations.DeleteOrgSubscriptionRequest{
 		EventID:        eventID,

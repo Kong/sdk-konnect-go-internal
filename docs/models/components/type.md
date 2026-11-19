@@ -1,7 +1,5 @@
 # Type
 
-The type of the integration for categorization
-
 ## Example Usage
 
 ```go
@@ -9,12 +7,12 @@ import (
 	"github.com/Kong/sdk-konnect-go/models/components"
 )
 
-value := components.TypeTracking
+value := components.TypeHTTP
 ```
 
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `TypeTracking` | tracking       |
+| Name       | Value      |
+| ---------- | ---------- |
+| `TypeHTTP` | http       |

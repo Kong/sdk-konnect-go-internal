@@ -57,3 +57,10 @@ func (g *GetDestinationResponse) GetDestination() *components.Destination {
 	}
 	return g.Destination
 }
+
+func (g *GetDestinationResponse) GetDestinationHTTP() *components.HTTPDestination {
+	if v := g.GetDestination(); v != nil {
+		return v.HTTPDestination
+	}
+	return nil
+}

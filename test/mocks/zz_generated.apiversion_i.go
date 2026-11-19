@@ -7,6 +7,7 @@ package mocks
 import (
 	"context"
 
+	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -48,12 +49,12 @@ func (_m *MockAPIVersionSDK) EXPECT() *MockAPIVersionSDK_Expecter {
 }
 
 // CreateAPIVersion provides a mock function for the type MockAPIVersionSDK
-func (_mock *MockAPIVersionSDK) CreateAPIVersion(ctx context.Context, request operations.CreateAPIVersionRequest, opts ...operations.Option) (*operations.CreateAPIVersionResponse, error) {
+func (_mock *MockAPIVersionSDK) CreateAPIVersion(ctx context.Context, apiID string, createAPIVersionRequest components.CreateAPIVersionRequest, opts ...operations.Option) (*operations.CreateAPIVersionResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
+		tmpRet = _mock.Called(ctx, apiID, createAPIVersionRequest, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, request)
+		tmpRet = _mock.Called(ctx, apiID, createAPIVersionRequest)
 	}
 	ret := tmpRet
 
@@ -63,18 +64,18 @@ func (_mock *MockAPIVersionSDK) CreateAPIVersion(ctx context.Context, request op
 
 	var r0 *operations.CreateAPIVersionResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateAPIVersionRequest, ...operations.Option) (*operations.CreateAPIVersionResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.CreateAPIVersionRequest, ...operations.Option) (*operations.CreateAPIVersionResponse, error)); ok {
+		return returnFunc(ctx, apiID, createAPIVersionRequest, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.CreateAPIVersionRequest, ...operations.Option) *operations.CreateAPIVersionResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.CreateAPIVersionRequest, ...operations.Option) *operations.CreateAPIVersionResponse); ok {
+		r0 = returnFunc(ctx, apiID, createAPIVersionRequest, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.CreateAPIVersionResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.CreateAPIVersionRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.CreateAPIVersionRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, apiID, createAPIVersionRequest, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -88,33 +89,39 @@ type MockAPIVersionSDK_CreateAPIVersion_Call struct {
 
 // CreateAPIVersion is a helper method to define mock.On call
 //   - ctx context.Context
-//   - request operations.CreateAPIVersionRequest
+//   - apiID string
+//   - createAPIVersionRequest components.CreateAPIVersionRequest
 //   - opts ...operations.Option
-func (_e *MockAPIVersionSDK_Expecter) CreateAPIVersion(ctx any, request any, opts ...any) *MockAPIVersionSDK_CreateAPIVersion_Call {
+func (_e *MockAPIVersionSDK_Expecter) CreateAPIVersion(ctx any, apiID any, createAPIVersionRequest any, opts ...any) *MockAPIVersionSDK_CreateAPIVersion_Call {
 	return &MockAPIVersionSDK_CreateAPIVersion_Call{Call: _e.mock.On("CreateAPIVersion",
-		append([]any{ctx, request}, opts...)...)}
+		append([]any{ctx, apiID, createAPIVersionRequest}, opts...)...)}
 }
 
-func (_c *MockAPIVersionSDK_CreateAPIVersion_Call) Run(run func(ctx context.Context, request operations.CreateAPIVersionRequest, opts ...operations.Option)) *MockAPIVersionSDK_CreateAPIVersion_Call {
+func (_c *MockAPIVersionSDK_CreateAPIVersion_Call) Run(run func(ctx context.Context, apiID string, createAPIVersionRequest components.CreateAPIVersionRequest, opts ...operations.Option)) *MockAPIVersionSDK_CreateAPIVersion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.CreateAPIVersionRequest
+		var arg1 string
 		if args[1] != nil {
-			arg1 = args[1].(operations.CreateAPIVersionRequest)
+			arg1 = args[1].(string)
 		}
-		var arg2 []operations.Option
+		var arg2 components.CreateAPIVersionRequest
+		if args[2] != nil {
+			arg2 = args[2].(components.CreateAPIVersionRequest)
+		}
+		var arg3 []operations.Option
 		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
 		}
-		arg2 = variadicArgs
+		arg3 = variadicArgs
 		run(
 			arg0,
 			arg1,
-			arg2...,
+			arg2,
+			arg3...,
 		)
 	})
 	return _c
@@ -125,7 +132,7 @@ func (_c *MockAPIVersionSDK_CreateAPIVersion_Call) Return(createAPIVersionRespon
 	return _c
 }
 
-func (_c *MockAPIVersionSDK_CreateAPIVersion_Call) RunAndReturn(run func(ctx context.Context, request operations.CreateAPIVersionRequest, opts ...operations.Option) (*operations.CreateAPIVersionResponse, error)) *MockAPIVersionSDK_CreateAPIVersion_Call {
+func (_c *MockAPIVersionSDK_CreateAPIVersion_Call) RunAndReturn(run func(ctx context.Context, apiID string, createAPIVersionRequest components.CreateAPIVersionRequest, opts ...operations.Option) (*operations.CreateAPIVersionResponse, error)) *MockAPIVersionSDK_CreateAPIVersion_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -220,12 +227,12 @@ func (_c *MockAPIVersionSDK_DeleteAPIVersion_Call) RunAndReturn(run func(ctx con
 }
 
 // FetchAPIVersion provides a mock function for the type MockAPIVersionSDK
-func (_mock *MockAPIVersionSDK) FetchAPIVersion(ctx context.Context, request operations.FetchAPIVersionRequest, opts ...operations.Option) (*operations.FetchAPIVersionResponse, error) {
+func (_mock *MockAPIVersionSDK) FetchAPIVersion(ctx context.Context, apiID string, versionID string, opts ...operations.Option) (*operations.FetchAPIVersionResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, request, opts)
+		tmpRet = _mock.Called(ctx, apiID, versionID, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, request)
+		tmpRet = _mock.Called(ctx, apiID, versionID)
 	}
 	ret := tmpRet
 
@@ -235,18 +242,18 @@ func (_mock *MockAPIVersionSDK) FetchAPIVersion(ctx context.Context, request ope
 
 	var r0 *operations.FetchAPIVersionResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.FetchAPIVersionRequest, ...operations.Option) (*operations.FetchAPIVersionResponse, error)); ok {
-		return returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) (*operations.FetchAPIVersionResponse, error)); ok {
+		return returnFunc(ctx, apiID, versionID, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.FetchAPIVersionRequest, ...operations.Option) *operations.FetchAPIVersionResponse); ok {
-		r0 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, string, ...operations.Option) *operations.FetchAPIVersionResponse); ok {
+		r0 = returnFunc(ctx, apiID, versionID, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.FetchAPIVersionResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.FetchAPIVersionRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, request, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, string, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, apiID, versionID, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -260,33 +267,39 @@ type MockAPIVersionSDK_FetchAPIVersion_Call struct {
 
 // FetchAPIVersion is a helper method to define mock.On call
 //   - ctx context.Context
-//   - request operations.FetchAPIVersionRequest
+//   - apiID string
+//   - versionID string
 //   - opts ...operations.Option
-func (_e *MockAPIVersionSDK_Expecter) FetchAPIVersion(ctx any, request any, opts ...any) *MockAPIVersionSDK_FetchAPIVersion_Call {
+func (_e *MockAPIVersionSDK_Expecter) FetchAPIVersion(ctx any, apiID any, versionID any, opts ...any) *MockAPIVersionSDK_FetchAPIVersion_Call {
 	return &MockAPIVersionSDK_FetchAPIVersion_Call{Call: _e.mock.On("FetchAPIVersion",
-		append([]any{ctx, request}, opts...)...)}
+		append([]any{ctx, apiID, versionID}, opts...)...)}
 }
 
-func (_c *MockAPIVersionSDK_FetchAPIVersion_Call) Run(run func(ctx context.Context, request operations.FetchAPIVersionRequest, opts ...operations.Option)) *MockAPIVersionSDK_FetchAPIVersion_Call {
+func (_c *MockAPIVersionSDK_FetchAPIVersion_Call) Run(run func(ctx context.Context, apiID string, versionID string, opts ...operations.Option)) *MockAPIVersionSDK_FetchAPIVersion_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 operations.FetchAPIVersionRequest
+		var arg1 string
 		if args[1] != nil {
-			arg1 = args[1].(operations.FetchAPIVersionRequest)
+			arg1 = args[1].(string)
 		}
-		var arg2 []operations.Option
+		var arg2 string
+		if args[2] != nil {
+			arg2 = args[2].(string)
+		}
+		var arg3 []operations.Option
 		var variadicArgs []operations.Option
-		if len(args) > 2 {
-			variadicArgs = args[2].([]operations.Option)
+		if len(args) > 3 {
+			variadicArgs = args[3].([]operations.Option)
 		}
-		arg2 = variadicArgs
+		arg3 = variadicArgs
 		run(
 			arg0,
 			arg1,
-			arg2...,
+			arg2,
+			arg3...,
 		)
 	})
 	return _c
@@ -297,7 +310,7 @@ func (_c *MockAPIVersionSDK_FetchAPIVersion_Call) Return(fetchAPIVersionResponse
 	return _c
 }
 
-func (_c *MockAPIVersionSDK_FetchAPIVersion_Call) RunAndReturn(run func(ctx context.Context, request operations.FetchAPIVersionRequest, opts ...operations.Option) (*operations.FetchAPIVersionResponse, error)) *MockAPIVersionSDK_FetchAPIVersion_Call {
+func (_c *MockAPIVersionSDK_FetchAPIVersion_Call) RunAndReturn(run func(ctx context.Context, apiID string, versionID string, opts ...operations.Option) (*operations.FetchAPIVersionResponse, error)) *MockAPIVersionSDK_FetchAPIVersion_Call {
 	_c.Call.Return(run)
 	return _c
 }

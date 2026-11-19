@@ -17,15 +17,9 @@ type KeyAuth struct {
 	Consumer *KeyAuthConsumer `json:"consumer,omitempty"`
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID  *string `json:"id,omitempty"`
 	Key *string `json:"key,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// A set of strings representing tags.
 	Tags []string `json:"tags,omitempty"`
 	// key-auth ttl in seconds
@@ -46,13 +40,6 @@ func (k *KeyAuth) GetCreatedAt() *int64 {
 	return k.CreatedAt
 }
 
-func (k *KeyAuth) GetDescription() *string {
-	if k == nil {
-		return nil
-	}
-	return k.Description
-}
-
 func (k *KeyAuth) GetID() *string {
 	if k == nil {
 		return nil
@@ -65,13 +52,6 @@ func (k *KeyAuth) GetKey() *string {
 		return nil
 	}
 	return k.Key
-}
-
-func (k *KeyAuth) GetManagedBy() map[string]string {
-	if k == nil {
-		return nil
-	}
-	return k.ManagedBy
 }
 
 func (k *KeyAuth) GetTags() []string {

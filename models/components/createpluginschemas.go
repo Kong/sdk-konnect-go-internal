@@ -6,13 +6,6 @@ type CreatePluginSchemas struct {
 	// The custom plugin schema; `jq -Rs '.' schema.lua`.
 	//
 	LuaSchema string `json:"lua_schema"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Set a key's value to `null` to remove it.
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	//
-	ManagedBy map[string]*string `json:"managed_by,omitempty"`
 }
 
 func (c *CreatePluginSchemas) GetLuaSchema() string {
@@ -20,11 +13,4 @@ func (c *CreatePluginSchemas) GetLuaSchema() string {
 		return ""
 	}
 	return c.LuaSchema
-}
-
-func (c *CreatePluginSchemas) GetManagedBy() map[string]*string {
-	if c == nil {
-		return nil
-	}
-	return c.ManagedBy
 }

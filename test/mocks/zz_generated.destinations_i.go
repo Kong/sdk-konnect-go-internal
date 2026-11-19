@@ -470,12 +470,12 @@ func (_c *MockDestinationsSDK_ListDeliveries_Call) RunAndReturn(run func(ctx con
 }
 
 // ListDestinationSubscriptions provides a mock function for the type MockDestinationsSDK
-func (_mock *MockDestinationsSDK) ListDestinationSubscriptions(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error) {
+func (_mock *MockDestinationsSDK) ListDestinationSubscriptions(ctx context.Context, request operations.ListDestinationSubscriptionsRequest, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, destinationID, opts)
+		tmpRet = _mock.Called(ctx, request, opts)
 	} else {
-		tmpRet = _mock.Called(ctx, destinationID)
+		tmpRet = _mock.Called(ctx, request)
 	}
 	ret := tmpRet
 
@@ -485,18 +485,18 @@ func (_mock *MockDestinationsSDK) ListDestinationSubscriptions(ctx context.Conte
 
 	var r0 *operations.ListDestinationSubscriptionsResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error)); ok {
-		return returnFunc(ctx, destinationID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListDestinationSubscriptionsRequest, ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error)); ok {
+		return returnFunc(ctx, request, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, ...operations.Option) *operations.ListDestinationSubscriptionsResponse); ok {
-		r0 = returnFunc(ctx, destinationID, opts...)
+	if returnFunc, ok := ret.Get(0).(func(context.Context, operations.ListDestinationSubscriptionsRequest, ...operations.Option) *operations.ListDestinationSubscriptionsResponse); ok {
+		r0 = returnFunc(ctx, request, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.ListDestinationSubscriptionsResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, destinationID, opts...)
+	if returnFunc, ok := ret.Get(1).(func(context.Context, operations.ListDestinationSubscriptionsRequest, ...operations.Option) error); ok {
+		r1 = returnFunc(ctx, request, opts...)
 	} else {
 		r1 = ret.Error(1)
 	}
@@ -510,22 +510,22 @@ type MockDestinationsSDK_ListDestinationSubscriptions_Call struct {
 
 // ListDestinationSubscriptions is a helper method to define mock.On call
 //   - ctx context.Context
-//   - destinationID string
+//   - request operations.ListDestinationSubscriptionsRequest
 //   - opts ...operations.Option
-func (_e *MockDestinationsSDK_Expecter) ListDestinationSubscriptions(ctx any, destinationID any, opts ...any) *MockDestinationsSDK_ListDestinationSubscriptions_Call {
+func (_e *MockDestinationsSDK_Expecter) ListDestinationSubscriptions(ctx any, request any, opts ...any) *MockDestinationsSDK_ListDestinationSubscriptions_Call {
 	return &MockDestinationsSDK_ListDestinationSubscriptions_Call{Call: _e.mock.On("ListDestinationSubscriptions",
-		append([]any{ctx, destinationID}, opts...)...)}
+		append([]any{ctx, request}, opts...)...)}
 }
 
-func (_c *MockDestinationsSDK_ListDestinationSubscriptions_Call) Run(run func(ctx context.Context, destinationID string, opts ...operations.Option)) *MockDestinationsSDK_ListDestinationSubscriptions_Call {
+func (_c *MockDestinationsSDK_ListDestinationSubscriptions_Call) Run(run func(ctx context.Context, request operations.ListDestinationSubscriptionsRequest, opts ...operations.Option)) *MockDestinationsSDK_ListDestinationSubscriptions_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
 			arg0 = args[0].(context.Context)
 		}
-		var arg1 string
+		var arg1 operations.ListDestinationSubscriptionsRequest
 		if args[1] != nil {
-			arg1 = args[1].(string)
+			arg1 = args[1].(operations.ListDestinationSubscriptionsRequest)
 		}
 		var arg2 []operations.Option
 		var variadicArgs []operations.Option
@@ -547,7 +547,7 @@ func (_c *MockDestinationsSDK_ListDestinationSubscriptions_Call) Return(listDest
 	return _c
 }
 
-func (_c *MockDestinationsSDK_ListDestinationSubscriptions_Call) RunAndReturn(run func(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error)) *MockDestinationsSDK_ListDestinationSubscriptions_Call {
+func (_c *MockDestinationsSDK_ListDestinationSubscriptions_Call) RunAndReturn(run func(ctx context.Context, request operations.ListDestinationSubscriptionsRequest, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error)) *MockDestinationsSDK_ListDestinationSubscriptions_Call {
 	_c.Call.Return(run)
 	return _c
 }

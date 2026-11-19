@@ -3,33 +3,8 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
-
-type CustomFormCheckboxFieldType string
-
-const (
-	CustomFormCheckboxFieldTypeCheckbox CustomFormCheckboxFieldType = "checkbox"
-)
-
-func (e CustomFormCheckboxFieldType) ToPointer() *CustomFormCheckboxFieldType {
-	return &e
-}
-func (e *CustomFormCheckboxFieldType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "checkbox":
-		*e = CustomFormCheckboxFieldType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CustomFormCheckboxFieldType: %v", v)
-	}
-}
 
 // CustomFormCheckboxField - A single checkbox.
 type CustomFormCheckboxField struct {
@@ -38,16 +13,19 @@ type CustomFormCheckboxField struct {
 	//
 	// Used to match up stored responses across edits.
 	//
-	Name  string                      `json:"name"`
-	Type  CustomFormCheckboxFieldType `json:"type"`
-	Label string                      `json:"label"`
+	Name string `json:"name"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_ string `const:"checkbox" json:"type"`
+	Label string `json:"label"`
 	// Supports Markdown formatting — useful for linking to terms and conditions.
 	Description *string `json:"description,omitempty"`
 	Required    *bool   `default:"false" json:"required"`
 	// Marks a field that comes with the form by default.
 	//
 	// Built-in fields can't be removed, retyped, or relabeled, but their
-	// `placeholder`, `description`, and `required` settings can still be changed.
+	// Built-in fields can't be removed, retyped, or relabeled, and built-in
+	// inputs are always `required`. Their `placeholder` and `description`
+	// settings can still be changed.
 	//
 	// This flag is read-only — it's returned by the API but can't be set when
 	// creating or updating a form.
@@ -73,11 +51,8 @@ func (c *CustomFormCheckboxField) GetName() string {
 	return c.Name
 }
 
-func (c *CustomFormCheckboxField) GetType() CustomFormCheckboxFieldType {
-	if c == nil {
-		return CustomFormCheckboxFieldType("")
-	}
-	return c.Type
+func (c *CustomFormCheckboxField) GetType() string {
+	return "checkbox"
 }
 
 func (c *CustomFormCheckboxField) GetLabel() string {

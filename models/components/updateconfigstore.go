@@ -5,13 +5,6 @@ package components
 // UpdateConfigStore - The request schema to update a Config Store.
 type UpdateConfigStore struct {
 	Name *string `json:"name,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Set a key's value to `null` to remove it.
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	//
-	ManagedBy map[string]*string `json:"managed_by,omitempty"`
 }
 
 func (u *UpdateConfigStore) GetName() *string {
@@ -19,11 +12,4 @@ func (u *UpdateConfigStore) GetName() *string {
 		return nil
 	}
 	return u.Name
-}
-
-func (u *UpdateConfigStore) GetManagedBy() map[string]*string {
-	if u == nil {
-		return nil
-	}
-	return u.ManagedBy
 }

@@ -3,29 +3,14 @@
 package operations
 
 import (
-	"github.com/Kong/sdk-konnect-go/internal/utils"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	"net/http"
 )
 
 type CreateAPIVersionRequest struct {
 	// The UUID API identifier
-	APIID string `pathParam:"style=simple,explode=false,name=apiId"`
-	// The format of the returned `spec.content`. Defaults to `json`.
-	//
-	SpecFormat              *components.SpecFormatSchema       `default:"json" queryParam:"style=form,explode=true,name=spec_format"`
+	APIID                   string                             `pathParam:"style=simple,explode=false,name=apiId"`
 	CreateAPIVersionRequest components.CreateAPIVersionRequest `request:"mediaType=application/json"`
-}
-
-func (c CreateAPIVersionRequest) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CreateAPIVersionRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (c *CreateAPIVersionRequest) GetAPIID() string {
@@ -33,13 +18,6 @@ func (c *CreateAPIVersionRequest) GetAPIID() string {
 		return ""
 	}
 	return c.APIID
-}
-
-func (c *CreateAPIVersionRequest) GetSpecFormat() *components.SpecFormatSchema {
-	if c == nil {
-		return nil
-	}
-	return c.SpecFormat
 }
 
 func (c *CreateAPIVersionRequest) GetCreateAPIVersionRequest() components.CreateAPIVersionRequest {

@@ -12,10 +12,6 @@ type Vault struct {
 	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
 	Name string `json:"name"`
 	// The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
@@ -52,13 +48,6 @@ func (v *Vault) GetID() *string {
 		return nil
 	}
 	return v.ID
-}
-
-func (v *Vault) GetManagedBy() map[string]string {
-	if v == nil {
-		return nil
-	}
-	return v.ManagedBy
 }
 
 func (v *Vault) GetName() string {

@@ -6,19 +6,19 @@ Config Store Secrets
 
 ### Available Operations
 
-* [CreateConfigStoreSecret](#createconfigstoresecret) - Create Config Store Secret in a workspace
-* [ListConfigStoreSecrets](#listconfigstoresecrets) - List Config Store Secrets in a workspace
-* [GetConfigStoreSecret](#getconfigstoresecret) - Get a Config Store Secret in a workspace
-* [UpdateConfigStoreSecret](#updateconfigstoresecret) - Update Config Store Secret in a workspace
-* [DeleteConfigStoreSecret](#deleteconfigstoresecret) - Delete Config Store Secret in a workspace
+* [CreateConfigStoreSecret](#createconfigstoresecret) - Create Config Store Secret
+* [ListConfigStoreSecrets](#listconfigstoresecrets) - List Config Store Secrets
+* [GetConfigStoreSecret](#getconfigstoresecret) - Get a Config Store Secret
+* [UpdateConfigStoreSecret](#updateconfigstoresecret) - Update Config Store Secret
+* [DeleteConfigStoreSecret](#deleteconfigstoresecret) - Delete Config Store Secret
 
 ## CreateConfigStoreSecret
 
-Creates a secret for a Config Store in a workspace.
+Creates a secret for a Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-config-store-secret" method="post" path="/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets" -->
+<!-- UsageSnippet language="go" operationID="create-config-store-secret" method="post" path="/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets" -->
 ```go
 package main
 
@@ -42,7 +42,6 @@ func main() {
     res, err := s.ConfigStoreSecrets.CreateConfigStoreSecret(ctx, operations.CreateConfigStoreSecretRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConfigStoreID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
-        Workspace: "team-payments",
         CreateConfigStoreSecret: components.CreateConfigStoreSecret{
             Key: "<key>",
             Value: "<value>",
@@ -82,11 +81,11 @@ func main() {
 
 ## ListConfigStoreSecrets
 
-Returns a collection of all secrets for a Config Store in a workspace.
+Returns a collection of all secrets for a Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-config-store-secrets" method="get" path="/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets" -->
+<!-- UsageSnippet language="go" operationID="list-config-store-secrets" method="get" path="/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets" -->
 ```go
 package main
 
@@ -110,7 +109,6 @@ func main() {
     res, err := s.ConfigStoreSecrets.ListConfigStoreSecrets(ctx, operations.ListConfigStoreSecretsRequest{
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConfigStoreID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
-        Workspace: "team-payments",
     })
     if err != nil {
         log.Fatal(err)
@@ -145,11 +143,11 @@ func main() {
 
 ## GetConfigStoreSecret
 
-Returns the secret entity for the Config Store in a workspace. Secret values once stored cannot be retrieved.
+Returns the secret entity for the Config Store. Secret values once stored cannot be retrieved.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-config-store-secret" method="get" path="/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets/{key}" -->
+<!-- UsageSnippet language="go" operationID="get-config-store-secret" method="get" path="/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets/{key}" -->
 ```go
 package main
 
@@ -174,7 +172,6 @@ func main() {
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConfigStoreID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
         Key: "ConfigStoreSecretKey",
-        Workspace: "team-payments",
     })
     if err != nil {
         log.Fatal(err)
@@ -208,11 +205,11 @@ func main() {
 
 ## UpdateConfigStoreSecret
 
-Updates a secret for a Config Store in a workspace.
+Updates a secret for a Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="update-config-store-secret" method="put" path="/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets/{key}" -->
+<!-- UsageSnippet language="go" operationID="update-config-store-secret" method="put" path="/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets/{key}" -->
 ```go
 package main
 
@@ -237,7 +234,6 @@ func main() {
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConfigStoreID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
         Key: "ConfigStoreSecretKey",
-        Workspace: "team-payments",
         UpdateConfigStoreSecret: components.UpdateConfigStoreSecret{
             Value: "<value>",
         },
@@ -276,11 +272,11 @@ func main() {
 
 ## DeleteConfigStoreSecret
 
-Removes a secret from a Config Store in a workspace.
+Removes a secret from a Config Store.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="delete-config-store-secret" method="delete" path="/v2/control-planes/{controlPlaneId}/{workspace}/config-stores/{configStoreId}/secrets/{key}" -->
+<!-- UsageSnippet language="go" operationID="delete-config-store-secret" method="delete" path="/v2/control-planes/{controlPlaneId}/config-stores/{configStoreId}/secrets/{key}" -->
 ```go
 package main
 
@@ -305,7 +301,6 @@ func main() {
         ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
         ConfigStoreID: "d32d905a-ed33-46a3-a093-d8f536af9a8a",
         Key: "ConfigStoreSecretKey",
-        Workspace: "team-payments",
     })
     if err != nil {
         log.Fatal(err)

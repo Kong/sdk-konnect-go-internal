@@ -25,4 +25,3 @@ custom := components.NotificationNamespace("custom_value")
 | `NotificationNamespaceRegionalEventNamespace` | regional-event-namespace                      |
 | `NotificationNamespaceGatewayManager`         | gateway-manager                               |
 | `NotificationNamespaceAdvancedAnalytics`      | advanced-analytics                            |
-| `NotificationNamespaceAiManagement`           | ai-management                                 |

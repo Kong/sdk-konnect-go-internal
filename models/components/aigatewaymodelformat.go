@@ -6,7 +6,11 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AIGatewayModelFormatType - The format type.
+// AIGatewayModelFormatType - The request and response format this model supports. Set to a specific format to restrict the model to that format only, or to `*` to allow all formats that the targets support at the gateway's min_runtime_version. A format that needs a newer min_runtime_version is left out of `*`. The `*` format never includes passthrough.
+//
+// **`passthrough` requires a minimum runtime version of `2.2`**.
+//
+// **`typesafe` requires a minimum runtime version of `2.2`**.
 type AIGatewayModelFormatType string
 
 const (
@@ -38,7 +42,11 @@ func (e *AIGatewayModelFormatType) IsExact() bool {
 
 // AIGatewayModelFormat - Request and response format supported by this model.
 type AIGatewayModelFormat struct {
-	// The format type.
+	// The request and response format this model supports. Set to a specific format to restrict the model to that format only, or to `*` to allow all formats that the targets support at the gateway's min_runtime_version. A format that needs a newer min_runtime_version is left out of `*`. The `*` format never includes passthrough.
+	//
+	// **`passthrough` requires a minimum runtime version of `2.2`**.
+	//
+	// **`typesafe` requires a minimum runtime version of `2.2`**.
 	Type *AIGatewayModelFormatType `json:"type,omitempty"`
 }
 

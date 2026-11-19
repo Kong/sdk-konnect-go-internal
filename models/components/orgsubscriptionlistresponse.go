@@ -2,9 +2,11 @@
 
 package components
 
-// OrgSubscriptionListResponse - Every org subscription of one event type, or every org subscription that holds one destination.
+// OrgSubscriptionListResponse - A paginated list of the org subscriptions of one event type, or of the org subscriptions that hold one destination.
 type OrgSubscriptionListResponse struct {
 	Data []OrgSubscription `json:"data"`
+	// Pagination metadata.
+	Meta CursorMeta `json:"meta"`
 }
 
 func (o *OrgSubscriptionListResponse) GetData() []OrgSubscription {
@@ -12,4 +14,11 @@ func (o *OrgSubscriptionListResponse) GetData() []OrgSubscription {
 		return []OrgSubscription{}
 	}
 	return o.Data
+}
+
+func (o *OrgSubscriptionListResponse) GetMeta() CursorMeta {
+	if o == nil {
+		return CursorMeta{}
+	}
+	return o.Meta
 }

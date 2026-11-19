@@ -2,7 +2,7 @@
 
 package components
 
-// DeliveryAttemptStatus - Lifecycle state of a delivery attempt. The delivery worker owns the values it writes.
+// DeliveryAttemptStatus - Lifecycle state of a delivery attempt.
 type DeliveryAttemptStatus string
 
 const (

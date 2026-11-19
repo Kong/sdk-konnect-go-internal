@@ -6,6 +6,29 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
+// AIGatewayModelBalancerSemanticConfigFailoverCriteria - **`http_400` requires a minimum runtime version of `2.3`**.
+//
+// **`http_401` requires a minimum runtime version of `2.3`**.
+//
+// **`http_402` requires a minimum runtime version of `2.3`**.
+//
+// **`http_405` requires a minimum runtime version of `2.3`**.
+//
+// **`http_408` requires a minimum runtime version of `2.3`**.
+//
+// **`http_409` requires a minimum runtime version of `2.3`**.
+//
+// **`http_413` requires a minimum runtime version of `2.3`**.
+//
+// **`http_415` requires a minimum runtime version of `2.3`**.
+//
+// **`http_422` requires a minimum runtime version of `2.3`**.
+//
+// **`http_522` requires a minimum runtime version of `2.3`**.
+//
+// **`http_529` requires a minimum runtime version of `2.3`**.
+//
+// **`http_5xx` requires a minimum runtime version of `2.3`**.
 type AIGatewayModelBalancerSemanticConfigFailoverCriteria string
 
 const (

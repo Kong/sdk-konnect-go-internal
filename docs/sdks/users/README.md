@@ -9,7 +9,6 @@
 * [GetUser](#getuser) - Get a User
 * [UpdateUser](#updateuser) - Update User
 * [DeleteUser](#deleteuser) - Delete User
-* [DeleteUserMfas](#deleteusermfas) - Delete User MFA
 
 ## GetUsersInternal
 
@@ -296,62 +295,3 @@ func main() {
 | ------------------------ | ------------------------ | ------------------------ |
 | sdkerrors.NotFoundError  | 404                      | application/problem+json |
 | sdkerrors.SDKError       | 4XX, 5XX                 | \*/\*                    |
-
-## DeleteUserMfas
-
-Deletes all secondary factors for multi-factor authentication (MFA), of the user.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="delete-user-mfas" method="delete" path="/v3/users/{userId}/mfa" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Users.DeleteUserMfas(ctx, "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
-| `userID`                                                 | `string`                                                 | :heavy_check_mark:                                       | ID of the user.                                          | 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
-
-### Response
-
-**[*operations.DeleteUserMfasResponse](../../models/operations/deleteusermfasresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |

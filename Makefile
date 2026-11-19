@@ -124,8 +124,6 @@ generate.deepcopy: controller-gen
 		models/components/upstream.go
 	$(SED) -i 's#\(type Unhealthy struct\)#// $(KUBEBUILDER_GENERATE_CODE_MARKER)\n\1#g' \
 		models/components/upstream.go
-	$(SED) -i 's#\(type NetworkFirewallConfig struct\)#// $(KUBEBUILDER_GENERATE_CODE_MARKER)\n\1#g' \
-		models/components/networkfirewallconfig.go
 
 	$(CONTROLLER_GEN) object paths=./models/components/
 	go mod tidy
@@ -162,6 +160,8 @@ generate.sdk.from-scratch:
 	$(MAKE) generate.sdk
 	$(MAKE) generate.interfaces
 	$(MAKE) generate.mocks
+	# generate.sdk tidy runs before mocks exist, so refresh the module here
+	go mod tidy
 
 .PHONY: test
 test: test.unit test.integration

@@ -3,33 +3,8 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
-
-type CustomFormTextFieldType string
-
-const (
-	CustomFormTextFieldTypeText CustomFormTextFieldType = "text"
-)
-
-func (e CustomFormTextFieldType) ToPointer() *CustomFormTextFieldType {
-	return &e
-}
-func (e *CustomFormTextFieldType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "text":
-		*e = CustomFormTextFieldType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CustomFormTextFieldType: %v", v)
-	}
-}
 
 // CustomFormTextField - A single-line text field.
 type CustomFormTextField struct {
@@ -38,17 +13,20 @@ type CustomFormTextField struct {
 	//
 	// Used to match up stored responses across edits.
 	//
-	Name        string                  `json:"name"`
-	Type        CustomFormTextFieldType `json:"type"`
-	Label       string                  `json:"label"`
-	Placeholder *string                 `json:"placeholder,omitempty"`
+	Name string `json:"name"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_       string  `const:"text" json:"type"`
+	Label       string  `json:"label"`
+	Placeholder *string `json:"placeholder,omitempty"`
 	// Help text displayed with the field. Supports Markdown formatting.
 	Description *string `json:"description,omitempty"`
 	Required    *bool   `default:"false" json:"required"`
 	// Marks a field that comes with the form by default.
 	//
 	// Built-in fields can't be removed, retyped, or relabeled, but their
-	// `placeholder`, `description`, and `required` settings can still be changed.
+	// Built-in fields can't be removed, retyped, or relabeled, and built-in
+	// inputs are always `required`. Their `placeholder` and `description`
+	// settings can still be changed.
 	//
 	// This flag is read-only — it's returned by the API but can't be set when
 	// creating or updating a form.
@@ -74,11 +52,8 @@ func (c *CustomFormTextField) GetName() string {
 	return c.Name
 }
 
-func (c *CustomFormTextField) GetType() CustomFormTextFieldType {
-	if c == nil {
-		return CustomFormTextFieldType("")
-	}
-	return c.Type
+func (c *CustomFormTextField) GetType() string {
+	return "text"
 }
 
 func (c *CustomFormTextField) GetLabel() string {

@@ -102,9 +102,6 @@ func main() {
 
     res, err := s.CustomPluginSchemas.CreatePluginSchemas(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", &components.CreatePluginSchemas{
         LuaSchema: "return { name = \"myplugin\", fields = { { config = { type = \"record\", fields = { } } } } }",
-        ManagedBy: map[string]*string{
-            "owner": sdkkonnectgo.Pointer("terraform"),
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -286,9 +283,6 @@ func main() {
         Name: "myplugin",
         CreatePluginSchemas: &components.CreatePluginSchemas{
             LuaSchema: "return { name = \"myplugin\", fields = { { config = { type = \"record\", fields = { } } } } }",
-            ManagedBy: map[string]*string{
-                "owner": sdkkonnectgo.Pointer("terraform"),
-            },
         },
     })
     if err != nil {

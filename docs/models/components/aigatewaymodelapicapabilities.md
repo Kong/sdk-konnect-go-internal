@@ -1,5 +1,7 @@
 # AIGatewayModelAPICapabilities
 
+**`skills` requires a minimum runtime version of `2.2`**.
+
 ## Example Usage
 
 ```go

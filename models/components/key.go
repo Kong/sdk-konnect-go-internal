@@ -38,18 +38,12 @@ func (s *Set) GetID() *string {
 type Key struct {
 	// Unix epoch when the resource was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// User-defined entity description. Konnect only field, not synced to the Gateway.
-	Description *string `json:"description,omitempty"`
 	// A string representing a UUID (universally unique identifier).
 	ID *string `json:"id,omitempty"`
 	// A JSON Web Key represented as a string.
 	Jwk *string `json:"jwk,omitempty"`
 	// A unique identifier for a key.
 	Kid string `json:"kid"`
-	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
-	//
-	// Keys must be 1–63 characters long and start with an alphanumeric character.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// The name to associate with the given keys.
 	Name *string `json:"name,omitempty"`
 	// A keypair in PEM format.
@@ -71,13 +65,6 @@ func (k *Key) GetCreatedAt() *int64 {
 	return k.CreatedAt
 }
 
-func (k *Key) GetDescription() *string {
-	if k == nil {
-		return nil
-	}
-	return k.Description
-}
-
 func (k *Key) GetID() *string {
 	if k == nil {
 		return nil
@@ -97,13 +84,6 @@ func (k *Key) GetKid() string {
 		return ""
 	}
 	return k.Kid
-}
-
-func (k *Key) GetManagedBy() map[string]string {
-	if k == nil {
-		return nil
-	}
-	return k.ManagedBy
 }
 
 func (k *Key) GetName() *string {

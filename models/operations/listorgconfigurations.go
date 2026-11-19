@@ -14,7 +14,7 @@ type ListOrgConfigurationsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// A list response for all org scoped events of the organization.
+	// A list of objects representing an available event
 	OrgConfigurationListResponse *components.OrgConfigurationListResponse
 }
 

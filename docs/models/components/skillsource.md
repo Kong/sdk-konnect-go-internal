@@ -11,12 +11,6 @@ Where the skill's content comes from, as returned by the API. Never includes the
 skillSource := components.CreateSkillSourceRaw(components.RawSkillSource{/* values here */})
 ```
 
-### GithubSkillSource
-
-```go
-skillSource := components.CreateSkillSourceGithub(components.GithubSkillSource{/* values here */})
-```
-
 ## Union Discrimination
 
 Use the `Type` field to determine which variant is active, then access the corresponding field:
@@ -25,7 +19,5 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch skillSource.Type {
 	case components.SkillSourceTypeRaw:
 		// skillSource.RawSkillSource is populated
-	case components.SkillSourceTypeGithub:
-		// skillSource.GithubSkillSource is populated
 }
 ```

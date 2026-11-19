@@ -1,6 +1,6 @@
 # FeatureReference
 
-Feature reference.
+The feature associated with the rate card.
 
 
 ## Fields

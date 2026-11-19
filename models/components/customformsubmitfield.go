@@ -31,39 +31,19 @@ func (e *CustomFormSubmitFieldName) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type CustomFormSubmitFieldType string
-
-const (
-	CustomFormSubmitFieldTypeSubmit CustomFormSubmitFieldType = "submit"
-)
-
-func (e CustomFormSubmitFieldType) ToPointer() *CustomFormSubmitFieldType {
-	return &e
-}
-func (e *CustomFormSubmitFieldType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "submit":
-		*e = CustomFormSubmitFieldType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CustomFormSubmitFieldType: %v", v)
-	}
-}
-
 // CustomFormSubmitField - The form's submit button. Every form must include exactly one. Its `name` is always `submit`.
 type CustomFormSubmitField struct {
 	Name CustomFormSubmitFieldName `json:"name"`
-	Type CustomFormSubmitFieldType `json:"type"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_ string `const:"submit" json:"type"`
 	// The text displayed on the button.
 	Value string `json:"value"`
 	// Marks a field that comes with the form by default.
 	//
 	// Built-in fields can't be removed, retyped, or relabeled, but their
-	// `placeholder`, `description`, and `required` settings can still be changed.
+	// Built-in fields can't be removed, retyped, or relabeled, and built-in
+	// inputs are always `required`. Their `placeholder` and `description`
+	// settings can still be changed.
 	//
 	// This flag is read-only — it's returned by the API but can't be set when
 	// creating or updating a form.
@@ -89,11 +69,8 @@ func (c *CustomFormSubmitField) GetName() CustomFormSubmitFieldName {
 	return c.Name
 }
 
-func (c *CustomFormSubmitField) GetType() CustomFormSubmitFieldType {
-	if c == nil {
-		return CustomFormSubmitFieldType("")
-	}
-	return c.Type
+func (c *CustomFormSubmitField) GetType() string {
+	return "submit"
 }
 
 func (c *CustomFormSubmitField) GetValue() string {
