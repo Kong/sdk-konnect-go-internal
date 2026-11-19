@@ -32,20 +32,20 @@ func (a *AIGatewayMCPServerServerConfigBaseClient) GetSecrets() []string {
 	return a.Secrets
 }
 
-// Strategy - The strategy for the session. If the value is 'client', the session is encrypted into MCP session id assigned to the client. If the value is not 'client', the session is stored in the configured database.
-type Strategy string
+// AIGatewayMCPServerServerConfigBaseStrategy - The strategy for the session. If the value is 'client', the session is encrypted into MCP session id assigned to the client. If the value is not 'client', the session is stored in the configured database.
+type AIGatewayMCPServerServerConfigBaseStrategy string
 
 const (
-	StrategyClient Strategy = "client"
-	StrategyRedis  Strategy = "redis"
+	AIGatewayMCPServerServerConfigBaseStrategyClient AIGatewayMCPServerServerConfigBaseStrategy = "client"
+	AIGatewayMCPServerServerConfigBaseStrategyRedis  AIGatewayMCPServerServerConfigBaseStrategy = "redis"
 )
 
-func (e Strategy) ToPointer() *Strategy {
+func (e AIGatewayMCPServerServerConfigBaseStrategy) ToPointer() *AIGatewayMCPServerServerConfigBaseStrategy {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Strategy) IsExact() bool {
+func (e *AIGatewayMCPServerServerConfigBaseStrategy) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "client", "redis":
@@ -67,7 +67,7 @@ type AIGatewayMCPServerServerConfigBaseSession struct {
 	// The time-to-live (TTL) for each session in seconds.
 	SessionTTL *int64 `default:"86400" json:"session_ttl"`
 	// The strategy for the session. If the value is 'client', the session is encrypted into MCP session id assigned to the client. If the value is not 'client', the session is stored in the configured database.
-	Strategy *Strategy `json:"strategy,omitempty"`
+	Strategy *AIGatewayMCPServerServerConfigBaseStrategy `json:"strategy,omitempty"`
 }
 
 func (a AIGatewayMCPServerServerConfigBaseSession) MarshalJSON() ([]byte, error) {
@@ -109,7 +109,7 @@ func (a *AIGatewayMCPServerServerConfigBaseSession) GetSessionTTL() *int64 {
 	return a.SessionTTL
 }
 
-func (a *AIGatewayMCPServerServerConfigBaseSession) GetStrategy() *Strategy {
+func (a *AIGatewayMCPServerServerConfigBaseSession) GetStrategy() *AIGatewayMCPServerServerConfigBaseStrategy {
 	if a == nil {
 		return nil
 	}
@@ -172,7 +172,7 @@ type Session struct {
 	// The time-to-live (TTL) for each session in seconds.
 	SessionTTL *int64 `default:"86400" json:"session_ttl"`
 	// The strategy for the session. If the value is 'client', the session is encrypted into MCP session id assigned to the client. If the value is not 'client', the session is stored in the configured database.
-	Strategy *Strategy `json:"strategy,omitempty"`
+	Strategy *AIGatewayMCPServerServerConfigBaseStrategy `json:"strategy,omitempty"`
 }
 
 func (s Session) MarshalJSON() ([]byte, error) {
@@ -214,7 +214,7 @@ func (s *Session) GetSessionTTL() *int64 {
 	return s.SessionTTL
 }
 
-func (s *Session) GetStrategy() *Strategy {
+func (s *Session) GetStrategy() *AIGatewayMCPServerServerConfigBaseStrategy {
 	if s == nil {
 		return nil
 	}

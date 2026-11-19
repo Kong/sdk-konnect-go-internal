@@ -98,6 +98,31 @@ func (e *AIGatewayModelBalancerIntelligentConfigVersion) UnmarshalJSON(data []by
 	}
 }
 
+// Strategy - How the balancer selects among the eligible targets. `weighted` scores each target on cost and
+// quality. `margin` selects the cheapest target whose expected quality is close enough to the best
+// target's. Available while both are evaluated; removed once one is chosen.
+type Strategy string
+
+const (
+	StrategyWeighted Strategy = "weighted"
+	StrategyMargin   Strategy = "margin"
+)
+
+func (e Strategy) ToPointer() *Strategy {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *Strategy) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "weighted", "margin":
+			return true
+		}
+	}
+	return false
+}
+
 // CostQualityTradeoff - How the balancer weighs cost versus quality when selecting a target. `cost` favors the cheapest available target, `quality` favors the highest-quality target, and `balanced` weighs both.
 type CostQualityTradeoff string
 
@@ -120,6 +145,159 @@ func (e *CostQualityTradeoff) IsExact() bool {
 		}
 	}
 	return false
+}
+
+// AIGatewayModelBalancerIntelligentConfigOutput - On the first request of a conversation, asks a classifier model what kind of work it is, then
+// selects a target by the cost and quality tradeoff. Later requests in the conversation go to the
+// same target through session affinity, which is always on for this algorithm: `ttl` and `storage`
+// can be set, and `session_affinity.enabled: false` is rejected.
+//
+// **Requires a minimum runtime version of `2.4`**.
+type AIGatewayModelBalancerIntelligentConfigOutput struct {
+	ConnectTimeout *int64 `default:"60000" json:"connect_timeout"`
+	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
+	FailTimeout *int64 `default:"10000" json:"fail_timeout"`
+	// Specifies in which cases an upstream response should be failover to the next target. Each option in the array is equivalent to the function of https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
+	FailoverCriteria []AIGatewayModelBalancerIntelligentConfigFailoverCriteria `json:"failover_criteria,omitempty"`
+	// Number of unsuccessful attempts to communicate with a target that should occur in the duration defined by `fail_timeout` before the target is considered unavailable. The zero value disables the circuit breaker. What is considered an unsuccessful attempt is defined by `failover_criteria`. Note the cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, while the cases of `http_403` and `http_404` are never considered unsuccessful attempts.
+	MaxFails    *int64 `default:"0" json:"max_fails"`
+	ReadTimeout *int64 `default:"60000" json:"read_timeout"`
+	// The number of retries to execute upon failure to proxy.
+	Retries *int64 `default:"5" json:"retries"`
+	// The number of slots in the load balancer algorithm.
+	Slots        *int64 `default:"10000" json:"slots"`
+	WriteTimeout *int64 `default:"60000" json:"write_timeout"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	algorithm string `const:"intelligent" json:"algorithm"`
+	// The version of the intelligent balancing algorithm.
+	Version *AIGatewayModelBalancerIntelligentConfigVersion `default:"v1" json:"version"`
+	// How the balancer selects among the eligible targets. `weighted` scores each target on cost and
+	// quality. `margin` selects the cheapest target whose expected quality is close enough to the best
+	// target's. Available while both are evaluated; removed once one is chosen.
+	//
+	Strategy *Strategy `default:"weighted" json:"strategy"`
+	// The model the intelligent balancer asks what kind of work a conversation is, before it selects a
+	// target. The classifier is called at the address and with the credentials of that model's target
+	// and provider. If the classifier does not answer in time or its answer cannot be used, the
+	// balancer selects a target for general work.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Classifier AIGatewayModelBalancerIntelligentClassifier `json:"classifier"`
+	// How the balancer weighs cost versus quality when selecting a target. `cost` favors the cheapest available target, `quality` favors the highest-quality target, and `balanced` weighs both.
+	CostQualityTradeoff *CostQualityTradeoff `default:"balanced" json:"cost_quality_tradeoff"`
+	// Sends later requests in a conversation to the target that served the earlier turn, if that
+	// target can still take the request. This improves reuse of the provider's prompt cache.
+	// Requests are matched by conversation content and provider response IDs, not by a session
+	// header. Requests with the same conversation content can go to the same target. If the
+	// preferred target is not available, the balancer algorithm picks the target.
+	//
+	SessionAffinity *AIGatewayModelBalancerSessionAffinityOutput `json:"session_affinity,omitempty"`
+}
+
+func (a AIGatewayModelBalancerIntelligentConfigOutput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"algorithm", "classifier"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetConnectTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ConnectTimeout
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.FailTimeout
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailoverCriteria() []AIGatewayModelBalancerIntelligentConfigFailoverCriteria {
+	if a == nil {
+		return nil
+	}
+	return a.FailoverCriteria
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetMaxFails() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.MaxFails
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetReadTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ReadTimeout
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetRetries() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Retries
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetSlots() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Slots
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetWriteTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.WriteTimeout
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetAlgorithm() string {
+	return "intelligent"
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetVersion() *AIGatewayModelBalancerIntelligentConfigVersion {
+	if a == nil {
+		return nil
+	}
+	return a.Version
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetStrategy() *Strategy {
+	if a == nil {
+		return nil
+	}
+	return a.Strategy
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetClassifier() AIGatewayModelBalancerIntelligentClassifier {
+	if a == nil {
+		return AIGatewayModelBalancerIntelligentClassifier{}
+	}
+	return a.Classifier
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetCostQualityTradeoff() *CostQualityTradeoff {
+	if a == nil {
+		return nil
+	}
+	return a.CostQualityTradeoff
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinityOutput {
+	if a == nil {
+		return nil
+	}
+	return a.SessionAffinity
 }
 
 // AIGatewayModelBalancerIntelligentConfig - On the first request of a conversation, asks a classifier model what kind of work it is, then
@@ -146,6 +324,11 @@ type AIGatewayModelBalancerIntelligentConfig struct {
 	algorithm string `const:"intelligent" json:"algorithm"`
 	// The version of the intelligent balancing algorithm.
 	Version *AIGatewayModelBalancerIntelligentConfigVersion `default:"v1" json:"version"`
+	// How the balancer selects among the eligible targets. `weighted` scores each target on cost and
+	// quality. `margin` selects the cheapest target whose expected quality is close enough to the best
+	// target's. Available while both are evaluated; removed once one is chosen.
+	//
+	Strategy *Strategy `default:"weighted" json:"strategy"`
 	// The model the intelligent balancer asks what kind of work a conversation is, before it selects a
 	// target. The classifier is called at the address and with the credentials of that model's target
 	// and provider. If the classifier does not answer in time or its answer cannot be used, the
@@ -155,6 +338,13 @@ type AIGatewayModelBalancerIntelligentConfig struct {
 	Classifier AIGatewayModelBalancerIntelligentClassifier `json:"classifier"`
 	// How the balancer weighs cost versus quality when selecting a target. `cost` favors the cheapest available target, `quality` favors the highest-quality target, and `balanced` weighs both.
 	CostQualityTradeoff *CostQualityTradeoff `default:"balanced" json:"cost_quality_tradeoff"`
+	// Sends later requests in a conversation to the target that served the earlier turn, if that
+	// target can still take the request. This improves reuse of the provider's prompt cache.
+	// Requests are matched by conversation content and provider response IDs, not by a session
+	// header. Requests with the same conversation content can go to the same target. If the
+	// preferred target is not available, the balancer algorithm picks the target.
+	//
+	SessionAffinity *AIGatewayModelBalancerSessionAffinity `json:"session_affinity,omitempty"`
 }
 
 func (a AIGatewayModelBalancerIntelligentConfig) MarshalJSON() ([]byte, error) {
@@ -235,6 +425,13 @@ func (a *AIGatewayModelBalancerIntelligentConfig) GetVersion() *AIGatewayModelBa
 	return a.Version
 }
 
+func (a *AIGatewayModelBalancerIntelligentConfig) GetStrategy() *Strategy {
+	if a == nil {
+		return nil
+	}
+	return a.Strategy
+}
+
 func (a *AIGatewayModelBalancerIntelligentConfig) GetClassifier() AIGatewayModelBalancerIntelligentClassifier {
 	if a == nil {
 		return AIGatewayModelBalancerIntelligentClassifier{}
@@ -247,4 +444,11 @@ func (a *AIGatewayModelBalancerIntelligentConfig) GetCostQualityTradeoff() *Cost
 		return nil
 	}
 	return a.CostQualityTradeoff
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfig) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinity {
+	if a == nil {
+		return nil
+	}
+	return a.SessionAffinity
 }

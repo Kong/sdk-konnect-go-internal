@@ -11,40 +11,40 @@ Configuration for a model's load balancer when multiple target models are config
 aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputConsistentHashing(components.AIGatewayModelBalancerConsistentHashingConfig{/* values here */})
 ```
 
-### AIGatewayModelBalancerIntelligentConfig
+### AIGatewayModelBalancerIntelligentConfigOutput
 
 ```go
-aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputIntelligent(components.AIGatewayModelBalancerIntelligentConfig{/* values here */})
+aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputIntelligent(components.AIGatewayModelBalancerIntelligentConfigOutput{/* values here */})
 ```
 
-### AIGatewayModelBalancerLeastConnectionsConfig
+### AIGatewayModelBalancerLeastConnectionsConfigOutput
 
 ```go
-aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputLeastConnections(components.AIGatewayModelBalancerLeastConnectionsConfig{/* values here */})
+aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputLeastConnections(components.AIGatewayModelBalancerLeastConnectionsConfigOutput{/* values here */})
 ```
 
-### AIGatewayModelBalancerLowestLatencyConfig
+### AIGatewayModelBalancerLowestLatencyConfigOutput
 
 ```go
-aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputLowestLatency(components.AIGatewayModelBalancerLowestLatencyConfig{/* values here */})
+aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputLowestLatency(components.AIGatewayModelBalancerLowestLatencyConfigOutput{/* values here */})
 ```
 
-### AIGatewayModelBalancerLowestUsageConfig
+### AIGatewayModelBalancerLowestUsageConfigOutput
 
 ```go
-aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputLowestUsage(components.AIGatewayModelBalancerLowestUsageConfig{/* values here */})
+aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputLowestUsage(components.AIGatewayModelBalancerLowestUsageConfigOutput{/* values here */})
 ```
 
-### AIGatewayModelBalancerPriorityConfig
+### AIGatewayModelBalancerPriorityConfigOutput
 
 ```go
-aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputPriority(components.AIGatewayModelBalancerPriorityConfig{/* values here */})
+aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputPriority(components.AIGatewayModelBalancerPriorityConfigOutput{/* values here */})
 ```
 
-### AIGatewayModelBalancerRoundRobinConfig
+### AIGatewayModelBalancerRoundRobinConfigOutput
 
 ```go
-aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputRoundRobin(components.AIGatewayModelBalancerRoundRobinConfig{/* values here */})
+aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputRoundRobin(components.AIGatewayModelBalancerRoundRobinConfigOutput{/* values here */})
 ```
 
 ### AIGatewayModelBalancerSemanticConfigOutput
@@ -62,17 +62,17 @@ switch aiGatewayModelBalancerConfigOutput.Type {
 	case components.AIGatewayModelBalancerConfigOutputTypeConsistentHashing:
 		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerConsistentHashingConfig is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeIntelligent:
-		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerIntelligentConfig is populated
+		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerIntelligentConfigOutput is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeLeastConnections:
-		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerLeastConnectionsConfig is populated
+		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerLeastConnectionsConfigOutput is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeLowestLatency:
-		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerLowestLatencyConfig is populated
+		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerLowestLatencyConfigOutput is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeLowestUsage:
-		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerLowestUsageConfig is populated
+		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerLowestUsageConfigOutput is populated
 	case components.AIGatewayModelBalancerConfigOutputTypePriority:
-		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerPriorityConfig is populated
+		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerPriorityConfigOutput is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeRoundRobin:
-		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerRoundRobinConfig is populated
+		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerRoundRobinConfigOutput is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeSemantic:
 		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerSemanticConfigOutput is populated
 }

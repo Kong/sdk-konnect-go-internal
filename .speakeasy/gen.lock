@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: d3b4136966207ddf11f8da3042cfcf55
+  docChecksum: b55d4e033f865d83af9e158f6edbe5c8
   docVersion: 3.21.1
   speakeasyVersion: 1.808.1
   generationVersion: 2.960.8
@@ -700,6 +700,7 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverserverconfigbaseclient.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbaseoutput.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbasesession.md: {}
+  docs/models/components/aigatewaymcpserverserverconfigbasestrategy.md: {}
   docs/models/components/aigatewaymcpserverupstreamserver.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfig.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfiglogging.md: {}
@@ -750,20 +751,28 @@ trackedFiles:
   docs/models/components/aigatewaymodelbalancerintelligentclassifier.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfig.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigversion.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfig.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerleastconnectionsconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfig.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerlowestlatencyconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerlowestusageconfig.md: {}
   docs/models/components/aigatewaymodelbalancerlowestusageconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerlowestusageconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerpriorityconfig.md: {}
   docs/models/components/aigatewaymodelbalancerpriorityconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerpriorityconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerroundrobinconfig.md: {}
   docs/models/components/aigatewaymodelbalancerroundrobinconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerroundrobinconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfig.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfigoutput.md: {}
+  docs/models/components/aigatewaymodelbalancersessionaffinity.md: {}
+  docs/models/components/aigatewaymodelbalancersessionaffinityoutput.md: {}
   docs/models/components/aigatewaymodeldatastoreref.md: {}
   docs/models/components/aigatewaymodelformat.md: {}
   docs/models/components/aigatewaymodelformattype.md: {}
@@ -907,9 +916,16 @@ trackedFiles:
   docs/models/components/aigatewaymodelvectordbconfigpgvectorversion.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredis.md: {}
   docs/models/components/aigatewaymodelvectordbconfigrediscloudauthentication.md: {}
+  docs/models/components/aigatewaymodelvectordbconfigrediscloudauthenticationoutput.md: {}
+  docs/models/components/aigatewaymodelvectordbconfigrediscluster.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisdistancemetric.md: {}
+  docs/models/components/aigatewaymodelvectordbconfigrediskeepalive.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisnodes.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisoutput.md: {}
+  docs/models/components/aigatewaymodelvectordbconfigredisport.md: {}
+  docs/models/components/aigatewaymodelvectordbconfigredisrole.md: {}
+  docs/models/components/aigatewaymodelvectordbconfigredissentinel.md: {}
+  docs/models/components/aigatewaymodelvectordbconfigredissentinelnodes.md: {}
   docs/models/components/aigatewayollamaembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayopenaiembeddingsmodelconfig.md: {}
   docs/models/components/aigatewaypolicy.md: {}
@@ -943,6 +959,13 @@ trackedFiles:
   docs/models/components/aigatewaysadmin.md: {}
   docs/models/components/aigatewayscreator.md: {}
   docs/models/components/aigatewayservicetierfactor.md: {}
+  docs/models/components/aigatewaysessionaffinitystorage.md: {}
+  docs/models/components/aigatewaysessionaffinitystoragelocal.md: {}
+  docs/models/components/aigatewaysessionaffinitystorageoutput.md: {}
+  docs/models/components/aigatewaysessionaffinitystorageredis.md: {}
+  docs/models/components/aigatewaysessionaffinitystoragerediscloudauthentication.md: {}
+  docs/models/components/aigatewaysessionaffinitystorageredisnodes.md: {}
+  docs/models/components/aigatewaysessionaffinitystorageredisoutput.md: {}
   docs/models/components/aigatewaysni.md: {}
   docs/models/components/aigatewaysviewer.md: {}
   docs/models/components/aigatewaytarget.md: {}
@@ -12945,13 +12968,15 @@ trackedFiles:
   models/components/aigatewaymodelbalancerconfigoutput.go: {}
   models/components/aigatewaymodelbalancerconsistenthashingconfig.go: {}
   models/components/aigatewaymodelbalancerintelligentclassifier.go: {}
-  models/components/aigatewaymodelbalancerintelligentconfig.go: {}
-  models/components/aigatewaymodelbalancerleastconnectionsconfig.go: {}
-  models/components/aigatewaymodelbalancerlowestlatencyconfig.go: {}
-  models/components/aigatewaymodelbalancerlowestusageconfig.go: {}
-  models/components/aigatewaymodelbalancerpriorityconfig.go: {}
-  models/components/aigatewaymodelbalancerroundrobinconfig.go: {}
+  models/components/aigatewaymodelbalancerintelligentconfigoutput.go: {}
+  models/components/aigatewaymodelbalancerleastconnectionsconfigoutput.go: {}
+  models/components/aigatewaymodelbalancerlowestlatencyconfigoutput.go: {}
+  models/components/aigatewaymodelbalancerlowestusageconfigoutput.go: {}
+  models/components/aigatewaymodelbalancerpriorityconfigoutput.go: {}
+  models/components/aigatewaymodelbalancerroundrobinconfigoutput.go: {}
   models/components/aigatewaymodelbalancersemanticconfigoutput.go: {}
+  models/components/aigatewaymodelbalancersessionaffinity.go: {}
+  models/components/aigatewaymodelbalancersessionaffinityoutput.go: {}
   models/components/aigatewaymodeldatastoreref.go: {}
   models/components/aigatewaymodelformat.go: {}
   models/components/aigatewaymodelmodel.go: {}
@@ -13012,6 +13037,10 @@ trackedFiles:
   models/components/aigatewayruntimedefault.go: {}
   models/components/aigatewayruntimedefaultdeploymenttype.go: {}
   models/components/aigatewayservicetierfactor.go: {}
+  models/components/aigatewaysessionaffinitystorage.go: {}
+  models/components/aigatewaysessionaffinitystoragelocal.go: {}
+  models/components/aigatewaysessionaffinitystorageoutput.go: {}
+  models/components/aigatewaysessionaffinitystorageredisoutput.go: {}
   models/components/aigatewaysni.go: {}
   models/components/aigatewaytarget.go: {}
   models/components/aigatewaytargetanthropicconfig.go: {}

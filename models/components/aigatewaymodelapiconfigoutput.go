@@ -97,44 +97,44 @@ func (a *AIGatewayModelAPIConfigOutput) GetBalancerConsistentHashing() *AIGatewa
 	return nil
 }
 
-func (a *AIGatewayModelAPIConfigOutput) GetBalancerIntelligent() *AIGatewayModelBalancerIntelligentConfig {
+func (a *AIGatewayModelAPIConfigOutput) GetBalancerIntelligent() *AIGatewayModelBalancerIntelligentConfigOutput {
 	if v := a.GetBalancer(); v != nil {
-		return v.AIGatewayModelBalancerIntelligentConfig
+		return v.AIGatewayModelBalancerIntelligentConfigOutput
 	}
 	return nil
 }
 
-func (a *AIGatewayModelAPIConfigOutput) GetBalancerLeastConnections() *AIGatewayModelBalancerLeastConnectionsConfig {
+func (a *AIGatewayModelAPIConfigOutput) GetBalancerLeastConnections() *AIGatewayModelBalancerLeastConnectionsConfigOutput {
 	if v := a.GetBalancer(); v != nil {
-		return v.AIGatewayModelBalancerLeastConnectionsConfig
+		return v.AIGatewayModelBalancerLeastConnectionsConfigOutput
 	}
 	return nil
 }
 
-func (a *AIGatewayModelAPIConfigOutput) GetBalancerLowestLatency() *AIGatewayModelBalancerLowestLatencyConfig {
+func (a *AIGatewayModelAPIConfigOutput) GetBalancerLowestLatency() *AIGatewayModelBalancerLowestLatencyConfigOutput {
 	if v := a.GetBalancer(); v != nil {
-		return v.AIGatewayModelBalancerLowestLatencyConfig
+		return v.AIGatewayModelBalancerLowestLatencyConfigOutput
 	}
 	return nil
 }
 
-func (a *AIGatewayModelAPIConfigOutput) GetBalancerLowestUsage() *AIGatewayModelBalancerLowestUsageConfig {
+func (a *AIGatewayModelAPIConfigOutput) GetBalancerLowestUsage() *AIGatewayModelBalancerLowestUsageConfigOutput {
 	if v := a.GetBalancer(); v != nil {
-		return v.AIGatewayModelBalancerLowestUsageConfig
+		return v.AIGatewayModelBalancerLowestUsageConfigOutput
 	}
 	return nil
 }
 
-func (a *AIGatewayModelAPIConfigOutput) GetBalancerPriority() *AIGatewayModelBalancerPriorityConfig {
+func (a *AIGatewayModelAPIConfigOutput) GetBalancerPriority() *AIGatewayModelBalancerPriorityConfigOutput {
 	if v := a.GetBalancer(); v != nil {
-		return v.AIGatewayModelBalancerPriorityConfig
+		return v.AIGatewayModelBalancerPriorityConfigOutput
 	}
 	return nil
 }
 
-func (a *AIGatewayModelAPIConfigOutput) GetBalancerRoundRobin() *AIGatewayModelBalancerRoundRobinConfig {
+func (a *AIGatewayModelAPIConfigOutput) GetBalancerRoundRobin() *AIGatewayModelBalancerRoundRobinConfigOutput {
 	if v := a.GetBalancer(); v != nil {
-		return v.AIGatewayModelBalancerRoundRobinConfig
+		return v.AIGatewayModelBalancerRoundRobinConfigOutput
 	}
 	return nil
 }

@@ -95,6 +95,118 @@ func (e *LatencyStrategy) IsExact() bool {
 	return false
 }
 
+type AIGatewayModelBalancerLowestLatencyConfigOutput struct {
+	ConnectTimeout *int64 `default:"60000" json:"connect_timeout"`
+	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
+	FailTimeout *int64 `default:"10000" json:"fail_timeout"`
+	// Specifies in which cases an upstream response should be failover to the next target. Each option in the array is equivalent to the function of https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
+	FailoverCriteria []AIGatewayModelBalancerLowestLatencyConfigFailoverCriteria `json:"failover_criteria,omitempty"`
+	// Number of unsuccessful attempts to communicate with a target that should occur in the duration defined by `fail_timeout` before the target is considered unavailable. The zero value disables the circuit breaker. What is considered an unsuccessful attempt is defined by `failover_criteria`. Note the cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, while the cases of `http_403` and `http_404` are never considered unsuccessful attempts.
+	MaxFails    *int64 `default:"0" json:"max_fails"`
+	ReadTimeout *int64 `default:"60000" json:"read_timeout"`
+	// The number of retries to execute upon failure to proxy.
+	Retries *int64 `default:"5" json:"retries"`
+	// The number of slots in the load balancer algorithm.
+	Slots        *int64 `default:"10000" json:"slots"`
+	WriteTimeout *int64 `default:"60000" json:"write_timeout"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	algorithm string `const:"lowest-latency" json:"algorithm"`
+	// What metrics to use for latency. Available values are: `tpot` (time-per-output-token) and `e2e`.
+	LatencyStrategy *LatencyStrategy `default:"tpot" json:"latency_strategy"`
+	// Sends later requests in a conversation to the target that served the earlier turn, if that
+	// target can still take the request. This improves reuse of the provider's prompt cache.
+	// Requests are matched by conversation content and provider response IDs, not by a session
+	// header. Requests with the same conversation content can go to the same target. If the
+	// preferred target is not available, the balancer algorithm picks the target.
+	//
+	SessionAffinity *AIGatewayModelBalancerSessionAffinityOutput `json:"session_affinity,omitempty"`
+}
+
+func (a AIGatewayModelBalancerLowestLatencyConfigOutput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"algorithm"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetConnectTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ConnectTimeout
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetFailTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.FailTimeout
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetFailoverCriteria() []AIGatewayModelBalancerLowestLatencyConfigFailoverCriteria {
+	if a == nil {
+		return nil
+	}
+	return a.FailoverCriteria
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetMaxFails() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.MaxFails
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetReadTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ReadTimeout
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetRetries() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Retries
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetSlots() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Slots
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetWriteTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.WriteTimeout
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetAlgorithm() string {
+	return "lowest-latency"
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetLatencyStrategy() *LatencyStrategy {
+	if a == nil {
+		return nil
+	}
+	return a.LatencyStrategy
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfigOutput) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinityOutput {
+	if a == nil {
+		return nil
+	}
+	return a.SessionAffinity
+}
+
 type AIGatewayModelBalancerLowestLatencyConfig struct {
 	ConnectTimeout *int64 `default:"60000" json:"connect_timeout"`
 	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
@@ -113,6 +225,13 @@ type AIGatewayModelBalancerLowestLatencyConfig struct {
 	algorithm string `const:"lowest-latency" json:"algorithm"`
 	// What metrics to use for latency. Available values are: `tpot` (time-per-output-token) and `e2e`.
 	LatencyStrategy *LatencyStrategy `default:"tpot" json:"latency_strategy"`
+	// Sends later requests in a conversation to the target that served the earlier turn, if that
+	// target can still take the request. This improves reuse of the provider's prompt cache.
+	// Requests are matched by conversation content and provider response IDs, not by a session
+	// header. Requests with the same conversation content can go to the same target. If the
+	// preferred target is not available, the balancer algorithm picks the target.
+	//
+	SessionAffinity *AIGatewayModelBalancerSessionAffinity `json:"session_affinity,omitempty"`
 }
 
 func (a AIGatewayModelBalancerLowestLatencyConfig) MarshalJSON() ([]byte, error) {
@@ -191,4 +310,11 @@ func (a *AIGatewayModelBalancerLowestLatencyConfig) GetLatencyStrategy() *Latenc
 		return nil
 	}
 	return a.LatencyStrategy
+}
+
+func (a *AIGatewayModelBalancerLowestLatencyConfig) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinity {
+	if a == nil {
+		return nil
+	}
+	return a.SessionAffinity
 }

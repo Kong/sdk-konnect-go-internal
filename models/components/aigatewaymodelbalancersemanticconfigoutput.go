@@ -172,6 +172,13 @@ type AIGatewayModelBalancerSemanticConfigOutput struct {
 	Embeddings Embeddings `json:"embeddings"`
 	// Configuration for the vector database used by the model.
 	Vectordb AIGatewayModelVectorDBConfigOutput `json:"vectordb"`
+	// Sends later requests in a conversation to the target that served the earlier turn, if that
+	// target can still take the request. This improves reuse of the provider's prompt cache.
+	// Requests are matched by conversation content and provider response IDs, not by a session
+	// header. Requests with the same conversation content can go to the same target. If the
+	// preferred target is not available, the balancer algorithm picks the target.
+	//
+	SessionAffinity *AIGatewayModelBalancerSessionAffinityOutput `json:"session_affinity,omitempty"`
 }
 
 func (a AIGatewayModelBalancerSemanticConfigOutput) MarshalJSON() ([]byte, error) {
@@ -267,6 +274,13 @@ func (a *AIGatewayModelBalancerSemanticConfigOutput) GetVectordbRedis() *AIGatew
 	return a.GetVectordb().AIGatewayModelVectorDBConfigRedisOutput
 }
 
+func (a *AIGatewayModelBalancerSemanticConfigOutput) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinityOutput {
+	if a == nil {
+		return nil
+	}
+	return a.SessionAffinity
+}
+
 type AIGatewayModelBalancerSemanticConfig struct {
 	ConnectTimeout *int64 `default:"60000" json:"connect_timeout"`
 	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
@@ -287,6 +301,13 @@ type AIGatewayModelBalancerSemanticConfig struct {
 	Embeddings Embeddings `json:"embeddings"`
 	// Configuration for the vector database used by the model.
 	Vectordb AIGatewayModelVectorDBConfig `json:"vectordb"`
+	// Sends later requests in a conversation to the target that served the earlier turn, if that
+	// target can still take the request. This improves reuse of the provider's prompt cache.
+	// Requests are matched by conversation content and provider response IDs, not by a session
+	// header. Requests with the same conversation content can go to the same target. If the
+	// preferred target is not available, the balancer algorithm picks the target.
+	//
+	SessionAffinity *AIGatewayModelBalancerSessionAffinity `json:"session_affinity,omitempty"`
 }
 
 func (a AIGatewayModelBalancerSemanticConfig) MarshalJSON() ([]byte, error) {
@@ -380,4 +401,11 @@ func (a *AIGatewayModelBalancerSemanticConfig) GetVectordbPgvector() *AIGatewayM
 
 func (a *AIGatewayModelBalancerSemanticConfig) GetVectordbRedis() *AIGatewayModelVectorDBConfigRedis {
 	return a.GetVectordb().AIGatewayModelVectorDBConfigRedis
+}
+
+func (a *AIGatewayModelBalancerSemanticConfig) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinity {
+	if a == nil {
+		return nil
+	}
+	return a.SessionAffinity
 }
