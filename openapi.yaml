@@ -111866,6 +111866,339 @@ components:
           priority: '#/components/schemas/AIGatewayModelBalancerPriorityConfig'
           round-robin: '#/components/schemas/AIGatewayModelBalancerRoundRobinConfig'
           semantic: '#/components/schemas/AIGatewayModelBalancerSemanticConfig'
+    AIGatewayModelBalancerSessionAffinity:
+      additionalProperties: false
+      type: object
+      x-min-runtime-version: '2.4'
+      properties:
+        ttl:
+          type: integer
+          default: 21600
+          minimum: 1
+          maximum: 2147483646
+          description: The time in seconds that a conversation's preferred target is kept.
+        storage:
+          $ref: '#/components/schemas/AIGatewaySessionAffinityStorage'
+        enabled:
+          type: boolean
+          default: true
+          description: Whether session affinity is enabled.
+      description: >
+        Sends later requests in a conversation to the target that served the
+        earlier turn, if that
+
+        target can still take the request. This improves reuse of the provider's
+        prompt cache.
+
+        Requests are matched by conversation content and provider response IDs,
+        not by a session
+
+        header. Requests with the same conversation content can go to the same
+        target. If the
+
+        preferred target is not available, the balancer algorithm picks the
+        target.
+      example:
+        enabled: true
+        ttl: 21600
+        storage:
+          type: redis
+    AIGatewaySessionAffinityStorage:
+      description: Where session affinity state is stored.
+      oneOf:
+        - $ref: '#/components/schemas/AIGatewaySessionAffinityStorageLocal'
+        - $ref: '#/components/schemas/AIGatewaySessionAffinityStorageRedis'
+      discriminator:
+        propertyName: type
+        mapping:
+          local: '#/components/schemas/AIGatewaySessionAffinityStorageLocal'
+          redis: '#/components/schemas/AIGatewaySessionAffinityStorageRedis'
+    AIGatewaySessionAffinityStorageLocal:
+      title: AIGatewaySessionAffinityStorageLocal
+      type: object
+      additionalProperties: false
+      description: >
+        Stores session affinity state in the memory of each data plane node. A
+        request that
+
+        reaches a different node does not find the earlier target, so the
+        balancer algorithm
+
+        picks the target.
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          const: local
+      example:
+        type: local
+    AIGatewaySessionAffinityStorageRedis:
+      type: object
+      additionalProperties: false
+      description: >
+        Stores session affinity state in Redis, so that all data plane nodes
+        share it.
+
+        Set the inline connection details or reference a Datastore with purpose
+        `session-affinity`.
+
+        The Datastore overrides the inline details and must have type
+        `redis-ee`.
+      properties:
+        cloud_authentication:
+          description: >-
+            Auth related config for connecting to a Cloud Provider's Redis
+            instance.
+          oneOf:
+            - $ref: '#/components/schemas/AIGatewayRedisAWSAuthentication'
+            - $ref: '#/components/schemas/AIGatewayRedisAzureAuthentication'
+            - $ref: '#/components/schemas/AIGatewayRedisGCPAuthentication'
+          discriminator:
+            propertyName: type
+            mapping:
+              aws: '#/components/schemas/AIGatewayRedisAWSAuthentication'
+              azure: '#/components/schemas/AIGatewayRedisAzureAuthentication'
+              gcp: '#/components/schemas/AIGatewayRedisGCPAuthentication'
+        cluster:
+          type: object
+          description: Cluster configuration for the Redis connection.
+          additionalProperties: false
+          properties:
+            max_redirections:
+              type: integer
+              default: 5
+              minimum: 0
+              maximum: 2147483646
+              description: Maximum retry attempts for redirection.
+            nodes:
+              type: array
+              minItems: 1
+              description: >-
+                Cluster addresses to use for Redis connections when the `redis`
+                strategy is defined. Defining this field implies using a Redis
+                Cluster. The minimum length of the array is 1 element.
+              items:
+                type: object
+                properties:
+                  ip:
+                    type: string
+                    default: 127.0.0.1
+                    description: A string representing a host name, such as example.com.
+                  port:
+                    type: integer
+                    default: 6379
+                    minimum: 0
+                    maximum: 65535
+                    description: >-
+                      An integer representing a port number between 0 and 65535,
+                      inclusive.
+        connect_timeout:
+          type: integer
+          default: 2000
+          minimum: 0
+          maximum: 2147483646
+          description: >-
+            An integer representing a timeout in milliseconds. Must be between 0
+            and 2^31-2.
+        connection_is_proxied:
+          type: boolean
+          default: false
+          description: >-
+            If the connection to Redis is proxied (e.g. Envoy), set it `true`.
+            Set the `host` and `port` to point to the proxy address.
+        database:
+          type: integer
+          default: 0
+          minimum: 0
+          maximum: 2147483646
+          description: >-
+            Database to use for the Redis connection when using the `redis`
+            strategy
+        host:
+          type: string
+          default: 127.0.0.1
+          x-referenceable: true
+          description: >
+            A string representing a host name, such as example.com.
+
+            This field is
+            [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+        keepalive:
+          type: object
+          description: Keepalive configuration for the Redis connection.
+          additionalProperties: false
+          properties:
+            backlog:
+              type: integer
+              minimum: 0
+              maximum: 2147483646
+              description: >-
+                Limits the total number of opened connections for a pool. If the
+                connection pool is full, connection queues above the limit go
+                into the backlog queue. If the backlog queue is full, subsequent
+                connect operations fail and return `nil`. Queued operations
+                (subject to set timeouts) resume once the number of connections
+                in the pool is less than `pool_size`. If latency is high or
+                throughput is low, try increasing this value. Empirically, this
+                value is larger than `pool_size`.
+            pool_size:
+              type: integer
+              default: 256
+              minimum: 1
+              maximum: 2147483646
+              description: >-
+                The size limit for every cosocket connection pool associated
+                with every remote server, per worker process. If neither
+                `pool_size` nor `backlog` is specified, no pool is created. If
+                `pool_size` isn't specified but `backlog` is specified, then the
+                pool uses the default value. Try to increase (e.g. 512) this
+                value if latency is high or throughput is low.
+        password:
+          type: string
+          x-referenceable: true
+          description: >
+            Password to use for Redis connections. If undefined, no AUTH
+            commands are sent to Redis.
+
+            This field is
+            [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+        port:
+          oneOf:
+            - type: integer
+              default: 6379
+              maximum: 65535
+              minimum: 0
+              example: 6379
+            - type: string
+              example: '{vault://hcv/redis/port}'
+          x-referenceable: true
+          x-go-type: types.Referenceable
+          x-go-type-import:
+            path: >-
+              github.com/kong-konnect/koko-private/internal/server/public/openapi/controlplanesconfig/types
+            name: types
+          description: >
+            An integer representing a port number between 0 and 65535,
+            inclusive.
+
+            This field is
+            [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+        read_timeout:
+          type: integer
+          default: 2000
+          minimum: 0
+          maximum: 2147483646
+          description: >-
+            An integer representing a timeout in milliseconds. Must be between 0
+            and 2^31-2.
+        send_timeout:
+          type: integer
+          default: 2000
+          minimum: 0
+          maximum: 2147483646
+          description: >-
+            An integer representing a timeout in milliseconds. Must be between 0
+            and 2^31-2.
+        sentinel:
+          type: object
+          description: Configuration for Redis Sentinel.
+          additionalProperties: false
+          properties:
+            master:
+              type: string
+              description: >-
+                Sentinel master to use for Redis connections. Defining this
+                value implies using Redis Sentinel.
+            nodes:
+              type: array
+              minItems: 1
+              description: >-
+                Sentinel node addresses to use for Redis connections when the
+                `redis` strategy is defined. Defining this field implies using a
+                Redis Sentinel. The minimum length of the array is 1 element.
+              items:
+                type: object
+                properties:
+                  host:
+                    type: string
+                    default: 127.0.0.1
+                    description: A string representing a host name, such as example.com.
+                  port:
+                    type: integer
+                    default: 6379
+                    minimum: 0
+                    maximum: 65535
+                    description: >-
+                      An integer representing a port number between 0 and 65535,
+                      inclusive.
+            password:
+              type: string
+              x-referenceable: true
+              description: >
+                Sentinel password to authenticate with a Redis Sentinel
+                instance. If undefined, no AUTH commands are sent to Redis
+                Sentinels.
+
+                This field is
+                [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+            role:
+              type: string
+              enum:
+                - any
+                - master
+                - slave
+              description: >-
+                Sentinel role to use for Redis connections when the `redis`
+                strategy is defined. Defining this value implies using Redis
+                Sentinel.
+              x-speakeasy-unknown-values: allow
+            username:
+              type: string
+              x-referenceable: true
+              description: >
+                Sentinel username to authenticate with a Redis Sentinel
+                instance. If undefined, ACL authentication won't be performed.
+                This requires Redis v6.2.0+.
+
+                This field is
+                [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+        server_name:
+          type: string
+          x-referenceable: true
+          description: >
+            A string representing an SNI (server name indication) value for TLS.
+
+            This field is
+            [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+        ssl:
+          type: boolean
+          default: true
+          description: If set to true, uses SSL to connect to Redis.
+        ssl_verify:
+          type: boolean
+          default: true
+          description: >-
+            If set to true, verifies the validity of the server SSL certificate.
+            If setting this parameter, also configure
+            `lua_ssl_trusted_certificate` in `kong.conf` to specify the CA (or
+            server) certificate used by your Redis server. You may also need to
+            configure `lua_ssl_verify_depth` accordingly.
+        username:
+          type: string
+          x-referenceable: true
+          description: >
+            Username to use for Redis connections. If undefined, ACL
+            authentication won't be performed. This requires Redis v6.0.0+. To
+            be compatible with Redis v5.x.y, you can set it to `default`.
+
+            This field is
+            [referenceable](https://developer.konghq.com/gateway/entities/vault/#how-do-i-reference-secrets-stored-in-a-vault).
+        type:
+          type: string
+          const: redis
+      required:
+        - type
     AIGatewayModelBalancerConsistentHashingConfig:
       additionalProperties: false
       type: object
@@ -112140,6 +112473,22 @@ components:
             - v1
           default: v1
           description: The version of the intelligent balancing algorithm.
+        strategy:
+          type: string
+          enum:
+            - weighted
+            - margin
+          default: weighted
+          description: >
+            How the balancer selects among the eligible targets. `weighted`
+            scores each target on cost and
+
+            quality. `margin` selects the cheapest target whose expected quality
+            is close enough to the best
+
+            target's. Available while both are evaluated; removed once one is
+            chosen.
+          x-speakeasy-unknown-values: allow
         classifier:
           $ref: '#/components/schemas/AIGatewayModelBalancerIntelligentClassifier'
         cost_quality_tradeoff:
@@ -112154,6 +112503,8 @@ components:
             `cost` favors the cheapest available target, `quality` favors the
             highest-quality target, and `balanced` weighs both.
           x-speakeasy-unknown-values: allow
+        session_affinity:
+          $ref: '#/components/schemas/AIGatewayModelBalancerSessionAffinity'
       x-min-runtime-version: '2.4'
       description: >-
         On the first request of a conversation, asks a classifier model what
@@ -112354,6 +112705,8 @@ components:
         algorithm:
           type: string
           const: least-connections
+        session_affinity:
+          $ref: '#/components/schemas/AIGatewayModelBalancerSessionAffinity'
       required:
         - algorithm
     AIGatewayModelBalancerLowestLatencyConfig:
@@ -112497,6 +112850,8 @@ components:
             - e2e
             - tpot
           x-speakeasy-unknown-values: allow
+        session_affinity:
+          $ref: '#/components/schemas/AIGatewayModelBalancerSessionAffinity'
       required:
         - algorithm
         - latency_strategy
@@ -112642,6 +112997,8 @@ components:
             - prompt-tokens
             - total-tokens
           x-speakeasy-unknown-values: allow
+        session_affinity:
+          $ref: '#/components/schemas/AIGatewayModelBalancerSessionAffinity'
       required:
         - algorithm
         - tokens_count_strategy
@@ -112776,6 +113133,8 @@ components:
         algorithm:
           type: string
           const: priority
+        session_affinity:
+          $ref: '#/components/schemas/AIGatewayModelBalancerSessionAffinity'
       required:
         - algorithm
     AIGatewayModelBalancerRoundRobinConfig:
@@ -112909,6 +113268,8 @@ components:
         algorithm:
           type: string
           const: round-robin
+        session_affinity:
+          $ref: '#/components/schemas/AIGatewayModelBalancerSessionAffinity'
       required:
         - algorithm
     AIGatewayModelBalancerSemanticConfig:
@@ -113068,6 +113429,8 @@ components:
               $ref: '#/components/schemas/AIGatewayEmbeddingsModelConfig'
         vectordb:
           $ref: '#/components/schemas/AIGatewayModelVectorDBConfig'
+        session_affinity:
+          $ref: '#/components/schemas/AIGatewayModelBalancerSessionAffinity'
       required:
         - algorithm
         - embeddings
