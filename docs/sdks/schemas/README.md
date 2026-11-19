@@ -34,8 +34,8 @@ func main() {
         }),
     )
 
-    res, err := s.Schemas.ValidateExpression(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.CreateValidateExpressionBodyRequestValidateExpressionRequest(
-        components.ValidateExpressionRequest{
+    res, err := s.Schemas.ValidateExpression(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", components.CreateValidateExpressionBodyRequestValidateExpressionValueRequest(
+        components.ValidateExpressionValueRequest{
             Expression: "http.method == \"GET\"",
         },
     ))

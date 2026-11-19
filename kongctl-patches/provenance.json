@@ -1,6 +1,6 @@
 {
   "repository": "Kong/kongctl",
-  "commit": "0bc6e4f10ff2a6b41d204291f9dee16c1b77b968",
+  "commit": "8834022f0c4da94165255be81decec47927c9f9e",
   "path": "tools/sdk-patches",
   "sha256": {
     "apply.py": "9b383b7349c3bb2603cf5885fbc007adcb8aeede218323520ef812f7dbb5aab7",

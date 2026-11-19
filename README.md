@@ -71,6 +71,7 @@ For more information about the API: [Documentation for Kong Gateway and its APIs
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
+  * [Special Types](#special-types)
 
 <!-- End Table of Contents [toc] -->
 
@@ -112,7 +113,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -177,7 +178,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -569,6 +570,14 @@ func main() {
 * [ReplacePortalAssetFavicon](docs/sdks/assets/README.md#replaceportalassetfavicon) - Replace Favicon
 * [GetPortalAssetFaviconRaw](docs/sdks/assets/README.md#getportalassetfaviconraw) - Get Favicon (Raw)
 
+### [AttributionPlugins](docs/sdks/attributionplugins/README.md)
+
+* [ListCostAttributionPlugins](docs/sdks/attributionplugins/README.md#listcostattributionplugins) - List attribution plugin installations
+* [GetCostAttributionPlugin](docs/sdks/attributionplugins/README.md#getcostattributionplugin) - Get an AI Gateway's attribution plugin
+* [UpsertCostAttributionPlugin](docs/sdks/attributionplugins/README.md#upsertcostattributionplugin) - Install or replace an attribution plugin
+* [UpdateCostAttributionPlugin](docs/sdks/attributionplugins/README.md#updatecostattributionplugin) - Update an AI Gateway's attribution plugin
+* [DeleteCostAttributionPlugin](docs/sdks/attributionplugins/README.md#deletecostattributionplugin) - Remove an AI Gateway's attribution plugin
+
 ### [AuthServer](docs/sdks/authserver/README.md)
 
 * [ListAuthServers](docs/sdks/authserver/README.md#listauthservers) - List all auth servers
@@ -651,6 +660,22 @@ func main() {
 * [DeleteBasicAuthWithConsumer](docs/sdks/basicauthcredentials/README.md#deletebasicauthwithconsumer) - Delete a a Basic-auth credential associated with a Consumer in a workspace
 * [GetBasicAuthWithConsumer](docs/sdks/basicauthcredentials/README.md#getbasicauthwithconsumer) - Get a Basic-auth credential associated with a Consumer in a workspace
 * [UpsertBasicAuthWithConsumer](docs/sdks/basicauthcredentials/README.md#upsertbasicauthwithconsumer) - Upsert a Basic-auth credential associated with a Consumer in a workspace
+
+### [Budgets](docs/sdks/budgets/README.md)
+
+* [ListCostBudgets](docs/sdks/budgets/README.md#listcostbudgets) - List budgets
+* [CreateCostBudget](docs/sdks/budgets/README.md#createcostbudget) - Create a budget
+* [GetCostBudget](docs/sdks/budgets/README.md#getcostbudget) - Get a budget
+* [UpsertCostBudget](docs/sdks/budgets/README.md#upsertcostbudget) - Replace a budget's updatable fields
+* [DeleteCostBudget](docs/sdks/budgets/README.md#deletecostbudget) - Delete a budget
+* [GetCostBudgetBalance](docs/sdks/budgets/README.md#getcostbudgetbalance) - Get a budget's balance
+* [ListCostBudgetBalances](docs/sdks/budgets/README.md#listcostbudgetbalances) - List budget balances
+* [GetCostNotificationRule](docs/sdks/budgets/README.md#getcostnotificationrule) - Get a budget's notification rule
+* [UpsertCostNotificationRule](docs/sdks/budgets/README.md#upsertcostnotificationrule) - Create or replace a notification rule
+* [DeleteCostNotificationRule](docs/sdks/budgets/README.md#deletecostnotificationrule) - Delete a budget's notification rule
+* [ListCostNotificationRuleFirings](docs/sdks/budgets/README.md#listcostnotificationrulefirings) - List a notification rule's firings
+* [ListCostNotificationEvents](docs/sdks/budgets/README.md#listcostnotificationevents) - List notification events
+* [GetCostNotificationEvent](docs/sdks/budgets/README.md#getcostnotificationevent) - Get a notification event
 
 ### [CACertificates](docs/sdks/cacertificates/README.md)
 
@@ -1141,6 +1166,19 @@ func main() {
 * [PatchEventGateway](docs/sdks/eventgateways/README.md#patcheventgateway) - Partially Update Event Gateway
 * [DeleteEventGateway](docs/sdks/eventgateways/README.md#deleteeventgateway) - Delete Event Gateway
 
+### [Exports](docs/sdks/exports/README.md)
+
+* [ListCostExports](docs/sdks/exports/README.md#listcostexports) - List exports
+* [CreateCostExport](docs/sdks/exports/README.md#createcostexport) - Create an export
+* [GetCostExport](docs/sdks/exports/README.md#getcostexport) - Get an export
+* [DeleteCostExport](docs/sdks/exports/README.md#deletecostexport) - Delete an export
+* [CreateCostExportDownload](docs/sdks/exports/README.md#createcostexportdownload) - Download an export file
+* [ListCostExportSchedules](docs/sdks/exports/README.md#listcostexportschedules) - List export schedules
+* [CreateCostExportSchedule](docs/sdks/exports/README.md#createcostexportschedule) - Create an export schedule
+* [GetCostExportSchedule](docs/sdks/exports/README.md#getcostexportschedule) - Get an export schedule
+* [UpsertCostExportSchedule](docs/sdks/exports/README.md#upsertcostexportschedule) - Replace an export schedule
+* [DeleteCostExportSchedule](docs/sdks/exports/README.md#deletecostexportschedule) - Delete an export schedule
+
 ### [GraphQLCostDecorations](docs/sdks/graphqlcostdecorations/README.md)
 
 * [ListGraphqlRateLimitingAdvancedCost](docs/sdks/graphqlcostdecorations/README.md#listgraphqlratelimitingadvancedcost) - List all GraphQL Cost Decorations in a workspace
@@ -1330,6 +1368,15 @@ func main() {
 * [UpsertMtlsAuthWithConsumer](docs/sdks/mtlsauthcredentials/README.md#upsertmtlsauthwithconsumer) - Upsert a MTLS-auth credential associated with a Consumer in a workspace
 * [ListMtlsAuth](docs/sdks/mtlsauthcredentials/README.md#listmtlsauth) - List all MTLS-auth credentials in a workspace
 * [GetMtlsAuth](docs/sdks/mtlsauthcredentials/README.md#getmtlsauth) - Get a MTLS-auth credential in a workspace
+
+### [NotificationChannels](docs/sdks/notificationchannels/README.md)
+
+* [ListCostNotificationChannels](docs/sdks/notificationchannels/README.md#listcostnotificationchannels) - List notification channels
+* [CreateCostNotificationChannel](docs/sdks/notificationchannels/README.md#createcostnotificationchannel) - Create a notification channel
+* [GetCostNotificationChannel](docs/sdks/notificationchannels/README.md#getcostnotificationchannel) - Get a notification channel
+* [UpsertCostNotificationChannel](docs/sdks/notificationchannels/README.md#upsertcostnotificationchannel) - Replace a notification channel
+* [DeleteCostNotificationChannel](docs/sdks/notificationchannels/README.md#deletecostnotificationchannel) - Delete a notification channel
+* [CreateCostNotificationChannelTest](docs/sdks/notificationchannels/README.md#createcostnotificationchanneltest) - Send a test notification
 
 ### [Notifications](docs/sdks/notifications/README.md)
 
@@ -1915,6 +1962,14 @@ func main() {
 * [GetUpstream](docs/sdks/upstreams/README.md#getupstream) - Get an Upstream in a workspace
 * [UpsertUpstream](docs/sdks/upstreams/README.md#upsertupstream) - Upsert a Upstream in a workspace
 
+### [UsageEvents](docs/sdks/usageevents/README.md)
+
+* [ListCostUsageEvents](docs/sdks/usageevents/README.md#listcostusageevents) - List usage events
+* [CreateCostUsageEvents](docs/sdks/usageevents/README.md#createcostusageevents) - Report usage events
+* [ListCostUsageFieldValues](docs/sdks/usageevents/README.md#listcostusagefieldvalues) - List observed usage event field values
+* [QueryCostUsageEvents](docs/sdks/usageevents/README.md#querycostusageevents) - Query usage events
+* [ForecastCostUsageEvents](docs/sdks/usageevents/README.md#forecastcostusageevents) - Get the monthly spend forecast
+
 ### [Users](docs/sdks/users/README.md)
 
 * [GetUsersInternal](docs/sdks/users/README.md#getusersinternal) - List Users (Internal)
@@ -1974,7 +2029,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -2031,7 +2086,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -2102,7 +2157,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -2173,7 +2228,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 
@@ -2259,7 +2314,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -2311,7 +2366,7 @@ func main() {
 		PageSize:     sdkkonnectgo.Pointer[int64](10),
 		PageNumber:   sdkkonnectgo.Pointer[int64](1),
 		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         sdkkonnectgo.Pointer("created_at desc"),
+		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -2399,5 +2454,31 @@ var (
 
 This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
 <!-- End Custom HTTP Client [http-client] -->
+
+<!-- Start Special Types [types] -->
+## Special Types
+
+This SDK defines the following custom types to assist with marshalling and unmarshalling data.
+
+### Date
+
+`types.Date` is a wrapper around time.Time that allows for JSON marshaling a date string formatted as "2006-01-02".
+
+#### Usage
+
+```go
+d1 := types.NewDate(time.Now()) // returns *types.Date
+
+d2 := types.DateFromTime(time.Now()) // returns types.Date
+
+d3, err := types.NewDateFromString("2019-01-01") // returns *types.Date, error
+
+d4, err := types.DateFromString("2019-01-01") // returns types.Date, error
+
+d5 := types.MustNewDateFromString("2019-01-01") // returns *types.Date and panics on error
+
+d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on error
+```
+<!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

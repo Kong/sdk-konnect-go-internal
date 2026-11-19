@@ -430,6 +430,16 @@ type SDK struct {
 	CatalogMCPVersions *CatalogMCPVersions
 	// Link an MCP to an AI Gateway MCP.
 	CatalogMCPImplementations *CatalogMCPImplementations
+	// Usage events record each call to an AI model. These operations report and list the events, total them, forecast the month's spend, and list the values seen in each field.
+	UsageEvents *UsageEvents
+	// Budgets set spending limits, or exemptions from them, for parts of the organization's usage. These operations manage budgets and their notification rules, and read balances, firings, and notification events.
+	Budgets *Budgets
+	// Notification channels are the email recipient lists and Slack incoming webhooks that budget alerts go to. These operations manage the channels and send test messages.
+	NotificationChannels *NotificationChannels
+	// Exports copy the organization's cost and usage data into files to download. These operations manage one-time exports and export schedules, and download the files.
+	Exports *Exports
+	// The attribution plugin turns request headers and identity claims into cost tags on an AI Gateway. These operations install, update, and remove it per AI Gateway, and list the installations.
+	AttributionPlugins *AttributionPlugins
 	// DP Nodes
 	DPNodes *DPNodes
 	// DP Certificates
@@ -807,6 +817,11 @@ func New(opts ...SDKOption) *SDK {
 	sdk.CatalogMCPs = newCatalogMCPs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogMCPVersions = newCatalogMCPVersions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogMCPImplementations = newCatalogMCPImplementations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.UsageEvents = newUsageEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Budgets = newBudgets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.NotificationChannels = newNotificationChannels(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Exports = newExports(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AttributionPlugins = newAttributionPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DPNodes = newDPNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DPCertificates = newDPCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CustomPluginSchemas = newCustomPluginSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)

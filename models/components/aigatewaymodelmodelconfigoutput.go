@@ -128,6 +128,13 @@ func (a *AIGatewayModelModelConfigOutput) GetBalancerConsistentHashing() *AIGate
 	return nil
 }
 
+func (a *AIGatewayModelModelConfigOutput) GetBalancerIntelligent() *AIGatewayModelBalancerIntelligentConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayModelBalancerIntelligentConfig
+	}
+	return nil
+}
+
 func (a *AIGatewayModelModelConfigOutput) GetBalancerLeastConnections() *AIGatewayModelBalancerLeastConnectionsConfig {
 	if v := a.GetBalancer(); v != nil {
 		return v.AIGatewayModelBalancerLeastConnectionsConfig
@@ -249,6 +256,13 @@ func (a *AIGatewayModelModelConfig) GetBalancer() *AIGatewayModelBalancerConfig 
 func (a *AIGatewayModelModelConfig) GetBalancerConsistentHashing() *AIGatewayModelBalancerConsistentHashingConfig {
 	if v := a.GetBalancer(); v != nil {
 		return v.AIGatewayModelBalancerConsistentHashingConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayModelModelConfig) GetBalancerIntelligent() *AIGatewayModelBalancerIntelligentConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayModelBalancerIntelligentConfig
 	}
 	return nil
 }

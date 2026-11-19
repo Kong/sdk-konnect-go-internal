@@ -14,14 +14,6 @@ type AIGatewayMCPServerUpstreamServer struct {
 	// List of tools exposed by this MCP Server.
 	//
 	Tools []AIGatewayMCPUpstreamTool `json:"tools,omitempty"`
-	// List of prompts exposed by this MCP Server.
-	//
-	// **Requires a minimum runtime version of `2.4`**.
-	Prompts []AIGatewayMCPPrompt `json:"prompts,omitempty"`
-	// List of resources exposed by this MCP Server.
-	//
-	// **Requires a minimum runtime version of `2.4`**.
-	Resources []AIGatewayMCPResource `json:"resources,omitempty"`
 	// The display name for the MCP Server.
 	DisplayName string `json:"display_name"`
 	// A user-defined unique identifier for this MCP server, used as a stable human-readable reference. This value is immutable after creation.
@@ -90,20 +82,6 @@ func (a *AIGatewayMCPServerUpstreamServer) GetTools() []AIGatewayMCPUpstreamTool
 		return nil
 	}
 	return a.Tools
-}
-
-func (a *AIGatewayMCPServerUpstreamServer) GetPrompts() []AIGatewayMCPPrompt {
-	if a == nil {
-		return nil
-	}
-	return a.Prompts
-}
-
-func (a *AIGatewayMCPServerUpstreamServer) GetResources() []AIGatewayMCPResource {
-	if a == nil {
-		return nil
-	}
-	return a.Resources
 }
 
 func (a *AIGatewayMCPServerUpstreamServer) GetDisplayName() string {

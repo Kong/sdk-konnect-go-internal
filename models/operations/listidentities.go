@@ -7,26 +7,26 @@ import (
 	"net/http"
 )
 
-// Type - Filter using **one** of the following operators: `eq`, `oeq`
-type Type struct {
+// ListIdentitiesQueryParamType - Filter using **one** of the following operators: `eq`, `oeq`
+type ListIdentitiesQueryParamType struct {
 	// The field exactly matches the provided value.
 	Eq *string `queryParam:"name=eq"`
 	// The field matches any of the provided values.
 	Oeq *string `queryParam:"name=oeq"`
 }
 
-func (t *Type) GetEq() *string {
-	if t == nil {
+func (l *ListIdentitiesQueryParamType) GetEq() *string {
+	if l == nil {
 		return nil
 	}
-	return t.Eq
+	return l.Eq
 }
 
-func (t *Type) GetOeq() *string {
-	if t == nil {
+func (l *ListIdentitiesQueryParamType) GetOeq() *string {
+	if l == nil {
 		return nil
 	}
-	return t.Oeq
+	return l.Oeq
 }
 
 // ListIdentitiesQueryParamFilter - Filter identities by field. Supported filter field:
@@ -35,10 +35,10 @@ func (t *Type) GetOeq() *string {
 // Example: `filter[type]="oidc"`
 type ListIdentitiesQueryParamFilter struct {
 	// Filter using **one** of the following operators: `eq`, `oeq`
-	Type *Type `queryParam:"name=type"`
+	Type *ListIdentitiesQueryParamType `queryParam:"name=type"`
 }
 
-func (l *ListIdentitiesQueryParamFilter) GetType() *Type {
+func (l *ListIdentitiesQueryParamFilter) GetType() *ListIdentitiesQueryParamType {
 	if l == nil {
 		return nil
 	}

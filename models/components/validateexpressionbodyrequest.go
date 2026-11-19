@@ -11,23 +11,23 @@ import (
 type ValidateExpressionBodyRequestType string
 
 const (
-	ValidateExpressionBodyRequestTypeValidateExpressionRequest ValidateExpressionBodyRequestType = "ValidateExpressionRequest"
-	ValidateExpressionBodyRequestTypeValidateConditionRequest  ValidateExpressionBodyRequestType = "ValidateConditionRequest"
+	ValidateExpressionBodyRequestTypeValidateExpressionValueRequest ValidateExpressionBodyRequestType = "ValidateExpressionValueRequest"
+	ValidateExpressionBodyRequestTypeValidateConditionRequest       ValidateExpressionBodyRequestType = "ValidateConditionRequest"
 )
 
 type ValidateExpressionBodyRequest struct {
-	ValidateExpressionRequest *ValidateExpressionRequest `queryParam:"inline" union:"member"`
-	ValidateConditionRequest  *ValidateConditionRequest  `queryParam:"inline" union:"member"`
+	ValidateExpressionValueRequest *ValidateExpressionValueRequest `queryParam:"inline" union:"member"`
+	ValidateConditionRequest       *ValidateConditionRequest       `queryParam:"inline" union:"member"`
 
 	Type ValidateExpressionBodyRequestType
 }
 
-func CreateValidateExpressionBodyRequestValidateExpressionRequest(validateExpressionRequest ValidateExpressionRequest) ValidateExpressionBodyRequest {
-	typ := ValidateExpressionBodyRequestTypeValidateExpressionRequest
+func CreateValidateExpressionBodyRequestValidateExpressionValueRequest(validateExpressionValueRequest ValidateExpressionValueRequest) ValidateExpressionBodyRequest {
+	typ := ValidateExpressionBodyRequestTypeValidateExpressionValueRequest
 
 	return ValidateExpressionBodyRequest{
-		ValidateExpressionRequest: &validateExpressionRequest,
-		Type:                      typ,
+		ValidateExpressionValueRequest: &validateExpressionValueRequest,
+		Type:                           typ,
 	}
 }
 
@@ -49,10 +49,10 @@ func (u *ValidateExpressionBodyRequest) UnmarshalJSON(data []byte) (err error) {
 		}
 	}()
 
-	var validateExpressionRequest ValidateExpressionRequest = ValidateExpressionRequest{}
-	if err := utils.UnmarshalJSON(data, &validateExpressionRequest, "", true, nil); err == nil {
-		u.ValidateExpressionRequest = &validateExpressionRequest
-		u.Type = ValidateExpressionBodyRequestTypeValidateExpressionRequest
+	var validateExpressionValueRequest ValidateExpressionValueRequest = ValidateExpressionValueRequest{}
+	if err := utils.UnmarshalJSON(data, &validateExpressionValueRequest, "", true, nil); err == nil {
+		u.ValidateExpressionValueRequest = &validateExpressionValueRequest
+		u.Type = ValidateExpressionBodyRequestTypeValidateExpressionValueRequest
 		return nil
 	}
 
@@ -67,8 +67,8 @@ func (u *ValidateExpressionBodyRequest) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (u ValidateExpressionBodyRequest) MarshalJSON() ([]byte, error) {
-	if u.ValidateExpressionRequest != nil {
-		return utils.MarshalJSON(u.ValidateExpressionRequest, "", true)
+	if u.ValidateExpressionValueRequest != nil {
+		return utils.MarshalJSON(u.ValidateExpressionValueRequest, "", true)
 	}
 
 	if u.ValidateConditionRequest != nil {

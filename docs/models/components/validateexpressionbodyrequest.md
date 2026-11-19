@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### ValidateExpressionRequest
+### ValidateExpressionValueRequest
 
 ```go
-validateExpressionBodyRequest := components.CreateValidateExpressionBodyRequestValidateExpressionRequest(components.ValidateExpressionRequest{/* values here */})
+validateExpressionBodyRequest := components.CreateValidateExpressionBodyRequestValidateExpressionValueRequest(components.ValidateExpressionValueRequest{/* values here */})
 ```
 
 ### ValidateConditionRequest
@@ -21,8 +21,8 @@ Use the `Type` field to determine which variant is active, then access the corre
 
 ```go
 switch validateExpressionBodyRequest.Type {
-	case components.ValidateExpressionBodyRequestTypeValidateExpressionRequest:
-		// validateExpressionBodyRequest.ValidateExpressionRequest is populated
+	case components.ValidateExpressionBodyRequestTypeValidateExpressionValueRequest:
+		// validateExpressionBodyRequest.ValidateExpressionValueRequest is populated
 	case components.ValidateExpressionBodyRequestTypeValidateConditionRequest:
 		// validateExpressionBodyRequest.ValidateConditionRequest is populated
 }

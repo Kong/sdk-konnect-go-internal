@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: a7b74aa150b1c9a56a8582618ffa0d87
+  docChecksum: d3b4136966207ddf11f8da3042cfcf55
   docVersion: 3.21.1
   speakeasyVersion: 1.808.1
   generationVersion: 2.960.8
@@ -129,6 +129,7 @@ trackedFiles:
   assets.go:
     id: b6b18a05c076
     pristine_git_object: 359ba1ee02939431351987c9c348304d110c0dcf
+  attributionplugins.go: {}
   authentication.go:
     id: e5f463a66465
     pristine_git_object: 9915d001c4c5092c7fe8f8927b723c5793f299ee
@@ -145,6 +146,7 @@ trackedFiles:
   basicauthcredentials.go:
     id: acc787dfa2ff
     pristine_git_object: 65e66a0026b9a5133e34895bd57c075e4827dc2a
+  budgets.go: {}
   cacertificates.go:
     id: a4797302d3f0
     pristine_git_object: 1aeb71275fe872e44f6936da48e0b0f8d287ce6a
@@ -339,6 +341,144 @@ trackedFiles:
   docs/models/components/agentid.md: {}
   docs/models/components/agents.md: {}
   docs/models/components/aggregation.md: {}
+  docs/models/components/aicostattributionplugin.md: {}
+  docs/models/components/aicostattributionpluginconfiguration.md: {}
+  docs/models/components/aicostattributionpluginconfigurationintegrations.md: {}
+  docs/models/components/aicostattributionpluginheadermapping.md: {}
+  docs/models/components/aicostattributionpluginpatch.md: {}
+  docs/models/components/aicostattributionpluginpatchintegrations.md: {}
+  docs/models/components/aicostattributionpluginprefixmapping.md: {}
+  docs/models/components/aicostbudget.md: {}
+  docs/models/components/aicostbudgetbalancefilterparameters.md: {}
+  docs/models/components/aicostbudgetreference.md: {}
+  docs/models/components/aicostbudgetscopefield.md: {}
+  docs/models/components/aicostcurrency.md: {}
+  docs/models/components/aicostemailnotificationchannel.md: {}
+  docs/models/components/aicostemailnotificationchannelinput.md: {}
+  docs/models/components/aicostemailnotificationchannelinputemail.md: {}
+  docs/models/components/aicostexemptbudget.md: {}
+  docs/models/components/aicostexemptbudgetinput.md: {}
+  docs/models/components/aicostexemptbudgetinputscope.md: {}
+  docs/models/components/aicostexemptbudgetinputvalidity.md: {}
+  docs/models/components/aicostexemptbudgetscope.md: {}
+  docs/models/components/aicostexport.md: {}
+  docs/models/components/aicostexport1.md: {}
+  docs/models/components/aicostexport2.md: {}
+  docs/models/components/aicostexport2compression.md: {}
+  docs/models/components/aicostexport2format.md: {}
+  docs/models/components/aicostexport2schedule.md: {}
+  docs/models/components/aicostexport2status.md: {}
+  docs/models/components/aicostexportcompression.md: {}
+  docs/models/components/aicostexportdataset.md: {}
+  docs/models/components/aicostexportfiles.md: {}
+  docs/models/components/aicostexportformat.md: {}
+  docs/models/components/aicostexportinput.md: {}
+  docs/models/components/aicostexportinput1.md: {}
+  docs/models/components/aicostexportinput2.md: {}
+  docs/models/components/aicostexportinput2compression.md: {}
+  docs/models/components/aicostexportinput2dataset.md: {}
+  docs/models/components/aicostexportinput2format.md: {}
+  docs/models/components/aicostexportinputcompression.md: {}
+  docs/models/components/aicostexportinputdataset.md: {}
+  docs/models/components/aicostexportinputformat.md: {}
+  docs/models/components/aicostexportinputschemaversion.md: {}
+  docs/models/components/aicostexportschedule.md: {}
+  docs/models/components/aicostexportschedule1.md: {}
+  docs/models/components/aicostexportschedule2.md: {}
+  docs/models/components/aicostexportschedule2compression.md: {}
+  docs/models/components/aicostexportschedule2dataset.md: {}
+  docs/models/components/aicostexportschedule2format.md: {}
+  docs/models/components/aicostexportschedule2status.md: {}
+  docs/models/components/aicostexportschedulecadence.md: {}
+  docs/models/components/aicostexportschedulecompression.md: {}
+  docs/models/components/aicostexportscheduledataset.md: {}
+  docs/models/components/aicostexportscheduleformat.md: {}
+  docs/models/components/aicostexportscheduleinput.md: {}
+  docs/models/components/aicostexportscheduleinput1.md: {}
+  docs/models/components/aicostexportscheduleinput2.md: {}
+  docs/models/components/aicostexportscheduleinput2cadence.md: {}
+  docs/models/components/aicostexportscheduleinput2compression.md: {}
+  docs/models/components/aicostexportscheduleinput2dataset.md: {}
+  docs/models/components/aicostexportscheduleinput2format.md: {}
+  docs/models/components/aicostexportscheduleinput2schemaversion.md: {}
+  docs/models/components/aicostexportscheduleinput2status.md: {}
+  docs/models/components/aicostexportscheduleinputcadence.md: {}
+  docs/models/components/aicostexportscheduleinputcompression.md: {}
+  docs/models/components/aicostexportscheduleinputdataset.md: {}
+  docs/models/components/aicostexportscheduleinputformat.md: {}
+  docs/models/components/aicostexportscheduleinputschemaversion.md: {}
+  docs/models/components/aicostexportscheduleinputstatus.md: {}
+  docs/models/components/aicostexportschedulestatus.md: {}
+  docs/models/components/aicostexportschemaversion.md: {}
+  docs/models/components/aicostexportstatus.md: {}
+  docs/models/components/aicostfocusoptions.md: {}
+  docs/models/components/aicostfocusoptionsinput.md: {}
+  docs/models/components/aicostfocusoptionsinputchargeperiod.md: {}
+  docs/models/components/aicostfocusoptionsinputversion.md: {}
+  docs/models/components/aicostfocusoptionsversion.md: {}
+  docs/models/components/aicostgrouplistfilter.md: {}
+  docs/models/components/aicostlimitbudget.md: {}
+  docs/models/components/aicostlimitbudgetinput.md: {}
+  docs/models/components/aicostlimitbudgetinputposture.md: {}
+  docs/models/components/aicostlimitbudgetinputscope.md: {}
+  docs/models/components/aicostlimitbudgetinputwindow.md: {}
+  docs/models/components/aicostlimitbudgetscope.md: {}
+  docs/models/components/aicostmapkeyfieldfilter.md: {}
+  docs/models/components/aicostmoney.md: {}
+  docs/models/components/aicostnotificationchannel.md: {}
+  docs/models/components/aicostnotificationchannelsummary.md: {}
+  docs/models/components/aicostnotificationchannelsummarytype.md: {}
+  docs/models/components/aicostnotificationdeliverydelivered.md: {}
+  docs/models/components/aicostnotificationdeliverydeliveredstatus.md: {}
+  docs/models/components/aicostnotificationdeliveryerrorreason.md: {}
+  docs/models/components/aicostnotificationdeliveryerrorreason1.md: {}
+  docs/models/components/aicostnotificationdeliveryfailed.md: {}
+  docs/models/components/aicostnotificationdeliveryfailedstatus.md: {}
+  docs/models/components/aicostnotificationdeliverypending.md: {}
+  docs/models/components/aicostnotificationdeliverypendingstatus.md: {}
+  docs/models/components/aicostnotificationdeliverystatus.md: {}
+  docs/models/components/aicostnotificationdeliverystatusfieldequalsfilter.md: {}
+  docs/models/components/aicostnotificationdeliverystatusfieldequalsfiltereq.md: {}
+  docs/models/components/aicostnotificationdeliverystatusfieldfilter.md: {}
+  docs/models/components/aicostnotificationdeliverystatusfieldneqfilter.md: {}
+  docs/models/components/aicostnotificationdeliverystatusfieldneqfilterneq.md: {}
+  docs/models/components/aicostnotificationeventfilterparameters.md: {}
+  docs/models/components/aicostnotificationrule.md: {}
+  docs/models/components/aicostnotificationtestevent.md: {}
+  docs/models/components/aicostnotificationtesteventdelivered.md: {}
+  docs/models/components/aicostnotificationtesteventdeliveredkind.md: {}
+  docs/models/components/aicostnotificationtesteventdeliveredstatus.md: {}
+  docs/models/components/aicostnotificationtesteventfailed.md: {}
+  docs/models/components/aicostnotificationtesteventfailedkind.md: {}
+  docs/models/components/aicostnotificationtesteventfailedstatus.md: {}
+  docs/models/components/aicostnotificationtesteventpending.md: {}
+  docs/models/components/aicostnotificationtesteventpendingkind.md: {}
+  docs/models/components/aicostnotificationtesteventpendingstatus.md: {}
+  docs/models/components/aicostnotificationthreshold.md: {}
+  docs/models/components/aicostnotificationthresholdevent.md: {}
+  docs/models/components/aicostnotificationthresholdeventkind.md: {}
+  docs/models/components/aicostobservedsubjecttype.md: {}
+  docs/models/components/aicostobservedsubjecttypeequalsfilter.md: {}
+  docs/models/components/aicostobservedsubjecttypefilter.md: {}
+  docs/models/components/aicostobservedsubjecttypeneqfilter.md: {}
+  docs/models/components/aicostreferencefieldfilter.md: {}
+  docs/models/components/aicostslacknotificationchannel.md: {}
+  docs/models/components/aicostslacknotificationchannelinput.md: {}
+  docs/models/components/aicostslacknotificationchannelinputslack.md: {}
+  docs/models/components/aicostslacknotificationchannelreplaceinput.md: {}
+  docs/models/components/aicostslacknotificationchannelreplaceinputslack.md: {}
+  docs/models/components/aicoststringfilter.md: {}
+  docs/models/components/aicoststringmapitemfilter.md: {}
+  docs/models/components/aicostteamlistfilter.md: {}
+  docs/models/components/aicosttimewindow.md: {}
+  docs/models/components/aicostusageevent.md: {}
+  docs/models/components/aicostusageeventdata.md: {}
+  docs/models/components/aicostusageeventdatacontenttype.md: {}
+  docs/models/components/aicostusageeventfieldvaluefilterparameters.md: {}
+  docs/models/components/aicostusageeventtype.md: {}
+  docs/models/components/aicostusagerequestmode.md: {}
+  docs/models/components/aicostuuidfilter.md: {}
+  docs/models/components/aicostuuidlistfilter.md: {}
   docs/models/components/aigateway.md: {}
   docs/models/components/aigatewayacls.md: {}
   docs/models/components/aigatewayagent.md: {}
@@ -519,10 +659,6 @@ trackedFiles:
   docs/models/components/aigatewaymcpdenyacl.md: {}
   docs/models/components/aigatewaymcpdenywhenacl.md: {}
   docs/models/components/aigatewaymcppassthroughtool.md: {}
-  docs/models/components/aigatewaymcpprompt.md: {}
-  docs/models/components/aigatewaymcppromptaccess.md: {}
-  docs/models/components/aigatewaymcpresource.md: {}
-  docs/models/components/aigatewaymcpresourceaccess.md: {}
   docs/models/components/aigatewaymcpserver.md: {}
   docs/models/components/aigatewaymcpserveracls.md: {}
   docs/models/components/aigatewaymcpservercachehint.md: {}
@@ -611,6 +747,10 @@ trackedFiles:
   docs/models/components/aigatewaymodelbalancerconfig.md: {}
   docs/models/components/aigatewaymodelbalancerconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerconsistenthashingconfig.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifier.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfig.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfigversion.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfig.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfig.md: {}
@@ -1961,6 +2101,7 @@ trackedFiles:
   docs/models/components/bootstrapport.md: {}
   docs/models/components/borderradius.md: {}
   docs/models/components/brokerhostformat.md: {}
+  docs/models/components/budget.md: {}
   docs/models/components/bulkpayload.md:
     id: 97b55e024915
     pristine_git_object: 64535193e7f53cfb70be947158f54b62735b1d03
@@ -1998,6 +2139,7 @@ trackedFiles:
   docs/models/components/cache.md: {}
   docs/models/components/cachescope.md: {}
   docs/models/components/cachewritecostlist.md: {}
+  docs/models/components/cadence.md: {}
   docs/models/components/capabilities.md: {}
   docs/models/components/capabilitycontrols.md: {}
   docs/models/components/catalogapiservicemappingfilterparameters.md:
@@ -2139,8 +2281,10 @@ trackedFiles:
   docs/models/components/certificaterequest.md: {}
   docs/models/components/certificatewithcertandkey.md: {}
   docs/models/components/certificatewithvault.md: {}
+  docs/models/components/channels.md: {}
   docs/models/components/charge.md: {}
   docs/models/components/chargepagepaginatedresponse.md: {}
+  docs/models/components/chargeperiod.md: {}
   docs/models/components/chargerealizationinvoice.md: {}
   docs/models/components/chargerealizationinvoicereference.md: {}
   docs/models/components/chart.md: {}
@@ -2206,6 +2350,7 @@ trackedFiles:
   docs/models/components/compatibilitystatus.md:
     id: 42ac42fc6e22
     pristine_git_object: f084420c38db5546ac40be78b7213e0bbdfeb46d
+  docs/models/components/compression.md: {}
   docs/models/components/conditions.md: {}
   docs/models/components/config.md:
     id: 7d7a400dba8b
@@ -2289,6 +2434,7 @@ trackedFiles:
     pristine_git_object: 93542f5349a5c8aec0d68ee143140a7313d9b828
   docs/models/components/consumevaluevalidationaction.md: {}
   docs/models/components/containerspec.md: {}
+  docs/models/components/context.md: {}
   docs/models/components/contextinterfaceid.md: {}
   docs/models/components/contextinterfaces.md: {}
   docs/models/components/contextinterfacesadmin.md: {}
@@ -2352,12 +2498,14 @@ trackedFiles:
   docs/models/components/controlplanes.md:
     id: b5335b14370c
     pristine_git_object: beb230e198190ccfcbd18bf027d06811bd3fe651
+  docs/models/components/controlplanesortquery.md: {}
   docs/models/components/controlplanetype.md: {}
   docs/models/components/conversionoperation.md: {}
   docs/models/components/costbasis.md: {}
   docs/models/components/costbasismode.md: {}
   docs/models/components/costbasispagepaginatedresponse.md: {}
   docs/models/components/costmanagementtags.md: {}
+  docs/models/components/costqualitytradeoff.md: {}
   docs/models/components/costtagheader.md: {}
   docs/models/components/costtagprefix.md: {}
   docs/models/components/counts.md: {}
@@ -2953,6 +3101,7 @@ trackedFiles:
   docs/models/components/dataplaneclientcertificateresponse.md:
     id: 93dc6cdb4d94
     pristine_git_object: f9941d4317107fa8cfcfb27534d4051703f2f492
+  docs/models/components/dataset.md: {}
   docs/models/components/datasource.md: {}
   docs/models/components/datastorerediscloudauthentication.md: {}
   docs/models/components/datastorerediscloudauthenticationoutput.md: {}
@@ -3104,6 +3253,7 @@ trackedFiles:
     id: 2350e3228465
     pristine_git_object: 5f6c5dc474acfda663263e73552641fb91bd81d1
   docs/models/components/delete.md: {}
+  docs/models/components/deliveries.md: {}
   docs/models/components/delivery.md: {}
   docs/models/components/deliveryattempt.md: {}
   docs/models/components/deliveryattemptstatus.md: {}
@@ -3176,6 +3326,7 @@ trackedFiles:
     pristine_git_object: 51735b6763bbf2fda6bb4b8c980279d33e2aed6c
   docs/models/components/editor.md: {}
   docs/models/components/effectivebillingprofile.md: {}
+  docs/models/components/email.md: {}
   docs/models/components/emaildelivery.md:
     id: f269cc648dc7
     pristine_git_object: 772d02fe6ce0627a0650b80aeae3db256e18a540
@@ -3269,6 +3420,7 @@ trackedFiles:
   docs/models/components/environmentvariablevault.md: {}
   docs/models/components/environmentvariablevaultconfig.md: {}
   docs/models/components/environmentvariablevaultenvironmentvariablevaultconfig.md: {}
+  docs/models/components/eq.md: {}
   docs/models/components/equalwebintegration.md: {}
   docs/models/components/equalwebintegrationconfigdata.md: {}
   docs/models/components/equalwebintegrationconfigproperties.md: {}
@@ -3439,6 +3591,7 @@ trackedFiles:
     id: 817bd4f161da
     pristine_git_object: cc20da1f314bba030eb5b0b0ac38b4d2dd7c9098
   docs/models/components/exactlist.md: {}
+  docs/models/components/exists.md: {}
   docs/models/components/externalinvoicing.md: {}
   docs/models/components/externalinvoicingtaxconfig.md: {}
   docs/models/components/externalreferences.md: {}
@@ -3464,6 +3617,7 @@ trackedFiles:
     pristine_git_object: 194faf021c1cac1aafe0ff0ddc227eeb0c08821a
   docs/models/components/fields.md: {}
   docs/models/components/file.md: {}
+  docs/models/components/files.md: {}
   docs/models/components/filterapplications.md: {}
   docs/models/components/filters.md:
     id: be92131899b5
@@ -3815,6 +3969,7 @@ trackedFiles:
   docs/models/components/integrationresourceevent.md:
     id: edd8567be7b6
     pristine_git_object: 8b9934d1cbcb4d236e95e79dd309941d6480b9ec
+  docs/models/components/integrations.md: {}
   docs/models/components/integrationviewer.md: {}
   docs/models/components/internalerrorstatus.md: {}
   docs/models/components/internalservererrorstatus.md: {}
@@ -4011,6 +4166,7 @@ trackedFiles:
     pristine_git_object: e05757d4016faf3d67a0bb6a8668c41b66e02e41
   docs/models/components/legacystringfieldfilterwithexists.md: {}
   docs/models/components/lifecyclecontroller.md: {}
+  docs/models/components/limit.md: {}
   docs/models/components/line.md: {}
   docs/models/components/listaddonsparamsfilter.md: {}
   docs/models/components/listaddonsresponse.md:
@@ -4608,6 +4764,7 @@ trackedFiles:
   docs/models/components/meshcontrolplanes.md:
     id: 1fd3c5bd584c
     pristine_git_object: 86fbc2af34306f7e2ac23b71849435d2c56df2ce
+  docs/models/components/message.md: {}
   docs/models/components/meta.md:
     id: 61a561a63c6e
     pristine_git_object: 556d8c35e377ec01935de101304062e632e20caf
@@ -4729,6 +4886,7 @@ trackedFiles:
   docs/models/components/navigationlink.md: {}
   docs/models/components/navigationlinkgroup.md: {}
   docs/models/components/navigationlinkvisibility.md: {}
+  docs/models/components/neq.md: {}
   docs/models/components/network.md:
     id: 12e94c179a46
     pristine_git_object: 634dfd79de1a301cf968489ebe2ac0ed7b81a0cd
@@ -4758,6 +4916,7 @@ trackedFiles:
     id: e65f016c181f
     pristine_git_object: 728d6e924db450aaabaf7e0a37ee82561469b246
   docs/models/components/networkviewer.md: {}
+  docs/models/components/nexists.md: {}
   docs/models/components/next.md: {}
   docs/models/components/nodecompatibilityissue.md: {}
   docs/models/components/nodecompatibilityissueaffectedresource.md: {}
@@ -4847,6 +5006,7 @@ trackedFiles:
     id: b0bf6ea124e3
     pristine_git_object: c291f575d1b107a4ead41d73f62230d2c044d43b
   docs/models/components/operator.md: {}
+  docs/models/components/optimization.md: {}
   docs/models/components/optionsobj.md: {}
   docs/models/components/ordering.md:
     id: 2050ca3e5399
@@ -5313,6 +5473,7 @@ trackedFiles:
   docs/models/components/postsendtestemailpayload.md:
     id: 23f691be6150
     pristine_git_object: 126c84d253f8cd612990f5c98858c42cb541dbd6
+  docs/models/components/posture.md: {}
   docs/models/components/price.md: {}
   docs/models/components/pricepagepaginatedresponse.md: {}
   docs/models/components/pricing.md: {}
@@ -5370,6 +5531,7 @@ trackedFiles:
   docs/models/components/protocols.md:
     id: 927e527fb82f
     pristine_git_object: 00b03aa5e8981e2a7f1325596b6de2275b5e7a63
+  docs/models/components/provenance.md: {}
   docs/models/components/provider.md:
     id: 68dda5cff49f
     pristine_git_object: 7b27da56873682eee515f6a9fb504e2fc05a9f4f
@@ -5409,6 +5571,7 @@ trackedFiles:
   docs/models/components/purpose.md: {}
   docs/models/components/pushedauthorizationrequestendpointauthmethod.md: {}
   docs/models/components/putmeshcontrolplanerequest.md: {}
+  docs/models/components/quantities.md: {}
   docs/models/components/query.md: {}
   docs/models/components/queryfilterstring.md: {}
   docs/models/components/queryfilterstringmapitem.md: {}
@@ -6243,6 +6406,7 @@ trackedFiles:
     id: 2f8611b642ea
     pristine_git_object: 6fa6feccd37277021604758e2536436e769529c6
   docs/models/components/saslawsiam.md: {}
+  docs/models/components/schedule.md: {}
   docs/models/components/schemaauth0registration.md:
     id: 8af784bc594a
     pristine_git_object: 7e3ed8d056f4cb062b202a6029d74ec57e0deef4
@@ -6266,6 +6430,7 @@ trackedFiles:
   docs/models/components/schemavalidationinlineschemaconfig.md: {}
   docs/models/components/schemavalidationinlineschemaconfigavro.md: {}
   docs/models/components/schemavalidationinlineschemaconfigjson.md: {}
+  docs/models/components/schemaversion.md: {}
   docs/models/components/scheme.md: {}
   docs/models/components/scope.md: {}
   docs/models/components/scopelist.md: {}
@@ -6366,6 +6531,7 @@ trackedFiles:
   docs/models/components/selectorparameters.md:
     id: 334de44f6da0
     pristine_git_object: 2346b044658ae4de430dd3590eeb2d0fde99e5ba
+  docs/models/components/semanticcache.md: {}
   docs/models/components/sendtestemailtemplatecontent.md:
     id: 366829badef1
     pristine_git_object: 6918da70b2be4ccf2ae718e6574e21386e8c1397
@@ -6467,6 +6633,7 @@ trackedFiles:
   docs/models/components/skillsourcepayload.md: {}
   docs/models/components/skillstatus.md: {}
   docs/models/components/skillsyncstatusstatus.md: {}
+  docs/models/components/slack.md: {}
   docs/models/components/snapshotquantities.md: {}
   docs/models/components/sni.md:
     id: 60977194f193
@@ -6495,6 +6662,7 @@ trackedFiles:
     id: 26cc364d1057
     pristine_git_object: 712837bee6b1cf65df829b176c9b41cf87d65344
   docs/models/components/specprovider.md: {}
+  docs/models/components/specversion.md: {}
   docs/models/components/ssl.md: {}
   docs/models/components/sslversion.md: {}
   docs/models/components/state.md:
@@ -7150,10 +7318,11 @@ trackedFiles:
     id: ae9c3df469de
     pristine_git_object: 5329eb22f1e2e2846bc0d24ce9319ae6eb98fdf4
   docs/models/components/validateexpressionbodyrequest.md: {}
-  docs/models/components/validateexpressionrequest.md: {}
+  docs/models/components/validateexpressionvaluerequest.md: {}
   docs/models/components/validationmessages.md:
     id: e027f9449da7
     pristine_git_object: c068222d5297dfea8e956d9b96b6debf79841ab4
+  docs/models/components/validity.md: {}
   docs/models/components/value.md:
     id: d28df86c49da
     pristine_git_object: ebc97c3292fb3b598ad3a278d3d5370653cb14d4
@@ -7230,6 +7399,7 @@ trackedFiles:
     id: 8b7d0483cdcd
     pristine_git_object: e280a8b647fb6a099a8c360c3a8f1c82b454a842
   docs/models/components/widgetconfig.md: {}
+  docs/models/components/window.md: {}
   docs/models/components/windowsize.md: {}
   docs/models/components/workflow.md: {}
   docs/models/components/workflowcollectionsettings.md: {}
@@ -7253,6 +7423,7 @@ trackedFiles:
   docs/models/components/workspacevaultadmin.md: {}
   docs/models/components/workspaceviewer.md: {}
   docs/models/operations/active.md: {}
+  docs/models/operations/actual.md: {}
   docs/models/operations/addaigatewayconsumertoconsumergrouprequest.md: {}
   docs/models/operations/addaigatewayconsumertoconsumergroupresponse.md: {}
   docs/models/operations/addconsumertogrouprequest.md:
@@ -7313,6 +7484,7 @@ trackedFiles:
     pristine_git_object: 15fe216e32d54522c8cc76835e004aed10e02835
   docs/models/operations/batchcreategroupmembershipentriesrequest.md: {}
   docs/models/operations/batchcreategroupmembershipentriesresponse.md: {}
+  docs/models/operations/budget.md: {}
   docs/models/operations/bulknotificationsresponse.md:
     id: 6399a2013b8c
     pristine_git_object: 7915413f3fc82cc9fadd1a4f01efb672562406f5
@@ -7320,6 +7492,9 @@ trackedFiles:
   docs/models/operations/cancelsubscriptionresponse.md: {}
   docs/models/operations/changesubscriptionrequest.md: {}
   docs/models/operations/changesubscriptionresponse.md: {}
+  docs/models/operations/channels.md: {}
+  docs/models/operations/compression.md: {}
+  docs/models/operations/context.md: {}
   docs/models/operations/createaclwithconsumerrequest.md:
     id: b96a9d0c25dc
     pristine_git_object: 7ce3fe9e4d0d9a72b9d8833a15bc55e633cb2244
@@ -7504,6 +7679,23 @@ trackedFiles:
     pristine_git_object: b3193a60398cd11685b33278a28489b21d3b091c
   docs/models/operations/createcostbasisrequest.md: {}
   docs/models/operations/createcostbasisresponse.md: {}
+  docs/models/operations/createcostbudgetrequestbody.md: {}
+  docs/models/operations/createcostbudgetresponse.md: {}
+  docs/models/operations/createcostexportdownloadrequest.md: {}
+  docs/models/operations/createcostexportdownloadrequestbody.md: {}
+  docs/models/operations/createcostexportdownloadresponse.md: {}
+  docs/models/operations/createcostexportdownloadresponsebody.md: {}
+  docs/models/operations/createcostexportresponse.md: {}
+  docs/models/operations/createcostexportscheduleresponse.md: {}
+  docs/models/operations/createcostnotificationchannelrequestbody.md: {}
+  docs/models/operations/createcostnotificationchannelresponse.md: {}
+  docs/models/operations/createcostnotificationchanneltestrequest.md: {}
+  docs/models/operations/createcostnotificationchanneltestresponse.md: {}
+  docs/models/operations/createcostusageeventsdata.md: {}
+  docs/models/operations/createcostusageeventsrequestbody.md: {}
+  docs/models/operations/createcostusageeventsresponse.md: {}
+  docs/models/operations/createcostusageeventsresponsebody.md: {}
+  docs/models/operations/createcostusageeventsusageeventsdata.md: {}
   docs/models/operations/createcpresponse.md: {}
   docs/models/operations/createcreditadjustmentrequest.md: {}
   docs/models/operations/createcreditadjustmentresponse.md: {}
@@ -7879,6 +8071,8 @@ trackedFiles:
   docs/models/operations/dashboardslistresponsebody.md: {}
   docs/models/operations/dashboardsupdaterequest.md: {}
   docs/models/operations/dashboardsupdateresponse.md: {}
+  docs/models/operations/data.md: {}
+  docs/models/operations/datacontenttype.md: {}
   docs/models/operations/deleteaclwithconsumerrequest.md:
     id: b6dcc1aba975
     pristine_git_object: 53caea317832a552e19b051719298d1e10e8e112
@@ -8115,6 +8309,18 @@ trackedFiles:
   docs/models/operations/deletecontrolplaneresponse.md:
     id: e37c01c71150
     pristine_git_object: 54839593c793380a63a1b6451454f18f5b87d227
+  docs/models/operations/deletecostattributionpluginrequest.md: {}
+  docs/models/operations/deletecostattributionpluginresponse.md: {}
+  docs/models/operations/deletecostbudgetrequest.md: {}
+  docs/models/operations/deletecostbudgetresponse.md: {}
+  docs/models/operations/deletecostexportrequest.md: {}
+  docs/models/operations/deletecostexportresponse.md: {}
+  docs/models/operations/deletecostexportschedulerequest.md: {}
+  docs/models/operations/deletecostexportscheduleresponse.md: {}
+  docs/models/operations/deletecostnotificationchannelrequest.md: {}
+  docs/models/operations/deletecostnotificationchannelresponse.md: {}
+  docs/models/operations/deletecostnotificationrulerequest.md: {}
+  docs/models/operations/deletecostnotificationruleresponse.md: {}
   docs/models/operations/deletecustomdomainrequest.md:
     id: fc01d0e809c3
     pristine_git_object: 5e9fb4e739351a78e8f27b6ae4c7dbe25b6fe6ce
@@ -8582,6 +8788,9 @@ trackedFiles:
     pristine_git_object: 26594fdf37b23a75608ea9dbd22840e4bca8274f
   docs/models/operations/deleteworkspacerequest.md: {}
   docs/models/operations/deleteworkspaceresponse.md: {}
+  docs/models/operations/deliveries.md: {}
+  docs/models/operations/derived.md: {}
+  docs/models/operations/direction.md: {}
   docs/models/operations/editsubscriptionrequest.md: {}
   docs/models/operations/editsubscriptionresponse.md: {}
   docs/models/operations/fetchapidocumentrequest.md:
@@ -8694,12 +8903,18 @@ trackedFiles:
   docs/models/operations/fetchscorecardresponse.md:
     id: 260727ba99f2
     pristine_git_object: 2c8f2e3b5ca07c8eb853cf83046c6c0bb9bc48ee
+  docs/models/operations/field.md: {}
   docs/models/operations/filter.md:
     id: af1deb54d54b
     pristine_git_object: 959799b8afd5897c6c1c5bce71b64d6ee96e9a2d
+  docs/models/operations/filters.md: {}
   docs/models/operations/force.md:
     id: 2db94b64dc10
     pristine_git_object: 1e2fee9e1377b5cb78c1c04268912fb74d8ca01e
+  docs/models/operations/forecastcostusageeventsmethod.md: {}
+  docs/models/operations/forecastcostusageeventsrequest.md: {}
+  docs/models/operations/forecastcostusageeventsresponse.md: {}
+  docs/models/operations/forecastcostusageeventsresponsebody.md: {}
   docs/models/operations/getaclrequest.md:
     id: 793bc30403c5
     pristine_git_object: 9d17aeeda84116c1d8af733bd0f11a17c1efb223
@@ -8965,7 +9180,25 @@ trackedFiles:
   docs/models/operations/getcontrolplanesidgroupstatusresponse.md:
     id: 3e1b97bda91b
     pristine_git_object: 543a11e84a7b0dcb98126df2535dd508d2960541
+  docs/models/operations/getcostattributionpluginrequest.md: {}
+  docs/models/operations/getcostattributionpluginresponse.md: {}
+  docs/models/operations/getcostbudgetbalancerequest.md: {}
+  docs/models/operations/getcostbudgetbalanceresponse.md: {}
+  docs/models/operations/getcostbudgetbalanceresponsebody.md: {}
+  docs/models/operations/getcostbudgetrequest.md: {}
+  docs/models/operations/getcostbudgetresponse.md: {}
+  docs/models/operations/getcostexportrequest.md: {}
+  docs/models/operations/getcostexportresponse.md: {}
+  docs/models/operations/getcostexportschedulerequest.md: {}
+  docs/models/operations/getcostexportscheduleresponse.md: {}
   docs/models/operations/getcostmanagementtagsresponse.md: {}
+  docs/models/operations/getcostnotificationchannelrequest.md: {}
+  docs/models/operations/getcostnotificationchannelresponse.md: {}
+  docs/models/operations/getcostnotificationeventrequest.md: {}
+  docs/models/operations/getcostnotificationeventresponse.md: {}
+  docs/models/operations/getcostnotificationeventresponsebody.md: {}
+  docs/models/operations/getcostnotificationrulerequest.md: {}
+  docs/models/operations/getcostnotificationruleresponse.md: {}
   docs/models/operations/getcredentialprovidertemplaterequest.md: {}
   docs/models/operations/getcredentialprovidertemplateresponse.md: {}
   docs/models/operations/getcreditgrantrequest.md: {}
@@ -9684,6 +9917,7 @@ trackedFiles:
     pristine_git_object: 7d233ecf06d135055f28859a66c54baf37519ba3
   docs/models/operations/getworkspacerequest.md: {}
   docs/models/operations/getworkspaceresponse.md: {}
+  docs/models/operations/granularity.md: {}
   docs/models/operations/importorgchartrequest.md: {}
   docs/models/operations/importorgchartresponse.md: {}
   docs/models/operations/ingestmeteringeventsrequestbody.md: {}
@@ -10043,8 +10277,43 @@ trackedFiles:
   docs/models/operations/listcontrolplanesresponse.md:
     id: bc1c484856d0
     pristine_git_object: 574c3934496f943cf01e0c7aaa361456f98c32cf
+  docs/models/operations/listcostattributionpluginsrequest.md: {}
+  docs/models/operations/listcostattributionpluginsresponse.md: {}
+  docs/models/operations/listcostattributionpluginsresponsebody.md: {}
   docs/models/operations/listcostbasesrequest.md: {}
   docs/models/operations/listcostbasesresponse.md: {}
+  docs/models/operations/listcostbudgetbalancesdata.md: {}
+  docs/models/operations/listcostbudgetbalancesmeta.md: {}
+  docs/models/operations/listcostbudgetbalancespage.md: {}
+  docs/models/operations/listcostbudgetbalancesrequest.md: {}
+  docs/models/operations/listcostbudgetbalancesresponse.md: {}
+  docs/models/operations/listcostbudgetbalancesresponsebody.md: {}
+  docs/models/operations/listcostbudgetsrequest.md: {}
+  docs/models/operations/listcostbudgetsresponse.md: {}
+  docs/models/operations/listcostbudgetsresponsebody.md: {}
+  docs/models/operations/listcostexportschedulesrequest.md: {}
+  docs/models/operations/listcostexportschedulesresponse.md: {}
+  docs/models/operations/listcostexportschedulesresponsebody.md: {}
+  docs/models/operations/listcostexportsrequest.md: {}
+  docs/models/operations/listcostexportsresponse.md: {}
+  docs/models/operations/listcostexportsresponsebody.md: {}
+  docs/models/operations/listcostnotificationchannelsrequest.md: {}
+  docs/models/operations/listcostnotificationchannelsresponse.md: {}
+  docs/models/operations/listcostnotificationchannelsresponsebody.md: {}
+  docs/models/operations/listcostnotificationeventsrequest.md: {}
+  docs/models/operations/listcostnotificationeventsresponse.md: {}
+  docs/models/operations/listcostnotificationeventsresponsebody.md: {}
+  docs/models/operations/listcostnotificationrulefiringsdata.md: {}
+  docs/models/operations/listcostnotificationrulefiringsrequest.md: {}
+  docs/models/operations/listcostnotificationrulefiringsresponse.md: {}
+  docs/models/operations/listcostnotificationrulefiringsresponsebody.md: {}
+  docs/models/operations/listcostusageeventsrequest.md: {}
+  docs/models/operations/listcostusageeventsresponse.md: {}
+  docs/models/operations/listcostusageeventsresponsebody.md: {}
+  docs/models/operations/listcostusagefieldvaluesdata.md: {}
+  docs/models/operations/listcostusagefieldvaluesrequest.md: {}
+  docs/models/operations/listcostusagefieldvaluesresponse.md: {}
+  docs/models/operations/listcostusagefieldvaluesresponsebody.md: {}
   docs/models/operations/listcredentialprovidertemplatesrequest.md: {}
   docs/models/operations/listcredentialprovidertemplatesresponse.md: {}
   docs/models/operations/listcredentialsbyapplicationrequest.md: {}
@@ -10239,6 +10508,7 @@ trackedFiles:
     id: 84107e283572
     pristine_git_object: 06e7a7a194a2876c662463ce785d43a6ec1d00e6
   docs/models/operations/listidentitiesqueryparamfilter.md: {}
+  docs/models/operations/listidentitiesqueryparamtype.md: {}
   docs/models/operations/listidentitiesrequest.md: {}
   docs/models/operations/listidentitiesresponse.md: {}
   docs/models/operations/listidpteamgroupmappingsrequest.md: {}
@@ -10813,6 +11083,10 @@ trackedFiles:
   docs/models/operations/logoutresponse.md:
     id: 43252b6fb9a7
     pristine_git_object: ebadc34c61fd28eb65eb8fb760c00e76d308c26f
+  docs/models/operations/measures.md: {}
+  docs/models/operations/message.md: {}
+  docs/models/operations/meta.md: {}
+  docs/models/operations/method.md: {}
   docs/models/operations/migratesubscriptionrequest.md: {}
   docs/models/operations/migratesubscriptionresponse.md: {}
   docs/models/operations/moveapidocumentrequest.md:
@@ -10841,11 +11115,13 @@ trackedFiles:
   docs/models/operations/moveportalpagesresponse.md:
     id: 60802e39bdf7
     pristine_git_object: 6dbb8b3ad57907160ed785dfd3f774e63745051a
+  docs/models/operations/optimization.md: {}
   docs/models/operations/option.md:
     id: 2ac1bd52a5fb
     pristine_git_object: 35d8a1e2ad48a64702c6a654ac8880dabec053b0
   docs/models/operations/overridecustomerentitlementrequest.md: {}
   docs/models/operations/overridecustomerentitlementresponse.md: {}
+  docs/models/operations/page.md: {}
   docs/models/operations/patchaigatewayrequest.md: {}
   docs/models/operations/patchaigatewayresponse.md: {}
   docs/models/operations/patchaisettingsrequest.md: {}
@@ -10901,6 +11177,7 @@ trackedFiles:
   docs/models/operations/patchusersmeresponse.md:
     id: 0b762c0b5aa1
     pristine_git_object: f9b0c1df8095f2061dc9fb328c4a1faa876229ca
+  docs/models/operations/period.md: {}
   docs/models/operations/postauth0registerinternalresponse.md:
     id: 7a070c1b8c0c
     pristine_git_object: 8fd9695251a55b43ae2e6d2302894bc8c5bbe702
@@ -10960,6 +11237,8 @@ trackedFiles:
   docs/models/operations/postteamsteamidsystemaccountsresponse.md:
     id: 8632f5ad0d1e
     pristine_git_object: 1e2fc2b9ebd57eccd5591fb83b64fa9931f3d6a7
+  docs/models/operations/predicted.md: {}
+  docs/models/operations/provenance.md: {}
   docs/models/operations/publishapipackagetoportalrequest.md:
     id: 38a33f1e33f2
     pristine_git_object: bfde3634b594d378a67e9f1fc92baa9a27c4dfec
@@ -10984,6 +11263,14 @@ trackedFiles:
     pristine_git_object: c579450926bbb19da9f8cd175bc691852cb8d4bb
   docs/models/operations/putportalipallowlistrequest.md: {}
   docs/models/operations/putportalipallowlistresponse.md: {}
+  docs/models/operations/quantities.md: {}
+  docs/models/operations/querycostusageeventsdata.md: {}
+  docs/models/operations/querycostusageeventsmeasures.md: {}
+  docs/models/operations/querycostusageeventspage.md: {}
+  docs/models/operations/querycostusageeventsrequestbody.md: {}
+  docs/models/operations/querycostusageeventsresponse.md: {}
+  docs/models/operations/querycostusageeventsresponsebody.md: {}
+  docs/models/operations/querycostusageeventsusageeventsmeasures.md: {}
   docs/models/operations/queryentitlementaccessrequest.md: {}
   docs/models/operations/queryentitlementaccessresponse.md: {}
   docs/models/operations/queryfeaturecostrequest.md: {}
@@ -11096,6 +11383,8 @@ trackedFiles:
   docs/models/operations/replaceprincipalresponse.md: {}
   docs/models/operations/replacevaultproviderrequest.md: {}
   docs/models/operations/replacevaultproviderresponse.md: {}
+  docs/models/operations/reportedcachecost.md: {}
+  docs/models/operations/reportedcost.md: {}
   docs/models/operations/resenddestinationdeliveryrequest.md: {}
   docs/models/operations/resenddestinationdeliveryresponse.md: {}
   docs/models/operations/resetcustomerentitlementusagerequest.md: {}
@@ -11119,8 +11408,13 @@ trackedFiles:
   docs/models/operations/revokeportalconnectedappsessionresponse.md: {}
   docs/models/operations/rotatedestinationsecretrequest.md: {}
   docs/models/operations/rotatedestinationsecretresponse.md: {}
+  docs/models/operations/semanticcache.md: {}
+  docs/models/operations/series.md: {}
   docs/models/operations/snapshotquantitiesinvoicerequest.md: {}
   docs/models/operations/snapshotquantitiesinvoiceresponse.md: {}
+  docs/models/operations/sort.md: {}
+  docs/models/operations/specversion.md: {}
+  docs/models/operations/status.md: {}
   docs/models/operations/teamsassignrolerequest.md:
     id: b166a96c1bde
     pristine_git_object: aef6ec67e5f986fa43232440954eb59363d3ce28
@@ -11138,6 +11432,7 @@ trackedFiles:
   docs/models/operations/testclaimforclientresponse.md: {}
   docs/models/operations/testdestinationrequest.md: {}
   docs/models/operations/testdestinationresponse.md: {}
+  docs/models/operations/training.md: {}
   docs/models/operations/type.md: {}
   docs/models/operations/uninstallapprequest.md: {}
   docs/models/operations/uninstallappresponse.md: {}
@@ -11307,6 +11602,8 @@ trackedFiles:
   docs/models/operations/updatecontrolplaneresponse.md:
     id: db28d2d5ac26
     pristine_git_object: d1b0b05681229dc44f2069239570516de5f6dacc
+  docs/models/operations/updatecostattributionpluginrequest.md: {}
+  docs/models/operations/updatecostattributionpluginresponse.md: {}
   docs/models/operations/updatecostmanagementtagsresponse.md: {}
   docs/models/operations/updatecprequest.md: {}
   docs/models/operations/updatecpresponse.md: {}
@@ -11643,6 +11940,19 @@ trackedFiles:
   docs/models/operations/upsertconsumerresponse.md:
     id: 5b644b75e098
     pristine_git_object: b827d45f5ba39a5de7373d9b79faa0225413e544
+  docs/models/operations/upsertcostattributionpluginrequest.md: {}
+  docs/models/operations/upsertcostattributionpluginresponse.md: {}
+  docs/models/operations/upsertcostbudgetrequest.md: {}
+  docs/models/operations/upsertcostbudgetrequestbody.md: {}
+  docs/models/operations/upsertcostbudgetresponse.md: {}
+  docs/models/operations/upsertcostexportschedulerequest.md: {}
+  docs/models/operations/upsertcostexportscheduleresponse.md: {}
+  docs/models/operations/upsertcostnotificationchannelrequest.md: {}
+  docs/models/operations/upsertcostnotificationchannelrequestbody.md: {}
+  docs/models/operations/upsertcostnotificationchannelresponse.md: {}
+  docs/models/operations/upsertcostnotificationrulerequest.md: {}
+  docs/models/operations/upsertcostnotificationrulerequestbody.md: {}
+  docs/models/operations/upsertcostnotificationruleresponse.md: {}
   docs/models/operations/upsertcustomerrequest.md: {}
   docs/models/operations/upsertcustomerresponse.md: {}
   docs/models/operations/upsertcustompluginrequest.md:
@@ -11986,6 +12296,7 @@ trackedFiles:
   docs/sdks/assets/README.md:
     id: c072a8a1f5c5
     pristine_git_object: 8bb772793b7181a9ebb9a3174dd4cc84d6e37a9c
+  docs/sdks/attributionplugins/README.md: {}
   docs/sdks/authentication/README.md:
     id: 45be241adfc3
     pristine_git_object: fd39f03bcda752f9f82dc08edd345fb5702766dd
@@ -12002,6 +12313,7 @@ trackedFiles:
   docs/sdks/basicauthcredentials/README.md:
     id: 0c14cb4a2fe8
     pristine_git_object: 596eb0174643443bf7d002643b209c69413ae5b9
+  docs/sdks/budgets/README.md: {}
   docs/sdks/cacertificates/README.md:
     id: d58c50abd146
     pristine_git_object: 04d8901d2ccdb6a70f3c9fb2bfa38a098aa81c10
@@ -12106,6 +12418,7 @@ trackedFiles:
   docs/sdks/eventgatewayvirtualclusterpolicies/README.md: {}
   docs/sdks/eventgatewayvirtualclusterproducepolicies/README.md: {}
   docs/sdks/eventgatewayvirtualclusters/README.md: {}
+  docs/sdks/exports/README.md: {}
   docs/sdks/graphqlcostdecorations/README.md: {}
   docs/sdks/hmacauthcredentials/README.md:
     id: 02ce89ee102d
@@ -12152,6 +12465,7 @@ trackedFiles:
   docs/sdks/mtlsauthcredentials/README.md:
     id: e95e1acd8fcd
     pristine_git_object: 955d226e5f20cb3cf6e0244f6cc70a63fc968578
+  docs/sdks/notificationchannels/README.md: {}
   docs/sdks/notifications/README.md:
     id: 271bac956045
     pristine_git_object: 000e6b09ede52225495532984b8354949d7b295c
@@ -12273,6 +12587,7 @@ trackedFiles:
   docs/sdks/upstreams/README.md:
     id: 5f5bb1174480
     pristine_git_object: f4d805a2267df7685dedf0e1d36bfcb5e55d518a
+  docs/sdks/usageevents/README.md: {}
   docs/sdks/users/README.md:
     id: 5d80027045fe
     pristine_git_object: 48869179cec723ee07ff159802a5866deff2955e
@@ -12280,6 +12595,7 @@ trackedFiles:
     id: a3dfa1a47511
     pristine_git_object: b1045dfc2c14feb97e2c818d877577daf9454306
   docs/sdks/workspaces/README.md: {}
+  docs/types/date.md: {}
   dpcertificates.go:
     id: 58f1d7e35c97
     pristine_git_object: a5759ab29206fdec1b25d82ca0206a8d7712bd5e
@@ -12299,6 +12615,7 @@ trackedFiles:
   eventgatewayvirtualclusterpolicies.go: {}
   eventgatewayvirtualclusterproducepolicies.go: {}
   eventgatewayvirtualclusters.go: {}
+  exports.go: {}
   go.mod:
     id: c47645c391ad
     pristine_git_object: e31f52d1f9dc014e0eefffa4c53ef9c46dd84136
@@ -12464,6 +12781,67 @@ trackedFiles:
   models/components/agenticfilters.go: {}
   models/components/agenticmetrics.go: {}
   models/components/agenticquery.go: {}
+  models/components/aicostattributionplugin.go: {}
+  models/components/aicostattributionpluginconfiguration.go: {}
+  models/components/aicostattributionpluginheadermapping.go: {}
+  models/components/aicostattributionpluginpatch.go: {}
+  models/components/aicostattributionpluginprefixmapping.go: {}
+  models/components/aicostbudget.go: {}
+  models/components/aicostbudgetbalancefilterparameters.go: {}
+  models/components/aicostbudgetreference.go: {}
+  models/components/aicostbudgetscopefield.go: {}
+  models/components/aicostcurrency.go: {}
+  models/components/aicostemailnotificationchannel.go: {}
+  models/components/aicostemailnotificationchannelinput.go: {}
+  models/components/aicostexemptbudget.go: {}
+  models/components/aicostexemptbudgetinput.go: {}
+  models/components/aicostexport.go: {}
+  models/components/aicostexportinput.go: {}
+  models/components/aicostexportschedule.go: {}
+  models/components/aicostexportscheduleinput.go: {}
+  models/components/aicostexportschemaversion.go: {}
+  models/components/aicostfocusoptions.go: {}
+  models/components/aicostfocusoptionsinput.go: {}
+  models/components/aicostgrouplistfilter.go: {}
+  models/components/aicostlimitbudget.go: {}
+  models/components/aicostlimitbudgetinput.go: {}
+  models/components/aicostmapkeyfieldfilter.go: {}
+  models/components/aicostmoney.go: {}
+  models/components/aicostnotificationchannel.go: {}
+  models/components/aicostnotificationchannelsummary.go: {}
+  models/components/aicostnotificationdeliverydelivered.go: {}
+  models/components/aicostnotificationdeliveryerrorreason.go: {}
+  models/components/aicostnotificationdeliveryfailed.go: {}
+  models/components/aicostnotificationdeliverypending.go: {}
+  models/components/aicostnotificationdeliverystatus.go: {}
+  models/components/aicostnotificationdeliverystatusfieldequalsfilter.go: {}
+  models/components/aicostnotificationdeliverystatusfieldfilter.go: {}
+  models/components/aicostnotificationdeliverystatusfieldneqfilter.go: {}
+  models/components/aicostnotificationeventfilterparameters.go: {}
+  models/components/aicostnotificationrule.go: {}
+  models/components/aicostnotificationtestevent.go: {}
+  models/components/aicostnotificationtesteventdelivered.go: {}
+  models/components/aicostnotificationtesteventfailed.go: {}
+  models/components/aicostnotificationtesteventpending.go: {}
+  models/components/aicostnotificationthreshold.go: {}
+  models/components/aicostnotificationthresholdevent.go: {}
+  models/components/aicostobservedsubjecttype.go: {}
+  models/components/aicostobservedsubjecttypeequalsfilter.go: {}
+  models/components/aicostobservedsubjecttypefilter.go: {}
+  models/components/aicostobservedsubjecttypeneqfilter.go: {}
+  models/components/aicostreferencefieldfilter.go: {}
+  models/components/aicostslacknotificationchannel.go: {}
+  models/components/aicostslacknotificationchannelinput.go: {}
+  models/components/aicostslacknotificationchannelreplaceinput.go: {}
+  models/components/aicoststringfilter.go: {}
+  models/components/aicoststringmapitemfilter.go: {}
+  models/components/aicostteamlistfilter.go: {}
+  models/components/aicosttimewindow.go: {}
+  models/components/aicostusageevent.go: {}
+  models/components/aicostusageeventfieldvaluefilterparameters.go: {}
+  models/components/aicostusagerequestmode.go: {}
+  models/components/aicostuuidfilter.go: {}
+  models/components/aicostuuidlistfilter.go: {}
   models/components/aigateway.go: {}
   models/components/aigatewayacls.go: {}
   models/components/aigatewayagent.go: {}
@@ -12523,10 +12901,6 @@ trackedFiles:
   models/components/aigatewaymcpdenyacl.go: {}
   models/components/aigatewaymcpdenywhenacl.go: {}
   models/components/aigatewaymcppassthroughtool.go: {}
-  models/components/aigatewaymcpprompt.go: {}
-  models/components/aigatewaymcppromptaccess.go: {}
-  models/components/aigatewaymcpresource.go: {}
-  models/components/aigatewaymcpresourceaccess.go: {}
   models/components/aigatewaymcpserver.go: {}
   models/components/aigatewaymcpserveracls.go: {}
   models/components/aigatewaymcpservercachehint.go: {}
@@ -12570,6 +12944,8 @@ trackedFiles:
   models/components/aigatewaymodelbalancerconfig.go: {}
   models/components/aigatewaymodelbalancerconfigoutput.go: {}
   models/components/aigatewaymodelbalancerconsistenthashingconfig.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifier.go: {}
+  models/components/aigatewaymodelbalancerintelligentconfig.go: {}
   models/components/aigatewaymodelbalancerleastconnectionsconfig.go: {}
   models/components/aigatewaymodelbalancerlowestlatencyconfig.go: {}
   models/components/aigatewaymodelbalancerlowestusageconfig.go: {}
@@ -13358,6 +13734,7 @@ trackedFiles:
   models/components/controlplaneresourcequotainput.go:
     id: eb6dbcc54668
     pristine_git_object: f49bde261c65eea5198578794c239c7498196af1
+  models/components/controlplanesortquery.go: {}
   models/components/costbasispagepaginatedresponse.go: {}
   models/components/costmanagementtags.go: {}
   models/components/costtagheader.go: {}
@@ -14940,6 +15317,7 @@ trackedFiles:
     pristine_git_object: 844938786f7fd4429dce54e4b36b39bf31ef1467
   models/components/portalconnectedappsession.go: {}
   models/components/portalcreateidentityprovider.go: {}
+  models/components/portalcreateidentityproviderconfig.go: {}
   models/components/portalcreateteamrequest.go:
     id: 74581527af33
     pristine_git_object: 4543b08c3a1e940c3bb58b45c464021b3cfe4622
@@ -14975,6 +15353,7 @@ trackedFiles:
     pristine_git_object: 89960e263821191ed2734089fd054b1d7047f4af
   models/components/portalformsfilterparameters.go: {}
   models/components/portalidentityprovider.go: {}
+  models/components/portalidentityproviderconfig.go: {}
   models/components/portalidpteamgroupmapping.go: {}
   models/components/portalidpteamgroupmappingcollectionresponse.go: {}
   models/components/portalintegrations.go: {}
@@ -15021,6 +15400,7 @@ trackedFiles:
     id: eb83a644c843
     pristine_git_object: 13188d62eac15f1e112a49e0a7f1ea4ccc55ba22
   models/components/portalupdateidentityprovider.go: {}
+  models/components/portalupdateidentityproviderconfig.go: {}
   models/components/portalupdateteamrequest.go:
     id: 3a1e1924129b
     pristine_git_object: f04a6fa09cf03ff746b9d9d7346563d4c1f344eb
@@ -15656,7 +16036,7 @@ trackedFiles:
     id: 740a28540660
     pristine_git_object: f733b84867e0e0506a1e44da6a5e7975d957665d
   models/components/validateexpressionbodyrequest.go: {}
-  models/components/validateexpressionrequest.go: {}
+  models/components/validateexpressionvaluerequest.go: {}
   models/components/vault.go:
     id: 43a6707830e1
     pristine_git_object: 09b9ea740f998c22f0b41bc50f76a2dda361f82c
@@ -15844,6 +16224,13 @@ trackedFiles:
     id: 9dab9d2169bf
     pristine_git_object: f2dd664a8598781ac9c8e2f52c2d0d5996aac6ac
   models/operations/createcostbasis.go: {}
+  models/operations/createcostbudget.go: {}
+  models/operations/createcostexport.go: {}
+  models/operations/createcostexportdownload.go: {}
+  models/operations/createcostexportschedule.go: {}
+  models/operations/createcostnotificationchannel.go: {}
+  models/operations/createcostnotificationchanneltest.go: {}
+  models/operations/createcostusageevents.go: {}
   models/operations/createcp.go: {}
   models/operations/createcreditadjustment.go: {}
   models/operations/createcreditgrant.go: {}
@@ -16176,6 +16563,12 @@ trackedFiles:
   models/operations/deletecontrolplaneresourcequota.go:
     id: 7c44ed96d813
     pristine_git_object: 45389e3e141fa8909c0be17a9db15a6e72c4cce0
+  models/operations/deletecostattributionplugin.go: {}
+  models/operations/deletecostbudget.go: {}
+  models/operations/deletecostexport.go: {}
+  models/operations/deletecostexportschedule.go: {}
+  models/operations/deletecostnotificationchannel.go: {}
+  models/operations/deletecostnotificationrule.go: {}
   models/operations/deletecustomdomain.go:
     id: 0160f542b3a8
     pristine_git_object: 4443e978f48b2eabfc1fbda734fc810c0a225582
@@ -16465,6 +16858,7 @@ trackedFiles:
   models/operations/fetchscorecard.go:
     id: a8ac2c5ed680
     pristine_git_object: c6349147588422541fcaf7ebddbdc2bdc5f0c2ee
+  models/operations/forecastcostusageevents.go: {}
   models/operations/getacl.go:
     id: af851b9617d8
     pristine_git_object: fd1fbe777bfadb457025e5d7b4deeb051dcca8ce
@@ -16602,7 +16996,15 @@ trackedFiles:
   models/operations/getcontrolplanesidgroupstatus.go:
     id: 5716ef1926f8
     pristine_git_object: bd4aac3d8c505c7fae42001c28556acbdb4fcf23
+  models/operations/getcostattributionplugin.go: {}
+  models/operations/getcostbudget.go: {}
+  models/operations/getcostbudgetbalance.go: {}
+  models/operations/getcostexport.go: {}
+  models/operations/getcostexportschedule.go: {}
   models/operations/getcostmanagementtags.go: {}
+  models/operations/getcostnotificationchannel.go: {}
+  models/operations/getcostnotificationevent.go: {}
+  models/operations/getcostnotificationrule.go: {}
   models/operations/getcredentialprovidertemplate.go: {}
   models/operations/getcreditgrant.go: {}
   models/operations/getcustomcurrency.go: {}
@@ -17123,7 +17525,17 @@ trackedFiles:
   models/operations/listcontrolplanes.go:
     id: b4e9da2dc24b
     pristine_git_object: 1907472a06007f093101278fcf8f95862445b21e
+  models/operations/listcostattributionplugins.go: {}
   models/operations/listcostbases.go: {}
+  models/operations/listcostbudgetbalances.go: {}
+  models/operations/listcostbudgets.go: {}
+  models/operations/listcostexports.go: {}
+  models/operations/listcostexportschedules.go: {}
+  models/operations/listcostnotificationchannels.go: {}
+  models/operations/listcostnotificationevents.go: {}
+  models/operations/listcostnotificationrulefirings.go: {}
+  models/operations/listcostusageevents.go: {}
+  models/operations/listcostusagefieldvalues.go: {}
   models/operations/listcredentialprovidertemplates.go: {}
   models/operations/listcredentialsbyapplication.go: {}
   models/operations/listcreditgrants.go: {}
@@ -17545,6 +17957,7 @@ trackedFiles:
     id: 48af2b42494d
     pristine_git_object: 26e885c6501c1047a6b2d9571d868bea348b426d
   models/operations/putportalipallowlist.go: {}
+  models/operations/querycostusageevents.go: {}
   models/operations/queryentitlementaccess.go: {}
   models/operations/queryfeaturecost.go: {}
   models/operations/querymeter.go: {}
@@ -17704,6 +18117,7 @@ trackedFiles:
   models/operations/updatecontrolplaneresourcequota.go:
     id: e74dbe9a56b6
     pristine_git_object: ad6277d2d61b7f66276f9e769654d0ad1adada04
+  models/operations/updatecostattributionplugin.go: {}
   models/operations/updatecostmanagementtags.go: {}
   models/operations/updatecp.go: {}
   models/operations/updatecreditgrantexternalsettlement.go: {}
@@ -17879,6 +18293,11 @@ trackedFiles:
   models/operations/upsertconsumergroup.go:
     id: adb98ea5eb3f
     pristine_git_object: bf823f6a40f3261596b1fcbb2fdf6be00cffc1bd
+  models/operations/upsertcostattributionplugin.go: {}
+  models/operations/upsertcostbudget.go: {}
+  models/operations/upsertcostexportschedule.go: {}
+  models/operations/upsertcostnotificationchannel.go: {}
+  models/operations/upsertcostnotificationrule.go: {}
   models/operations/upsertcustomer.go: {}
   models/operations/upsertcustomplugin.go:
     id: f2c5bb548842
@@ -18049,6 +18468,7 @@ trackedFiles:
   mtlsauthcredentials.go:
     id: f1b43bc4abbb
     pristine_git_object: 714a021c2d0c359abd4b4decf3566262c2e62afd
+  notificationchannels.go: {}
   notifications.go:
     id: e2e3f06f1b93
     pristine_git_object: 0f0e6b8c9ad3889509a797a9dee7ee39248471f1
@@ -18195,6 +18615,7 @@ trackedFiles:
   upstreams.go:
     id: 0d87ae750c05
     pristine_git_object: 6e5526388a1748665c270d4019304bc85d632bdb
+  usageevents.go: {}
   users.go:
     id: 7e42b6a24db6
     pristine_git_object: b86ce3a49825e7c7d5420a790e63f18660774b91
@@ -43074,6 +43495,593 @@ examples:
           application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
         "404":
           application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-cost-usage-events:
+    speakeasy-default-list-cost-usage-events:
+      parameters:
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [{"specversion": "1.0", "id": "<id>", "type": "ai.usage.v1", "source": "<value>", "time": "2025-07-20T23:12:25.386Z", "data": {"quantities": {"input_tokens": "<value>", "input_text_tokens": "<value>", "input_audio_tokens": "<value>", "input_image_tokens": "<value>", "input_cache_read_tokens": "<value>", "input_cache_read_text_tokens": "<value>", "input_cache_read_audio_tokens": "<value>", "input_cache_read_image_tokens": "<value>", "input_cache_read_video_tokens": "<value>", "input_cache_write_tokens": "<value>", "input_cache_write_text_tokens": "<value>", "input_cache_write_audio_tokens": "<value>", "input_cache_write_image_tokens": "<value>", "input_cache_write_video_tokens": "<value>", "output_tokens": "<value>", "output_text_tokens": "<value>", "output_audio_tokens": "<value>", "output_reasoning_tokens": "<value>", "accepted_prediction_tokens": "<value>", "rejected_prediction_tokens": "<value>", "realtime_audio_ms": "<value>", "reported_total_tokens": "<value>"}, "reported_cost": {"value": "<value>", "currency": "USD"}, "reported_cache_cost": {"value": "<value>", "currency": "USD"}, "context": {}, "provenance": {}, "tags": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}}], "meta": {"page": {"next": "/System", "previous": null, "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  create-cost-usage-events:
+    speakeasy-default-create-cost-usage-events:
+      requestBody:
+        application/json: {"data": []}
+      responses:
+        "202":
+          application/json: {"data": []}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  list-cost-usage-field-values:
+    speakeasy-default-list-cost-usage-field-values:
+      parameters:
+        query:
+          page[size]: 20
+          field: "model_id"
+      responses:
+        "200":
+          application/json: {"data": [{"value": "<value>"}], "meta": {"page": {"next": "/home", "previous": "/Network", "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  query-cost-usage-events:
+    speakeasy-default-query-cost-usage-events:
+      requestBody:
+        application/json: {"starts_at": "2026-08-19T09:13:20.040Z", "ends_at": "2026-10-29T16:57:13.664Z"}
+      responses:
+        "200":
+          application/json: {"data": [], "meta": {"page": {"size": 308179, "next": "<value>", "previous": "<value>"}}}
+          text/csv: "<value>"
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  forecast-cost-usage-events:
+    speakeasy-default-forecast-cost-usage-events:
+      parameters:
+        query:
+          method: "auto"
+          time_zone: "UTC"
+      responses:
+        "200":
+          application/json: {"period": {"starts_at": "2025-07-14T04:27:11.079Z", "ends_at": "2026-02-24T19:26:14.051Z", "time_zone": "<value>"}, "observed_at": "2025-11-13T03:28:32.559Z", "generated_at": "2025-02-09T12:22:01.873Z", "method": "linear_regression", "status": "ready", "training": {"starts_at": null, "ends_at": "2025-02-09T10:08:13.082Z", "days": 270518}, "actual": [{"date": "2024-09-07", "spend": {"value": "<value>", "currency": "USD"}, "cumulative_spend": {"value": "<value>", "currency": "USD"}}], "predicted": [{"date": "2025-01-15", "spend": {"value": "<value>", "currency": "USD"}, "cumulative_spend": {"value": "<value>", "currency": "USD"}}]}
+          text/csv: "<value>"
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  list-cost-budgets:
+    speakeasy-default-list-cost-budgets:
+      parameters:
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [{"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "scope": {"filters": "<value>", "each": "<value>"}, "priority": 41050, "created_by": "ddab8ad0-7c78-4ae9-ae2b-fd0aa34b135f", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "effect": "exempt", "limit": null, "window": null, "posture": null, "validity": {"starts_at": "<value>", "ends_at": "<value>"}}], "meta": {"page": {"next": "/var", "previous": "/opt/include", "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  create-cost-budget:
+    speakeasy-default-create-cost-budget:
+      requestBody:
+        application/json: {"name": "<value>", "priority": 100, "scope": {"filters": "<value>"}, "effect": "limit", "limit": {"value": "<value>", "currency": "USD"}, "window": {"type": "fixed", "interval": "<value>", "anchored_at": "<value>"}, "posture": "advisory"}
+      responses:
+        "201":
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "scope": {"filters": "<value>", "each": "<value>"}, "priority": 745391, "created_by": "781e388a-1373-40b1-8121-81c403d76066", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "effect": "exempt", "limit": null, "window": null, "posture": null, "validity": {"starts_at": "<value>", "ends_at": "<value>"}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "dependent_fields", "reason": "is a required field", "dependents": ["<value 1>", "<value 2>"], "source": "body"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  get-cost-budget:
+    speakeasy-default-get-cost-budget:
+      parameters:
+        path:
+          budgetId: "bcf6e5b6-0072-497e-b048-c7ef21426f0c"
+      responses:
+        "200":
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "scope": {"filters": "<value>", "each": "<value>"}, "priority": 192078, "created_by": "7962ebb6-53d0-4f13-b72b-facd913ddbc3", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "effect": "limit", "limit": {"value": "<value>", "currency": "USD"}, "window": {"type": "fixed", "interval": "<value>", "anchored_at": "<value>"}, "posture": "advisory", "validity": null}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  upsert-cost-budget:
+    speakeasy-default-upsert-cost-budget:
+      parameters:
+        path:
+          budgetId: "0109b403-2dad-489a-86ce-cf99101a53c5"
+      requestBody:
+        application/json: {"name": "<value>", "priority": 100, "scope": {"filters": "<value>"}, "effect": "limit", "limit": {"value": "<value>", "currency": "USD"}, "window": {"type": "fixed", "interval": "<value>", "anchored_at": "<value>"}, "posture": "advisory"}
+      responses:
+        "200":
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "scope": {"filters": "<value>", "each": "<value>"}, "priority": 206179, "created_by": "0ae3f426-eceb-494b-b1a6-10545399db49", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "effect": "exempt", "limit": null, "window": null, "posture": null, "validity": {"starts_at": "<value>", "ends_at": "<value>"}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "to", "rule": "min_time", "minimum": "2026-10-01T00:00:00Z", "source": "body", "reason": "must be no earlier than 2026-10-01T00:00:00Z"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  delete-cost-budget:
+    speakeasy-default-delete-cost-budget:
+      parameters:
+        path:
+          budgetId: "1102ce41-b0b3-47e8-80b0-9d42763834cf"
+      responses:
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  get-cost-budget-balance:
+    speakeasy-default-get-cost-budget-balance:
+      parameters:
+        path:
+          budgetId: "439bea69-b34c-4ad4-8ab8-2d7f48646fa4"
+      responses:
+        "200":
+          application/json: {"budget": {"id": "d1c6a177-77b5-4fe2-92f7-04044af536f3"}, "window": {"starts_at": "2026-03-01T05:18:40.861Z", "ends_at": "2024-06-06T02:03:10.119Z"}, "limit": {"value": "<value>", "currency": "USD"}, "consumed": {"value": "<value>", "currency": "USD"}, "remaining": {"value": "<value>", "currency": "USD"}, "projected": {"value": "<value>", "currency": "USD"}, "evaluated_at": "2025-01-10T04:31:55.349Z", "latest_record_at": "2024-09-25T15:28:40.941Z", "derived": [{"value": "<value>", "consumed": {"value": "<value>", "currency": "USD"}, "remaining": {"value": "<value>", "currency": "USD"}, "projected": {"value": "<value>", "currency": "USD"}}], "derived_truncated": true}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-cost-budget-balances:
+    speakeasy-default-list-cost-budget-balances:
+      parameters:
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          text/csv: "<value>"
+          application/json: {"data": [], "meta": {"evaluated_at": "2026-07-31T18:16:33.444Z", "page": {"next": "/opt/bin", "previous": "/etc/defaults", "size": 10, "total": 31131}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  get-cost-notification-rule:
+    speakeasy-default-get-cost-notification-rule:
+      parameters:
+        path:
+          budgetId: "96073acc-35ba-4b16-b806-5d6bbefdb11d"
+      responses:
+        "200":
+          application/json: {"budget": {"id": "6e1d57f8-c4d7-4db6-a549-9fdb894e40e5"}, "thresholds": [], "channels": [], "message": null, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "to", "rule": "min_time", "minimum": "2026-10-01T00:00:00Z", "source": "body", "reason": "must be no earlier than 2026-10-01T00:00:00Z"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  upsert-cost-notification-rule:
+    speakeasy-default-upsert-cost-notification-rule:
+      parameters:
+        path:
+          budgetId: "b6423463-cf85-4ad1-a987-ef1ddbb33771"
+      requestBody:
+        application/json: {"thresholds": [{"percent": 690517}], "managed_by": {"owner": "terraform"}}
+      responses:
+        "200":
+          application/json: {"budget": {"id": "136719bb-85b3-42ce-a352-a64ec00872cd"}, "thresholds": [], "channels": [], "message": {"subject": "<value>", "body": "<value>"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "max_items", "maximum": 8, "source": "body", "reason": "must not have more than 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  delete-cost-notification-rule:
+    speakeasy-default-delete-cost-notification-rule:
+      parameters:
+        path:
+          budgetId: "8210798d-ff4a-4ae5-baa4-bd19c4b35460"
+      responses:
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-cost-notification-rule-firings:
+    speakeasy-default-list-cost-notification-rule-firings:
+      parameters:
+        path:
+          budgetId: "1df9f9a4-c0f5-4585-a450-290de66b4ca1"
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [], "meta": {"page": {"next": "/usr/libexec", "previous": "/lib", "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "max_items", "maximum": 8, "source": "body", "reason": "must not have more than 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-cost-notification-events:
+    speakeasy-default-list-cost-notification-events:
+      parameters:
+        query:
+          filter: {"fired_at": {"lt": "2022-03-30T07:20:50Z"}}
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [], "meta": {"page": {"next": "/boot", "previous": "/proc", "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  get-cost-notification-event:
+    speakeasy-default-get-cost-notification-event:
+      parameters:
+        path:
+          eventId: "d9231635-1342-4b3f-9d8d-3954c292bc2e"
+      responses:
+        "200":
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "budget": {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "scope": {"filters": "<value>", "each": "team"}, "priority": 473593, "created_by": "16fecfdf-f1ec-438c-8b80-7fda9b5e0f34", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "effect": "limit", "limit": {"value": "<value>", "currency": "USD"}, "window": {"type": "fixed", "interval": "<value>", "anchored_at": "<value>"}, "posture": "advisory", "validity": null}, "threshold": {"percent": 553546}, "value": "<value>", "window": {"starts_at": "2025-03-28T21:59:20.603Z", "ends_at": "2025-04-27T19:48:13.287Z"}, "limit": {"value": "<value>", "currency": "USD"}, "consumed": {"value": "<value>", "currency": "USD"}, "fired_at": "2026-09-11T00:52:59.608Z", "deliveries": [], "kind": "threshold"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "dependent_fields", "reason": "is a required field", "dependents": ["<value 1>", "<value 2>"], "source": "body"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-cost-notification-channels:
+    speakeasy-default-list-cost-notification-channels:
+      parameters:
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [{"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "slack", "slack": {"webhook_url": "https://zealous-coast.name"}}], "meta": {"page": {"next": "/tmp", "previous": null, "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min_items", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  create-cost-notification-channel:
+    speakeasy-default-create-cost-notification-channel:
+      requestBody:
+        application/json: {"name": "<value>", "type": "slack", "slack": {"webhook_url": "https://monumental-lift.com/"}}
+      responses:
+        "201":
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "slack", "slack": {"webhook_url": "https://roasted-fisherman.name/"}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  get-cost-notification-channel:
+    speakeasy-default-get-cost-notification-channel:
+      parameters:
+        path:
+          channelId: "22997f0f-2642-41e8-b62e-b74bf190bdaa"
+      responses:
+        "200":
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "email", "email": {"recipients": ["Quinton95@hotmail.com", "Maximo_Tremblay12@hotmail.com"]}}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  upsert-cost-notification-channel:
+    speakeasy-default-upsert-cost-notification-channel:
+      parameters:
+        path:
+          channelId: "b23d4c19-1d1a-40ae-8e37-3b3ddc6f1b16"
+      requestBody:
+        application/json: {"name": "<value>", "type": "slack", "slack": {}}
+      responses:
+        "200":
+          application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "type": "email", "email": {"recipients": ["Lowell76@hotmail.com"]}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "max_items", "maximum": 8, "source": "body", "reason": "must not have more than 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  delete-cost-notification-channel:
+    speakeasy-default-delete-cost-notification-channel:
+      parameters:
+        path:
+          channelId: "27e9d2cd-7d44-4561-b5dd-dceb7f73f48a"
+      responses:
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  create-cost-notification-channel-test:
+    speakeasy-default-create-cost-notification-channel-test:
+      parameters:
+        path:
+          channelId: "a522fa06-ef38-4a71-8da9-c224ade858e5"
+      responses:
+        "202":
+          application/json: {"kind": "test", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "channel": {"id": "8330b8b9-028d-427e-b922-302bb77ba629", "name": "<value>", "type": "email"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "status": "pending", "error": null}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-cost-exports:
+    speakeasy-default-list-cost-exports:
+      parameters:
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [], "meta": {"page": {"next": "/boot", "previous": "/etc/mail", "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "to", "rule": "min_time", "minimum": "2026-10-01T00:00:00Z", "source": "body", "reason": "must be no earlier than 2026-10-01T00:00:00Z"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  create-cost-export:
+    speakeasy-default-create-cost-export:
+      requestBody:
+        application/json: {"format": "csv", "compression": "gzip", "dataset": "usage_events", "schema_version": 1, "starts_at": "2025-08-11T22:20:42.721Z", "ends_at": "2024-08-25T04:17:22.848Z", "time_zone": "UTC", "labels": {"env": "test"}}
+      responses:
+        "202":
+          application/json: {"format": "csv", "compression": "gzip", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "dataset": "focus", "schema_version": 1, "focus": {"version": "1.4", "charge_period": "hour", "tag_keys": ["<value 1>"]}, "starts_at": "2024-05-22T20:55:00.918Z", "ends_at": "2024-11-10T19:36:17.819Z", "time_zone": "<value>", "filters": "<value>", "schedule": {"id": "14648656-aea4-4f93-b0ac-58de48e8cdbe"}, "labels": {"env": "test"}, "status": "failed", "failure_reason": "<value>", "record_count": 300221, "data_read_at": "2026-07-16T16:26:10.885Z", "files": [], "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "started_at": "2025-09-15T08:44:43.159Z", "finished_at": "2026-09-27T21:03:21.044Z", "expires_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+  get-cost-export:
+    speakeasy-default-get-cost-export:
+      parameters:
+        path:
+          exportId: "c72d63de-9b87-4b05-af70-067f5f7c18e1"
+      responses:
+        "200":
+          application/json: {"format": "csv", "compression": "gzip", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "dataset": "usage_events", "schema_version": 1, "focus": {"version": "1.4", "charge_period": "hour", "tag_keys": []}, "starts_at": "2024-12-16T07:20:46.764Z", "ends_at": "2024-01-13T07:09:21.974Z", "time_zone": "<value>", "filters": "<value>", "schedule": {"id": "45fb98e9-3bce-46ca-8cb2-c17942199987"}, "labels": {"env": "test"}, "status": "running", "failure_reason": "<value>", "record_count": 777263, "data_read_at": "2026-11-28T10:53:09.018Z", "files": [{"name": "<value>", "record_count": 912243, "size_bytes": 299780, "sha256": "<value>"}], "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "started_at": "2026-01-16T14:13:07.236Z", "finished_at": "2024-01-12T21:47:34.067Z", "expires_at": "2022-11-04T20:10:06.927Z"}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  delete-cost-export:
+    speakeasy-default-delete-cost-export:
+      parameters:
+        path:
+          exportId: "aaa27a02-f18c-473f-a6fa-063ad2a0b0a3"
+      responses:
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  create-cost-export-download:
+    speakeasy-default-create-cost-export-download:
+      parameters:
+        path:
+          exportId: "aee926f2-30b5-4f9f-b1af-1a4691581e4e"
+      requestBody:
+        application/json: {"file": "<value>"}
+      responses:
+        "200":
+          application/json: {"file": "<value>", "url": "https://closed-oil.name", "expires_at": "2025-08-05T19:43:54.395Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+  list-cost-export-schedules:
+    speakeasy-default-list-cost-export-schedules:
+      parameters:
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [{"format": "csv", "compression": "gzip", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "cadence": "daily", "time_zone": "<value>", "status": "paused", "dataset": "usage_events", "schema_version": 1, "focus": {"version": "1.3", "charge_period": "day", "tag_keys": ["<value 1>", "<value 2>"]}, "filters": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "next_run_at": "2026-05-27T21:01:24.260Z", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}], "meta": {"page": {"next": null, "previous": "/usr/bin", "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min_lowercase", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  create-cost-export-schedule:
+    speakeasy-default-create-cost-export-schedule:
+      requestBody:
+        application/json: {"format": "csv", "compression": "gzip", "name": "<value>", "cadence": "daily", "time_zone": "UTC", "status": "active", "dataset": "usage_events", "schema_version": 1, "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}}
+      responses:
+        "201":
+          application/json: {"format": "csv", "compression": "gzip", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "cadence": "monthly", "time_zone": "<value>", "status": "active", "dataset": "focus", "schema_version": 1, "focus": null, "filters": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "next_run_at": "2025-08-17T19:10:23.226Z", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+  get-cost-export-schedule:
+    speakeasy-default-get-cost-export-schedule:
+      parameters:
+        path:
+          scheduleId: "62a510af-81e8-4838-94bb-dd1ae73d1591"
+      responses:
+        "200":
+          application/json: {"format": "csv", "compression": "gzip", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "cadence": "daily", "time_zone": "<value>", "status": "paused", "dataset": "usage_events", "schema_version": 1, "focus": {"version": "1.3", "charge_period": "hour", "tag_keys": []}, "filters": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "next_run_at": "2024-11-23T00:43:31.565Z", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  upsert-cost-export-schedule:
+    speakeasy-default-upsert-cost-export-schedule:
+      parameters:
+        path:
+          scheduleId: "5be7a065-61dc-4a7a-9daf-2d15b2125748"
+      requestBody:
+        application/json: {"format": "csv", "compression": "gzip", "name": "<value>", "cadence": "monthly", "time_zone": "UTC", "status": "active", "dataset": "usage_events", "schema_version": 1, "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}}
+      responses:
+        "200":
+          application/json: {"format": "csv", "compression": "gzip", "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "cadence": "weekly", "time_zone": "<value>", "status": "paused", "dataset": "focus", "schema_version": 1, "focus": {"version": "1.4", "charge_period": "day", "tag_keys": ["<value 1>", "<value 2>"]}, "filters": "<value>", "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "next_run_at": "2024-01-01T14:36:43.833Z", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  delete-cost-export-schedule:
+    speakeasy-default-delete-cost-export-schedule:
+      parameters:
+        path:
+          scheduleId: "35245638-87c3-43fc-8095-92ab7bf78587"
+      responses:
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-cost-attribution-plugins:
+    speakeasy-default-list-cost-attribution-plugins:
+      parameters:
+        query:
+          page[size]: 20
+      responses:
+        "200":
+          application/json: {"data": [], "meta": {"page": {"next": "/selinux", "previous": "/opt/lib", "size": 10}}}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "to", "rule": "min_time", "minimum": "2026-10-01T00:00:00Z", "source": "body", "reason": "must be no earlier than 2026-10-01T00:00:00Z"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+  get-cost-attribution-plugin:
+    speakeasy-default-get-cost-attribution-plugin:
+      parameters:
+        path:
+          gatewayId: "527bc328-6950-4662-a473-78dd7a5beb84"
+      responses:
+        "200":
+          application/json: {"gateway_id": "67277cc9-e1de-412b-9cae-29fd3edf8174", "version": "<value>", "latest_version": "<value>", "integrations": ["portkey"], "headers": [], "prefixes": [{"name": "<value>"}], "operator_tags": {"key": "<value>", "key1": "<value>"}, "group_patterns": ["<value 1>"], "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  upsert-cost-attribution-plugin:
+    speakeasy-default-upsert-cost-attribution-plugin:
+      parameters:
+        path:
+          gatewayId: "4b2efecb-9f38-4d74-9073-5ab0f83a19c6"
+      requestBody:
+        application/json: {"integrations": []}
+      responses:
+        "200":
+          application/json: {"gateway_id": "3f721fdc-8539-40f4-b416-ad922fc3f293", "version": "<value>", "latest_version": "<value>", "integrations": [], "headers": [{"name": "<value>", "tag_key": "<value>"}], "prefixes": [], "operator_tags": {}, "group_patterns": ["<value 1>", "<value 2>", "<value 3>"], "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+  update-cost-attribution-plugin:
+    speakeasy-default-update-cost-attribution-plugin:
+      parameters:
+        path:
+          gatewayId: "062b78aa-4607-4c6d-8eab-e8c23d829b86"
+      requestBody:
+        application/merge-patch+json: {}
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"gateway_id": "f3e77867-e457-47fc-97fd-3f41c8d9dd06", "version": "<value>", "latest_version": "<value>", "integrations": [], "headers": [], "prefixes": [], "operator_tags": {}, "group_patterns": ["<value 1>", "<value 2>", "<value 3>"], "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "enum", "reason": "is a required field", "choices": ["<value 1>", "<value 2>", "<value 3>"], "source": "body"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
+  delete-cost-attribution-plugin:
+    speakeasy-default-delete-cost-attribution-plugin:
+      parameters:
+        path:
+          gatewayId: "86a243ff-0e4d-40f7-aa8d-58fdd7d5d387"
+      responses:
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
+        "404":
+          application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+        "409":
+          application/problem+json: {"status": 409, "title": "Conflict", "type": "https://httpstatuses.com/409", "instance": "kong:trace:1234567890", "detail": "Conflict"}
 examplesVersion: 1.0.2
 generatedTests: {}
 generatedFiles:

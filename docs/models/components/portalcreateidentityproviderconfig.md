@@ -1,5 +1,7 @@
 # PortalCreateIdentityProviderConfig
 
+The configuration data for creating an authentication integration.
+
 
 ## Supported Types
 
