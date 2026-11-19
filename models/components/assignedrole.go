@@ -6,25 +6,25 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// EntityRegion - Region of the entity.
-type EntityRegion string
+// AssignedRoleEntityRegion - Region of the entity.
+type AssignedRoleEntityRegion string
 
 const (
-	EntityRegionUs       EntityRegion = "us"
-	EntityRegionEu       EntityRegion = "eu"
-	EntityRegionAu       EntityRegion = "au"
-	EntityRegionMe       EntityRegion = "me"
-	EntityRegionIn       EntityRegion = "in"
-	EntityRegionSg       EntityRegion = "sg"
-	EntityRegionWildcard EntityRegion = "*"
+	AssignedRoleEntityRegionUs       AssignedRoleEntityRegion = "us"
+	AssignedRoleEntityRegionEu       AssignedRoleEntityRegion = "eu"
+	AssignedRoleEntityRegionAu       AssignedRoleEntityRegion = "au"
+	AssignedRoleEntityRegionMe       AssignedRoleEntityRegion = "me"
+	AssignedRoleEntityRegionIn       AssignedRoleEntityRegion = "in"
+	AssignedRoleEntityRegionSg       AssignedRoleEntityRegion = "sg"
+	AssignedRoleEntityRegionWildcard AssignedRoleEntityRegion = "*"
 )
 
-func (e EntityRegion) ToPointer() *EntityRegion {
+func (e AssignedRoleEntityRegion) ToPointer() *AssignedRoleEntityRegion {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *EntityRegion) IsExact() bool {
+func (e *AssignedRoleEntityRegion) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "us", "eu", "au", "me", "in", "sg", "*":
@@ -47,7 +47,7 @@ type AssignedRole struct {
 	// Name of the entity type the role is being assigned to.
 	EntityTypeName *string `json:"entity_type_name,omitempty"`
 	// Region of the entity.
-	EntityRegion *EntityRegion `json:"entity_region,omitempty"`
+	EntityRegion *AssignedRoleEntityRegion `json:"entity_region,omitempty"`
 	// **Pre-release Feature**
 	// This feature is currently in beta and is subject to change.
 	//
@@ -101,7 +101,7 @@ func (a *AssignedRole) GetEntityTypeName() *string {
 	return a.EntityTypeName
 }
 
-func (a *AssignedRole) GetEntityRegion() *EntityRegion {
+func (a *AssignedRole) GetEntityRegion() *AssignedRoleEntityRegion {
 	if a == nil {
 		return nil
 	}

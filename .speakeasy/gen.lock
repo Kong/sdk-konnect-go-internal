@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 65345a42ed7ffd3f4cf8491f1bcfbac6
+  docChecksum: a7b74aa150b1c9a56a8582618ffa0d87
   docVersion: 3.21.1
-  speakeasyVersion: 1.810.0
-  generationVersion: 2.961.1
+  speakeasyVersion: 1.808.1
+  generationVersion: 2.960.8
   releaseVersion: 0.7.0
   configChecksum: 6d7e179b2b9dfa29cd6bacd36e6f0103
 persistentEdits:
@@ -17,7 +17,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
     constsAndDefaults: 0.1.15
-    core: 3.16.7
+    core: 3.16.6
     deepObjectParams: 0.1.1
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
@@ -775,6 +775,7 @@ trackedFiles:
   docs/models/components/aigatewaypolicy.md: {}
   docs/models/components/aigatewaypolicyschema.md: {}
   docs/models/components/aigatewayproxyconfig.md: {}
+  docs/models/components/aigatewayproxyconfigaigatewayproxyconfigauth.md: {}
   docs/models/components/aigatewayproxyconfigauth.md: {}
   docs/models/components/aigatewayproxyconfigoutput.md: {}
   docs/models/components/aigatewayproxyurl.md: {}
@@ -850,7 +851,6 @@ trackedFiles:
   docs/models/components/aigatewayupstreambalancerroundrobinconfig.md: {}
   docs/models/components/aigatewayupstreamconfig.md: {}
   docs/models/components/aigatewayupstreamconfigauth.md: {}
-  docs/models/components/aigatewayupstreamconfigauthoutput.md: {}
   docs/models/components/aigatewayupstreamconfigoutput.md: {}
   docs/models/components/aigatewayupstreamtarget.md: {}
   docs/models/components/aigatewayvalidateconditionrequest.md: {}
@@ -1254,6 +1254,7 @@ trackedFiles:
   docs/models/components/assignedrolecollection.md:
     id: e1b20e065c07
     pristine_git_object: 1d145fc5bba27a3e01eab1762234a0c0d8d8ecdb
+  docs/models/components/assignedroleentityregion.md: {}
   docs/models/components/assignparameterizedrole.md:
     id: 24ad0cda23fc
     pristine_git_object: 35dcb8fa740646ff00c080cd270056111677cd53
@@ -2033,9 +2034,6 @@ trackedFiles:
   docs/models/components/catalogintegrationresourcetypes.md:
     id: 47f1f63cd000
     pristine_git_object: fcc2ad9e0ee136b039bbdac2b62a287dd5eaf6cf
-  docs/models/components/catalogintegrationvisibility.md:
-    id: 088c6e7b6c22
-    pristine_git_object: 80e7ca617956646a92e57c8038fb6dcf79023497
   docs/models/components/catalogmcp.md: {}
   docs/models/components/catalogmcpannotations.md: {}
   docs/models/components/catalogmcpfilterparameters.md: {}
@@ -2076,6 +2074,7 @@ trackedFiles:
   docs/models/components/catalogresourcemappingfilterparameters.md:
     id: b40dd180bcfb
     pristine_git_object: 13d7b8aff052056d7c700b9979380f061e368268
+  docs/models/components/catalogresourcemappingfilterparametersresourcetype.md: {}
   docs/models/components/catalogresourceref.md:
     id: 9543892325ba
     pristine_git_object: 6a32cfdc28c3812112000667cb9b41ab16511217
@@ -2313,12 +2312,14 @@ trackedFiles:
   docs/models/components/controlplaneclustertype.md:
     id: 6df8311c7bd8
     pristine_git_object: 28961a009652ebd2e947a705465cc688d23167ab
+  docs/models/components/controlplaneconfig.md: {}
   docs/models/components/controlplanedefaultresourcequota.md:
     id: cabf97d5391a
     pristine_git_object: 4a95a65fc99ed78542025fe1555c337c5d8a5c0b
   docs/models/components/controlplanefilterparameters.md:
     id: 6e473380d63e
     pristine_git_object: 3a86d3a5c7eafbfbac4226819dc823448775b6b3
+  docs/models/components/controlplanefilterparametersname.md: {}
   docs/models/components/controlplanegeo.md:
     id: d68d438f21aa
     pristine_git_object: 804bf9c5358fb26c9acd84cf211465a07299f458
@@ -2599,7 +2600,6 @@ trackedFiles:
   docs/models/components/createdcrsettings.md: {}
   docs/models/components/createdefaultcontentrequest.md: {}
   docs/models/components/createdeveloperregistrationformrequest.md: {}
-  docs/models/components/createdeveloperregistrationformrequestname.md: {}
   docs/models/components/createdeveloperregistrationformrequeststatus.md: {}
   docs/models/components/createdeveloperregistrationformrequesttype.md: {}
   docs/models/components/createdeveloperrequest.md: {}
@@ -3289,7 +3289,6 @@ trackedFiles:
   docs/models/components/eventgatewayaclpolicyconfig.md: {}
   docs/models/components/eventgatewayaclresourcename.md: {}
   docs/models/components/eventgatewayaclrule.md: {}
-  docs/models/components/eventgatewayaclruleresourcetype.md: {}
   docs/models/components/eventgatewayaclspolicy.md: {}
   docs/models/components/eventgatewayalterclientquotasrequestrules.md: {}
   docs/models/components/eventgatewayalterclientquotasrule.md: {}
@@ -4832,9 +4831,6 @@ trackedFiles:
   docs/models/components/oauthconfig.md:
     id: e41f34a98d73
     pristine_git_object: 41c07705c5a81b24adc19259f3ad870d030bad23
-  docs/models/components/oauthconfig1.md:
-    id: 640f6a8016b9
-    pristine_git_object: efdd3fffab9e92dba24805c9110291f54f1f36bb
   docs/models/components/oauthgranttype.md: {}
   docs/models/components/oidcidentityproviderbackchannellogout.md: {}
   docs/models/components/oidcidentityproviderclaimmappings.md:
@@ -4885,9 +4881,6 @@ trackedFiles:
   docs/models/components/parameterizedassignedrole.md:
     id: 846549d160e9
     pristine_git_object: c91150ff2c15161edf449377a5434cc6f0505563
-  docs/models/components/parameterizedassignedroleentityregion.md:
-    id: 16387f0b8235
-    pristine_git_object: cac4727e3132df3fb93bcc77c89925833bb359af
   docs/models/components/parameterizedassignedrolescollection.md:
     id: 78b794bf51b0
     pristine_git_object: 574271ae6dedaede979d3e63b678f8f9a4e34720
@@ -5252,6 +5245,7 @@ trackedFiles:
   docs/models/components/portalmenuitem.md:
     id: 5de0b8edc88a
     pristine_git_object: 7d9996857d6360e96cae75f52872dd25ab590e40
+  docs/models/components/portalmenuitemvisibility.md: {}
   docs/models/components/portalnavigationresponse.md: {}
   docs/models/components/portalnavigationsfilterparameters.md: {}
   docs/models/components/portaloidcconfig.md:
@@ -5548,6 +5542,7 @@ trackedFiles:
   docs/models/components/rolesaddonid.md: {}
   docs/models/components/rolesaddonsname.md: {}
   docs/models/components/rolesaddonsroles.md: {}
+  docs/models/components/rolesaddonsrolesaddonviewername.md: {}
   docs/models/components/rolesaddonsrolesname.md: {}
   docs/models/components/rolesadmin.md:
     id: 8bc0aa7a4ec6
@@ -5558,7 +5553,6 @@ trackedFiles:
   docs/models/components/rolesagentsname.md: {}
   docs/models/components/rolesagentspositionalids.md: {}
   docs/models/components/rolesagentsrolesagentid.md: {}
-  docs/models/components/rolesagentsrolescreatorname.md: {}
   docs/models/components/rolesagentsrolesdescription.md: {}
   docs/models/components/rolesagentsrolesmaintainerdescription.md: {}
   docs/models/components/rolesagentsrolesmaintainername.md: {}
@@ -8075,9 +8069,6 @@ trackedFiles:
   docs/models/operations/deleteclientsecretresponse.md: {}
   docs/models/operations/deleteclonedpluginrequest.md: {}
   docs/models/operations/deleteclonedpluginresponse.md: {}
-  docs/models/operations/deleteconfigstorequeryparamforce.md:
-    id: 6eb371d014e9
-    pristine_git_object: e1865c8dfe386e86dac0e546641886b2c3ce1afc
   docs/models/operations/deleteconfigstorerequest.md:
     id: 4a43fad6e624
     pristine_git_object: fd348adbf00c2187646a10ac1d1bf6ff09bc4a79
@@ -8166,6 +8157,7 @@ trackedFiles:
   docs/models/operations/deletedeveloperresponse.md:
     id: 4b4bb041de30
     pristine_git_object: 7b24de6e862a7eb99a7531b2a87eaa1fb1f0f5bb
+  docs/models/operations/deletedirectoryqueryparamforce.md: {}
   docs/models/operations/deletedirectoryrequest.md: {}
   docs/models/operations/deletedirectoryresponse.md: {}
   docs/models/operations/deleteemaildeliveryrequest.md:
@@ -23390,7 +23382,7 @@ examples:
         path:
           portalId: "efe853b6-a55c-4929-9b80-c39a22b01c7a"
       requestBody:
-        application/json: {"authentication_enabled": true, "rbac_enabled": false, "sipr_enabled": true, "auto_approve_developers": false, "auto_approve_applications": false, "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
+        application/json: {"sipr_enabled": true, "labels": {"env": "test"}}
       responses:
         "200":
           application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "name": "<value>", "display_name": "Adaline.Nolan", "description": "however that unless", "authentication_enabled": true, "rbac_enabled": false, "ai": {"enabled": false, "features": {"ai_search": {"enabled": false}, "mcp_server": {"enabled": false, "write_operations_enabled": false}}}, "sipr_enabled": true, "default_api_visibility": "public", "default_page_visibility": "public", "default_application_auth_strategy_id": "d7801b53-0df1-4fdf-87ca-e3c44496492f", "auto_approve_developers": false, "auto_approve_applications": false, "default_domain": "wretched-travel.org", "canonical_domain": "evil-almighty.com", "labels": {"env": "test"}, "notifications_developer_pii_visibility_enabled": false}
@@ -23888,7 +23880,7 @@ examples:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       responses:
         "200":
-          application/json: {"theme": {"name": "ocean", "colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": []}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}]}}
+          application/json: {"theme": {"colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": []}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}]}}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -23901,10 +23893,10 @@ examples:
         path:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       requestBody:
-        application/json: {"theme": {"name": "ocean", "colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": []}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}]}}
+        application/json: {"theme": {"colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": []}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}]}}
       responses:
         "200":
-          application/json: {"theme": {"name": "ocean", "colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": []}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}]}}
+          application/json: {"theme": {"colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": []}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}]}}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
         "401":
@@ -23919,10 +23911,10 @@ examples:
         path:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       requestBody:
-        application/json: {"theme": {"name": "ocean", "colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}}
+        application/json: {"theme": {"colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}}
       responses:
         "200":
-          application/json: {"theme": {"name": "ocean", "colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}}
+          application/json: {"theme": {"colors": {"primary": "#000000"}}, "menu": {"main": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": false}], "footer_sections": [{"title": "<value>", "items": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}], "footer_bottom": [{"path": "/about/company", "title": "My Page", "visibility": "public", "external": true}]}}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -24320,7 +24312,7 @@ examples:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
           templateName: "account-access-approved"
       requestBody:
-        application/json: {"enabled": true}
+        application/json: {}
       responses:
         "200":
           application/json: {"label": "App registration approved", "name": "app-registration-approved", "default_content": {"subject": "<value>", "title": "<value>", "body": "<value>"}, "variables": [], "enabled": true, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -35238,10 +35230,10 @@ examples:
         path:
           gatewayId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
       requestBody:
-        application/json: {"name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": [], "tls": {"enabled": false, "insecure_skip_verify": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}}
+        application/json: {"name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": [], "tls": {"enabled": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}}
       responses:
         "201":
-          application/json: {"id": "d81f0780-2250-4cde-94d5-cacf7e7ba8b3", "name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": [], "tls": {"enabled": false, "insecure_skip_verify": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "d81f0780-2250-4cde-94d5-cacf7e7ba8b3", "name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": [], "tls": {"enabled": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "dependent_fields", "reason": "is a required field", "dependents": ["<value 1>", "<value 2>", "<value 3>"], "source": "body"}]}
         "401":
@@ -35256,7 +35248,7 @@ examples:
           backendClusterId: "5ef7f382-5bc5-4c2e-a215-300f045de3da"
       responses:
         "200":
-          application/json: {"id": "5d418534-2831-4847-af7c-28c816066b03", "name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": ["<value 1>", "<value 2>"], "tls": {"enabled": false, "insecure_skip_verify": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "5d418534-2831-4847-af7c-28c816066b03", "name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": ["<value 1>", "<value 2>"], "tls": {"enabled": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -35270,10 +35262,10 @@ examples:
           gatewayId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
           backendClusterId: "2dcafedd-aa32-474b-bd11-dc558021603c"
       requestBody:
-        application/json: {"name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": ["<value 1>", "<value 2>"], "tls": {"enabled": false, "insecure_skip_verify": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}}
+        application/json: {"name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": ["<value 1>", "<value 2>"], "tls": {"enabled": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}}
       responses:
         "200":
-          application/json: {"id": "ec6a6cac-884d-45af-b703-de951c860245", "name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": [], "tls": {"enabled": false, "insecure_skip_verify": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"id": "ec6a6cac-884d-45af-b703-de951c860245", "name": "<value>", "description": "", "authentication": {"type": "sasl_aws_iam", "sasl_aws_iam": {"type": "default_provider_chain"}}, "insecure_allow_anonymous_virtual_cluster_auth": false, "bootstrap_servers": [], "tls": {"enabled": false, "client_identity": {"certificate": "<value>", "key": "${vault.env['MY_ENV_VAR']}"}}, "metadata_update_interval_seconds": 60, "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":

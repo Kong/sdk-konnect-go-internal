@@ -2,20 +2,20 @@
 
 package components
 
-// CatalogIntegrationVisibility - The visibility of the integration.
-type CatalogIntegrationVisibility string
+// Visibility - The visibility of the integration.
+type Visibility string
 
 const (
-	CatalogIntegrationVisibilityPublic  CatalogIntegrationVisibility = "public"
-	CatalogIntegrationVisibilityPrivate CatalogIntegrationVisibility = "private"
+	VisibilityPublic  Visibility = "public"
+	VisibilityPrivate Visibility = "private"
 )
 
-func (e CatalogIntegrationVisibility) ToPointer() *CatalogIntegrationVisibility {
+func (e Visibility) ToPointer() *Visibility {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *CatalogIntegrationVisibility) IsExact() bool {
+func (e *Visibility) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "public", "private":
@@ -39,7 +39,7 @@ type CatalogIntegration struct {
 	// The integration version.
 	Version string `json:"version"`
 	// The visibility of the integration.
-	Visibility CatalogIntegrationVisibility `json:"visibility"`
+	Visibility Visibility `json:"visibility"`
 	// Defines the authorization strategy for an integration.
 	Authorization *CatalogIntegrationAuthorization `json:"authorization"`
 	// Defines the configuration schema for the integration.
@@ -47,6 +47,20 @@ type CatalogIntegration struct {
 	// Defines the resource types that the integration manages within the catalog.
 	//
 	// This schema is a key-value object where:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - Keys are globally unique, machine-readable identifiers for each resource type.
 	//   - Values are objects describing metadata about the resource type.
 	//
@@ -68,6 +82,20 @@ type CatalogIntegration struct {
 	//
 	APISpecProvider *CatalogIntegrationAPISpecProvider `json:"api_spec_provider"`
 	// Defines the event types across all resource types belonging to the integration that will be ingested into the catalog.
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//
 	//   - Keys are the machine-readable, globally unique names of resource types registered by this integration.
 	//   - Values are a map of event type definitions.
@@ -110,9 +138,9 @@ func (c *CatalogIntegration) GetVersion() string {
 	return c.Version
 }
 
-func (c *CatalogIntegration) GetVisibility() CatalogIntegrationVisibility {
+func (c *CatalogIntegration) GetVisibility() Visibility {
 	if c == nil {
-		return CatalogIntegrationVisibility("")
+		return Visibility("")
 	}
 	return c.Visibility
 }

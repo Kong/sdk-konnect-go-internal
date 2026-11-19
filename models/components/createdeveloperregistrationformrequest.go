@@ -31,27 +31,27 @@ func (e *CreateDeveloperRegistrationFormRequestType) UnmarshalJSON(data []byte) 
 	}
 }
 
-// CreateDeveloperRegistrationFormRequestName - The form's name. Only `developer-registration` is accepted at this time
-type CreateDeveloperRegistrationFormRequestName string
+// Name - The form's name. Only `developer-registration` is accepted at this time
+type Name string
 
 const (
-	CreateDeveloperRegistrationFormRequestNameDeveloperRegistration CreateDeveloperRegistrationFormRequestName = "developer-registration"
+	NameDeveloperRegistration Name = "developer-registration"
 )
 
-func (e CreateDeveloperRegistrationFormRequestName) ToPointer() *CreateDeveloperRegistrationFormRequestName {
+func (e Name) ToPointer() *Name {
 	return &e
 }
-func (e *CreateDeveloperRegistrationFormRequestName) UnmarshalJSON(data []byte) error {
+func (e *Name) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "developer-registration":
-		*e = CreateDeveloperRegistrationFormRequestName(v)
+		*e = Name(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateDeveloperRegistrationFormRequestName: %v", v)
+		return fmt.Errorf("invalid value for Name: %v", v)
 	}
 }
 
@@ -81,7 +81,7 @@ type CreateDeveloperRegistrationFormRequest struct {
 	Type CreateDeveloperRegistrationFormRequestType `json:"type"`
 	// The form's name. Only `developer-registration` is accepted at this time
 	//
-	Name   *CreateDeveloperRegistrationFormRequestName   `json:"name,omitempty"`
+	Name   *Name                                         `json:"name,omitempty"`
 	Status *CreateDeveloperRegistrationFormRequestStatus `default:"unpublished" json:"status"`
 	// The form's fields, in display order. Must include the built-in `full_name` (type `text`) and `email` (type `email`) fields, plus exactly one `submit` field.
 	//
@@ -106,7 +106,7 @@ func (c *CreateDeveloperRegistrationFormRequest) GetType() CreateDeveloperRegist
 	return c.Type
 }
 
-func (c *CreateDeveloperRegistrationFormRequest) GetName() *CreateDeveloperRegistrationFormRequestName {
+func (c *CreateDeveloperRegistrationFormRequest) GetName() *Name {
 	if c == nil {
 		return nil
 	}

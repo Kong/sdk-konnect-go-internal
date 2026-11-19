@@ -8,22 +8,22 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// EventGatewayACLRuleResourceType - This rule applies to access only for type of resource
-type EventGatewayACLRuleResourceType string
+// ResourceType - This rule applies to access only for type of resource
+type ResourceType string
 
 const (
-	EventGatewayACLRuleResourceTypeTopic           EventGatewayACLRuleResourceType = "topic"
-	EventGatewayACLRuleResourceTypeGroup           EventGatewayACLRuleResourceType = "group"
-	EventGatewayACLRuleResourceTypeTransactionalID EventGatewayACLRuleResourceType = "transactional_id"
-	EventGatewayACLRuleResourceTypeCluster         EventGatewayACLRuleResourceType = "cluster"
+	ResourceTypeTopic           ResourceType = "topic"
+	ResourceTypeGroup           ResourceType = "group"
+	ResourceTypeTransactionalID ResourceType = "transactional_id"
+	ResourceTypeCluster         ResourceType = "cluster"
 )
 
-func (e EventGatewayACLRuleResourceType) ToPointer() *EventGatewayACLRuleResourceType {
+func (e ResourceType) ToPointer() *ResourceType {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *EventGatewayACLRuleResourceType) IsExact() bool {
+func (e *ResourceType) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "topic", "group", "transactional_id", "cluster":
@@ -130,7 +130,7 @@ func (u ResourceNames) MarshalJSON() ([]byte, error) {
 // EventGatewayACLRule - A Kafka ACL rule to apply to virtual cluster traffic
 type EventGatewayACLRule struct {
 	// This rule applies to access only for type of resource
-	ResourceType EventGatewayACLRuleResourceType `json:"resource_type"`
+	ResourceType ResourceType `json:"resource_type"`
 	// How to handle the request if the rule matches
 	Action Action `json:"action"`
 	// Types of Kafka operations to match against. Note that not every operation can apply to every resource type.
@@ -150,9 +150,9 @@ func (e *EventGatewayACLRule) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (e *EventGatewayACLRule) GetResourceType() EventGatewayACLRuleResourceType {
+func (e *EventGatewayACLRule) GetResourceType() ResourceType {
 	if e == nil {
-		return EventGatewayACLRuleResourceType("")
+		return ResourceType("")
 	}
 	return e.ResourceType
 }

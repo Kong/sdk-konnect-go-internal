@@ -9,18 +9,18 @@ import (
 	"net/http"
 )
 
-// QueryParamForce - If true, delete the specified directory and all its associated resources. If false, only allow deletion if no clients, scopes or claims are associated with the auth server.
-type QueryParamForce string
+// DeleteDirectoryQueryParamForce - If true, delete the specified directory and all its associated resources. If false, only allow deletion if no clients, scopes or claims are associated with the auth server.
+type DeleteDirectoryQueryParamForce string
 
 const (
-	QueryParamForceTrue  QueryParamForce = "true"
-	QueryParamForceFalse QueryParamForce = "false"
+	DeleteDirectoryQueryParamForceTrue  DeleteDirectoryQueryParamForce = "true"
+	DeleteDirectoryQueryParamForceFalse DeleteDirectoryQueryParamForce = "false"
 )
 
-func (e QueryParamForce) ToPointer() *QueryParamForce {
+func (e DeleteDirectoryQueryParamForce) ToPointer() *DeleteDirectoryQueryParamForce {
 	return &e
 }
-func (e *QueryParamForce) UnmarshalJSON(data []byte) error {
+func (e *DeleteDirectoryQueryParamForce) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -29,10 +29,10 @@ func (e *QueryParamForce) UnmarshalJSON(data []byte) error {
 	case "true":
 		fallthrough
 	case "false":
-		*e = QueryParamForce(v)
+		*e = DeleteDirectoryQueryParamForce(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamForce: %v", v)
+		return fmt.Errorf("invalid value for DeleteDirectoryQueryParamForce: %v", v)
 	}
 }
 
@@ -40,7 +40,7 @@ type DeleteDirectoryRequest struct {
 	// ID of the directory
 	DirectoryID string `pathParam:"style=simple,explode=false,name=directoryId"`
 	// If true, delete the specified directory and all its associated resources. If false, only allow deletion if no clients, scopes or claims are associated with the auth server.
-	ForceDestroy *QueryParamForce `default:"false" queryParam:"style=form,explode=true,name=force"`
+	ForceDestroy *DeleteDirectoryQueryParamForce `default:"false" queryParam:"style=form,explode=true,name=force"`
 }
 
 func (d DeleteDirectoryRequest) MarshalJSON() ([]byte, error) {
@@ -61,7 +61,7 @@ func (d *DeleteDirectoryRequest) GetDirectoryID() string {
 	return d.DirectoryID
 }
 
-func (d *DeleteDirectoryRequest) GetForceDestroy() *QueryParamForce {
+func (d *DeleteDirectoryRequest) GetForceDestroy() *DeleteDirectoryQueryParamForce {
 	if d == nil {
 		return nil
 	}

@@ -7,26 +7,26 @@ import (
 	"fmt"
 )
 
-type RolesName string
+type RolesAddOnsName string
 
 const (
-	RolesNameAddOns RolesName = "Add Ons"
+	RolesAddOnsNameAddOns RolesAddOnsName = "Add Ons"
 )
 
-func (e RolesName) ToPointer() *RolesName {
+func (e RolesAddOnsName) ToPointer() *RolesAddOnsName {
 	return &e
 }
-func (e *RolesName) UnmarshalJSON(data []byte) error {
+func (e *RolesAddOnsName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Add Ons":
-		*e = RolesName(v)
+		*e = RolesAddOnsName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesName: %v", v)
+		return fmt.Errorf("invalid value for RolesAddOnsName: %v", v)
 	}
 }
 
@@ -64,26 +64,26 @@ func (p *PositionalIds) GetAddOnID() *AddOnID {
 	return p.AddOnID
 }
 
-type RolesAddOnsName string
+type RolesAddOnsRolesName string
 
 const (
-	RolesAddOnsNameAddOnAdmin RolesAddOnsName = "Add On Admin"
+	RolesAddOnsRolesNameAddOnAdmin RolesAddOnsRolesName = "Add On Admin"
 )
 
-func (e RolesAddOnsName) ToPointer() *RolesAddOnsName {
+func (e RolesAddOnsRolesName) ToPointer() *RolesAddOnsRolesName {
 	return &e
 }
-func (e *RolesAddOnsName) UnmarshalJSON(data []byte) error {
+func (e *RolesAddOnsRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Add On Admin":
-		*e = RolesAddOnsName(v)
+		*e = RolesAddOnsRolesName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAddOnsName: %v", v)
+		return fmt.Errorf("invalid value for RolesAddOnsRolesName: %v", v)
 	}
 }
 
@@ -112,9 +112,9 @@ func (e *Description) UnmarshalJSON(data []byte) error {
 
 type AddOnAdmin struct {
 	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
-	PositionalIds []PositionalIds `json:"positional_ids,omitempty"`
-	Name          RolesAddOnsName `json:"name"`
-	Description   Description     `json:"description"`
+	PositionalIds []PositionalIds      `json:"positional_ids,omitempty"`
+	Name          RolesAddOnsRolesName `json:"name"`
+	Description   Description          `json:"description"`
 }
 
 func (a *AddOnAdmin) GetPositionalIds() []PositionalIds {
@@ -124,9 +124,9 @@ func (a *AddOnAdmin) GetPositionalIds() []PositionalIds {
 	return a.PositionalIds
 }
 
-func (a *AddOnAdmin) GetName() RolesAddOnsName {
+func (a *AddOnAdmin) GetName() RolesAddOnsRolesName {
 	if a == nil {
-		return RolesAddOnsName("")
+		return RolesAddOnsRolesName("")
 	}
 	return a.Name
 }
@@ -172,26 +172,26 @@ func (r *RolesPositionalIds) GetAddOnID() *RolesAddOnID {
 	return r.AddOnID
 }
 
-type RolesAddOnsRolesName string
+type RolesAddOnsRolesAddOnViewerName string
 
 const (
-	RolesAddOnsRolesNameAddOnViewer RolesAddOnsRolesName = "Add On Viewer"
+	RolesAddOnsRolesAddOnViewerNameAddOnViewer RolesAddOnsRolesAddOnViewerName = "Add On Viewer"
 )
 
-func (e RolesAddOnsRolesName) ToPointer() *RolesAddOnsRolesName {
+func (e RolesAddOnsRolesAddOnViewerName) ToPointer() *RolesAddOnsRolesAddOnViewerName {
 	return &e
 }
-func (e *RolesAddOnsRolesName) UnmarshalJSON(data []byte) error {
+func (e *RolesAddOnsRolesAddOnViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Add On Viewer":
-		*e = RolesAddOnsRolesName(v)
+		*e = RolesAddOnsRolesAddOnViewerName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAddOnsRolesName: %v", v)
+		return fmt.Errorf("invalid value for RolesAddOnsRolesAddOnViewerName: %v", v)
 	}
 }
 
@@ -220,9 +220,9 @@ func (e *RolesDescription) UnmarshalJSON(data []byte) error {
 
 type AddOnViewer struct {
 	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
-	PositionalIds []RolesPositionalIds `json:"positional_ids,omitempty"`
-	Name          RolesAddOnsRolesName `json:"name"`
-	Description   RolesDescription     `json:"description"`
+	PositionalIds []RolesPositionalIds            `json:"positional_ids,omitempty"`
+	Name          RolesAddOnsRolesAddOnViewerName `json:"name"`
+	Description   RolesDescription                `json:"description"`
 }
 
 func (a *AddOnViewer) GetPositionalIds() []RolesPositionalIds {
@@ -232,9 +232,9 @@ func (a *AddOnViewer) GetPositionalIds() []RolesPositionalIds {
 	return a.PositionalIds
 }
 
-func (a *AddOnViewer) GetName() RolesAddOnsRolesName {
+func (a *AddOnViewer) GetName() RolesAddOnsRolesAddOnViewerName {
 	if a == nil {
-		return RolesAddOnsRolesName("")
+		return RolesAddOnsRolesAddOnViewerName("")
 	}
 	return a.Name
 }
@@ -266,13 +266,13 @@ func (r *RolesAddOnsRoles) GetAddOnViewer() *AddOnViewer {
 }
 
 type AddOns struct {
-	Name  RolesName        `json:"name"`
+	Name  RolesAddOnsName  `json:"name"`
 	Roles RolesAddOnsRoles `json:"roles"`
 }
 
-func (a *AddOns) GetName() RolesName {
+func (a *AddOns) GetName() RolesAddOnsName {
 	if a == nil {
-		return RolesName("")
+		return RolesAddOnsName("")
 	}
 	return a.Name
 }
@@ -284,26 +284,26 @@ func (a *AddOns) GetRoles() RolesAddOnsRoles {
 	return a.Roles
 }
 
-type RolesAgentsName string
+type RolesName string
 
 const (
-	RolesAgentsNameAgents RolesAgentsName = "Agents"
+	RolesNameAgents RolesName = "Agents"
 )
 
-func (e RolesAgentsName) ToPointer() *RolesAgentsName {
+func (e RolesName) ToPointer() *RolesName {
 	return &e
 }
-func (e *RolesAgentsName) UnmarshalJSON(data []byte) error {
+func (e *RolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Agents":
-		*e = RolesAgentsName(v)
+		*e = RolesName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAgentsName: %v", v)
+		return fmt.Errorf("invalid value for RolesName: %v", v)
 	}
 }
 
@@ -341,26 +341,26 @@ func (r *RolesAgentsPositionalIds) GetAgentID() *AgentID {
 	return r.AgentID
 }
 
-type RolesAgentsRolesName string
+type RolesAgentsName string
 
 const (
-	RolesAgentsRolesNameAdmin RolesAgentsRolesName = "Admin"
+	RolesAgentsNameAdmin RolesAgentsName = "Admin"
 )
 
-func (e RolesAgentsRolesName) ToPointer() *RolesAgentsRolesName {
+func (e RolesAgentsName) ToPointer() *RolesAgentsName {
 	return &e
 }
-func (e *RolesAgentsRolesName) UnmarshalJSON(data []byte) error {
+func (e *RolesAgentsName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Admin":
-		*e = RolesAgentsRolesName(v)
+		*e = RolesAgentsName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAgentsRolesName: %v", v)
+		return fmt.Errorf("invalid value for RolesAgentsName: %v", v)
 	}
 }
 
@@ -390,7 +390,7 @@ func (e *RolesAgentsDescription) UnmarshalJSON(data []byte) error {
 type Admin struct {
 	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
 	PositionalIds []RolesAgentsPositionalIds `json:"positional_ids,omitempty"`
-	Name          RolesAgentsRolesName       `json:"name"`
+	Name          RolesAgentsName            `json:"name"`
 	Description   RolesAgentsDescription     `json:"description"`
 }
 
@@ -401,9 +401,9 @@ func (a *Admin) GetPositionalIds() []RolesAgentsPositionalIds {
 	return a.PositionalIds
 }
 
-func (a *Admin) GetName() RolesAgentsRolesName {
+func (a *Admin) GetName() RolesAgentsName {
 	if a == nil {
-		return RolesAgentsRolesName("")
+		return RolesAgentsName("")
 	}
 	return a.Name
 }
@@ -449,26 +449,26 @@ func (r *RolesAgentsRolesPositionalIds) GetAgentID() *RolesAgentID {
 	return r.AgentID
 }
 
-type RolesAgentsRolesCreatorName string
+type RolesAgentsRolesName string
 
 const (
-	RolesAgentsRolesCreatorNameCreator RolesAgentsRolesCreatorName = "Creator"
+	RolesAgentsRolesNameCreator RolesAgentsRolesName = "Creator"
 )
 
-func (e RolesAgentsRolesCreatorName) ToPointer() *RolesAgentsRolesCreatorName {
+func (e RolesAgentsRolesName) ToPointer() *RolesAgentsRolesName {
 	return &e
 }
-func (e *RolesAgentsRolesCreatorName) UnmarshalJSON(data []byte) error {
+func (e *RolesAgentsRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "Creator":
-		*e = RolesAgentsRolesCreatorName(v)
+		*e = RolesAgentsRolesName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RolesAgentsRolesCreatorName: %v", v)
+		return fmt.Errorf("invalid value for RolesAgentsRolesName: %v", v)
 	}
 }
 
@@ -498,7 +498,7 @@ func (e *RolesAgentsRolesDescription) UnmarshalJSON(data []byte) error {
 type Creator struct {
 	// The identifiers required when assigning this role. Each key is the name of a positional id, and its value describes what that id refers to. When assigning this role, the position of the IDs in the entity_ids field will correspond to this.
 	PositionalIds []RolesAgentsRolesPositionalIds `json:"positional_ids,omitempty"`
-	Name          RolesAgentsRolesCreatorName     `json:"name"`
+	Name          RolesAgentsRolesName            `json:"name"`
 	Description   RolesAgentsRolesDescription     `json:"description"`
 }
 
@@ -509,9 +509,9 @@ func (c *Creator) GetPositionalIds() []RolesAgentsRolesPositionalIds {
 	return c.PositionalIds
 }
 
-func (c *Creator) GetName() RolesAgentsRolesCreatorName {
+func (c *Creator) GetName() RolesAgentsRolesName {
 	if c == nil {
-		return RolesAgentsRolesCreatorName("")
+		return RolesAgentsRolesName("")
 	}
 	return c.Name
 }
@@ -775,13 +775,13 @@ func (r *RolesRoles) GetViewer() *Viewer {
 }
 
 type Agents struct {
-	Name  RolesAgentsName `json:"name"`
-	Roles RolesRoles      `json:"roles"`
+	Name  RolesName  `json:"name"`
+	Roles RolesRoles `json:"roles"`
 }
 
-func (a *Agents) GetName() RolesAgentsName {
+func (a *Agents) GetName() RolesName {
 	if a == nil {
-		return RolesAgentsName("")
+		return RolesName("")
 	}
 	return a.Name
 }

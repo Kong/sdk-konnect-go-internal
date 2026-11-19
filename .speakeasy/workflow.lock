@@ -1,4 +1,4 @@
-speakeasyVersion: 1.810.0
+speakeasyVersion: 1.808.1
 sources:
     konnect:
         sourceNamespace: konnect
@@ -14,14 +14,29 @@ targets:
         sourceRevisionDigest: sha256:cce72bee276a6f2a35aa88bcb36a1348d0839b744549a08ec5dda16736b1cd16
         sourceBlobDigest: sha256:06e5c344c94c47df4fc4f309dca046dedc669865827bee9e274c4927161c98d8
         codeSamplesNamespace: konnect-go-code-samples
-        codeSamplesRevisionDigest: sha256:f57538f59a960c46cd94900fc015ec87df860ead2997d79b2c99498f765512c1
+        codeSamplesRevisionDigest: sha256:49b61c0c367056fb98f455ca426047c7e90feb3e6ab9148cc6c951fcc1f0f500
 workflow:
     workflowVersion: 1.0.0
-    speakeasyVersion: latest
+    speakeasyVersion: 1.808.1
     sources:
         konnect:
             inputs:
                 - location: ./openapi.yaml
+            overlays:
+                - location: ./kongctl-patches/overlays/ai-gateway-pgvector-connection-defaults.yaml
+                - location: ./kongctl-patches/overlays/ai-gateway-update-runtime-defaults.yaml
+                - location: ./kongctl-patches/overlays/backend-cluster-tls-defaults.yaml
+                - location: ./kongctl-patches/overlays/internal-sdk-name-stabilization.yaml
+                - location: ./kongctl-patches/overlays/organization-team-konnect-managed-defaults.yaml
+                - location: ./kongctl-patches/overlays/patch-custom-portal-email-template-defaults.yaml
+                - location: ./kongctl-patches/overlays/portal-ai-settings-patch-defaults.yaml
+                - location: ./kongctl-patches/overlays/portal-customization-spec-renderer-defaults.yaml
+                - location: ./kongctl-patches/overlays/portal-customization-theme-defaults.yaml
+                - location: ./kongctl-patches/overlays/portal-team-konnect-managed-defaults.yaml
+                - location: ./kongctl-patches/overlays/update-dcr-config-http-defaults.yaml
+                - location: ./kongctl-patches/overlays/update-portal-audit-log-webhook-patch-defaults.yaml
+                - location: ./kongctl-patches/overlays/update-portal-identity-provider-defaults.yaml
+                - location: ./kongctl-patches/overlays/update-portal-patch-defaults.yaml
             registry:
                 location: registry.speakeasyapi.dev/kong/kong/konnect
     targets:

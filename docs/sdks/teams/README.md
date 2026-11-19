@@ -114,6 +114,7 @@ func main() {
         Labels: map[string]string{
             "env": "test",
         },
+        KonnectManaged: sdkkonnectgo.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)
@@ -232,6 +233,7 @@ func main() {
         Labels: map[string]*string{
             "env": sdkkonnectgo.Pointer("test"),
         },
+        KonnectManaged: sdkkonnectgo.Pointer(false),
     })
     if err != nil {
         log.Fatal(err)

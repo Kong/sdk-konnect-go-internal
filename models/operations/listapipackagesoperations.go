@@ -17,6 +17,20 @@ type ListAPIPackagesOperationsRequest struct {
 	// Filters API Packages operations in the response.
 	Filter *components.APIPackageOperationsFilterParameters `queryParam:"style=deepObject,explode=true,name=filter"`
 	// Sorts a collection of API Packages Operations. Supported sort attributes are:
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   - path
 	//   - method
 	//   - api_id

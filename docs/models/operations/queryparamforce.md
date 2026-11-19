@@ -1,6 +1,6 @@
 # QueryParamForce
 
-If true, delete the specified directory and all its associated resources. If false, only allow deletion if no clients, scopes or claims are associated with the auth server.
+If true, delete specified config store and all secrets, even if there are secrets linked to the config store If false, do not allow deletion if there are secrets linked to the config store
 
 ## Example Usage
 

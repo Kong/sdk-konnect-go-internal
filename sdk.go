@@ -2,7 +2,7 @@
 
 package sdkkonnectgo
 
-// Generated from OpenAPI doc version 3.21.1 and generator version 2.961.1
+// Generated from OpenAPI doc version 3.21.1 and generator version 2.960.8
 
 import (
 	"context"
@@ -502,6 +502,20 @@ type SDK struct {
 	// - `grpcs`: At least one of `hosts`, `headers`, `paths`, or `snis`
 	// - `ws`: At least one of `hosts`, `headers`, or `paths`
 	// - `wss`: At least one of `hosts`, `headers`, `paths`, or `snis`
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	//   <br>
 	//   A route can't have both `tls` and `tls_passthrough` protocols at same time.
 	//   <br><br>
@@ -614,9 +628,9 @@ func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		SDKVersion: "0.7.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.7.0 2.961.1 3.21.1 github.com/Kong/sdk-konnect-go",
+			UserAgent:         "speakeasy-sdk/go 0.7.0 2.960.8 3.21.1 github.com/Kong/sdk-konnect-go",
 			SDKVersion:        "0.7.0",
-			GenVersion:        "2.961.1",
+			GenVersion:        "2.960.8",
 			OpenAPIDocVersion: "3.21.1",
 			ServerList:        ServerList,
 		},

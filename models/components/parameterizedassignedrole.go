@@ -2,25 +2,25 @@
 
 package components
 
-// ParameterizedAssignedRoleEntityRegion - Region of the entity.
-type ParameterizedAssignedRoleEntityRegion string
+// EntityRegion - Region of the entity.
+type EntityRegion string
 
 const (
-	ParameterizedAssignedRoleEntityRegionUs       ParameterizedAssignedRoleEntityRegion = "us"
-	ParameterizedAssignedRoleEntityRegionEu       ParameterizedAssignedRoleEntityRegion = "eu"
-	ParameterizedAssignedRoleEntityRegionAu       ParameterizedAssignedRoleEntityRegion = "au"
-	ParameterizedAssignedRoleEntityRegionMe       ParameterizedAssignedRoleEntityRegion = "me"
-	ParameterizedAssignedRoleEntityRegionIn       ParameterizedAssignedRoleEntityRegion = "in"
-	ParameterizedAssignedRoleEntityRegionSg       ParameterizedAssignedRoleEntityRegion = "sg"
-	ParameterizedAssignedRoleEntityRegionWildcard ParameterizedAssignedRoleEntityRegion = "*"
+	EntityRegionUs       EntityRegion = "us"
+	EntityRegionEu       EntityRegion = "eu"
+	EntityRegionAu       EntityRegion = "au"
+	EntityRegionMe       EntityRegion = "me"
+	EntityRegionIn       EntityRegion = "in"
+	EntityRegionSg       EntityRegion = "sg"
+	EntityRegionWildcard EntityRegion = "*"
 )
 
-func (e ParameterizedAssignedRoleEntityRegion) ToPointer() *ParameterizedAssignedRoleEntityRegion {
+func (e EntityRegion) ToPointer() *EntityRegion {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *ParameterizedAssignedRoleEntityRegion) IsExact() bool {
+func (e *EntityRegion) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "us", "eu", "au", "me", "in", "sg", "*":
@@ -43,7 +43,7 @@ type ParameterizedAssignedRole struct {
 	// Name of the entity type the role is being assigned to.
 	EntityTypeName *string `json:"entity_type_name,omitempty"`
 	// Region of the entity.
-	EntityRegion *ParameterizedAssignedRoleEntityRegion `json:"entity_region,omitempty"`
+	EntityRegion *EntityRegion `json:"entity_region,omitempty"`
 	// Additional parameters for the role assignment.
 	Parameters map[string]any `json:"parameters,omitempty"`
 }
@@ -83,7 +83,7 @@ func (p *ParameterizedAssignedRole) GetEntityTypeName() *string {
 	return p.EntityTypeName
 }
 
-func (p *ParameterizedAssignedRole) GetEntityRegion() *ParameterizedAssignedRoleEntityRegion {
+func (p *ParameterizedAssignedRole) GetEntityRegion() *EntityRegion {
 	if p == nil {
 		return nil
 	}

@@ -1,12 +1,21 @@
 # Name
 
-Filter using **one** of the following operators: `eq`, `neq`, `contains`
+The form's name. Only `developer-registration` is accepted at this time
 
 
-## Fields
+## Example Usage
 
-| Field                                         | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `Eq`                                          | `*string`                                     | :heavy_minus_sign:                            | The field exactly matches the provided value. |
-| `Contains`                                    | `*string`                                     | :heavy_minus_sign:                            | The field contains the provided value.        |
-| `Neq`                                         | `*string`                                     | :heavy_minus_sign:                            | The field does not match the provided value.  |
+```go
+import (
+	"github.com/Kong/sdk-konnect-go/models/components"
+)
+
+value := components.NameDeveloperRegistration
+```
+
+
+## Values
+
+| Name                        | Value                       |
+| --------------------------- | --------------------------- |
+| `NameDeveloperRegistration` | developer-registration      |

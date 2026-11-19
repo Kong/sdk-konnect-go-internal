@@ -104,30 +104,30 @@ func (u ResourceName) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type ResourceName: all fields are null")
 }
 
-type ResourceTypeType string
+type CatalogResourceMappingFilterParametersResourceTypeType string
 
 const (
-	ResourceTypeTypeStringFieldFilter ResourceTypeType = "StringFieldFilter"
+	CatalogResourceMappingFilterParametersResourceTypeTypeStringFieldFilter CatalogResourceMappingFilterParametersResourceTypeType = "StringFieldFilter"
 )
 
-type ResourceType struct {
+type CatalogResourceMappingFilterParametersResourceType struct {
 	StringFieldFilter *StringFieldFilter `queryParam:"inline" union:"member"`
 
-	Type ResourceTypeType
+	Type CatalogResourceMappingFilterParametersResourceTypeType
 }
 
-func CreateResourceTypeStringFieldFilter(stringFieldFilter StringFieldFilter) ResourceType {
-	typ := ResourceTypeTypeStringFieldFilter
+func CreateCatalogResourceMappingFilterParametersResourceTypeStringFieldFilter(stringFieldFilter StringFieldFilter) CatalogResourceMappingFilterParametersResourceType {
+	typ := CatalogResourceMappingFilterParametersResourceTypeTypeStringFieldFilter
 
-	return ResourceType{
+	return CatalogResourceMappingFilterParametersResourceType{
 		StringFieldFilter: &stringFieldFilter,
 		Type:              typ,
 	}
 }
 
-func (u *ResourceType) UnmarshalJSON(data []byte) (err error) {
+func (u *CatalogResourceMappingFilterParametersResourceType) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = ResourceType{}
+	*u = CatalogResourceMappingFilterParametersResourceType{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -137,19 +137,19 @@ func (u *ResourceType) UnmarshalJSON(data []byte) (err error) {
 	var stringFieldFilter StringFieldFilter = StringFieldFilter{}
 	if err := utils.UnmarshalJSON(data, &stringFieldFilter, "", true, nil); err == nil {
 		u.StringFieldFilter = &stringFieldFilter
-		u.Type = ResourceTypeTypeStringFieldFilter
+		u.Type = CatalogResourceMappingFilterParametersResourceTypeTypeStringFieldFilter
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ResourceType", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CatalogResourceMappingFilterParametersResourceType", string(data))
 }
 
-func (u ResourceType) MarshalJSON() ([]byte, error) {
+func (u CatalogResourceMappingFilterParametersResourceType) MarshalJSON() ([]byte, error) {
 	if u.StringFieldFilter != nil {
 		return utils.MarshalJSON(u.StringFieldFilter, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type ResourceType: all fields are null")
+	return nil, errors.New("could not marshal union type CatalogResourceMappingFilterParametersResourceType: all fields are null")
 }
 
 type ResourceConfigType string
@@ -585,18 +585,18 @@ func (u ServiceDisplayName) MarshalJSON() ([]byte, error) {
 }
 
 type CatalogResourceMappingFilterParameters struct {
-	ResourceID                             *ResourceID                             `queryParam:"name=resource.id"`
-	ResourceName                           *ResourceName                           `queryParam:"name=resource.name"`
-	ResourceType                           *ResourceType                           `queryParam:"name=resource.type"`
-	ResourceConfig                         *ResourceConfig                         `queryParam:"name=resource.config"`
-	ResourceIntegrationName                *ResourceIntegrationName                `queryParam:"name=resource.integration.name"`
-	ResourceIntegrationDisplayName         *ResourceIntegrationDisplayName         `queryParam:"name=resource.integration.display_name"`
-	ResourceIntegrationInstanceID          *ResourceIntegrationInstanceID          `queryParam:"name=resource.integration.instance.id"`
-	ResourceIntegrationInstanceName        *ResourceIntegrationInstanceName        `queryParam:"name=resource.integration.instance.name"`
-	ResourceIntegrationInstanceDisplayName *ResourceIntegrationInstanceDisplayName `queryParam:"name=resource.integration.instance.display_name"`
-	ServiceID                              *ServiceID                              `queryParam:"name=service.id"`
-	ServiceName                            *ServiceName                            `queryParam:"name=service.name"`
-	ServiceDisplayName                     *ServiceDisplayName                     `queryParam:"name=service.display_name"`
+	ResourceID                                         *ResourceID                                         `queryParam:"name=resource.id"`
+	ResourceName                                       *ResourceName                                       `queryParam:"name=resource.name"`
+	CatalogResourceMappingFilterParametersResourceType *CatalogResourceMappingFilterParametersResourceType `queryParam:"name=resource.type"`
+	ResourceConfig                                     *ResourceConfig                                     `queryParam:"name=resource.config"`
+	ResourceIntegrationName                            *ResourceIntegrationName                            `queryParam:"name=resource.integration.name"`
+	ResourceIntegrationDisplayName                     *ResourceIntegrationDisplayName                     `queryParam:"name=resource.integration.display_name"`
+	ResourceIntegrationInstanceID                      *ResourceIntegrationInstanceID                      `queryParam:"name=resource.integration.instance.id"`
+	ResourceIntegrationInstanceName                    *ResourceIntegrationInstanceName                    `queryParam:"name=resource.integration.instance.name"`
+	ResourceIntegrationInstanceDisplayName             *ResourceIntegrationInstanceDisplayName             `queryParam:"name=resource.integration.instance.display_name"`
+	ServiceID                                          *ServiceID                                          `queryParam:"name=service.id"`
+	ServiceName                                        *ServiceName                                        `queryParam:"name=service.name"`
+	ServiceDisplayName                                 *ServiceDisplayName                                 `queryParam:"name=service.display_name"`
 	// Filters on the given datetime (RFC-3339) field value.
 	CreatedAt *DateTimeFieldFilter `queryParam:"name=created_at"`
 }
@@ -615,11 +615,11 @@ func (c *CatalogResourceMappingFilterParameters) GetResourceName() *ResourceName
 	return c.ResourceName
 }
 
-func (c *CatalogResourceMappingFilterParameters) GetResourceType() *ResourceType {
+func (c *CatalogResourceMappingFilterParameters) GetCatalogResourceMappingFilterParametersResourceType() *CatalogResourceMappingFilterParametersResourceType {
 	if c == nil {
 		return nil
 	}
-	return c.ResourceType
+	return c.CatalogResourceMappingFilterParametersResourceType
 }
 
 func (c *CatalogResourceMappingFilterParameters) GetResourceConfig() *ResourceConfig {

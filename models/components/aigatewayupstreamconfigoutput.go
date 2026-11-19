@@ -9,31 +9,31 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type AIGatewayUpstreamConfigAuthOutputType string
+type AIGatewayUpstreamConfigAuthType string
 
 const (
-	AIGatewayUpstreamConfigAuthOutputTypeAws AIGatewayUpstreamConfigAuthOutputType = "aws"
+	AIGatewayUpstreamConfigAuthTypeAws AIGatewayUpstreamConfigAuthType = "aws"
 )
 
-// AIGatewayUpstreamConfigAuthOutput - Authentication to use when proxying to the upstream service.
-type AIGatewayUpstreamConfigAuthOutput struct {
+// AIGatewayUpstreamConfigAuth - Authentication to use when proxying to the upstream service.
+type AIGatewayUpstreamConfigAuth struct {
 	AIGatewayUpstreamAuthAWSOutput *AIGatewayUpstreamAuthAWSOutput `queryParam:"inline" union:"member"`
 
-	Type AIGatewayUpstreamConfigAuthOutputType
+	Type AIGatewayUpstreamConfigAuthType
 }
 
-func CreateAIGatewayUpstreamConfigAuthOutputAws(aws AIGatewayUpstreamAuthAWSOutput) AIGatewayUpstreamConfigAuthOutput {
-	typ := AIGatewayUpstreamConfigAuthOutputTypeAws
+func CreateAIGatewayUpstreamConfigAuthAws(aws AIGatewayUpstreamAuthAWSOutput) AIGatewayUpstreamConfigAuth {
+	typ := AIGatewayUpstreamConfigAuthTypeAws
 
-	return AIGatewayUpstreamConfigAuthOutput{
+	return AIGatewayUpstreamConfigAuth{
 		AIGatewayUpstreamAuthAWSOutput: &aws,
 		Type:                           typ,
 	}
 }
 
-func (u *AIGatewayUpstreamConfigAuthOutput) UnmarshalJSON(data []byte) (err error) {
+func (u *AIGatewayUpstreamConfigAuth) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = AIGatewayUpstreamConfigAuthOutput{}
+	*u = AIGatewayUpstreamConfigAuth{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -53,29 +53,29 @@ func (u *AIGatewayUpstreamConfigAuthOutput) UnmarshalJSON(data []byte) (err erro
 	case "aws":
 		aiGatewayUpstreamAuthAWSOutput := new(AIGatewayUpstreamAuthAWSOutput)
 		if err := utils.UnmarshalJSON(data, &aiGatewayUpstreamAuthAWSOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == aws) type AIGatewayUpstreamAuthAWSOutput within AIGatewayUpstreamConfigAuthOutput: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == aws) type AIGatewayUpstreamAuthAWSOutput within AIGatewayUpstreamConfigAuth: %w", string(data), err)
 		}
 
 		u.AIGatewayUpstreamAuthAWSOutput = aiGatewayUpstreamAuthAWSOutput
-		u.Type = AIGatewayUpstreamConfigAuthOutputTypeAws
+		u.Type = AIGatewayUpstreamConfigAuthTypeAws
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayUpstreamConfigAuthOutput", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayUpstreamConfigAuth", string(data))
 }
 
-func (u AIGatewayUpstreamConfigAuthOutput) MarshalJSON() ([]byte, error) {
+func (u AIGatewayUpstreamConfigAuth) MarshalJSON() ([]byte, error) {
 	if u.AIGatewayUpstreamAuthAWSOutput != nil {
 		return utils.MarshalJSON(u.AIGatewayUpstreamAuthAWSOutput, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type AIGatewayUpstreamConfigAuthOutput: all fields are null")
+	return nil, errors.New("could not marshal union type AIGatewayUpstreamConfigAuth: all fields are null")
 }
 
 // AIGatewayUpstreamConfigOutput - Configuration applied when proxying to the upstream service, including authentication.
 type AIGatewayUpstreamConfigOutput struct {
 	// Authentication to use when proxying to the upstream service.
-	Auth *AIGatewayUpstreamConfigAuthOutput `json:"auth,omitempty"`
+	Auth *AIGatewayUpstreamConfigAuth `json:"auth,omitempty"`
 }
 
 func (a AIGatewayUpstreamConfigOutput) MarshalJSON() ([]byte, error) {
@@ -89,7 +89,7 @@ func (a *AIGatewayUpstreamConfigOutput) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AIGatewayUpstreamConfigOutput) GetAuth() *AIGatewayUpstreamConfigAuthOutput {
+func (a *AIGatewayUpstreamConfigOutput) GetAuth() *AIGatewayUpstreamConfigAuth {
 	if a == nil {
 		return nil
 	}

@@ -103,7 +103,7 @@ func (t *TokenEndpoint) GetURL() string {
 	return t.URL
 }
 
-type OAuthConfig1 struct {
+type Config struct {
 	// The OAuth 2.0 grant type used for authorization (e.g., `authorization_code`).
 	// Determines the flow the integration uses to request access tokens.
 	//
@@ -126,68 +126,65 @@ type OAuthConfig1 struct {
 	RollingRefreshExpSeconds *float64 `json:"rolling_refresh_exp_seconds"`
 }
 
-func (o OAuthConfig1) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(o, "", false)
+func (c Config) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (o *OAuthConfig1) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"grant_type", "client_id", "authorization_endpoint", "token_endpoint", "scope"}); err != nil {
+func (c *Config) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"grant_type", "client_id", "authorization_endpoint", "token_endpoint", "scope"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *OAuthConfig1) GetGrantType() OAuthGrantType {
-	if o == nil {
+func (c *Config) GetGrantType() OAuthGrantType {
+	if c == nil {
 		return OAuthGrantType("")
 	}
-	return o.GrantType
+	return c.GrantType
 }
 
-func (o *OAuthConfig1) GetClientID() string {
-	if o == nil {
+func (c *Config) GetClientID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ClientID
+	return c.ClientID
 }
 
-func (o *OAuthConfig1) GetAuthorizationEndpoint() AuthorizationEndpoint {
-	if o == nil {
+func (c *Config) GetAuthorizationEndpoint() AuthorizationEndpoint {
+	if c == nil {
 		return AuthorizationEndpoint{}
 	}
-	return o.AuthorizationEndpoint
+	return c.AuthorizationEndpoint
 }
 
-func (o *OAuthConfig1) GetTokenEndpoint() TokenEndpoint {
-	if o == nil {
+func (c *Config) GetTokenEndpoint() TokenEndpoint {
+	if c == nil {
 		return TokenEndpoint{}
 	}
-	return o.TokenEndpoint
+	return c.TokenEndpoint
 }
 
-func (o *OAuthConfig1) GetScope() []string {
-	if o == nil {
+func (c *Config) GetScope() []string {
+	if c == nil {
 		return []string{}
 	}
-	return o.Scope
+	return c.Scope
 }
 
-func (o *OAuthConfig1) GetScopeDelimiter() *string {
-	if o == nil {
+func (c *Config) GetScopeDelimiter() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ScopeDelimiter
+	return c.ScopeDelimiter
 }
 
-func (o *OAuthConfig1) GetRollingRefreshExpSeconds() *float64 {
-	if o == nil {
+func (c *Config) GetRollingRefreshExpSeconds() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.RollingRefreshExpSeconds
+	return c.RollingRefreshExpSeconds
 }
-
-// #region class-body-oauthconfig1
-// #endregion class-body-oauthconfig1
 
 // OAuth - Defines the OAuth 2.0 authorization strategy used by an integration.
 // This schema provides all necessary information for the platform to initiate
@@ -201,7 +198,7 @@ type OAuth struct {
 	// This supports flexible deployment models, including both SaaS-based and self-hosted OAuth authorization flows.
 	//
 	OverridableConfig []OverridableConfig `json:"overridable_config,omitempty"`
-	Config            OAuthConfig1        `json:"config"`
+	Config            Config              `json:"config"`
 }
 
 func (o OAuth) MarshalJSON() ([]byte, error) {
@@ -226,9 +223,9 @@ func (o *OAuth) GetOverridableConfig() []OverridableConfig {
 	return o.OverridableConfig
 }
 
-func (o *OAuth) GetConfig() OAuthConfig1 {
+func (o *OAuth) GetConfig() Config {
 	if o == nil {
-		return OAuthConfig1{}
+		return Config{}
 	}
 	return o.Config
 }

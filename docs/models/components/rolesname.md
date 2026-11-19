@@ -7,7 +7,7 @@ import (
 	"github.com/Kong/sdk-konnect-go/models/components"
 )
 
-value := components.RolesNameAddOns
+value := components.RolesNameAgents
 ```
 
 
@@ -15,4 +15,4 @@ value := components.RolesNameAddOns
 
 | Name              | Value             |
 | ----------------- | ----------------- |
-| `RolesNameAddOns` | Add Ons           |
+| `RolesNameAgents` | Agents            |

@@ -1,14 +1,15 @@
 {
   "repository": "Kong/kongctl",
-  "commit": "b7c60327f3ed94804d363636cecaba8cbd4c20e1",
+  "commit": "0bc6e4f10ff2a6b41d204291f9dee16c1b77b968",
   "path": "tools/sdk-patches",
   "sha256": {
     "apply.py": "9b383b7349c3bb2603cf5885fbc007adcb8aeede218323520ef812f7dbb5aab7",
-    "manifest.json": "6a9e10fae478ef14b14a6320a88e68b94f0cf7d6efbd8a87e3991c025611c154",
+    "manifest.json": "f560ad40241155d3ce63adf63cf2b578f431d3db9c7601e5adcbb7e2e2b272ac",
     "README.md": "b9cc5e775d94cbbb50cff6f1ddb341bdc017b10cf41b6ff705abbd4e470b9cb8",
     "overlays/ai-gateway-pgvector-connection-defaults.yaml": "e95b749c182ea219916960587eb5a697209191356121a3efbb13d67396de5dc1",
     "overlays/ai-gateway-update-runtime-defaults.yaml": "90cd581cf7a301c6270b4cfd63dca367610af20e7a31fa0db926ade10c3f4ce6",
     "overlays/backend-cluster-tls-defaults.yaml": "3c5f065ec53cb0ab53345ac0407af11944433ae6730328adf1bead7a4d5c03ae",
+    "overlays/internal-sdk-name-stabilization.yaml": "b47a77a49fcbb033f821225e38f999988b38abfb0eba92231496bf2595523e32",
     "overlays/organization-team-konnect-managed-defaults.yaml": "12116260ea58670f19c4e39a220a103e8f729d2a2255fdae8e49b2a620237a01",
     "overlays/patch-custom-portal-email-template-defaults.yaml": "fab2a9d6a26ad0b29200ae45fbcb365b3ed1322018f314686134e686937d3ed3",
     "overlays/portal-ai-settings-patch-defaults.yaml": "7e38375b963744fc6dd26cc51892616a05e30420d55704a69b8f6c00db42bbe5",

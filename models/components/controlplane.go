@@ -58,8 +58,8 @@ func (e *ControlPlaneAuthType) IsExact() bool {
 	return false
 }
 
-// Config - CP configuration object for related access endpoints.
-type Config struct {
+// ControlPlaneConfig - CP configuration object for related access endpoints.
+type ControlPlaneConfig struct {
 	// Control Plane Endpoint.
 	ControlPlaneEndpoint string `json:"control_plane_endpoint"`
 	// Telemetry Endpoint.
@@ -74,53 +74,53 @@ type Config struct {
 	ProxyUrls []ProxyURL `json:"proxy_urls"`
 }
 
-func (c Config) MarshalJSON() ([]byte, error) {
+func (c ControlPlaneConfig) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(c, "", false)
 }
 
-func (c *Config) UnmarshalJSON(data []byte) error {
+func (c *ControlPlaneConfig) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *Config) GetControlPlaneEndpoint() string {
+func (c *ControlPlaneConfig) GetControlPlaneEndpoint() string {
 	if c == nil {
 		return ""
 	}
 	return c.ControlPlaneEndpoint
 }
 
-func (c *Config) GetTelemetryEndpoint() string {
+func (c *ControlPlaneConfig) GetTelemetryEndpoint() string {
 	if c == nil {
 		return ""
 	}
 	return c.TelemetryEndpoint
 }
 
-func (c *Config) GetClusterType() *ControlPlaneClusterType {
+func (c *ControlPlaneConfig) GetClusterType() *ControlPlaneClusterType {
 	if c == nil {
 		return nil
 	}
 	return c.ClusterType
 }
 
-func (c *Config) GetAuthType() *ControlPlaneAuthType {
+func (c *ControlPlaneConfig) GetAuthType() *ControlPlaneAuthType {
 	if c == nil {
 		return nil
 	}
 	return c.AuthType
 }
 
-func (c *Config) GetCloudGateway() *bool {
+func (c *ControlPlaneConfig) GetCloudGateway() *bool {
 	if c == nil {
 		return nil
 	}
 	return c.CloudGateway
 }
 
-func (c *Config) GetProxyUrls() []ProxyURL {
+func (c *ControlPlaneConfig) GetProxyUrls() []ProxyURL {
 	if c == nil {
 		return []ProxyURL{}
 	}
@@ -141,7 +141,7 @@ type ControlPlane struct {
 	//
 	Labels map[string]string `json:"labels"`
 	// CP configuration object for related access endpoints.
-	Config Config `json:"config"`
+	Config ControlPlaneConfig `json:"config"`
 	// An ISO-8604 timestamp representation of control plane creation date.
 	CreatedAt time.Time `json:"created_at"`
 	// An ISO-8604 timestamp representation of control plane update date.
@@ -187,9 +187,9 @@ func (c *ControlPlane) GetLabels() map[string]string {
 	return c.Labels
 }
 
-func (c *ControlPlane) GetConfig() Config {
+func (c *ControlPlane) GetConfig() ControlPlaneConfig {
 	if c == nil {
-		return Config{}
+		return ControlPlaneConfig{}
 	}
 	return c.Config
 }
