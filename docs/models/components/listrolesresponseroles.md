@@ -1,0 +1,9 @@
+# ListRolesResponseRoles
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `Apiviewer`                                                                                        | [components.ListRolesResponseApiviewer](../../models/components/listrolesresponseapiviewer.md)     | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `Apiconsumer`                                                                                      | [components.ListRolesResponseApiconsumer](../../models/components/listrolesresponseapiconsumer.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                |
