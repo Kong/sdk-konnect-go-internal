@@ -3,45 +3,57 @@ SHELL = bash
 
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 TOOLS_VERSIONS_FILE = $(PROJECT_DIR)/.tools_versions.yaml
-export MISE_DATA_DIR = $(PROJECT_DIR)/bin/
 
 # speakeasy's staticcheck v0.8.1 and mockery cannot read the export data from a newer Go.
 # Pin the toolchain to the version in go.mod so generation, compile tests and lint agree.
 export GOTOOLCHAIN = go$(shell sed -n 's/^go //p' go.mod)
 
 MISE := $(shell which mise)
+MISE_FILE := .mise/config.toml
+
 .PHONY: mise
 mise:
 	@mise -V >/dev/null || (echo "mise - https://github.com/jdx/mise - not found. Please install it." && exit 1)
 
+.PHONY: mise-install
+mise-install: mise
+	@$(MISE) install -q $(DEP_VER)
+
+OS := $(shell uname | tr '[:upper:]' '[:lower:]')
+ARCH := $(shell uname -m | sed 's/x86_64/amd64/' | sed 's/aarch64/arm64/')
+
 # Do not store yq's version in .tools_versions.yaml as it is used to get tool versions.
 # renovate: datasource=github-releases depName=mikefarah/yq
-YQ_VERSION = 4.43.1
-YQ = $(PROJECT_DIR)/bin/installs/yq/$(YQ_VERSION)/bin/yq
+YQ_VERSION = 4.49.2
+YQ = $(PROJECT_DIR)/bin/installs/github-mikefarah-yq/$(YQ_VERSION)/yq_$(OS)_$(ARCH)
 .PHONY: yq
-yq: mise # Download yq locally if necessary.
-	@$(MISE) plugin install --yes -q yq
-	@$(MISE) install -q yq@$(YQ_VERSION)
+yq: mise
+	MISE_DATA_DIR=$(PROJECT_DIR)/bin $(MAKE) mise-install DEP_VER=github:mikefarah/yq@$(YQ_VERSION)
 
 CONTROLLER_GEN_VERSION = $(shell $(YQ) -r '.controller-tools' < $(TOOLS_VERSIONS_FILE))
-CONTROLLER_GEN = $(PROJECT_DIR)/bin/installs/kube-controller-tools/$(CONTROLLER_GEN_VERSION)/bin/controller-gen
+CONTROLLER_GEN = $(PROJECT_DIR)/bin/installs/github-kubernetes-sigs-controller-tools/$(CONTROLLER_GEN_VERSION)/controller-gen
 .PHONY: controller-gen
-controller-gen: mise yq ## Download controller-gen locally if necessary.
-	@$(MISE) plugin install --yes -q kube-controller-tools
-	@$(MISE) install -q kube-controller-tools@$(CONTROLLER_GEN_VERSION)
+controller-gen: mise yq
+	MISE_DATA_DIR=$(PROJECT_DIR)/bin $(MAKE) mise-install DEP_VER=github:kubernetes-sigs/controller-tools@$(CONTROLLER_GEN_VERSION)
 
 MOCKERY_VERSION = $(shell $(YQ) -r '.mockery' < $(TOOLS_VERSIONS_FILE))
-MOCKERY = $(PROJECT_DIR)/bin/installs/mockery/$(MOCKERY_VERSION)/bin/mockery
+MOCKERY = $(PROJECT_DIR)/bin/installs/github-vektra-mockery/$(MOCKERY_VERSION)/mockery
 .PHONY: mockery
-mockery: mise yq ## Download mockery locally if necessary.
-	@$(MISE) plugin install --yes -q mockery https://github.com/cabify/asdf-mockery.git
-	@$(MISE) install -q mockery@$(MOCKERY_VERSION)
+mockery: mise yq
+	MISE_DATA_DIR=$(PROJECT_DIR)/bin $(MAKE) mise-install DEP_VER=github:vektra/mockery@$(MOCKERY_VERSION)
 
 IFACEMAKER_VERSION = $(shell $(YQ) -r '.ifacemaker' < $(TOOLS_VERSIONS_FILE))
-IFACEMAKER = $(PROJECT_DIR)/bin/ifacemaker
+IFACEMAKER = $(PROJECT_DIR)/bin/installs/go-github-com-vburenin-ifacemaker/$(IFACEMAKER_VERSION)/bin/ifacemaker
 .PHONY: ifacemaker
-ifacemaker: yq
-	GOBIN=$(PROJECT_DIR)/bin go install -v github.com/vburenin/ifacemaker@v$(IFACEMAKER_VERSION)
+ifacemaker: mise yq
+	MISE_DATA_DIR=$(PROJECT_DIR)/bin $(MAKE) mise-install DEP_VER=go:github.com/vburenin/ifacemaker@$(IFACEMAKER_VERSION)
+
+# NOTE: speakeasy is not placed in $(PROJECT_DIR)/bin as it is being used in
+# GitHub workflows outside of this Makefile.
+SPEAKEASY_VERSION = $(shell $(YQ) -p toml -o yaml '.tools["github:speakeasy-api/speakeasy"].version' < $(MISE_FILE))
+.PHONY: speakeasy
+speakeasy: mise yq
+	$(MAKE) mise-install DEP_VER=github:speakeasy-api/speakeasy@$(SPEAKEASY_VERSION)
 
 # ------------------------------------------------------------------------------
 # Code generation
@@ -69,6 +81,11 @@ _generate.omitempty:
 	# validation for gRPC routes. Strip the default so the field is only sent when explicitly set.
 	$(SED) -i 's#StripPath \*bool `default:"true" json:"strip_path"`#StripPath *bool `json:"strip_path,omitempty"`#g' \
 		models/components/routejson.go
+	# An empty identity_realms list must reach Konnect to disable its default
+	# identity realm, but speakeasy emits omitempty for the field. The config is
+	# generated inline in the key-auth request and response models.
+	@files=$$(grep -l 'json:"identity_realms,omitempty"' models/components/*keyauth*.go) && \
+		$(SED) -i 's#json:"identity_realms,omitempty"#json:"identity_realms,omitzero"#g' $$files
 
 .PHONY: generate.deepcopy
 generate.deepcopy: controller-gen
@@ -139,17 +156,26 @@ generate.deepcopy: controller-gen
 		$(shell git ls-files docs/models/components/upstream*.md) \
 		$(shell git ls-files docs/models/components/healthchecks*.md)
 
+.PHONY: generate.sdk.speakeasy
+generate.sdk.speakeasy: speakeasy
+	speakeasy run --skip-versioning --skip-testing --minimal --skip-upload-spec
+
+.PHONY: lint.sdk
+lint.sdk: speakeasy
+	speakeasy lint openapi --schema openapi.yaml --ruleset kongRuleset --non-interactive
+
 # NOTE: SDK generation consists of adding the kubebuilder code marker and generating
 #       DeepCopy() for the types that need it and then using speakeasy to generate
 #       the final sdk code.
 # NOTE: add more types that need to have DeepCopy() generated.
 .PHONY: generate.sdk
 generate.sdk:
-	speakeasy run --skip-versioning --skip-testing --minimal --skip-upload-spec
+	$(MAKE) generate.sdk.speakeasy
 	git add --update .
 	$(MAKE) generate.deepcopy
 	$(MAKE) _generate.omitempty
 	go mod tidy
+	$(MAKE) lint.sdk
 
 # NOTE: Use this when there are breaking changes in the generated SDK code
 #       that require the interfaces and mocks to be regenerated.
@@ -169,7 +195,8 @@ test: test.unit test.integration
 .PHONY: test.unit
 test.unit:
 	go test -v -race $(GOTESTFLAGS) \
-		./internal/...
+		./internal/... \
+		./models/components/...
 
 .PHONY: test.integration
 test.integration:

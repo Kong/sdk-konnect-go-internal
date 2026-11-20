@@ -1,0 +1,49 @@
+name: Ensure generated interfaces and mocks are up to date
+run-name: generate interfaces and mocks, branch:${{ github.ref_name }}, triggered by @${{ github.actor }}
+
+concurrency:
+  # Run only for most recent commit in PRs but for all tags and commits on main
+  # Ref: https://docs.github.com/en/actions/using-jobs/using-concurrency
+  group: ${{ github.workflow }}-${{ github.head_ref || github.sha }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types:
+    - opened
+    - synchronize
+
+permissions:
+  contents: read
+
+env:
+  MISE_VERBOSE: 1
+
+jobs:
+  verify-diff:
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout current repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4.3.0
+        with:
+          install: false
+
+      - name: Generate interfaces
+        run: make generate.interfaces
+
+      - name: Generate mocks
+        run: make generate.mocks
+
+      - name: Verify no diff
+        run: make verify.diff
+
