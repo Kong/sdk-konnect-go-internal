@@ -2,7 +2,7 @@
 
 ## Overview
 
-Operations related to http destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when http destinations are enabled.
+Operations related to webhook destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when webhook destinations are enabled.
 
 ### Available Operations
 
@@ -81,8 +81,8 @@ func main() {
 
 ## CreateDestination
 
-Creates an HTTP destination for organization event notifications. You can create up to 50 destinations for an organization.
-The response includes the signing secret. Save it when you create the destination; later responses do not include it.
+Creates a destination for organization event notifications. You can create up to 50 destinations for an organization.
+For an HTTP destination, the response includes the signing secret. Save it when you create the destination; later responses do not include it.
 
 ### Example Usage
 
@@ -196,7 +196,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -266,7 +266,7 @@ func main() {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `destinationID`                                                                            | `string`                                                                                   | :heavy_check_mark:                                                                         | ID of the http destination, a UUID v7.                                                     |
+| `destinationID`                                                                            | `string`                                                                                   | :heavy_check_mark:                                                                         | ID of the destination, a UUID v7.                                                          |
 | `destinationUpdatePayload`                                                                 | [components.DestinationUpdatePayload](../../models/components/destinationupdatepayload.md) | :heavy_check_mark:                                                                         | Request body schema for updating a destination.                                            |
 | `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
@@ -328,7 +328,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -386,7 +386,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -445,7 +445,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -503,7 +503,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `deliveryID`                                             | `string`                                                 | :heavy_check_mark:                                       | ID of the delivery, a UUID v7.                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
@@ -562,7 +562,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `deliveryID`                                             | `string`                                                 | :heavy_check_mark:                                       | ID of the delivery, a UUID v7.                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
