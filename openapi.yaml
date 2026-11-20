@@ -138,15 +138,15 @@ tags:
   - name: Org Configurations
     description: >-
       Operations related to org scoped notifications and their org
-      subscriptions. The http channel of an org scoped notification is set up
+      subscriptions. The webhook channel of an org scoped notification is set up
       for the whole organization, and no user can switch it on or off. Only an
-      org admin can use these operations. The routes exist only when http
+      org admin can use these operations. The routes exist only when webhook
       destinations are enabled.
   - name: Destinations
     description: >-
-      Operations related to http destinations and their deliveries. Only an org
-      admin can use these operations. The destination routes exist only when
-      http destinations are enabled.
+      Operations related to webhook destinations and their deliveries. Only an
+      org admin can use these operations. The destination routes exist only when
+      webhook destinations are enabled.
   - name: DCR Providers
     description: >
       Dynamic Client Registration Providers are configurations representing an
@@ -5942,11 +5942,11 @@ paths:
     post:
       summary: Create a destination
       description: >-
-        Creates an HTTP destination for organization event notifications. You
-        can create up to 50 destinations for an organization.
+        Creates a destination for organization event notifications. You can
+        create up to 50 destinations for an organization.
 
-        The response includes the signing secret. Save it when you create the
-        destination; later responses do not include it.
+        For an HTTP destination, the response includes the signing secret. Save
+        it when you create the destination; later responses do not include it.
       operationId: create-destination
       requestBody:
         $ref: '#/components/requestBodies/DestinationCreateRequest'
@@ -39672,7 +39672,7 @@ components:
       name: destinationId
       in: path
       required: true
-      description: ID of the http destination, a UUID v7.
+      description: ID of the destination, a UUID v7.
       schema:
         type: string
         format: uuid
@@ -47737,7 +47737,7 @@ components:
           schema:
             $ref: '#/components/schemas/Destination'
     DestinationWithSecretResponse:
-      description: A single http destination with its new signing secret.
+      description: A single destination with its new signing secret.
       content:
         application/json:
           schema:
@@ -59230,8 +59230,8 @@ components:
             type: string
             format: uuid
           description: >-
-            IDs of 1 to 50 HTTP destinations that receive this event. Each ID
-            must be unique.
+            IDs of 1 to 50 destinations that receive this event. Each ID must be
+            unique.
         regions:
           type: array
           items:
@@ -59268,8 +59268,8 @@ components:
             type: string
             format: uuid
           description: >-
-            IDs of 1 to 50 HTTP destinations that receive this event. Each ID
-            must be unique. This list replaces the current destinations.
+            IDs of 1 to 50 destinations that receive this event. Each ID must be
+            unique. This list replaces the current destinations.
         regions:
           type: array
           items:
@@ -59327,7 +59327,7 @@ components:
             type: string
             format: uuid
           description: >-
-            IDs of the HTTP destinations that receive this event. Deleting a
+            IDs of the destinations that receive this event. Deleting a
             destination removes its ID from this list. The subscription is
             deleted if no destinations remain.
         regions:
@@ -60847,7 +60847,7 @@ components:
       type: object
       properties:
         enabled:
-          $ref: '#/components/schemas/SecretEnabled'
+          $ref: '#/components/schemas/UpdateSecretEnabled'
     ClientSecretList:
       type: object
       required:
@@ -61017,6 +61017,14 @@ components:
       description: Requested authentication method for OAuth 2.0 endpoints.
       type: string
       default: client_secret_post
+      enum:
+        - private_key_jwt
+        - client_secret_post
+        - none
+      x-speakeasy-unknown-values: allow
+    UpdateTokenEndpointAuthMethod:
+      description: Requested authentication method for OAuth 2.0 endpoints.
+      type: string
       enum:
         - private_key_jwt
         - client_secret_post
@@ -61196,6 +61204,11 @@ components:
     SecretEnabled:
       type: boolean
       default: true
+      description: >-
+        Specifies whether the secret is enabled. If the secret is not enabled,
+        it will not be usable during authentication phase.
+    UpdateSecretEnabled:
+      type: boolean
       description: >-
         Specifies whether the secret is enabled. If the secret is not enabled,
         it will not be usable during authentication phase.
@@ -61559,12 +61572,30 @@ components:
       type: array
       nullable: false
       default: []
+      uniqueItems: true
+      minItems: 0
+      maxItems: 32
       items:
         type: string
         format: uuid
-        uniqueItems: true
-        minItems: 0
-        maxItems: 32
+    UpdateDirectoryAllowedControlPlanes:
+      description: >
+        List of control plane IDs authorized to make authentication requests to
+        this directory.
+
+        Maximum of 32 control planes can be specified. Use
+        allow_all_control_planes for unrestricted access.
+
+        The patch keeps the stored list when the request omits this field. This
+        schema carries no default, so the validator does not add one.
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 0
+      maxItems: 32
+      items:
+        type: string
+        format: uuid
     KongIdentityAllowAllControlPlanes:
       type: boolean
       nullable: false
@@ -61651,7 +61682,7 @@ components:
         name:
           $ref: '#/components/schemas/DirectoryName'
         allowed_control_planes:
-          $ref: '#/components/schemas/KongIdentityAllowedControlPlanes'
+          $ref: '#/components/schemas/UpdateDirectoryAllowedControlPlanes'
         allow_all_control_planes:
           type: boolean
           nullable: false
@@ -61662,9 +61693,9 @@ components:
             This overrides the allowed_control_planes list. When omitted, the
             existing value is preserved.
         ttl_secs:
-          $ref: '#/components/schemas/DirectoryTTLSecs'
+          $ref: '#/components/schemas/UpdateDirectoryTTLSecs'
         negative_ttl_secs:
-          $ref: '#/components/schemas/DirectoryNegativeTTLSecs'
+          $ref: '#/components/schemas/UpdateDirectoryNegativeTTLSecs'
         labels:
           $ref: '#/components/schemas/Labels'
         vault_enabled:
@@ -61720,6 +61751,19 @@ components:
           $ref: '#/components/schemas/ManagedByUpdate'
         active:
           $ref: '#/components/schemas/KongPrincipalActive'
+    CreateGroupType:
+      type: string
+      nullable: true
+      description: |-
+        Classifies the kind of group to create. There are three group types
+        (`group`, `team`, `project`), but only `group` and `project` are
+        mutable through this API; teams come from the organization import.
+        When omitted or null, the group is a `group`.
+      x-enum-varnames:
+        - CreateGroupTypeGroup
+        - CreateGroupTypeProject
+      enum:
+        - group
     CreateGroupBody:
       type: object
       required:
@@ -61731,7 +61775,7 @@ components:
           $ref: '#/components/schemas/KongGroupDescription'
         type:
           allOf:
-            - $ref: '#/components/schemas/KongGroupType'
+            - $ref: '#/components/schemas/CreateGroupType'
           description: |
             Type of the group. Immutable after creation.
         metadata:
@@ -61753,7 +61797,9 @@ components:
           allOf:
             - $ref: '#/components/schemas/KongGroupType'
           description: |
-            Type of the group. Immutable after creation.
+            Type of the group. Immutable after creation. Teams come from the
+            organization import; only `group` and `project` are mutable
+            through this API.
         metadata:
           $ref: '#/components/schemas/KongIdentityMetadata'
         labels:
@@ -61836,6 +61882,8 @@ components:
           maxLength: 255
         expires_at:
           $ref: '#/components/schemas/ExpiresAtWritable'
+        managed_by:
+          $ref: '#/components/schemas/ManagedBy'
     CreatePrincipalKeyBodyv1:
       additionalProperties: false
       type: object
@@ -62222,6 +62270,38 @@ components:
         in the directory, or if the provided credentials are invalid.
 
         Maximum is 86400 seconds (24 hours).
+    UpdateDirectoryTTLSecs:
+      type: integer
+      minimum: 300
+      maximum: 86400
+      description: >
+        The time in seconds that a principal will be cached in memory on a
+        running Gateway if it is
+
+        successfully authenticated from this directory. Maximum is 86400 seconds
+        (24 hours).
+
+        The patch keeps the stored value when the request omits this field. This
+        schema carries no default, so the validator does not add one.
+    UpdateDirectoryNegativeTTLSecs:
+      type: integer
+      minimum: 300
+      maximum: 86400
+      description: >
+        If a running Gateway triggers a lookup for a principal that cannot be
+        authenticated in this directory,
+
+        a `negative_ttl_secs` is set. The Gateway will not try to look up the
+        principal in Konnect for `negative_ttl_secs` seconds.
+
+
+        A principal will be cached for `negative_ttl_secs` if it does not exist
+        in the directory, or if the provided credentials are invalid.
+
+        Maximum is 86400 seconds (24 hours).
+
+        The patch keeps the stored value when the request omits this field. This
+        schema carries no default, so the validator does not add one.
     KongDirectory:
       type: object
       description: >
@@ -62304,6 +62384,7 @@ components:
                 - created
                 - updated
                 - unchanged
+                - adopted
                 - inactive
               properties:
                 created:
@@ -62602,6 +62683,10 @@ components:
         principals of type `user` and other `team` groups; they may carry an
 
         `team_manager` custom identity referencing a principal of type `user`.
+
+        Projects (`project`) group `user` and `agent` principals; projects
+
+        cannot contain groups or be members of groups.
       required:
         - id
         - name
@@ -63819,12 +63904,17 @@ components:
       type: string
       nullable: true
       description: |-
-        Classifies the kind of group. `group` is the default policy-attachment
-        point for access across principals. `team` is a node of the
-        organization chart: its members are principals of type `user` and other
-        `team` groups, and it may carry an `owner` custom identity
-        referencing a principal of type `user`. When omitted or null, the
-        group is a `group`.
+        Classifies the kind of group. There are three group types: `group`,
+        `team`, and `project`. `group` is the default policy-attachment point
+        for access across principals. `team` is a node of the organization
+        chart: its members are principals of type `user` and other `team`
+        groups, and it may carry an `owner` custom identity referencing a
+        principal of type `user`. `project` groups `user` and `agent`
+        principals; projects cannot contain groups or be members of groups.
+        When omitted or null, the group is a `group`.
+
+        Teams come from the organization import; of the three group types,
+        only `group` and `project` are mutable through this API.
       enum:
         - group
         - team
@@ -153048,7 +153138,7 @@ components:
               allow_scopes:
                 $ref: '#/components/schemas/ClientAllowScopes'
               token_endpoint_auth_method:
-                $ref: '#/components/schemas/TokenEndpointAuthMethod'
+                $ref: '#/components/schemas/UpdateTokenEndpointAuthMethod'
               labels:
                 $ref: '#/components/schemas/LabelsUpdate'
     ReplaceClient:
@@ -155032,7 +155122,7 @@ x-input-schemas:
     version: 0.10.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.3.24
+    version: 2.3.25
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
@@ -155059,7 +155149,7 @@ x-input-schemas:
     version: 3.12.0
     path: src/konnect/definitions/identity/v3/openapi.yaml
   - title: Konnect Kong Identity admin api
-    version: 1.30.1
+    version: 1.31.0
     path: src/konnect/definitions/kong-identity/v2/openapi.yaml
   - title: Konnect Context Mesh
     version: 1.49.0
@@ -155071,7 +155161,7 @@ x-input-schemas:
     version: 1.6.0
     path: src/konnect/definitions/metering-and-billing/v3/openapi.yaml
   - title: Konnect Notification Hub
-    version: 1.1.2
+    version: 1.2.0
     path: src/konnect/definitions/notification-hub/v1/openapi.yaml
   - title: Portal Management V3
     version: 3.21.2
@@ -155080,5 +155170,5 @@ x-input-schemas:
     version: 1.3.4
     path: src/konnect/definitions/service-catalog/v1/openapi.yaml
   - title: Konnect Sliver
-    version: 1.9.5
+    version: 1.9.6
     path: src/konnect/definitions/sliver/v1/openapi.yaml
