@@ -80,9 +80,9 @@ type SDK struct {
 	CloudGateways                *CloudGateways
 	// Operations related to notifications
 	Notifications *Notifications
-	// Operations related to org scoped notifications and their org subscriptions. The http channel of an org scoped notification is set up for the whole organization, and no user can switch it on or off. Only an org admin can use these operations. The routes exist only when http destinations are enabled.
+	// Operations related to org scoped notifications and their org subscriptions. The webhook channel of an org scoped notification is set up for the whole organization, and no user can switch it on or off. Only an org admin can use these operations. The routes exist only when webhook destinations are enabled.
 	OrgConfigurations *OrgConfigurations
-	// Operations related to http destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when http destinations are enabled.
+	// Operations related to webhook destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when webhook destinations are enabled.
 	Destinations *Destinations
 	// Dynamic Client Registration Providers are configurations representing an external Identity Provider whose clients (i.e. Applications) Konnect will be authorized to manage.
 	// For instance, they will be able to perform dynamic client registration (DCR) with the provider.
@@ -622,10 +622,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.7.0",
+		SDKVersion: "0.8.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.7.0 2.961.1 3.21.2 github.com/Kong/sdk-konnect-go",
-			SDKVersion:        "0.7.0",
+			UserAgent:         "speakeasy-sdk/go 0.8.0 2.961.1 3.21.2 github.com/Kong/sdk-konnect-go",
+			SDKVersion:        "0.8.0",
 			GenVersion:        "2.961.1",
 			OpenAPIDocVersion: "3.21.2",
 			ServerList:        ServerList,
