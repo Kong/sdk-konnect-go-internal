@@ -3,10 +3,10 @@ id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
   docChecksum: 8b99f32ea21860e1df4f45a11beb2fb0
   docVersion: 3.21.2
-  speakeasyVersion: 1.810.0
-  generationVersion: 2.961.1
-  releaseVersion: 0.8.0
-  configChecksum: 07482932bc21745b4430e59e0fd14220
+  speakeasyVersion: 1.811.0
+  generationVersion: 2.968.1
+  releaseVersion: 0.8.1
+  configChecksum: 2ea4683321d09721deecabde3fd2cd3b
 persistentEdits:
   generation_id: 13c2163a-60e6-4c35-b896-a9ea41a6dd75
   pristine_commit_hash: 14753c7fba454bec4419143dc7ad13be13ff031f
@@ -16,7 +16,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.3
-    constsAndDefaults: 0.1.15
+    constsAndDefaults: 0.1.16
     core: 3.16.7
     deepObjectParams: 0.1.1
     defaultEnabledRetries: 0.2.0
