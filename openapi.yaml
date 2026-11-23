@@ -122294,8 +122294,6 @@ components:
               type: string
               pattern: ^/
               example: /mcp
-            upstream:
-              $ref: '#/components/schemas/AIGatewayUpstreamConfig'
             certificates:
               type: array
               maxItems: 1
@@ -122418,6 +122416,8 @@ components:
                       $ref: '#/components/schemas/AIGatewayMCPServerCacheHint'
                 discover:
                   $ref: '#/components/schemas/AIGatewayMCPServerCacheHint'
+            upstream:
+              $ref: '#/components/schemas/AIGatewayMCPServerUpstreamConfig'
           title: AIGatewayMCPServerKongListenerConfig
         tools:
           type: array
@@ -124348,7 +124348,7 @@ components:
           format: uri
           example: https://mcp.internal.kongair.com
         upstream:
-          $ref: '#/components/schemas/AIGatewayUpstreamConfig'
+          $ref: '#/components/schemas/AIGatewayMCPServerUpstreamConfig'
         certificates:
           type: array
           maxItems: 1
@@ -124479,8 +124479,6 @@ components:
           type: string
           pattern: ^/
           example: /mcp
-        upstream:
-          $ref: '#/components/schemas/AIGatewayUpstreamConfig'
         certificates:
           type: array
           maxItems: 1
@@ -124682,8 +124680,6 @@ components:
           type: string
           pattern: ^/
           example: /mcp
-        upstream:
-          $ref: '#/components/schemas/AIGatewayUpstreamConfig'
         certificates:
           type: array
           maxItems: 1
@@ -124733,6 +124729,8 @@ components:
             TLS certificate.
           items:
             $ref: '#/components/schemas/AIGatewayCACertificateReference'
+        upstream:
+          $ref: '#/components/schemas/AIGatewayUpstreamConfig'
         proxy:
           $ref: '#/components/schemas/AIGatewayProxyConfig'
     AIGatewayMCPServerRouteWithMatcher:
@@ -124850,8 +124848,6 @@ components:
           type: string
           pattern: ^/
           example: /mcp
-        upstream:
-          $ref: '#/components/schemas/AIGatewayUpstreamConfig'
         certificates:
           type: array
           maxItems: 1
@@ -124901,6 +124897,8 @@ components:
             TLS certificate.
           items:
             $ref: '#/components/schemas/AIGatewayCACertificateReference'
+        upstream:
+          $ref: '#/components/schemas/AIGatewayMCPServerUpstreamConfig'
         tools_cache_ttl_seconds:
           type: integer
           minimum: 0
@@ -125519,8 +125517,6 @@ components:
               type: string
               pattern: ^/
               example: /mcp
-            upstream:
-              $ref: '#/components/schemas/AIGatewayUpstreamConfig'
             certificates:
               type: array
               maxItems: 1
@@ -125641,6 +125637,8 @@ components:
                     - *ref_25
                 discover:
                   $ref: '#/components/schemas/AIGatewayMCPServerCacheHint'
+            upstream:
+              $ref: '#/components/schemas/AIGatewayMCPServerUpstreamConfig'
           title: AIGatewayMCPServerKongListenerConfig
         tools:
           type: array
@@ -133475,6 +133473,28 @@ components:
         algorithm:
           type: string
           const: round-robin
+    AIGatewayMCPServerUpstreamConfig:
+      type: object
+      additionalProperties: false
+      description: >-
+        Configuration applied when proxying to the upstream service, including
+        authentication.
+
+        Applies to `conversion-listener`, `conversion-only`, and
+        `upstream-server` MCP Servers.
+
+
+        **Requires a minimum runtime version of `2.4`**.
+      properties:
+        auth:
+          description: Authentication to use when proxying to the upstream service.
+          oneOf:
+            - $ref: '#/components/schemas/AIGatewayUpstreamAuthAWS'
+          discriminator:
+            propertyName: type
+            mapping:
+              aws: '#/components/schemas/AIGatewayUpstreamAuthAWS'
+      x-min-runtime-version: '2.4'
     AIGatewayUpstreamAuthAWS:
       title: AIGatewayUpstreamAuthAWS
       type: object
@@ -162499,7 +162519,7 @@ x-input-schemas:
     version: 0.11.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.3.32
+    version: 2.3.33
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
