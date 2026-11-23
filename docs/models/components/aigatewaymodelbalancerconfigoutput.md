@@ -11,6 +11,12 @@ Configuration for a model's load balancer when multiple target models are config
 aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputConsistentHashing(components.AIGatewayModelBalancerConsistentHashingConfig{/* values here */})
 ```
 
+### AIGatewayModelBalancerIntelligentConfigOutput
+
+```go
+aiGatewayModelBalancerConfigOutput := components.CreateAIGatewayModelBalancerConfigOutputIntelligent(components.AIGatewayModelBalancerIntelligentConfigOutput{/* values here */})
+```
+
 ### AIGatewayModelBalancerLeastConnectionsConfig
 
 ```go
@@ -55,6 +61,8 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch aiGatewayModelBalancerConfigOutput.Type {
 	case components.AIGatewayModelBalancerConfigOutputTypeConsistentHashing:
 		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerConsistentHashingConfig is populated
+	case components.AIGatewayModelBalancerConfigOutputTypeIntelligent:
+		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerIntelligentConfigOutput is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeLeastConnections:
 		// aiGatewayModelBalancerConfigOutput.AIGatewayModelBalancerLeastConnectionsConfig is populated
 	case components.AIGatewayModelBalancerConfigOutputTypeLowestLatency:

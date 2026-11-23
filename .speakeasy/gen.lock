@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 8b99f32ea21860e1df4f45a11beb2fb0
+  docChecksum: 37ac5695f45641e9d04023251dd8b41c
   docVersion: 3.21.2
   speakeasyVersion: 1.811.0
   generationVersion: 2.968.1
@@ -485,6 +485,7 @@ trackedFiles:
   docs/models/components/aigatewayagentaccess.md: {}
   docs/models/components/aigatewayagentconfig.md: {}
   docs/models/components/aigatewayagentlogging.md: {}
+  docs/models/components/aigatewayagentprotocol.md: {}
   docs/models/components/aigatewayagenttype.md: {}
   docs/models/components/aigatewayallowacl.md: {}
   docs/models/components/aigatewayallowwhenacl.md: {}
@@ -495,6 +496,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategykeyauthprincipals.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponse.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseconfig.md: {}
+  docs/models/components/aigatewayauthstrategykeyauthresponseidentityrealms.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseprincipals.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponsescope.md: {}
   docs/models/components/aigatewayauthstrategykeyauthscope.md: {}
@@ -546,13 +548,21 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectrefreshtokenparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectrequest.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponse.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseactortoken.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseauthmethods.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseauthorizationcookiesamesite.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseauthprovider.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsebearertokenparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsecache.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseclientalg.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseclientauth.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclientcredentialsparamtype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclientjwk.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsecloudauthentication.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclustercacheredis.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclustercachestrategy.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseclusternodes.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseconditions.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfig.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigauthprovider.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigcloudauthentication.md: {}
@@ -560,15 +570,47 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigsentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigsentinelrole.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconsumerby.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsedisablesession.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsedownstreamheaders.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsegranttype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseidtokenparamtype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseignoresignature.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseintrospectionaccept.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseintrospectionendpointauthmethod.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsejit.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseloginaction.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseloginmethods.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseloginredirectmode.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponselogintokens.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponselogoutmethods.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsemapidentitiesfrom.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsemode.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsepasswordparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprincipals.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessiondpop.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessionmtls.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseprotectedresourcemetadata.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprovider.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsepushedauthorizationrequestendpointauthmethod.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseredis.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponserefreshtokenparamtype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponserequest.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseresponsemode.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponserevocationendpointauthmethod.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesentinelrole.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionbind.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessioncookiesamesite.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionrequestheaders.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionresponseheaders.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionstorage.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesource.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesubjecttokenissuers.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsetokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsetokenexchange.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsetokenheadersgrants.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseupstreamheaders.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseuserinfoaccept.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectrevocationendpointauthmethod.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectsentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectsentinelrole.md: {}
@@ -635,20 +677,93 @@ trackedFiles:
   docs/models/components/aigatewayidentityprovider.md: {}
   docs/models/components/aigatewayidentityproviderkeyauth.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthidentityrealms.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthprincipals.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthresponse.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthresponseconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponsescope.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthscope.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnect.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectactortoken.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectauthmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectauthorizationcookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectbearertokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectcache.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectclientalg.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectclientauth.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclientcredentialsparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclientjwk.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclustercacheredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclustercachestrategy.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconditions.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigsentinelrole.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectconsumerby.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectdisablesession.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectdownstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectgranttype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectidtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectignoresignature.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectintrospectionaccept.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectintrospectionendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectjit.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginaction.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginredirectmode.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectlogintokens.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectlogoutmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectmapidentitiesfrom.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectpasswordparamtype.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectprincipals.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectproofofpossessiondpop.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectproofofpossessionmtls.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectprotectedresourcemetadata.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectpushedauthorizationrequestendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrefreshtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrequest.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponse.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsecache.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsecloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclusternodes.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponseconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigsentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsegranttype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsemode.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponseprincipals.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesource.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsetokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrevocationendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionbind.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessioncookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionrequestheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionresponseheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionstorage.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsource.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsubjecttokenissuers.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenexchange.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenheadersgrants.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectupstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectuserinfoaccept.md: {}
   docs/models/components/aigatewayloggingconfig.md: {}
   docs/models/components/aigatewaymcpacls.md: {}
   docs/models/components/aigatewaymcpallowacl.md: {}
@@ -658,6 +773,10 @@ trackedFiles:
   docs/models/components/aigatewaymcpdenyacl.md: {}
   docs/models/components/aigatewaymcpdenywhenacl.md: {}
   docs/models/components/aigatewaymcppassthroughtool.md: {}
+  docs/models/components/aigatewaymcpprompt.md: {}
+  docs/models/components/aigatewaymcppromptaccess.md: {}
+  docs/models/components/aigatewaymcpresource.md: {}
+  docs/models/components/aigatewaymcpresourceaccess.md: {}
   docs/models/components/aigatewaymcpserver.md: {}
   docs/models/components/aigatewaymcpserveracls.md: {}
   docs/models/components/aigatewaymcpservercachehint.md: {}
@@ -665,10 +784,12 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverconversionlistenerallowedversions.md: {}
   docs/models/components/aigatewaymcpserverconversionlistenercache.md: {}
   docs/models/components/aigatewaymcpserverconversionlistenerlogging.md: {}
+  docs/models/components/aigatewaymcpserverconversionlistenerprotocol.md: {}
   docs/models/components/aigatewaymcpserverconversionlistenerresponse.md: {}
   docs/models/components/aigatewaymcpserverconversionlistenerresponseaigatewaymcpserverkonglistenerconfig.md: {}
   docs/models/components/aigatewaymcpserverconversionlistenerresponsecache.md: {}
   docs/models/components/aigatewaymcpserverconversionlistenerresponselogging.md: {}
+  docs/models/components/aigatewaymcpserverconversionlistenerresponseprotocol.md: {}
   docs/models/components/aigatewaymcpserverconversiononly.md: {}
   docs/models/components/aigatewaymcpserverconversiononlyresponse.md: {}
   docs/models/components/aigatewaymcpserverkonglistenerconfig.md: {}
@@ -701,6 +822,7 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverupstreamserverconfig.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfiglogging.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfigoutput.md: {}
+  docs/models/components/aigatewaymcpserverupstreamserverconfigprotocol.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverresponse.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverserverconfig.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverserverconfigclient.md: {}
@@ -717,6 +839,7 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverwithupstreamconfigclient.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamconfiglogging.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamconfigoutput.md: {}
+  docs/models/components/aigatewaymcpserverwithupstreamconfigprotocol.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamconfigserver.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamconfigsession.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamconfigsessionoutput.md: {}
@@ -741,6 +864,19 @@ trackedFiles:
   docs/models/components/aigatewaymodelbalancerconfig.md: {}
   docs/models/components/aigatewaymodelbalancerconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerconsistenthashingconfig.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifier.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauth.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthbasic.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthbasicheaders.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthbasicoutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthoutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifiercustom.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifiercustomoutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifieroutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfig.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfigfailovercriteria.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfigoutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentconfigversion.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfig.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfig.md: {}
@@ -774,14 +910,17 @@ trackedFiles:
   docs/models/components/aigatewaymodelprovideraigatewaymodelproviderdashscope.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelproviderdatabricks.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelproviderdeepseek.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelproviderfireworks.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelprovidergemini.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelproviderhuggingface.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelproviderkimi.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelproviderllama2.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidermeta.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelprovidermistral.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelproviderollama.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelprovideropenai.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelprovidersagemaker.md: {}
+  docs/models/components/aigatewaymodelprovideraigatewaymodelprovidertogetherai.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelprovidertypesafe.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelprovidervercel.md: {}
   docs/models/components/aigatewaymodelprovideraigatewaymodelprovidervllm.md: {}
@@ -817,6 +956,7 @@ trackedFiles:
   docs/models/components/aigatewaymodelproviderconfigauthazureoutput.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasic.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasicheaders.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthbasicheadersoutput.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasiclocation.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasicoutput.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasicparams.md: {}
@@ -836,6 +976,9 @@ trackedFiles:
   docs/models/components/aigatewaymodelproviderdeepseek.md: {}
   docs/models/components/aigatewaymodelproviderdeepseekconfig.md: {}
   docs/models/components/aigatewaymodelproviderdeepseekconfigoutput.md: {}
+  docs/models/components/aigatewaymodelproviderfireworks.md: {}
+  docs/models/components/aigatewaymodelproviderfireworksconfig.md: {}
+  docs/models/components/aigatewaymodelproviderfireworksconfigoutput.md: {}
   docs/models/components/aigatewaymodelprovidergemini.md: {}
   docs/models/components/aigatewaymodelprovidergeminiauth.md: {}
   docs/models/components/aigatewaymodelprovidergeminiauthoutput.md: {}
@@ -850,6 +993,9 @@ trackedFiles:
   docs/models/components/aigatewaymodelproviderllama2.md: {}
   docs/models/components/aigatewaymodelproviderllama2config.md: {}
   docs/models/components/aigatewaymodelproviderllama2configoutput.md: {}
+  docs/models/components/aigatewaymodelprovidermeta.md: {}
+  docs/models/components/aigatewaymodelprovidermetaconfig.md: {}
+  docs/models/components/aigatewaymodelprovidermetaconfigoutput.md: {}
   docs/models/components/aigatewaymodelprovidermistral.md: {}
   docs/models/components/aigatewaymodelprovidermistralconfig.md: {}
   docs/models/components/aigatewaymodelprovidermistralconfigoutput.md: {}
@@ -864,6 +1010,9 @@ trackedFiles:
   docs/models/components/aigatewaymodelprovidersagemakerauthoutput.md: {}
   docs/models/components/aigatewaymodelprovidersagemakerconfig.md: {}
   docs/models/components/aigatewaymodelprovidersagemakerconfigoutput.md: {}
+  docs/models/components/aigatewaymodelprovidertogetherai.md: {}
+  docs/models/components/aigatewaymodelprovidertogetheraiconfig.md: {}
+  docs/models/components/aigatewaymodelprovidertogetheraiconfigoutput.md: {}
   docs/models/components/aigatewaymodelprovidertypesafe.md: {}
   docs/models/components/aigatewaymodelprovidertypesafeconfig.md: {}
   docs/models/components/aigatewaymodelprovidertypesafeconfigoutput.md: {}
@@ -933,16 +1082,19 @@ trackedFiles:
   docs/models/components/aigatewaytargetdashscopeconfig.md: {}
   docs/models/components/aigatewaytargetdatabricksconfig.md: {}
   docs/models/components/aigatewaytargetdeepseekconfig.md: {}
+  docs/models/components/aigatewaytargetfireworksconfig.md: {}
   docs/models/components/aigatewaytargetgeminiconfig.md: {}
   docs/models/components/aigatewaytargethuggingfaceconfig.md: {}
   docs/models/components/aigatewaytargetkimiconfig.md: {}
   docs/models/components/aigatewaytargetllama2config.md: {}
+  docs/models/components/aigatewaytargetmetaconfig.md: {}
   docs/models/components/aigatewaytargetmistralconfig.md: {}
   docs/models/components/aigatewaytargetmistralconfigformat.md: {}
   docs/models/components/aigatewaytargetollamaconfig.md: {}
   docs/models/components/aigatewaytargetopenaiconfig.md: {}
   docs/models/components/aigatewaytargetsagemakerconfig.md: {}
   docs/models/components/aigatewaytargetsagemakerconfigtarget.md: {}
+  docs/models/components/aigatewaytargettogetheraiconfig.md: {}
   docs/models/components/aigatewaytargettypesafeconfig.md: {}
   docs/models/components/aigatewaytargetvercelconfig.md: {}
   docs/models/components/aigatewaytargetvllmconfig.md: {}
@@ -958,10 +1110,16 @@ trackedFiles:
   docs/models/components/aigatewaytokenvaulttokenvaultdatastoreconfig.md: {}
   docs/models/components/aigatewayupstreamauthaws.md: {}
   docs/models/components/aigatewayupstreamauthawsoutput.md: {}
+  docs/models/components/aigatewayupstreambalancerconfig.md: {}
+  docs/models/components/aigatewayupstreambalancerconsistenthashingconfig.md: {}
+  docs/models/components/aigatewayupstreambalancerleastconnectionsconfig.md: {}
+  docs/models/components/aigatewayupstreambalancerlowestlatencyconfig.md: {}
+  docs/models/components/aigatewayupstreambalancerroundrobinconfig.md: {}
   docs/models/components/aigatewayupstreamconfig.md: {}
   docs/models/components/aigatewayupstreamconfigauth.md: {}
   docs/models/components/aigatewayupstreamconfigauthoutput.md: {}
   docs/models/components/aigatewayupstreamconfigoutput.md: {}
+  docs/models/components/aigatewayupstreamtarget.md: {}
   docs/models/components/aigatewayvalidateconditionrequest.md: {}
   docs/models/components/aigatewayvalidateexpressionrequest.md: {}
   docs/models/components/aigatewayvalidateexpressionvaluerequest.md: {}
@@ -2473,6 +2631,7 @@ trackedFiles:
   docs/models/components/costbasismode.md: {}
   docs/models/components/costbasispagepaginatedresponse.md: {}
   docs/models/components/costmanagementtags.md: {}
+  docs/models/components/costqualitytradeoff.md: {}
   docs/models/components/costtagheader.md: {}
   docs/models/components/costtagprefix.md: {}
   docs/models/components/counts.md: {}
@@ -2487,6 +2646,7 @@ trackedFiles:
   docs/models/components/createaigatewayagentrequest.md: {}
   docs/models/components/createaigatewayagentrequestconfig.md: {}
   docs/models/components/createaigatewayagentrequestlogging.md: {}
+  docs/models/components/createaigatewayagentrequestprotocol.md: {}
   docs/models/components/createaigatewayagentrequesttype.md: {}
   docs/models/components/createaigatewayauthstrategyrequest.md: {}
   docs/models/components/createaigatewaycacertificaterequest.md: {}
@@ -6897,6 +7057,7 @@ trackedFiles:
   docs/models/components/updateaigatewayagentrequest.md: {}
   docs/models/components/updateaigatewayagentrequestconfig.md: {}
   docs/models/components/updateaigatewayagentrequestlogging.md: {}
+  docs/models/components/updateaigatewayagentrequestprotocol.md: {}
   docs/models/components/updateaigatewayagentrequesttype.md: {}
   docs/models/components/updateaigatewayauthstrategyrequest.md: {}
   docs/models/components/updateaigatewaycacertificaterequest.md: {}
@@ -12850,6 +13011,10 @@ trackedFiles:
   models/components/aigatewaymcpdenyacl.go: {}
   models/components/aigatewaymcpdenywhenacl.go: {}
   models/components/aigatewaymcppassthroughtool.go: {}
+  models/components/aigatewaymcpprompt.go: {}
+  models/components/aigatewaymcppromptaccess.go: {}
+  models/components/aigatewaymcpresource.go: {}
+  models/components/aigatewaymcpresourceaccess.go: {}
   models/components/aigatewaymcpserver.go: {}
   models/components/aigatewaymcpserveracls.go: {}
   models/components/aigatewaymcpservercachehint.go: {}
@@ -12893,6 +13058,15 @@ trackedFiles:
   models/components/aigatewaymodelbalancerconfig.go: {}
   models/components/aigatewaymodelbalancerconfigoutput.go: {}
   models/components/aigatewaymodelbalancerconsistenthashingconfig.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifier.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauth.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauthbasic.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauthbasicoutput.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauthoutput.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifiercustom.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifiercustomoutput.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifieroutput.go: {}
+  models/components/aigatewaymodelbalancerintelligentconfigoutput.go: {}
   models/components/aigatewaymodelbalancerleastconnectionsconfig.go: {}
   models/components/aigatewaymodelbalancerlowestlatencyconfig.go: {}
   models/components/aigatewaymodelbalancerlowestusageconfig.go: {}
@@ -12921,14 +13095,17 @@ trackedFiles:
   models/components/aigatewaymodelproviderdashscope.go: {}
   models/components/aigatewaymodelproviderdatabricks.go: {}
   models/components/aigatewaymodelproviderdeepseek.go: {}
+  models/components/aigatewaymodelproviderfireworks.go: {}
   models/components/aigatewaymodelprovidergemini.go: {}
   models/components/aigatewaymodelproviderhuggingface.go: {}
   models/components/aigatewaymodelproviderkimi.go: {}
   models/components/aigatewaymodelproviderllama2.go: {}
+  models/components/aigatewaymodelprovidermeta.go: {}
   models/components/aigatewaymodelprovidermistral.go: {}
   models/components/aigatewaymodelproviderollama.go: {}
   models/components/aigatewaymodelprovideropenai.go: {}
   models/components/aigatewaymodelprovidersagemaker.go: {}
+  models/components/aigatewaymodelprovidertogetherai.go: {}
   models/components/aigatewaymodelprovidertypesafe.go: {}
   models/components/aigatewaymodelprovidervercel.go: {}
   models/components/aigatewaymodelprovidervllm.go: {}
@@ -12968,14 +13145,17 @@ trackedFiles:
   models/components/aigatewaytargetdashscopeconfig.go: {}
   models/components/aigatewaytargetdatabricksconfig.go: {}
   models/components/aigatewaytargetdeepseekconfig.go: {}
+  models/components/aigatewaytargetfireworksconfig.go: {}
   models/components/aigatewaytargetgeminiconfig.go: {}
   models/components/aigatewaytargethuggingfaceconfig.go: {}
   models/components/aigatewaytargetkimiconfig.go: {}
   models/components/aigatewaytargetllama2config.go: {}
+  models/components/aigatewaytargetmetaconfig.go: {}
   models/components/aigatewaytargetmistralconfig.go: {}
   models/components/aigatewaytargetollamaconfig.go: {}
   models/components/aigatewaytargetopenaiconfig.go: {}
   models/components/aigatewaytargetsagemakerconfig.go: {}
+  models/components/aigatewaytargettogetheraiconfig.go: {}
   models/components/aigatewaytargettypesafeconfig.go: {}
   models/components/aigatewaytargetvercelconfig.go: {}
   models/components/aigatewaytargetvllmconfig.go: {}
@@ -12987,8 +13167,14 @@ trackedFiles:
   models/components/aigatewaytokenvaultenrollmentprotectioninput.go: {}
   models/components/aigatewayupstreamauthaws.go: {}
   models/components/aigatewayupstreamauthawsoutput.go: {}
+  models/components/aigatewayupstreambalancerconfig.go: {}
+  models/components/aigatewayupstreambalancerconsistenthashingconfig.go: {}
+  models/components/aigatewayupstreambalancerleastconnectionsconfig.go: {}
+  models/components/aigatewayupstreambalancerlowestlatencyconfig.go: {}
+  models/components/aigatewayupstreambalancerroundrobinconfig.go: {}
   models/components/aigatewayupstreamconfig.go: {}
   models/components/aigatewayupstreamconfigoutput.go: {}
+  models/components/aigatewayupstreamtarget.go: {}
   models/components/aigatewayvalidateconditionrequest.go: {}
   models/components/aigatewayvalidateexpressionrequest.go: {}
   models/components/aigatewayvalidateexpressionvaluerequest.go: {}
@@ -31734,10 +31920,10 @@ examples:
         path:
           gatewayId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
       requestBody:
-        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
+        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "targets": [{"address": "booking-agent-1.internal.kongair.com:443", "failover": false, "weight": 100}], "balancer": {"algorithm": "lowest-latency"}, "path": "/a2a", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
       responses:
         "201":
-          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "targets": [{"address": "booking-agent-1.internal.kongair.com:443", "failover": false, "weight": 100}], "balancer": {"algorithm": "lowest-latency"}, "path": "/a2a", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "min_length", "minimum": 8, "source": "body", "reason": "must have at least 8 characters"}]}
         "401":
@@ -31759,7 +31945,7 @@ examples:
           agentIdOrName: "my-entity-name"
       responses:
         "200":
-          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "targets": [{"address": "booking-agent-1.internal.kongair.com:443", "failover": false, "weight": 100}], "balancer": {"algorithm": "least-connections"}, "path": "/a2a", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -31776,10 +31962,10 @@ examples:
           agentId: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7"
           agentIdOrName: "my-entity-name"
       requestBody:
-        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
+        application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "targets": [{"address": "booking-agent-1.internal.kongair.com:443", "failover": false, "weight": 100}], "balancer": {"algorithm": "round-robin"}, "path": "/a2a", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}}
       responses:
         "200":
-          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
+          application/json: {"display_name": "Kong Air Flight Booking Agent", "name": "kongair-flight-booking-agent", "enabled": true, "type": "a2a", "access": {"acls": {"allow": ["consumer-group-1"]}, "auth_strategies": ["okta-ai-se"]}, "config": {"url": "https://booking-agent.internal.kongair.com", "targets": [{"address": "booking-agent-1.internal.kongair.com:443", "failover": false, "weight": 100}], "balancer": {"algorithm": "round-robin"}, "path": "/a2a", "upstream": {"auth": {"type": "aws", "access_key_id": "AKIAIOSFODNN7EXAMPLE", "region": "us-east-1"}}, "route": {"headers": {"version": ["v1", "v2"]}, "hosts": ["foo.example.com"], "https_redirect_status_code": 426, "preserve_host": false, "regex_priority": 0, "request_buffering": true, "response_buffering": true, "strip_path": true}, "max_request_body_size": 8388608, "logging": {"payloads": false, "max_payload_size": 524288}, "certificates": ["my-certificate"], "ca_certificates": ["my-ca-certificate"]}, "labels": {"category": "finance"}, "managed_by": {"owner": "terraform"}, "id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":

@@ -119,6 +119,15 @@ func main() {
         },
         Config: components.CreateAIGatewayAgentRequestConfig{
             URL: sdkkonnectgo.Pointer("https://booking-agent.internal.kongair.com"),
+            Targets: []components.AIGatewayUpstreamTarget{
+                components.AIGatewayUpstreamTarget{
+                    Address: "booking-agent-1.internal.kongair.com:443",
+                },
+            },
+            Balancer: sdkkonnectgo.Pointer(components.CreateAIGatewayUpstreamBalancerConfigLowestLatency(
+                components.AIGatewayUpstreamBalancerLowestLatencyConfig{},
+            )),
+            Path: sdkkonnectgo.Pointer("/a2a"),
             Upstream: &components.AIGatewayUpstreamConfig{
                 Auth: sdkkonnectgo.Pointer(components.CreateAIGatewayUpstreamConfigAuthAws(
                     components.AIGatewayUpstreamAuthAWS{
@@ -296,6 +305,15 @@ func main() {
             },
             Config: components.UpdateAIGatewayAgentRequestConfig{
                 URL: sdkkonnectgo.Pointer("https://booking-agent.internal.kongair.com"),
+                Targets: []components.AIGatewayUpstreamTarget{
+                    components.AIGatewayUpstreamTarget{
+                        Address: "booking-agent-1.internal.kongair.com:443",
+                    },
+                },
+                Balancer: sdkkonnectgo.Pointer(components.CreateAIGatewayUpstreamBalancerConfigRoundRobin(
+                    components.AIGatewayUpstreamBalancerRoundRobinConfig{},
+                )),
+                Path: sdkkonnectgo.Pointer("/a2a"),
                 Upstream: &components.AIGatewayUpstreamConfig{
                     Auth: sdkkonnectgo.Pointer(components.CreateAIGatewayUpstreamConfigAuthAws(
                         components.AIGatewayUpstreamAuthAWS{

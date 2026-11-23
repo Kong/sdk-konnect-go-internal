@@ -29,43 +29,43 @@ func (e *AIGatewayAuthStrategyKeyAuthResponseScope) IsExact() bool {
 	return false
 }
 
-type IdentityRealms struct {
+type AIGatewayAuthStrategyKeyAuthResponseIdentityRealms struct {
 	// A string representing a UUID (universally unique identifier).
 	ID     *string                                    `json:"id,omitempty"`
 	Region *string                                    `json:"region,omitempty"`
 	Scope  *AIGatewayAuthStrategyKeyAuthResponseScope `default:"cp" json:"scope"`
 }
 
-func (i IdentityRealms) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(i, "", false)
+func (a AIGatewayAuthStrategyKeyAuthResponseIdentityRealms) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (i *IdentityRealms) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+func (a *AIGatewayAuthStrategyKeyAuthResponseIdentityRealms) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *IdentityRealms) GetID() *string {
-	if i == nil {
+func (a *AIGatewayAuthStrategyKeyAuthResponseIdentityRealms) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return i.ID
+	return a.ID
 }
 
-func (i *IdentityRealms) GetRegion() *string {
-	if i == nil {
+func (a *AIGatewayAuthStrategyKeyAuthResponseIdentityRealms) GetRegion() *string {
+	if a == nil {
 		return nil
 	}
-	return i.Region
+	return a.Region
 }
 
-func (i *IdentityRealms) GetScope() *AIGatewayAuthStrategyKeyAuthResponseScope {
-	if i == nil {
+func (a *AIGatewayAuthStrategyKeyAuthResponseIdentityRealms) GetScope() *AIGatewayAuthStrategyKeyAuthResponseScope {
+	if a == nil {
 		return nil
 	}
-	return i.Scope
+	return a.Scope
 }
 
 type AIGatewayAuthStrategyKeyAuthResponsePrincipals struct {
@@ -118,7 +118,7 @@ type AIGatewayAuthStrategyKeyAuthResponseConfig struct {
 	// An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin strips the credential from the request.
 	HideCredentials *bool `default:"true" json:"hide_credentials"`
 	// A configuration of Konnect Identity Realms that indicate where to source a consumer from.
-	IdentityRealms []IdentityRealms `json:"identity_realms,omitzero"`
+	IdentityRealms []AIGatewayAuthStrategyKeyAuthResponseIdentityRealms `json:"identity_realms,omitzero"`
 	// If enabled, the plugin reads the request body. Supported MIME types: `application/www-form-urlencoded`, `application/json`, and `multipart/form-data`.
 	KeyInBody *bool `default:"false" json:"key_in_body"`
 	// If enabled (default), the plugin reads the request header and tries to find the key in it.
@@ -159,7 +159,7 @@ func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetHideCredentials() *bool 
 	return a.HideCredentials
 }
 
-func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetIdentityRealms() []IdentityRealms {
+func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetIdentityRealms() []AIGatewayAuthStrategyKeyAuthResponseIdentityRealms {
 	if a == nil {
 		return nil
 	}
