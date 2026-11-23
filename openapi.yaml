@@ -28680,8 +28680,9 @@ paths:
 
             Sortable fields: `source`, `subject_type`, `subject`, `subject_id`,
             `request_mode`, `time`, `reported_cost`, `provider`, `model`,
-            `model_id`, `region`, `client`, `service_id`, `route_id`,
-            `consumer_id`, `application_id`. Defaults to `time desc`.
+            `model_id`, `region`, `client`, `cost_center`, `service_id`,
+            `route_id`, `consumer_id`, `application_id`. Defaults to `time
+            desc`.
           schema:
             type: string
         - name: page[size]
@@ -28741,7 +28742,8 @@ paths:
         '400':
           description: >-
             A query parameter is invalid. `invalid_parameters` names each
-            invalid parameter.
+            invalid parameter, and names `filter` when the filters need more
+            than 1,000 statement parameters.
           content:
             application/problem+json:
               schema:
@@ -28870,9 +28872,11 @@ paths:
                       time:
                         type: string
                         allOf:
-                          - pattern: >-
+                          - type: string
+                            pattern: >-
                               ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z|([+-](?:[01]\d|2[0-3]):[0-5]\d)))$
-                          - pattern: ^[^.]*(?:\.\d{1,9}[Z+-][^.]*)?$
+                          - type: string
+                            pattern: ^[^.]*(?:\.\d{1,9}[Z+-][^.]*)?$
                         format: date-time
                         description: >-
                           When the invocation started, as an RFC 3339 timestamp
@@ -29386,6 +29390,25 @@ paths:
                                 `00000000-0000-0000-0000-000000000000`, isn't
                                 accepted.
                             uniqueItems: true
+                          cost_center:
+                            type: string
+                            minLength: 1
+                            maxLength: 256
+                            pattern: ^[^\u0000-\u001f\u007f]*$
+                            description: >-
+                              The person's Kong Identity cost center at the time
+                              of the request, as the producer supplies it. The
+                              service doesn't verify it, and it keeps the value
+                              of the request after the person's cost center
+                              changes. A `cost-center` tag is an ordinary tag
+                              and doesn't fill `cost_center`.
+
+
+                              Every caller who can read the usage reads the
+                              value, whatever their Kong Identity permissions.
+                              It has 1 to 256 characters, none of them a control
+                              character, and keeps its text and case. An omitted
+                              value means the usage has no cost center.
                         required:
                           - quantities
                           - context
@@ -29396,7 +29419,8 @@ paths:
                           The usage the event reports: `quantities`,
                           `reported_cost`, `reported_cache_cost`, `context`, and
                           `optimization`, plus the `provenance`, `tags`,
-                          `groups`, and `teams` that attribute it.
+                          `groups`, `teams`, and `cost_center` that attribute
+                          it.
                     required:
                       - specversion
                       - id
@@ -29493,11 +29517,12 @@ paths:
         For a caller with access to the whole organization, a value stays in the
         list after the events that carried it leave retention or are deleted.
         For a caller whose access covers only particular principals or groups,
-        the `subject` list holds only the subjects of the events of those
-        principals and groups, so a subject leaves the list with its events.
-        Such a caller's `groups` and `teams` lists hold only the groups the
-        caller's access names. Every other field lists the organization's
-        values, the same as for a caller with access to the whole organization.
+        the `subject` and `cost_center` lists hold only the subjects and cost
+        centers of the events of those principals and groups, so a value leaves
+        the list with its events. Such a caller's `groups` and `teams` lists
+        hold only the groups the caller's access names. Every other field lists
+        the organization's values, the same as for a caller with access to the
+        whole organization.
 
 
         The service may return fewer values than requested when the page reaches
@@ -29587,8 +29612,8 @@ paths:
             lists.
 
             - `source`, `provider`, `model`, `model_id`, `region`, `client`,
-            `service_id`, `route_id`, `consumer_id`, `application_id`: the
-            field's values.
+            `cost_center`, `service_id`, `route_id`, `consumer_id`,
+            `application_id`: the field's values.
           schema:
             type: string
             enum:
@@ -29600,6 +29625,7 @@ paths:
               - model_id
               - region
               - client
+              - cost_center
               - groups
               - teams
               - service_id
@@ -29662,7 +29688,8 @@ paths:
         '400':
           description: >-
             A query parameter is invalid. `invalid_parameters` names each
-            invalid parameter.
+            invalid parameter, and names `filter` when the filters need more
+            than 1,000 statement parameters.
           content:
             application/problem+json:
               schema:
@@ -29790,10 +29817,10 @@ paths:
 
                     At most 2 dimensions, each named once, from `subject`,
                     `subject_id`, `subject_type`, `provider`, `model`,
-                    `model_id`, `request_mode`, `region`, `client`, `source`,
-                    `group`, `team`, `service_id`, `route_id`, `consumer_id`,
-                    `application_id`, `tags.<key>`. `tags.<key>` groups by the
-                    value of one tag.
+                    `model_id`, `request_mode`, `region`, `client`,
+                    `cost_center`, `source`, `group`, `team`, `service_id`,
+                    `route_id`, `consumer_id`, `application_id`, `tags.<key>`.
+                    `tags.<key>` groups by the value of one tag.
                 measures:
                   minItems: 1
                   type: array
@@ -29909,6 +29936,14 @@ paths:
                       description: >-
                         Filters on the tool that made the call, as a normalized
                         identifier such as `claude_code`.
+                    cost_center:
+                      allOf:
+                        - $ref: '#/components/schemas/AICostStringFilter'
+                      description: >-
+                        Filters on the person's Kong Identity cost center at the
+                        time of the request, as the producer supplied it. Usage
+                        without a cost center has none, so `{ "exists": false }`
+                        selects it.
                     service_id:
                       allOf:
                         - $ref: '#/components/schemas/AICostUuidFilter'
@@ -29988,6 +30023,15 @@ paths:
                     here, and `starts_at` and `ends_at` set the time range
                     instead. A key that names one of them, or an unknown field,
                     isn't accepted.
+
+
+                    `and` and `or` nest at most 100 levels deep, counting the
+                    field's filter object as the first level. Each compared
+                    value or list of values binds one statement parameter, and a
+                    tag filter can bind one more for its key. Filters that need
+                    more than 1,000 statement parameters, counting the few that
+                    the query binds itself, aren't accepted.
+                  x-max-depth: 100
                 sort:
                   minItems: 1
                   type: array
@@ -30548,9 +30592,10 @@ paths:
         '400':
           description: >-
             The request body is invalid. `invalid_parameters` names each invalid
-            field. For example, `ends_at` isn't after `starts_at`, or the range
-            spans more than 400 buckets. For CSV, remove the body field `page`
-            to request all matching rows.
+            field. For example, `ends_at` isn't after `starts_at`, the range
+            spans more than 400 buckets, or the filters need more than 1,000
+            statement parameters. For CSV, remove the body field `page` to
+            request all matching rows.
           content:
             application/problem+json:
               schema:
@@ -31624,7 +31669,7 @@ paths:
                       type: object
                       properties:
                         budget:
-                          anyOf:
+                          oneOf:
                             - $ref: '#/components/schemas/AICostLimitBudget'
                             - $ref: '#/components/schemas/AICostBudgetReference'
                           description: >-
@@ -148715,6 +148760,23 @@ components:
 
                 At most 200 references, each listed once. A UUID is lowercase.
                 The service sorts the references lexicographically.
+            cost_center:
+              type: string
+              minLength: 1
+              maxLength: 256
+              pattern: ^[^\u0000-\u001f\u007f]*$
+              description: >-
+                The person's Kong Identity cost center at the time of the
+                request, as the producer supplies it. The service doesn't verify
+                it, and it keeps the value of the request after the person's
+                cost center changes. A `cost-center` tag is an ordinary tag and
+                doesn't fill `cost_center`.
+
+
+                Every caller who can read the usage reads the value, whatever
+                their Kong Identity permissions. It has 1 to 256 characters,
+                none of them a control character, and keeps its text and case.
+                An omitted value means the usage has no cost center.
           required:
             - quantities
             - reported_cost
@@ -148726,7 +148788,8 @@ components:
           description: >-
             The usage the event reports: `quantities`, `reported_cost`,
             `reported_cache_cost`, `context`, and `optimization`, plus the
-            `provenance`, `tags`, `groups`, and `teams` that attribute it.
+            `provenance`, `tags`, `groups`, `teams`, and `cost_center` that
+            attribute it.
       required:
         - specversion
         - id
@@ -148942,7 +149005,7 @@ components:
             The budget window: the period the limit applies to, such as a
             calendar month. When one window ends, the next starts.
         posture:
-          description: How the budget responds when spend reaches its limit.
+          description: What the budget does when spend reaches its limit.
           allOf:
             - $ref: '#/components/schemas/AICostBudgetPosture'
         validity:
@@ -149059,6 +149122,7 @@ components:
         - model
         - provider
         - request_mode
+        - cost_center
       description: >-
         A usage field that a budget scope can filter on, and that `each` can
         split a budget by:
@@ -149087,6 +149151,12 @@ components:
 
         - `request_mode`: how the invocation was served: `stream`, `oneshot`, or
         `realtime`.
+
+        - `cost_center`: the person's Kong Identity cost center at the time of
+        the request, as the gateway reported it. It isn't the ledger of a funded
+        budget. Usage has at most one, so `neq` and `nin` match only usage with
+        a cost center, and the budgets that `each` derives from it don't
+        overlap.
 
 
         A scope can also use `tags.<key>` for the value of one tag.
@@ -149258,8 +149328,9 @@ components:
         - advisory
         - enforce
       description: >-
-        How the budget responds when spend reaches its limit. With `advisory`,
-        requests continue past the limit.
+        What a limit budget does when spend reaches its limit. `advisory`
+        changes nothing at the limit. `enforce` belongs to budget blocking,
+        which is in development. No request is refused because of `posture`.
       x-speakeasy-unknown-values: allow
     AICostExemptBudget:
       type: object
@@ -150035,7 +150106,7 @@ components:
         id:
           $ref: '#/components/schemas/UUID'
         budget:
-          anyOf:
+          oneOf:
             - $ref: '#/components/schemas/AICostLimitBudget'
             - $ref: '#/components/schemas/AICostBudgetReference'
           description: >-
@@ -150388,9 +150459,19 @@ components:
         row sums the events of one charge period that share a provider, model,
         region, subject, application, list of groups, list of teams, and values
         of the named tag keys.
+
+
+        Schema version `2` adds the usage's Kong Identity cost center to each
+        dataset: `usage_events` gains a `cost_center` column after `teams`, and
+        `focus` gains an `x_CostCenter` column after `x_TeamIds` and splits its
+        rows by cost center too. Both columns are `null` for usage without a
+        cost center.
       x-speakeasy-unknown-values: allow
     AICostExportSchemaVersion:
       type: integer
+      enum:
+        - 1
+        - 2
       description: >-
         A version of an export's data files within its dataset: their columns
         and the values those columns hold. A change to either ships as a new
@@ -150400,11 +150481,10 @@ components:
         offers these schema versions:
 
 
-        - `usage_events`: `1`.
+        - `usage_events`: `1`, `2`.
 
-        - `focus`: `1`.
-      enum:
-        - 1
+        - `focus`: `1`, `2`.
+      x-speakeasy-unknown-values: allow
     AICostFocusOptions:
       type: object
       properties:
@@ -151817,8 +151897,8 @@ components:
         is `principal/{uuid}`, `consumer/{uuid}`, or `oidc/{sub}`, a group is
         `principal/{uuid}`, `consumer_group/{uuid}`, or `oidc/{group}`, and a
         team is `principal/{uuid}`. `subject_id` matches a subject's identifier
-        without its type. A `tags.<key>` predicate's values each have at most
-        256 characters, none of them a control character.
+        without its type. A `tags.<key>` or `cost_center` predicate's values
+        each have at most 256 characters, none of them a control character.
       discriminator:
         propertyName: op
         mapping:
@@ -152222,7 +152302,7 @@ components:
               x-speakeasy-type-override: any
               description: >-
                 Filters that select the events to export, with the same fields,
-                operators, and shape as the `filters` of `POST
+                operators, shape, and nesting limit as the `filters` of `POST
                 /v1/ai-cost-management/events/query`. Every filter must match.
 
 
@@ -152383,7 +152463,7 @@ components:
               x-speakeasy-type-override: any
               description: >-
                 Filters that select the events to export, with the same fields,
-                operators, and shape as the `filters` of `POST
+                operators, shape, and nesting limit as the `filters` of `POST
                 /v1/ai-cost-management/events/query`. Every filter must match.
 
 
@@ -152736,8 +152816,12 @@ components:
         posture:
           default: advisory
           description: >-
-            How the budget responds when spend reaches its limit. With
-            `advisory`, the default, requests continue past the limit.
+            What the budget does when spend reaches its limit. `advisory`, the
+            default, changes nothing at the limit. `enforce` belongs to budget
+            blocking, which is in development: a request that sets it fails with
+            `400` unless the organization has budget blocking turned on or a
+            replacement keeps a budget's stored `enforce`. No request is refused
+            because of `posture`.
           type: string
           enum:
             - advisory
@@ -153297,6 +153381,8 @@ components:
           $ref: '#/components/schemas/StringFieldFilter'
         client:
           $ref: '#/components/schemas/StringFieldFilter'
+        cost_center:
+          $ref: '#/components/schemas/AICostOptionalStringFieldFilter'
         service_id:
           $ref: '#/components/schemas/UuidFieldFilter'
         route_id:
@@ -153324,9 +153410,10 @@ components:
         `model_id`, `region`, `client`: `eq`, `neq`, `oeq`, `contains`, and
         `ocontains`.
 
-        - `subject`, `subject_id`: `eq`, `neq`, `oeq`, `contains`, `ocontains`,
-        `exists`, and `nexists`. `exists` and `nexists` take no value, and
-        `filter[subject][nexists]` selects unattributed usage.
+        - `subject`, `subject_id`, `cost_center`: `eq`, `neq`, `oeq`,
+        `contains`, `ocontains`, `exists`, and `nexists`. `exists` and `nexists`
+        take no value. `filter[subject][nexists]` selects unattributed usage,
+        and `filter[cost_center][nexists]` selects usage without a cost center.
 
         - `service_id`, `route_id`, `consumer_id`, `application_id`: `eq`,
         `neq`, and `oeq`, with gateway IDs.
@@ -162409,7 +162496,7 @@ x-input-schemas:
     version: 1.12.5
     path: src/konnect/definitions/ai-builder/v1/openapi.yaml
   - title: Konnect AI Cost Management
-    version: 0.10.0
+    version: 0.11.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
     version: 2.3.32
