@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: cdeb5f9a00be379adea451654da08894
+  docChecksum: 8b99f32ea21860e1df4f45a11beb2fb0
   docVersion: 3.21.2
   speakeasyVersion: 1.810.0
   generationVersion: 2.961.1
-  releaseVersion: 0.7.0
-  configChecksum: 6d7e179b2b9dfa29cd6bacd36e6f0103
+  releaseVersion: 0.8.0
+  configChecksum: 07482932bc21745b4430e59e0fd14220
 persistentEdits:
   generation_id: 13c2163a-60e6-4c35-b896-a9ea41a6dd75
   pristine_commit_hash: 14753c7fba454bec4419143dc7ad13be13ff031f
@@ -2743,8 +2743,8 @@ trackedFiles:
     id: b3422911c541
     pristine_git_object: a40df54f2f0b404617be85d7b2c146beb1872608
   docs/models/components/creategroupbody.md: {}
-  docs/models/components/creategroupbodytype.md: {}
   docs/models/components/creategroupmembershipentrybody.md: {}
+  docs/models/components/creategrouptype.md: {}
   docs/models/components/createidentityprovider.md:
     id: 851b5ab1c3e8
     pristine_git_object: c45085d86473cdcfedf8eb7cd8019a37edaba9d5
@@ -7149,6 +7149,7 @@ trackedFiles:
     id: efa076c19349
     pristine_git_object: 9a61d9cbc0149751d5e2bf706ee2eefe338d36ce
   docs/models/components/updatetlstrustbundlerequest.md: {}
+  docs/models/components/updatetokenendpointauthmethod.md: {}
   docs/models/components/updatetrustedidpbody.md: {}
   docs/models/components/updateuser.md:
     id: da376a24390c
@@ -13842,6 +13843,7 @@ trackedFiles:
     pristine_git_object: 7cd23f7be05446a7b947f9cdb08c68b38f319d9d
   models/components/creategroupbody.go: {}
   models/components/creategroupmembershipentrybody.go: {}
+  models/components/creategrouptype.go: {}
   models/components/createidentityprovider.go:
     id: ff07134dc458
     pristine_git_object: ce0a62750ae538e8a4eca05071428640bd22972e
@@ -15915,6 +15917,7 @@ trackedFiles:
     id: 1a8b27465762
     pristine_git_object: 674e47dd457a81587b5830f0ff8a07d54171c741
   models/components/updatetlstrustbundlerequest.go: {}
+  models/components/updatetokenendpointauthmethod.go: {}
   models/components/updatetrustedidpbody.go: {}
   models/components/updateuser.go:
     id: c7e700fc4b91
@@ -41788,7 +41791,7 @@ examples:
           authServerId: "d32d905a-ed33-46a3-a093-d8f536af9a8a"
           clientId: "kYa9iQFU5xPDSIUH9z1z"
       requestBody:
-        application/json: {"token_endpoint_auth_method": "client_secret_post", "labels": {"env": "test"}}
+        application/json: {"labels": {"env": "test"}}
       responses:
         "200":
           application/json: {"id": "kYa9iQFU5xPDSIUH9z1z", "name": "<value>", "grant_types": [], "redirect_uris": ["https://innocent-laughter.com/", "https://responsible-hepatitis.com/", "https://probable-doing.name"], "access_token_duration": 300, "id_token_duration": 300, "allow_all_scopes": false, "allow_scopes": ["1151381e-6468-4e80-aca3-1fa1e37bcaec", "5f6653b8-cd33-49c5-9d51-7151820b7257"], "labels": {"env": "test"}, "response_types": [], "token_endpoint_auth_method": "client_secret_post", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -41872,7 +41875,7 @@ examples:
           clientId: "kYa9iQFU5xPDSIUH9z1z"
           clientSecretId: "07d05309-45cc-4b37-92fb-1524846deec3"
       requestBody:
-        application/json: {"enabled": true}
+        application/json: {}
       responses:
         "200":
           application/json: {"id": "2ee8bb2e-7c1f-495f-b733-61594ff8e2e5", "enabled": true, "secret": "YAzsyUlNZ5gNGeKS9H3VAdxVPzhPo4ae", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -41985,7 +41988,7 @@ examples:
         path:
           directoryId: "a02c929f-dd3e-4154-9012-f54a9eb3a053"
       requestBody:
-        application/json: {"ttl_secs": 600, "negative_ttl_secs": 600, "labels": {"env": "test"}}
+        application/json: {"labels": {"env": "test"}}
       responses:
         "200":
           application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "description": "when storyboard plus woot yippee during unless hmph patroller", "allowed_control_planes": ["4c67edc0-99b0-487b-a0c4-035b315db2e4", "41534f28-b374-4d89-b2de-6898178b167f"], "allow_all_control_planes": false, "ttl_secs": 600, "negative_ttl_secs": 600, "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -42087,7 +42090,7 @@ examples:
         multipart/form-data: {"file": "x-file: example.file", "dry_run": true}
       responses:
         "200":
-          application/json: {"counts": {"users": {"created": 761716, "updated": 662522, "unchanged": 211830, "inactive": 144332}, "teams": {"created": 35376, "deleted": 908083}, "memberships": {"added": 166464, "removed": 508273}}, "warnings": [{"type": "<value>", "detail": "<value>"}], "errors": []}
+          application/json: {"counts": {"users": {"created": 761716, "updated": 662522, "unchanged": 211830, "adopted": 733639, "inactive": 144332}, "teams": {"created": 35376, "deleted": 908083}, "memberships": {"added": 166464, "removed": 508273}}, "warnings": [{"type": "<value>", "detail": "<value>"}], "errors": []}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
         "401":
