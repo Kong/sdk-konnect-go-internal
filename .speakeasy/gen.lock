@@ -1,8 +1,8 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: fdfb5ebbff13c75894347fa1a516d22e
-  docVersion: 3.21.3
+  docChecksum: 4b76a6c36c9531a2dfbadd9adce33eb7
+  docVersion: 3.21.4
   speakeasyVersion: 1.811.0
   generationVersion: 2.968.1
   releaseVersion: 0.8.1
@@ -821,6 +821,10 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverserverconfigbaseclient.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbaseoutput.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbasesession.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfig.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigauth.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigauthoutput.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigoutput.md: {}
   docs/models/components/aigatewaymcpserverupstreamserver.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfig.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfiglogging.md: {}
@@ -13036,6 +13040,8 @@ trackedFiles:
   models/components/aigatewaymcpserverratelimiting.go: {}
   models/components/aigatewaymcpserverroutewithmatcher.go: {}
   models/components/aigatewaymcpserverserverconfigbaseoutput.go: {}
+  models/components/aigatewaymcpserverupstreamconfig.go: {}
+  models/components/aigatewaymcpserverupstreamconfigoutput.go: {}
   models/components/aigatewaymcpserverupstreamserver.go: {}
   models/components/aigatewaymcpserverupstreamserverconfigoutput.go: {}
   models/components/aigatewaymcpserverupstreamserverresponse.go: {}
