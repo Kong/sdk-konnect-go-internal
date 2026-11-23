@@ -128,6 +128,29 @@ func (e *AICostExportSchedule2Dataset) IsExact() bool {
 	return false
 }
 
+// AICostExportSchedule2SchemaVersion - The schema version of each export's data files within the dataset, which fixes their columns and values.
+type AICostExportSchedule2SchemaVersion int64
+
+const (
+	AICostExportSchedule2SchemaVersionOne AICostExportSchedule2SchemaVersion = 1
+	AICostExportSchedule2SchemaVersionTwo AICostExportSchedule2SchemaVersion = 2
+)
+
+func (e AICostExportSchedule2SchemaVersion) ToPointer() *AICostExportSchedule2SchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportSchedule2SchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
+	}
+	return false
+}
+
 type AICostExportSchedule2 struct {
 	// The file format of each export's data files.
 	Format AICostExportSchedule2Format `json:"format"`
@@ -152,7 +175,7 @@ type AICostExportSchedule2 struct {
 	// The data that each export holds.
 	Dataset AICostExportSchedule2Dataset `json:"dataset"`
 	// The schema version of each export's data files within the dataset, which fixes their columns and values.
-	SchemaVersion AICostExportSchemaVersion `json:"schema_version"`
+	SchemaVersion AICostExportSchedule2SchemaVersion `json:"schema_version"`
 	// The FOCUS options of each export, with defaults applied.
 	//
 	// `null` unless `dataset` is `focus`.
@@ -240,9 +263,9 @@ func (a *AICostExportSchedule2) GetDataset() AICostExportSchedule2Dataset {
 	return a.Dataset
 }
 
-func (a *AICostExportSchedule2) GetSchemaVersion() AICostExportSchemaVersion {
+func (a *AICostExportSchedule2) GetSchemaVersion() AICostExportSchedule2SchemaVersion {
 	if a == nil {
-		return AICostExportSchemaVersion(0)
+		return AICostExportSchedule2SchemaVersion(0)
 	}
 	return a.SchemaVersion
 }
@@ -418,6 +441,29 @@ func (e *AICostExportScheduleDataset) IsExact() bool {
 	return false
 }
 
+// AICostExportScheduleSchemaVersion - The schema version of each export's data files within the dataset, which fixes their columns and values.
+type AICostExportScheduleSchemaVersion int64
+
+const (
+	AICostExportScheduleSchemaVersionOne AICostExportScheduleSchemaVersion = 1
+	AICostExportScheduleSchemaVersionTwo AICostExportScheduleSchemaVersion = 2
+)
+
+func (e AICostExportScheduleSchemaVersion) ToPointer() *AICostExportScheduleSchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportScheduleSchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
+	}
+	return false
+}
+
 type AICostExportSchedule1 struct {
 	// The file format of each export's data files.
 	Format AICostExportScheduleFormat `json:"format"`
@@ -442,7 +488,7 @@ type AICostExportSchedule1 struct {
 	// The data that each export holds.
 	Dataset AICostExportScheduleDataset `json:"dataset"`
 	// The schema version of each export's data files within the dataset, which fixes their columns and values.
-	SchemaVersion AICostExportSchemaVersion `json:"schema_version"`
+	SchemaVersion AICostExportScheduleSchemaVersion `json:"schema_version"`
 	// The FOCUS options of each export, with defaults applied.
 	//
 	// `null` unless `dataset` is `focus`.
@@ -530,9 +576,9 @@ func (a *AICostExportSchedule1) GetDataset() AICostExportScheduleDataset {
 	return a.Dataset
 }
 
-func (a *AICostExportSchedule1) GetSchemaVersion() AICostExportSchemaVersion {
+func (a *AICostExportSchedule1) GetSchemaVersion() AICostExportScheduleSchemaVersion {
 	if a == nil {
-		return AICostExportSchemaVersion(0)
+		return AICostExportScheduleSchemaVersion(0)
 	}
 	return a.SchemaVersion
 }

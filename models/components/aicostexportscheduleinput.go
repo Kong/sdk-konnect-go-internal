@@ -3,7 +3,6 @@
 package components
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
@@ -139,23 +138,22 @@ type AICostExportScheduleInput2SchemaVersion int64
 
 const (
 	AICostExportScheduleInput2SchemaVersionOne AICostExportScheduleInput2SchemaVersion = 1
+	AICostExportScheduleInput2SchemaVersionTwo AICostExportScheduleInput2SchemaVersion = 2
 )
 
 func (e AICostExportScheduleInput2SchemaVersion) ToPointer() *AICostExportScheduleInput2SchemaVersion {
 	return &e
 }
-func (e *AICostExportScheduleInput2SchemaVersion) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportScheduleInput2SchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
 	}
-	switch v {
-	case 1:
-		*e = AICostExportScheduleInput2SchemaVersion(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AICostExportScheduleInput2SchemaVersion: %v", v)
-	}
+	return false
 }
 
 type AICostExportScheduleInput2 struct {
@@ -191,7 +189,7 @@ type AICostExportScheduleInput2 struct {
 	//
 	// Required when `dataset` is `focus`, and isn't accepted for any other dataset.
 	Focus *AICostFocusOptionsInput `json:"focus,omitempty"`
-	// Filters that select the events to export, with the same fields, operators, and shape as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
+	// Filters that select the events to export, with the same fields, operators, shape, and nesting limit as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
 	//
 	// Defaults to `{}`.
 	Filters any               `json:"filters,omitempty"`
@@ -428,23 +426,22 @@ type AICostExportScheduleInputSchemaVersion int64
 
 const (
 	AICostExportScheduleInputSchemaVersionOne AICostExportScheduleInputSchemaVersion = 1
+	AICostExportScheduleInputSchemaVersionTwo AICostExportScheduleInputSchemaVersion = 2
 )
 
 func (e AICostExportScheduleInputSchemaVersion) ToPointer() *AICostExportScheduleInputSchemaVersion {
 	return &e
 }
-func (e *AICostExportScheduleInputSchemaVersion) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportScheduleInputSchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
 	}
-	switch v {
-	case 1:
-		*e = AICostExportScheduleInputSchemaVersion(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AICostExportScheduleInputSchemaVersion: %v", v)
-	}
+	return false
 }
 
 type AICostExportScheduleInput1 struct {
@@ -480,7 +477,7 @@ type AICostExportScheduleInput1 struct {
 	//
 	// Required when `dataset` is `focus`, and isn't accepted for any other dataset.
 	Focus *AICostFocusOptionsInput `json:"focus,omitempty"`
-	// Filters that select the events to export, with the same fields, operators, and shape as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
+	// Filters that select the events to export, with the same fields, operators, shape, and nesting limit as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
 	//
 	// Defaults to `{}`.
 	Filters any               `json:"filters,omitempty"`

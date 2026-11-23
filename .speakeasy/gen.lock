@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 37ac5695f45641e9d04023251dd8b41c
+  docChecksum: 6c06b0061ba074004bb7013bd292fca4
   docVersion: 3.21.2
   speakeasyVersion: 1.811.0
   generationVersion: 2.968.1
@@ -378,6 +378,7 @@ trackedFiles:
   docs/models/components/aicostexportinput2compression.md: {}
   docs/models/components/aicostexportinput2dataset.md: {}
   docs/models/components/aicostexportinput2format.md: {}
+  docs/models/components/aicostexportinput2schemaversion.md: {}
   docs/models/components/aicostexportinputcompression.md: {}
   docs/models/components/aicostexportinputdataset.md: {}
   docs/models/components/aicostexportinputformat.md: {}
@@ -388,6 +389,7 @@ trackedFiles:
   docs/models/components/aicostexportschedule2compression.md: {}
   docs/models/components/aicostexportschedule2dataset.md: {}
   docs/models/components/aicostexportschedule2format.md: {}
+  docs/models/components/aicostexportschedule2schemaversion.md: {}
   docs/models/components/aicostexportschedule2status.md: {}
   docs/models/components/aicostexportschedulecadence.md: {}
   docs/models/components/aicostexportschedulecompression.md: {}
@@ -408,6 +410,7 @@ trackedFiles:
   docs/models/components/aicostexportscheduleinputformat.md: {}
   docs/models/components/aicostexportscheduleinputschemaversion.md: {}
   docs/models/components/aicostexportscheduleinputstatus.md: {}
+  docs/models/components/aicostexportscheduleschemaversion.md: {}
   docs/models/components/aicostexportschedulestatus.md: {}
   docs/models/components/aicostexportschemaversion.md: {}
   docs/models/components/aicostexportstatus.md: {}
@@ -12909,7 +12912,6 @@ trackedFiles:
   models/components/aicostexportinput.go: {}
   models/components/aicostexportschedule.go: {}
   models/components/aicostexportscheduleinput.go: {}
-  models/components/aicostexportschemaversion.go: {}
   models/components/aicostfocusoptions.go: {}
   models/components/aicostfocusoptionsinput.go: {}
   models/components/aicostgrouplistfilter.go: {}
