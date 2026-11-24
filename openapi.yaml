@@ -126273,8 +126273,10 @@ components:
                     description: >-
                       A string representing a UUID (universally unique
                       identifier).
+                    nullable: true
                     type: string
                   region:
+                    nullable: true
                     type: string
                   scope:
                     default: cp
@@ -129293,8 +129295,10 @@ components:
                     description: >-
                       A string representing a UUID (universally unique
                       identifier).
+                    nullable: true
                     type: string
                   region:
+                    nullable: true
                     type: string
                   scope:
                     default: cp
@@ -134307,8 +134311,10 @@ components:
                     description: >-
                       A string representing a UUID (universally unique
                       identifier).
+                    nullable: true
                     type: string
                   region:
+                    nullable: true
                     type: string
                   scope:
                     default: cp
@@ -137367,8 +137373,10 @@ components:
                     description: >-
                       A string representing a UUID (universally unique
                       identifier).
+                    nullable: true
                     type: string
                   region:
+                    nullable: true
                     type: string
                   scope:
                     default: cp
@@ -140552,8 +140560,10 @@ components:
             properties:
               id:
                 description: A string representing a UUID (universally unique identifier).
+                nullable: true
                 type: string
               region:
+                nullable: true
                 type: string
               scope:
                 default: cp
@@ -162519,7 +162529,7 @@ x-input-schemas:
     version: 0.11.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.3.33
+    version: 2.3.34
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
