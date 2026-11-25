@@ -112041,6 +112041,79 @@ components:
           priority: '#/components/schemas/AIGatewayModelBalancerPriorityConfig'
           round-robin: '#/components/schemas/AIGatewayModelBalancerRoundRobinConfig'
           semantic: '#/components/schemas/AIGatewayModelBalancerSemanticConfig'
+    AIGatewayFailoverCriteria:
+      type: array
+      default:
+        - error
+        - timeout
+      description: >-
+        Specifies in which cases an upstream response should be failover to the
+        next target. Each option in the array is equivalent to the function of
+        https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
+      items:
+        type: string
+        enum:
+          - error
+          - http_400
+          - http_401
+          - http_402
+          - http_403
+          - http_404
+          - http_405
+          - http_408
+          - http_409
+          - http_413
+          - http_415
+          - http_422
+          - http_429
+          - http_500
+          - http_502
+          - http_503
+          - http_504
+          - http_522
+          - http_529
+          - http_5xx
+          - invalid_header
+          - non_idempotent
+          - timeout
+        x-enum-min-runtime-version:
+          http_400: '2.3'
+          http_401: '2.3'
+          http_402: '2.3'
+          http_405: '2.3'
+          http_408: '2.3'
+          http_409: '2.3'
+          http_413: '2.3'
+          http_415: '2.3'
+          http_422: '2.3'
+          http_522: '2.3'
+          http_529: '2.3'
+          http_5xx: '2.3'
+        description: |-
+          **`http_400` requires a minimum runtime version of `2.3`**.
+
+          **`http_401` requires a minimum runtime version of `2.3`**.
+
+          **`http_402` requires a minimum runtime version of `2.3`**.
+
+          **`http_405` requires a minimum runtime version of `2.3`**.
+
+          **`http_408` requires a minimum runtime version of `2.3`**.
+
+          **`http_409` requires a minimum runtime version of `2.3`**.
+
+          **`http_413` requires a minimum runtime version of `2.3`**.
+
+          **`http_415` requires a minimum runtime version of `2.3`**.
+
+          **`http_422` requires a minimum runtime version of `2.3`**.
+
+          **`http_522` requires a minimum runtime version of `2.3`**.
+
+          **`http_529` requires a minimum runtime version of `2.3`**.
+
+          **`http_5xx` requires a minimum runtime version of `2.3`**.
+        x-speakeasy-unknown-values: allow
     AIGatewayModelBalancerConsistentHashingConfig:
       additionalProperties: false
       type: object
@@ -112060,79 +112133,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -112197,79 +112198,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -112523,79 +112452,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -112656,79 +112513,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -112800,79 +112585,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -112945,79 +112658,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -113078,79 +112719,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -113211,79 +112780,7 @@ components:
             unavailable after the number of unsuccessful attempts reaches
             `max_fails`.
         failover_criteria:
-          type: array
-          default:
-            - error
-            - timeout
-          description: >-
-            Specifies in which cases an upstream response should be failover to
-            the next target. Each option in the array is equivalent to the
-            function of
-            https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-          items:
-            type: string
-            enum:
-              - error
-              - http_400
-              - http_401
-              - http_402
-              - http_403
-              - http_404
-              - http_405
-              - http_408
-              - http_409
-              - http_413
-              - http_415
-              - http_422
-              - http_429
-              - http_500
-              - http_502
-              - http_503
-              - http_504
-              - http_522
-              - http_529
-              - http_5xx
-              - invalid_header
-              - non_idempotent
-              - timeout
-            x-enum-min-runtime-version:
-              http_400: '2.3'
-              http_401: '2.3'
-              http_402: '2.3'
-              http_405: '2.3'
-              http_408: '2.3'
-              http_409: '2.3'
-              http_413: '2.3'
-              http_415: '2.3'
-              http_422: '2.3'
-              http_522: '2.3'
-              http_529: '2.3'
-              http_5xx: '2.3'
-            description: |-
-              **`http_400` requires a minimum runtime version of `2.3`**.
-
-              **`http_401` requires a minimum runtime version of `2.3`**.
-
-              **`http_402` requires a minimum runtime version of `2.3`**.
-
-              **`http_405` requires a minimum runtime version of `2.3`**.
-
-              **`http_408` requires a minimum runtime version of `2.3`**.
-
-              **`http_409` requires a minimum runtime version of `2.3`**.
-
-              **`http_413` requires a minimum runtime version of `2.3`**.
-
-              **`http_415` requires a minimum runtime version of `2.3`**.
-
-              **`http_422` requires a minimum runtime version of `2.3`**.
-
-              **`http_522` requires a minimum runtime version of `2.3`**.
-
-              **`http_529` requires a minimum runtime version of `2.3`**.
-
-              **`http_5xx` requires a minimum runtime version of `2.3`**.
-            x-speakeasy-unknown-values: allow
+          $ref: '#/components/schemas/AIGatewayFailoverCriteria'
         max_fails:
           type: integer
           default: 0
@@ -162558,7 +162055,7 @@ x-input-schemas:
     version: 0.11.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.3.35
+    version: 2.4.0
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
