@@ -110383,6 +110383,11 @@ components:
         visibility.
 
 
+        Can only be set when deployment_type is `hybrid`. For `managed` and
+        `serverless` deployments, Konnect manages this value and it is
+        read-only.
+
+
         When not specified, the latest generally available runtime version is
         used.
 
@@ -110407,6 +110412,11 @@ components:
         stand in the way so that they can be removed or downgraded first.
 
 
+        Can only be set when the AI Gateway's deployment_type is `hybrid`. For
+        `managed` and `serverless` deployments, Konnect manages this value and
+        requests that include it are rejected.
+
+
         When not specified, the minimum runtime version is left unchanged.
 
 
@@ -110424,6 +110434,11 @@ components:
         to match the DP fleet's minimum runtime version (the lowest AI Gateway
         runtime version reported across all connected data planes) as that value
         increases.
+
+
+        Can only be set when deployment_type is `hybrid`. For `managed` and
+        `serverless` deployments, Konnect manages runtime upgrades and this
+        value is read-only.
     CreateAIGatewayRequest:
       type: object
       additionalProperties: false
@@ -111790,10 +111805,10 @@ components:
             The maximum size, in bytes, of a request body that the gateway reads
             and sends to the model.
 
-            A request with a larger body fails. Set to 0 for no limit.        
+            A request with a larger body fails. Set to 0 for no limit.
 
             If you do not set a value, the gateway uses the request size limit
-            that the model's providers publish, 
+            that the model's providers publish,
 
             with defaults to 8 MB.
 
@@ -111841,10 +111856,10 @@ components:
             The maximum size, in bytes, of a request body that the gateway reads
             and sends to the model.
 
-            A request with a larger body fails. Set to 0 for no limit.        
+            A request with a larger body fails. Set to 0 for no limit.
 
             If you do not set a value, the gateway uses the request size limit
-            that the model's providers publish, 
+            that the model's providers publish,
 
             with defaults to 8 MB.
 
@@ -162543,7 +162558,7 @@ x-input-schemas:
     version: 0.11.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.3.34
+    version: 2.3.35
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
