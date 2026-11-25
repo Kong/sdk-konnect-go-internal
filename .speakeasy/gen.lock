@@ -1,9 +1,9 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: ab5509b4c36560185863f38c2836aa84
+  docChecksum: 32fcba019b3e3f0f13bed884d9fbc677
   docVersion: 3.21.6
-  speakeasyVersion: 1.811.0
+  speakeasyVersion: 1.812.0
   generationVersion: 2.968.1
   releaseVersion: 0.9.0
   configChecksum: a61b6b3e5cf2c147f0fe824751868364
@@ -674,6 +674,7 @@ trackedFiles:
   docs/models/components/aigatewaydenywhenacl.md: {}
   docs/models/components/aigatewayembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayexpectedconfigversion.md: {}
+  docs/models/components/aigatewayfailovercriteria.md: {}
   docs/models/components/aigatewaygeminiembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayhuggingfaceembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayid.md: {}
@@ -881,21 +882,14 @@ trackedFiles:
   docs/models/components/aigatewaymodelbalancerintelligentclassifiercustomoutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentclassifieroutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigversion.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerleastconnectionsconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestlatencyconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerlowestusageconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestusageconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerpriorityconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerpriorityconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerroundrobinconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerroundrobinconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfig.md: {}
-  docs/models/components/aigatewaymodelbalancersemanticconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfigoutput.md: {}
   docs/models/components/aigatewaymodeldatastoreref.md: {}
   docs/models/components/aigatewaymodelformat.md: {}
@@ -3707,7 +3701,6 @@ trackedFiles:
   docs/models/components/externalinvoicing.md: {}
   docs/models/components/externalinvoicingtaxconfig.md: {}
   docs/models/components/externalreferences.md: {}
-  docs/models/components/failovercriteria.md: {}
   docs/models/components/failurereason.md: {}
   docs/models/components/feature.md: {}
   docs/models/components/featurecostqueryresult.md: {}
@@ -13002,6 +12995,7 @@ trackedFiles:
   models/components/aigatewaydenywhenacl.go: {}
   models/components/aigatewayembeddingsmodelconfig.go: {}
   models/components/aigatewayexpectedconfigversion.go: {}
+  models/components/aigatewayfailovercriteria.go: {}
   models/components/aigatewaygeminiembeddingsmodelconfig.go: {}
   models/components/aigatewayhuggingfaceembeddingsmodelconfig.go: {}
   models/components/aigatewayidentityprovider.go: {}
