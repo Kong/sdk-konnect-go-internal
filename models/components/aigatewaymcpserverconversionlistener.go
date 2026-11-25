@@ -37,6 +37,31 @@ func (a *AIGatewayMCPServerConversionListenerLogging) GetAudits() *bool {
 	return a.Audits
 }
 
+// AIGatewayMCPServerConversionListenerProtocol - The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+//
+// **Requires a minimum runtime version of `2.4`**.
+type AIGatewayMCPServerConversionListenerProtocol string
+
+const (
+	AIGatewayMCPServerConversionListenerProtocolHTTP  AIGatewayMCPServerConversionListenerProtocol = "http"
+	AIGatewayMCPServerConversionListenerProtocolHTTPS AIGatewayMCPServerConversionListenerProtocol = "https"
+)
+
+func (e AIGatewayMCPServerConversionListenerProtocol) ToPointer() *AIGatewayMCPServerConversionListenerProtocol {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayMCPServerConversionListenerProtocol) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "http", "https":
+			return true
+		}
+	}
+	return false
+}
+
 type AIGatewayMCPServerConversionListenerAllowedVersions string
 
 const (
@@ -68,6 +93,17 @@ func (e *AIGatewayMCPServerConversionListenerAllowedVersions) IsExact() bool {
 type AIGatewayMCPServerConversionListenerCache struct {
 	// A cache hint Kong emits on a cacheable operation it serves.
 	ToolsList *AIGatewayMCPServerCacheHint `json:"tools_list,omitempty"`
+	// Cache hint emitted on `prompts/list` results. `cache_scope: public` is rejected when
+	// `default_prompt_acls` or a prompt's own `access.acls` filters the list per subject.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	PromptsList *AIGatewayMCPServerCacheHint `json:"prompts_list,omitempty"`
+	// Cache hint emitted on `resources/list` and `resources/templates/list` results.
+	// `cache_scope: public` is rejected when `default_resource_acls` or a resource's own
+	// `access.acls` filters either list per subject.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	ResourcesList *AIGatewayMCPServerCacheHint `json:"resources_list,omitempty"`
 	// A cache hint Kong emits on a cacheable operation it serves.
 	Discover *AIGatewayMCPServerCacheHint `json:"discover,omitempty"`
 }
@@ -88,6 +124,20 @@ func (a *AIGatewayMCPServerConversionListenerCache) GetToolsList() *AIGatewayMCP
 		return nil
 	}
 	return a.ToolsList
+}
+
+func (a *AIGatewayMCPServerConversionListenerCache) GetPromptsList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.PromptsList
+}
+
+func (a *AIGatewayMCPServerConversionListenerCache) GetResourcesList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.ResourcesList
 }
 
 func (a *AIGatewayMCPServerConversionListenerCache) GetDiscover() *AIGatewayMCPServerCacheHint {
@@ -113,8 +163,23 @@ type AIGatewayMCPServerKongListenerConfig struct {
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
 	URL *string `json:"url,omitempty"`
-	// Configuration applied when proxying to the upstream service, including authentication.
-	Upstream *AIGatewayUpstreamConfig `json:"upstream,omitempty"`
+	// List of targets the upstream load balances requests across.
+	// Replaces `url`: set exactly one of `url` or `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Targets []AIGatewayUpstreamTarget `json:"targets,omitempty"`
+	// Load balancing configuration for `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Balancer *AIGatewayUpstreamBalancerConfig `json:"balancer,omitempty"`
+	// The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Protocol *AIGatewayMCPServerConversionListenerProtocol `json:"protocol,omitempty"`
+	// The path prefix of requests sent to the `targets`. Only valid with `targets`.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Path *string `json:"path,omitempty"`
 	// Client certificates used for mutual TLS (mTLS) authentication with the upstream MCP server,
 	// referenced by name. Each entry must be the `name` of an existing AI Certificate on the same
 	// AI Gateway.
@@ -148,6 +213,11 @@ type AIGatewayMCPServerKongListenerConfig struct {
 	//
 	// **Requires a minimum runtime version of `2.1`**.
 	Cache *AIGatewayMCPServerConversionListenerCache `json:"cache,omitempty"`
+	// Configuration applied when proxying to the upstream service, including authentication.
+	// Applies to `conversion-listener`, `conversion-only`, and `upstream-server` MCP Servers.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Upstream *AIGatewayMCPServerUpstreamConfig `json:"upstream,omitempty"`
 }
 
 func (a AIGatewayMCPServerKongListenerConfig) MarshalJSON() ([]byte, error) {
@@ -196,11 +266,60 @@ func (a *AIGatewayMCPServerKongListenerConfig) GetURL() *string {
 	return a.URL
 }
 
-func (a *AIGatewayMCPServerKongListenerConfig) GetUpstream() *AIGatewayUpstreamConfig {
+func (a *AIGatewayMCPServerKongListenerConfig) GetTargets() []AIGatewayUpstreamTarget {
 	if a == nil {
 		return nil
 	}
-	return a.Upstream
+	return a.Targets
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetBalancer() *AIGatewayUpstreamBalancerConfig {
+	if a == nil {
+		return nil
+	}
+	return a.Balancer
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetBalancerConsistentHashing() *AIGatewayUpstreamBalancerConsistentHashingConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerConsistentHashingConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetBalancerLeastConnections() *AIGatewayUpstreamBalancerLeastConnectionsConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLeastConnectionsConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetBalancerLowestLatency() *AIGatewayUpstreamBalancerLowestLatencyConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerLowestLatencyConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetBalancerRoundRobin() *AIGatewayUpstreamBalancerRoundRobinConfig {
+	if v := a.GetBalancer(); v != nil {
+		return v.AIGatewayUpstreamBalancerRoundRobinConfig
+	}
+	return nil
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetProtocol() *AIGatewayMCPServerConversionListenerProtocol {
+	if a == nil {
+		return nil
+	}
+	return a.Protocol
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetPath() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Path
 }
 
 func (a *AIGatewayMCPServerKongListenerConfig) GetCertificates() []string {
@@ -229,6 +348,13 @@ func (a *AIGatewayMCPServerKongListenerConfig) GetCache() *AIGatewayMCPServerCon
 		return nil
 	}
 	return a.Cache
+}
+
+func (a *AIGatewayMCPServerKongListenerConfig) GetUpstream() *AIGatewayMCPServerUpstreamConfig {
+	if a == nil {
+		return nil
+	}
+	return a.Upstream
 }
 
 type AIGatewayMCPServerConversionListener struct {

@@ -57,6 +57,12 @@ createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProv
 createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProviderRequestDeepseek(components.AIGatewayModelProviderDeepseek{/* values here */})
 ```
 
+### AIGatewayModelProviderFireworks
+
+```go
+createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProviderRequestFireworks(components.AIGatewayModelProviderFireworks{/* values here */})
+```
+
 ### AIGatewayModelProviderGemini
 
 ```go
@@ -79,6 +85,12 @@ createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProv
 
 ```go
 createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProviderRequestLlama2(components.AIGatewayModelProviderLlama2{/* values here */})
+```
+
+### AIGatewayModelProviderMeta
+
+```go
+createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProviderRequestMeta(components.AIGatewayModelProviderMeta{/* values here */})
 ```
 
 ### AIGatewayModelProviderMistral
@@ -123,6 +135,12 @@ createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProv
 createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProviderRequestSagemaker(components.AIGatewayModelProviderSagemaker{/* values here */})
 ```
 
+### AIGatewayModelProviderTogetherai
+
+```go
+createAIGatewayModelProviderRequest := components.CreateCreateAIGatewayModelProviderRequestTogetherai(components.AIGatewayModelProviderTogetherai{/* values here */})
+```
+
 ### AIGatewayModelProviderTypesafe
 
 ```go
@@ -153,6 +171,8 @@ switch createAIGatewayModelProviderRequest.Type {
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderDatabricks is populated
 	case components.CreateAIGatewayModelProviderRequestTypeDeepseek:
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderDeepseek is populated
+	case components.CreateAIGatewayModelProviderRequestTypeFireworks:
+		// createAIGatewayModelProviderRequest.AIGatewayModelProviderFireworks is populated
 	case components.CreateAIGatewayModelProviderRequestTypeGemini:
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderGemini is populated
 	case components.CreateAIGatewayModelProviderRequestTypeHuggingface:
@@ -161,6 +181,8 @@ switch createAIGatewayModelProviderRequest.Type {
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderKimi is populated
 	case components.CreateAIGatewayModelProviderRequestTypeLlama2:
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderLlama2 is populated
+	case components.CreateAIGatewayModelProviderRequestTypeMeta:
+		// createAIGatewayModelProviderRequest.AIGatewayModelProviderMeta is populated
 	case components.CreateAIGatewayModelProviderRequestTypeMistral:
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderMistral is populated
 	case components.CreateAIGatewayModelProviderRequestTypeOllama:
@@ -175,6 +197,8 @@ switch createAIGatewayModelProviderRequest.Type {
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderXai is populated
 	case components.CreateAIGatewayModelProviderRequestTypeSagemaker:
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderSagemaker is populated
+	case components.CreateAIGatewayModelProviderRequestTypeTogetherai:
+		// createAIGatewayModelProviderRequest.AIGatewayModelProviderTogetherai is populated
 	case components.CreateAIGatewayModelProviderRequestTypeTypesafe:
 		// createAIGatewayModelProviderRequest.AIGatewayModelProviderTypesafe is populated
 }

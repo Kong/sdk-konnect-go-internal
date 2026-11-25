@@ -3,34 +3,33 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
 // Purpose - The model feature that uses the datastore. `semantic-balancer` supplies the connection of the
 // model vector store.
+//
+// **`session-affinity` requires a minimum runtime version of `2.4`**.
 type Purpose string
 
 const (
 	PurposeSemanticBalancer Purpose = "semantic-balancer"
+	PurposeSessionAffinity  Purpose = "session-affinity"
 )
 
 func (e Purpose) ToPointer() *Purpose {
 	return &e
 }
-func (e *Purpose) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *Purpose) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "semantic-balancer", "session-affinity":
+			return true
+		}
 	}
-	switch v {
-	case "semantic-balancer":
-		*e = Purpose(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Purpose: %v", v)
-	}
+	return false
 }
 
 // AIGatewayModelDatastoreRef - A reference to an existing datastore, and the model feature that uses it.
@@ -40,6 +39,7 @@ type AIGatewayModelDatastoreRef struct {
 	// The model feature that uses the datastore. `semantic-balancer` supplies the connection of the
 	// model vector store.
 	//
+	// **`session-affinity` requires a minimum runtime version of `2.4`**.
 	Purpose *Purpose `default:"semantic-balancer" json:"purpose"`
 }
 

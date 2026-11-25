@@ -79,6 +79,29 @@ func (e *AICostExportDataset) IsExact() bool {
 	return false
 }
 
+// AICostExportSchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
+type AICostExportSchemaVersion int64
+
+const (
+	AICostExportSchemaVersionOne AICostExportSchemaVersion = 1
+	AICostExportSchemaVersionTwo AICostExportSchemaVersion = 2
+)
+
+func (e AICostExportSchemaVersion) ToPointer() *AICostExportSchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportSchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
+	}
+	return false
+}
+
 // AICostExport2Schedule - The schedule that created the export.
 //
 // `null` for a one-time export, and once the schedule is deleted.
@@ -487,6 +510,29 @@ func (e *Dataset) IsExact() bool {
 	return false
 }
 
+// SchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
+type SchemaVersion int64
+
+const (
+	SchemaVersionOne SchemaVersion = 1
+	SchemaVersionTwo SchemaVersion = 2
+)
+
+func (e SchemaVersion) ToPointer() *SchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
+	}
+	return false
+}
+
 // Schedule - The schedule that created the export.
 //
 // `null` for a one-time export, and once the schedule is deleted.
@@ -601,7 +647,7 @@ type AICostExport1 struct {
 	// The data the export holds.
 	Dataset Dataset `json:"dataset"`
 	// The schema version of the data files within the dataset, which fixes their columns and values.
-	SchemaVersion AICostExportSchemaVersion `json:"schema_version"`
+	SchemaVersion SchemaVersion `json:"schema_version"`
 	// The FOCUS options of the export, with defaults applied.
 	//
 	// `null` unless `dataset` is `focus`.
@@ -693,9 +739,9 @@ func (a *AICostExport1) GetDataset() Dataset {
 	return a.Dataset
 }
 
-func (a *AICostExport1) GetSchemaVersion() AICostExportSchemaVersion {
+func (a *AICostExport1) GetSchemaVersion() SchemaVersion {
 	if a == nil {
-		return AICostExportSchemaVersion(0)
+		return SchemaVersion(0)
 	}
 	return a.SchemaVersion
 }

@@ -3,7 +3,6 @@
 package components
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
@@ -82,30 +81,29 @@ func (e *AICostExportInput2Dataset) IsExact() bool {
 	return false
 }
 
-// AICostExportInputSchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
+// AICostExportInput2SchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
 //
 // Defaults to `1`, also once newer schema versions exist.
-type AICostExportInputSchemaVersion int64
+type AICostExportInput2SchemaVersion int64
 
 const (
-	AICostExportInputSchemaVersionOne AICostExportInputSchemaVersion = 1
+	AICostExportInput2SchemaVersionOne AICostExportInput2SchemaVersion = 1
+	AICostExportInput2SchemaVersionTwo AICostExportInput2SchemaVersion = 2
 )
 
-func (e AICostExportInputSchemaVersion) ToPointer() *AICostExportInputSchemaVersion {
+func (e AICostExportInput2SchemaVersion) ToPointer() *AICostExportInput2SchemaVersion {
 	return &e
 }
-func (e *AICostExportInputSchemaVersion) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportInput2SchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
 	}
-	switch v {
-	case 1:
-		*e = AICostExportInputSchemaVersion(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for AICostExportInputSchemaVersion: %v", v)
-	}
+	return false
 }
 
 type AICostExportInput2 struct {
@@ -120,7 +118,7 @@ type AICostExportInput2 struct {
 	// The schema version of the data files within the dataset, which fixes their columns and values.
 	//
 	// Defaults to `1`, also once newer schema versions exist.
-	SchemaVersion *AICostExportInputSchemaVersion `default:"1" json:"schema_version"`
+	SchemaVersion *AICostExportInput2SchemaVersion `default:"1" json:"schema_version"`
 	// The FOCUS options of a `focus` export.
 	//
 	// Required when `dataset` is `focus`, and isn't accepted for any other dataset.
@@ -141,7 +139,7 @@ type AICostExportInput2 struct {
 	//
 	// An IANA time zone name as the time zone database spells it, such as `Europe/Budapest`. Offsets such as `+02:00` aren't accepted. Defaults to `UTC`.
 	TimeZone *string `default:"UTC" json:"time_zone"`
-	// Filters that select the events to export, with the same fields, operators, and shape as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
+	// Filters that select the events to export, with the same fields, operators, shape, and nesting limit as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
 	//
 	// Defaults to `{}`.
 	Filters any               `json:"filters,omitempty"`
@@ -180,7 +178,7 @@ func (a *AICostExportInput2) GetDataset() AICostExportInput2Dataset {
 	return a.Dataset
 }
 
-func (a *AICostExportInput2) GetSchemaVersion() *AICostExportInputSchemaVersion {
+func (a *AICostExportInput2) GetSchemaVersion() *AICostExportInput2SchemaVersion {
 	if a == nil {
 		return nil
 	}
@@ -304,30 +302,29 @@ func (e *AICostExportInputDataset) IsExact() bool {
 	return false
 }
 
-// SchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
+// AICostExportInputSchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
 //
 // Defaults to `1`, also once newer schema versions exist.
-type SchemaVersion int64
+type AICostExportInputSchemaVersion int64
 
 const (
-	SchemaVersionOne SchemaVersion = 1
+	AICostExportInputSchemaVersionOne AICostExportInputSchemaVersion = 1
+	AICostExportInputSchemaVersionTwo AICostExportInputSchemaVersion = 2
 )
 
-func (e SchemaVersion) ToPointer() *SchemaVersion {
+func (e AICostExportInputSchemaVersion) ToPointer() *AICostExportInputSchemaVersion {
 	return &e
 }
-func (e *SchemaVersion) UnmarshalJSON(data []byte) error {
-	var v int64
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportInputSchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
 	}
-	switch v {
-	case 1:
-		*e = SchemaVersion(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SchemaVersion: %v", v)
-	}
+	return false
 }
 
 type AICostExportInput1 struct {
@@ -342,7 +339,7 @@ type AICostExportInput1 struct {
 	// The schema version of the data files within the dataset, which fixes their columns and values.
 	//
 	// Defaults to `1`, also once newer schema versions exist.
-	SchemaVersion *SchemaVersion `default:"1" json:"schema_version"`
+	SchemaVersion *AICostExportInputSchemaVersion `default:"1" json:"schema_version"`
 	// The FOCUS options of a `focus` export.
 	//
 	// Required when `dataset` is `focus`, and isn't accepted for any other dataset.
@@ -363,7 +360,7 @@ type AICostExportInput1 struct {
 	//
 	// An IANA time zone name as the time zone database spells it, such as `Europe/Budapest`. Offsets such as `+02:00` aren't accepted. Defaults to `UTC`.
 	TimeZone *string `default:"UTC" json:"time_zone"`
-	// Filters that select the events to export, with the same fields, operators, and shape as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
+	// Filters that select the events to export, with the same fields, operators, shape, and nesting limit as the `filters` of `POST /v1/ai-cost-management/events/query`. Every filter must match.
 	//
 	// Defaults to `{}`.
 	Filters any               `json:"filters,omitempty"`
@@ -402,7 +399,7 @@ func (a *AICostExportInput1) GetDataset() AICostExportInputDataset {
 	return a.Dataset
 }
 
-func (a *AICostExportInput1) GetSchemaVersion() *SchemaVersion {
+func (a *AICostExportInput1) GetSchemaVersion() *AICostExportInputSchemaVersion {
 	if a == nil {
 		return nil
 	}
