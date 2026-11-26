@@ -37,22 +37,22 @@ func (e *AIGatewayAuthStrategyOpenIDConnectResponseAuthMethods) IsExact() bool {
 	return false
 }
 
-// AuthorizationCookieSameSite - Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks.
-type AuthorizationCookieSameSite string
+// AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite - Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks.
+type AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite string
 
 const (
-	AuthorizationCookieSameSiteDefault AuthorizationCookieSameSite = "Default"
-	AuthorizationCookieSameSiteLax     AuthorizationCookieSameSite = "Lax"
-	AuthorizationCookieSameSiteNone    AuthorizationCookieSameSite = "None"
-	AuthorizationCookieSameSiteStrict  AuthorizationCookieSameSite = "Strict"
+	AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteDefault AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite = "Default"
+	AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteLax     AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite = "Lax"
+	AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteNone    AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite = "None"
+	AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteStrict  AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite = "Strict"
 )
 
-func (e AuthorizationCookieSameSite) ToPointer() *AuthorizationCookieSameSite {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AuthorizationCookieSameSite) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "Default", "Lax", "None", "Strict":
@@ -62,21 +62,21 @@ func (e *AuthorizationCookieSameSite) IsExact() bool {
 	return false
 }
 
-type BearerTokenParamType string
+type AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType string
 
 const (
-	BearerTokenParamTypeBody   BearerTokenParamType = "body"
-	BearerTokenParamTypeCookie BearerTokenParamType = "cookie"
-	BearerTokenParamTypeHeader BearerTokenParamType = "header"
-	BearerTokenParamTypeQuery  BearerTokenParamType = "query"
+	AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeBody   AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType = "body"
+	AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeCookie AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType = "cookie"
+	AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeHeader AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType = "header"
+	AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeQuery  AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType = "query"
 )
 
-func (e BearerTokenParamType) ToPointer() *BearerTokenParamType {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *BearerTokenParamType) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "body", "cookie", "header", "query":
@@ -146,20 +146,20 @@ func (e *AIGatewayAuthStrategyOpenIDConnectResponseClientAuth) IsExact() bool {
 	return false
 }
 
-type ClientCredentialsParamType string
+type AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType string
 
 const (
-	ClientCredentialsParamTypeBody   ClientCredentialsParamType = "body"
-	ClientCredentialsParamTypeHeader ClientCredentialsParamType = "header"
-	ClientCredentialsParamTypeQuery  ClientCredentialsParamType = "query"
+	AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeBody   AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType = "body"
+	AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeHeader AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType = "header"
+	AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeQuery  AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType = "query"
 )
 
-func (e ClientCredentialsParamType) ToPointer() *ClientCredentialsParamType {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *ClientCredentialsParamType) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "body", "header", "query":
@@ -169,7 +169,7 @@ func (e *ClientCredentialsParamType) IsExact() bool {
 	return false
 }
 
-type ClientJwk struct {
+type AIGatewayAuthStrategyOpenIDConnectResponseClientJwk struct {
 	Alg           *string  `json:"alg,omitempty"`
 	Crv           *string  `json:"crv,omitempty"`
 	D             *string  `json:"d,omitempty"`
@@ -197,207 +197,207 @@ type ClientJwk struct {
 	Y             *string  `json:"y,omitempty"`
 }
 
-func (c ClientJwk) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (a AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (c *ClientJwk) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *ClientJwk) GetAlg() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetAlg() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Alg
+	return a.Alg
 }
 
-func (c *ClientJwk) GetCrv() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetCrv() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Crv
+	return a.Crv
 }
 
-func (c *ClientJwk) GetD() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetD() *string {
+	if a == nil {
 		return nil
 	}
-	return c.D
+	return a.D
 }
 
-func (c *ClientJwk) GetDp() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetDp() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Dp
+	return a.Dp
 }
 
-func (c *ClientJwk) GetDq() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetDq() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Dq
+	return a.Dq
 }
 
-func (c *ClientJwk) GetE() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetE() *string {
+	if a == nil {
 		return nil
 	}
-	return c.E
+	return a.E
 }
 
-func (c *ClientJwk) GetIssuer() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetIssuer() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Issuer
+	return a.Issuer
 }
 
-func (c *ClientJwk) GetK() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetK() *string {
+	if a == nil {
 		return nil
 	}
-	return c.K
+	return a.K
 }
 
-func (c *ClientJwk) GetKeyOps() []string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetKeyOps() []string {
+	if a == nil {
 		return nil
 	}
-	return c.KeyOps
+	return a.KeyOps
 }
 
-func (c *ClientJwk) GetKid() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetKid() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Kid
+	return a.Kid
 }
 
-func (c *ClientJwk) GetKty() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetKty() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Kty
+	return a.Kty
 }
 
-func (c *ClientJwk) GetN() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetN() *string {
+	if a == nil {
 		return nil
 	}
-	return c.N
+	return a.N
 }
 
-func (c *ClientJwk) GetOth() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetOth() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Oth
+	return a.Oth
 }
 
-func (c *ClientJwk) GetP() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetP() *string {
+	if a == nil {
 		return nil
 	}
-	return c.P
+	return a.P
 }
 
-func (c *ClientJwk) GetQ() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetQ() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Q
+	return a.Q
 }
 
-func (c *ClientJwk) GetQi() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetQi() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Qi
+	return a.Qi
 }
 
-func (c *ClientJwk) GetR() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetR() *string {
+	if a == nil {
 		return nil
 	}
-	return c.R
+	return a.R
 }
 
-func (c *ClientJwk) GetT() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetT() *string {
+	if a == nil {
 		return nil
 	}
-	return c.T
+	return a.T
 }
 
-func (c *ClientJwk) GetUse() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetUse() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Use
+	return a.Use
 }
 
-func (c *ClientJwk) GetX() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetX() *string {
+	if a == nil {
 		return nil
 	}
-	return c.X
+	return a.X
 }
 
-func (c *ClientJwk) GetX5c() []string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetX5c() []string {
+	if a == nil {
 		return nil
 	}
-	return c.X5c
+	return a.X5c
 }
 
-func (c *ClientJwk) GetX5t() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetX5t() *string {
+	if a == nil {
 		return nil
 	}
-	return c.X5t
+	return a.X5t
 }
 
-func (c *ClientJwk) GetX5tNumberS256() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetX5tNumberS256() *string {
+	if a == nil {
 		return nil
 	}
-	return c.X5tNumberS256
+	return a.X5tNumberS256
 }
 
-func (c *ClientJwk) GetX5u() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetX5u() *string {
+	if a == nil {
 		return nil
 	}
-	return c.X5u
+	return a.X5u
 }
 
-func (c *ClientJwk) GetY() *string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClientJwk) GetY() *string {
+	if a == nil {
 		return nil
 	}
-	return c.Y
+	return a.Y
 }
 
-// AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider - Auth providers to be used to authenticate to a Cloud Provider's Redis instance.
-type AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider string
+// AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider - Auth providers to be used to authenticate to a Cloud Provider's Redis instance.
+type AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider string
 
 const (
-	AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderAws   AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider = "aws"
-	AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderAzure AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider = "azure"
-	AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderGcp   AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider = "gcp"
+	AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderAws   AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider = "aws"
+	AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderAzure AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider = "azure"
+	AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderGcp   AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider = "gcp"
 )
 
-func (e AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "aws", "azure", "gcp":
@@ -410,7 +410,7 @@ func (e *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider) IsExact()
 // AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication - Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
 type AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication struct {
 	// Auth providers to be used to authenticate to a Cloud Provider's Redis instance.
-	AuthProvider *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider `json:"auth_provider,omitempty"`
+	AuthProvider *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider `json:"auth_provider,omitempty"`
 	// AWS Access Key ID to be used for authentication when `auth_provider` is set to `aws`.
 	AwsAccessKeyID *string `json:"aws_access_key_id,omitempty"`
 	// The ARN of the IAM role to assume for generating ElastiCache IAM authentication tokens.
@@ -446,7 +446,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication) Unmarsha
 	return nil
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication) GetAuthProvider() *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication) GetAuthProvider() *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider {
 	if a == nil {
 		return nil
 	}
@@ -524,1062 +524,6 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication) GetAzure
 }
 
 func (a *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication) GetGcpServiceAccountJSON() *string {
-	if a == nil {
-		return nil
-	}
-	return a.GcpServiceAccountJSON
-}
-
-type AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes struct {
-	// A string representing a host name, such as example.com.
-	IP *string `default:"127.0.0.1" json:"ip"`
-	// An integer representing a port number between 0 and 65535, inclusive.
-	Port *int64 `default:"6379" json:"port"`
-}
-
-func (a AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) GetIP() *string {
-	if a == nil {
-		return nil
-	}
-	return a.IP
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) GetPort() *int64 {
-	if a == nil {
-		return nil
-	}
-	return a.Port
-}
-
-type AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes struct {
-	// A string representing a host name, such as example.com.
-	Host *string `default:"127.0.0.1" json:"host"`
-	// An integer representing a port number between 0 and 65535, inclusive.
-	Port *int64 `default:"6379" json:"port"`
-}
-
-func (a AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) GetHost() *string {
-	if a == nil {
-		return nil
-	}
-	return a.Host
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) GetPort() *int64 {
-	if a == nil {
-		return nil
-	}
-	return a.Port
-}
-
-// AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole - Sentinel role to use for Redis connections when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
-type AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole string
-
-const (
-	AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleAny    AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole = "any"
-	AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleMaster AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole = "master"
-	AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleSlave  AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole = "slave"
-)
-
-func (e AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "any", "master", "slave":
-			return true
-		}
-	}
-	return false
-}
-
-type ClusterCacheRedis struct {
-	// Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
-	CloudAuthentication *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication `json:"cloud_authentication,omitempty"`
-	// Maximum retry attempts for redirection.
-	ClusterMaxRedirections *int64 `default:"5" json:"cluster_max_redirections"`
-	// Cluster addresses to use for Redis connections when the `redis` strategy is defined. Defining this field implies using a Redis Cluster. The minimum length of the array is 1 element.
-	ClusterNodes []AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes `json:"cluster_nodes,omitempty"`
-	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
-	ConnectTimeout *int64 `default:"2000" json:"connect_timeout"`
-	// If the connection to Redis is proxied (e.g. Envoy), set it `true`. Set the `host` and `port` to point to the proxy address.
-	ConnectionIsProxied *bool `default:"false" json:"connection_is_proxied"`
-	// Database to use for the Redis connection when using the `redis` strategy
-	Database *int64 `default:"0" json:"database"`
-	// A string representing a host name, such as example.com.
-	Host *string `default:"127.0.0.1" json:"host"`
-	// Limits the total number of opened connections for a pool. If the connection pool is full, connection queues above the limit go into the backlog queue. If the backlog queue is full, subsequent connect operations fail and return `nil`. Queued operations (subject to set timeouts) resume once the number of connections in the pool is less than `keepalive_pool_size`. If latency is high or throughput is low, try increasing this value. Empirically, this value is larger than `keepalive_pool_size`.
-	KeepaliveBacklog *int64 `json:"keepalive_backlog,omitempty"`
-	// The size limit for every cosocket connection pool associated with every remote server, per worker process. If neither `keepalive_pool_size` nor `keepalive_backlog` is specified, no pool is created. If `keepalive_pool_size` isn't specified but `keepalive_backlog` is specified, then the pool uses the default value. Try to increase (e.g. 512) this value if latency is high or throughput is low.
-	KeepalivePoolSize *int64 `default:"256" json:"keepalive_pool_size"`
-	// Password to use for Redis connections. If undefined, no AUTH commands are sent to Redis.
-	Password *string `json:"password,omitempty"`
-	// An integer representing a port number between 0 and 65535, inclusive.
-	Port *int64 `default:"6379" json:"port"`
-	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
-	ReadTimeout *int64 `default:"2000" json:"read_timeout"`
-	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
-	SendTimeout *int64 `default:"2000" json:"send_timeout"`
-	// Sentinel master to use for Redis connections. Defining this value implies using Redis Sentinel.
-	SentinelMaster *string `json:"sentinel_master,omitempty"`
-	// Sentinel node addresses to use for Redis connections when the `redis` strategy is defined. Defining this field implies using a Redis Sentinel. The minimum length of the array is 1 element.
-	SentinelNodes []AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes `json:"sentinel_nodes,omitempty"`
-	// Sentinel password to authenticate with a Redis Sentinel instance. If undefined, no AUTH commands are sent to Redis Sentinels.
-	SentinelPassword *string `json:"sentinel_password,omitempty"`
-	// Sentinel role to use for Redis connections when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
-	SentinelRole *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole `json:"sentinel_role,omitempty"`
-	// Sentinel username to authenticate with a Redis Sentinel instance. If undefined, ACL authentication won't be performed. This requires Redis v6.2.0+.
-	SentinelUsername *string `json:"sentinel_username,omitempty"`
-	// A string representing an SNI (server name indication) value for TLS.
-	ServerName *string `json:"server_name,omitempty"`
-	// If set to true, uses SSL to connect to Redis.
-	Ssl *bool `default:"false" json:"ssl"`
-	// If set to true, verifies the validity of the server SSL certificate. If setting this parameter, also configure `lua_ssl_trusted_certificate` in `kong.conf` to specify the CA (or server) certificate used by your Redis server. You may also need to configure `lua_ssl_verify_depth` accordingly.
-	SslVerify *bool `default:"true" json:"ssl_verify"`
-	// Username to use for Redis connections. If undefined, ACL authentication won't be performed. This requires Redis v6.0.0+. To be compatible with Redis v5.x.y, you can set it to `default`.
-	Username *string `json:"username,omitempty"`
-}
-
-func (c ClusterCacheRedis) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ClusterCacheRedis) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (c *ClusterCacheRedis) GetCloudAuthentication() *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication {
-	if c == nil {
-		return nil
-	}
-	return c.CloudAuthentication
-}
-
-func (c *ClusterCacheRedis) GetClusterMaxRedirections() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.ClusterMaxRedirections
-}
-
-func (c *ClusterCacheRedis) GetClusterNodes() []AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes {
-	if c == nil {
-		return nil
-	}
-	return c.ClusterNodes
-}
-
-func (c *ClusterCacheRedis) GetConnectTimeout() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.ConnectTimeout
-}
-
-func (c *ClusterCacheRedis) GetConnectionIsProxied() *bool {
-	if c == nil {
-		return nil
-	}
-	return c.ConnectionIsProxied
-}
-
-func (c *ClusterCacheRedis) GetDatabase() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.Database
-}
-
-func (c *ClusterCacheRedis) GetHost() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Host
-}
-
-func (c *ClusterCacheRedis) GetKeepaliveBacklog() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.KeepaliveBacklog
-}
-
-func (c *ClusterCacheRedis) GetKeepalivePoolSize() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.KeepalivePoolSize
-}
-
-func (c *ClusterCacheRedis) GetPassword() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Password
-}
-
-func (c *ClusterCacheRedis) GetPort() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.Port
-}
-
-func (c *ClusterCacheRedis) GetReadTimeout() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.ReadTimeout
-}
-
-func (c *ClusterCacheRedis) GetSendTimeout() *int64 {
-	if c == nil {
-		return nil
-	}
-	return c.SendTimeout
-}
-
-func (c *ClusterCacheRedis) GetSentinelMaster() *string {
-	if c == nil {
-		return nil
-	}
-	return c.SentinelMaster
-}
-
-func (c *ClusterCacheRedis) GetSentinelNodes() []AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes {
-	if c == nil {
-		return nil
-	}
-	return c.SentinelNodes
-}
-
-func (c *ClusterCacheRedis) GetSentinelPassword() *string {
-	if c == nil {
-		return nil
-	}
-	return c.SentinelPassword
-}
-
-func (c *ClusterCacheRedis) GetSentinelRole() *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole {
-	if c == nil {
-		return nil
-	}
-	return c.SentinelRole
-}
-
-func (c *ClusterCacheRedis) GetSentinelUsername() *string {
-	if c == nil {
-		return nil
-	}
-	return c.SentinelUsername
-}
-
-func (c *ClusterCacheRedis) GetServerName() *string {
-	if c == nil {
-		return nil
-	}
-	return c.ServerName
-}
-
-func (c *ClusterCacheRedis) GetSsl() *bool {
-	if c == nil {
-		return nil
-	}
-	return c.Ssl
-}
-
-func (c *ClusterCacheRedis) GetSslVerify() *bool {
-	if c == nil {
-		return nil
-	}
-	return c.SslVerify
-}
-
-func (c *ClusterCacheRedis) GetUsername() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Username
-}
-
-// ClusterCacheStrategy - The strategy to use for the cluster cache. If set, the plugin will share cache with nodes configured with the same strategy backend. Currentlly only introspection cache is shared.
-type ClusterCacheStrategy string
-
-const (
-	ClusterCacheStrategyOff   ClusterCacheStrategy = "off"
-	ClusterCacheStrategyRedis ClusterCacheStrategy = "redis"
-)
-
-func (e ClusterCacheStrategy) ToPointer() *ClusterCacheStrategy {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *ClusterCacheStrategy) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "off", "redis":
-			return true
-		}
-	}
-	return false
-}
-
-type AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy string
-
-const (
-	AIGatewayAuthStrategyOpenIDConnectResponseConsumerByCustomID AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy = "custom_id"
-	AIGatewayAuthStrategyOpenIDConnectResponseConsumerByID       AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy = "id"
-	AIGatewayAuthStrategyOpenIDConnectResponseConsumerByUsername AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy = "username"
-)
-
-func (e AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "custom_id", "id", "username":
-			return true
-		}
-	}
-	return false
-}
-
-type DisableSession string
-
-const (
-	DisableSessionAuthorizationCode DisableSession = "authorization_code"
-	DisableSessionBearer            DisableSession = "bearer"
-	DisableSessionClientCredentials DisableSession = "client_credentials"
-	DisableSessionIntrospection     DisableSession = "introspection"
-	DisableSessionKongOauth2        DisableSession = "kong_oauth2"
-	DisableSessionPassword          DisableSession = "password"
-	DisableSessionRefreshToken      DisableSession = "refresh_token"
-	DisableSessionSession           DisableSession = "session"
-	DisableSessionUserinfo          DisableSession = "userinfo"
-)
-
-func (e DisableSession) ToPointer() *DisableSession {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *DisableSession) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "authorization_code", "bearer", "client_credentials", "introspection", "kong_oauth2", "password", "refresh_token", "session", "userinfo":
-			return true
-		}
-	}
-	return false
-}
-
-type DownstreamHeaders struct {
-	// The name of the header.
-	Header string `json:"header"`
-	// The path of the header value.
-	Path []string `json:"path"`
-}
-
-func (d DownstreamHeaders) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
-}
-
-func (d *DownstreamHeaders) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"header", "path"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (d *DownstreamHeaders) GetHeader() string {
-	if d == nil {
-		return ""
-	}
-	return d.Header
-}
-
-func (d *DownstreamHeaders) GetPath() []string {
-	if d == nil {
-		return []string{}
-	}
-	return d.Path
-}
-
-type IDTokenParamType string
-
-const (
-	IDTokenParamTypeBody   IDTokenParamType = "body"
-	IDTokenParamTypeHeader IDTokenParamType = "header"
-	IDTokenParamTypeQuery  IDTokenParamType = "query"
-)
-
-func (e IDTokenParamType) ToPointer() *IDTokenParamType {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *IDTokenParamType) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "body", "header", "query":
-			return true
-		}
-	}
-	return false
-}
-
-type IgnoreSignature string
-
-const (
-	IgnoreSignatureAuthorizationCode IgnoreSignature = "authorization_code"
-	IgnoreSignatureClientCredentials IgnoreSignature = "client_credentials"
-	IgnoreSignatureIntrospection     IgnoreSignature = "introspection"
-	IgnoreSignaturePassword          IgnoreSignature = "password"
-	IgnoreSignatureRefreshToken      IgnoreSignature = "refresh_token"
-	IgnoreSignatureSession           IgnoreSignature = "session"
-	IgnoreSignatureUserinfo          IgnoreSignature = "userinfo"
-)
-
-func (e IgnoreSignature) ToPointer() *IgnoreSignature {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *IgnoreSignature) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "authorization_code", "client_credentials", "introspection", "password", "refresh_token", "session", "userinfo":
-			return true
-		}
-	}
-	return false
-}
-
-// IntrospectionAccept - The value of `Accept` header for introspection requests: - `application/json`: introspection response as JSON - `application/token-introspection+jwt`: introspection response as JWT (from the current IETF draft document) - `application/jwt`: introspection response as JWT (from the obsolete IETF draft document).
-type IntrospectionAccept string
-
-const (
-	IntrospectionAcceptApplicationJSON                      IntrospectionAccept = "application/json"
-	IntrospectionAcceptApplicationJwt                       IntrospectionAccept = "application/jwt"
-	IntrospectionAcceptApplicationTokenIntrospectionPlusJwt IntrospectionAccept = "application/token-introspection+jwt"
-)
-
-func (e IntrospectionAccept) ToPointer() *IntrospectionAccept {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *IntrospectionAccept) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "application/json", "application/jwt", "application/token-introspection+jwt":
-			return true
-		}
-	}
-	return false
-}
-
-// IntrospectionEndpointAuthMethod - The introspection endpoint authentication method: : `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-type IntrospectionEndpointAuthMethod string
-
-const (
-	IntrospectionEndpointAuthMethodClientSecretBasic       IntrospectionEndpointAuthMethod = "client_secret_basic"
-	IntrospectionEndpointAuthMethodClientSecretJwt         IntrospectionEndpointAuthMethod = "client_secret_jwt"
-	IntrospectionEndpointAuthMethodClientSecretPost        IntrospectionEndpointAuthMethod = "client_secret_post"
-	IntrospectionEndpointAuthMethodNone                    IntrospectionEndpointAuthMethod = "none"
-	IntrospectionEndpointAuthMethodPrivateKeyJwt           IntrospectionEndpointAuthMethod = "private_key_jwt"
-	IntrospectionEndpointAuthMethodSelfSignedTLSClientAuth IntrospectionEndpointAuthMethod = "self_signed_tls_client_auth"
-	IntrospectionEndpointAuthMethodTLSClientAuth           IntrospectionEndpointAuthMethod = "tls_client_auth"
-)
-
-func (e IntrospectionEndpointAuthMethod) ToPointer() *IntrospectionEndpointAuthMethod {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *IntrospectionEndpointAuthMethod) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "client_secret_basic", "client_secret_jwt", "client_secret_post", "none", "private_key_jwt", "self_signed_tls_client_auth", "tls_client_auth":
-			return true
-		}
-	}
-	return false
-}
-
-// LoginAction - What to do after successful login: - `upstream`: proxy request to upstream service - `response`: terminate request with a response - `redirect`: redirect to a different location.
-type LoginAction string
-
-const (
-	LoginActionRedirect LoginAction = "redirect"
-	LoginActionResponse LoginAction = "response"
-	LoginActionUpstream LoginAction = "upstream"
-)
-
-func (e LoginAction) ToPointer() *LoginAction {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *LoginAction) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "redirect", "response", "upstream":
-			return true
-		}
-	}
-	return false
-}
-
-type LoginMethods string
-
-const (
-	LoginMethodsAuthorizationCode LoginMethods = "authorization_code"
-	LoginMethodsBearer            LoginMethods = "bearer"
-	LoginMethodsClientCredentials LoginMethods = "client_credentials"
-	LoginMethodsIntrospection     LoginMethods = "introspection"
-	LoginMethodsKongOauth2        LoginMethods = "kong_oauth2"
-	LoginMethodsPassword          LoginMethods = "password"
-	LoginMethodsRefreshToken      LoginMethods = "refresh_token"
-	LoginMethodsSession           LoginMethods = "session"
-	LoginMethodsUserinfo          LoginMethods = "userinfo"
-)
-
-func (e LoginMethods) ToPointer() *LoginMethods {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *LoginMethods) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "authorization_code", "bearer", "client_credentials", "introspection", "kong_oauth2", "password", "refresh_token", "session", "userinfo":
-			return true
-		}
-	}
-	return false
-}
-
-// LoginRedirectMode - Where to place `login_tokens` when using `redirect` `login_action`: - `query`: place tokens in query string - `fragment`: place tokens in url fragment (not readable by servers).
-type LoginRedirectMode string
-
-const (
-	LoginRedirectModeFragment LoginRedirectMode = "fragment"
-	LoginRedirectModeQuery    LoginRedirectMode = "query"
-)
-
-func (e LoginRedirectMode) ToPointer() *LoginRedirectMode {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *LoginRedirectMode) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "fragment", "query":
-			return true
-		}
-	}
-	return false
-}
-
-type LoginTokens string
-
-const (
-	LoginTokensAccessToken   LoginTokens = "access_token"
-	LoginTokensIDToken       LoginTokens = "id_token"
-	LoginTokensIntrospection LoginTokens = "introspection"
-	LoginTokensRefreshToken  LoginTokens = "refresh_token"
-	LoginTokensTokens        LoginTokens = "tokens"
-)
-
-func (e LoginTokens) ToPointer() *LoginTokens {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *LoginTokens) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "access_token", "id_token", "introspection", "refresh_token", "tokens":
-			return true
-		}
-	}
-	return false
-}
-
-type LogoutMethods string
-
-const (
-	LogoutMethodsDelete LogoutMethods = "DELETE"
-	LogoutMethodsGet    LogoutMethods = "GET"
-	LogoutMethodsPost   LogoutMethods = "POST"
-)
-
-func (e LogoutMethods) ToPointer() *LogoutMethods {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *LogoutMethods) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "DELETE", "GET", "POST":
-			return true
-		}
-	}
-	return false
-}
-
-type PasswordParamType string
-
-const (
-	PasswordParamTypeBody   PasswordParamType = "body"
-	PasswordParamTypeHeader PasswordParamType = "header"
-	PasswordParamTypeQuery  PasswordParamType = "query"
-)
-
-func (e PasswordParamType) ToPointer() *PasswordParamType {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *PasswordParamType) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "body", "header", "query":
-			return true
-		}
-	}
-	return false
-}
-
-// Jit - Token claims to share with the Kong Identity principal lookup. Kong Identity, not this plugin, decides whether the claims are used: a trusted IdP with JIT provisioning enabled in Konnect maps them onto a principal provisioned just in time. By default the lookup only carries the principal claim (e.g. 'sub') and no additional claims are shared.
-//
-// **Requires a minimum runtime version of `2.3`**.
-type Jit struct {
-	// Send the full set of verified token claims with the Kong Identity principal lookup.
-	AllClaims *bool `default:"false" json:"all_claims"`
-	// Send only the named token claims with the Kong Identity principal lookup. The claims are picked from the same source the principal claim is read from. Set all_claims to send every verified claim instead.
-	Claims []string `json:"claims,omitempty"`
-}
-
-func (j Jit) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(j, "", false)
-}
-
-func (j *Jit) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (j *Jit) GetAllClaims() *bool {
-	if j == nil {
-		return nil
-	}
-	return j.AllClaims
-}
-
-func (j *Jit) GetClaims() []string {
-	if j == nil {
-		return nil
-	}
-	return j.Claims
-}
-
-// AIGatewayAuthStrategyOpenIDConnectResponsePrincipals - Configuration for Kong Identity principal hydration after token verification.
-type AIGatewayAuthStrategyOpenIDConnectResponsePrincipals struct {
-	// The Kong Identity directory instance to look up against.
-	Directory *string `default:"default" json:"directory"`
-	// When true, query Kong Identity to map a Principal after token verification.
-	Enabled *bool `default:"false" json:"enabled"`
-	// When true (default), return 401 if fail to match a Principal in Kong Identity after token verification. When false, the request continues without authenticated_principal set.
-	ErrorOnMiss *bool `default:"true" json:"error_on_miss"`
-	// Token claims to share with the Kong Identity principal lookup. Kong Identity, not this plugin, decides whether the claims are used: a trusted IdP with JIT provisioning enabled in Konnect maps them onto a principal provisioned just in time. By default the lookup only carries the principal claim (e.g. 'sub') and no additional claims are shared.
-	//
-	// **Requires a minimum runtime version of `2.3`**.
-	Jit *Jit `json:"jit,omitempty"`
-	// If a Consumer is attached to the matched Principal in Kong Identity, load it and set it in the request context, overriding consumer_by.
-	MatchConsumer *bool `default:"true" json:"match_consumer"`
-	// If Consumer Groups are attached to the matched Principal in Kong Identity, load them, overriding consumer_groups_claim.
-	MatchConsumerGroups *bool `default:"true" json:"match_consumer_groups"`
-	// Custom identity name for a type=custom Kong Identity lookup. When absent and principal_claim is set, an OIDC lookup is performed using principal_claim as the claim name instead of 'sub'.
-	PrincipalBy *string `json:"principal_by,omitempty"`
-	// Token claim to use for the Kong Identity lookup. If multiple values are set, it means the claim is inside a nested object of the token payload. When principal_by is also set, performs a custom identity lookup (type=custom). When set alone, performs an OIDC lookup using this claim name instead of the default 'sub'.
-	PrincipalClaim []string `json:"principal_claim,omitempty"`
-}
-
-func (a AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetDirectory() *string {
-	if a == nil {
-		return nil
-	}
-	return a.Directory
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetEnabled() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.Enabled
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetErrorOnMiss() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.ErrorOnMiss
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetJit() *Jit {
-	if a == nil {
-		return nil
-	}
-	return a.Jit
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetMatchConsumer() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.MatchConsumer
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetMatchConsumerGroups() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.MatchConsumerGroups
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetPrincipalBy() *string {
-	if a == nil {
-		return nil
-	}
-	return a.PrincipalBy
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetPrincipalClaim() []string {
-	if a == nil {
-		return nil
-	}
-	return a.PrincipalClaim
-}
-
-// ProofOfPossessionDpop - Enable Demonstrating Proof-of-Possession (DPoP). If set to strict, all request are verified despite the presence of the DPoP key claim (cnf.jkt). If set to optional, only tokens bound with DPoP's key are verified with the proof.
-type ProofOfPossessionDpop string
-
-const (
-	ProofOfPossessionDpopOff      ProofOfPossessionDpop = "off"
-	ProofOfPossessionDpopOptional ProofOfPossessionDpop = "optional"
-	ProofOfPossessionDpopStrict   ProofOfPossessionDpop = "strict"
-)
-
-func (e ProofOfPossessionDpop) ToPointer() *ProofOfPossessionDpop {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *ProofOfPossessionDpop) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "off", "optional", "strict":
-			return true
-		}
-	}
-	return false
-}
-
-// ProofOfPossessionMtls - Enable mtls proof of possession. If set to strict, all tokens (from supported auth_methods: bearer, introspection, and session granted with bearer or introspection) are verified, if set to optional, only tokens that contain the certificate hash claim are verified. If the verification fails, the request will be rejected with 401.
-type ProofOfPossessionMtls string
-
-const (
-	ProofOfPossessionMtlsOff      ProofOfPossessionMtls = "off"
-	ProofOfPossessionMtlsOptional ProofOfPossessionMtls = "optional"
-	ProofOfPossessionMtlsStrict   ProofOfPossessionMtls = "strict"
-)
-
-func (e ProofOfPossessionMtls) ToPointer() *ProofOfPossessionMtls {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *ProofOfPossessionMtls) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "off", "optional", "strict":
-			return true
-		}
-	}
-	return false
-}
-
-// ProtectedResourceMetadata - When configured, the plugin advertises this API as an OAuth 2.0 protected resource per RFC 9728. It serves a discovery document at the well-known URI and includes resource_metadata in WWW-Authenticate challenge headers.
-//
-// **Requires a minimum runtime version of `2.3`**.
-type ProtectedResourceMetadata struct {
-	// List of authorization server issuer URIs to advertise in the RFC 9728 metadata document.
-	AuthorizationServers []string `json:"authorization_servers"`
-	// Override the well-known metadata endpoint path. Defaults to the path component of resource with /.well-known/oauth-protected-resource appended.
-	MetadataEndpoint *string `json:"metadata_endpoint,omitempty"`
-	// The URI of the protected resource. Used as the resource field in the RFC 9728 metadata document and to derive the well-known endpoint path.
-	Resource string `json:"resource"`
-	// Scopes supported by this protected resource. Included in the RFC 9728 metadata document and in the scope attribute of WWW-Authenticate challenge headers on 401 responses.
-	ScopesSupported []string `json:"scopes_supported,omitempty"`
-}
-
-func (p ProtectedResourceMetadata) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
-}
-
-func (p *ProtectedResourceMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"authorization_servers", "resource"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (p *ProtectedResourceMetadata) GetAuthorizationServers() []string {
-	if p == nil {
-		return []string{}
-	}
-	return p.AuthorizationServers
-}
-
-func (p *ProtectedResourceMetadata) GetMetadataEndpoint() *string {
-	if p == nil {
-		return nil
-	}
-	return p.MetadataEndpoint
-}
-
-func (p *ProtectedResourceMetadata) GetResource() string {
-	if p == nil {
-		return ""
-	}
-	return p.Resource
-}
-
-func (p *ProtectedResourceMetadata) GetScopesSupported() []string {
-	if p == nil {
-		return nil
-	}
-	return p.ScopesSupported
-}
-
-// PushedAuthorizationRequestEndpointAuthMethod - The pushed authorization request endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-type PushedAuthorizationRequestEndpointAuthMethod string
-
-const (
-	PushedAuthorizationRequestEndpointAuthMethodClientSecretBasic       PushedAuthorizationRequestEndpointAuthMethod = "client_secret_basic"
-	PushedAuthorizationRequestEndpointAuthMethodClientSecretJwt         PushedAuthorizationRequestEndpointAuthMethod = "client_secret_jwt"
-	PushedAuthorizationRequestEndpointAuthMethodClientSecretPost        PushedAuthorizationRequestEndpointAuthMethod = "client_secret_post"
-	PushedAuthorizationRequestEndpointAuthMethodNone                    PushedAuthorizationRequestEndpointAuthMethod = "none"
-	PushedAuthorizationRequestEndpointAuthMethodPrivateKeyJwt           PushedAuthorizationRequestEndpointAuthMethod = "private_key_jwt"
-	PushedAuthorizationRequestEndpointAuthMethodSelfSignedTLSClientAuth PushedAuthorizationRequestEndpointAuthMethod = "self_signed_tls_client_auth"
-	PushedAuthorizationRequestEndpointAuthMethodTLSClientAuth           PushedAuthorizationRequestEndpointAuthMethod = "tls_client_auth"
-)
-
-func (e PushedAuthorizationRequestEndpointAuthMethod) ToPointer() *PushedAuthorizationRequestEndpointAuthMethod {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *PushedAuthorizationRequestEndpointAuthMethod) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "client_secret_basic", "client_secret_jwt", "client_secret_post", "none", "private_key_jwt", "self_signed_tls_client_auth", "tls_client_auth":
-			return true
-		}
-	}
-	return false
-}
-
-// AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider - Auth providers to be used to authenticate to a Cloud Provider's Redis instance.
-type AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider string
-
-const (
-	AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderAws   AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider = "aws"
-	AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderAzure AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider = "azure"
-	AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderGcp   AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider = "gcp"
-)
-
-func (e AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "aws", "azure", "gcp":
-			return true
-		}
-	}
-	return false
-}
-
-// AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication - Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
-type AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication struct {
-	// Auth providers to be used to authenticate to a Cloud Provider's Redis instance.
-	AuthProvider *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider `json:"auth_provider,omitempty"`
-	// AWS Access Key ID to be used for authentication when `auth_provider` is set to `aws`.
-	AwsAccessKeyID *string `json:"aws_access_key_id,omitempty"`
-	// The ARN of the IAM role to assume for generating ElastiCache IAM authentication tokens.
-	AwsAssumeRoleArn *string `json:"aws_assume_role_arn,omitempty"`
-	// The name of the AWS Elasticache cluster when `auth_provider` is set to `aws`.
-	AwsCacheName *string `json:"aws_cache_name,omitempty"`
-	// This flag specifies whether the cluster is serverless when auth_provider is set to `aws`.
-	AwsIsServerless *bool `default:"true" json:"aws_is_serverless"`
-	// The region of the AWS ElastiCache cluster when `auth_provider` is set to `aws`.
-	AwsRegion *string `json:"aws_region,omitempty"`
-	// The session name for the temporary credentials when assuming the IAM role.
-	AwsRoleSessionName *string `json:"aws_role_session_name,omitempty"`
-	// AWS Secret Access Key to be used for authentication when `auth_provider` is set to `aws`.
-	AwsSecretAccessKey *string `json:"aws_secret_access_key,omitempty"`
-	// Azure Client ID to be used for authentication when `auth_provider` is set to `azure`.
-	AzureClientID *string `json:"azure_client_id,omitempty"`
-	// Azure Client Secret to be used for authentication when `auth_provider` is set to `azure`.
-	AzureClientSecret *string `json:"azure_client_secret,omitempty"`
-	// Azure Tenant ID to be used for authentication when `auth_provider` is set to `azure`.
-	AzureTenantID *string `json:"azure_tenant_id,omitempty"`
-	// GCP Service Account JSON to be used for authentication when `auth_provider` is set to `gcp`.
-	GcpServiceAccountJSON *string `json:"gcp_service_account_json,omitempty"`
-}
-
-func (a AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAuthProvider() *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider {
-	if a == nil {
-		return nil
-	}
-	return a.AuthProvider
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsAccessKeyID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AwsAccessKeyID
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsAssumeRoleArn() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AwsAssumeRoleArn
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsCacheName() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AwsCacheName
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsIsServerless() *bool {
-	if a == nil {
-		return nil
-	}
-	return a.AwsIsServerless
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsRegion() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AwsRegion
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsRoleSessionName() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AwsRoleSessionName
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsSecretAccessKey() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AwsSecretAccessKey
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAzureClientID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AzureClientID
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAzureClientSecret() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AzureClientSecret
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAzureTenantID() *string {
-	if a == nil {
-		return nil
-	}
-	return a.AzureTenantID
-}
-
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetGcpServiceAccountJSON() *string {
 	if a == nil {
 		return nil
 	}
@@ -1674,13 +618,1069 @@ func (e *AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole) IsExact() bool 
 	return false
 }
 
-type Redis struct {
+type AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis struct {
+	// Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
+	CloudAuthentication *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication `json:"cloud_authentication,omitempty"`
+	// Maximum retry attempts for redirection.
+	ClusterMaxRedirections *int64 `default:"5" json:"cluster_max_redirections"`
+	// Cluster addresses to use for Redis connections when the `redis` strategy is defined. Defining this field implies using a Redis Cluster. The minimum length of the array is 1 element.
+	ClusterNodes []AIGatewayAuthStrategyOpenIDConnectResponseClusterNodes `json:"cluster_nodes,omitempty"`
+	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
+	ConnectTimeout *int64 `default:"2000" json:"connect_timeout"`
+	// If the connection to Redis is proxied (e.g. Envoy), set it `true`. Set the `host` and `port` to point to the proxy address.
+	ConnectionIsProxied *bool `default:"false" json:"connection_is_proxied"`
+	// Database to use for the Redis connection when using the `redis` strategy
+	Database *int64 `default:"0" json:"database"`
+	// A string representing a host name, such as example.com.
+	Host *string `default:"127.0.0.1" json:"host"`
+	// Limits the total number of opened connections for a pool. If the connection pool is full, connection queues above the limit go into the backlog queue. If the backlog queue is full, subsequent connect operations fail and return `nil`. Queued operations (subject to set timeouts) resume once the number of connections in the pool is less than `keepalive_pool_size`. If latency is high or throughput is low, try increasing this value. Empirically, this value is larger than `keepalive_pool_size`.
+	KeepaliveBacklog *int64 `json:"keepalive_backlog,omitempty"`
+	// The size limit for every cosocket connection pool associated with every remote server, per worker process. If neither `keepalive_pool_size` nor `keepalive_backlog` is specified, no pool is created. If `keepalive_pool_size` isn't specified but `keepalive_backlog` is specified, then the pool uses the default value. Try to increase (e.g. 512) this value if latency is high or throughput is low.
+	KeepalivePoolSize *int64 `default:"256" json:"keepalive_pool_size"`
+	// Password to use for Redis connections. If undefined, no AUTH commands are sent to Redis.
+	Password *string `json:"password,omitempty"`
+	// An integer representing a port number between 0 and 65535, inclusive.
+	Port *int64 `default:"6379" json:"port"`
+	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
+	ReadTimeout *int64 `default:"2000" json:"read_timeout"`
+	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
+	SendTimeout *int64 `default:"2000" json:"send_timeout"`
+	// Sentinel master to use for Redis connections. Defining this value implies using Redis Sentinel.
+	SentinelMaster *string `json:"sentinel_master,omitempty"`
+	// Sentinel node addresses to use for Redis connections when the `redis` strategy is defined. Defining this field implies using a Redis Sentinel. The minimum length of the array is 1 element.
+	SentinelNodes []AIGatewayAuthStrategyOpenIDConnectResponseSentinelNodes `json:"sentinel_nodes,omitempty"`
+	// Sentinel password to authenticate with a Redis Sentinel instance. If undefined, no AUTH commands are sent to Redis Sentinels.
+	SentinelPassword *string `json:"sentinel_password,omitempty"`
+	// Sentinel role to use for Redis connections when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+	SentinelRole *AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole `json:"sentinel_role,omitempty"`
+	// Sentinel username to authenticate with a Redis Sentinel instance. If undefined, ACL authentication won't be performed. This requires Redis v6.2.0+.
+	SentinelUsername *string `json:"sentinel_username,omitempty"`
+	// A string representing an SNI (server name indication) value for TLS.
+	ServerName *string `json:"server_name,omitempty"`
+	// If set to true, uses SSL to connect to Redis.
+	Ssl *bool `default:"false" json:"ssl"`
+	// If set to true, verifies the validity of the server SSL certificate. If setting this parameter, also configure `lua_ssl_trusted_certificate` in `kong.conf` to specify the CA (or server) certificate used by your Redis server. You may also need to configure `lua_ssl_verify_depth` accordingly.
+	SslVerify *bool `default:"true" json:"ssl_verify"`
+	// Username to use for Redis connections. If undefined, ACL authentication won't be performed. This requires Redis v6.0.0+. To be compatible with Redis v5.x.y, you can set it to `default`.
+	Username *string `json:"username,omitempty"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetCloudAuthentication() *AIGatewayAuthStrategyOpenIDConnectResponseCloudAuthentication {
+	if a == nil {
+		return nil
+	}
+	return a.CloudAuthentication
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetClusterMaxRedirections() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ClusterMaxRedirections
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetClusterNodes() []AIGatewayAuthStrategyOpenIDConnectResponseClusterNodes {
+	if a == nil {
+		return nil
+	}
+	return a.ClusterNodes
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetConnectTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ConnectTimeout
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetConnectionIsProxied() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.ConnectionIsProxied
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetDatabase() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Database
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetHost() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Host
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetKeepaliveBacklog() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.KeepaliveBacklog
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetKeepalivePoolSize() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.KeepalivePoolSize
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetPassword() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Password
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetPort() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Port
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetReadTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ReadTimeout
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSendTimeout() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.SendTimeout
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSentinelMaster() *string {
+	if a == nil {
+		return nil
+	}
+	return a.SentinelMaster
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSentinelNodes() []AIGatewayAuthStrategyOpenIDConnectResponseSentinelNodes {
+	if a == nil {
+		return nil
+	}
+	return a.SentinelNodes
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSentinelPassword() *string {
+	if a == nil {
+		return nil
+	}
+	return a.SentinelPassword
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSentinelRole() *AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole {
+	if a == nil {
+		return nil
+	}
+	return a.SentinelRole
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSentinelUsername() *string {
+	if a == nil {
+		return nil
+	}
+	return a.SentinelUsername
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetServerName() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ServerName
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSsl() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Ssl
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetSslVerify() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.SslVerify
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis) GetUsername() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Username
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy - The strategy to use for the cluster cache. If set, the plugin will share cache with nodes configured with the same strategy backend. Currentlly only introspection cache is shared.
+type AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategyOff   AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy = "off"
+	AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategyRedis AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy = "redis"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "off", "redis":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseConsumerByCustomID AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy = "custom_id"
+	AIGatewayAuthStrategyOpenIDConnectResponseConsumerByID       AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy = "id"
+	AIGatewayAuthStrategyOpenIDConnectResponseConsumerByUsername AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy = "username"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "custom_id", "id", "username":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseDisableSession string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionAuthorizationCode AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "authorization_code"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionBearer            AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "bearer"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionClientCredentials AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "client_credentials"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionIntrospection     AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "introspection"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionKongOauth2        AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "kong_oauth2"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionPassword          AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "password"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionRefreshToken      AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "refresh_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionSession           AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "session"
+	AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionUserinfo          AIGatewayAuthStrategyOpenIDConnectResponseDisableSession = "userinfo"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseDisableSession) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseDisableSession {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseDisableSession) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "authorization_code", "bearer", "client_credentials", "introspection", "kong_oauth2", "password", "refresh_token", "session", "userinfo":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseDownstreamHeaders struct {
+	// The name of the header.
+	Header string `json:"header"`
+	// The path of the header value.
+	Path []string `json:"path"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponseDownstreamHeaders) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseDownstreamHeaders) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"header", "path"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseDownstreamHeaders) GetHeader() string {
+	if a == nil {
+		return ""
+	}
+	return a.Header
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseDownstreamHeaders) GetPath() []string {
+	if a == nil {
+		return []string{}
+	}
+	return a.Path
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeBody   AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType = "body"
+	AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeHeader AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType = "header"
+	AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeQuery  AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType = "query"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "body", "header", "query":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureAuthorizationCode AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature = "authorization_code"
+	AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureClientCredentials AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature = "client_credentials"
+	AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureIntrospection     AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature = "introspection"
+	AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignaturePassword          AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature = "password"
+	AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureRefreshToken      AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature = "refresh_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureSession           AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature = "session"
+	AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureUserinfo          AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature = "userinfo"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "authorization_code", "client_credentials", "introspection", "password", "refresh_token", "session", "userinfo":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept - The value of `Accept` header for introspection requests: - `application/json`: introspection response as JSON - `application/token-introspection+jwt`: introspection response as JWT (from the current IETF draft document) - `application/jwt`: introspection response as JWT (from the obsolete IETF draft document).
+type AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptApplicationJSON                      AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept = "application/json"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptApplicationJwt                       AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept = "application/jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptApplicationTokenIntrospectionPlusJwt AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept = "application/token-introspection+jwt"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "application/json", "application/jwt", "application/token-introspection+jwt":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod - The introspection endpoint authentication method: : `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
+type AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodClientSecretBasic       AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod = "client_secret_basic"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodClientSecretJwt         AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod = "client_secret_jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodClientSecretPost        AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod = "client_secret_post"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodNone                    AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod = "none"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodPrivateKeyJwt           AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod = "private_key_jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod = "self_signed_tls_client_auth"
+	AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodTLSClientAuth           AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod = "tls_client_auth"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "client_secret_basic", "client_secret_jwt", "client_secret_post", "none", "private_key_jwt", "self_signed_tls_client_auth", "tls_client_auth":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseLoginAction - What to do after successful login: - `upstream`: proxy request to upstream service - `response`: terminate request with a response - `redirect`: redirect to a different location.
+type AIGatewayAuthStrategyOpenIDConnectResponseLoginAction string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginActionRedirect AIGatewayAuthStrategyOpenIDConnectResponseLoginAction = "redirect"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginActionResponse AIGatewayAuthStrategyOpenIDConnectResponseLoginAction = "response"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginActionUpstream AIGatewayAuthStrategyOpenIDConnectResponseLoginAction = "upstream"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginAction) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseLoginAction {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseLoginAction) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "redirect", "response", "upstream":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsAuthorizationCode AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "authorization_code"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsBearer            AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "bearer"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsClientCredentials AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "client_credentials"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsIntrospection     AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "introspection"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsKongOauth2        AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "kong_oauth2"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsPassword          AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "password"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsRefreshToken      AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "refresh_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsSession           AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "session"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsUserinfo          AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods = "userinfo"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "authorization_code", "bearer", "client_credentials", "introspection", "kong_oauth2", "password", "refresh_token", "session", "userinfo":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode - Where to place `login_tokens` when using `redirect` `login_action`: - `query`: place tokens in query string - `fragment`: place tokens in url fragment (not readable by servers).
+type AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectModeFragment AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode = "fragment"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectModeQuery    AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode = "query"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "fragment", "query":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensAccessToken   AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens = "access_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensIDToken       AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens = "id_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensIntrospection AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens = "introspection"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensRefreshToken  AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens = "refresh_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensTokens        AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens = "tokens"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "access_token", "id_token", "introspection", "refresh_token", "tokens":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsDelete AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods = "DELETE"
+	AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsGet    AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods = "GET"
+	AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsPost   AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods = "POST"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "DELETE", "GET", "POST":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeBody   AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType = "body"
+	AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeHeader AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType = "header"
+	AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeQuery  AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType = "query"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "body", "header", "query":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseJit - Token claims to share with the Kong Identity principal lookup. Kong Identity, not this plugin, decides whether the claims are used: a trusted IdP with JIT provisioning enabled in Konnect maps them onto a principal provisioned just in time. By default the lookup only carries the principal claim (e.g. 'sub') and no additional claims are shared.
+//
+// **Requires a minimum runtime version of `2.3`**.
+type AIGatewayAuthStrategyOpenIDConnectResponseJit struct {
+	// Send the full set of verified token claims with the Kong Identity principal lookup.
+	AllClaims *bool `default:"false" json:"all_claims"`
+	// Send only the named token claims with the Kong Identity principal lookup. The claims are picked from the same source the principal claim is read from. Set all_claims to send every verified claim instead.
+	Claims []string `json:"claims,omitempty"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponseJit) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseJit) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseJit) GetAllClaims() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.AllClaims
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseJit) GetClaims() []string {
+	if a == nil {
+		return nil
+	}
+	return a.Claims
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponsePrincipals - Configuration for Kong Identity principal hydration after token verification.
+type AIGatewayAuthStrategyOpenIDConnectResponsePrincipals struct {
+	// The Kong Identity directory instance to look up against.
+	Directory *string `default:"default" json:"directory"`
+	// When true, query Kong Identity to map a Principal after token verification.
+	Enabled *bool `default:"false" json:"enabled"`
+	// When true (default), return 401 if fail to match a Principal in Kong Identity after token verification. When false, the request continues without authenticated_principal set.
+	ErrorOnMiss *bool `default:"true" json:"error_on_miss"`
+	// Token claims to share with the Kong Identity principal lookup. Kong Identity, not this plugin, decides whether the claims are used: a trusted IdP with JIT provisioning enabled in Konnect maps them onto a principal provisioned just in time. By default the lookup only carries the principal claim (e.g. 'sub') and no additional claims are shared.
+	//
+	// **Requires a minimum runtime version of `2.3`**.
+	Jit *AIGatewayAuthStrategyOpenIDConnectResponseJit `json:"jit,omitempty"`
+	// If a Consumer is attached to the matched Principal in Kong Identity, load it and set it in the request context, overriding consumer_by.
+	MatchConsumer *bool `default:"true" json:"match_consumer"`
+	// If Consumer Groups are attached to the matched Principal in Kong Identity, load them, overriding consumer_groups_claim.
+	MatchConsumerGroups *bool `default:"true" json:"match_consumer_groups"`
+	// Custom identity name for a type=custom Kong Identity lookup. When absent and principal_claim is set, an OIDC lookup is performed using principal_claim as the claim name instead of 'sub'.
+	PrincipalBy *string `json:"principal_by,omitempty"`
+	// Token claim to use for the Kong Identity lookup. If multiple values are set, it means the claim is inside a nested object of the token payload. When principal_by is also set, performs a custom identity lookup (type=custom). When set alone, performs an OIDC lookup using this claim name instead of the default 'sub'.
+	PrincipalClaim []string `json:"principal_claim,omitempty"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetDirectory() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Directory
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetEnabled() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.Enabled
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetErrorOnMiss() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.ErrorOnMiss
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetJit() *AIGatewayAuthStrategyOpenIDConnectResponseJit {
+	if a == nil {
+		return nil
+	}
+	return a.Jit
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetMatchConsumer() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.MatchConsumer
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetMatchConsumerGroups() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.MatchConsumerGroups
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetPrincipalBy() *string {
+	if a == nil {
+		return nil
+	}
+	return a.PrincipalBy
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipals) GetPrincipalClaim() []string {
+	if a == nil {
+		return nil
+	}
+	return a.PrincipalClaim
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop - Enable Demonstrating Proof-of-Possession (DPoP). If set to strict, all request are verified despite the presence of the DPoP key claim (cnf.jkt). If set to optional, only tokens bound with DPoP's key are verified with the proof.
+type AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopOff      AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop = "off"
+	AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopOptional AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop = "optional"
+	AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopStrict   AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop = "strict"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "off", "optional", "strict":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls - Enable mtls proof of possession. If set to strict, all tokens (from supported auth_methods: bearer, introspection, and session granted with bearer or introspection) are verified, if set to optional, only tokens that contain the certificate hash claim are verified. If the verification fails, the request will be rejected with 401.
+type AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsOff      AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls = "off"
+	AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsOptional AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls = "optional"
+	AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsStrict   AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls = "strict"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "off", "optional", "strict":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata - When configured, the plugin advertises this API as an OAuth 2.0 protected resource per RFC 9728. It serves a discovery document at the well-known URI and includes resource_metadata in WWW-Authenticate challenge headers.
+//
+// **Requires a minimum runtime version of `2.3`**.
+type AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata struct {
+	// List of authorization server issuer URIs to advertise in the RFC 9728 metadata document.
+	AuthorizationServers []string `json:"authorization_servers"`
+	// Override the well-known metadata endpoint path. Defaults to the path component of resource with /.well-known/oauth-protected-resource appended.
+	MetadataEndpoint *string `json:"metadata_endpoint,omitempty"`
+	// The URI of the protected resource. Used as the resource field in the RFC 9728 metadata document and to derive the well-known endpoint path.
+	Resource string `json:"resource"`
+	// Scopes supported by this protected resource. Included in the RFC 9728 metadata document and in the scope attribute of WWW-Authenticate challenge headers on 401 responses.
+	ScopesSupported []string `json:"scopes_supported,omitempty"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"authorization_servers", "resource"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata) GetAuthorizationServers() []string {
+	if a == nil {
+		return []string{}
+	}
+	return a.AuthorizationServers
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata) GetMetadataEndpoint() *string {
+	if a == nil {
+		return nil
+	}
+	return a.MetadataEndpoint
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata) GetResource() string {
+	if a == nil {
+		return ""
+	}
+	return a.Resource
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata) GetScopesSupported() []string {
+	if a == nil {
+		return nil
+	}
+	return a.ScopesSupported
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod - The pushed authorization request endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
+type AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodClientSecretBasic       AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod = "client_secret_basic"
+	AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodClientSecretJwt         AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod = "client_secret_jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodClientSecretPost        AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod = "client_secret_post"
+	AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodNone                    AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod = "none"
+	AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodPrivateKeyJwt           AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod = "private_key_jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodSelfSignedTLSClientAuth AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod = "self_signed_tls_client_auth"
+	AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodTLSClientAuth           AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod = "tls_client_auth"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "client_secret_basic", "client_secret_jwt", "client_secret_post", "none", "private_key_jwt", "self_signed_tls_client_auth", "tls_client_auth":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider - Auth providers to be used to authenticate to a Cloud Provider's Redis instance.
+type AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderAws   AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider = "aws"
+	AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderAzure AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider = "azure"
+	AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderGcp   AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider = "gcp"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "aws", "azure", "gcp":
+			return true
+		}
+	}
+	return false
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication - Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
+type AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication struct {
+	// Auth providers to be used to authenticate to a Cloud Provider's Redis instance.
+	AuthProvider *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider `json:"auth_provider,omitempty"`
+	// AWS Access Key ID to be used for authentication when `auth_provider` is set to `aws`.
+	AwsAccessKeyID *string `json:"aws_access_key_id,omitempty"`
+	// The ARN of the IAM role to assume for generating ElastiCache IAM authentication tokens.
+	AwsAssumeRoleArn *string `json:"aws_assume_role_arn,omitempty"`
+	// The name of the AWS Elasticache cluster when `auth_provider` is set to `aws`.
+	AwsCacheName *string `json:"aws_cache_name,omitempty"`
+	// This flag specifies whether the cluster is serverless when auth_provider is set to `aws`.
+	AwsIsServerless *bool `default:"true" json:"aws_is_serverless"`
+	// The region of the AWS ElastiCache cluster when `auth_provider` is set to `aws`.
+	AwsRegion *string `json:"aws_region,omitempty"`
+	// The session name for the temporary credentials when assuming the IAM role.
+	AwsRoleSessionName *string `json:"aws_role_session_name,omitempty"`
+	// AWS Secret Access Key to be used for authentication when `auth_provider` is set to `aws`.
+	AwsSecretAccessKey *string `json:"aws_secret_access_key,omitempty"`
+	// Azure Client ID to be used for authentication when `auth_provider` is set to `azure`.
+	AzureClientID *string `json:"azure_client_id,omitempty"`
+	// Azure Client Secret to be used for authentication when `auth_provider` is set to `azure`.
+	AzureClientSecret *string `json:"azure_client_secret,omitempty"`
+	// Azure Tenant ID to be used for authentication when `auth_provider` is set to `azure`.
+	AzureTenantID *string `json:"azure_tenant_id,omitempty"`
+	// GCP Service Account JSON to be used for authentication when `auth_provider` is set to `gcp`.
+	GcpServiceAccountJSON *string `json:"gcp_service_account_json,omitempty"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAuthProvider() *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider {
+	if a == nil {
+		return nil
+	}
+	return a.AuthProvider
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsAccessKeyID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AwsAccessKeyID
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsAssumeRoleArn() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AwsAssumeRoleArn
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsCacheName() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AwsCacheName
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsIsServerless() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.AwsIsServerless
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsRegion() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AwsRegion
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsRoleSessionName() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AwsRoleSessionName
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAwsSecretAccessKey() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AwsSecretAccessKey
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAzureClientID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AzureClientID
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAzureClientSecret() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AzureClientSecret
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetAzureTenantID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.AzureTenantID
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication) GetGcpServiceAccountJSON() *string {
+	if a == nil {
+		return nil
+	}
+	return a.GcpServiceAccountJSON
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes struct {
+	// A string representing a host name, such as example.com.
+	IP *string `default:"127.0.0.1" json:"ip"`
+	// An integer representing a port number between 0 and 65535, inclusive.
+	Port *int64 `default:"6379" json:"port"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) GetIP() *string {
+	if a == nil {
+		return nil
+	}
+	return a.IP
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes) GetPort() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Port
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes struct {
+	// A string representing a host name, such as example.com.
+	Host *string `default:"127.0.0.1" json:"host"`
+	// An integer representing a port number between 0 and 65535, inclusive.
+	Port *int64 `default:"6379" json:"port"`
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) GetHost() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Host
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes) GetPort() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Port
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole - Sentinel role to use for Redis connections when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
+type AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole string
+
+const (
+	AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleAny    AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole = "any"
+	AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleMaster AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole = "master"
+	AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleSlave  AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole = "slave"
+)
+
+func (e AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "any", "master", "slave":
+			return true
+		}
+	}
+	return false
+}
+
+type AIGatewayAuthStrategyOpenIDConnectResponseRedis struct {
 	// Cloud auth related configs for connecting to a Cloud Provider's Redis instance.
 	CloudAuthentication *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication `json:"cloud_authentication,omitempty"`
 	// Maximum retry attempts for redirection.
 	ClusterMaxRedirections *int64 `default:"5" json:"cluster_max_redirections"`
 	// Cluster addresses to use for Redis connections when the `redis` strategy is defined. Defining this field implies using a Redis Cluster. The minimum length of the array is 1 element.
-	ClusterNodes []AIGatewayAuthStrategyOpenIDConnectResponseClusterNodes `json:"cluster_nodes,omitempty"`
+	ClusterNodes []AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes `json:"cluster_nodes,omitempty"`
 	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
 	ConnectTimeout *int64 `default:"2000" json:"connect_timeout"`
 	// If the connection to Redis is proxied (e.g. Envoy), set it `true`. Set the `host` and `port` to point to the proxy address.
@@ -1706,11 +1706,11 @@ type Redis struct {
 	// Sentinel master to use for Redis connections. Defining this value implies using Redis Sentinel.
 	SentinelMaster *string `json:"sentinel_master,omitempty"`
 	// Sentinel node addresses to use for Redis connections when the `redis` strategy is defined. Defining this field implies using a Redis Sentinel. The minimum length of the array is 1 element.
-	SentinelNodes []AIGatewayAuthStrategyOpenIDConnectResponseSentinelNodes `json:"sentinel_nodes,omitempty"`
+	SentinelNodes []AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes `json:"sentinel_nodes,omitempty"`
 	// Sentinel password to authenticate with a Redis Sentinel instance. If undefined, no AUTH commands are sent to Redis Sentinels.
 	SentinelPassword *string `json:"sentinel_password,omitempty"`
 	// Sentinel role to use for Redis connections when the `redis` strategy is defined. Defining this value implies using Redis Sentinel.
-	SentinelRole *AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole `json:"sentinel_role,omitempty"`
+	SentinelRole *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole `json:"sentinel_role,omitempty"`
 	// Sentinel username to authenticate with a Redis Sentinel instance. If undefined, ACL authentication won't be performed. This requires Redis v6.2.0+.
 	SentinelUsername *string `json:"sentinel_username,omitempty"`
 	// A string representing an SNI (server name indication) value for TLS.
@@ -1725,199 +1725,199 @@ type Redis struct {
 	Username *string `json:"username,omitempty"`
 }
 
-func (r Redis) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (a AIGatewayAuthStrategyOpenIDConnectResponseRedis) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (r *Redis) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *Redis) GetCloudAuthentication() *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetCloudAuthentication() *AIGatewayAuthStrategyOpenIDConnectResponseConfigCloudAuthentication {
+	if a == nil {
 		return nil
 	}
-	return r.CloudAuthentication
+	return a.CloudAuthentication
 }
 
-func (r *Redis) GetClusterMaxRedirections() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetClusterMaxRedirections() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.ClusterMaxRedirections
+	return a.ClusterMaxRedirections
 }
 
-func (r *Redis) GetClusterNodes() []AIGatewayAuthStrategyOpenIDConnectResponseClusterNodes {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetClusterNodes() []AIGatewayAuthStrategyOpenIDConnectResponseConfigClusterNodes {
+	if a == nil {
 		return nil
 	}
-	return r.ClusterNodes
+	return a.ClusterNodes
 }
 
-func (r *Redis) GetConnectTimeout() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetConnectTimeout() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.ConnectTimeout
+	return a.ConnectTimeout
 }
 
-func (r *Redis) GetConnectionIsProxied() *bool {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetConnectionIsProxied() *bool {
+	if a == nil {
 		return nil
 	}
-	return r.ConnectionIsProxied
+	return a.ConnectionIsProxied
 }
 
-func (r *Redis) GetDatabase() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetDatabase() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.Database
+	return a.Database
 }
 
-func (r *Redis) GetHost() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetHost() *string {
+	if a == nil {
 		return nil
 	}
-	return r.Host
+	return a.Host
 }
 
-func (r *Redis) GetKeepaliveBacklog() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetKeepaliveBacklog() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.KeepaliveBacklog
+	return a.KeepaliveBacklog
 }
 
-func (r *Redis) GetKeepalivePoolSize() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetKeepalivePoolSize() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.KeepalivePoolSize
+	return a.KeepalivePoolSize
 }
 
-func (r *Redis) GetPassword() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetPassword() *string {
+	if a == nil {
 		return nil
 	}
-	return r.Password
+	return a.Password
 }
 
-func (r *Redis) GetPort() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetPort() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.Port
+	return a.Port
 }
 
-func (r *Redis) GetPrefix() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetPrefix() *string {
+	if a == nil {
 		return nil
 	}
-	return r.Prefix
+	return a.Prefix
 }
 
-func (r *Redis) GetReadTimeout() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetReadTimeout() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.ReadTimeout
+	return a.ReadTimeout
 }
 
-func (r *Redis) GetSendTimeout() *int64 {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSendTimeout() *int64 {
+	if a == nil {
 		return nil
 	}
-	return r.SendTimeout
+	return a.SendTimeout
 }
 
-func (r *Redis) GetSentinelMaster() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSentinelMaster() *string {
+	if a == nil {
 		return nil
 	}
-	return r.SentinelMaster
+	return a.SentinelMaster
 }
 
-func (r *Redis) GetSentinelNodes() []AIGatewayAuthStrategyOpenIDConnectResponseSentinelNodes {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSentinelNodes() []AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelNodes {
+	if a == nil {
 		return nil
 	}
-	return r.SentinelNodes
+	return a.SentinelNodes
 }
 
-func (r *Redis) GetSentinelPassword() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSentinelPassword() *string {
+	if a == nil {
 		return nil
 	}
-	return r.SentinelPassword
+	return a.SentinelPassword
 }
 
-func (r *Redis) GetSentinelRole() *AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSentinelRole() *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole {
+	if a == nil {
 		return nil
 	}
-	return r.SentinelRole
+	return a.SentinelRole
 }
 
-func (r *Redis) GetSentinelUsername() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSentinelUsername() *string {
+	if a == nil {
 		return nil
 	}
-	return r.SentinelUsername
+	return a.SentinelUsername
 }
 
-func (r *Redis) GetServerName() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetServerName() *string {
+	if a == nil {
 		return nil
 	}
-	return r.ServerName
+	return a.ServerName
 }
 
-func (r *Redis) GetSocket() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSocket() *string {
+	if a == nil {
 		return nil
 	}
-	return r.Socket
+	return a.Socket
 }
 
-func (r *Redis) GetSsl() *bool {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSsl() *bool {
+	if a == nil {
 		return nil
 	}
-	return r.Ssl
+	return a.Ssl
 }
 
-func (r *Redis) GetSslVerify() *bool {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetSslVerify() *bool {
+	if a == nil {
 		return nil
 	}
-	return r.SslVerify
+	return a.SslVerify
 }
 
-func (r *Redis) GetUsername() *string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRedis) GetUsername() *string {
+	if a == nil {
 		return nil
 	}
-	return r.Username
+	return a.Username
 }
 
-type RefreshTokenParamType string
+type AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType string
 
 const (
-	RefreshTokenParamTypeBody   RefreshTokenParamType = "body"
-	RefreshTokenParamTypeHeader RefreshTokenParamType = "header"
-	RefreshTokenParamTypeQuery  RefreshTokenParamType = "query"
+	AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeBody   AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType = "body"
+	AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeHeader AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType = "header"
+	AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeQuery  AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType = "query"
 )
 
-func (e RefreshTokenParamType) ToPointer() *RefreshTokenParamType {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *RefreshTokenParamType) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "body", "header", "query":
@@ -1927,25 +1927,25 @@ func (e *RefreshTokenParamType) IsExact() bool {
 	return false
 }
 
-// ResponseMode - Response mode passed to the authorization endpoint: - `query`: for parameters in query string - `form_post`: for parameters in request body - `fragment`: for parameters in uri fragment (rarely useful as the plugin itself cannot read it) - `query.jwt`, `form_post.jwt`, `fragment.jwt`: similar to `query`, `form_post` and `fragment` but the parameters are encoded in a JWT - `jwt`: shortcut that indicates the default encoding for the requested response type.
-type ResponseMode string
+// AIGatewayAuthStrategyOpenIDConnectResponseResponseMode - Response mode passed to the authorization endpoint: - `query`: for parameters in query string - `form_post`: for parameters in request body - `fragment`: for parameters in uri fragment (rarely useful as the plugin itself cannot read it) - `query.jwt`, `form_post.jwt`, `fragment.jwt`: similar to `query`, `form_post` and `fragment` but the parameters are encoded in a JWT - `jwt`: shortcut that indicates the default encoding for the requested response type.
+type AIGatewayAuthStrategyOpenIDConnectResponseResponseMode string
 
 const (
-	ResponseModeFormPost    ResponseMode = "form_post"
-	ResponseModeFormPostJwt ResponseMode = "form_post.jwt"
-	ResponseModeFragment    ResponseMode = "fragment"
-	ResponseModeFragmentJwt ResponseMode = "fragment.jwt"
-	ResponseModeJwt         ResponseMode = "jwt"
-	ResponseModeQuery       ResponseMode = "query"
-	ResponseModeQueryJwt    ResponseMode = "query.jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFormPost    AIGatewayAuthStrategyOpenIDConnectResponseResponseMode = "form_post"
+	AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFormPostJwt AIGatewayAuthStrategyOpenIDConnectResponseResponseMode = "form_post.jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFragment    AIGatewayAuthStrategyOpenIDConnectResponseResponseMode = "fragment"
+	AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFragmentJwt AIGatewayAuthStrategyOpenIDConnectResponseResponseMode = "fragment.jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseResponseModeJwt         AIGatewayAuthStrategyOpenIDConnectResponseResponseMode = "jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseResponseModeQuery       AIGatewayAuthStrategyOpenIDConnectResponseResponseMode = "query"
+	AIGatewayAuthStrategyOpenIDConnectResponseResponseModeQueryJwt    AIGatewayAuthStrategyOpenIDConnectResponseResponseMode = "query.jwt"
 )
 
-func (e ResponseMode) ToPointer() *ResponseMode {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseResponseMode) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseResponseMode {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *ResponseMode) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseResponseMode) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "form_post", "form_post.jwt", "fragment", "fragment.jwt", "jwt", "query", "query.jwt":
@@ -1955,25 +1955,25 @@ func (e *ResponseMode) IsExact() bool {
 	return false
 }
 
-// RevocationEndpointAuthMethod - The revocation endpoint authentication method: : `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-type RevocationEndpointAuthMethod string
+// AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod - The revocation endpoint authentication method: : `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
+type AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod string
 
 const (
-	RevocationEndpointAuthMethodClientSecretBasic       RevocationEndpointAuthMethod = "client_secret_basic"
-	RevocationEndpointAuthMethodClientSecretJwt         RevocationEndpointAuthMethod = "client_secret_jwt"
-	RevocationEndpointAuthMethodClientSecretPost        RevocationEndpointAuthMethod = "client_secret_post"
-	RevocationEndpointAuthMethodNone                    RevocationEndpointAuthMethod = "none"
-	RevocationEndpointAuthMethodPrivateKeyJwt           RevocationEndpointAuthMethod = "private_key_jwt"
-	RevocationEndpointAuthMethodSelfSignedTLSClientAuth RevocationEndpointAuthMethod = "self_signed_tls_client_auth"
-	RevocationEndpointAuthMethodTLSClientAuth           RevocationEndpointAuthMethod = "tls_client_auth"
+	AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodClientSecretBasic       AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod = "client_secret_basic"
+	AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodClientSecretJwt         AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod = "client_secret_jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodClientSecretPost        AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod = "client_secret_post"
+	AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodNone                    AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod = "none"
+	AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodPrivateKeyJwt           AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod = "private_key_jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodSelfSignedTLSClientAuth AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod = "self_signed_tls_client_auth"
+	AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodTLSClientAuth           AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod = "tls_client_auth"
 )
 
-func (e RevocationEndpointAuthMethod) ToPointer() *RevocationEndpointAuthMethod {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *RevocationEndpointAuthMethod) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "client_secret_basic", "client_secret_jwt", "client_secret_post", "none", "private_key_jwt", "self_signed_tls_client_auth", "tls_client_auth":
@@ -1983,20 +1983,20 @@ func (e *RevocationEndpointAuthMethod) IsExact() bool {
 	return false
 }
 
-type SessionBind string
+type AIGatewayAuthStrategyOpenIDConnectResponseSessionBind string
 
 const (
-	SessionBindIP        SessionBind = "ip"
-	SessionBindScheme    SessionBind = "scheme"
-	SessionBindUserAgent SessionBind = "user-agent"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionBindIP        AIGatewayAuthStrategyOpenIDConnectResponseSessionBind = "ip"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionBindScheme    AIGatewayAuthStrategyOpenIDConnectResponseSessionBind = "scheme"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionBindUserAgent AIGatewayAuthStrategyOpenIDConnectResponseSessionBind = "user-agent"
 )
 
-func (e SessionBind) ToPointer() *SessionBind {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionBind) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionBind {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *SessionBind) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseSessionBind) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "ip", "scheme", "user-agent":
@@ -2006,22 +2006,22 @@ func (e *SessionBind) IsExact() bool {
 	return false
 }
 
-// SessionCookieSameSite - Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks.
-type SessionCookieSameSite string
+// AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite - Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks.
+type AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite string
 
 const (
-	SessionCookieSameSiteDefault SessionCookieSameSite = "Default"
-	SessionCookieSameSiteLax     SessionCookieSameSite = "Lax"
-	SessionCookieSameSiteNone    SessionCookieSameSite = "None"
-	SessionCookieSameSiteStrict  SessionCookieSameSite = "Strict"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteDefault AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite = "Default"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteLax     AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite = "Lax"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteNone    AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite = "None"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteStrict  AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite = "Strict"
 )
 
-func (e SessionCookieSameSite) ToPointer() *SessionCookieSameSite {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *SessionCookieSameSite) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "Default", "Lax", "None", "Strict":
@@ -2031,24 +2031,24 @@ func (e *SessionCookieSameSite) IsExact() bool {
 	return false
 }
 
-type SessionRequestHeaders string
+type AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders string
 
 const (
-	SessionRequestHeadersAbsoluteTimeout SessionRequestHeaders = "absolute-timeout"
-	SessionRequestHeadersAudience        SessionRequestHeaders = "audience"
-	SessionRequestHeadersID              SessionRequestHeaders = "id"
-	SessionRequestHeadersIdlingTimeout   SessionRequestHeaders = "idling-timeout"
-	SessionRequestHeadersRollingTimeout  SessionRequestHeaders = "rolling-timeout"
-	SessionRequestHeadersSubject         SessionRequestHeaders = "subject"
-	SessionRequestHeadersTimeout         SessionRequestHeaders = "timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersAbsoluteTimeout AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders = "absolute-timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersAudience        AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders = "audience"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersID              AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders = "id"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersIdlingTimeout   AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders = "idling-timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersRollingTimeout  AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders = "rolling-timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersSubject         AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders = "subject"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersTimeout         AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders = "timeout"
 )
 
-func (e SessionRequestHeaders) ToPointer() *SessionRequestHeaders {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *SessionRequestHeaders) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "absolute-timeout", "audience", "id", "idling-timeout", "rolling-timeout", "subject", "timeout":
@@ -2058,24 +2058,24 @@ func (e *SessionRequestHeaders) IsExact() bool {
 	return false
 }
 
-type SessionResponseHeaders string
+type AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders string
 
 const (
-	SessionResponseHeadersAbsoluteTimeout SessionResponseHeaders = "absolute-timeout"
-	SessionResponseHeadersAudience        SessionResponseHeaders = "audience"
-	SessionResponseHeadersID              SessionResponseHeaders = "id"
-	SessionResponseHeadersIdlingTimeout   SessionResponseHeaders = "idling-timeout"
-	SessionResponseHeadersRollingTimeout  SessionResponseHeaders = "rolling-timeout"
-	SessionResponseHeadersSubject         SessionResponseHeaders = "subject"
-	SessionResponseHeadersTimeout         SessionResponseHeaders = "timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersAbsoluteTimeout AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders = "absolute-timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersAudience        AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders = "audience"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersID              AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders = "id"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersIdlingTimeout   AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders = "idling-timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersRollingTimeout  AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders = "rolling-timeout"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersSubject         AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders = "subject"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersTimeout         AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders = "timeout"
 )
 
-func (e SessionResponseHeaders) ToPointer() *SessionResponseHeaders {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *SessionResponseHeaders) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "absolute-timeout", "audience", "id", "idling-timeout", "rolling-timeout", "subject", "timeout":
@@ -2085,22 +2085,22 @@ func (e *SessionResponseHeaders) IsExact() bool {
 	return false
 }
 
-// SessionStorage - The session storage for session data: - `cookie`: stores session data with the session cookie (the session cannot be invalidated or revoked without changing session secret, but is stateless, and doesn't require a database) - `memcache`: stores session data in memcached - `redis`: stores session data in Redis.
-type SessionStorage string
+// AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage - The session storage for session data: - `cookie`: stores session data with the session cookie (the session cannot be invalidated or revoked without changing session secret, but is stateless, and doesn't require a database) - `memcache`: stores session data in memcached - `redis`: stores session data in Redis.
+type AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage string
 
 const (
-	SessionStorageCookie    SessionStorage = "cookie"
-	SessionStorageMemcache  SessionStorage = "memcache"
-	SessionStorageMemcached SessionStorage = "memcached"
-	SessionStorageRedis     SessionStorage = "redis"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageCookie    AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage = "cookie"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageMemcache  AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage = "memcache"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageMemcached AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage = "memcached"
+	AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageRedis     AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage = "redis"
 )
 
-func (e SessionStorage) ToPointer() *SessionStorage {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *SessionStorage) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "cookie", "memcache", "memcached", "redis":
@@ -2196,22 +2196,22 @@ func (e *AIGatewayAuthStrategyOpenIDConnectResponseGrantType) IsExact() bool {
 	return false
 }
 
-// MapIdentitiesFrom - Which token's claims to use for consumer, consumer group, and principal mapping. Only takes effect when token exchange is configured. `exchanged_tokens` (default) uses the token(s) returned by the exchange or tokens derived from it, as today. `subject_token` uses the original, pre-exchange bearer token's claims instead.
+// AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom - Which token's claims to use for consumer, consumer group, and principal mapping. Only takes effect when token exchange is configured. `exchanged_tokens` (default) uses the token(s) returned by the exchange or tokens derived from it, as today. `subject_token` uses the original, pre-exchange bearer token's claims instead.
 //
 // **Requires a minimum runtime version of `2.3`**.
-type MapIdentitiesFrom string
+type AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom string
 
 const (
-	MapIdentitiesFromExchangedTokens MapIdentitiesFrom = "exchanged_tokens"
-	MapIdentitiesFromSubjectToken    MapIdentitiesFrom = "subject_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFromExchangedTokens AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom = "exchanged_tokens"
+	AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFromSubjectToken    AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom = "subject_token"
 )
 
-func (e MapIdentitiesFrom) ToPointer() *MapIdentitiesFrom {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *MapIdentitiesFrom) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "exchanged_tokens", "subject_token":
@@ -2270,10 +2270,10 @@ func (e *AIGatewayAuthStrategyOpenIDConnectResponseSource) IsExact() bool {
 	return false
 }
 
-// ActorToken - How to obtain the actor token to include in the token exchange request. Represents the identity of the party acting on behalf of the subject.
+// AIGatewayAuthStrategyOpenIDConnectResponseActorToken - How to obtain the actor token to include in the token exchange request. Represents the identity of the party acting on behalf of the subject.
 //
 // **Requires a minimum runtime version of `2.3`**.
-type ActorToken struct {
+type AIGatewayAuthStrategyOpenIDConnectResponseActorToken struct {
 	// Header name containing the actor token. Required when `source` is `header`.
 	HeaderName *string `json:"header_name,omitempty"`
 	// Where to obtain the actor token. `header` reads it from a request header. `config` uses a fixed value. `none` disables actor token support.
@@ -2284,51 +2284,51 @@ type ActorToken struct {
 	Type *string `default:"urn:ietf:params:oauth:token-type:access_token" json:"type"`
 }
 
-func (a ActorToken) MarshalJSON() ([]byte, error) {
+func (a AIGatewayAuthStrategyOpenIDConnectResponseActorToken) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(a, "", false)
 }
 
-func (a *ActorToken) UnmarshalJSON(data []byte) error {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseActorToken) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *ActorToken) GetHeaderName() *string {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseActorToken) GetHeaderName() *string {
 	if a == nil {
 		return nil
 	}
 	return a.HeaderName
 }
 
-func (a *ActorToken) GetSource() *AIGatewayAuthStrategyOpenIDConnectResponseSource {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseActorToken) GetSource() *AIGatewayAuthStrategyOpenIDConnectResponseSource {
 	if a == nil {
 		return nil
 	}
 	return a.Source
 }
 
-func (a *ActorToken) GetStaticToken() *string {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseActorToken) GetStaticToken() *string {
 	if a == nil {
 		return nil
 	}
 	return a.StaticToken
 }
 
-func (a *ActorToken) GetType() *string {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseActorToken) GetType() *string {
 	if a == nil {
 		return nil
 	}
 	return a.Type
 }
 
-// Request - Parameters used in the token exchange request.
-type Request struct {
+// AIGatewayAuthStrategyOpenIDConnectResponseRequest - Parameters used in the token exchange request.
+type AIGatewayAuthStrategyOpenIDConnectResponseRequest struct {
 	// How to obtain the actor token to include in the token exchange request. Represents the identity of the party acting on behalf of the subject.
 	//
 	// **Requires a minimum runtime version of `2.3`**.
-	ActorToken *ActorToken `json:"actor_token,omitempty"`
+	ActorToken *AIGatewayAuthStrategyOpenIDConnectResponseActorToken `json:"actor_token,omitempty"`
 	// Audiences used in the token exchange request. Values defined here override those defined in `config.audience`.
 	Audience []string `json:"audience,omitempty"`
 	// Use empty audiences. Use this field to remove audiences defined in `config.audience`.
@@ -2363,96 +2363,96 @@ type Request struct {
 	Scopes []string `json:"scopes,omitempty"`
 }
 
-func (r Request) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (a AIGatewayAuthStrategyOpenIDConnectResponseRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (r *Request) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *Request) GetActorToken() *ActorToken {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetActorToken() *AIGatewayAuthStrategyOpenIDConnectResponseActorToken {
+	if a == nil {
 		return nil
 	}
-	return r.ActorToken
+	return a.ActorToken
 }
 
-func (r *Request) GetAudience() []string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetAudience() []string {
+	if a == nil {
 		return nil
 	}
-	return r.Audience
+	return a.Audience
 }
 
-func (r *Request) GetEmptyAudience() *bool {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetEmptyAudience() *bool {
+	if a == nil {
 		return nil
 	}
-	return r.EmptyAudience
+	return a.EmptyAudience
 }
 
-func (r *Request) GetEmptyHeaders() *bool {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetEmptyHeaders() *bool {
+	if a == nil {
 		return nil
 	}
-	return r.EmptyHeaders
+	return a.EmptyHeaders
 }
 
-func (r *Request) GetEmptyPostArgs() *bool {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetEmptyPostArgs() *bool {
+	if a == nil {
 		return nil
 	}
-	return r.EmptyPostArgs
+	return a.EmptyPostArgs
 }
 
-func (r *Request) GetEmptyScopes() *bool {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetEmptyScopes() *bool {
+	if a == nil {
 		return nil
 	}
-	return r.EmptyScopes
+	return a.EmptyScopes
 }
 
-func (r *Request) GetHeadersNames() []string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetHeadersNames() []string {
+	if a == nil {
 		return nil
 	}
-	return r.HeadersNames
+	return a.HeadersNames
 }
 
-func (r *Request) GetHeadersValues() []string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetHeadersValues() []string {
+	if a == nil {
 		return nil
 	}
-	return r.HeadersValues
+	return a.HeadersValues
 }
 
-func (r *Request) GetPostArgsNames() []string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetPostArgsNames() []string {
+	if a == nil {
 		return nil
 	}
-	return r.PostArgsNames
+	return a.PostArgsNames
 }
 
-func (r *Request) GetPostArgsValues() []string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetPostArgsValues() []string {
+	if a == nil {
 		return nil
 	}
-	return r.PostArgsValues
+	return a.PostArgsValues
 }
 
-func (r *Request) GetScopes() []string {
-	if r == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseRequest) GetScopes() []string {
+	if a == nil {
 		return nil
 	}
-	return r.Scopes
+	return a.Scopes
 }
 
-// Conditions - A token will only be exchanged when it matches all these criteria. To exchange tokens issued by a different issuer, `conditions` must not be defined -- every token from that issuer is exchanged unconditionally, since a foreign-issued token that isn't exchanged can never pass normal verification against the target issuer anyway. In contrast, to exchange tokens issued by the target issuer itself, `conditions` must be defined.
-type Conditions struct {
+// AIGatewayAuthStrategyOpenIDConnectResponseConditions - A token will only be exchanged when it matches all these criteria. To exchange tokens issued by a different issuer, `conditions` must not be defined -- every token from that issuer is exchanged unconditionally, since a foreign-issued token that isn't exchanged can never pass normal verification against the target issuer anyway. In contrast, to exchange tokens issued by the target issuer itself, `conditions` must be defined.
+type AIGatewayAuthStrategyOpenIDConnectResponseConditions struct {
 	// Audience values that must all be present in the token, matched against `audience_claim`.
 	HasAudience []string `json:"has_audience,omitempty"`
 	// Scope values that must all be present in the token, matched against `scopes_claim`.
@@ -2463,48 +2463,48 @@ type Conditions struct {
 	MissingScopes []string `json:"missing_scopes,omitempty"`
 }
 
-func (c Conditions) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (a AIGatewayAuthStrategyOpenIDConnectResponseConditions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (c *Conditions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConditions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *Conditions) GetHasAudience() []string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConditions) GetHasAudience() []string {
+	if a == nil {
 		return nil
 	}
-	return c.HasAudience
+	return a.HasAudience
 }
 
-func (c *Conditions) GetHasScopes() []string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConditions) GetHasScopes() []string {
+	if a == nil {
 		return nil
 	}
-	return c.HasScopes
+	return a.HasScopes
 }
 
-func (c *Conditions) GetMissingAudience() []string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConditions) GetMissingAudience() []string {
+	if a == nil {
 		return nil
 	}
-	return c.MissingAudience
+	return a.MissingAudience
 }
 
-func (c *Conditions) GetMissingScopes() []string {
-	if c == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConditions) GetMissingScopes() []string {
+	if a == nil {
 		return nil
 	}
-	return c.MissingScopes
+	return a.MissingScopes
 }
 
-type SubjectTokenIssuers struct {
+type AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers struct {
 	// A token will only be exchanged when it matches all these criteria. To exchange tokens issued by a different issuer, `conditions` must not be defined -- every token from that issuer is exchanged unconditionally, since a foreign-issued token that isn't exchanged can never pass normal verification against the target issuer anyway. In contrast, to exchange tokens issued by the target issuer itself, `conditions` must be defined.
-	Conditions *Conditions `json:"conditions,omitempty"`
+	Conditions *AIGatewayAuthStrategyOpenIDConnectResponseConditions `json:"conditions,omitempty"`
 	// When true, a token issued by `issuer` that fails to match `conditions` is denied instead of being passed through unexchanged. Evaluated independently for this item only, with no effect on other `subject_token_issuers` items. Only allowed when this issuer is the target issuer, since `conditions` is required there and foreign-issuer items always match.
 	//
 	// **Requires a minimum runtime version of `2.3`**.
@@ -2521,54 +2521,54 @@ type SubjectTokenIssuers struct {
 	VerifySignature *bool `default:"false" json:"verify_signature"`
 }
 
-func (s SubjectTokenIssuers) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
+func (a AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (s *SubjectTokenIssuers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"issuer"}); err != nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"issuer"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SubjectTokenIssuers) GetConditions() *Conditions {
-	if s == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers) GetConditions() *AIGatewayAuthStrategyOpenIDConnectResponseConditions {
+	if a == nil {
 		return nil
 	}
-	return s.Conditions
+	return a.Conditions
 }
 
-func (s *SubjectTokenIssuers) GetDenyOnMismatch() *bool {
-	if s == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers) GetDenyOnMismatch() *bool {
+	if a == nil {
 		return nil
 	}
-	return s.DenyOnMismatch
+	return a.DenyOnMismatch
 }
 
-func (s *SubjectTokenIssuers) GetIssuer() string {
-	if s == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers) GetIssuer() string {
+	if a == nil {
 		return ""
 	}
-	return s.Issuer
+	return a.Issuer
 }
 
-func (s *SubjectTokenIssuers) GetJwksURI() *string {
-	if s == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers) GetJwksURI() *string {
+	if a == nil {
 		return nil
 	}
-	return s.JwksURI
+	return a.JwksURI
 }
 
-func (s *SubjectTokenIssuers) GetVerifySignature() *bool {
-	if s == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers) GetVerifySignature() *bool {
+	if a == nil {
 		return nil
 	}
-	return s.VerifySignature
+	return a.VerifySignature
 }
 
-// TokenExchange - Details on how to accept tokens from other identity providers.
-type TokenExchange struct {
+// AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange - Details on how to accept tokens from other identity providers.
+type AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange struct {
 	// Cache support for token exchange
 	Cache *AIGatewayAuthStrategyOpenIDConnectResponseCache `json:"cache,omitempty"`
 	// The token exchange grant. `token_exchange` (default) uses the OAuth 2.0 Token Exchange grant (RFC 8693). `jwt_bearer` uses the JWT Bearer authorization-grant flow (RFC 7523); see `token_exchange.provider` for provider-specific defaults in this mode.
@@ -2578,85 +2578,85 @@ type TokenExchange struct {
 	// Which token's claims to use for consumer, consumer group, and principal mapping. Only takes effect when token exchange is configured. `exchanged_tokens` (default) uses the token(s) returned by the exchange or tokens derived from it, as today. `subject_token` uses the original, pre-exchange bearer token's claims instead.
 	//
 	// **Requires a minimum runtime version of `2.3`**.
-	MapIdentitiesFrom *MapIdentitiesFrom `default:"exchanged_tokens" json:"map_identities_from"`
+	MapIdentitiesFrom *AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom `default:"exchanged_tokens" json:"map_identities_from"`
 	// Identity provider used with `grant_type = jwt_bearer`; not allowed with `grant_type = token_exchange`. `standard` (default) adds no provider-specific parameter. `microsoft` adds the required `requested_token_use=on_behalf_of`, which is fixed and cannot be overridden via `post_args_names/values`.
 	//
 	// **Requires a minimum runtime version of `2.3`**.
 	Provider *AIGatewayAuthStrategyOpenIDConnectResponseProvider `default:"standard" json:"provider"`
 	// Parameters used in the token exchange request.
-	Request *Request `json:"request,omitempty"`
+	Request *AIGatewayAuthStrategyOpenIDConnectResponseRequest `json:"request,omitempty"`
 	// Trusted token issuers from which the upstream may accept tokens to be exchanged. If a JWT bearer matches all the conditions of a subject token issuer item, the token will be exchanged.
-	SubjectTokenIssuers []SubjectTokenIssuers `json:"subject_token_issuers"`
+	SubjectTokenIssuers []AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers `json:"subject_token_issuers"`
 }
 
-func (t TokenExchange) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
+func (a AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
 }
 
-func (t *TokenExchange) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"subject_token_issuers"}); err != nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"subject_token_issuers"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (t *TokenExchange) GetCache() *AIGatewayAuthStrategyOpenIDConnectResponseCache {
-	if t == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) GetCache() *AIGatewayAuthStrategyOpenIDConnectResponseCache {
+	if a == nil {
 		return nil
 	}
-	return t.Cache
+	return a.Cache
 }
 
-func (t *TokenExchange) GetGrantType() *AIGatewayAuthStrategyOpenIDConnectResponseGrantType {
-	if t == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) GetGrantType() *AIGatewayAuthStrategyOpenIDConnectResponseGrantType {
+	if a == nil {
 		return nil
 	}
-	return t.GrantType
+	return a.GrantType
 }
 
-func (t *TokenExchange) GetMapIdentitiesFrom() *MapIdentitiesFrom {
-	if t == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) GetMapIdentitiesFrom() *AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom {
+	if a == nil {
 		return nil
 	}
-	return t.MapIdentitiesFrom
+	return a.MapIdentitiesFrom
 }
 
-func (t *TokenExchange) GetProvider() *AIGatewayAuthStrategyOpenIDConnectResponseProvider {
-	if t == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) GetProvider() *AIGatewayAuthStrategyOpenIDConnectResponseProvider {
+	if a == nil {
 		return nil
 	}
-	return t.Provider
+	return a.Provider
 }
 
-func (t *TokenExchange) GetRequest() *Request {
-	if t == nil {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) GetRequest() *AIGatewayAuthStrategyOpenIDConnectResponseRequest {
+	if a == nil {
 		return nil
 	}
-	return t.Request
+	return a.Request
 }
 
-func (t *TokenExchange) GetSubjectTokenIssuers() []SubjectTokenIssuers {
-	if t == nil {
-		return []SubjectTokenIssuers{}
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange) GetSubjectTokenIssuers() []AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers {
+	if a == nil {
+		return []AIGatewayAuthStrategyOpenIDConnectResponseSubjectTokenIssuers{}
 	}
-	return t.SubjectTokenIssuers
+	return a.SubjectTokenIssuers
 }
 
-type TokenHeadersGrants string
+type AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants string
 
 const (
-	TokenHeadersGrantsAuthorizationCode TokenHeadersGrants = "authorization_code"
-	TokenHeadersGrantsClientCredentials TokenHeadersGrants = "client_credentials"
-	TokenHeadersGrantsPassword          TokenHeadersGrants = "password"
-	TokenHeadersGrantsRefreshToken      TokenHeadersGrants = "refresh_token"
+	AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsAuthorizationCode AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants = "authorization_code"
+	AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsClientCredentials AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants = "client_credentials"
+	AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsPassword          AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants = "password"
+	AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsRefreshToken      AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants = "refresh_token"
 )
 
-func (e TokenHeadersGrants) ToPointer() *TokenHeadersGrants {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *TokenHeadersGrants) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "authorization_code", "client_credentials", "password", "refresh_token":
@@ -2698,20 +2698,20 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseUpstreamHeaders) GetPath() []
 	return a.Path
 }
 
-// UserinfoAccept - The value of `Accept` header for user info requests: - `application/json`: user info response as JSON - `application/jwt`: user info response as JWT (from the obsolete IETF draft document).
-type UserinfoAccept string
+// AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept - The value of `Accept` header for user info requests: - `application/json`: user info response as JSON - `application/jwt`: user info response as JWT (from the obsolete IETF draft document).
+type AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept string
 
 const (
-	UserinfoAcceptApplicationJSON UserinfoAccept = "application/json"
-	UserinfoAcceptApplicationJwt  UserinfoAccept = "application/jwt"
+	AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAcceptApplicationJSON AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept = "application/json"
+	AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAcceptApplicationJwt  AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept = "application/jwt"
 )
 
-func (e UserinfoAccept) ToPointer() *UserinfoAccept {
+func (e AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *UserinfoAccept) IsExact() bool {
+func (e *AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "application/json", "application/jwt":
@@ -2744,7 +2744,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The authorization cookie Path flag.
 	AuthorizationCookiePath *string `default:"/" json:"authorization_cookie_path"`
 	// Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks.
-	AuthorizationCookieSameSite *AuthorizationCookieSameSite `default:"Default" json:"authorization_cookie_same_site"`
+	AuthorizationCookieSameSite *AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite `default:"Default" json:"authorization_cookie_same_site"`
 	// Cookie is only sent to the server when a request is made with the https: scheme (except on localhost), and therefore is more resistant to man-in-the-middle attacks.
 	AuthorizationCookieSecure *bool `json:"authorization_cookie_secure,omitempty"`
 	// The authorization endpoint. If set it overrides the value in `authorization_endpoint` returned by the discovery endpoint.
@@ -2764,7 +2764,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// **Requires a minimum runtime version of `2.1`**.
 	BearerTokenHeaderName *string `default:"authorization:bearer" json:"bearer_token_header_name"`
 	// Where to look for the bearer token: - `header`: search the `Authorization`, `access-token`, and `x-access-token` HTTP headers - `query`: search the URL's query string - `body`: search the HTTP request body - `cookie`: search the HTTP request cookies specified with `config.bearer_token_cookie_name`.
-	BearerTokenParamType []BearerTokenParamType `json:"bearer_token_param_type,omitempty"`
+	BearerTokenParamType []AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType `json:"bearer_token_param_type,omitempty"`
 	// If `consumer_by` is set to `username`, specify whether `username` can match consumers case-insensitively.
 	ByUsernameIgnoreCase *bool `default:"false" json:"by_username_ignore_case"`
 	// Cache the introspection endpoint requests.
@@ -2796,14 +2796,14 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The default OpenID Connect client authentication method is 'client_secret_basic' (using 'Authorization: Basic' header), 'client_secret_post' (credentials in body), 'client_secret_jwt' (signed client assertion in body), 'private_key_jwt' (private key-signed assertion), 'tls_client_auth' (client certificate), 'self_signed_tls_client_auth' (self-signed client certificate), and 'none' (no authentication).
 	ClientAuth []AIGatewayAuthStrategyOpenIDConnectResponseClientAuth `json:"client_auth,omitempty"`
 	// Where to look for the client credentials: - `header`: search the HTTP headers - `query`: search the URL's query string - `body`: search from the HTTP request body.
-	ClientCredentialsParamType []ClientCredentialsParamType `json:"client_credentials_param_type,omitempty"`
+	ClientCredentialsParamType []AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType `json:"client_credentials_param_type,omitempty"`
 	// The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider.
 	ClientID []string `json:"client_id,omitempty"`
 	// The JWK used for the private_key_jwt authentication.
-	ClientJwk         []ClientJwk        `json:"client_jwk,omitempty"`
-	ClusterCacheRedis *ClusterCacheRedis `json:"cluster_cache_redis,omitempty"`
+	ClientJwk         []AIGatewayAuthStrategyOpenIDConnectResponseClientJwk        `json:"client_jwk,omitempty"`
+	ClusterCacheRedis *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis `json:"cluster_cache_redis,omitempty"`
 	// The strategy to use for the cluster cache. If set, the plugin will share cache with nodes configured with the same strategy backend. Currentlly only introspection cache is shared.
-	ClusterCacheStrategy *ClusterCacheStrategy `default:"off" json:"cluster_cache_strategy"`
+	ClusterCacheStrategy *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy `default:"off" json:"cluster_cache_strategy"`
 	// Consumer fields used for mapping: - `id`: try to find the matching Consumer by `id` - `username`: try to find the matching Consumer by `username` - `custom_id`: try to find the matching Consumer by `custom_id`.
 	ConsumerBy []AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy `json:"consumer_by,omitempty"`
 	// The claims used for consumer mapping. Each entry represents a claim path inside the token payload. The paths are evaluated in order, and the first matching claim is used.
@@ -2819,7 +2819,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// **Requires a minimum runtime version of `2.3`**.
 	CredentialClaims [][]string `json:"credential_claims,omitempty"`
 	// Disable issuing the session cookie with the specified grants.
-	DisableSession []DisableSession `json:"disable_session,omitempty"`
+	DisableSession []AIGatewayAuthStrategyOpenIDConnectResponseDisableSession `json:"disable_session,omitempty"`
 	// Extra header names passed to the discovery endpoint.
 	DiscoveryHeadersNames []string `json:"discovery_headers_names,omitempty"`
 	// Extra header values passed to the discovery endpoint.
@@ -2833,7 +2833,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The downstream access token JWK header.
 	DownstreamAccessTokenJwkHeader *string `json:"downstream_access_token_jwk_header,omitempty"`
 	// The downstream claim to header mappings.
-	DownstreamHeaders []DownstreamHeaders `json:"downstream_headers,omitempty"`
+	DownstreamHeaders []AIGatewayAuthStrategyOpenIDConnectResponseDownstreamHeaders `json:"downstream_headers,omitempty"`
 	// The downstream header claims. Only top level claims are supported.
 	DownstreamHeadersClaims []string `json:"downstream_headers_claims,omitempty"`
 	// The downstream header names for the claim values.
@@ -2887,19 +2887,19 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The name of the parameter used to pass the id token.
 	IDTokenParamName *string `json:"id_token_param_name,omitempty"`
 	// Where to look for the id token: - `header`: search the HTTP headers - `query`: search the URL's query string - `body`: search the HTTP request body.
-	IDTokenParamType []IDTokenParamType `json:"id_token_param_type,omitempty"`
+	IDTokenParamType []AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType `json:"id_token_param_type,omitempty"`
 	// Skip the token signature verification on certain grants. This is insecure and logs a warning; use it only for providers that publish no verification key. Grants: - `password`: OAuth password grant - `client_credentials`: OAuth client credentials grant - `authorization_code`: authorization code flow - `refresh_token`: OAuth refresh token grant - `session`: session cookie authentication - `introspection`: OAuth introspection - `userinfo`: OpenID Connect user info endpoint authentication.
-	IgnoreSignature []IgnoreSignature `json:"ignore_signature,omitempty"`
+	IgnoreSignature []AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature `json:"ignore_signature,omitempty"`
 	// Specifies whether to introspect the JWT access tokens (can be used to check for revocations).
 	IntrospectJwtTokens *bool `default:"false" json:"introspect_jwt_tokens"`
 	// The value of `Accept` header for introspection requests: - `application/json`: introspection response as JSON - `application/token-introspection+jwt`: introspection response as JWT (from the current IETF draft document) - `application/jwt`: introspection response as JWT (from the obsolete IETF draft document).
-	IntrospectionAccept *IntrospectionAccept `default:"application/json" json:"introspection_accept"`
+	IntrospectionAccept *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept `default:"application/json" json:"introspection_accept"`
 	// Check that the introspection response has an `active` claim with a value of `true`.
 	IntrospectionCheckActive *bool `default:"true" json:"introspection_check_active"`
 	// The introspection endpoint. If set it overrides the value in `introspection_endpoint` returned by the discovery endpoint.
 	IntrospectionEndpoint *string `json:"introspection_endpoint,omitempty"`
 	// The introspection endpoint authentication method: : `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-	IntrospectionEndpointAuthMethod *IntrospectionEndpointAuthMethod `json:"introspection_endpoint_auth_method,omitempty"`
+	IntrospectionEndpointAuthMethod *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod `json:"introspection_endpoint_auth_method,omitempty"`
 	// Extra headers passed from the client to the introspection endpoint.
 	IntrospectionHeadersClient []string `json:"introspection_headers_client,omitempty"`
 	// Extra header names passed to the introspection endpoint.
@@ -2933,17 +2933,17 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// Defines leeway time (in seconds) for `auth_time`, `exp`, `iat`, and `nbf` claims
 	Leeway *float64 `default:"0" json:"leeway"`
 	// What to do after successful login: - `upstream`: proxy request to upstream service - `response`: terminate request with a response - `redirect`: redirect to a different location.
-	LoginAction *LoginAction `default:"upstream" json:"login_action"`
+	LoginAction *AIGatewayAuthStrategyOpenIDConnectResponseLoginAction `default:"upstream" json:"login_action"`
 	// Enable login functionality with specified grants.
-	LoginMethods []LoginMethods `json:"login_methods,omitempty"`
+	LoginMethods []AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods `json:"login_methods,omitempty"`
 	// Where to place `login_tokens` when using `redirect` `login_action`: - `query`: place tokens in query string - `fragment`: place tokens in url fragment (not readable by servers).
-	LoginRedirectMode *LoginRedirectMode `default:"fragment" json:"login_redirect_mode"`
+	LoginRedirectMode *AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode `default:"fragment" json:"login_redirect_mode"`
 	// Where to redirect the client when `login_action` is set to `redirect`.
 	LoginRedirectURI []string `json:"login_redirect_uri,omitempty"`
 	// What tokens to include in `response` body or `redirect` query string or fragment: - `id_token`: include id token - `access_token`: include access token - `refresh_token`: include refresh token - `tokens`: include the full token endpoint response - `introspection`: include introspection response.
-	LoginTokens []LoginTokens `json:"login_tokens,omitempty"`
+	LoginTokens []AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens `json:"login_tokens,omitempty"`
 	// The request methods that can activate the logout: - `POST`: HTTP POST method - `GET`: HTTP GET method - `DELETE`: HTTP DELETE method.
-	LogoutMethods []LogoutMethods `json:"logout_methods,omitempty"`
+	LogoutMethods []AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods `json:"logout_methods,omitempty"`
 	// The request body argument that activates the logout.
 	LogoutPostArg *string `json:"logout_post_arg,omitempty"`
 	// The request query argument that activates the logout.
@@ -2971,7 +2971,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// Do not use proxy with these hosts.
 	NoProxy *string `json:"no_proxy,omitempty"`
 	// Where to look for the username and password: - `header`: search the HTTP headers - `query`: search the URL's query string - `body`: search the HTTP request body.
-	PasswordParamType []PasswordParamType `json:"password_param_type,omitempty"`
+	PasswordParamType []AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType `json:"password_param_type,omitempty"`
 	// With this parameter, you can preserve request query arguments even when doing authorization code flow.
 	PreserveQueryArgs *bool `default:"false" json:"preserve_query_args"`
 	// Configuration for Kong Identity principal hydration after token verification.
@@ -2979,26 +2979,26 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// If set to true, only the auth_methods that are compatible with Proof of Possession (PoP) can be configured when PoP is enabled. If set to false, all auth_methods will be configurable and PoP checks will be silently skipped for those auth_methods that are not compatible with PoP.
 	ProofOfPossessionAuthMethodsValidation *bool `default:"true" json:"proof_of_possession_auth_methods_validation"`
 	// Enable Demonstrating Proof-of-Possession (DPoP). If set to strict, all request are verified despite the presence of the DPoP key claim (cnf.jkt). If set to optional, only tokens bound with DPoP's key are verified with the proof.
-	ProofOfPossessionDpop *ProofOfPossessionDpop `default:"off" json:"proof_of_possession_dpop"`
+	ProofOfPossessionDpop *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop `default:"off" json:"proof_of_possession_dpop"`
 	// Enable mtls proof of possession. If set to strict, all tokens (from supported auth_methods: bearer, introspection, and session granted with bearer or introspection) are verified, if set to optional, only tokens that contain the certificate hash claim are verified. If the verification fails, the request will be rejected with 401.
-	ProofOfPossessionMtls *ProofOfPossessionMtls `default:"off" json:"proof_of_possession_mtls"`
+	ProofOfPossessionMtls *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls `default:"off" json:"proof_of_possession_mtls"`
 	// When configured, the plugin advertises this API as an OAuth 2.0 protected resource per RFC 9728. It serves a discovery document at the well-known URI and includes resource_metadata in WWW-Authenticate challenge headers.
 	//
 	// **Requires a minimum runtime version of `2.3`**.
-	ProtectedResourceMetadata *ProtectedResourceMetadata `json:"protected_resource_metadata,omitempty"`
+	ProtectedResourceMetadata *AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata `json:"protected_resource_metadata,omitempty"`
 	// The pushed authorization endpoint. If set it overrides the value in `pushed_authorization_request_endpoint` returned by the discovery endpoint.
 	PushedAuthorizationRequestEndpoint *string `json:"pushed_authorization_request_endpoint,omitempty"`
 	// The pushed authorization request endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-	PushedAuthorizationRequestEndpointAuthMethod *PushedAuthorizationRequestEndpointAuthMethod `json:"pushed_authorization_request_endpoint_auth_method,omitempty"`
+	PushedAuthorizationRequestEndpointAuthMethod *AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod `json:"pushed_authorization_request_endpoint_auth_method,omitempty"`
 	// The redirect URI passed to the authorization and token endpoints.
-	RedirectURI []string `json:"redirect_uri,omitempty"`
-	Redis       *Redis   `json:"redis,omitempty"`
+	RedirectURI []string                                         `json:"redirect_uri,omitempty"`
+	Redis       *AIGatewayAuthStrategyOpenIDConnectResponseRedis `json:"redis,omitempty"`
 	// Specifies how long (in seconds) the plugin waits between discovery attempts. Discovery is still triggered on an as-needed basis.
 	RediscoveryLifetime *float64 `default:"30" json:"rediscovery_lifetime"`
 	// The name of the parameter used to pass the refresh token.
 	RefreshTokenParamName *string `json:"refresh_token_param_name,omitempty"`
 	// Where to look for the refresh token: - `header`: search the HTTP headers - `query`: search the URL's query string - `body`: search the HTTP request body.
-	RefreshTokenParamType []RefreshTokenParamType `json:"refresh_token_param_type,omitempty"`
+	RefreshTokenParamType []AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType `json:"refresh_token_param_type,omitempty"`
 	// Specifies whether the plugin should try to refresh (soon to be) expired access tokens if the plugin has a `refresh_token` available.
 	RefreshTokens *bool `default:"true" json:"refresh_tokens"`
 	// Forcibly enable or disable the proof key for code exchange. When not set the value is determined through the discovery using the value of `code_challenge_methods_supported`, and enabled automatically (in case the `code_challenge_methods_supported` is missing, the PKCE will not be enabled).
@@ -3010,7 +3010,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// Distributed claims are represented by the `_claim_names` and `_claim_sources` members of the JSON object containing the claims. If this parameter is set to `true`, the plugin explicitly resolves these distributed claims.
 	ResolveDistributedClaims *bool `default:"false" json:"resolve_distributed_claims"`
 	// Response mode passed to the authorization endpoint: - `query`: for parameters in query string - `form_post`: for parameters in request body - `fragment`: for parameters in uri fragment (rarely useful as the plugin itself cannot read it) - `query.jwt`, `form_post.jwt`, `fragment.jwt`: similar to `query`, `form_post` and `fragment` but the parameters are encoded in a JWT - `jwt`: shortcut that indicates the default encoding for the requested response type.
-	ResponseMode *ResponseMode `default:"query" json:"response_mode"`
+	ResponseMode *AIGatewayAuthStrategyOpenIDConnectResponseResponseMode `default:"query" json:"response_mode"`
 	// The response type passed to the authorization endpoint.
 	ResponseType []string `json:"response_type,omitempty"`
 	// Specifies whether to always verify tokens stored in the session.
@@ -3018,7 +3018,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The revocation endpoint. If set it overrides the value in `revocation_endpoint` returned by the discovery endpoint.
 	RevocationEndpoint *string `json:"revocation_endpoint,omitempty"`
 	// The revocation endpoint authentication method: : `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
-	RevocationEndpointAuthMethod *RevocationEndpointAuthMethod `json:"revocation_endpoint_auth_method,omitempty"`
+	RevocationEndpointAuthMethod *AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod `json:"revocation_endpoint_auth_method,omitempty"`
 	// Designate token's parameter name for revocation.
 	RevocationTokenParamName *string `default:"token" json:"revocation_token_param_name"`
 	// The claim that contains the roles. If multiple values are set, it means the claim is inside a nested object of the token payload.
@@ -3040,7 +3040,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The session audience, which is the intended target application. For example `"my-application"`.
 	SessionAudience *string `default:"default" json:"session_audience"`
 	// Bind the session to data acquired from the HTTP request or connection.
-	SessionBind []SessionBind `json:"session_bind,omitempty"`
+	SessionBind []AIGatewayAuthStrategyOpenIDConnectResponseSessionBind `json:"session_bind,omitempty"`
 	// The session cookie Domain flag.
 	SessionCookieDomain *string `json:"session_cookie_domain,omitempty"`
 	// Forbids JavaScript from accessing the cookie, for example, through the `Document.cookie` property.
@@ -3050,7 +3050,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The session cookie Path flag.
 	SessionCookiePath *string `default:"/" json:"session_cookie_path"`
 	// Controls whether a cookie is sent with cross-origin requests, providing some protection against cross-site request forgery attacks.
-	SessionCookieSameSite *SessionCookieSameSite `default:"Lax" json:"session_cookie_same_site"`
+	SessionCookieSameSite *AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite `default:"Lax" json:"session_cookie_same_site"`
 	// Cookie is only sent to the server when a request is made with the https: scheme (except on localhost), and therefore is more resistant to man-in-the-middle attacks.
 	SessionCookieSecure *bool `json:"session_cookie_secure,omitempty"`
 	// When set to `true`, audiences are forced to share the same subject.
@@ -3082,15 +3082,15 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// Specifies how long the persistent session is considered valid in seconds. 0 disables the checks and rolling.
 	SessionRememberRollingTimeout *float64 `default:"604800" json:"session_remember_rolling_timeout"`
 	// Set of headers to send to upstream, use id, audience, subject, timeout, idling-timeout, rolling-timeout, absolute-timeout. E.g. `[ "id", "timeout" ]` will set Session-Id and Session-Timeout request headers.
-	SessionRequestHeaders []SessionRequestHeaders `json:"session_request_headers,omitempty"`
+	SessionRequestHeaders []AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders `json:"session_request_headers,omitempty"`
 	// Set of headers to send to downstream, use id, audience, subject, timeout, idling-timeout, rolling-timeout, absolute-timeout. E.g. `[ "id", "timeout" ]` will set Session-Id and Session-Timeout response headers.
-	SessionResponseHeaders []SessionResponseHeaders `json:"session_response_headers,omitempty"`
+	SessionResponseHeaders []AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders `json:"session_response_headers,omitempty"`
 	// Specifies how long the session can be used in seconds until it needs to be renewed. 0 disables the checks and rolling.
 	SessionRollingTimeout *float64 `default:"3600" json:"session_rolling_timeout"`
 	// The session secret.
 	SessionSecret *string `json:"session_secret,omitempty"`
 	// The session storage for session data: - `cookie`: stores session data with the session cookie (the session cannot be invalidated or revoked without changing session secret, but is stateless, and doesn't require a database) - `memcache`: stores session data in memcached - `redis`: stores session data in Redis.
-	SessionStorage *SessionStorage `default:"cookie" json:"session_storage"`
+	SessionStorage *AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage `default:"cookie" json:"session_storage"`
 	// Configures whether or not session metadata should be stored. This metadata includes information about the active sessions for a specific audience belonging to a specific subject.
 	SessionStoreMetadata *bool `default:"false" json:"session_store_metadata"`
 	// Verify identity provider server certificate. If set to `true`, the plugin uses the CA certificate set in the `kong.conf` config parameter `lua_ssl_trusted_certificate`.
@@ -3108,13 +3108,13 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The token endpoint authentication method: `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt`, `tls_client_auth`, `self_signed_tls_client_auth`, or `none`: do not authenticate
 	TokenEndpointAuthMethod *AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethod `json:"token_endpoint_auth_method,omitempty"`
 	// Details on how to accept tokens from other identity providers.
-	TokenExchange *TokenExchange `json:"token_exchange,omitempty"`
+	TokenExchange *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange `json:"token_exchange,omitempty"`
 	// Endpoint used to perform the legacy token exchange.
 	TokenExchangeEndpoint *string `json:"token_exchange_endpoint,omitempty"`
 	// Extra headers passed from the client to the token endpoint.
 	TokenHeadersClient []string `json:"token_headers_client,omitempty"`
 	// Enable the sending of the token endpoint response headers only with certain grants: - `password`: with OAuth password grant - `client_credentials`: with OAuth client credentials grant - `authorization_code`: with authorization code flow - `refresh_token` with refresh token grant.
-	TokenHeadersGrants []TokenHeadersGrants `json:"token_headers_grants,omitempty"`
+	TokenHeadersGrants []AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants `json:"token_headers_grants,omitempty"`
 	// Extra header names passed to the token endpoint.
 	TokenHeadersNames []string `json:"token_headers_names,omitempty"`
 	// Add a prefix to the token endpoint response headers before forwarding them to the downstream client.
@@ -3164,7 +3164,7 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// The upstream user info JWT header (in case the user info returns a JWT response).
 	UpstreamUserInfoJwtHeader *string `json:"upstream_user_info_jwt_header,omitempty"`
 	// The value of `Accept` header for user info requests: - `application/json`: user info response as JSON - `application/jwt`: user info response as JWT (from the obsolete IETF draft document).
-	UserinfoAccept *UserinfoAccept `default:"application/json" json:"userinfo_accept"`
+	UserinfoAccept *AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept `default:"application/json" json:"userinfo_accept"`
 	// The user info endpoint. If set it overrides the value in `userinfo_endpoint` returned by the discovery endpoint.
 	UserinfoEndpoint *string `json:"userinfo_endpoint,omitempty"`
 	// Extra headers passed from the client to the user info endpoint.
@@ -3274,7 +3274,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetAuthorizationCooki
 	return a.AuthorizationCookiePath
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetAuthorizationCookieSameSite() *AuthorizationCookieSameSite {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetAuthorizationCookieSameSite() *AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite {
 	if a == nil {
 		return nil
 	}
@@ -3337,7 +3337,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetBearerTokenHeaderN
 	return a.BearerTokenHeaderName
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetBearerTokenParamType() []BearerTokenParamType {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetBearerTokenParamType() []AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType {
 	if a == nil {
 		return nil
 	}
@@ -3449,7 +3449,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClientAuth() []AIG
 	return a.ClientAuth
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClientCredentialsParamType() []ClientCredentialsParamType {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClientCredentialsParamType() []AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType {
 	if a == nil {
 		return nil
 	}
@@ -3463,21 +3463,21 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClientID() []strin
 	return a.ClientID
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClientJwk() []ClientJwk {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClientJwk() []AIGatewayAuthStrategyOpenIDConnectResponseClientJwk {
 	if a == nil {
 		return nil
 	}
 	return a.ClientJwk
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClusterCacheRedis() *ClusterCacheRedis {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClusterCacheRedis() *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheRedis {
 	if a == nil {
 		return nil
 	}
 	return a.ClusterCacheRedis
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClusterCacheStrategy() *ClusterCacheStrategy {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetClusterCacheStrategy() *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy {
 	if a == nil {
 		return nil
 	}
@@ -3526,7 +3526,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetCredentialClaims()
 	return a.CredentialClaims
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetDisableSession() []DisableSession {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetDisableSession() []AIGatewayAuthStrategyOpenIDConnectResponseDisableSession {
 	if a == nil {
 		return nil
 	}
@@ -3575,7 +3575,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetDownstreamAccessTo
 	return a.DownstreamAccessTokenJwkHeader
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetDownstreamHeaders() []DownstreamHeaders {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetDownstreamHeaders() []AIGatewayAuthStrategyOpenIDConnectResponseDownstreamHeaders {
 	if a == nil {
 		return nil
 	}
@@ -3764,14 +3764,14 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIDTokenParamName()
 	return a.IDTokenParamName
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIDTokenParamType() []IDTokenParamType {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIDTokenParamType() []AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType {
 	if a == nil {
 		return nil
 	}
 	return a.IDTokenParamType
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIgnoreSignature() []IgnoreSignature {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIgnoreSignature() []AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature {
 	if a == nil {
 		return nil
 	}
@@ -3785,7 +3785,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIntrospectJwtToken
 	return a.IntrospectJwtTokens
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIntrospectionAccept() *IntrospectionAccept {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIntrospectionAccept() *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept {
 	if a == nil {
 		return nil
 	}
@@ -3806,7 +3806,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIntrospectionEndpo
 	return a.IntrospectionEndpoint
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIntrospectionEndpointAuthMethod() *IntrospectionEndpointAuthMethod {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetIntrospectionEndpointAuthMethod() *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod {
 	if a == nil {
 		return nil
 	}
@@ -3925,21 +3925,21 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLeeway() *float64 
 	return a.Leeway
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginAction() *LoginAction {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginAction() *AIGatewayAuthStrategyOpenIDConnectResponseLoginAction {
 	if a == nil {
 		return nil
 	}
 	return a.LoginAction
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginMethods() []LoginMethods {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginMethods() []AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods {
 	if a == nil {
 		return nil
 	}
 	return a.LoginMethods
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginRedirectMode() *LoginRedirectMode {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginRedirectMode() *AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode {
 	if a == nil {
 		return nil
 	}
@@ -3953,14 +3953,14 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginRedirectURI()
 	return a.LoginRedirectURI
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginTokens() []LoginTokens {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLoginTokens() []AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens {
 	if a == nil {
 		return nil
 	}
 	return a.LoginTokens
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLogoutMethods() []LogoutMethods {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetLogoutMethods() []AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods {
 	if a == nil {
 		return nil
 	}
@@ -4051,7 +4051,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetNoProxy() *string 
 	return a.NoProxy
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetPasswordParamType() []PasswordParamType {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetPasswordParamType() []AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType {
 	if a == nil {
 		return nil
 	}
@@ -4079,21 +4079,21 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetProofOfPossessionA
 	return a.ProofOfPossessionAuthMethodsValidation
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetProofOfPossessionDpop() *ProofOfPossessionDpop {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetProofOfPossessionDpop() *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop {
 	if a == nil {
 		return nil
 	}
 	return a.ProofOfPossessionDpop
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetProofOfPossessionMtls() *ProofOfPossessionMtls {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetProofOfPossessionMtls() *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls {
 	if a == nil {
 		return nil
 	}
 	return a.ProofOfPossessionMtls
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetProtectedResourceMetadata() *ProtectedResourceMetadata {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetProtectedResourceMetadata() *AIGatewayAuthStrategyOpenIDConnectResponseProtectedResourceMetadata {
 	if a == nil {
 		return nil
 	}
@@ -4107,7 +4107,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetPushedAuthorizatio
 	return a.PushedAuthorizationRequestEndpoint
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetPushedAuthorizationRequestEndpointAuthMethod() *PushedAuthorizationRequestEndpointAuthMethod {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetPushedAuthorizationRequestEndpointAuthMethod() *AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod {
 	if a == nil {
 		return nil
 	}
@@ -4121,7 +4121,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRedirectURI() []st
 	return a.RedirectURI
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRedis() *Redis {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRedis() *AIGatewayAuthStrategyOpenIDConnectResponseRedis {
 	if a == nil {
 		return nil
 	}
@@ -4142,7 +4142,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRefreshTokenParamN
 	return a.RefreshTokenParamName
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRefreshTokenParamType() []RefreshTokenParamType {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRefreshTokenParamType() []AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType {
 	if a == nil {
 		return nil
 	}
@@ -4184,7 +4184,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetResolveDistributed
 	return a.ResolveDistributedClaims
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetResponseMode() *ResponseMode {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetResponseMode() *AIGatewayAuthStrategyOpenIDConnectResponseResponseMode {
 	if a == nil {
 		return nil
 	}
@@ -4212,7 +4212,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRevocationEndpoint
 	return a.RevocationEndpoint
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRevocationEndpointAuthMethod() *RevocationEndpointAuthMethod {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetRevocationEndpointAuthMethod() *AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod {
 	if a == nil {
 		return nil
 	}
@@ -4289,7 +4289,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionAudience() 
 	return a.SessionAudience
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionBind() []SessionBind {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionBind() []AIGatewayAuthStrategyOpenIDConnectResponseSessionBind {
 	if a == nil {
 		return nil
 	}
@@ -4324,7 +4324,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionCookiePath(
 	return a.SessionCookiePath
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionCookieSameSite() *SessionCookieSameSite {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionCookieSameSite() *AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite {
 	if a == nil {
 		return nil
 	}
@@ -4436,14 +4436,14 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionRememberRol
 	return a.SessionRememberRollingTimeout
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionRequestHeaders() []SessionRequestHeaders {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionRequestHeaders() []AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders {
 	if a == nil {
 		return nil
 	}
 	return a.SessionRequestHeaders
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionResponseHeaders() []SessionResponseHeaders {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionResponseHeaders() []AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders {
 	if a == nil {
 		return nil
 	}
@@ -4464,7 +4464,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionSecret() *s
 	return a.SessionSecret
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionStorage() *SessionStorage {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetSessionStorage() *AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage {
 	if a == nil {
 		return nil
 	}
@@ -4527,7 +4527,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetTokenEndpointAuthM
 	return a.TokenEndpointAuthMethod
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetTokenExchange() *TokenExchange {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetTokenExchange() *AIGatewayAuthStrategyOpenIDConnectResponseTokenExchange {
 	if a == nil {
 		return nil
 	}
@@ -4548,7 +4548,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetTokenHeadersClient
 	return a.TokenHeadersClient
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetTokenHeadersGrants() []TokenHeadersGrants {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetTokenHeadersGrants() []AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants {
 	if a == nil {
 		return nil
 	}
@@ -4724,7 +4724,7 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetUpstreamUserInfoJw
 	return a.UpstreamUserInfoJwtHeader
 }
 
-func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetUserinfoAccept() *UserinfoAccept {
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetUserinfoAccept() *AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept {
 	if a == nil {
 		return nil
 	}

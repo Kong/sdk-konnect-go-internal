@@ -30,6 +30,26 @@ type AIGatewayMCPServerListenerOauth struct {
 	// `access.acls`.
 	//
 	DefaultToolAcls *AIGatewayMCPACLs `json:"default_tool_acls,omitempty"`
+	// Default per-prompt access control rules for allowing or denying callers access to prompts,
+	// evaluated against the value of the configured `access_token_claim_field`. Evaluated only
+	// for callers that already passed the server-level `acls` check above. Applies to every
+	// prompt exposed by this MCP Server unless a specific prompt overrides it via that prompt's
+	// own `access.acls`. Prompts a caller is denied are omitted from `prompts/list` and rejected
+	// on `prompts/get`. When unset, prompts are governed only by the server-level `acls`.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	DefaultPromptAcls *AIGatewayMCPACLs `json:"default_prompt_acls,omitempty"`
+	// Default per-resource access control rules for allowing or denying callers access to
+	// resources and resource templates, evaluated against the value of the configured
+	// `access_token_claim_field`. Evaluated only for callers that already passed the
+	// server-level `acls` check above. Applies to every resource exposed by this MCP Server
+	// unless a specific resource overrides it via that resource's own `access.acls`. Resources a
+	// caller is denied are omitted from `resources/list` and `resources/templates/list` and
+	// rejected on `resources/read` and `resources/subscribe`. When unset, resources are governed
+	// only by the server-level `acls`.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	DefaultResourceAcls *AIGatewayMCPACLs `json:"default_resource_acls,omitempty"`
 	// List of identity providers for granting access to the MCP server.
 	// At most 1 identity provider of each identity provider type can be referenced.
 	//
@@ -80,6 +100,20 @@ func (a *AIGatewayMCPServerListenerOauth) GetDefaultToolAcls() *AIGatewayMCPACLs
 		return nil
 	}
 	return a.DefaultToolAcls
+}
+
+func (a *AIGatewayMCPServerListenerOauth) GetDefaultPromptAcls() *AIGatewayMCPACLs {
+	if a == nil {
+		return nil
+	}
+	return a.DefaultPromptAcls
+}
+
+func (a *AIGatewayMCPServerListenerOauth) GetDefaultResourceAcls() *AIGatewayMCPACLs {
+	if a == nil {
+		return nil
+	}
+	return a.DefaultResourceAcls
 }
 
 func (a *AIGatewayMCPServerListenerOauth) GetIdentityProviders() []string {

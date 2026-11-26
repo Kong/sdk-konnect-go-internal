@@ -3,54 +3,75 @@
 package components
 
 import (
+	"encoding/json"
+	"errors"
+	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AIGatewayModelBalancerIntelligentClassifier - The model the intelligent balancer asks what kind of work a conversation is, before it selects a
-// target. The classifier is called at the address and with the credentials of that model's target
-// and provider. If the classifier does not answer in time or its answer cannot be used, the
+type AIGatewayModelBalancerIntelligentClassifierType string
+
+const (
+	AIGatewayModelBalancerIntelligentClassifierTypeCustom AIGatewayModelBalancerIntelligentClassifierType = "custom"
+)
+
+// AIGatewayModelBalancerIntelligentClassifier - The classifier model the intelligent balancer asks what kind of work a conversation is, before it
+// selects a target. If the classifier does not answer in time or its answer cannot be used, the
 // balancer selects a target for general work.
 //
-// **Requires a minimum runtime version of `2.4`**.
+// **Requires a minimum runtime version of `2.5`**.
 type AIGatewayModelBalancerIntelligentClassifier struct {
-	// The name of a model on the same AI Gateway that has the `decisions` capability and one target.
-	Model string `json:"model"`
-	// The time in milliseconds to wait for the classifier's answer.
-	Timeout *int64 `default:"5000" json:"timeout"`
-	// The number of tokens the classifier model can read, from the model provider's documentation.
-	// The request text sent to the classifier is cut to fit.
-	//
-	ContextWindow int64 `json:"context_window"`
+	AIGatewayModelBalancerIntelligentClassifierCustom *AIGatewayModelBalancerIntelligentClassifierCustom `queryParam:"inline" union:"member"`
+
+	Type AIGatewayModelBalancerIntelligentClassifierType
 }
 
-func (a AIGatewayModelBalancerIntelligentClassifier) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
-}
+func CreateAIGatewayModelBalancerIntelligentClassifierCustom(custom AIGatewayModelBalancerIntelligentClassifierCustom) AIGatewayModelBalancerIntelligentClassifier {
+	typ := AIGatewayModelBalancerIntelligentClassifierTypeCustom
 
-func (a *AIGatewayModelBalancerIntelligentClassifier) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"model", "context_window"}); err != nil {
-		return err
+	return AIGatewayModelBalancerIntelligentClassifier{
+		AIGatewayModelBalancerIntelligentClassifierCustom: &custom,
+		Type: typ,
 	}
-	return nil
 }
 
-func (a *AIGatewayModelBalancerIntelligentClassifier) GetModel() string {
-	if a == nil {
-		return ""
+func (u *AIGatewayModelBalancerIntelligentClassifier) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = AIGatewayModelBalancerIntelligentClassifier{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	type discriminator struct {
+		Type string `json:"type"`
 	}
-	return a.Model
-}
 
-func (a *AIGatewayModelBalancerIntelligentClassifier) GetTimeout() *int64 {
-	if a == nil {
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	}
+
+	switch dis.Type {
+	case "custom":
+		aiGatewayModelBalancerIntelligentClassifierCustom := new(AIGatewayModelBalancerIntelligentClassifierCustom)
+		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerIntelligentClassifierCustom, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == custom) type AIGatewayModelBalancerIntelligentClassifierCustom within AIGatewayModelBalancerIntelligentClassifier: %w", string(data), err)
+		}
+
+		u.AIGatewayModelBalancerIntelligentClassifierCustom = aiGatewayModelBalancerIntelligentClassifierCustom
+		u.Type = AIGatewayModelBalancerIntelligentClassifierTypeCustom
 		return nil
 	}
-	return a.Timeout
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayModelBalancerIntelligentClassifier", string(data))
 }
 
-func (a *AIGatewayModelBalancerIntelligentClassifier) GetContextWindow() int64 {
-	if a == nil {
-		return 0
+func (u AIGatewayModelBalancerIntelligentClassifier) MarshalJSON() ([]byte, error) {
+	if u.AIGatewayModelBalancerIntelligentClassifierCustom != nil {
+		return utils.MarshalJSON(u.AIGatewayModelBalancerIntelligentClassifierCustom, "", true)
 	}
-	return a.ContextWindow
+
+	return nil, errors.New("could not marshal union type AIGatewayModelBalancerIntelligentClassifier: all fields are null")
 }

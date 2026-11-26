@@ -1,17 +1,27 @@
 # AIGatewayModelBalancerIntelligentClassifier
 
-The model the intelligent balancer asks what kind of work a conversation is, before it selects a
-target. The classifier is called at the address and with the credentials of that model's target
-and provider. If the classifier does not answer in time or its answer cannot be used, the
+The classifier model the intelligent balancer asks what kind of work a conversation is, before it
+selects a target. If the classifier does not answer in time or its answer cannot be used, the
 balancer selects a target for general work.
 
-**Requires a minimum runtime version of `2.4`**.
+**Requires a minimum runtime version of `2.5`**.
 
 
-## Fields
+## Supported Types
 
-| Field                                                                                                                                                | Type                                                                                                                                                 | Required                                                                                                                                             | Description                                                                                                                                          | Example                                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Model`                                                                                                                                              | `string`                                                                                                                                             | :heavy_check_mark:                                                                                                                                   | The name of a model on the same AI Gateway that has the `decisions` capability and one target.                                                       | task-classifier                                                                                                                                      |
-| `Timeout`                                                                                                                                            | `*int64`                                                                                                                                             | :heavy_minus_sign:                                                                                                                                   | The time in milliseconds to wait for the classifier's answer.                                                                                        |                                                                                                                                                      |
-| `ContextWindow`                                                                                                                                      | `int64`                                                                                                                                              | :heavy_check_mark:                                                                                                                                   | The number of tokens the classifier model can read, from the model provider's documentation.<br/>The request text sent to the classifier is cut to fit.<br/> |                                                                                                                                                      |
+### AIGatewayModelBalancerIntelligentClassifierCustom
+
+```go
+aiGatewayModelBalancerIntelligentClassifier := components.CreateAIGatewayModelBalancerIntelligentClassifierCustom(components.AIGatewayModelBalancerIntelligentClassifierCustom{/* values here */})
+```
+
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch aiGatewayModelBalancerIntelligentClassifier.Type {
+	case components.AIGatewayModelBalancerIntelligentClassifierTypeCustom:
+		// aiGatewayModelBalancerIntelligentClassifier.AIGatewayModelBalancerIntelligentClassifierCustom is populated
+}
+```

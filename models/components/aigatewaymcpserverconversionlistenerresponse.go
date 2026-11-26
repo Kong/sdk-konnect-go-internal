@@ -94,6 +94,17 @@ func (e *AllowedVersions) IsExact() bool {
 type AIGatewayMCPServerConversionListenerResponseCache struct {
 	// A cache hint Kong emits on a cacheable operation it serves.
 	ToolsList *AIGatewayMCPServerCacheHint `json:"tools_list,omitempty"`
+	// Cache hint emitted on `prompts/list` results. `cache_scope: public` is rejected when
+	// `default_prompt_acls` or a prompt's own `access.acls` filters the list per subject.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	PromptsList *AIGatewayMCPServerCacheHint `json:"prompts_list,omitempty"`
+	// Cache hint emitted on `resources/list` and `resources/templates/list` results.
+	// `cache_scope: public` is rejected when `default_resource_acls` or a resource's own
+	// `access.acls` filters either list per subject.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	ResourcesList *AIGatewayMCPServerCacheHint `json:"resources_list,omitempty"`
 	// A cache hint Kong emits on a cacheable operation it serves.
 	Discover *AIGatewayMCPServerCacheHint `json:"discover,omitempty"`
 }
@@ -114,6 +125,20 @@ func (a *AIGatewayMCPServerConversionListenerResponseCache) GetToolsList() *AIGa
 		return nil
 	}
 	return a.ToolsList
+}
+
+func (a *AIGatewayMCPServerConversionListenerResponseCache) GetPromptsList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.PromptsList
+}
+
+func (a *AIGatewayMCPServerConversionListenerResponseCache) GetResourcesList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.ResourcesList
 }
 
 func (a *AIGatewayMCPServerConversionListenerResponseCache) GetDiscover() *AIGatewayMCPServerCacheHint {
@@ -157,8 +182,6 @@ type AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListenerC
 	//
 	// **Requires a minimum runtime version of `2.4`**.
 	Path *string `json:"path,omitempty"`
-	// Configuration applied when proxying to the upstream service, including authentication.
-	Upstream *AIGatewayUpstreamConfigOutput `json:"upstream,omitempty"`
 	// Client certificates used for mutual TLS (mTLS) authentication with the upstream MCP server,
 	// referenced by name. Each entry must be the `name` of an existing AI Certificate on the same
 	// AI Gateway.
@@ -192,6 +215,11 @@ type AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListenerC
 	//
 	// **Requires a minimum runtime version of `2.1`**.
 	Cache *AIGatewayMCPServerConversionListenerResponseCache `json:"cache,omitempty"`
+	// Configuration applied when proxying to the upstream service, including authentication.
+	// Applies to `conversion-listener`, `conversion-only`, and `upstream-server` MCP Servers.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Upstream *AIGatewayMCPServerUpstreamConfigOutput `json:"upstream,omitempty"`
 }
 
 func (a AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListenerConfig) MarshalJSON() ([]byte, error) {
@@ -296,13 +324,6 @@ func (a *AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListe
 	return a.Path
 }
 
-func (a *AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListenerConfig) GetUpstream() *AIGatewayUpstreamConfigOutput {
-	if a == nil {
-		return nil
-	}
-	return a.Upstream
-}
-
 func (a *AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListenerConfig) GetCertificates() []string {
 	if a == nil {
 		return nil
@@ -329,6 +350,13 @@ func (a *AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListe
 		return nil
 	}
 	return a.Cache
+}
+
+func (a *AIGatewayMCPServerConversionListenerResponseAIGatewayMCPServerKongListenerConfig) GetUpstream() *AIGatewayMCPServerUpstreamConfigOutput {
+	if a == nil {
+		return nil
+	}
+	return a.Upstream
 }
 
 type AIGatewayMCPServerConversionListenerResponse struct {

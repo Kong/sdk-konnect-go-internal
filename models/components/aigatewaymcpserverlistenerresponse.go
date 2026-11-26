@@ -69,6 +69,17 @@ func (e *AIGatewayMCPServerListenerResponseAllowedVersions) IsExact() bool {
 type AIGatewayMCPServerListenerResponseCache struct {
 	// A cache hint Kong emits on a cacheable operation it serves.
 	ToolsList *AIGatewayMCPServerCacheHint `json:"tools_list,omitempty"`
+	// Cache hint emitted on `prompts/list` results. `cache_scope: public` is rejected when
+	// `default_prompt_acls` or a prompt's own `access.acls` filters the list per subject.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	PromptsList *AIGatewayMCPServerCacheHint `json:"prompts_list,omitempty"`
+	// Cache hint emitted on `resources/list` and `resources/templates/list` results.
+	// `cache_scope: public` is rejected when `default_resource_acls` or a resource's own
+	// `access.acls` filters either list per subject.
+	//
+	// **Requires a minimum runtime version of `2.5`**.
+	ResourcesList *AIGatewayMCPServerCacheHint `json:"resources_list,omitempty"`
 	// A cache hint Kong emits on a cacheable operation it serves.
 	Discover *AIGatewayMCPServerCacheHint `json:"discover,omitempty"`
 }
@@ -89,6 +100,20 @@ func (a *AIGatewayMCPServerListenerResponseCache) GetToolsList() *AIGatewayMCPSe
 		return nil
 	}
 	return a.ToolsList
+}
+
+func (a *AIGatewayMCPServerListenerResponseCache) GetPromptsList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.PromptsList
+}
+
+func (a *AIGatewayMCPServerListenerResponseCache) GetResourcesList() *AIGatewayMCPServerCacheHint {
+	if a == nil {
+		return nil
+	}
+	return a.ResourcesList
 }
 
 func (a *AIGatewayMCPServerListenerResponseCache) GetDiscover() *AIGatewayMCPServerCacheHint {

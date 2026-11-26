@@ -39,9 +39,6 @@ type CustomFormFieldInput struct {
 func CreateCustomFormFieldInputContent(content CustomFormContentFieldInput) CustomFormFieldInput {
 	typ := CustomFormFieldInputTypeContent
 
-	typStr := CustomFormContentFieldInputType(typ)
-	content.Type = typStr
-
 	return CustomFormFieldInput{
 		CustomFormContentFieldInput: &content,
 		Type:                        typ,
@@ -50,9 +47,6 @@ func CreateCustomFormFieldInputContent(content CustomFormContentFieldInput) Cust
 
 func CreateCustomFormFieldInputText(text CustomFormTextFieldInput) CustomFormFieldInput {
 	typ := CustomFormFieldInputTypeText
-
-	typStr := CustomFormTextFieldInputType(typ)
-	text.Type = typStr
 
 	return CustomFormFieldInput{
 		CustomFormTextFieldInput: &text,
@@ -63,9 +57,6 @@ func CreateCustomFormFieldInputText(text CustomFormTextFieldInput) CustomFormFie
 func CreateCustomFormFieldInputEmail(email CustomFormEmailFieldInput) CustomFormFieldInput {
 	typ := CustomFormFieldInputTypeEmail
 
-	typStr := CustomFormEmailFieldInputType(typ)
-	email.Type = typStr
-
 	return CustomFormFieldInput{
 		CustomFormEmailFieldInput: &email,
 		Type:                      typ,
@@ -75,9 +66,6 @@ func CreateCustomFormFieldInputEmail(email CustomFormEmailFieldInput) CustomForm
 func CreateCustomFormFieldInputNumber(number CustomFormNumberFieldInput) CustomFormFieldInput {
 	typ := CustomFormFieldInputTypeNumber
 
-	typStr := CustomFormNumberFieldInputType(typ)
-	number.Type = typStr
-
 	return CustomFormFieldInput{
 		CustomFormNumberFieldInput: &number,
 		Type:                       typ,
@@ -86,9 +74,6 @@ func CreateCustomFormFieldInputNumber(number CustomFormNumberFieldInput) CustomF
 
 func CreateCustomFormFieldInputTextarea(textarea CustomFormTextareaFieldInput) CustomFormFieldInput {
 	typ := CustomFormFieldInputTypeTextarea
-
-	typStr := CustomFormTextareaFieldInputType(typ)
-	textarea.Type = typStr
 
 	return CustomFormFieldInput{
 		CustomFormTextareaFieldInput: &textarea,
@@ -108,9 +93,6 @@ func CreateCustomFormFieldInputSelect(selectT CustomFormSelectFieldInput) Custom
 func CreateCustomFormFieldInputCheckbox(checkbox CustomFormCheckboxFieldInput) CustomFormFieldInput {
 	typ := CustomFormFieldInputTypeCheckbox
 
-	typStr := CustomFormCheckboxFieldInputType(typ)
-	checkbox.Type = typStr
-
 	return CustomFormFieldInput{
 		CustomFormCheckboxFieldInput: &checkbox,
 		Type:                         typ,
@@ -119,9 +101,6 @@ func CreateCustomFormFieldInputCheckbox(checkbox CustomFormCheckboxFieldInput) C
 
 func CreateCustomFormFieldInputSubmit(submit CustomFormSubmitFieldInput) CustomFormFieldInput {
 	typ := CustomFormFieldInputTypeSubmit
-
-	typStr := CustomFormSubmitFieldInputType(typ)
-	submit.Type = typStr
 
 	return CustomFormFieldInput{
 		CustomFormSubmitFieldInput: &submit,

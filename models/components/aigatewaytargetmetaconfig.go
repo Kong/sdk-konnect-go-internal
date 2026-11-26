@@ -12,7 +12,8 @@ import (
 // `-contributor` variants, which permit Meta to train on submitted prompts; choose them
 // deliberately. Use the `openai` format for the Chat Completions and Responses APIs and the
 // `anthropic` format for the Messages API. Self-hosted open-weight models (such as Muse Glimmer)
-// should continue to use the `llama2` provider with an `upstream_url`.
+// should use the `ollama` provider, or the `openai` provider with `upstream_url` set on the
+// target (or the `vllm` provider); the `llama2` provider is deprecated.
 //
 // **Requires a minimum runtime version of `2.4`**.
 type AIGatewayTargetMetaConfig struct {

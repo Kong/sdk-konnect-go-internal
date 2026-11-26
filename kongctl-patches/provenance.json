@@ -1,10 +1,10 @@
 {
   "repository": "Kong/kongctl",
-  "commit": "4569312b1518d527de66dd7d6ba797b9b9601f54",
+  "commit": "ec1e404151fce410a865dbbae1a71c9a419d4665",
   "path": "tools/sdk-patches",
   "sha256": {
     "apply.py": "9b383b7349c3bb2603cf5885fbc007adcb8aeede218323520ef812f7dbb5aab7",
-    "manifest.json": "f560ad40241155d3ce63adf63cf2b578f431d3db9c7601e5adcbb7e2e2b272ac",
+    "manifest.json": "23adc299b91938f4ef4557da01358106b1ac235646ea182363ca2981c3e6cb0e",
     "README.md": "b9cc5e775d94cbbb50cff6f1ddb341bdc017b10cf41b6ff705abbd4e470b9cb8",
     "overlays/ai-gateway-pgvector-connection-defaults.yaml": "e95b749c182ea219916960587eb5a697209191356121a3efbb13d67396de5dc1",
     "overlays/ai-gateway-update-runtime-defaults.yaml": "90cd581cf7a301c6270b4cfd63dca367610af20e7a31fa0db926ade10c3f4ce6",

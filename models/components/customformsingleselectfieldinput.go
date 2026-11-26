@@ -3,57 +3,8 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
-
-type CustomFormSingleSelectFieldInputType string
-
-const (
-	CustomFormSingleSelectFieldInputTypeSelect CustomFormSingleSelectFieldInputType = "select"
-)
-
-func (e CustomFormSingleSelectFieldInputType) ToPointer() *CustomFormSingleSelectFieldInputType {
-	return &e
-}
-func (e *CustomFormSingleSelectFieldInputType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "select":
-		*e = CustomFormSingleSelectFieldInputType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CustomFormSingleSelectFieldInputType: %v", v)
-	}
-}
-
-// Mode - Single selection — the developer chooses exactly one option.
-type Mode string
-
-const (
-	ModeSingleSelect Mode = "single_select"
-)
-
-func (e Mode) ToPointer() *Mode {
-	return &e
-}
-func (e *Mode) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "single_select":
-		*e = Mode(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Mode: %v", v)
-	}
-}
 
 // CustomFormSingleSelectFieldInput - A dropdown field where the developer chooses exactly one option. Requires at least 1 option.
 type CustomFormSingleSelectFieldInput struct {
@@ -62,10 +13,12 @@ type CustomFormSingleSelectFieldInput struct {
 	//
 	// Used to match up stored responses across edits.
 	//
-	Name *string                              `json:"name,omitempty"`
-	Type CustomFormSingleSelectFieldInputType `json:"type"`
+	Name *string `json:"name,omitempty"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_ string `const:"select" json:"type"`
 	// Single selection — the developer chooses exactly one option.
-	Mode        Mode    `json:"mode"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	mode        string  `const:"single_select" json:"mode"`
 	Label       string  `json:"label"`
 	Placeholder *string `json:"placeholder,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -92,18 +45,12 @@ func (c *CustomFormSingleSelectFieldInput) GetName() *string {
 	return c.Name
 }
 
-func (c *CustomFormSingleSelectFieldInput) GetType() CustomFormSingleSelectFieldInputType {
-	if c == nil {
-		return CustomFormSingleSelectFieldInputType("")
-	}
-	return c.Type
+func (c *CustomFormSingleSelectFieldInput) GetType() string {
+	return "select"
 }
 
-func (c *CustomFormSingleSelectFieldInput) GetMode() Mode {
-	if c == nil {
-		return Mode("")
-	}
-	return c.Mode
+func (c *CustomFormSingleSelectFieldInput) GetMode() string {
+	return "single_select"
 }
 
 func (c *CustomFormSingleSelectFieldInput) GetLabel() string {

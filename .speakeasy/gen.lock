@@ -1,8 +1,8 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: b55d4e033f865d83af9e158f6edbe5c8
-  docVersion: 3.21.1
+  docChecksum: 1fee880d87345f9806b358d5b32d2464
+  docVersion: 3.21.6
   speakeasyVersion: 1.808.1
   generationVersion: 2.960.8
   releaseVersion: 0.7.0
@@ -378,6 +378,7 @@ trackedFiles:
   docs/models/components/aicostexportinput2compression.md: {}
   docs/models/components/aicostexportinput2dataset.md: {}
   docs/models/components/aicostexportinput2format.md: {}
+  docs/models/components/aicostexportinput2schemaversion.md: {}
   docs/models/components/aicostexportinputcompression.md: {}
   docs/models/components/aicostexportinputdataset.md: {}
   docs/models/components/aicostexportinputformat.md: {}
@@ -388,6 +389,7 @@ trackedFiles:
   docs/models/components/aicostexportschedule2compression.md: {}
   docs/models/components/aicostexportschedule2dataset.md: {}
   docs/models/components/aicostexportschedule2format.md: {}
+  docs/models/components/aicostexportschedule2schemaversion.md: {}
   docs/models/components/aicostexportschedule2status.md: {}
   docs/models/components/aicostexportschedulecadence.md: {}
   docs/models/components/aicostexportschedulecompression.md: {}
@@ -408,6 +410,7 @@ trackedFiles:
   docs/models/components/aicostexportscheduleinputformat.md: {}
   docs/models/components/aicostexportscheduleinputschemaversion.md: {}
   docs/models/components/aicostexportscheduleinputstatus.md: {}
+  docs/models/components/aicostexportscheduleschemaversion.md: {}
   docs/models/components/aicostexportschedulestatus.md: {}
   docs/models/components/aicostexportschemaversion.md: {}
   docs/models/components/aicostexportstatus.md: {}
@@ -496,6 +499,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategykeyauthprincipals.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponse.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseconfig.md: {}
+  docs/models/components/aigatewayauthstrategykeyauthresponseidentityrealms.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseprincipals.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponsescope.md: {}
   docs/models/components/aigatewayauthstrategykeyauthscope.md: {}
@@ -547,13 +551,21 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectrefreshtokenparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectrequest.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponse.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseactortoken.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseauthmethods.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseauthorizationcookiesamesite.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseauthprovider.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsebearertokenparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsecache.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseclientalg.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseclientauth.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclientcredentialsparamtype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclientjwk.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsecloudauthentication.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclustercacheredis.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseclustercachestrategy.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseclusternodes.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseconditions.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfig.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigauthprovider.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigcloudauthentication.md: {}
@@ -561,15 +573,47 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigsentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigsentinelrole.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconsumerby.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsedisablesession.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsedownstreamheaders.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsegranttype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseidtokenparamtype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseignoresignature.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseintrospectionaccept.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseintrospectionendpointauthmethod.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsejit.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseloginaction.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseloginmethods.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseloginredirectmode.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponselogintokens.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponselogoutmethods.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsemapidentitiesfrom.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsemode.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsepasswordparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprincipals.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessiondpop.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessionmtls.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseprotectedresourcemetadata.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprovider.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsepushedauthorizationrequestendpointauthmethod.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseredis.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponserefreshtokenparamtype.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponserequest.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseresponsemode.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponserevocationendpointauthmethod.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesentinelrole.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionbind.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessioncookiesamesite.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionrequestheaders.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionresponseheaders.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesessionstorage.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesource.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsesubjecttokenissuers.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsetokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsetokenexchange.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponsetokenheadersgrants.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseupstreamheaders.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseuserinfoaccept.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectrevocationendpointauthmethod.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectsentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectsentinelrole.md: {}
@@ -630,26 +674,100 @@ trackedFiles:
   docs/models/components/aigatewaydenywhenacl.md: {}
   docs/models/components/aigatewayembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayexpectedconfigversion.md: {}
+  docs/models/components/aigatewayfailovercriteria.md: {}
   docs/models/components/aigatewaygeminiembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayhuggingfaceembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayid.md: {}
   docs/models/components/aigatewayidentityprovider.md: {}
   docs/models/components/aigatewayidentityproviderkeyauth.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthidentityrealms.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthprincipals.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthresponse.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthresponseconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponsescope.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthscope.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnect.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectactortoken.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectauthmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectauthorizationcookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectbearertokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectcache.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectclientalg.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectclientauth.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclientcredentialsparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclientjwk.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclustercacheredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclustercachestrategy.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconditions.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigsentinelrole.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectconsumerby.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectdisablesession.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectdownstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectgranttype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectidtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectignoresignature.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectintrospectionaccept.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectintrospectionendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectjit.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginaction.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginredirectmode.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectlogintokens.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectlogoutmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectmapidentitiesfrom.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectpasswordparamtype.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectprincipals.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectproofofpossessiondpop.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectproofofpossessionmtls.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectprotectedresourcemetadata.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectpushedauthorizationrequestendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrefreshtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrequest.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponse.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsecache.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsecloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclusternodes.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponseconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigsentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsegranttype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsemode.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponseprincipals.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesource.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsetokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrevocationendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionbind.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessioncookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionrequestheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionresponseheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionstorage.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsource.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsubjecttokenissuers.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenexchange.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenheadersgrants.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectupstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectuserinfoaccept.md: {}
   docs/models/components/aigatewayloggingconfig.md: {}
   docs/models/components/aigatewaymcpacls.md: {}
   docs/models/components/aigatewaymcpallowacl.md: {}
@@ -659,6 +777,10 @@ trackedFiles:
   docs/models/components/aigatewaymcpdenyacl.md: {}
   docs/models/components/aigatewaymcpdenywhenacl.md: {}
   docs/models/components/aigatewaymcppassthroughtool.md: {}
+  docs/models/components/aigatewaymcpprompt.md: {}
+  docs/models/components/aigatewaymcppromptaccess.md: {}
+  docs/models/components/aigatewaymcpresource.md: {}
+  docs/models/components/aigatewaymcpresourceaccess.md: {}
   docs/models/components/aigatewaymcpserver.md: {}
   docs/models/components/aigatewaymcpserveracls.md: {}
   docs/models/components/aigatewaymcpservercachehint.md: {}
@@ -700,7 +822,10 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverserverconfigbaseclient.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbaseoutput.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbasesession.md: {}
-  docs/models/components/aigatewaymcpserverserverconfigbasestrategy.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfig.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigauth.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigauthoutput.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigoutput.md: {}
   docs/models/components/aigatewaymcpserverupstreamserver.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfig.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfiglogging.md: {}
@@ -729,7 +854,6 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverwithupstreamconfigstrategy.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfig.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfigoutput.md: {}
-  docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfigprotocol.md: {}
   docs/models/components/aigatewaymcptoolaccess.md: {}
   docs/models/components/aigatewaymcptoolannotations.md: {}
   docs/models/components/aigatewaymcptoolparameter.md: {}
@@ -749,30 +873,24 @@ trackedFiles:
   docs/models/components/aigatewaymodelbalancerconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerconsistenthashingconfig.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentclassifier.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauth.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthbasic.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthbasicheaders.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthbasicoutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifierauthoutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifiercustom.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifiercustomoutput.md: {}
+  docs/models/components/aigatewaymodelbalancerintelligentclassifieroutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigversion.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerleastconnectionsconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerleastconnectionsconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestlatencyconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestlatencyconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerlowestusageconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestusageconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestusageconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerpriorityconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerpriorityconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerpriorityconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerroundrobinconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerroundrobinconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerroundrobinconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfig.md: {}
-  docs/models/components/aigatewaymodelbalancersemanticconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfigoutput.md: {}
-  docs/models/components/aigatewaymodelbalancersessionaffinity.md: {}
-  docs/models/components/aigatewaymodelbalancersessionaffinityoutput.md: {}
   docs/models/components/aigatewaymodeldatastoreref.md: {}
   docs/models/components/aigatewaymodelformat.md: {}
   docs/models/components/aigatewaymodelformattype.md: {}
@@ -839,6 +957,7 @@ trackedFiles:
   docs/models/components/aigatewaymodelproviderconfigauthazureoutput.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasic.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasicheaders.md: {}
+  docs/models/components/aigatewaymodelproviderconfigauthbasicheadersoutput.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasiclocation.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasicoutput.md: {}
   docs/models/components/aigatewaymodelproviderconfigauthbasicparams.md: {}
@@ -916,16 +1035,9 @@ trackedFiles:
   docs/models/components/aigatewaymodelvectordbconfigpgvectorversion.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredis.md: {}
   docs/models/components/aigatewaymodelvectordbconfigrediscloudauthentication.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigrediscloudauthenticationoutput.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigrediscluster.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisdistancemetric.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigrediskeepalive.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisnodes.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisoutput.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredisport.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredisrole.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredissentinel.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredissentinelnodes.md: {}
   docs/models/components/aigatewayollamaembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayopenaiembeddingsmodelconfig.md: {}
   docs/models/components/aigatewaypolicy.md: {}
@@ -959,13 +1071,6 @@ trackedFiles:
   docs/models/components/aigatewaysadmin.md: {}
   docs/models/components/aigatewayscreator.md: {}
   docs/models/components/aigatewayservicetierfactor.md: {}
-  docs/models/components/aigatewaysessionaffinitystorage.md: {}
-  docs/models/components/aigatewaysessionaffinitystoragelocal.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageoutput.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageredis.md: {}
-  docs/models/components/aigatewaysessionaffinitystoragerediscloudauthentication.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageredisnodes.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageredisoutput.md: {}
   docs/models/components/aigatewaysni.md: {}
   docs/models/components/aigatewaysviewer.md: {}
   docs/models/components/aigatewaytarget.md: {}
@@ -2578,7 +2683,6 @@ trackedFiles:
     pristine_git_object: 0dc4a3762c11e3cd13808152e40eec466f81939d
   docs/models/components/createapiregistrationformrequest.md: {}
   docs/models/components/createapiregistrationformrequeststatus.md: {}
-  docs/models/components/createapiregistrationformrequesttype.md: {}
   docs/models/components/createapirequest.md:
     id: 580cc0940738
     pristine_git_object: 1136648fffb78e02ca5882a7f80f0f6f6ec3ae58
@@ -2772,7 +2876,6 @@ trackedFiles:
   docs/models/components/createdefaultcontentrequest.md: {}
   docs/models/components/createdeveloperregistrationformrequest.md: {}
   docs/models/components/createdeveloperregistrationformrequeststatus.md: {}
-  docs/models/components/createdeveloperregistrationformrequesttype.md: {}
   docs/models/components/createdeveloperrequest.md: {}
   docs/models/components/createdeveloperrequestdeveloperstatus.md: {}
   docs/models/components/createdirectorybody.md: {}
@@ -2801,8 +2904,8 @@ trackedFiles:
     id: b3422911c541
     pristine_git_object: a40df54f2f0b404617be85d7b2c146beb1872608
   docs/models/components/creategroupbody.md: {}
-  docs/models/components/creategroupbodytype.md: {}
   docs/models/components/creategroupmembershipentrybody.md: {}
+  docs/models/components/creategrouptype.md: {}
   docs/models/components/createidentityprovider.md:
     id: 851b5ab1c3e8
     pristine_git_object: c45085d86473cdcfedf8eb7cd8019a37edaba9d5
@@ -3048,28 +3151,16 @@ trackedFiles:
     pristine_git_object: 88063eb758be06c942321840030ad3b7e7549ea2
   docs/models/components/customformcheckboxfield.md: {}
   docs/models/components/customformcheckboxfieldinput.md: {}
-  docs/models/components/customformcheckboxfieldinputtype.md: {}
-  docs/models/components/customformcheckboxfieldtype.md: {}
   docs/models/components/customformcontentfield.md: {}
   docs/models/components/customformcontentfieldinput.md: {}
-  docs/models/components/customformcontentfieldinputtype.md: {}
-  docs/models/components/customformcontentfieldtype.md: {}
   docs/models/components/customformemailfield.md: {}
   docs/models/components/customformemailfieldinput.md: {}
-  docs/models/components/customformemailfieldinputtype.md: {}
-  docs/models/components/customformemailfieldtype.md: {}
   docs/models/components/customformfield.md: {}
   docs/models/components/customformfieldinput.md: {}
   docs/models/components/customformmultiselectfield.md: {}
   docs/models/components/customformmultiselectfieldinput.md: {}
-  docs/models/components/customformmultiselectfieldinputmode.md: {}
-  docs/models/components/customformmultiselectfieldinputtype.md: {}
-  docs/models/components/customformmultiselectfieldmode.md: {}
-  docs/models/components/customformmultiselectfieldtype.md: {}
   docs/models/components/customformnumberfield.md: {}
   docs/models/components/customformnumberfieldinput.md: {}
-  docs/models/components/customformnumberfieldinputtype.md: {}
-  docs/models/components/customformnumberfieldtype.md: {}
   docs/models/components/customformresponse.md: {}
   docs/models/components/customformselectfield.md: {}
   docs/models/components/customformselectfieldinput.md: {}
@@ -3077,24 +3168,15 @@ trackedFiles:
   docs/models/components/customformselectoptioninput.md: {}
   docs/models/components/customformsingleselectfield.md: {}
   docs/models/components/customformsingleselectfieldinput.md: {}
-  docs/models/components/customformsingleselectfieldinputtype.md: {}
-  docs/models/components/customformsingleselectfieldmode.md: {}
-  docs/models/components/customformsingleselectfieldtype.md: {}
   docs/models/components/customformstatus.md: {}
   docs/models/components/customformsubmitfield.md: {}
   docs/models/components/customformsubmitfieldinput.md: {}
   docs/models/components/customformsubmitfieldinputname.md: {}
-  docs/models/components/customformsubmitfieldinputtype.md: {}
   docs/models/components/customformsubmitfieldname.md: {}
-  docs/models/components/customformsubmitfieldtype.md: {}
   docs/models/components/customformtextareafield.md: {}
   docs/models/components/customformtextareafieldinput.md: {}
-  docs/models/components/customformtextareafieldinputtype.md: {}
-  docs/models/components/customformtextareafieldtype.md: {}
   docs/models/components/customformtextfield.md: {}
   docs/models/components/customformtextfieldinput.md: {}
-  docs/models/components/customformtextfieldinputtype.md: {}
-  docs/models/components/customformtextfieldtype.md: {}
   docs/models/components/customformtype.md: {}
   docs/models/components/customplan.md: {}
   docs/models/components/customplugin.md:
@@ -3618,7 +3700,6 @@ trackedFiles:
   docs/models/components/externalinvoicing.md: {}
   docs/models/components/externalinvoicingtaxconfig.md: {}
   docs/models/components/externalreferences.md: {}
-  docs/models/components/failovercriteria.md: {}
   docs/models/components/failurereason.md: {}
   docs/models/components/feature.md: {}
   docs/models/components/featurecostqueryresult.md: {}
@@ -6999,7 +7080,6 @@ trackedFiles:
     pristine_git_object: 19fbe09e719a77411065165c841015bfa1b8c184
   docs/models/components/updateapiregistrationformrequest.md: {}
   docs/models/components/updateapiregistrationformrequeststatus.md: {}
-  docs/models/components/updateapiregistrationformrequesttype.md: {}
   docs/models/components/updateapirequest.md:
     id: 6fd2e312928b
     pristine_git_object: a76680d263b0bc4a85333120257ab6fb3b6ee555
@@ -7079,7 +7159,6 @@ trackedFiles:
   docs/models/components/updatedcrsettings.md: {}
   docs/models/components/updatedeveloperregistrationformrequest.md: {}
   docs/models/components/updatedeveloperregistrationformrequeststatus.md: {}
-  docs/models/components/updatedeveloperregistrationformrequesttype.md: {}
   docs/models/components/updatedeveloperrequest.md:
     id: 82915380918a
     pristine_git_object: cf2fb1c1a18f8eccac9164dfc63b2ef7192fb56e
@@ -7225,6 +7304,7 @@ trackedFiles:
     id: efa076c19349
     pristine_git_object: 9a61d9cbc0149751d5e2bf706ee2eefe338d36ce
   docs/models/components/updatetlstrustbundlerequest.md: {}
+  docs/models/components/updatetokenendpointauthmethod.md: {}
   docs/models/components/updatetrustedidpbody.md: {}
   docs/models/components/updateuser.md:
     id: da376a24390c
@@ -7401,7 +7481,6 @@ trackedFiles:
   docs/models/components/virtualclusternamespaceidselector.md: {}
   docs/models/components/virtualclusternamespaceidselectorexactlist.md: {}
   docs/models/components/virtualclusternamespaceidselectorglob.md: {}
-  docs/models/components/virtualclusternamespacemode.md: {}
   docs/models/components/virtualclusternamespacetopicselector.md: {}
   docs/models/components/virtualclusternamespacetopicselectorexactlist.md: {}
   docs/models/components/virtualclusternamespacetopicselectorexactlistconflict.md: {}
@@ -12822,7 +12901,6 @@ trackedFiles:
   models/components/aicostexportinput.go: {}
   models/components/aicostexportschedule.go: {}
   models/components/aicostexportscheduleinput.go: {}
-  models/components/aicostexportschemaversion.go: {}
   models/components/aicostfocusoptions.go: {}
   models/components/aicostfocusoptionsinput.go: {}
   models/components/aicostgrouplistfilter.go: {}
@@ -12909,6 +12987,7 @@ trackedFiles:
   models/components/aigatewaydenywhenacl.go: {}
   models/components/aigatewayembeddingsmodelconfig.go: {}
   models/components/aigatewayexpectedconfigversion.go: {}
+  models/components/aigatewayfailovercriteria.go: {}
   models/components/aigatewaygeminiembeddingsmodelconfig.go: {}
   models/components/aigatewayhuggingfaceembeddingsmodelconfig.go: {}
   models/components/aigatewayidentityprovider.go: {}
@@ -12924,6 +13003,10 @@ trackedFiles:
   models/components/aigatewaymcpdenyacl.go: {}
   models/components/aigatewaymcpdenywhenacl.go: {}
   models/components/aigatewaymcppassthroughtool.go: {}
+  models/components/aigatewaymcpprompt.go: {}
+  models/components/aigatewaymcppromptaccess.go: {}
+  models/components/aigatewaymcpresource.go: {}
+  models/components/aigatewaymcpresourceaccess.go: {}
   models/components/aigatewaymcpserver.go: {}
   models/components/aigatewaymcpserveracls.go: {}
   models/components/aigatewaymcpservercachehint.go: {}
@@ -12943,6 +13026,8 @@ trackedFiles:
   models/components/aigatewaymcpserverratelimiting.go: {}
   models/components/aigatewaymcpserverroutewithmatcher.go: {}
   models/components/aigatewaymcpserverserverconfigbaseoutput.go: {}
+  models/components/aigatewaymcpserverupstreamconfig.go: {}
+  models/components/aigatewaymcpserverupstreamconfigoutput.go: {}
   models/components/aigatewaymcpserverupstreamserver.go: {}
   models/components/aigatewaymcpserverupstreamserverconfigoutput.go: {}
   models/components/aigatewaymcpserverupstreamserverresponse.go: {}
@@ -12968,15 +13053,20 @@ trackedFiles:
   models/components/aigatewaymodelbalancerconfigoutput.go: {}
   models/components/aigatewaymodelbalancerconsistenthashingconfig.go: {}
   models/components/aigatewaymodelbalancerintelligentclassifier.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauth.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauthbasic.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauthbasicoutput.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifierauthoutput.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifiercustom.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifiercustomoutput.go: {}
+  models/components/aigatewaymodelbalancerintelligentclassifieroutput.go: {}
   models/components/aigatewaymodelbalancerintelligentconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerleastconnectionsconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerlowestlatencyconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerlowestusageconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerpriorityconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerroundrobinconfigoutput.go: {}
+  models/components/aigatewaymodelbalancerleastconnectionsconfig.go: {}
+  models/components/aigatewaymodelbalancerlowestlatencyconfig.go: {}
+  models/components/aigatewaymodelbalancerlowestusageconfig.go: {}
+  models/components/aigatewaymodelbalancerpriorityconfig.go: {}
+  models/components/aigatewaymodelbalancerroundrobinconfig.go: {}
   models/components/aigatewaymodelbalancersemanticconfigoutput.go: {}
-  models/components/aigatewaymodelbalancersessionaffinity.go: {}
-  models/components/aigatewaymodelbalancersessionaffinityoutput.go: {}
   models/components/aigatewaymodeldatastoreref.go: {}
   models/components/aigatewaymodelformat.go: {}
   models/components/aigatewaymodelmodel.go: {}
@@ -13037,10 +13127,6 @@ trackedFiles:
   models/components/aigatewayruntimedefault.go: {}
   models/components/aigatewayruntimedefaultdeploymenttype.go: {}
   models/components/aigatewayservicetierfactor.go: {}
-  models/components/aigatewaysessionaffinitystorage.go: {}
-  models/components/aigatewaysessionaffinitystoragelocal.go: {}
-  models/components/aigatewaysessionaffinitystorageoutput.go: {}
-  models/components/aigatewaysessionaffinitystorageredisoutput.go: {}
   models/components/aigatewaysni.go: {}
   models/components/aigatewaytarget.go: {}
   models/components/aigatewaytargetanthropicconfig.go: {}
@@ -13937,6 +14023,7 @@ trackedFiles:
     pristine_git_object: 7cd23f7be05446a7b947f9cdb08c68b38f319d9d
   models/components/creategroupbody.go: {}
   models/components/creategroupmembershipentrybody.go: {}
+  models/components/creategrouptype.go: {}
   models/components/createidentityprovider.go:
     id: ff07134dc458
     pristine_git_object: ce0a62750ae538e8a4eca05071428640bd22972e
@@ -16010,6 +16097,7 @@ trackedFiles:
     id: 1a8b27465762
     pristine_git_object: 674e47dd457a81587b5830f0ff8a07d54171c741
   models/components/updatetlstrustbundlerequest.go: {}
+  models/components/updatetokenendpointauthmethod.go: {}
   models/components/updatetrustedidpbody.go: {}
   models/components/updateuser.go:
     id: c7e700fc4b91
@@ -24071,10 +24159,10 @@ examples:
         path:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       requestBody:
-        application/json: {"enabled": true}
+        application/json: {"enabled": true, "include_principal_name": true}
       responses:
         "200":
-          application/json: {"enabled": true}
+          application/json: {"enabled": true, "include_principal_name": true}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "max", "maximum": 8, "source": "body", "reason": "must not have more than 8 characters"}]}
         "401":
@@ -24090,7 +24178,7 @@ examples:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       responses:
         "200":
-          application/json: {"enabled": true}
+          application/json: {"enabled": true, "include_principal_name": true}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -41883,7 +41971,7 @@ examples:
           authServerId: "d32d905a-ed33-46a3-a093-d8f536af9a8a"
           clientId: "kYa9iQFU5xPDSIUH9z1z"
       requestBody:
-        application/json: {"token_endpoint_auth_method": "client_secret_post", "labels": {"env": "test"}}
+        application/json: {"labels": {"env": "test"}}
       responses:
         "200":
           application/json: {"id": "kYa9iQFU5xPDSIUH9z1z", "name": "<value>", "grant_types": [], "redirect_uris": ["https://innocent-laughter.com/", "https://responsible-hepatitis.com/", "https://probable-doing.name"], "access_token_duration": 300, "id_token_duration": 300, "allow_all_scopes": false, "allow_scopes": ["1151381e-6468-4e80-aca3-1fa1e37bcaec", "5f6653b8-cd33-49c5-9d51-7151820b7257"], "labels": {"env": "test"}, "response_types": [], "token_endpoint_auth_method": "client_secret_post", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -41967,7 +42055,7 @@ examples:
           clientId: "kYa9iQFU5xPDSIUH9z1z"
           clientSecretId: "07d05309-45cc-4b37-92fb-1524846deec3"
       requestBody:
-        application/json: {"enabled": true}
+        application/json: {}
       responses:
         "200":
           application/json: {"id": "2ee8bb2e-7c1f-495f-b733-61594ff8e2e5", "enabled": true, "secret": "YAzsyUlNZ5gNGeKS9H3VAdxVPzhPo4ae", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -42080,7 +42168,7 @@ examples:
         path:
           directoryId: "a02c929f-dd3e-4154-9012-f54a9eb3a053"
       requestBody:
-        application/json: {"ttl_secs": 600, "negative_ttl_secs": 600, "labels": {"env": "test"}}
+        application/json: {"labels": {"env": "test"}}
       responses:
         "200":
           application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "description": "when storyboard plus woot yippee during unless hmph patroller", "allowed_control_planes": ["4c67edc0-99b0-487b-a0c4-035b315db2e4", "41534f28-b374-4d89-b2de-6898178b167f"], "allow_all_control_planes": false, "ttl_secs": 600, "negative_ttl_secs": 600, "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -42182,7 +42270,7 @@ examples:
         multipart/form-data: {"file": "x-file: example.file", "dry_run": true}
       responses:
         "200":
-          application/json: {"counts": {"users": {"created": 761716, "updated": 662522, "unchanged": 211830, "inactive": 144332}, "teams": {"created": 35376, "deleted": 908083}, "memberships": {"added": 166464, "removed": 508273}}, "warnings": [{"type": "<value>", "detail": "<value>"}], "errors": []}
+          application/json: {"counts": {"users": {"created": 761716, "updated": 662522, "unchanged": 211830, "adopted": 733639, "inactive": 144332}, "teams": {"created": 35376, "deleted": 908083}, "memberships": {"added": 166464, "removed": 508273}}, "warnings": [{"type": "<value>", "detail": "<value>"}], "errors": []}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
         "401":

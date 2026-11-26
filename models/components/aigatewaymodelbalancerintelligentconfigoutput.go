@@ -8,72 +8,6 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AIGatewayModelBalancerIntelligentConfigFailoverCriteria - **`http_400` requires a minimum runtime version of `2.3`**.
-//
-// **`http_401` requires a minimum runtime version of `2.3`**.
-//
-// **`http_402` requires a minimum runtime version of `2.3`**.
-//
-// **`http_405` requires a minimum runtime version of `2.3`**.
-//
-// **`http_408` requires a minimum runtime version of `2.3`**.
-//
-// **`http_409` requires a minimum runtime version of `2.3`**.
-//
-// **`http_413` requires a minimum runtime version of `2.3`**.
-//
-// **`http_415` requires a minimum runtime version of `2.3`**.
-//
-// **`http_422` requires a minimum runtime version of `2.3`**.
-//
-// **`http_522` requires a minimum runtime version of `2.3`**.
-//
-// **`http_529` requires a minimum runtime version of `2.3`**.
-//
-// **`http_5xx` requires a minimum runtime version of `2.3`**.
-type AIGatewayModelBalancerIntelligentConfigFailoverCriteria string
-
-const (
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaError         AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "error"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp400       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_400"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp401       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_401"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp402       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_402"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp403       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_403"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp404       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_404"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp405       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_405"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp408       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_408"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp409       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_409"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp413       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_413"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp415       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_415"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp422       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_422"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp429       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_429"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp500       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_500"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp502       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_502"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp503       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_503"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp504       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_504"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp522       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_522"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp529       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_529"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp5xx       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_5xx"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaInvalidHeader AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "invalid_header"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaNonIdempotent AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "non_idempotent"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaTimeout       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "timeout"
-)
-
-func (e AIGatewayModelBalancerIntelligentConfigFailoverCriteria) ToPointer() *AIGatewayModelBalancerIntelligentConfigFailoverCriteria {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayModelBalancerIntelligentConfigFailoverCriteria) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "error", "http_400", "http_401", "http_402", "http_403", "http_404", "http_405", "http_408", "http_409", "http_413", "http_415", "http_422", "http_429", "http_500", "http_502", "http_503", "http_504", "http_522", "http_529", "http_5xx", "invalid_header", "non_idempotent", "timeout":
-			return true
-		}
-	}
-	return false
-}
-
 // AIGatewayModelBalancerIntelligentConfigVersion - The version of the intelligent balancing algorithm.
 type AIGatewayModelBalancerIntelligentConfigVersion string
 
@@ -96,31 +30,6 @@ func (e *AIGatewayModelBalancerIntelligentConfigVersion) UnmarshalJSON(data []by
 	default:
 		return fmt.Errorf("invalid value for AIGatewayModelBalancerIntelligentConfigVersion: %v", v)
 	}
-}
-
-// Strategy - How the balancer selects among the eligible targets. `weighted` scores each target on cost and
-// quality. `margin` selects the cheapest target whose expected quality is close enough to the best
-// target's. Available while both are evaluated; removed once one is chosen.
-type Strategy string
-
-const (
-	StrategyWeighted Strategy = "weighted"
-	StrategyMargin   Strategy = "margin"
-)
-
-func (e Strategy) ToPointer() *Strategy {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Strategy) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "weighted", "margin":
-			return true
-		}
-	}
-	return false
 }
 
 // CostQualityTradeoff - How the balancer weighs cost versus quality when selecting a target. `cost` favors the cheapest available target, `quality` favors the highest-quality target, and `balanced` weighs both.
@@ -152,13 +61,13 @@ func (e *CostQualityTradeoff) IsExact() bool {
 // same target through session affinity, which is always on for this algorithm: `ttl` and `storage`
 // can be set, and `session_affinity.enabled: false` is rejected.
 //
-// **Requires a minimum runtime version of `2.4`**.
+// **Requires a minimum runtime version of `2.5`**.
 type AIGatewayModelBalancerIntelligentConfigOutput struct {
 	ConnectTimeout *int64 `default:"60000" json:"connect_timeout"`
 	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
 	FailTimeout *int64 `default:"10000" json:"fail_timeout"`
 	// Specifies in which cases an upstream response should be failover to the next target. Each option in the array is equivalent to the function of https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-	FailoverCriteria []AIGatewayModelBalancerIntelligentConfigFailoverCriteria `json:"failover_criteria,omitempty"`
+	FailoverCriteria []AIGatewayFailoverCriteria `json:"failover_criteria,omitempty"`
 	// Number of unsuccessful attempts to communicate with a target that should occur in the duration defined by `fail_timeout` before the target is considered unavailable. The zero value disables the circuit breaker. What is considered an unsuccessful attempt is defined by `failover_criteria`. Note the cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, while the cases of `http_403` and `http_404` are never considered unsuccessful attempts.
 	MaxFails    *int64 `default:"0" json:"max_fails"`
 	ReadTimeout *int64 `default:"60000" json:"read_timeout"`
@@ -171,27 +80,14 @@ type AIGatewayModelBalancerIntelligentConfigOutput struct {
 	algorithm string `const:"intelligent" json:"algorithm"`
 	// The version of the intelligent balancing algorithm.
 	Version *AIGatewayModelBalancerIntelligentConfigVersion `default:"v1" json:"version"`
-	// How the balancer selects among the eligible targets. `weighted` scores each target on cost and
-	// quality. `margin` selects the cheapest target whose expected quality is close enough to the best
-	// target's. Available while both are evaluated; removed once one is chosen.
-	//
-	Strategy *Strategy `default:"weighted" json:"strategy"`
-	// The model the intelligent balancer asks what kind of work a conversation is, before it selects a
-	// target. The classifier is called at the address and with the credentials of that model's target
-	// and provider. If the classifier does not answer in time or its answer cannot be used, the
+	// The classifier model the intelligent balancer asks what kind of work a conversation is, before it
+	// selects a target. If the classifier does not answer in time or its answer cannot be used, the
 	// balancer selects a target for general work.
 	//
-	// **Requires a minimum runtime version of `2.4`**.
-	Classifier AIGatewayModelBalancerIntelligentClassifier `json:"classifier"`
+	// **Requires a minimum runtime version of `2.5`**.
+	Classifier AIGatewayModelBalancerIntelligentClassifierOutput `json:"classifier"`
 	// How the balancer weighs cost versus quality when selecting a target. `cost` favors the cheapest available target, `quality` favors the highest-quality target, and `balanced` weighs both.
 	CostQualityTradeoff *CostQualityTradeoff `default:"balanced" json:"cost_quality_tradeoff"`
-	// Sends later requests in a conversation to the target that served the earlier turn, if that
-	// target can still take the request. This improves reuse of the provider's prompt cache.
-	// Requests are matched by conversation content and provider response IDs, not by a session
-	// header. Requests with the same conversation content can go to the same target. If the
-	// preferred target is not available, the balancer algorithm picks the target.
-	//
-	SessionAffinity *AIGatewayModelBalancerSessionAffinityOutput `json:"session_affinity,omitempty"`
 }
 
 func (a AIGatewayModelBalancerIntelligentConfigOutput) MarshalJSON() ([]byte, error) {
@@ -219,7 +115,7 @@ func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailTimeout() *int64 
 	return a.FailTimeout
 }
 
-func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailoverCriteria() []AIGatewayModelBalancerIntelligentConfigFailoverCriteria {
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailoverCriteria() []AIGatewayFailoverCriteria {
 	if a == nil {
 		return nil
 	}
@@ -272,18 +168,15 @@ func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetVersion() *AIGatewayM
 	return a.Version
 }
 
-func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetStrategy() *Strategy {
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetClassifier() AIGatewayModelBalancerIntelligentClassifierOutput {
 	if a == nil {
-		return nil
-	}
-	return a.Strategy
-}
-
-func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetClassifier() AIGatewayModelBalancerIntelligentClassifier {
-	if a == nil {
-		return AIGatewayModelBalancerIntelligentClassifier{}
+		return AIGatewayModelBalancerIntelligentClassifierOutput{}
 	}
 	return a.Classifier
+}
+
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetClassifierCustom() *AIGatewayModelBalancerIntelligentClassifierCustomOutput {
+	return a.GetClassifier().AIGatewayModelBalancerIntelligentClassifierCustomOutput
 }
 
 func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetCostQualityTradeoff() *CostQualityTradeoff {
@@ -293,25 +186,18 @@ func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetCostQualityTradeoff()
 	return a.CostQualityTradeoff
 }
 
-func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinityOutput {
-	if a == nil {
-		return nil
-	}
-	return a.SessionAffinity
-}
-
 // AIGatewayModelBalancerIntelligentConfig - On the first request of a conversation, asks a classifier model what kind of work it is, then
 // selects a target by the cost and quality tradeoff. Later requests in the conversation go to the
 // same target through session affinity, which is always on for this algorithm: `ttl` and `storage`
 // can be set, and `session_affinity.enabled: false` is rejected.
 //
-// **Requires a minimum runtime version of `2.4`**.
+// **Requires a minimum runtime version of `2.5`**.
 type AIGatewayModelBalancerIntelligentConfig struct {
 	ConnectTimeout *int64 `default:"60000" json:"connect_timeout"`
 	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
 	FailTimeout *int64 `default:"10000" json:"fail_timeout"`
 	// Specifies in which cases an upstream response should be failover to the next target. Each option in the array is equivalent to the function of https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-	FailoverCriteria []AIGatewayModelBalancerIntelligentConfigFailoverCriteria `json:"failover_criteria,omitempty"`
+	FailoverCriteria []AIGatewayFailoverCriteria `json:"failover_criteria,omitempty"`
 	// Number of unsuccessful attempts to communicate with a target that should occur in the duration defined by `fail_timeout` before the target is considered unavailable. The zero value disables the circuit breaker. What is considered an unsuccessful attempt is defined by `failover_criteria`. Note the cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, while the cases of `http_403` and `http_404` are never considered unsuccessful attempts.
 	MaxFails    *int64 `default:"0" json:"max_fails"`
 	ReadTimeout *int64 `default:"60000" json:"read_timeout"`
@@ -324,27 +210,14 @@ type AIGatewayModelBalancerIntelligentConfig struct {
 	algorithm string `const:"intelligent" json:"algorithm"`
 	// The version of the intelligent balancing algorithm.
 	Version *AIGatewayModelBalancerIntelligentConfigVersion `default:"v1" json:"version"`
-	// How the balancer selects among the eligible targets. `weighted` scores each target on cost and
-	// quality. `margin` selects the cheapest target whose expected quality is close enough to the best
-	// target's. Available while both are evaluated; removed once one is chosen.
-	//
-	Strategy *Strategy `default:"weighted" json:"strategy"`
-	// The model the intelligent balancer asks what kind of work a conversation is, before it selects a
-	// target. The classifier is called at the address and with the credentials of that model's target
-	// and provider. If the classifier does not answer in time or its answer cannot be used, the
+	// The classifier model the intelligent balancer asks what kind of work a conversation is, before it
+	// selects a target. If the classifier does not answer in time or its answer cannot be used, the
 	// balancer selects a target for general work.
 	//
-	// **Requires a minimum runtime version of `2.4`**.
+	// **Requires a minimum runtime version of `2.5`**.
 	Classifier AIGatewayModelBalancerIntelligentClassifier `json:"classifier"`
 	// How the balancer weighs cost versus quality when selecting a target. `cost` favors the cheapest available target, `quality` favors the highest-quality target, and `balanced` weighs both.
 	CostQualityTradeoff *CostQualityTradeoff `default:"balanced" json:"cost_quality_tradeoff"`
-	// Sends later requests in a conversation to the target that served the earlier turn, if that
-	// target can still take the request. This improves reuse of the provider's prompt cache.
-	// Requests are matched by conversation content and provider response IDs, not by a session
-	// header. Requests with the same conversation content can go to the same target. If the
-	// preferred target is not available, the balancer algorithm picks the target.
-	//
-	SessionAffinity *AIGatewayModelBalancerSessionAffinity `json:"session_affinity,omitempty"`
 }
 
 func (a AIGatewayModelBalancerIntelligentConfig) MarshalJSON() ([]byte, error) {
@@ -372,7 +245,7 @@ func (a *AIGatewayModelBalancerIntelligentConfig) GetFailTimeout() *int64 {
 	return a.FailTimeout
 }
 
-func (a *AIGatewayModelBalancerIntelligentConfig) GetFailoverCriteria() []AIGatewayModelBalancerIntelligentConfigFailoverCriteria {
+func (a *AIGatewayModelBalancerIntelligentConfig) GetFailoverCriteria() []AIGatewayFailoverCriteria {
 	if a == nil {
 		return nil
 	}
@@ -425,13 +298,6 @@ func (a *AIGatewayModelBalancerIntelligentConfig) GetVersion() *AIGatewayModelBa
 	return a.Version
 }
 
-func (a *AIGatewayModelBalancerIntelligentConfig) GetStrategy() *Strategy {
-	if a == nil {
-		return nil
-	}
-	return a.Strategy
-}
-
 func (a *AIGatewayModelBalancerIntelligentConfig) GetClassifier() AIGatewayModelBalancerIntelligentClassifier {
 	if a == nil {
 		return AIGatewayModelBalancerIntelligentClassifier{}
@@ -439,16 +305,13 @@ func (a *AIGatewayModelBalancerIntelligentConfig) GetClassifier() AIGatewayModel
 	return a.Classifier
 }
 
+func (a *AIGatewayModelBalancerIntelligentConfig) GetClassifierCustom() *AIGatewayModelBalancerIntelligentClassifierCustom {
+	return a.GetClassifier().AIGatewayModelBalancerIntelligentClassifierCustom
+}
+
 func (a *AIGatewayModelBalancerIntelligentConfig) GetCostQualityTradeoff() *CostQualityTradeoff {
 	if a == nil {
 		return nil
 	}
 	return a.CostQualityTradeoff
-}
-
-func (a *AIGatewayModelBalancerIntelligentConfig) GetSessionAffinity() *AIGatewayModelBalancerSessionAffinity {
-	if a == nil {
-		return nil
-	}
-	return a.SessionAffinity
 }

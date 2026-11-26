@@ -15,10 +15,15 @@ type CreatePrincipalKeyBodyImported struct {
 	//
 	Name   *string `json:"name,omitempty"`
 	Secret string  `json:"secret"`
-	// Management metadata accepted by the Identity API for imported keys.
-	ManagedBy map[string]string `json:"managed_by,omitempty"`
 	// An ISO-8601 timestamp representation of entity expiration date.
 	ExpiresAt optionalnullable.OptionalNullable[time.Time] `json:"expires_at,omitempty"`
+	// Stores information about what manages this entity, such as the tool or system responsible for its lifecycle (for example, `terraform`).
+	//
+	// Keys must be 1–63 characters long, start and end with an alphanumeric character, and may contain dashes (`-`), underscores (`_`), and dots (`.`).
+	// Values must be 1–127 characters long and must not be empty.
+	// Keys and values must not contain spaces or control characters.
+	//
+	ManagedBy map[string]string `json:"managed_by,omitempty"`
 }
 
 func (c CreatePrincipalKeyBodyImported) MarshalJSON() ([]byte, error) {
@@ -55,4 +60,11 @@ func (c *CreatePrincipalKeyBodyImported) GetExpiresAt() optionalnullable.Optiona
 		return nil
 	}
 	return c.ExpiresAt
+}
+
+func (c *CreatePrincipalKeyBodyImported) GetManagedBy() map[string]string {
+	if c == nil {
+		return nil
+	}
+	return c.ManagedBy
 }

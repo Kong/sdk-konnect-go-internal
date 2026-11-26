@@ -31,9 +31,6 @@ type UpdatePortalFormRequest struct {
 func CreateUpdatePortalFormRequestDeveloperRegistration(developerRegistration UpdateDeveloperRegistrationFormRequest) UpdatePortalFormRequest {
 	typ := UpdatePortalFormRequestTypeDeveloperRegistration
 
-	typStr := UpdateDeveloperRegistrationFormRequestType(typ)
-	developerRegistration.Type = typStr
-
 	return UpdatePortalFormRequest{
 		UpdateDeveloperRegistrationFormRequest: &developerRegistration,
 		Type:                                   typ,
@@ -42,9 +39,6 @@ func CreateUpdatePortalFormRequestDeveloperRegistration(developerRegistration Up
 
 func CreateUpdatePortalFormRequestAPIRegistration(apiRegistration UpdateAPIRegistrationFormRequest) UpdatePortalFormRequest {
 	typ := UpdatePortalFormRequestTypeAPIRegistration
-
-	typStr := UpdateAPIRegistrationFormRequestType(typ)
-	apiRegistration.Type = typStr
 
 	return UpdatePortalFormRequest{
 		UpdateAPIRegistrationFormRequest: &apiRegistration,

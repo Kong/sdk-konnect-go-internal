@@ -19,8 +19,8 @@
   "post_generation": [
     {
       "file": "models/components/aigatewayauthstrategykeyauthresponse.go",
-      "before": "IdentityRealms []IdentityRealms `json:\"identity_realms,omitempty\"`",
-      "after": "IdentityRealms []IdentityRealms `json:\"identity_realms,omitzero\"`",
+      "before": "IdentityRealms []AIGatewayAuthStrategyKeyAuthResponseIdentityRealms `json:\"identity_realms,omitempty\"`",
+      "after": "IdentityRealms []AIGatewayAuthStrategyKeyAuthResponseIdentityRealms `json:\"identity_realms,omitzero\"`",
       "optional_file": true
     },
     {
@@ -91,8 +91,8 @@
     },
     {
       "file": "models/components/updateclient.go",
-      "before": "TokenEndpointAuthMethod *TokenEndpointAuthMethod `default:\"client_secret_post\" json:\"token_endpoint_auth_method\"`",
-      "after": "TokenEndpointAuthMethod *TokenEndpointAuthMethod `json:\"token_endpoint_auth_method,omitempty\"`",
+      "before": "TokenEndpointAuthMethod *UpdateTokenEndpointAuthMethod `default:\"client_secret_post\" json:\"token_endpoint_auth_method\"`",
+      "after": "TokenEndpointAuthMethod *UpdateTokenEndpointAuthMethod `json:\"token_endpoint_auth_method,omitempty\"`",
       "optional_file": true
     },
     {
@@ -315,12 +315,6 @@
       "file": "models/components/updatepasswordbody.go",
       "before": "func (u *UpdatePasswordBody) GetExpiresAt() *time.Time {",
       "after": "func (u *UpdatePasswordBody) GetExpiresAt() optionalnullable.OptionalNullable[time.Time] {",
-      "optional_file": true
-    },
-    {
-      "file": "models/components/createprincipalkeybodyimported.go",
-      "before": "Secret string  `json:\"secret\"`",
-      "after": "Secret string  `json:\"secret\"`\n\t// Management metadata accepted by the Identity API for imported keys.\n\tManagedBy map[string]string `json:\"managed_by,omitempty\"`",
       "optional_file": true
     },
     {
