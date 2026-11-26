@@ -76,7 +76,7 @@ func (l *ListNodesCompatibilityStatus) GetIssues() []NodeCompatibilityIssue {
 	return l.Issues
 }
 
-type Items struct {
+type ListNodesItems struct {
 	ID                  *string                       `json:"id,omitempty"`
 	Version             *string                       `json:"version,omitempty"`
 	Hostname            *string                       `json:"hostname,omitempty"`
@@ -90,81 +90,81 @@ type Items struct {
 	CompatibilityStatus *ListNodesCompatibilityStatus `json:"compatibility_status,omitempty"`
 }
 
-func (i *Items) GetID() *string {
-	if i == nil {
+func (l *ListNodesItems) GetID() *string {
+	if l == nil {
 		return nil
 	}
-	return i.ID
+	return l.ID
 }
 
-func (i *Items) GetVersion() *string {
-	if i == nil {
+func (l *ListNodesItems) GetVersion() *string {
+	if l == nil {
 		return nil
 	}
-	return i.Version
+	return l.Version
 }
 
-func (i *Items) GetHostname() *string {
-	if i == nil {
+func (l *ListNodesItems) GetHostname() *string {
+	if l == nil {
 		return nil
 	}
-	return i.Hostname
+	return l.Hostname
 }
 
-func (i *Items) GetLastPing() *int64 {
-	if i == nil {
+func (l *ListNodesItems) GetLastPing() *int64 {
+	if l == nil {
 		return nil
 	}
-	return i.LastPing
+	return l.LastPing
 }
 
-func (i *Items) GetType() *string {
-	if i == nil {
+func (l *ListNodesItems) GetType() *string {
+	if l == nil {
 		return nil
 	}
-	return i.Type
+	return l.Type
 }
 
-func (i *Items) GetCreatedAt() *int64 {
-	if i == nil {
+func (l *ListNodesItems) GetCreatedAt() *int64 {
+	if l == nil {
 		return nil
 	}
-	return i.CreatedAt
+	return l.CreatedAt
 }
 
-func (i *Items) GetUpdatedAt() *int64 {
-	if i == nil {
+func (l *ListNodesItems) GetUpdatedAt() *int64 {
+	if l == nil {
 		return nil
 	}
-	return i.UpdatedAt
+	return l.UpdatedAt
 }
 
-func (i *Items) GetConfigHash() *string {
-	if i == nil {
+func (l *ListNodesItems) GetConfigHash() *string {
+	if l == nil {
 		return nil
 	}
-	return i.ConfigHash
+	return l.ConfigHash
 }
 
-func (i *Items) GetConfigSync() *ConfigSync {
-	if i == nil {
+func (l *ListNodesItems) GetConfigSync() *ConfigSync {
+	if l == nil {
 		return nil
 	}
-	return i.ConfigSync
+	return l.ConfigSync
 }
 
-func (i *Items) GetErrors() []NodeError {
-	if i == nil {
+func (l *ListNodesItems) GetErrors() []NodeError {
+	if l == nil {
 		return nil
 	}
-	return i.Errors
+	return l.Errors
 }
 
-func (i *Items) GetCompatibilityStatus() *ListNodesCompatibilityStatus {
-	if i == nil {
+func (l *ListNodesItems) GetCompatibilityStatus() *ListNodesCompatibilityStatus {
+	if l == nil {
 		return nil
 	}
-	return i.CompatibilityStatus
+	return l.CompatibilityStatus
 }
 
 type ListNodesPage struct {
@@ -188,11 +188,11 @@ func (l *ListNodesPage) GetNext() *string {
 
 // ListNodes - Example response
 type ListNodes struct {
-	Items []Items        `json:"items,omitempty"`
-	Page  *ListNodesPage `json:"page,omitempty"`
+	Items []ListNodesItems `json:"items,omitempty"`
+	Page  *ListNodesPage   `json:"page,omitempty"`
 }
 
-func (l *ListNodes) GetItems() []Items {
+func (l *ListNodes) GetItems() []ListNodesItems {
 	if l == nil {
 		return nil
 	}

@@ -25,5 +25,4 @@ custom := components.CreateControlPlaneRequestClusterType("custom_value")
 | `CreateControlPlaneRequestClusterTypeClusterTypeControlPlaneGroup`     | CLUSTER_TYPE_CONTROL_PLANE_GROUP                                       |
 | `CreateControlPlaneRequestClusterTypeClusterTypeServerless`            | CLUSTER_TYPE_SERVERLESS                                                |
 | `CreateControlPlaneRequestClusterTypeClusterTypeKafkaNativeEventProxy` | CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY                                  |
-| `CreateControlPlaneRequestClusterTypeClusterTypeCloudAPIGateway`       | CLUSTER_TYPE_CLOUD_API_GATEWAY                                         |
 | `CreateControlPlaneRequestClusterTypeClusterTypeServerlessV1`          | CLUSTER_TYPE_SERVERLESS_V1                                             |

@@ -7,21 +7,21 @@ import (
 	"time"
 )
 
-// State - The state of the control plane group.
-type State string
+// GroupStatusState - The state of the control plane group.
+type GroupStatusState string
 
 const (
-	StateOk       State = "OK"
-	StateConflict State = "CONFLICT"
-	StateUnknown  State = "UNKNOWN"
+	GroupStatusStateOk       GroupStatusState = "OK"
+	GroupStatusStateConflict GroupStatusState = "CONFLICT"
+	GroupStatusStateUnknown  GroupStatusState = "UNKNOWN"
 )
 
-func (e State) ToPointer() *State {
+func (e GroupStatusState) ToPointer() *GroupStatusState {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *State) IsExact() bool {
+func (e *GroupStatusState) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "OK", "CONFLICT", "UNKNOWN":
@@ -41,7 +41,7 @@ type GroupStatus struct {
 	UpdatedAt time.Time       `json:"updated_at"`
 	Conflicts []GroupConflict `json:"conflicts,omitempty"`
 	// The state of the control plane group.
-	State State `json:"state"`
+	State GroupStatusState `json:"state"`
 }
 
 func (g GroupStatus) MarshalJSON() ([]byte, error) {
@@ -83,9 +83,9 @@ func (g *GroupStatus) GetConflicts() []GroupConflict {
 	return g.Conflicts
 }
 
-func (g *GroupStatus) GetState() State {
+func (g *GroupStatus) GetState() GroupStatusState {
 	if g == nil {
-		return State("")
+		return GroupStatusState("")
 	}
 	return g.State
 }

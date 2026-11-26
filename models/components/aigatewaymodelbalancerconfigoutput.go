@@ -13,7 +13,6 @@ type AIGatewayModelBalancerConfigOutputType string
 
 const (
 	AIGatewayModelBalancerConfigOutputTypeConsistentHashing AIGatewayModelBalancerConfigOutputType = "consistent-hashing"
-	AIGatewayModelBalancerConfigOutputTypeIntelligent       AIGatewayModelBalancerConfigOutputType = "intelligent"
 	AIGatewayModelBalancerConfigOutputTypeLeastConnections  AIGatewayModelBalancerConfigOutputType = "least-connections"
 	AIGatewayModelBalancerConfigOutputTypeLowestLatency     AIGatewayModelBalancerConfigOutputType = "lowest-latency"
 	AIGatewayModelBalancerConfigOutputTypeLowestUsage       AIGatewayModelBalancerConfigOutputType = "lowest-usage"
@@ -24,14 +23,13 @@ const (
 
 // AIGatewayModelBalancerConfigOutput - Configuration for a model's load balancer when multiple target models are configured.
 type AIGatewayModelBalancerConfigOutput struct {
-	AIGatewayModelBalancerConsistentHashingConfig      *AIGatewayModelBalancerConsistentHashingConfig      `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerIntelligentConfigOutput      *AIGatewayModelBalancerIntelligentConfigOutput      `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerLeastConnectionsConfigOutput *AIGatewayModelBalancerLeastConnectionsConfigOutput `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerLowestLatencyConfigOutput    *AIGatewayModelBalancerLowestLatencyConfigOutput    `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerLowestUsageConfigOutput      *AIGatewayModelBalancerLowestUsageConfigOutput      `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerPriorityConfigOutput         *AIGatewayModelBalancerPriorityConfigOutput         `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerRoundRobinConfigOutput       *AIGatewayModelBalancerRoundRobinConfigOutput       `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerSemanticConfigOutput         *AIGatewayModelBalancerSemanticConfigOutput         `queryParam:"inline" union:"member"`
+	AIGatewayModelBalancerConsistentHashingConfig *AIGatewayModelBalancerConsistentHashingConfig `queryParam:"inline" union:"member"`
+	AIGatewayModelBalancerLeastConnectionsConfig  *AIGatewayModelBalancerLeastConnectionsConfig  `queryParam:"inline" union:"member"`
+	AIGatewayModelBalancerLowestLatencyConfig     *AIGatewayModelBalancerLowestLatencyConfig     `queryParam:"inline" union:"member"`
+	AIGatewayModelBalancerLowestUsageConfig       *AIGatewayModelBalancerLowestUsageConfig       `queryParam:"inline" union:"member"`
+	AIGatewayModelBalancerPriorityConfig          *AIGatewayModelBalancerPriorityConfig          `queryParam:"inline" union:"member"`
+	AIGatewayModelBalancerRoundRobinConfig        *AIGatewayModelBalancerRoundRobinConfig        `queryParam:"inline" union:"member"`
+	AIGatewayModelBalancerSemanticConfigOutput    *AIGatewayModelBalancerSemanticConfigOutput    `queryParam:"inline" union:"member"`
 
 	Type AIGatewayModelBalancerConfigOutputType
 }
@@ -45,57 +43,48 @@ func CreateAIGatewayModelBalancerConfigOutputConsistentHashing(consistentHashing
 	}
 }
 
-func CreateAIGatewayModelBalancerConfigOutputIntelligent(intelligent AIGatewayModelBalancerIntelligentConfigOutput) AIGatewayModelBalancerConfigOutput {
-	typ := AIGatewayModelBalancerConfigOutputTypeIntelligent
-
-	return AIGatewayModelBalancerConfigOutput{
-		AIGatewayModelBalancerIntelligentConfigOutput: &intelligent,
-		Type: typ,
-	}
-}
-
-func CreateAIGatewayModelBalancerConfigOutputLeastConnections(leastConnections AIGatewayModelBalancerLeastConnectionsConfigOutput) AIGatewayModelBalancerConfigOutput {
+func CreateAIGatewayModelBalancerConfigOutputLeastConnections(leastConnections AIGatewayModelBalancerLeastConnectionsConfig) AIGatewayModelBalancerConfigOutput {
 	typ := AIGatewayModelBalancerConfigOutputTypeLeastConnections
 
 	return AIGatewayModelBalancerConfigOutput{
-		AIGatewayModelBalancerLeastConnectionsConfigOutput: &leastConnections,
+		AIGatewayModelBalancerLeastConnectionsConfig: &leastConnections,
 		Type: typ,
 	}
 }
 
-func CreateAIGatewayModelBalancerConfigOutputLowestLatency(lowestLatency AIGatewayModelBalancerLowestLatencyConfigOutput) AIGatewayModelBalancerConfigOutput {
+func CreateAIGatewayModelBalancerConfigOutputLowestLatency(lowestLatency AIGatewayModelBalancerLowestLatencyConfig) AIGatewayModelBalancerConfigOutput {
 	typ := AIGatewayModelBalancerConfigOutputTypeLowestLatency
 
 	return AIGatewayModelBalancerConfigOutput{
-		AIGatewayModelBalancerLowestLatencyConfigOutput: &lowestLatency,
+		AIGatewayModelBalancerLowestLatencyConfig: &lowestLatency,
 		Type: typ,
 	}
 }
 
-func CreateAIGatewayModelBalancerConfigOutputLowestUsage(lowestUsage AIGatewayModelBalancerLowestUsageConfigOutput) AIGatewayModelBalancerConfigOutput {
+func CreateAIGatewayModelBalancerConfigOutputLowestUsage(lowestUsage AIGatewayModelBalancerLowestUsageConfig) AIGatewayModelBalancerConfigOutput {
 	typ := AIGatewayModelBalancerConfigOutputTypeLowestUsage
 
 	return AIGatewayModelBalancerConfigOutput{
-		AIGatewayModelBalancerLowestUsageConfigOutput: &lowestUsage,
-		Type: typ,
+		AIGatewayModelBalancerLowestUsageConfig: &lowestUsage,
+		Type:                                    typ,
 	}
 }
 
-func CreateAIGatewayModelBalancerConfigOutputPriority(priority AIGatewayModelBalancerPriorityConfigOutput) AIGatewayModelBalancerConfigOutput {
+func CreateAIGatewayModelBalancerConfigOutputPriority(priority AIGatewayModelBalancerPriorityConfig) AIGatewayModelBalancerConfigOutput {
 	typ := AIGatewayModelBalancerConfigOutputTypePriority
 
 	return AIGatewayModelBalancerConfigOutput{
-		AIGatewayModelBalancerPriorityConfigOutput: &priority,
-		Type: typ,
+		AIGatewayModelBalancerPriorityConfig: &priority,
+		Type:                                 typ,
 	}
 }
 
-func CreateAIGatewayModelBalancerConfigOutputRoundRobin(roundRobin AIGatewayModelBalancerRoundRobinConfigOutput) AIGatewayModelBalancerConfigOutput {
+func CreateAIGatewayModelBalancerConfigOutputRoundRobin(roundRobin AIGatewayModelBalancerRoundRobinConfig) AIGatewayModelBalancerConfigOutput {
 	typ := AIGatewayModelBalancerConfigOutputTypeRoundRobin
 
 	return AIGatewayModelBalancerConfigOutput{
-		AIGatewayModelBalancerRoundRobinConfigOutput: &roundRobin,
-		Type: typ,
+		AIGatewayModelBalancerRoundRobinConfig: &roundRobin,
+		Type:                                   typ,
 	}
 }
 
@@ -136,58 +125,49 @@ func (u *AIGatewayModelBalancerConfigOutput) UnmarshalJSON(data []byte) (err err
 		u.AIGatewayModelBalancerConsistentHashingConfig = aiGatewayModelBalancerConsistentHashingConfig
 		u.Type = AIGatewayModelBalancerConfigOutputTypeConsistentHashing
 		return nil
-	case "intelligent":
-		aiGatewayModelBalancerIntelligentConfigOutput := new(AIGatewayModelBalancerIntelligentConfigOutput)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerIntelligentConfigOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == intelligent) type AIGatewayModelBalancerIntelligentConfigOutput within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
-		}
-
-		u.AIGatewayModelBalancerIntelligentConfigOutput = aiGatewayModelBalancerIntelligentConfigOutput
-		u.Type = AIGatewayModelBalancerConfigOutputTypeIntelligent
-		return nil
 	case "least-connections":
-		aiGatewayModelBalancerLeastConnectionsConfigOutput := new(AIGatewayModelBalancerLeastConnectionsConfigOutput)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerLeastConnectionsConfigOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == least-connections) type AIGatewayModelBalancerLeastConnectionsConfigOutput within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
+		aiGatewayModelBalancerLeastConnectionsConfig := new(AIGatewayModelBalancerLeastConnectionsConfig)
+		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerLeastConnectionsConfig, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == least-connections) type AIGatewayModelBalancerLeastConnectionsConfig within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
 		}
 
-		u.AIGatewayModelBalancerLeastConnectionsConfigOutput = aiGatewayModelBalancerLeastConnectionsConfigOutput
+		u.AIGatewayModelBalancerLeastConnectionsConfig = aiGatewayModelBalancerLeastConnectionsConfig
 		u.Type = AIGatewayModelBalancerConfigOutputTypeLeastConnections
 		return nil
 	case "lowest-latency":
-		aiGatewayModelBalancerLowestLatencyConfigOutput := new(AIGatewayModelBalancerLowestLatencyConfigOutput)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerLowestLatencyConfigOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == lowest-latency) type AIGatewayModelBalancerLowestLatencyConfigOutput within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
+		aiGatewayModelBalancerLowestLatencyConfig := new(AIGatewayModelBalancerLowestLatencyConfig)
+		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerLowestLatencyConfig, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == lowest-latency) type AIGatewayModelBalancerLowestLatencyConfig within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
 		}
 
-		u.AIGatewayModelBalancerLowestLatencyConfigOutput = aiGatewayModelBalancerLowestLatencyConfigOutput
+		u.AIGatewayModelBalancerLowestLatencyConfig = aiGatewayModelBalancerLowestLatencyConfig
 		u.Type = AIGatewayModelBalancerConfigOutputTypeLowestLatency
 		return nil
 	case "lowest-usage":
-		aiGatewayModelBalancerLowestUsageConfigOutput := new(AIGatewayModelBalancerLowestUsageConfigOutput)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerLowestUsageConfigOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == lowest-usage) type AIGatewayModelBalancerLowestUsageConfigOutput within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
+		aiGatewayModelBalancerLowestUsageConfig := new(AIGatewayModelBalancerLowestUsageConfig)
+		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerLowestUsageConfig, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == lowest-usage) type AIGatewayModelBalancerLowestUsageConfig within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
 		}
 
-		u.AIGatewayModelBalancerLowestUsageConfigOutput = aiGatewayModelBalancerLowestUsageConfigOutput
+		u.AIGatewayModelBalancerLowestUsageConfig = aiGatewayModelBalancerLowestUsageConfig
 		u.Type = AIGatewayModelBalancerConfigOutputTypeLowestUsage
 		return nil
 	case "priority":
-		aiGatewayModelBalancerPriorityConfigOutput := new(AIGatewayModelBalancerPriorityConfigOutput)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerPriorityConfigOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == priority) type AIGatewayModelBalancerPriorityConfigOutput within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
+		aiGatewayModelBalancerPriorityConfig := new(AIGatewayModelBalancerPriorityConfig)
+		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerPriorityConfig, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == priority) type AIGatewayModelBalancerPriorityConfig within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
 		}
 
-		u.AIGatewayModelBalancerPriorityConfigOutput = aiGatewayModelBalancerPriorityConfigOutput
+		u.AIGatewayModelBalancerPriorityConfig = aiGatewayModelBalancerPriorityConfig
 		u.Type = AIGatewayModelBalancerConfigOutputTypePriority
 		return nil
 	case "round-robin":
-		aiGatewayModelBalancerRoundRobinConfigOutput := new(AIGatewayModelBalancerRoundRobinConfigOutput)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerRoundRobinConfigOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == round-robin) type AIGatewayModelBalancerRoundRobinConfigOutput within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
+		aiGatewayModelBalancerRoundRobinConfig := new(AIGatewayModelBalancerRoundRobinConfig)
+		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerRoundRobinConfig, "", true, nil); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == round-robin) type AIGatewayModelBalancerRoundRobinConfig within AIGatewayModelBalancerConfigOutput: %w", string(data), err)
 		}
 
-		u.AIGatewayModelBalancerRoundRobinConfigOutput = aiGatewayModelBalancerRoundRobinConfigOutput
+		u.AIGatewayModelBalancerRoundRobinConfig = aiGatewayModelBalancerRoundRobinConfig
 		u.Type = AIGatewayModelBalancerConfigOutputTypeRoundRobin
 		return nil
 	case "semantic":
@@ -209,28 +189,24 @@ func (u AIGatewayModelBalancerConfigOutput) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AIGatewayModelBalancerConsistentHashingConfig, "", true)
 	}
 
-	if u.AIGatewayModelBalancerIntelligentConfigOutput != nil {
-		return utils.MarshalJSON(u.AIGatewayModelBalancerIntelligentConfigOutput, "", true)
+	if u.AIGatewayModelBalancerLeastConnectionsConfig != nil {
+		return utils.MarshalJSON(u.AIGatewayModelBalancerLeastConnectionsConfig, "", true)
 	}
 
-	if u.AIGatewayModelBalancerLeastConnectionsConfigOutput != nil {
-		return utils.MarshalJSON(u.AIGatewayModelBalancerLeastConnectionsConfigOutput, "", true)
+	if u.AIGatewayModelBalancerLowestLatencyConfig != nil {
+		return utils.MarshalJSON(u.AIGatewayModelBalancerLowestLatencyConfig, "", true)
 	}
 
-	if u.AIGatewayModelBalancerLowestLatencyConfigOutput != nil {
-		return utils.MarshalJSON(u.AIGatewayModelBalancerLowestLatencyConfigOutput, "", true)
+	if u.AIGatewayModelBalancerLowestUsageConfig != nil {
+		return utils.MarshalJSON(u.AIGatewayModelBalancerLowestUsageConfig, "", true)
 	}
 
-	if u.AIGatewayModelBalancerLowestUsageConfigOutput != nil {
-		return utils.MarshalJSON(u.AIGatewayModelBalancerLowestUsageConfigOutput, "", true)
+	if u.AIGatewayModelBalancerPriorityConfig != nil {
+		return utils.MarshalJSON(u.AIGatewayModelBalancerPriorityConfig, "", true)
 	}
 
-	if u.AIGatewayModelBalancerPriorityConfigOutput != nil {
-		return utils.MarshalJSON(u.AIGatewayModelBalancerPriorityConfigOutput, "", true)
-	}
-
-	if u.AIGatewayModelBalancerRoundRobinConfigOutput != nil {
-		return utils.MarshalJSON(u.AIGatewayModelBalancerRoundRobinConfigOutput, "", true)
+	if u.AIGatewayModelBalancerRoundRobinConfig != nil {
+		return utils.MarshalJSON(u.AIGatewayModelBalancerRoundRobinConfig, "", true)
 	}
 
 	if u.AIGatewayModelBalancerSemanticConfigOutput != nil {

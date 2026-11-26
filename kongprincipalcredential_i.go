@@ -10,6 +10,26 @@ import (
 
 // KongPrincipalCredentialSDK is a generated interface.
 type KongPrincipalCredentialSDK interface {
+	// CreatePrincipalKey - Create a principal API key
+	// Creates a new API key for the specified principal.
+	// Keys can be system-generated (v1) or imported with a custom secret, and may have an optional expiration date.
+	CreatePrincipalKey(ctx context.Context, request operations.CreatePrincipalKeyRequest, opts ...operations.Option) (*operations.CreatePrincipalKeyResponse, error)
+	// ListPrincipalKeys - List all API keys for a principal
+	// Retrieves a paginated list of all API keys associated with the specified principal.
+	// Results can be sorted by created_at, updated_at, or name.
+	ListPrincipalKeys(ctx context.Context, request operations.ListPrincipalKeysRequest, opts ...operations.Option) (*operations.ListPrincipalKeysResponse, error)
+	// UpdatePrincipalKey - Update a principal API key
+	// Partially updates an existing API key's metadata.
+	// Note: The key secret cannot be modified after creation.
+	UpdatePrincipalKey(ctx context.Context, request operations.UpdatePrincipalKeyRequest, opts ...operations.Option) (*operations.UpdatePrincipalKeyResponse, error)
+	// GetIdentityKey - Get a principal API key
+	// Retrieves detailed information about a specific API key.
+	// Note: The key secret is not returned; it is only available when the key is first created.
+	GetIdentityKey(ctx context.Context, request operations.GetIdentityKeyRequest, opts ...operations.Option) (*operations.GetIdentityKeyResponse, error)
+	// DeletePrincipalKey - Delete an API key
+	// Permanently deletes an API key, immediately revoking its access.
+	// This operation cannot be undone.
+	DeletePrincipalKey(ctx context.Context, request operations.DeletePrincipalKeyRequest, opts ...operations.Option) (*operations.DeletePrincipalKeyResponse, error)
 	// ListPrincipalBasicAuths - List all basic auth credentials
 	// Retrieves a paginated list of all basic auth credentials associated with the specified principal.
 	ListPrincipalBasicAuths(ctx context.Context, request operations.ListPrincipalBasicAuthsRequest, opts ...operations.Option) (*operations.ListPrincipalBasicAuthsResponse, error)
@@ -53,24 +73,4 @@ type KongPrincipalCredentialSDK interface {
 	// Permanently deletes a password, immediately revoking its access.
 	// This operation cannot be undone.
 	DeletePassword(ctx context.Context, request operations.DeletePasswordRequest, opts ...operations.Option) (*operations.DeletePasswordResponse, error)
-	// CreatePrincipalKey - Create a principal API key
-	// Creates a new API key for the specified principal.
-	// Keys can be system-generated (v1) or imported with a custom secret, and may have an optional expiration date.
-	CreatePrincipalKey(ctx context.Context, request operations.CreatePrincipalKeyRequest, opts ...operations.Option) (*operations.CreatePrincipalKeyResponse, error)
-	// ListPrincipalKeys - List all API keys for a principal
-	// Retrieves a paginated list of all API keys associated with the specified principal.
-	// Results can be sorted by created_at, updated_at, or name.
-	ListPrincipalKeys(ctx context.Context, request operations.ListPrincipalKeysRequest, opts ...operations.Option) (*operations.ListPrincipalKeysResponse, error)
-	// UpdatePrincipalKey - Update a principal API key
-	// Partially updates an existing API key's metadata.
-	// Note: The key secret cannot be modified after creation.
-	UpdatePrincipalKey(ctx context.Context, request operations.UpdatePrincipalKeyRequest, opts ...operations.Option) (*operations.UpdatePrincipalKeyResponse, error)
-	// GetIdentityKey - Get a principal API key
-	// Retrieves detailed information about a specific API key.
-	// Note: The key secret is not returned; it is only available when the key is first created.
-	GetIdentityKey(ctx context.Context, request operations.GetIdentityKeyRequest, opts ...operations.Option) (*operations.GetIdentityKeyResponse, error)
-	// DeletePrincipalKey - Delete an API key
-	// Permanently deletes an API key, immediately revoking its access.
-	// This operation cannot be undone.
-	DeletePrincipalKey(ctx context.Context, request operations.DeletePrincipalKeyRequest, opts ...operations.Option) (*operations.DeletePrincipalKeyResponse, error)
 }

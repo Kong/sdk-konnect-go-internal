@@ -128,6 +128,7 @@ func main() {
                         "foo.example.com",
                     },
                 },
+                MaxRequestBodySize: sdkkonnectgo.Pointer[int64](8388608),
                 Balancer: sdkkonnectgo.Pointer(components.CreateAIGatewayModelBalancerConfigLowestUsage(
                     components.AIGatewayModelBalancerLowestUsageConfig{},
                 )),
@@ -295,6 +296,7 @@ func main() {
                             "foo.example.com",
                         },
                     },
+                    MaxRequestBodySize: sdkkonnectgo.Pointer[int64](8388608),
                     Balancer: sdkkonnectgo.Pointer(components.CreateAIGatewayModelBalancerConfigRoundRobin(
                         components.AIGatewayModelBalancerRoundRobinConfig{},
                     )),

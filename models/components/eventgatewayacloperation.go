@@ -6,27 +6,27 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type EventGatewayACLOperationName string
+type Name string
 
 const (
-	EventGatewayACLOperationNameAll             EventGatewayACLOperationName = "all"
-	EventGatewayACLOperationNameAlter           EventGatewayACLOperationName = "alter"
-	EventGatewayACLOperationNameAlterConfigs    EventGatewayACLOperationName = "alter_configs"
-	EventGatewayACLOperationNameCreate          EventGatewayACLOperationName = "create"
-	EventGatewayACLOperationNameDelete          EventGatewayACLOperationName = "delete"
-	EventGatewayACLOperationNameDescribe        EventGatewayACLOperationName = "describe"
-	EventGatewayACLOperationNameDescribeConfigs EventGatewayACLOperationName = "describe_configs"
-	EventGatewayACLOperationNameIdempotentWrite EventGatewayACLOperationName = "idempotent_write"
-	EventGatewayACLOperationNameRead            EventGatewayACLOperationName = "read"
-	EventGatewayACLOperationNameWrite           EventGatewayACLOperationName = "write"
+	NameAll             Name = "all"
+	NameAlter           Name = "alter"
+	NameAlterConfigs    Name = "alter_configs"
+	NameCreate          Name = "create"
+	NameDelete          Name = "delete"
+	NameDescribe        Name = "describe"
+	NameDescribeConfigs Name = "describe_configs"
+	NameIdempotentWrite Name = "idempotent_write"
+	NameRead            Name = "read"
+	NameWrite           Name = "write"
 )
 
-func (e EventGatewayACLOperationName) ToPointer() *EventGatewayACLOperationName {
+func (e Name) ToPointer() *Name {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *EventGatewayACLOperationName) IsExact() bool {
+func (e *Name) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "all", "alter", "alter_configs", "create", "delete", "describe", "describe_configs", "idempotent_write", "read", "write":
@@ -38,7 +38,7 @@ func (e *EventGatewayACLOperationName) IsExact() bool {
 
 // EventGatewayACLOperation - An Event Gateway operation to match against in an ACL rule.
 type EventGatewayACLOperation struct {
-	Name EventGatewayACLOperationName `json:"name"`
+	Name Name `json:"name"`
 }
 
 func (e EventGatewayACLOperation) MarshalJSON() ([]byte, error) {
@@ -52,9 +52,9 @@ func (e *EventGatewayACLOperation) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (e *EventGatewayACLOperation) GetName() EventGatewayACLOperationName {
+func (e *EventGatewayACLOperation) GetName() Name {
 	if e == nil {
-		return EventGatewayACLOperationName("")
+		return Name("")
 	}
 	return e.Name
 }

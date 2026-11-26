@@ -9,8 +9,6 @@ type UpdateMeshControlPlaneRequest struct {
 	Description *string `json:"description,omitempty"`
 	// Labels to facilitate tagged search on control planes. Keys must be of length 1-63 characters.
 	Labels map[string]*string `json:"labels,omitempty"`
-	// The version to move the control plane to. A version only moves forward - once a control plane runs a newer version, setting an older one is rejected. It carries no default: a partial update that omits it leaves the control plane on the version it already runs.
-	Version *string `json:"version,omitempty"`
 }
 
 func (u *UpdateMeshControlPlaneRequest) GetName() *string {
@@ -32,11 +30,4 @@ func (u *UpdateMeshControlPlaneRequest) GetLabels() map[string]*string {
 		return nil
 	}
 	return u.Labels
-}
-
-func (u *UpdateMeshControlPlaneRequest) GetVersion() *string {
-	if u == nil {
-		return nil
-	}
-	return u.Version
 }

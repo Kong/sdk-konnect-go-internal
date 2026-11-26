@@ -4,12 +4,72 @@
 
 ### Available Operations
 
+* [GetControlPlanesIDGroupMemberStatus](#getcontrolplanesidgroupmemberstatus) - Get Control Plane Group Member Status
 * [GetControlPlanesIDGroupMemberships](#getcontrolplanesidgroupmemberships) - List Control Plane Group Memberships
 * [PutControlPlanesIDGroupMemberships](#putcontrolplanesidgroupmemberships) - Upsert Control Plane Group Members
 * [PostControlPlanesIDGroupMembershipsAdd](#postcontrolplanesidgroupmembershipsadd) - Add Control Plane Group Members
 * [PostControlPlanesIDGroupMembershipsRemove](#postcontrolplanesidgroupmembershipsremove) - Remove Control Plane Group Members
-* [GetControlPlanesIDGroupMemberStatus](#getcontrolplanesidgroupmemberstatus) - Get Control Plane Group Member Status
 * [GetControlPlanesIDGroupStatus](#getcontrolplanesidgroupstatus) - Get Control Plane Group Status
+
+## GetControlPlanesIDGroupMemberStatus
+
+Determines the group membership status of a control plane.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="get-control-planes-id-group-member-status" method="get" path="/v2/control-planes/{controlPlaneId}/group-member-status" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.ControlPlaneGroups.GetControlPlanesIDGroupMemberStatus(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.GroupMemberStatus != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `controlPlaneID`                                         | `string`                                                 | :heavy_check_mark:                                       | ID of a control plane                                    |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.GetControlPlanesIDGroupMemberStatusResponse](../../models/operations/getcontrolplanesidgroupmemberstatusresponse.md), error**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| sdkerrors.BadRequestError    | 400                          | application/problem+json     |
+| sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
+| sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
+| sdkerrors.NotFoundError      | 404                          | application/problem+json     |
+| sdkerrors.InternalError      | 500                          | application/problem+json     |
+| sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
+| sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
 
 ## GetControlPlanesIDGroupMemberships
 
@@ -269,66 +329,6 @@ func main() {
 ### Response
 
 **[*operations.PostControlPlanesIDGroupMembershipsRemoveResponse](../../models/operations/postcontrolplanesidgroupmembershipsremoveresponse.md), error**
-
-### Errors
-
-| Error Type                   | Status Code                  | Content Type                 |
-| ---------------------------- | ---------------------------- | ---------------------------- |
-| sdkerrors.BadRequestError    | 400                          | application/problem+json     |
-| sdkerrors.UnauthorizedError  | 401                          | application/problem+json     |
-| sdkerrors.ForbiddenError     | 403                          | application/problem+json     |
-| sdkerrors.NotFoundError      | 404                          | application/problem+json     |
-| sdkerrors.InternalError      | 500                          | application/problem+json     |
-| sdkerrors.ServiceUnavailable | 503                          | application/problem+json     |
-| sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
-
-## GetControlPlanesIDGroupMemberStatus
-
-Determines the group membership status of a control plane.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-control-planes-id-group-member-status" method="get" path="/v2/control-planes/{controlPlaneId}/group-member-status" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.ControlPlaneGroups.GetControlPlanesIDGroupMemberStatus(ctx, "<id>")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.GroupMemberStatus != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `controlPlaneID`                                         | `string`                                                 | :heavy_check_mark:                                       | ID of a control plane                                    |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.GetControlPlanesIDGroupMemberStatusResponse](../../models/operations/getcontrolplanesidgroupmemberstatusresponse.md), error**
 
 ### Errors
 

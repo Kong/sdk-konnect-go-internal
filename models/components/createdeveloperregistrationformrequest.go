@@ -8,50 +8,27 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type CreateDeveloperRegistrationFormRequestType string
+// CreateDeveloperRegistrationFormRequestName - The form's name. Only `developer-registration` is accepted at this time
+type CreateDeveloperRegistrationFormRequestName string
 
 const (
-	CreateDeveloperRegistrationFormRequestTypeDeveloperRegistration CreateDeveloperRegistrationFormRequestType = "developer_registration"
+	CreateDeveloperRegistrationFormRequestNameDeveloperRegistration CreateDeveloperRegistrationFormRequestName = "developer-registration"
 )
 
-func (e CreateDeveloperRegistrationFormRequestType) ToPointer() *CreateDeveloperRegistrationFormRequestType {
+func (e CreateDeveloperRegistrationFormRequestName) ToPointer() *CreateDeveloperRegistrationFormRequestName {
 	return &e
 }
-func (e *CreateDeveloperRegistrationFormRequestType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "developer_registration":
-		*e = CreateDeveloperRegistrationFormRequestType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreateDeveloperRegistrationFormRequestType: %v", v)
-	}
-}
-
-// Name - The form's name. Only `developer-registration` is accepted at this time
-type Name string
-
-const (
-	NameDeveloperRegistration Name = "developer-registration"
-)
-
-func (e Name) ToPointer() *Name {
-	return &e
-}
-func (e *Name) UnmarshalJSON(data []byte) error {
+func (e *CreateDeveloperRegistrationFormRequestName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "developer-registration":
-		*e = Name(v)
+		*e = CreateDeveloperRegistrationFormRequestName(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Name: %v", v)
+		return fmt.Errorf("invalid value for CreateDeveloperRegistrationFormRequestName: %v", v)
 	}
 }
 
@@ -78,10 +55,11 @@ func (e *CreateDeveloperRegistrationFormRequestStatus) IsExact() bool {
 }
 
 type CreateDeveloperRegistrationFormRequest struct {
-	Type CreateDeveloperRegistrationFormRequestType `json:"type"`
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_ string `const:"developer_registration" json:"type"`
 	// The form's name. Only `developer-registration` is accepted at this time
 	//
-	Name   *Name                                         `json:"name,omitempty"`
+	Name   *CreateDeveloperRegistrationFormRequestName   `json:"name,omitempty"`
 	Status *CreateDeveloperRegistrationFormRequestStatus `default:"unpublished" json:"status"`
 	// The form's fields, in display order. Must include the built-in `full_name` (type `text`) and `email` (type `email`) fields, plus exactly one `submit` field.
 	//
@@ -99,14 +77,11 @@ func (c *CreateDeveloperRegistrationFormRequest) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-func (c *CreateDeveloperRegistrationFormRequest) GetType() CreateDeveloperRegistrationFormRequestType {
-	if c == nil {
-		return CreateDeveloperRegistrationFormRequestType("")
-	}
-	return c.Type
+func (c *CreateDeveloperRegistrationFormRequest) GetType() string {
+	return "developer_registration"
 }
 
-func (c *CreateDeveloperRegistrationFormRequest) GetName() *Name {
+func (c *CreateDeveloperRegistrationFormRequest) GetName() *CreateDeveloperRegistrationFormRequestName {
 	if c == nil {
 		return nil
 	}

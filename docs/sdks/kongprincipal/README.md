@@ -8,14 +8,93 @@ Each principal can have associated metadata and API keys for authentication purp
 
 ### Available Operations
 
+* [ImportOrgChart](#importorgchart) - Import user principals from a canonical CSV
 * [CreatePrincipal](#createprincipal) - Create a Principal in a Directory
 * [ListPrincipals](#listprincipals) - List all the Principals of a Directory
-* [ImportOrgChart](#importorgchart) - Import user principals from a canonical CSV
 * [UpdatePrincipal](#updateprincipal) - Update a Principal
 * [ReplacePrincipal](#replaceprincipal) - Replace a Principal
 * [GetPrincipal](#getprincipal) - Get a Principal
 * [DeletePrincipal](#deleteprincipal) - Delete a Principal
 * [ListPrincipalGroups](#listprincipalgroups) - List the groups of a principal
+
+## ImportOrgChart
+
+Imports user principals in bulk from a canonical CSV file. Each row
+creates one user principal — tagged hris_import, stamped with the
+row's external_id — plus its email custom identity. The optional
+cost_center column is stored in the principal's metadata as
+cost_center; rows matched to existing principals adopt the file's
+value, and a blank cell clears the stored one, while a file without
+the column leaves existing cost centers untouched. The file is
+validated in full before anything is written; the response is a
+report of counts and per-row errors, never the created rows.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="importOrgChart" method="post" path="/v2/directories/{directoryId}/org-chart/import" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"os"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    example, fileErr := os.Open("example.file")
+    if fileErr != nil {
+        panic(fileErr)
+    }
+
+    res, err := s.KongPrincipal.ImportOrgChart(ctx, "b565a055-9789-4949-a616-988a1ec14254", components.ImportPrincipalsRequest{
+        File: components.File{
+            FileName: "example.file",
+            Content: example,
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.KongImportReport != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `directoryID`                                                                            | `string`                                                                                 | :heavy_check_mark:                                                                       | ID of the directory                                                                      |
+| `importPrincipalsRequest`                                                                | [components.ImportPrincipalsRequest](../../models/components/importprincipalsrequest.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+
+### Response
+
+**[*operations.ImportOrgChartResponse](../../models/operations/importorgchartresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreatePrincipal
 
@@ -152,85 +231,6 @@ func main() {
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ImportOrgChart
-
-Imports user principals in bulk from a canonical CSV file. Each row
-creates one user principal — tagged hris_import, stamped with the
-row's external_id — plus its email custom identity. The optional
-cost_center column is stored in the principal's metadata as
-cost_center; rows matched to existing principals adopt the file's
-value, and a blank cell clears the stored one, while a file without
-the column leaves existing cost centers untouched. The file is
-validated in full before anything is written; the response is a
-report of counts and per-row errors, never the created rows.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="importOrgChart" method="post" path="/v2/directories/{directoryId}/org-chart/import" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"os"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    example, fileErr := os.Open("example.file")
-    if fileErr != nil {
-        panic(fileErr)
-    }
-
-    res, err := s.KongPrincipal.ImportOrgChart(ctx, "b565a055-9789-4949-a616-988a1ec14254", components.ImportPrincipalsRequest{
-        File: components.File{
-            FileName: "example.file",
-            Content: example,
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.KongImportReport != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `directoryID`                                                                            | `string`                                                                                 | :heavy_check_mark:                                                                       | ID of the directory                                                                      |
-| `importPrincipalsRequest`                                                                | [components.ImportPrincipalsRequest](../../models/components/importprincipalsrequest.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
-
-### Response
-
-**[*operations.ImportOrgChartResponse](../../models/operations/importorgchartresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## UpdatePrincipal

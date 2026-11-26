@@ -2,22 +2,22 @@
 
 package components
 
-// AIGatewayDataPlaneNodeConfigSyncState - Config sync state.
-type AIGatewayDataPlaneNodeConfigSyncState string
+// State - Config sync state.
+type State string
 
 const (
-	AIGatewayDataPlaneNodeConfigSyncStateStateUnspecified AIGatewayDataPlaneNodeConfigSyncState = "STATE_UNSPECIFIED"
-	AIGatewayDataPlaneNodeConfigSyncStateStateInSync      AIGatewayDataPlaneNodeConfigSyncState = "STATE_IN_SYNC"
-	AIGatewayDataPlaneNodeConfigSyncStateStatePending     AIGatewayDataPlaneNodeConfigSyncState = "STATE_PENDING"
-	AIGatewayDataPlaneNodeConfigSyncStateStateResiliency  AIGatewayDataPlaneNodeConfigSyncState = "STATE_RESILIENCY"
+	StateStateUnspecified State = "STATE_UNSPECIFIED"
+	StateStateInSync      State = "STATE_IN_SYNC"
+	StateStatePending     State = "STATE_PENDING"
+	StateStateResiliency  State = "STATE_RESILIENCY"
 )
 
-func (e AIGatewayDataPlaneNodeConfigSyncState) ToPointer() *AIGatewayDataPlaneNodeConfigSyncState {
+func (e State) ToPointer() *State {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayDataPlaneNodeConfigSyncState) IsExact() bool {
+func (e *State) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "STATE_UNSPECIFIED", "STATE_IN_SYNC", "STATE_PENDING", "STATE_RESILIENCY":
@@ -29,14 +29,14 @@ func (e *AIGatewayDataPlaneNodeConfigSyncState) IsExact() bool {
 
 type AIGatewayDataPlaneNodeConfigSync struct {
 	// Config sync state.
-	State *AIGatewayDataPlaneNodeConfigSyncState `json:"state,omitempty"`
+	State *State `json:"state,omitempty"`
 	// The version ID of the configuration currently applied by the node.
 	VersionID *string `json:"version_id,omitempty"`
 	// Present when the control plane is serving the node's last-known-good configuration because the current configuration could not be applied.
 	Resiliency *AIGatewayDataPlaneNodeResiliency `json:"resiliency,omitempty"`
 }
 
-func (a *AIGatewayDataPlaneNodeConfigSync) GetState() *AIGatewayDataPlaneNodeConfigSyncState {
+func (a *AIGatewayDataPlaneNodeConfigSync) GetState() *State {
 	if a == nil {
 		return nil
 	}

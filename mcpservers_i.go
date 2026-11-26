@@ -11,22 +11,6 @@ import (
 
 // MCPServersSDK is a generated interface.
 type MCPServersSDK interface {
-	// GetMcpServerSignals - Get MCP Server Signals
-	// **Pre-release Endpoint**
-	// This endpoint is currently in beta and is subject to change.
-	//
-	// Client-initiated signals fetch with long-polling capabilities.
-	// The client supplies `capabilities` as a deepObject query parameter:
-	//   - Keys are capability names (e.g. `mcp`)
-	//   - Values contain the capability request fields (`version`)
-	//
-	// Example:
-	//
-	//	GET /mcp-cp/{controlPlaneId}/signals?capabilities[mcp][version]=5
-	//
-	// The CP responds with a JSON payload containing zero or more signals that the client should process.
-	// If no signals are available, the CP responds with HTTP 304 Not Modified.
-	GetMcpServerSignals(ctx context.Context, controlPlaneID string, capabilities *components.MCPCapabilitiesMap, opts ...operations.Option) (*operations.GetMcpServerSignalsResponse, error)
 	// ListMcpServersByControlPlane - List MCP Servers by Control Plane
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
@@ -39,6 +23,12 @@ type MCPServersSDK interface {
 	//
 	// Retrieves an MCP server by its ID within a specific control plane context.
 	GetMcpServerByControlPlane(ctx context.Context, controlPlaneID string, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerByControlPlaneResponse, error)
+	// GetMcpServerCode - Get generated Python code for the MCP Server
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
+	// Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
+	GetMcpServerCode(ctx context.Context, controlPlaneID string, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerCodeResponse, error)
 	// GetMcpServerKongEntities - Get Kong entities for the MCP Server Gateway
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
@@ -51,10 +41,21 @@ type MCPServersSDK interface {
 	//
 	// Reports the current deployment status of an MCP server, including replica counts and per-version pod statuses.
 	PostMcpServerStatus(ctx context.Context, request operations.PostMcpServerStatusRequest, opts ...operations.Option) (*operations.PostMcpServerStatusResponse, error)
-	// GetMcpServerCode - Get generated Python code for the MCP Server
+	// GetMcpServerSignals - Get MCP Server Signals
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
 	//
-	// Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
-	GetMcpServerCode(ctx context.Context, controlPlaneID string, mcpServerID string, opts ...operations.Option) (*operations.GetMcpServerCodeResponse, error)
+	// Client-initiated signals fetch with long-polling capabilities.
+	// The client supplies `capabilities` as a deepObject query parameter:
+	//
+	//   - Keys are capability names (e.g. `mcp`)
+	//   - Values contain the capability request fields (`version`)
+	//
+	// Example:
+	//
+	//	GET /mcp-cp/{controlPlaneId}/signals?capabilities[mcp][version]=5
+	//
+	// The CP responds with a JSON payload containing zero or more signals that the client should process.
+	// If no signals are available, the CP responds with HTTP 304 Not Modified.
+	GetMcpServerSignals(ctx context.Context, controlPlaneID string, capabilities *components.MCPCapabilitiesMap, opts ...operations.Option) (*operations.GetMcpServerSignalsResponse, error)
 }

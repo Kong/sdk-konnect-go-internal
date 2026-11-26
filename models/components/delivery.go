@@ -34,7 +34,6 @@ func (e *FailureReason) IsExact() bool {
 	return false
 }
 
-// Delivery - A single delivery.
 type Delivery struct {
 	// UUID v7 identifier of the delivery.
 	ID string `json:"id"`

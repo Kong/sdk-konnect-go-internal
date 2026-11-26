@@ -24,7 +24,7 @@ type Destination struct {
 func CreateDestinationHTTP(http HTTPDestination) Destination {
 	typ := DestinationTypeHTTP
 
-	typStr := Type(typ)
+	typStr := HTTPDestinationType(typ)
 	http.Type = typStr
 
 	return Destination{

@@ -8,27 +8,27 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AuthGCPWorkloadIdentityFederationAwsIamSource - The source identity provider/system used to obtain temporary GCP credentials.
-type AuthGCPWorkloadIdentityFederationAwsIamSource string
+// Source - The source identity provider/system used to obtain temporary GCP credentials.
+type Source string
 
 const (
-	AuthGCPWorkloadIdentityFederationAwsIamSourceAwsIam AuthGCPWorkloadIdentityFederationAwsIamSource = "aws_iam"
+	SourceAwsIam Source = "aws_iam"
 )
 
-func (e AuthGCPWorkloadIdentityFederationAwsIamSource) ToPointer() *AuthGCPWorkloadIdentityFederationAwsIamSource {
+func (e Source) ToPointer() *Source {
 	return &e
 }
-func (e *AuthGCPWorkloadIdentityFederationAwsIamSource) UnmarshalJSON(data []byte) error {
+func (e *Source) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "aws_iam":
-		*e = AuthGCPWorkloadIdentityFederationAwsIamSource(v)
+		*e = Source(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AuthGCPWorkloadIdentityFederationAwsIamSource: %v", v)
+		return fmt.Errorf("invalid value for Source: %v", v)
 	}
 }
 
@@ -37,7 +37,7 @@ func (e *AuthGCPWorkloadIdentityFederationAwsIamSource) UnmarshalJSON(data []byt
 type AuthGCPWorkloadIdentityFederationAwsIamOutput struct {
 	// The source identity provider/system used to obtain temporary GCP credentials.
 	//
-	Source AuthGCPWorkloadIdentityFederationAwsIamSource `json:"source"`
+	Source Source `json:"source"`
 	// AWS IAM (SigV4) authentication for the upstream service.
 	//
 	Aws *AIGatewayUpstreamAuthAWSOutput `json:"aws,omitempty"`
@@ -54,9 +54,9 @@ func (a *AuthGCPWorkloadIdentityFederationAwsIamOutput) UnmarshalJSON(data []byt
 	return nil
 }
 
-func (a *AuthGCPWorkloadIdentityFederationAwsIamOutput) GetSource() AuthGCPWorkloadIdentityFederationAwsIamSource {
+func (a *AuthGCPWorkloadIdentityFederationAwsIamOutput) GetSource() Source {
 	if a == nil {
-		return AuthGCPWorkloadIdentityFederationAwsIamSource("")
+		return Source("")
 	}
 	return a.Source
 }
@@ -73,7 +73,7 @@ func (a *AuthGCPWorkloadIdentityFederationAwsIamOutput) GetAws() *AIGatewayUpstr
 type AuthGCPWorkloadIdentityFederationAwsIam struct {
 	// The source identity provider/system used to obtain temporary GCP credentials.
 	//
-	Source AuthGCPWorkloadIdentityFederationAwsIamSource `json:"source"`
+	Source Source `json:"source"`
 	// JSON configuration for the Workload Identity Federation token exchange (Google's
 	// `external_account` credential config: audience, token URL, credential source, and
 	// optional service account impersonation URL). If not set, Kong falls back to the file
@@ -97,9 +97,9 @@ func (a *AuthGCPWorkloadIdentityFederationAwsIam) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-func (a *AuthGCPWorkloadIdentityFederationAwsIam) GetSource() AuthGCPWorkloadIdentityFederationAwsIamSource {
+func (a *AuthGCPWorkloadIdentityFederationAwsIam) GetSource() Source {
 	if a == nil {
-		return AuthGCPWorkloadIdentityFederationAwsIamSource("")
+		return Source("")
 	}
 	return a.Source
 }

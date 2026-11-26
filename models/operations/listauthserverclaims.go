@@ -7,26 +7,26 @@ import (
 	"net/http"
 )
 
-// ListAuthServerClaimsQueryParamFilter - Filter claims returned in the response.
-type ListAuthServerClaimsQueryParamFilter struct {
+// QueryParamFilter - Filter claims returned in the response.
+type QueryParamFilter struct {
 	// Filter using **one** of the following operators: `eq`, `contains`
 	Name *components.LegacyStringFieldFilter `queryParam:"name=name"`
 	// Filters on the given string field value by exact match.
 	ID *components.StringFieldEqualsFilter `queryParam:"name=id"`
 }
 
-func (l *ListAuthServerClaimsQueryParamFilter) GetName() *components.LegacyStringFieldFilter {
-	if l == nil {
+func (q *QueryParamFilter) GetName() *components.LegacyStringFieldFilter {
+	if q == nil {
 		return nil
 	}
-	return l.Name
+	return q.Name
 }
 
-func (l *ListAuthServerClaimsQueryParamFilter) GetID() *components.StringFieldEqualsFilter {
-	if l == nil {
+func (q *QueryParamFilter) GetID() *components.StringFieldEqualsFilter {
+	if q == nil {
 		return nil
 	}
-	return l.ID
+	return q.ID
 }
 
 type ListAuthServerClaimsRequest struct {
@@ -43,7 +43,7 @@ type ListAuthServerClaimsRequest struct {
 	//
 	Sort *string `queryParam:"style=form,explode=true,name=sort"`
 	// Filter claims returned in the response.
-	Filter *ListAuthServerClaimsQueryParamFilter `queryParam:"style=deepObject,explode=true,name=filter"`
+	Filter *QueryParamFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 }
 
 func (l *ListAuthServerClaimsRequest) GetAuthServerID() string {
@@ -74,7 +74,7 @@ func (l *ListAuthServerClaimsRequest) GetSort() *string {
 	return l.Sort
 }
 
-func (l *ListAuthServerClaimsRequest) GetFilter() *ListAuthServerClaimsQueryParamFilter {
+func (l *ListAuthServerClaimsRequest) GetFilter() *QueryParamFilter {
 	if l == nil {
 		return nil
 	}

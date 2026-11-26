@@ -132,7 +132,7 @@ func (_c *MockKongIdentityDirectoriesSDK_CreateDirectory_Call) RunAndReturn(run 
 }
 
 // DeleteDirectory provides a mock function for the type MockKongIdentityDirectoriesSDK
-func (_mock *MockKongIdentityDirectoriesSDK) DeleteDirectory(ctx context.Context, directoryID string, forceDestroy *operations.QueryParamForce, opts ...operations.Option) (*operations.DeleteDirectoryResponse, error) {
+func (_mock *MockKongIdentityDirectoriesSDK) DeleteDirectory(ctx context.Context, directoryID string, forceDestroy *operations.DeleteDirectoryQueryParamForce, opts ...operations.Option) (*operations.DeleteDirectoryResponse, error) {
 	var tmpRet mock.Arguments
 	if len(opts) > 0 {
 		tmpRet = _mock.Called(ctx, directoryID, forceDestroy, opts)
@@ -147,17 +147,17 @@ func (_mock *MockKongIdentityDirectoriesSDK) DeleteDirectory(ctx context.Context
 
 	var r0 *operations.DeleteDirectoryResponse
 	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *operations.QueryParamForce, ...operations.Option) (*operations.DeleteDirectoryResponse, error)); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *operations.DeleteDirectoryQueryParamForce, ...operations.Option) (*operations.DeleteDirectoryResponse, error)); ok {
 		return returnFunc(ctx, directoryID, forceDestroy, opts...)
 	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *operations.QueryParamForce, ...operations.Option) *operations.DeleteDirectoryResponse); ok {
+	if returnFunc, ok := ret.Get(0).(func(context.Context, string, *operations.DeleteDirectoryQueryParamForce, ...operations.Option) *operations.DeleteDirectoryResponse); ok {
 		r0 = returnFunc(ctx, directoryID, forceDestroy, opts...)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).(*operations.DeleteDirectoryResponse)
 		}
 	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, *operations.QueryParamForce, ...operations.Option) error); ok {
+	if returnFunc, ok := ret.Get(1).(func(context.Context, string, *operations.DeleteDirectoryQueryParamForce, ...operations.Option) error); ok {
 		r1 = returnFunc(ctx, directoryID, forceDestroy, opts...)
 	} else {
 		r1 = ret.Error(1)
@@ -173,14 +173,14 @@ type MockKongIdentityDirectoriesSDK_DeleteDirectory_Call struct {
 // DeleteDirectory is a helper method to define mock.On call
 //   - ctx context.Context
 //   - directoryID string
-//   - forceDestroy *operations.QueryParamForce
+//   - forceDestroy *operations.DeleteDirectoryQueryParamForce
 //   - opts ...operations.Option
 func (_e *MockKongIdentityDirectoriesSDK_Expecter) DeleteDirectory(ctx any, directoryID any, forceDestroy any, opts ...any) *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call {
 	return &MockKongIdentityDirectoriesSDK_DeleteDirectory_Call{Call: _e.mock.On("DeleteDirectory",
 		append([]any{ctx, directoryID, forceDestroy}, opts...)...)}
 }
 
-func (_c *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call) Run(run func(ctx context.Context, directoryID string, forceDestroy *operations.QueryParamForce, opts ...operations.Option)) *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call {
+func (_c *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call) Run(run func(ctx context.Context, directoryID string, forceDestroy *operations.DeleteDirectoryQueryParamForce, opts ...operations.Option)) *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call {
 	_c.Call.Run(func(args mock.Arguments) {
 		var arg0 context.Context
 		if args[0] != nil {
@@ -190,9 +190,9 @@ func (_c *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call) Run(run func(ctx 
 		if args[1] != nil {
 			arg1 = args[1].(string)
 		}
-		var arg2 *operations.QueryParamForce
+		var arg2 *operations.DeleteDirectoryQueryParamForce
 		if args[2] != nil {
-			arg2 = args[2].(*operations.QueryParamForce)
+			arg2 = args[2].(*operations.DeleteDirectoryQueryParamForce)
 		}
 		var arg3 []operations.Option
 		var variadicArgs []operations.Option
@@ -215,7 +215,7 @@ func (_c *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call) Return(deleteDire
 	return _c
 }
 
-func (_c *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call) RunAndReturn(run func(ctx context.Context, directoryID string, forceDestroy *operations.QueryParamForce, opts ...operations.Option) (*operations.DeleteDirectoryResponse, error)) *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call {
+func (_c *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call) RunAndReturn(run func(ctx context.Context, directoryID string, forceDestroy *operations.DeleteDirectoryQueryParamForce, opts ...operations.Option) (*operations.DeleteDirectoryResponse, error)) *MockKongIdentityDirectoriesSDK_DeleteDirectory_Call {
 	_c.Call.Return(run)
 	return _c
 }

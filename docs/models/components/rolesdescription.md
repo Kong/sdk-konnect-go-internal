@@ -7,12 +7,12 @@ import (
 	"github.com/Kong/sdk-konnect-go/models/components"
 )
 
-value := components.RolesDescriptionAccessToReadOnlyPermissionsToAddOns
+value := components.RolesDescriptionAccessToAllReadAndWritePermissionsRelatedToAddOns
 ```
 
 
 ## Values
 
-| Name                                                  | Value                                                 |
-| ----------------------------------------------------- | ----------------------------------------------------- |
-| `RolesDescriptionAccessToReadOnlyPermissionsToAddOns` | Access to read-only permissions to add-ons.           |
+| Name                                                                | Value                                                               |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `RolesDescriptionAccessToAllReadAndWritePermissionsRelatedToAddOns` | Access to all read and write permissions related to add-ons.        |

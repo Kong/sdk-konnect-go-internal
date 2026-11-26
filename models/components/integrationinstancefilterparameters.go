@@ -8,30 +8,30 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type IntegrationNameType string
+type IntegrationInstanceFilterParametersIntegrationNameType string
 
 const (
-	IntegrationNameTypeStringFieldFilter IntegrationNameType = "StringFieldFilter"
+	IntegrationInstanceFilterParametersIntegrationNameTypeStringFieldFilter IntegrationInstanceFilterParametersIntegrationNameType = "StringFieldFilter"
 )
 
-type IntegrationName struct {
+type IntegrationInstanceFilterParametersIntegrationName struct {
 	StringFieldFilter *StringFieldFilter `queryParam:"inline" union:"member"`
 
-	Type IntegrationNameType
+	Type IntegrationInstanceFilterParametersIntegrationNameType
 }
 
-func CreateIntegrationNameStringFieldFilter(stringFieldFilter StringFieldFilter) IntegrationName {
-	typ := IntegrationNameTypeStringFieldFilter
+func CreateIntegrationInstanceFilterParametersIntegrationNameStringFieldFilter(stringFieldFilter StringFieldFilter) IntegrationInstanceFilterParametersIntegrationName {
+	typ := IntegrationInstanceFilterParametersIntegrationNameTypeStringFieldFilter
 
-	return IntegrationName{
+	return IntegrationInstanceFilterParametersIntegrationName{
 		StringFieldFilter: &stringFieldFilter,
 		Type:              typ,
 	}
 }
 
-func (u *IntegrationName) UnmarshalJSON(data []byte) (err error) {
+func (u *IntegrationInstanceFilterParametersIntegrationName) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = IntegrationName{}
+	*u = IntegrationInstanceFilterParametersIntegrationName{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -41,45 +41,45 @@ func (u *IntegrationName) UnmarshalJSON(data []byte) (err error) {
 	var stringFieldFilter StringFieldFilter = StringFieldFilter{}
 	if err := utils.UnmarshalJSON(data, &stringFieldFilter, "", true, nil); err == nil {
 		u.StringFieldFilter = &stringFieldFilter
-		u.Type = IntegrationNameTypeStringFieldFilter
+		u.Type = IntegrationInstanceFilterParametersIntegrationNameTypeStringFieldFilter
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationName", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationInstanceFilterParametersIntegrationName", string(data))
 }
 
-func (u IntegrationName) MarshalJSON() ([]byte, error) {
+func (u IntegrationInstanceFilterParametersIntegrationName) MarshalJSON() ([]byte, error) {
 	if u.StringFieldFilter != nil {
 		return utils.MarshalJSON(u.StringFieldFilter, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type IntegrationName: all fields are null")
+	return nil, errors.New("could not marshal union type IntegrationInstanceFilterParametersIntegrationName: all fields are null")
 }
 
-type IntegrationDisplayNameType string
+type IntegrationInstanceFilterParametersIntegrationDisplayNameType string
 
 const (
-	IntegrationDisplayNameTypeStringFieldFilter IntegrationDisplayNameType = "StringFieldFilter"
+	IntegrationInstanceFilterParametersIntegrationDisplayNameTypeStringFieldFilter IntegrationInstanceFilterParametersIntegrationDisplayNameType = "StringFieldFilter"
 )
 
-type IntegrationDisplayName struct {
+type IntegrationInstanceFilterParametersIntegrationDisplayName struct {
 	StringFieldFilter *StringFieldFilter `queryParam:"inline" union:"member"`
 
-	Type IntegrationDisplayNameType
+	Type IntegrationInstanceFilterParametersIntegrationDisplayNameType
 }
 
-func CreateIntegrationDisplayNameStringFieldFilter(stringFieldFilter StringFieldFilter) IntegrationDisplayName {
-	typ := IntegrationDisplayNameTypeStringFieldFilter
+func CreateIntegrationInstanceFilterParametersIntegrationDisplayNameStringFieldFilter(stringFieldFilter StringFieldFilter) IntegrationInstanceFilterParametersIntegrationDisplayName {
+	typ := IntegrationInstanceFilterParametersIntegrationDisplayNameTypeStringFieldFilter
 
-	return IntegrationDisplayName{
+	return IntegrationInstanceFilterParametersIntegrationDisplayName{
 		StringFieldFilter: &stringFieldFilter,
 		Type:              typ,
 	}
 }
 
-func (u *IntegrationDisplayName) UnmarshalJSON(data []byte) (err error) {
+func (u *IntegrationInstanceFilterParametersIntegrationDisplayName) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = IntegrationDisplayName{}
+	*u = IntegrationInstanceFilterParametersIntegrationDisplayName{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -89,28 +89,28 @@ func (u *IntegrationDisplayName) UnmarshalJSON(data []byte) (err error) {
 	var stringFieldFilter StringFieldFilter = StringFieldFilter{}
 	if err := utils.UnmarshalJSON(data, &stringFieldFilter, "", true, nil); err == nil {
 		u.StringFieldFilter = &stringFieldFilter
-		u.Type = IntegrationDisplayNameTypeStringFieldFilter
+		u.Type = IntegrationInstanceFilterParametersIntegrationDisplayNameTypeStringFieldFilter
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationDisplayName", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationInstanceFilterParametersIntegrationDisplayName", string(data))
 }
 
-func (u IntegrationDisplayName) MarshalJSON() ([]byte, error) {
+func (u IntegrationInstanceFilterParametersIntegrationDisplayName) MarshalJSON() ([]byte, error) {
 	if u.StringFieldFilter != nil {
 		return utils.MarshalJSON(u.StringFieldFilter, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type IntegrationDisplayName: all fields are null")
+	return nil, errors.New("could not marshal union type IntegrationInstanceFilterParametersIntegrationDisplayName: all fields are null")
 }
 
 type IntegrationInstanceFilterParameters struct {
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`, `contains`, `ocontains`
 	Name *StringFieldFilter `queryParam:"name=name"`
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`, `contains`, `ocontains`
-	DisplayName            *StringFieldFilter      `queryParam:"name=display_name"`
-	IntegrationName        *IntegrationName        `queryParam:"name=integration.name"`
-	IntegrationDisplayName *IntegrationDisplayName `queryParam:"name=integration.display_name"`
+	DisplayName            *StringFieldFilter                                         `queryParam:"name=display_name"`
+	IntegrationName        *IntegrationInstanceFilterParametersIntegrationName        `queryParam:"name=integration.name"`
+	IntegrationDisplayName *IntegrationInstanceFilterParametersIntegrationDisplayName `queryParam:"name=integration.display_name"`
 	// Filter by a boolean value (true/false).
 	Authorized *bool              `queryParam:"name=authorized"`
 	Labels     *LabelsFieldFilter `queryParam:"name=labels"`
@@ -134,14 +134,14 @@ func (i *IntegrationInstanceFilterParameters) GetDisplayName() *StringFieldFilte
 	return i.DisplayName
 }
 
-func (i *IntegrationInstanceFilterParameters) GetIntegrationName() *IntegrationName {
+func (i *IntegrationInstanceFilterParameters) GetIntegrationName() *IntegrationInstanceFilterParametersIntegrationName {
 	if i == nil {
 		return nil
 	}
 	return i.IntegrationName
 }
 
-func (i *IntegrationInstanceFilterParameters) GetIntegrationDisplayName() *IntegrationDisplayName {
+func (i *IntegrationInstanceFilterParameters) GetIntegrationDisplayName() *IntegrationInstanceFilterParametersIntegrationDisplayName {
 	if i == nil {
 		return nil
 	}

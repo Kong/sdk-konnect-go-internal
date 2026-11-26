@@ -11,18 +11,18 @@ import (
 
 // SkillsSDK is a generated interface.
 type SkillsSDK interface {
-	// ListMcpServerSkillsByControlPlane - List Skills by Control Plane
+	// ListContextInterfaceSkills - List Skills
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
 	//
-	// Separate control-plane-scoped list endpoint for KO to enumerate skills at deploy time.
-	ListMcpServerSkillsByControlPlane(ctx context.Context, request operations.ListMcpServerSkillsByControlPlaneRequest, opts ...operations.Option) (*operations.ListMcpServerSkillsByControlPlaneResponse, error)
-	// GetMcpServerSkillContentsByControlPlane - Get Skill Contents by Control Plane
+	// Returns a list of skills for the specified Context Interface.
+	ListContextInterfaceSkills(ctx context.Context, request operations.ListContextInterfaceSkillsRequest, opts ...operations.Option) (*operations.ListContextInterfaceSkillsResponse, error)
+	// CreateContextInterfaceSkill - Create a Skill
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
 	//
-	// KO-only endpoint that redirects to a presigned S3 URL for the skill's SKILL.md file.
-	GetMcpServerSkillContentsByControlPlane(ctx context.Context, request operations.GetMcpServerSkillContentsByControlPlaneRequest, opts ...operations.Option) (*operations.GetMcpServerSkillContentsByControlPlaneResponse, error)
+	// Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
+	CreateContextInterfaceSkill(ctx context.Context, interfaceID string, createSkillRequest components.CreateSkillRequest, opts ...operations.Option) (*operations.CreateContextInterfaceSkillResponse, error)
 	// GetContextInterfaceSkill - Get a Skill
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
@@ -47,16 +47,16 @@ type SkillsSDK interface {
 	//
 	// Returns a presigned S3 URL for the skill's SKILL.md file. Used by the Konnect UI to let a user view a skill's content.
 	GetContextInterfaceSkillContents(ctx context.Context, interfaceID string, skillID string, opts ...operations.Option) (*operations.GetContextInterfaceSkillContentsResponse, error)
-	// ListContextInterfaceSkills - List Skills
+	// ListMcpServerSkillsByControlPlane - List Skills by Control Plane
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
 	//
-	// Returns a list of skills for the specified Context Interface.
-	ListContextInterfaceSkills(ctx context.Context, request operations.ListContextInterfaceSkillsRequest, opts ...operations.Option) (*operations.ListContextInterfaceSkillsResponse, error)
-	// CreateContextInterfaceSkill - Create a Skill
+	// Separate control-plane-scoped list endpoint for KO to enumerate skills at deploy time.
+	ListMcpServerSkillsByControlPlane(ctx context.Context, request operations.ListMcpServerSkillsByControlPlaneRequest, opts ...operations.Option) (*operations.ListMcpServerSkillsByControlPlaneResponse, error)
+	// GetMcpServerSkillContentsByControlPlane - Get Skill Contents by Control Plane
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
 	//
-	// Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
-	CreateContextInterfaceSkill(ctx context.Context, interfaceID string, createSkillRequest components.CreateSkillRequest, opts ...operations.Option) (*operations.CreateContextInterfaceSkillResponse, error)
+	// KO-only endpoint that redirects to a presigned S3 URL for the skill's SKILL.md file.
+	GetMcpServerSkillContentsByControlPlane(ctx context.Context, request operations.GetMcpServerSkillContentsByControlPlaneRequest, opts ...operations.Option) (*operations.GetMcpServerSkillContentsByControlPlaneResponse, error)
 }

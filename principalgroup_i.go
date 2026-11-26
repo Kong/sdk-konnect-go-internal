@@ -35,23 +35,6 @@ type PrincipalGroupSDK interface {
 	// DeleteGroup - Delete a Group
 	// Permanently deletes a group from the directory.
 	DeleteGroup(ctx context.Context, directoryID string, groupID string, opts ...operations.Option) (*operations.DeleteGroupResponse, error)
-	// ListGroupMembership - List a Group's membership
-	// Retrieves a paginated list of members (principals or groups) belonging to a group.
-	// Results can be filtered by membership entry id or by the member's display name.
-	ListGroupMembership(ctx context.Context, request operations.ListGroupMembershipRequest, opts ...operations.Option) (*operations.ListGroupMembershipResponse, error)
-	// CreateGroupMembershipEntry - Add a member to a Group
-	// Adds a single member, either a principal or another group, to a group's membership.
-	CreateGroupMembershipEntry(ctx context.Context, request operations.CreateGroupMembershipEntryRequest, opts ...operations.Option) (*operations.CreateGroupMembershipEntryResponse, error)
-	// BatchCreateGroupMembershipEntries - Add multiple members to a Group
-	// Adds multiple members (principals or groups) to a group's membership in a single request.
-	// Either the entire batch is added or none of it is; body validation failures are reported per item.
-	BatchCreateGroupMembershipEntries(ctx context.Context, request operations.BatchCreateGroupMembershipEntriesRequest, opts ...operations.Option) (*operations.BatchCreateGroupMembershipEntriesResponse, error)
-	// GetGroupMembershipEntry - Get a Group membership entry
-	// Retrieves a specific group membership entry by the member's ID.
-	GetGroupMembershipEntry(ctx context.Context, request operations.GetGroupMembershipEntryRequest, opts ...operations.Option) (*operations.GetGroupMembershipEntryResponse, error)
-	// DeleteGroupMembershipEntry - Remove a member from a Group
-	// Removes a single member, either a principal or another group, from a group's membership.
-	DeleteGroupMembershipEntry(ctx context.Context, request operations.DeleteGroupMembershipEntryRequest, opts ...operations.Option) (*operations.DeleteGroupMembershipEntryResponse, error)
 	// CreateGroupKey - Create a group API key
 	// Creates a new API key for the specified group.
 	// Keys can be system-generated (v1) or imported with a custom secret, and may have an optional expiration date.
@@ -72,4 +55,21 @@ type PrincipalGroupSDK interface {
 	// Permanently deletes an API key, immediately revoking its access.
 	// This operation cannot be undone.
 	DeleteGroupKey(ctx context.Context, request operations.DeleteGroupKeyRequest, opts ...operations.Option) (*operations.DeleteGroupKeyResponse, error)
+	// ListGroupMembership - List a Group's membership
+	// Retrieves a paginated list of members (principals or groups) belonging to a group.
+	// Results can be filtered by membership entry id or by the member's display name.
+	ListGroupMembership(ctx context.Context, request operations.ListGroupMembershipRequest, opts ...operations.Option) (*operations.ListGroupMembershipResponse, error)
+	// CreateGroupMembershipEntry - Add a member to a Group
+	// Adds a single member, either a principal or another group, to a group's membership.
+	CreateGroupMembershipEntry(ctx context.Context, request operations.CreateGroupMembershipEntryRequest, opts ...operations.Option) (*operations.CreateGroupMembershipEntryResponse, error)
+	// GetGroupMembershipEntry - Get a Group membership entry
+	// Retrieves a specific group membership entry by the member's ID.
+	GetGroupMembershipEntry(ctx context.Context, request operations.GetGroupMembershipEntryRequest, opts ...operations.Option) (*operations.GetGroupMembershipEntryResponse, error)
+	// DeleteGroupMembershipEntry - Remove a member from a Group
+	// Removes a single member, either a principal or another group, from a group's membership.
+	DeleteGroupMembershipEntry(ctx context.Context, request operations.DeleteGroupMembershipEntryRequest, opts ...operations.Option) (*operations.DeleteGroupMembershipEntryResponse, error)
+	// BatchCreateGroupMembershipEntries - Add multiple members to a Group
+	// Adds multiple members (principals or groups) to a group's membership in a single request.
+	// Either the entire batch is added or none of it is; body validation failures are reported per item.
+	BatchCreateGroupMembershipEntries(ctx context.Context, request operations.BatchCreateGroupMembershipEntriesRequest, opts ...operations.Option) (*operations.BatchCreateGroupMembershipEntriesResponse, error)
 }

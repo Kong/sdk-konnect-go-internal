@@ -5,16 +5,14 @@ package components
 type EntityTypes string
 
 const (
-	EntityTypesBillingInvoice      EntityTypes = "billing-invoice"
-	EntityTypesAccessToken         EntityTypes = "access-token"
-	EntityTypesWebhook             EntityTypes = "webhook"
-	EntityTypesDevPortal           EntityTypes = "dev-portal"
-	EntityTypesDataplaneGroup      EntityTypes = "dataplane-group"
-	EntityTypesRegionalEventEntity EntityTypes = "regional-event-entity"
-	EntityTypesDataplane           EntityTypes = "dataplane"
-	EntityTypesAlertingEvents      EntityTypes = "alerting-events"
-	EntityTypesKaiEnablement       EntityTypes = "kai-enablement"
-	EntityTypesEnterpriseTrial     EntityTypes = "enterprise-trial"
+	EntityTypesBillingInvoice  EntityTypes = "billing-invoice"
+	EntityTypesAccessToken     EntityTypes = "access-token"
+	EntityTypesWebhook         EntityTypes = "webhook"
+	EntityTypesDevPortal       EntityTypes = "dev-portal"
+	EntityTypesDataplaneGroup  EntityTypes = "dataplane-group"
+	EntityTypesDataplane       EntityTypes = "dataplane"
+	EntityTypesKaiEnablement   EntityTypes = "kai-enablement"
+	EntityTypesEnterpriseTrial EntityTypes = "enterprise-trial"
 )
 
 func (e EntityTypes) ToPointer() *EntityTypes {
@@ -25,7 +23,7 @@ func (e EntityTypes) ToPointer() *EntityTypes {
 func (e *EntityTypes) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "billing-invoice", "access-token", "webhook", "dev-portal", "dataplane-group", "regional-event-entity", "dataplane", "alerting-events", "kai-enablement", "enterprise-trial":
+		case "billing-invoice", "access-token", "webhook", "dev-portal", "dataplane-group", "dataplane", "kai-enablement", "enterprise-trial":
 			return true
 		}
 	}

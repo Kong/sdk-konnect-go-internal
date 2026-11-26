@@ -10,13 +10,13 @@ import (
 
 // CatalogResourcesSDK is a generated interface.
 type CatalogResourcesSDK interface {
+	// UpdateResource - Update Resource
+	// Updates a resource.
+	UpdateResource(ctx context.Context, request operations.UpdateResourceRequest, opts ...operations.Option) (*operations.UpdateResourceResponse, error)
 	// ListResources - List Resources
 	// Returns a paginated collection of resources.
 	ListResources(ctx context.Context, request operations.ListResourcesRequest, opts ...operations.Option) (*operations.ListResourcesResponse, error)
 	// FetchResource - Get a Resource
 	// Fetches a resource by ID.
 	FetchResource(ctx context.Context, id string, opts ...operations.Option) (*operations.FetchResourceResponse, error)
-	// UpdateResource - Update Resource
-	// Updates a resource.
-	UpdateResource(ctx context.Context, request operations.UpdateResourceRequest, opts ...operations.Option) (*operations.UpdateResourceResponse, error)
 }

@@ -33,8 +33,8 @@ func (e *ConfigurationDataPlaneGroupState) IsExact() bool {
 	return false
 }
 
-// StateMetadata - Metadata describing the backing state of the dataplane group and why it may be in an erroneous state.
-type StateMetadata struct {
+// ConfigurationDataPlaneGroupStateMetadata - Metadata describing the backing state of the dataplane group and why it may be in an erroneous state.
+type ConfigurationDataPlaneGroupStateMetadata struct {
 	// Reported status of the dataplane group from backing infrastructure.
 	ReportedStatus *string `json:"reported_status,omitempty"`
 	// Reason why the dataplane group may be in an erroneous state, reported from backing infrastructure.
@@ -42,18 +42,18 @@ type StateMetadata struct {
 	Reason *string `json:"reason,omitempty"`
 }
 
-func (s *StateMetadata) GetReportedStatus() *string {
-	if s == nil {
+func (c *ConfigurationDataPlaneGroupStateMetadata) GetReportedStatus() *string {
+	if c == nil {
 		return nil
 	}
-	return s.ReportedStatus
+	return c.ReportedStatus
 }
 
-func (s *StateMetadata) GetReason() *string {
-	if s == nil {
+func (c *ConfigurationDataPlaneGroupStateMetadata) GetReason() *string {
+	if c == nil {
 		return nil
 	}
-	return s.Reason
+	return c.Reason
 }
 
 // ConfigurationDataPlaneGroup - Object that describes the set of data-plane groups currently pointed to this configuration.
@@ -78,7 +78,7 @@ type ConfigurationDataPlaneGroup struct {
 	State ConfigurationDataPlaneGroupState `json:"state"`
 	// Metadata describing the backing state of the dataplane group and why it may be in an erroneous state.
 	//
-	StateMetadata *StateMetadata `json:"state_metadata,omitempty"`
+	StateMetadata *ConfigurationDataPlaneGroupStateMetadata `json:"state_metadata,omitempty"`
 	// List of private IP addresses of the internal load balancer that proxies traffic to this data-plane group.
 	//
 	PrivateIPAddresses []string `json:"private_ip_addresses,omitempty"`
@@ -153,7 +153,7 @@ func (c *ConfigurationDataPlaneGroup) GetState() ConfigurationDataPlaneGroupStat
 	return c.State
 }
 
-func (c *ConfigurationDataPlaneGroup) GetStateMetadata() *StateMetadata {
+func (c *ConfigurationDataPlaneGroup) GetStateMetadata() *ConfigurationDataPlaneGroupStateMetadata {
 	if c == nil {
 		return nil
 	}

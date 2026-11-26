@@ -56,23 +56,46 @@ func (e *AICostExport2Compression) IsExact() bool {
 	return false
 }
 
-// AICostExportDataset - The data the export holds.
-type AICostExportDataset string
+// AICostExport2Dataset - The data the export holds.
+type AICostExport2Dataset string
 
 const (
-	AICostExportDatasetUsageEvents AICostExportDataset = "usage_events"
-	AICostExportDatasetFocus       AICostExportDataset = "focus"
+	AICostExport2DatasetUsageEvents AICostExport2Dataset = "usage_events"
+	AICostExport2DatasetFocus       AICostExport2Dataset = "focus"
 )
 
-func (e AICostExportDataset) ToPointer() *AICostExportDataset {
+func (e AICostExport2Dataset) ToPointer() *AICostExport2Dataset {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AICostExportDataset) IsExact() bool {
+func (e *AICostExport2Dataset) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "usage_events", "focus":
+			return true
+		}
+	}
+	return false
+}
+
+// AICostExport2SchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
+type AICostExport2SchemaVersion int64
+
+const (
+	AICostExport2SchemaVersionOne AICostExport2SchemaVersion = 1
+	AICostExport2SchemaVersionTwo AICostExport2SchemaVersion = 2
+)
+
+func (e AICostExport2SchemaVersion) ToPointer() *AICostExport2SchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExport2SchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
 			return true
 		}
 	}
@@ -194,9 +217,9 @@ type AICostExport2 struct {
 	// Contains a unique identifier used for this resource.
 	ID string `json:"id"`
 	// The data the export holds.
-	Dataset AICostExportDataset `json:"dataset"`
+	Dataset AICostExport2Dataset `json:"dataset"`
 	// The schema version of the data files within the dataset, which fixes their columns and values.
-	SchemaVersion AICostExportSchemaVersion `json:"schema_version"`
+	SchemaVersion AICostExport2SchemaVersion `json:"schema_version"`
 	// The FOCUS options of the export, with defaults applied.
 	//
 	// `null` unless `dataset` is `focus`.
@@ -281,16 +304,16 @@ func (a *AICostExport2) GetID() string {
 	return a.ID
 }
 
-func (a *AICostExport2) GetDataset() AICostExportDataset {
+func (a *AICostExport2) GetDataset() AICostExport2Dataset {
 	if a == nil {
-		return AICostExportDataset("")
+		return AICostExport2Dataset("")
 	}
 	return a.Dataset
 }
 
-func (a *AICostExport2) GetSchemaVersion() AICostExportSchemaVersion {
+func (a *AICostExport2) GetSchemaVersion() AICostExport2SchemaVersion {
 	if a == nil {
-		return AICostExportSchemaVersion(0)
+		return AICostExport2SchemaVersion(0)
 	}
 	return a.SchemaVersion
 }
@@ -464,23 +487,46 @@ func (e *AICostExportCompression) IsExact() bool {
 	return false
 }
 
-// Dataset - The data the export holds.
-type Dataset string
+// AICostExportDataset - The data the export holds.
+type AICostExportDataset string
 
 const (
-	DatasetUsageEvents Dataset = "usage_events"
-	DatasetFocus       Dataset = "focus"
+	AICostExportDatasetUsageEvents AICostExportDataset = "usage_events"
+	AICostExportDatasetFocus       AICostExportDataset = "focus"
 )
 
-func (e Dataset) ToPointer() *Dataset {
+func (e AICostExportDataset) ToPointer() *AICostExportDataset {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Dataset) IsExact() bool {
+func (e *AICostExportDataset) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "usage_events", "focus":
+			return true
+		}
+	}
+	return false
+}
+
+// AICostExportSchemaVersion - The schema version of the data files within the dataset, which fixes their columns and values.
+type AICostExportSchemaVersion int64
+
+const (
+	AICostExportSchemaVersionOne AICostExportSchemaVersion = 1
+	AICostExportSchemaVersionTwo AICostExportSchemaVersion = 2
+)
+
+func (e AICostExportSchemaVersion) ToPointer() *AICostExportSchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportSchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
 			return true
 		}
 	}
@@ -599,7 +645,7 @@ type AICostExport1 struct {
 	// Contains a unique identifier used for this resource.
 	ID string `json:"id"`
 	// The data the export holds.
-	Dataset Dataset `json:"dataset"`
+	Dataset AICostExportDataset `json:"dataset"`
 	// The schema version of the data files within the dataset, which fixes their columns and values.
 	SchemaVersion AICostExportSchemaVersion `json:"schema_version"`
 	// The FOCUS options of the export, with defaults applied.
@@ -686,9 +732,9 @@ func (a *AICostExport1) GetID() string {
 	return a.ID
 }
 
-func (a *AICostExport1) GetDataset() Dataset {
+func (a *AICostExport1) GetDataset() AICostExportDataset {
 	if a == nil {
-		return Dataset("")
+		return AICostExportDataset("")
 	}
 	return a.Dataset
 }

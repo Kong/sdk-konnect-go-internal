@@ -68,7 +68,7 @@ func (i *IdentityRealms) GetScope() *AIGatewayAuthStrategyKeyAuthResponseScope {
 	return i.Scope
 }
 
-type AIGatewayAuthStrategyKeyAuthResponsePrincipals struct {
+type Principals struct {
 	// The Kong Identity directory instance to authenticate against.
 	Directory *string `default:"default" json:"directory"`
 	// When true, authenticate against Kong Identity instead of local credentials.
@@ -77,36 +77,36 @@ type AIGatewayAuthStrategyKeyAuthResponsePrincipals struct {
 	ErrorOnMiss *bool `default:"true" json:"error_on_miss"`
 }
 
-func (a AIGatewayAuthStrategyKeyAuthResponsePrincipals) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (p Principals) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
 }
 
-func (a *AIGatewayAuthStrategyKeyAuthResponsePrincipals) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+func (p *Principals) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AIGatewayAuthStrategyKeyAuthResponsePrincipals) GetDirectory() *string {
-	if a == nil {
+func (p *Principals) GetDirectory() *string {
+	if p == nil {
 		return nil
 	}
-	return a.Directory
+	return p.Directory
 }
 
-func (a *AIGatewayAuthStrategyKeyAuthResponsePrincipals) GetEnabled() *bool {
-	if a == nil {
+func (p *Principals) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return a.Enabled
+	return p.Enabled
 }
 
-func (a *AIGatewayAuthStrategyKeyAuthResponsePrincipals) GetErrorOnMiss() *bool {
-	if a == nil {
+func (p *Principals) GetErrorOnMiss() *bool {
+	if p == nil {
 		return nil
 	}
-	return a.ErrorOnMiss
+	return p.ErrorOnMiss
 }
 
 // AIGatewayAuthStrategyKeyAuthResponseConfig - Configuration for the key-auth auth strategy.
@@ -126,8 +126,8 @@ type AIGatewayAuthStrategyKeyAuthResponseConfig struct {
 	// If enabled (default), the plugin reads the query parameter in the request and tries to find the key in it.
 	KeyInQuery *bool `default:"true" json:"key_in_query"`
 	// Describes an array of parameter names where the plugin will look for a key. The key names may only contain [a-z], [A-Z], [0-9], [_] underscore, and [-] hyphen.
-	KeyNames   []string                                        `json:"key_names,omitempty"`
-	Principals *AIGatewayAuthStrategyKeyAuthResponsePrincipals `json:"principals,omitempty"`
+	KeyNames   []string    `json:"key_names,omitempty"`
+	Principals *Principals `json:"principals,omitempty"`
 	// When authentication fails the plugin sends `WWW-Authenticate` header with `realm` attribute value.
 	Realm *string `json:"realm,omitempty"`
 	// A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests are always allowed.
@@ -194,7 +194,7 @@ func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetKeyNames() []string {
 	return a.KeyNames
 }
 
-func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetPrincipals() *AIGatewayAuthStrategyKeyAuthResponsePrincipals {
+func (a *AIGatewayAuthStrategyKeyAuthResponseConfig) GetPrincipals() *Principals {
 	if a == nil {
 		return nil
 	}

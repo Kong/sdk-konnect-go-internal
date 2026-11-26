@@ -10,9 +10,6 @@ import (
 
 // TargetsSDK is a generated interface.
 type TargetsSDK interface {
-	// ListTargets - List all targets for a control plane
-	// Returns a collection of all targets for a control plane.
-	ListTargets(ctx context.Context, request operations.ListTargetsRequest, opts ...operations.Option) (*operations.ListTargetsResponse, error)
 	// ListTargetWithUpstream - List all Targets associated with an Upstream in a workspace
 	// List all Targets associated with an Upstream in a workspace
 	ListTargetWithUpstream(ctx context.Context, request operations.ListTargetWithUpstreamRequest, opts ...operations.Option) (*operations.ListTargetWithUpstreamResponse, error)
@@ -28,4 +25,7 @@ type TargetsSDK interface {
 	// UpsertTargetWithUpstream - Upsert a Target associated with an Upstream in a workspace
 	// Create or Update a Target associated with an Upstream using ID or target in a workspace.
 	UpsertTargetWithUpstream(ctx context.Context, request operations.UpsertTargetWithUpstreamRequest, opts ...operations.Option) (*operations.UpsertTargetWithUpstreamResponse, error)
+	// ListTargets - List all targets for a control plane
+	// Returns a collection of all targets for a control plane.
+	ListTargets(ctx context.Context, request operations.ListTargetsRequest, opts ...operations.Option) (*operations.ListTargetsResponse, error)
 }

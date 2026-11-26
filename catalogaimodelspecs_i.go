@@ -11,6 +11,9 @@ import (
 
 // CatalogAIModelSpecsSDK is a generated interface.
 type CatalogAIModelSpecsSDK interface {
+	// GetAiModelSpec - Get AI Model spec
+	// Convenience shortcut to the `latest` version's oas specification. Returns `404`  if either the version or the specification is missing, distinguished by error code in the response body (`ai_model_version_not_found` / `ai_model_spec_not_found`).
+	GetAiModelSpec(ctx context.Context, aiModelID string, opts ...operations.Option) (*operations.GetAiModelSpecResponse, error)
 	// GetAiModelVersionSpec - Get AI Model version spec
 	// Returns the `latest` version's oas specification contents along with metadata.
 	GetAiModelVersionSpec(ctx context.Context, aiModelID string, opts ...operations.Option) (*operations.GetAiModelVersionSpecResponse, error)
@@ -20,7 +23,4 @@ type CatalogAIModelSpecsSDK interface {
 	// DeleteAiModelVersionSpec - Delete AI Model version spec
 	// Deletes the `latest` version's oas specification.
 	DeleteAiModelVersionSpec(ctx context.Context, aiModelID string, opts ...operations.Option) (*operations.DeleteAiModelVersionSpecResponse, error)
-	// GetAiModelSpec - Get AI Model spec
-	// Convenience shortcut to the `latest` version's oas specification. Returns `404`  if either the version or the specification is missing, distinguished by error code in the response body (`ai_model_version_not_found` / `ai_model_spec_not_found`).
-	GetAiModelSpec(ctx context.Context, aiModelID string, opts ...operations.Option) (*operations.GetAiModelSpecResponse, error)
 }

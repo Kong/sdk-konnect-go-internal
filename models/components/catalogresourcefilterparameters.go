@@ -104,30 +104,30 @@ func (u CatalogResourceFilterParametersIntegrationDisplayName) MarshalJSON() ([]
 	return nil, errors.New("could not marshal union type CatalogResourceFilterParametersIntegrationDisplayName: all fields are null")
 }
 
-type IntegrationInstanceIDType string
+type CatalogResourceFilterParametersIntegrationInstanceIDType string
 
 const (
-	IntegrationInstanceIDTypeUUIDFieldFilter IntegrationInstanceIDType = "UuidFieldFilter"
+	CatalogResourceFilterParametersIntegrationInstanceIDTypeUUIDFieldFilter CatalogResourceFilterParametersIntegrationInstanceIDType = "UuidFieldFilter"
 )
 
-type IntegrationInstanceID struct {
+type CatalogResourceFilterParametersIntegrationInstanceID struct {
 	UUIDFieldFilter *UUIDFieldFilter `queryParam:"inline" union:"member"`
 
-	Type IntegrationInstanceIDType
+	Type CatalogResourceFilterParametersIntegrationInstanceIDType
 }
 
-func CreateIntegrationInstanceIDUUIDFieldFilter(uuidFieldFilter UUIDFieldFilter) IntegrationInstanceID {
-	typ := IntegrationInstanceIDTypeUUIDFieldFilter
+func CreateCatalogResourceFilterParametersIntegrationInstanceIDUUIDFieldFilter(uuidFieldFilter UUIDFieldFilter) CatalogResourceFilterParametersIntegrationInstanceID {
+	typ := CatalogResourceFilterParametersIntegrationInstanceIDTypeUUIDFieldFilter
 
-	return IntegrationInstanceID{
+	return CatalogResourceFilterParametersIntegrationInstanceID{
 		UUIDFieldFilter: &uuidFieldFilter,
 		Type:            typ,
 	}
 }
 
-func (u *IntegrationInstanceID) UnmarshalJSON(data []byte) (err error) {
+func (u *CatalogResourceFilterParametersIntegrationInstanceID) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = IntegrationInstanceID{}
+	*u = CatalogResourceFilterParametersIntegrationInstanceID{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -137,45 +137,45 @@ func (u *IntegrationInstanceID) UnmarshalJSON(data []byte) (err error) {
 	var uuidFieldFilter UUIDFieldFilter = UUIDFieldFilter{}
 	if err := utils.UnmarshalJSON(data, &uuidFieldFilter, "", true, nil); err == nil {
 		u.UUIDFieldFilter = &uuidFieldFilter
-		u.Type = IntegrationInstanceIDTypeUUIDFieldFilter
+		u.Type = CatalogResourceFilterParametersIntegrationInstanceIDTypeUUIDFieldFilter
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationInstanceID", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CatalogResourceFilterParametersIntegrationInstanceID", string(data))
 }
 
-func (u IntegrationInstanceID) MarshalJSON() ([]byte, error) {
+func (u CatalogResourceFilterParametersIntegrationInstanceID) MarshalJSON() ([]byte, error) {
 	if u.UUIDFieldFilter != nil {
 		return utils.MarshalJSON(u.UUIDFieldFilter, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type IntegrationInstanceID: all fields are null")
+	return nil, errors.New("could not marshal union type CatalogResourceFilterParametersIntegrationInstanceID: all fields are null")
 }
 
-type IntegrationInstanceNameType string
+type CatalogResourceFilterParametersIntegrationInstanceNameType string
 
 const (
-	IntegrationInstanceNameTypeStringFieldFilter IntegrationInstanceNameType = "StringFieldFilter"
+	CatalogResourceFilterParametersIntegrationInstanceNameTypeStringFieldFilter CatalogResourceFilterParametersIntegrationInstanceNameType = "StringFieldFilter"
 )
 
-type IntegrationInstanceName struct {
+type CatalogResourceFilterParametersIntegrationInstanceName struct {
 	StringFieldFilter *StringFieldFilter `queryParam:"inline" union:"member"`
 
-	Type IntegrationInstanceNameType
+	Type CatalogResourceFilterParametersIntegrationInstanceNameType
 }
 
-func CreateIntegrationInstanceNameStringFieldFilter(stringFieldFilter StringFieldFilter) IntegrationInstanceName {
-	typ := IntegrationInstanceNameTypeStringFieldFilter
+func CreateCatalogResourceFilterParametersIntegrationInstanceNameStringFieldFilter(stringFieldFilter StringFieldFilter) CatalogResourceFilterParametersIntegrationInstanceName {
+	typ := CatalogResourceFilterParametersIntegrationInstanceNameTypeStringFieldFilter
 
-	return IntegrationInstanceName{
+	return CatalogResourceFilterParametersIntegrationInstanceName{
 		StringFieldFilter: &stringFieldFilter,
 		Type:              typ,
 	}
 }
 
-func (u *IntegrationInstanceName) UnmarshalJSON(data []byte) (err error) {
+func (u *CatalogResourceFilterParametersIntegrationInstanceName) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = IntegrationInstanceName{}
+	*u = CatalogResourceFilterParametersIntegrationInstanceName{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -185,45 +185,45 @@ func (u *IntegrationInstanceName) UnmarshalJSON(data []byte) (err error) {
 	var stringFieldFilter StringFieldFilter = StringFieldFilter{}
 	if err := utils.UnmarshalJSON(data, &stringFieldFilter, "", true, nil); err == nil {
 		u.StringFieldFilter = &stringFieldFilter
-		u.Type = IntegrationInstanceNameTypeStringFieldFilter
+		u.Type = CatalogResourceFilterParametersIntegrationInstanceNameTypeStringFieldFilter
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationInstanceName", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CatalogResourceFilterParametersIntegrationInstanceName", string(data))
 }
 
-func (u IntegrationInstanceName) MarshalJSON() ([]byte, error) {
+func (u CatalogResourceFilterParametersIntegrationInstanceName) MarshalJSON() ([]byte, error) {
 	if u.StringFieldFilter != nil {
 		return utils.MarshalJSON(u.StringFieldFilter, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type IntegrationInstanceName: all fields are null")
+	return nil, errors.New("could not marshal union type CatalogResourceFilterParametersIntegrationInstanceName: all fields are null")
 }
 
-type IntegrationInstanceDisplayNameType string
+type CatalogResourceFilterParametersIntegrationInstanceDisplayNameType string
 
 const (
-	IntegrationInstanceDisplayNameTypeStringFieldFilter IntegrationInstanceDisplayNameType = "StringFieldFilter"
+	CatalogResourceFilterParametersIntegrationInstanceDisplayNameTypeStringFieldFilter CatalogResourceFilterParametersIntegrationInstanceDisplayNameType = "StringFieldFilter"
 )
 
-type IntegrationInstanceDisplayName struct {
+type CatalogResourceFilterParametersIntegrationInstanceDisplayName struct {
 	StringFieldFilter *StringFieldFilter `queryParam:"inline" union:"member"`
 
-	Type IntegrationInstanceDisplayNameType
+	Type CatalogResourceFilterParametersIntegrationInstanceDisplayNameType
 }
 
-func CreateIntegrationInstanceDisplayNameStringFieldFilter(stringFieldFilter StringFieldFilter) IntegrationInstanceDisplayName {
-	typ := IntegrationInstanceDisplayNameTypeStringFieldFilter
+func CreateCatalogResourceFilterParametersIntegrationInstanceDisplayNameStringFieldFilter(stringFieldFilter StringFieldFilter) CatalogResourceFilterParametersIntegrationInstanceDisplayName {
+	typ := CatalogResourceFilterParametersIntegrationInstanceDisplayNameTypeStringFieldFilter
 
-	return IntegrationInstanceDisplayName{
+	return CatalogResourceFilterParametersIntegrationInstanceDisplayName{
 		StringFieldFilter: &stringFieldFilter,
 		Type:              typ,
 	}
 }
 
-func (u *IntegrationInstanceDisplayName) UnmarshalJSON(data []byte) (err error) {
+func (u *CatalogResourceFilterParametersIntegrationInstanceDisplayName) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = IntegrationInstanceDisplayName{}
+	*u = CatalogResourceFilterParametersIntegrationInstanceDisplayName{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -233,19 +233,19 @@ func (u *IntegrationInstanceDisplayName) UnmarshalJSON(data []byte) (err error) 
 	var stringFieldFilter StringFieldFilter = StringFieldFilter{}
 	if err := utils.UnmarshalJSON(data, &stringFieldFilter, "", true, nil); err == nil {
 		u.StringFieldFilter = &stringFieldFilter
-		u.Type = IntegrationInstanceDisplayNameTypeStringFieldFilter
+		u.Type = CatalogResourceFilterParametersIntegrationInstanceDisplayNameTypeStringFieldFilter
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationInstanceDisplayName", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CatalogResourceFilterParametersIntegrationInstanceDisplayName", string(data))
 }
 
-func (u IntegrationInstanceDisplayName) MarshalJSON() ([]byte, error) {
+func (u CatalogResourceFilterParametersIntegrationInstanceDisplayName) MarshalJSON() ([]byte, error) {
 	if u.StringFieldFilter != nil {
 		return utils.MarshalJSON(u.StringFieldFilter, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type IntegrationInstanceDisplayName: all fields are null")
+	return nil, errors.New("could not marshal union type CatalogResourceFilterParametersIntegrationInstanceDisplayName: all fields are null")
 }
 
 type CatalogResourceFilterParametersConfigType string
@@ -296,30 +296,30 @@ func (u CatalogResourceFilterParametersConfig) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type CatalogResourceFilterParametersConfig: all fields are null")
 }
 
-type IntegrationDataType string
+type CatalogResourceFilterParametersIntegrationDataType string
 
 const (
-	IntegrationDataTypeCatalogResourceIntegrationDataFieldFilter IntegrationDataType = "CatalogResourceIntegrationDataFieldFilter"
+	CatalogResourceFilterParametersIntegrationDataTypeCatalogResourceIntegrationDataFieldFilter CatalogResourceFilterParametersIntegrationDataType = "CatalogResourceIntegrationDataFieldFilter"
 )
 
-type IntegrationData struct {
+type CatalogResourceFilterParametersIntegrationData struct {
 	CatalogResourceIntegrationDataFieldFilter *CatalogResourceIntegrationDataFieldFilter `queryParam:"inline" union:"member"`
 
-	Type IntegrationDataType
+	Type CatalogResourceFilterParametersIntegrationDataType
 }
 
-func CreateIntegrationDataCatalogResourceIntegrationDataFieldFilter(catalogResourceIntegrationDataFieldFilter CatalogResourceIntegrationDataFieldFilter) IntegrationData {
-	typ := IntegrationDataTypeCatalogResourceIntegrationDataFieldFilter
+func CreateCatalogResourceFilterParametersIntegrationDataCatalogResourceIntegrationDataFieldFilter(catalogResourceIntegrationDataFieldFilter CatalogResourceIntegrationDataFieldFilter) CatalogResourceFilterParametersIntegrationData {
+	typ := CatalogResourceFilterParametersIntegrationDataTypeCatalogResourceIntegrationDataFieldFilter
 
-	return IntegrationData{
+	return CatalogResourceFilterParametersIntegrationData{
 		CatalogResourceIntegrationDataFieldFilter: &catalogResourceIntegrationDataFieldFilter,
 		Type: typ,
 	}
 }
 
-func (u *IntegrationData) UnmarshalJSON(data []byte) (err error) {
+func (u *CatalogResourceFilterParametersIntegrationData) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = IntegrationData{}
+	*u = CatalogResourceFilterParametersIntegrationData{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -329,35 +329,35 @@ func (u *IntegrationData) UnmarshalJSON(data []byte) (err error) {
 	var catalogResourceIntegrationDataFieldFilter CatalogResourceIntegrationDataFieldFilter = CatalogResourceIntegrationDataFieldFilter{}
 	if err := utils.UnmarshalJSON(data, &catalogResourceIntegrationDataFieldFilter, "", true, nil); err == nil {
 		u.CatalogResourceIntegrationDataFieldFilter = &catalogResourceIntegrationDataFieldFilter
-		u.Type = IntegrationDataTypeCatalogResourceIntegrationDataFieldFilter
+		u.Type = CatalogResourceFilterParametersIntegrationDataTypeCatalogResourceIntegrationDataFieldFilter
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for IntegrationData", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CatalogResourceFilterParametersIntegrationData", string(data))
 }
 
-func (u IntegrationData) MarshalJSON() ([]byte, error) {
+func (u CatalogResourceFilterParametersIntegrationData) MarshalJSON() ([]byte, error) {
 	if u.CatalogResourceIntegrationDataFieldFilter != nil {
 		return utils.MarshalJSON(u.CatalogResourceIntegrationDataFieldFilter, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type IntegrationData: all fields are null")
+	return nil, errors.New("could not marshal union type CatalogResourceFilterParametersIntegrationData: all fields are null")
 }
 
 type CatalogResourceFilterParameters struct {
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
 	ID *StringFieldFilterExact `queryParam:"name=id"`
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`, `contains`, `ocontains`
-	Name                           *StringFieldFilter                                     `queryParam:"name=name"`
-	IntegrationName                *CatalogResourceFilterParametersIntegrationName        `queryParam:"name=integration.name"`
-	IntegrationDisplayName         *CatalogResourceFilterParametersIntegrationDisplayName `queryParam:"name=integration.display_name"`
-	IntegrationInstanceID          *IntegrationInstanceID                                 `queryParam:"name=integration.instance.id"`
-	IntegrationInstanceName        *IntegrationInstanceName                               `queryParam:"name=integration.instance.name"`
-	IntegrationInstanceDisplayName *IntegrationInstanceDisplayName                        `queryParam:"name=integration.instance.display_name"`
+	Name                           *StringFieldFilter                                             `queryParam:"name=name"`
+	IntegrationName                *CatalogResourceFilterParametersIntegrationName                `queryParam:"name=integration.name"`
+	IntegrationDisplayName         *CatalogResourceFilterParametersIntegrationDisplayName         `queryParam:"name=integration.display_name"`
+	IntegrationInstanceID          *CatalogResourceFilterParametersIntegrationInstanceID          `queryParam:"name=integration.instance.id"`
+	IntegrationInstanceName        *CatalogResourceFilterParametersIntegrationInstanceName        `queryParam:"name=integration.instance.name"`
+	IntegrationInstanceDisplayName *CatalogResourceFilterParametersIntegrationInstanceDisplayName `queryParam:"name=integration.instance.display_name"`
 	// Filter using **one** of the following operators: `eq`, `oeq`, `neq`
-	Type            *StringFieldFilterExact                `queryParam:"name=type"`
-	Config          *CatalogResourceFilterParametersConfig `queryParam:"name=config"`
-	IntegrationData *IntegrationData                       `queryParam:"name=integration_data"`
+	Type            *StringFieldFilterExact                         `queryParam:"name=type"`
+	Config          *CatalogResourceFilterParametersConfig          `queryParam:"name=config"`
+	IntegrationData *CatalogResourceFilterParametersIntegrationData `queryParam:"name=integration_data"`
 	// Filter by a boolean value (true/false).
 	Archived *bool `queryParam:"name=archived"`
 	// Filter by a numeric value.
@@ -396,21 +396,21 @@ func (c *CatalogResourceFilterParameters) GetIntegrationDisplayName() *CatalogRe
 	return c.IntegrationDisplayName
 }
 
-func (c *CatalogResourceFilterParameters) GetIntegrationInstanceID() *IntegrationInstanceID {
+func (c *CatalogResourceFilterParameters) GetIntegrationInstanceID() *CatalogResourceFilterParametersIntegrationInstanceID {
 	if c == nil {
 		return nil
 	}
 	return c.IntegrationInstanceID
 }
 
-func (c *CatalogResourceFilterParameters) GetIntegrationInstanceName() *IntegrationInstanceName {
+func (c *CatalogResourceFilterParameters) GetIntegrationInstanceName() *CatalogResourceFilterParametersIntegrationInstanceName {
 	if c == nil {
 		return nil
 	}
 	return c.IntegrationInstanceName
 }
 
-func (c *CatalogResourceFilterParameters) GetIntegrationInstanceDisplayName() *IntegrationInstanceDisplayName {
+func (c *CatalogResourceFilterParameters) GetIntegrationInstanceDisplayName() *CatalogResourceFilterParametersIntegrationInstanceDisplayName {
 	if c == nil {
 		return nil
 	}
@@ -431,7 +431,7 @@ func (c *CatalogResourceFilterParameters) GetConfig() *CatalogResourceFilterPara
 	return c.Config
 }
 
-func (c *CatalogResourceFilterParameters) GetIntegrationData() *IntegrationData {
+func (c *CatalogResourceFilterParameters) GetIntegrationData() *CatalogResourceFilterParametersIntegrationData {
 	if c == nil {
 		return nil
 	}

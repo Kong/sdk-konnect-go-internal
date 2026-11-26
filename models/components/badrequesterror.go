@@ -7,27 +7,27 @@ import (
 	"fmt"
 )
 
-// Status - The HTTP status code of the error. Useful when passing the response
+// BadRequestErrorStatus - The HTTP status code of the error. Useful when passing the response
 // body to child properties in a frontend UI. Must be returned as an integer.
-type Status int64
+type BadRequestErrorStatus int64
 
 const (
-	StatusFourHundred Status = 400
+	BadRequestErrorStatusFourHundred BadRequestErrorStatus = 400
 )
 
-func (e Status) ToPointer() *Status {
+func (e BadRequestErrorStatus) ToPointer() *BadRequestErrorStatus {
 	return &e
 }
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *BadRequestErrorStatus) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case 400:
-		*e = Status(v)
+		*e = BadRequestErrorStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for BadRequestErrorStatus: %v", v)
 	}
 }

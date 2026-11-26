@@ -10,6 +10,8 @@ Learn more about scorecards by visiting our [documentation](https://developer.ko
 
 ### Available Operations
 
+* [ListCatalogServiceScorecards](#listcatalogservicescorecards) - List Catalog Service Scorecards
+* [FetchCatalogServiceScorecard](#fetchcatalogservicescorecard) - Get a Catalog Service Scorecard
 * [ListScorecardTemplates](#listscorecardtemplates) - List Scorecard Templates
 * [CreateScorecard](#createscorecard) - Create Scorecard
 * [ListScorecards](#listscorecards) - List Scorecards
@@ -19,8 +21,140 @@ Learn more about scorecards by visiting our [documentation](https://developer.ko
 * [ListScorecardServices](#listscorecardservices) - List Scorecard Services
 * [ListScorecardCriteria](#listscorecardcriteria) - List Scorecard Criteria
 * [ListScorecardCriteriaServices](#listscorecardcriteriaservices) - List Scorecard Criteria Services
-* [ListCatalogServiceScorecards](#listcatalogservicescorecards) - List Catalog Service Scorecards
-* [FetchCatalogServiceScorecard](#fetchcatalogservicescorecard) - Get a Catalog Service Scorecard
+
+## ListCatalogServiceScorecards
+
+Returns a paginated collection of scorecards targeting the given service.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-catalog-service-scorecards" method="get" path="/v1/catalog-services/{id}/scorecards" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.Scorecards.ListCatalogServiceScorecards(ctx, operations.ListCatalogServiceScorecardsRequest{
+        ID: "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7",
+        PageSize: sdkkonnectgo.Pointer[int64](10),
+        PageNumber: sdkkonnectgo.Pointer[int64](1),
+        Filter: &components.ScorecardFilterParameters{
+            ScoreRawValue: sdkkonnectgo.Pointer(components.CreateScoreRawValueNumericFieldFilter(
+                components.CreateNumericFieldFilterNumber(
+                    21.0,
+                ),
+            )),
+        },
+        Sort: sdkkonnectgo.Pointer("created_at desc"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListCatalogServiceScorecardsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [operations.ListCatalogServiceScorecardsRequest](../../models/operations/listcatalogservicescorecardsrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
+
+### Response
+
+**[*operations.ListCatalogServiceScorecardsResponse](../../models/operations/listcatalogservicescorecardsresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## FetchCatalogServiceScorecard
+
+Fetches the given scorecard targeting the service.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="fetch-catalog-service-scorecard" method="get" path="/v1/catalog-services/{serviceId}/scorecards/{scorecardId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.Scorecards.FetchCatalogServiceScorecard(ctx, "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "f3704e4c-104d-4f21-998a-20d4364c893f")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CatalogServiceScorecard != nil {
+        switch res.CatalogServiceScorecard.EntitySelector.Type {
+            case components.ScorecardEntitySelectorTypeServiceSelector:
+                // res.CatalogServiceScorecard.EntitySelector.ServiceSelector is populated
+        }
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `serviceID`                                              | `string`                                                 | :heavy_check_mark:                                       | The `id` of the service.                                 | 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
+| `scorecardID`                                            | `string`                                                 | :heavy_check_mark:                                       | The `id` of the scorecard.                               | f3704e4c-104d-4f21-998a-20d4364c893f                     |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
+
+### Response
+
+**[*operations.FetchCatalogServiceScorecardResponse](../../models/operations/fetchcatalogservicescorecardresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListScorecardTemplates
 
@@ -688,140 +822,6 @@ func main() {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ListCatalogServiceScorecards
-
-Returns a paginated collection of scorecards targeting the given service.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-catalog-service-scorecards" method="get" path="/v1/catalog-services/{id}/scorecards" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Scorecards.ListCatalogServiceScorecards(ctx, operations.ListCatalogServiceScorecardsRequest{
-        ID: "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7",
-        PageSize: sdkkonnectgo.Pointer[int64](10),
-        PageNumber: sdkkonnectgo.Pointer[int64](1),
-        Filter: &components.ScorecardFilterParameters{
-            ScoreRawValue: sdkkonnectgo.Pointer(components.CreateScoreRawValueNumericFieldFilter(
-                components.CreateNumericFieldFilterNumber(
-                    21.0,
-                ),
-            )),
-        },
-        Sort: sdkkonnectgo.Pointer("created_at desc"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListCatalogServiceScorecardsResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
-| `request`                                                                                                        | [operations.ListCatalogServiceScorecardsRequest](../../models/operations/listcatalogservicescorecardsrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
-| `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
-
-### Response
-
-**[*operations.ListCatalogServiceScorecardsResponse](../../models/operations/listcatalogservicescorecardsresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## FetchCatalogServiceScorecard
-
-Fetches the given scorecard targeting the service.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="fetch-catalog-service-scorecard" method="get" path="/v1/catalog-services/{serviceId}/scorecards/{scorecardId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Scorecards.FetchCatalogServiceScorecard(ctx, "7f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "f3704e4c-104d-4f21-998a-20d4364c893f")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.CatalogServiceScorecard != nil {
-        switch res.CatalogServiceScorecard.EntitySelector.Type {
-            case components.ScorecardEntitySelectorTypeServiceSelector:
-                // res.CatalogServiceScorecard.EntitySelector.ServiceSelector is populated
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
-| `serviceID`                                              | `string`                                                 | :heavy_check_mark:                                       | The `id` of the service.                                 | 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7                     |
-| `scorecardID`                                            | `string`                                                 | :heavy_check_mark:                                       | The `id` of the scorecard.                               | f3704e4c-104d-4f21-998a-20d4364c893f                     |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
-
-### Response
-
-**[*operations.FetchCatalogServiceScorecardResponse](../../models/operations/fetchcatalogservicescorecardresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |

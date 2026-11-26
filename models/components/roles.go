@@ -602,23 +602,23 @@ func (e *RolesServicesDescription) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type APIConsumer struct {
+type RolesAPIConsumer struct {
 	Name        RolesServicesRolesName   `json:"name"`
 	Description RolesServicesDescription `json:"description"`
 }
 
-func (a *APIConsumer) GetName() RolesServicesRolesName {
-	if a == nil {
+func (r *RolesAPIConsumer) GetName() RolesServicesRolesName {
+	if r == nil {
 		return RolesServicesRolesName("")
 	}
-	return a.Name
+	return r.Name
 }
 
-func (a *APIConsumer) GetDescription() RolesServicesDescription {
-	if a == nil {
+func (r *RolesAPIConsumer) GetDescription() RolesServicesDescription {
+	if r == nil {
 		return RolesServicesDescription("")
 	}
-	return a.Description
+	return r.Description
 }
 
 type RolesServicesRolesAPIViewerName string
@@ -667,61 +667,61 @@ func (e *RolesServicesRolesDescription) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type APIViewer struct {
+type RolesAPIViewer struct {
 	Name        RolesServicesRolesAPIViewerName `json:"name"`
 	Description RolesServicesRolesDescription   `json:"description"`
 }
 
-func (a *APIViewer) GetName() RolesServicesRolesAPIViewerName {
-	if a == nil {
+func (r *RolesAPIViewer) GetName() RolesServicesRolesAPIViewerName {
+	if r == nil {
 		return RolesServicesRolesAPIViewerName("")
 	}
-	return a.Name
+	return r.Name
 }
 
-func (a *APIViewer) GetDescription() RolesServicesRolesDescription {
-	if a == nil {
+func (r *RolesAPIViewer) GetDescription() RolesServicesRolesDescription {
+	if r == nil {
 		return RolesServicesRolesDescription("")
 	}
-	return a.Description
+	return r.Description
 }
 
 type RolesServicesRoles struct {
-	APIConsumer *APIConsumer `json:"api_consumer,omitempty"`
-	APIViewer   *APIViewer   `json:"api_viewer,omitempty"`
+	APIConsumer *RolesAPIConsumer `json:"api_consumer,omitempty"`
+	APIViewer   *RolesAPIViewer   `json:"api_viewer,omitempty"`
 }
 
-func (r *RolesServicesRoles) GetAPIConsumer() *APIConsumer {
+func (r *RolesServicesRoles) GetAPIConsumer() *RolesAPIConsumer {
 	if r == nil {
 		return nil
 	}
 	return r.APIConsumer
 }
 
-func (r *RolesServicesRoles) GetAPIViewer() *APIViewer {
+func (r *RolesServicesRoles) GetAPIViewer() *RolesAPIViewer {
 	if r == nil {
 		return nil
 	}
 	return r.APIViewer
 }
 
-type Services struct {
+type RolesServices struct {
 	Name  RolesServicesName  `json:"name"`
 	Roles RolesServicesRoles `json:"roles"`
 }
 
-func (s *Services) GetName() RolesServicesName {
-	if s == nil {
+func (r *RolesServices) GetName() RolesServicesName {
+	if r == nil {
 		return RolesServicesName("")
 	}
-	return s.Name
+	return r.Name
 }
 
-func (s *Services) GetRoles() RolesServicesRoles {
-	if s == nil {
+func (r *RolesServices) GetRoles() RolesServicesRoles {
+	if r == nil {
 		return RolesServicesRoles{}
 	}
-	return s.Roles
+	return r.Roles
 }
 
 // Roles - The predefined, or system managed, roles.
@@ -746,7 +746,7 @@ type Roles struct {
 	Networks          *Networks          `json:"networks,omitempty"`
 	Reports           *Reports           `json:"reports,omitempty"`
 	ServiceHub        *ServiceHub        `json:"service_hub,omitempty"`
-	Services          *Services          `json:"services,omitempty"`
+	Services          *RolesServices     `json:"services,omitempty"`
 }
 
 func (r *Roles) GetAddOns() *AddOns {
@@ -889,7 +889,7 @@ func (r *Roles) GetServiceHub() *ServiceHub {
 	return r.ServiceHub
 }
 
-func (r *Roles) GetServices() *Services {
+func (r *Roles) GetServices() *RolesServices {
 	if r == nil {
 		return nil
 	}

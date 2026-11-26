@@ -6,68 +6,79 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type MultiKeyAuthHeaders struct {
-	// Name of the request header
+type KeyAuthHeader struct {
+	// The exact name of the HTTP request header where the credential should be inserted.
 	Name string `json:"name"`
-	// The key used to populate the request header
-	Key string `json:"key"`
+	// An optional user-friendly label for the key, used in UI forms to guide users.
+	DisplayName *string `json:"display_name"`
+	// An optional brief explanation of the purpose or usage of the key.
+	Description *string `json:"description"`
 }
 
-func (m MultiKeyAuthHeaders) MarshalJSON() ([]byte, error) {
+func (k KeyAuthHeader) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(k, "", false)
+}
+
+func (k *KeyAuthHeader) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &k, "", false, []string{"name"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (k *KeyAuthHeader) GetName() string {
+	if k == nil {
+		return ""
+	}
+	return k.Name
+}
+
+func (k *KeyAuthHeader) GetDisplayName() *string {
+	if k == nil {
+		return nil
+	}
+	return k.DisplayName
+}
+
+func (k *KeyAuthHeader) GetDescription() *string {
+	if k == nil {
+		return nil
+	}
+	return k.Description
+}
+
+type MultiKeyAuthConfig struct {
+	// A list of header definitions used to transmit API credentials to the integration's external API.
+	// Each header represents a unique key required by the provider.
+	//
+	Headers []KeyAuthHeader `json:"headers"`
+}
+
+func (m MultiKeyAuthConfig) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(m, "", false)
 }
 
-func (m *MultiKeyAuthHeaders) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"name", "key"}); err != nil {
+func (m *MultiKeyAuthConfig) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"headers"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MultiKeyAuthHeaders) GetName() string {
+func (m *MultiKeyAuthConfig) GetHeaders() []KeyAuthHeader {
 	if m == nil {
-		return ""
+		return []KeyAuthHeader{}
 	}
-	return m.Name
+	return m.Headers
 }
 
-func (m *MultiKeyAuthHeaders) GetKey() string {
-	if m == nil {
-		return ""
-	}
-	return m.Key
-}
-
-type CreateMultiKeyAuthCredentialConfig struct {
-	// A list of header key/value pairs used to transmit API credentials to the integration's external API.
-	// Header names are defined by the integration within its `Multi Key` authorization strategy definition.
-	//
-	Headers []MultiKeyAuthHeaders `json:"headers"`
-}
-
-func (c CreateMultiKeyAuthCredentialConfig) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CreateMultiKeyAuthCredentialConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"headers"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (c *CreateMultiKeyAuthCredentialConfig) GetHeaders() []MultiKeyAuthHeaders {
-	if c == nil {
-		return []MultiKeyAuthHeaders{}
-	}
-	return c.Headers
-}
-
-// MultiKeyAuth1 - Payload used to create an `Multi Key` credential for an integration instance.
+// MultiKeyAuth1 - Defines an authentication strategy based on one or more API keys passed via HTTP headers.
+// This strategy supports integrations that require custom headers for credential-based access,
+// allowing flexibility across providers with different authentication header requirements.
 type MultiKeyAuth1 struct {
 	//lint:ignore U1000 accessed via reflection for JSON marshaling
-	type_  string                             `const:"multi_key_auth" json:"type"`
-	Config CreateMultiKeyAuthCredentialConfig `json:"config"`
+	type_  string             `const:"multi_key_auth" json:"type"`
+	Config MultiKeyAuthConfig `json:"config"`
 }
 
 func (m MultiKeyAuth1) MarshalJSON() ([]byte, error) {
@@ -85,9 +96,9 @@ func (m *MultiKeyAuth1) GetType() string {
 	return "multi_key_auth"
 }
 
-func (m *MultiKeyAuth1) GetConfig() CreateMultiKeyAuthCredentialConfig {
+func (m *MultiKeyAuth1) GetConfig() MultiKeyAuthConfig {
 	if m == nil {
-		return CreateMultiKeyAuthCredentialConfig{}
+		return MultiKeyAuthConfig{}
 	}
 	return m.Config
 }

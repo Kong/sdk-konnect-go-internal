@@ -7,6 +7,8 @@ type UpdateAIGatewayRequest struct {
 	//
 	// It may be lowered only when no configuration already stored uses a feature that requires a runtime version above the requested one. Otherwise the request is rejected, naming the entities and fields that stand in the way so that they can be removed or downgraded first.
 	//
+	// Can only be set when the AI Gateway's deployment_type is `hybrid`. For `managed` and `serverless` deployments, Konnect manages this value and requests that include it are rejected.
+	//
 	// When not specified, the minimum runtime version is left unchanged.
 	//
 	// When runtime_auto_upgrade is enabled (the default), this value is raised automatically to track the minimum runtime version reported across connected data planes, so any value set here may be superseded as the fleet upgrades.

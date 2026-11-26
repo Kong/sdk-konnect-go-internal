@@ -6,11 +6,130 @@ Connected Apps enable third-party applications to access Konnect APIs on behalf 
 
 ### Available Operations
 
+* [ListPortalConnectedAppSessions](#listportalconnectedappsessions) - List caller's Portal Connected App sessions
+* [RevokePortalConnectedAppSession](#revokeportalconnectedappsession) - Revoke one of caller's Portal App sessions
 * [PatchPortalConnectedApps](#patchportalconnectedapps) - Patch Portal Connected Apps configuration
 * [ListPortalConnectedAppSessionsAdmin](#listportalconnectedappsessionsadmin) - List Portal Connected App sessions
 * [RevokePortalConnectedAppSessionAdmin](#revokeportalconnectedappsessionadmin) - Revoke a Portal Connected App session
-* [ListPortalConnectedAppSessions](#listportalconnectedappsessions) - List caller's Portal Connected App sessions
-* [RevokePortalConnectedAppSession](#revokeportalconnectedappsession) - Revoke one of caller's Portal App sessions
+
+## ListPortalConnectedAppSessions
+
+Returns the authenticated caller's active Portal Connected App sessions (active refresh tokens). Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listPortalConnectedAppSessions" method="get" path="/v1/connected-apps/portal/me/sessions" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.ConnectedApps.ListPortalConnectedAppSessions(ctx, operations.ListPortalConnectedAppSessionsRequest{
+        PageSize: sdkkonnectgo.Pointer[int64](10),
+        PageNumber: sdkkonnectgo.Pointer[int64](1),
+        Sort: sdkkonnectgo.Pointer("created_at desc"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListConnectedAppSessionsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
+| `request`                                                                                                            | [operations.ListPortalConnectedAppSessionsRequest](../../models/operations/listportalconnectedappsessionsrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
+
+### Response
+
+**[*operations.ListPortalConnectedAppSessionsResponse](../../models/operations/listportalconnectedappsessionsresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## RevokePortalConnectedAppSession
+
+Revokes a single active Portal Connected App session (refresh token) owned by the authenticated caller. Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="revokePortalConnectedAppSession" method="delete" path="/v1/connected-apps/portal/me/sessions/{sessionId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.ConnectedApps.RevokePortalConnectedAppSession(ctx, "3f1e5c2a-7b8d-4e6f-9a0b-1c2d3e4f5a6b")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
+| `sessionID`                                              | `string`                                                 | :heavy_check_mark:                                       | The session ID                                           | 3f1e5c2a-7b8d-4e6f-9a0b-1c2d3e4f5a6b                     |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
+
+### Response
+
+**[*operations.RevokePortalConnectedAppSessionResponse](../../models/operations/revokeportalconnectedappsessionresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## PatchPortalConnectedApps
 
@@ -189,122 +308,3 @@ func main() {
 | sdkerrors.BadRequestError | 400                       | application/problem+json  |
 | sdkerrors.NotFoundError   | 404                       | application/problem+json  |
 | sdkerrors.SDKError        | 4XX, 5XX                  | \*/\*                     |
-
-## ListPortalConnectedAppSessions
-
-Returns the authenticated caller's active Portal Connected App sessions (active refresh tokens). Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="listPortalConnectedAppSessions" method="get" path="/v1/connected-apps/portal/me/sessions" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.ConnectedApps.ListPortalConnectedAppSessions(ctx, operations.ListPortalConnectedAppSessionsRequest{
-        PageSize: sdkkonnectgo.Pointer[int64](10),
-        PageNumber: sdkkonnectgo.Pointer[int64](1),
-        Sort: sdkkonnectgo.Pointer("created_at desc"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListConnectedAppSessionsResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
-| `request`                                                                                                            | [operations.ListPortalConnectedAppSessionsRequest](../../models/operations/listportalconnectedappsessionsrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
-
-### Response
-
-**[*operations.ListPortalConnectedAppSessionsResponse](../../models/operations/listportalconnectedappsessionsresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## RevokePortalConnectedAppSession
-
-Revokes a single active Portal Connected App session (refresh token) owned by the authenticated caller. Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="revokePortalConnectedAppSession" method="delete" path="/v1/connected-apps/portal/me/sessions/{sessionId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.ConnectedApps.RevokePortalConnectedAppSession(ctx, "3f1e5c2a-7b8d-4e6f-9a0b-1c2d3e4f5a6b")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |                                                          |
-| `sessionID`                                              | `string`                                                 | :heavy_check_mark:                                       | The session ID                                           | 3f1e5c2a-7b8d-4e6f-9a0b-1c2d3e4f5a6b                     |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
-
-### Response
-
-**[*operations.RevokePortalConnectedAppSessionResponse](../../models/operations/revokeportalconnectedappsessionresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |

@@ -1,9 +1,0 @@
-# ListRolesResponseApiviewer
-
-
-## Fields
-
-| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `Name`                                                                                               | [components.ListRolesResponseServicesName](../../models/components/listrolesresponseservicesname.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
-| `Description`                                                                                        | [components.ListRolesResponseDescription](../../models/components/listrolesresponsedescription.md)   | :heavy_check_mark:                                                                                   | N/A                                                                                                  |

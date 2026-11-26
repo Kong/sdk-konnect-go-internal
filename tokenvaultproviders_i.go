@@ -11,6 +11,12 @@ import (
 
 // TokenVaultProvidersSDK is a generated interface.
 type TokenVaultProvidersSDK interface {
+	// ListCredentialProviderTemplates - List credential provider templates
+	// Returns a paginated list of vault credential provider templates available to base a provider on.
+	ListCredentialProviderTemplates(ctx context.Context, page *components.CursorPageParameters, opts ...operations.Option) (*operations.ListCredentialProviderTemplatesResponse, error)
+	// GetCredentialProviderTemplate - Get a credential provider template
+	// Retrieves a single vault credential provider template by its name.
+	GetCredentialProviderTemplate(ctx context.Context, credentialProviderTemplateName components.ProviderTemplateName, opts ...operations.Option) (*operations.GetCredentialProviderTemplateResponse, error)
 	// CreateVaultProvider - Create a vault provider
 	// Creates a new credential provider configuration for a vault-enabled directory.
 	CreateVaultProvider(ctx context.Context, directoryID string, createVaultProviderBody components.CreateVaultProviderBody, opts ...operations.Option) (*operations.CreateVaultProviderResponse, error)
@@ -61,10 +67,4 @@ type TokenVaultProvidersSDK interface {
 	UpdateVaultProviderCredential(ctx context.Context, request operations.UpdateVaultProviderCredentialRequest, opts ...operations.Option) (*operations.UpdateVaultProviderCredentialResponse, error)
 	// DeleteVaultProviderCredential - Delete a specific provider credential
 	DeleteVaultProviderCredential(ctx context.Context, request operations.DeleteVaultProviderCredentialRequest, opts ...operations.Option) (*operations.DeleteVaultProviderCredentialResponse, error)
-	// ListCredentialProviderTemplates - List credential provider templates
-	// Returns a paginated list of vault credential provider templates available to base a provider on.
-	ListCredentialProviderTemplates(ctx context.Context, page *components.CursorPageParameters, opts ...operations.Option) (*operations.ListCredentialProviderTemplatesResponse, error)
-	// GetCredentialProviderTemplate - Get a credential provider template
-	// Retrieves a single vault credential provider template by its name.
-	GetCredentialProviderTemplate(ctx context.Context, credentialProviderTemplateName components.ProviderTemplateName, opts ...operations.Option) (*operations.GetCredentialProviderTemplateResponse, error)
 }

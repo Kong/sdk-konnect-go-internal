@@ -2,21 +2,89 @@
 
 ## Overview
 
-Operations related to http destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when http destinations are enabled.
+Operations related to webhook destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when webhook destinations are enabled.
 
 ### Available Operations
 
+* [ListDeliveries](#listdeliveries) - List delivery history
 * [ListDestinations](#listdestinations) - List destinations
 * [CreateDestination](#createdestination) - Create a destination
 * [GetDestination](#getdestination) - Get a destination
 * [UpdateDestination](#updatedestination) - Update a destination
 * [DeleteDestination](#deletedestination) - Delete a destination
-* [TestDestination](#testdestination) - Test a destination
-* [RotateDestinationSecret](#rotatedestinationsecret) - Rotate the destination signing secret
 * [GetDestinationDelivery](#getdestinationdelivery) - Get a delivery and its attempts
 * [ResendDestinationDelivery](#resenddestinationdelivery) - Resend a delivery
+* [RotateDestinationSecret](#rotatedestinationsecret) - Rotate the destination signing secret
 * [ListDestinationSubscriptions](#listdestinationsubscriptions) - List destination subscriptions
-* [ListDeliveries](#listdeliveries) - List delivery history
+* [TestDestination](#testdestination) - Test a destination
+
+## ListDeliveries
+
+List the deliveries for all destinations in this organization. To filter to a specific destination, use `filter[destination_id][eq]`
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-deliveries" method="get" path="/v1/notifications/deliveries" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.Destinations.ListDeliveries(ctx, operations.ListDeliveriesRequest{
+        PageBefore: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+        PageAfter: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+        Filter: &components.OrgDeliveryFilterParameters{
+            Status: &components.StatusFieldFilter{
+                Eq: sdkkonnectgo.Pointer("?filter[status][eq]=failed"),
+                Neq: sdkkonnectgo.Pointer("?filter[status][neq]=failed"),
+                Contains: sdkkonnectgo.Pointer("?filter[status][contains]=fail"),
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.DeliveryListResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.ListDeliveriesRequest](../../models/operations/listdeliveriesrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*operations.ListDeliveriesResponse](../../models/operations/listdeliveriesresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListDestinations
 
@@ -81,8 +149,8 @@ func main() {
 
 ## CreateDestination
 
-Creates an HTTP destination for organization event notifications. You can create up to 50 destinations for an organization.
-The response includes the signing secret. Save it when you create the destination; later responses do not include it.
+Creates a destination for organization event notifications. You can create up to 50 destinations for an organization.
+For an HTTP destination, the response includes the signing secret. Save it when you create the destination; later responses do not include it.
 
 ### Example Usage
 
@@ -196,7 +264,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -266,7 +334,7 @@ func main() {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `destinationID`                                                                            | `string`                                                                                   | :heavy_check_mark:                                                                         | ID of the http destination, a UUID v7.                                                     |
+| `destinationID`                                                                            | `string`                                                                                   | :heavy_check_mark:                                                                         | ID of the destination, a UUID v7.                                                          |
 | `destinationUpdatePayload`                                                                 | [components.DestinationUpdatePayload](../../models/components/destinationupdatepayload.md) | :heavy_check_mark:                                                                         | Request body schema for updating a destination.                                            |
 | `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
@@ -328,7 +396,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -342,124 +410,6 @@ func main() {
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## TestDestination
-
-Trigger a test delivery to a destination. The test outcome is returned in the "Delivery history" endpoint.
-Tests may be triggered every 5 seconds.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="test-destination" method="post" path="/v1/notifications/destinations/{destinationId}/test" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Destinations.TestDestination(ctx, "92133a48-f45f-426c-86c6-a72eae55a903")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Delivery != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.TestDestinationResponse](../../models/operations/testdestinationresponse.md), error**
-
-### Errors
-
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
-| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
-| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
-| sdkerrors.ConflictError        | 409                            | application/problem+json       |
-| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
-| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
-
-## RotateDestinationSecret
-
-Creates a new signing secret for the HTTP destination. The response includes the new secret only once. The previous secret remains valid for 24 hours so you can update your integration.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="rotate-destination-secret" method="post" path="/v1/notifications/destinations/{destinationId}/secret/rotate" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Destinations.RotateDestinationSecret(ctx, "3cf186ca-b834-4e41-a770-136cdef73322")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.DestinationSecret != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
-
-### Response
-
-**[*operations.RotateDestinationSecretResponse](../../models/operations/rotatedestinationsecretresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetDestinationDelivery
@@ -503,7 +453,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `deliveryID`                                             | `string`                                                 | :heavy_check_mark:                                       | ID of the delivery, a UUID v7.                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
@@ -562,7 +512,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the http destination, a UUID v7.                   |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
 | `deliveryID`                                             | `string`                                                 | :heavy_check_mark:                                       | ID of the delivery, a UUID v7.                           |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
@@ -581,6 +531,64 @@ func main() {
 | sdkerrors.ConflictError        | 409                            | application/problem+json       |
 | sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
 | sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## RotateDestinationSecret
+
+Creates a new signing secret for the HTTP destination. The response includes the new secret only once. The previous secret remains valid for 24 hours so you can update your integration.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="rotate-destination-secret" method="post" path="/v1/notifications/destinations/{destinationId}/secret/rotate" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.Destinations.RotateDestinationSecret(ctx, "3cf186ca-b834-4e41-a770-136cdef73322")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.DestinationSecret != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.RotateDestinationSecretResponse](../../models/operations/rotatedestinationsecretresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.ConflictError     | 409                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListDestinationSubscriptions
 
@@ -645,13 +653,14 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## ListDeliveries
+## TestDestination
 
-List the deliveries for all destinations in this organization. To filter to a specific destination, use `filter[destination_id][eq]`
+Trigger a test delivery to a destination. The test outcome is returned in the "Delivery history" endpoint.
+Tests may be triggered every 5 seconds.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-deliveries" method="get" path="/v1/notifications/deliveries" -->
+<!-- UsageSnippet language="go" operationID="test-destination" method="post" path="/v1/notifications/destinations/{destinationId}/test" -->
 ```go
 package main
 
@@ -659,7 +668,6 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -672,21 +680,11 @@ func main() {
         }),
     )
 
-    res, err := s.Destinations.ListDeliveries(ctx, operations.ListDeliveriesRequest{
-        PageBefore: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-        PageAfter: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-        Filter: &components.OrgDeliveryFilterParameters{
-            Status: &components.StatusFieldFilter{
-                Eq: sdkkonnectgo.Pointer("?filter[status][eq]=failed"),
-                Neq: sdkkonnectgo.Pointer("?filter[status][neq]=failed"),
-                Contains: sdkkonnectgo.Pointer("?filter[status][contains]=fail"),
-            },
-        },
-    })
+    res, err := s.Destinations.TestDestination(ctx, "92133a48-f45f-426c-86c6-a72eae55a903")
     if err != nil {
         log.Fatal(err)
     }
-    if res.DeliveryListResponse != nil {
+    if res.Delivery != nil {
         // handle response
     }
 }
@@ -694,21 +692,23 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.ListDeliveriesRequest](../../models/operations/listdeliveriesrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `destinationID`                                          | `string`                                                 | :heavy_check_mark:                                       | ID of the destination, a UUID v7.                        |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
-**[*operations.ListDeliveriesResponse](../../models/operations/listdeliveriesresponse.md), error**
+**[*operations.TestDestinationResponse](../../models/operations/testdestinationresponse.md), error**
 
 ### Errors
 
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
+| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
+| sdkerrors.ConflictError        | 409                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |

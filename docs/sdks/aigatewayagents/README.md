@@ -117,7 +117,7 @@ func main() {
                 "okta-ai-se",
             },
         },
-        Config: components.CreateAIGatewayAgentRequestConfig{
+        Config: components.Config{
             URL: sdkkonnectgo.Pointer("https://booking-agent.internal.kongair.com"),
             Targets: []components.AIGatewayUpstreamTarget{
                 components.AIGatewayUpstreamTarget{

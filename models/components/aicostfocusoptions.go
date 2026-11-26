@@ -6,20 +6,20 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AICostFocusOptionsVersion - The FOCUS version that the files follow.
-type AICostFocusOptionsVersion string
+// Version - The FOCUS version that the files follow.
+type Version string
 
 const (
-	AICostFocusOptionsVersionOneDot3 AICostFocusOptionsVersion = "1.3"
-	AICostFocusOptionsVersionOneDot4 AICostFocusOptionsVersion = "1.4"
+	VersionOneDot3 Version = "1.3"
+	VersionOneDot4 Version = "1.4"
 )
 
-func (e AICostFocusOptionsVersion) ToPointer() *AICostFocusOptionsVersion {
+func (e Version) ToPointer() *Version {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AICostFocusOptionsVersion) IsExact() bool {
+func (e *Version) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "1.3", "1.4":
@@ -55,7 +55,7 @@ func (e *ChargePeriod) IsExact() bool {
 // AICostFocusOptions - The FOCUS options of a `focus` export or schedule, with each option's value or its default.
 type AICostFocusOptions struct {
 	// The FOCUS version that the files follow.
-	Version AICostFocusOptionsVersion `json:"version"`
+	Version Version `json:"version"`
 	// The length of each row's charge period: a calendar day or an hour in `time_zone`, which `ChargePeriodStart` and `ChargePeriodEnd` bound. The range selects the events and doesn't shorten the first or last period, so those periods can extend beyond `starts_at` and `ends_at`.
 	ChargePeriod ChargePeriod `json:"charge_period"`
 	// The tag keys whose values split the rows. A row's `Tags` column holds the named keys that its events carry, with their values.
@@ -75,9 +75,9 @@ func (a *AICostFocusOptions) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AICostFocusOptions) GetVersion() AICostFocusOptionsVersion {
+func (a *AICostFocusOptions) GetVersion() Version {
 	if a == nil {
-		return AICostFocusOptionsVersion("")
+		return Version("")
 	}
 	return a.Version
 }

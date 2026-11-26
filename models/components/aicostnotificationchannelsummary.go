@@ -6,20 +6,20 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AICostNotificationChannelSummaryType - Whether the channel sends email or posts to Slack.
-type AICostNotificationChannelSummaryType string
+// Type - Whether the channel sends email or posts to Slack.
+type Type string
 
 const (
-	AICostNotificationChannelSummaryTypeEmail AICostNotificationChannelSummaryType = "email"
-	AICostNotificationChannelSummaryTypeSlack AICostNotificationChannelSummaryType = "slack"
+	TypeEmail Type = "email"
+	TypeSlack Type = "slack"
 )
 
-func (e AICostNotificationChannelSummaryType) ToPointer() *AICostNotificationChannelSummaryType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AICostNotificationChannelSummaryType) IsExact() bool {
+func (e *Type) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "email", "slack":
@@ -36,7 +36,7 @@ type AICostNotificationChannelSummary struct {
 	// The channel's human-readable name.
 	Name string `json:"name"`
 	// Whether the channel sends email or posts to Slack.
-	Type AICostNotificationChannelSummaryType `json:"type"`
+	Type Type `json:"type"`
 }
 
 func (a AICostNotificationChannelSummary) MarshalJSON() ([]byte, error) {
@@ -64,9 +64,9 @@ func (a *AICostNotificationChannelSummary) GetName() string {
 	return a.Name
 }
 
-func (a *AICostNotificationChannelSummary) GetType() AICostNotificationChannelSummaryType {
+func (a *AICostNotificationChannelSummary) GetType() Type {
 	if a == nil {
-		return AICostNotificationChannelSummaryType("")
+		return Type("")
 	}
 	return a.Type
 }

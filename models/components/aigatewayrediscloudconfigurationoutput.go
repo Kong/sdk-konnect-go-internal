@@ -9,53 +9,53 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-type AIGatewayRedisCloudConfigurationCloudAuthenticationOutputType string
+type AIGatewayRedisCloudConfigurationCloudAuthenticationType string
 
 const (
-	AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeAws   AIGatewayRedisCloudConfigurationCloudAuthenticationOutputType = "aws"
-	AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeAzure AIGatewayRedisCloudConfigurationCloudAuthenticationOutputType = "azure"
-	AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeGcp   AIGatewayRedisCloudConfigurationCloudAuthenticationOutputType = "gcp"
+	AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAws   AIGatewayRedisCloudConfigurationCloudAuthenticationType = "aws"
+	AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAzure AIGatewayRedisCloudConfigurationCloudAuthenticationType = "azure"
+	AIGatewayRedisCloudConfigurationCloudAuthenticationTypeGcp   AIGatewayRedisCloudConfigurationCloudAuthenticationType = "gcp"
 )
 
-// AIGatewayRedisCloudConfigurationCloudAuthenticationOutput - Auth related config for connecting to a Cloud Provider's Redis instance.
-type AIGatewayRedisCloudConfigurationCloudAuthenticationOutput struct {
+// AIGatewayRedisCloudConfigurationCloudAuthentication - Auth related config for connecting to a Cloud Provider's Redis instance.
+type AIGatewayRedisCloudConfigurationCloudAuthentication struct {
 	AIGatewayRedisAWSAuthenticationOutput   *AIGatewayRedisAWSAuthenticationOutput   `queryParam:"inline" union:"member"`
 	AIGatewayRedisAzureAuthenticationOutput *AIGatewayRedisAzureAuthenticationOutput `queryParam:"inline" union:"member"`
 	AIGatewayRedisGCPAuthenticationOutput   *AIGatewayRedisGCPAuthenticationOutput   `queryParam:"inline" union:"member"`
 
-	Type AIGatewayRedisCloudConfigurationCloudAuthenticationOutputType
+	Type AIGatewayRedisCloudConfigurationCloudAuthenticationType
 }
 
-func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationOutputAws(aws AIGatewayRedisAWSAuthenticationOutput) AIGatewayRedisCloudConfigurationCloudAuthenticationOutput {
-	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeAws
+func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAws(aws AIGatewayRedisAWSAuthenticationOutput) AIGatewayRedisCloudConfigurationCloudAuthentication {
+	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAws
 
-	return AIGatewayRedisCloudConfigurationCloudAuthenticationOutput{
+	return AIGatewayRedisCloudConfigurationCloudAuthentication{
 		AIGatewayRedisAWSAuthenticationOutput: &aws,
 		Type:                                  typ,
 	}
 }
 
-func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationOutputAzure(azure AIGatewayRedisAzureAuthenticationOutput) AIGatewayRedisCloudConfigurationCloudAuthenticationOutput {
-	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeAzure
+func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAzure(azure AIGatewayRedisAzureAuthenticationOutput) AIGatewayRedisCloudConfigurationCloudAuthentication {
+	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAzure
 
-	return AIGatewayRedisCloudConfigurationCloudAuthenticationOutput{
+	return AIGatewayRedisCloudConfigurationCloudAuthentication{
 		AIGatewayRedisAzureAuthenticationOutput: &azure,
 		Type:                                    typ,
 	}
 }
 
-func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationOutputGcp(gcp AIGatewayRedisGCPAuthenticationOutput) AIGatewayRedisCloudConfigurationCloudAuthenticationOutput {
-	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeGcp
+func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationGcp(gcp AIGatewayRedisGCPAuthenticationOutput) AIGatewayRedisCloudConfigurationCloudAuthentication {
+	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationTypeGcp
 
-	return AIGatewayRedisCloudConfigurationCloudAuthenticationOutput{
+	return AIGatewayRedisCloudConfigurationCloudAuthentication{
 		AIGatewayRedisGCPAuthenticationOutput: &gcp,
 		Type:                                  typ,
 	}
 }
 
-func (u *AIGatewayRedisCloudConfigurationCloudAuthenticationOutput) UnmarshalJSON(data []byte) (err error) {
+func (u *AIGatewayRedisCloudConfigurationCloudAuthentication) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = AIGatewayRedisCloudConfigurationCloudAuthenticationOutput{}
+	*u = AIGatewayRedisCloudConfigurationCloudAuthentication{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -75,36 +75,36 @@ func (u *AIGatewayRedisCloudConfigurationCloudAuthenticationOutput) UnmarshalJSO
 	case "aws":
 		aiGatewayRedisAWSAuthenticationOutput := new(AIGatewayRedisAWSAuthenticationOutput)
 		if err := utils.UnmarshalJSON(data, &aiGatewayRedisAWSAuthenticationOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == aws) type AIGatewayRedisAWSAuthenticationOutput within AIGatewayRedisCloudConfigurationCloudAuthenticationOutput: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == aws) type AIGatewayRedisAWSAuthenticationOutput within AIGatewayRedisCloudConfigurationCloudAuthentication: %w", string(data), err)
 		}
 
 		u.AIGatewayRedisAWSAuthenticationOutput = aiGatewayRedisAWSAuthenticationOutput
-		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeAws
+		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAws
 		return nil
 	case "azure":
 		aiGatewayRedisAzureAuthenticationOutput := new(AIGatewayRedisAzureAuthenticationOutput)
 		if err := utils.UnmarshalJSON(data, &aiGatewayRedisAzureAuthenticationOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == azure) type AIGatewayRedisAzureAuthenticationOutput within AIGatewayRedisCloudConfigurationCloudAuthenticationOutput: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == azure) type AIGatewayRedisAzureAuthenticationOutput within AIGatewayRedisCloudConfigurationCloudAuthentication: %w", string(data), err)
 		}
 
 		u.AIGatewayRedisAzureAuthenticationOutput = aiGatewayRedisAzureAuthenticationOutput
-		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeAzure
+		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAzure
 		return nil
 	case "gcp":
 		aiGatewayRedisGCPAuthenticationOutput := new(AIGatewayRedisGCPAuthenticationOutput)
 		if err := utils.UnmarshalJSON(data, &aiGatewayRedisGCPAuthenticationOutput, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == gcp) type AIGatewayRedisGCPAuthenticationOutput within AIGatewayRedisCloudConfigurationCloudAuthenticationOutput: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == gcp) type AIGatewayRedisGCPAuthenticationOutput within AIGatewayRedisCloudConfigurationCloudAuthentication: %w", string(data), err)
 		}
 
 		u.AIGatewayRedisGCPAuthenticationOutput = aiGatewayRedisGCPAuthenticationOutput
-		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationOutputTypeGcp
+		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationTypeGcp
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayRedisCloudConfigurationCloudAuthenticationOutput", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayRedisCloudConfigurationCloudAuthentication", string(data))
 }
 
-func (u AIGatewayRedisCloudConfigurationCloudAuthenticationOutput) MarshalJSON() ([]byte, error) {
+func (u AIGatewayRedisCloudConfigurationCloudAuthentication) MarshalJSON() ([]byte, error) {
 	if u.AIGatewayRedisAWSAuthenticationOutput != nil {
 		return utils.MarshalJSON(u.AIGatewayRedisAWSAuthenticationOutput, "", true)
 	}
@@ -117,7 +117,7 @@ func (u AIGatewayRedisCloudConfigurationCloudAuthenticationOutput) MarshalJSON()
 		return utils.MarshalJSON(u.AIGatewayRedisGCPAuthenticationOutput, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type AIGatewayRedisCloudConfigurationCloudAuthenticationOutput: all fields are null")
+	return nil, errors.New("could not marshal union type AIGatewayRedisCloudConfigurationCloudAuthentication: all fields are null")
 }
 
 type AIGatewayRedisCloudConfigurationNodes struct {
@@ -413,7 +413,7 @@ func (a *AIGatewayRedisCloudConfigurationSentinel) GetUsername() *string {
 // AIGatewayRedisCloudConfigurationOutput - Config for connecting to a Cloud Provider's Redis instance.
 type AIGatewayRedisCloudConfigurationOutput struct {
 	// Auth related config for connecting to a Cloud Provider's Redis instance.
-	CloudAuthentication *AIGatewayRedisCloudConfigurationCloudAuthenticationOutput `json:"cloud_authentication,omitempty"`
+	CloudAuthentication *AIGatewayRedisCloudConfigurationCloudAuthentication `json:"cloud_authentication,omitempty"`
 	// Cluster configuration for the Redis connection.
 	Cluster *AIGatewayRedisCloudConfigurationCluster `json:"cluster,omitempty"`
 	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
@@ -467,7 +467,7 @@ func (a *AIGatewayRedisCloudConfigurationOutput) UnmarshalJSON(data []byte) erro
 	return nil
 }
 
-func (a *AIGatewayRedisCloudConfigurationOutput) GetCloudAuthentication() *AIGatewayRedisCloudConfigurationCloudAuthenticationOutput {
+func (a *AIGatewayRedisCloudConfigurationOutput) GetCloudAuthentication() *AIGatewayRedisCloudConfigurationCloudAuthentication {
 	if a == nil {
 		return nil
 	}
@@ -600,53 +600,53 @@ func (a *AIGatewayRedisCloudConfigurationOutput) GetUsername() *string {
 	return a.Username
 }
 
-type AIGatewayRedisCloudConfigurationCloudAuthenticationType string
+type CloudAuthenticationType string
 
 const (
-	AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAws   AIGatewayRedisCloudConfigurationCloudAuthenticationType = "aws"
-	AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAzure AIGatewayRedisCloudConfigurationCloudAuthenticationType = "azure"
-	AIGatewayRedisCloudConfigurationCloudAuthenticationTypeGcp   AIGatewayRedisCloudConfigurationCloudAuthenticationType = "gcp"
+	CloudAuthenticationTypeAws   CloudAuthenticationType = "aws"
+	CloudAuthenticationTypeAzure CloudAuthenticationType = "azure"
+	CloudAuthenticationTypeGcp   CloudAuthenticationType = "gcp"
 )
 
-// AIGatewayRedisCloudConfigurationCloudAuthentication - Auth related config for connecting to a Cloud Provider's Redis instance.
-type AIGatewayRedisCloudConfigurationCloudAuthentication struct {
+// CloudAuthentication - Auth related config for connecting to a Cloud Provider's Redis instance.
+type CloudAuthentication struct {
 	AIGatewayRedisAWSAuthentication   *AIGatewayRedisAWSAuthentication   `queryParam:"inline" union:"member"`
 	AIGatewayRedisAzureAuthentication *AIGatewayRedisAzureAuthentication `queryParam:"inline" union:"member"`
 	AIGatewayRedisGCPAuthentication   *AIGatewayRedisGCPAuthentication   `queryParam:"inline" union:"member"`
 
-	Type AIGatewayRedisCloudConfigurationCloudAuthenticationType
+	Type CloudAuthenticationType
 }
 
-func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAws(aws AIGatewayRedisAWSAuthentication) AIGatewayRedisCloudConfigurationCloudAuthentication {
-	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAws
+func CreateCloudAuthenticationAws(aws AIGatewayRedisAWSAuthentication) CloudAuthentication {
+	typ := CloudAuthenticationTypeAws
 
-	return AIGatewayRedisCloudConfigurationCloudAuthentication{
+	return CloudAuthentication{
 		AIGatewayRedisAWSAuthentication: &aws,
 		Type:                            typ,
 	}
 }
 
-func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAzure(azure AIGatewayRedisAzureAuthentication) AIGatewayRedisCloudConfigurationCloudAuthentication {
-	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAzure
+func CreateCloudAuthenticationAzure(azure AIGatewayRedisAzureAuthentication) CloudAuthentication {
+	typ := CloudAuthenticationTypeAzure
 
-	return AIGatewayRedisCloudConfigurationCloudAuthentication{
+	return CloudAuthentication{
 		AIGatewayRedisAzureAuthentication: &azure,
 		Type:                              typ,
 	}
 }
 
-func CreateAIGatewayRedisCloudConfigurationCloudAuthenticationGcp(gcp AIGatewayRedisGCPAuthentication) AIGatewayRedisCloudConfigurationCloudAuthentication {
-	typ := AIGatewayRedisCloudConfigurationCloudAuthenticationTypeGcp
+func CreateCloudAuthenticationGcp(gcp AIGatewayRedisGCPAuthentication) CloudAuthentication {
+	typ := CloudAuthenticationTypeGcp
 
-	return AIGatewayRedisCloudConfigurationCloudAuthentication{
+	return CloudAuthentication{
 		AIGatewayRedisGCPAuthentication: &gcp,
 		Type:                            typ,
 	}
 }
 
-func (u *AIGatewayRedisCloudConfigurationCloudAuthentication) UnmarshalJSON(data []byte) (err error) {
+func (u *CloudAuthentication) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
-	*u = AIGatewayRedisCloudConfigurationCloudAuthentication{}
+	*u = CloudAuthentication{}
 	defer func() {
 		if err != nil {
 			*u = previous
@@ -666,36 +666,36 @@ func (u *AIGatewayRedisCloudConfigurationCloudAuthentication) UnmarshalJSON(data
 	case "aws":
 		aiGatewayRedisAWSAuthentication := new(AIGatewayRedisAWSAuthentication)
 		if err := utils.UnmarshalJSON(data, &aiGatewayRedisAWSAuthentication, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == aws) type AIGatewayRedisAWSAuthentication within AIGatewayRedisCloudConfigurationCloudAuthentication: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == aws) type AIGatewayRedisAWSAuthentication within CloudAuthentication: %w", string(data), err)
 		}
 
 		u.AIGatewayRedisAWSAuthentication = aiGatewayRedisAWSAuthentication
-		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAws
+		u.Type = CloudAuthenticationTypeAws
 		return nil
 	case "azure":
 		aiGatewayRedisAzureAuthentication := new(AIGatewayRedisAzureAuthentication)
 		if err := utils.UnmarshalJSON(data, &aiGatewayRedisAzureAuthentication, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == azure) type AIGatewayRedisAzureAuthentication within AIGatewayRedisCloudConfigurationCloudAuthentication: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == azure) type AIGatewayRedisAzureAuthentication within CloudAuthentication: %w", string(data), err)
 		}
 
 		u.AIGatewayRedisAzureAuthentication = aiGatewayRedisAzureAuthentication
-		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAzure
+		u.Type = CloudAuthenticationTypeAzure
 		return nil
 	case "gcp":
 		aiGatewayRedisGCPAuthentication := new(AIGatewayRedisGCPAuthentication)
 		if err := utils.UnmarshalJSON(data, &aiGatewayRedisGCPAuthentication, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Type == gcp) type AIGatewayRedisGCPAuthentication within AIGatewayRedisCloudConfigurationCloudAuthentication: %w", string(data), err)
+			return fmt.Errorf("could not unmarshal `%s` into expected (Type == gcp) type AIGatewayRedisGCPAuthentication within CloudAuthentication: %w", string(data), err)
 		}
 
 		u.AIGatewayRedisGCPAuthentication = aiGatewayRedisGCPAuthentication
-		u.Type = AIGatewayRedisCloudConfigurationCloudAuthenticationTypeGcp
+		u.Type = CloudAuthenticationTypeGcp
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for AIGatewayRedisCloudConfigurationCloudAuthentication", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CloudAuthentication", string(data))
 }
 
-func (u AIGatewayRedisCloudConfigurationCloudAuthentication) MarshalJSON() ([]byte, error) {
+func (u CloudAuthentication) MarshalJSON() ([]byte, error) {
 	if u.AIGatewayRedisAWSAuthentication != nil {
 		return utils.MarshalJSON(u.AIGatewayRedisAWSAuthentication, "", true)
 	}
@@ -708,13 +708,13 @@ func (u AIGatewayRedisCloudConfigurationCloudAuthentication) MarshalJSON() ([]by
 		return utils.MarshalJSON(u.AIGatewayRedisGCPAuthentication, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type AIGatewayRedisCloudConfigurationCloudAuthentication: all fields are null")
+	return nil, errors.New("could not marshal union type CloudAuthentication: all fields are null")
 }
 
 // AIGatewayRedisCloudConfiguration - Config for connecting to a Cloud Provider's Redis instance.
 type AIGatewayRedisCloudConfiguration struct {
 	// Auth related config for connecting to a Cloud Provider's Redis instance.
-	CloudAuthentication *AIGatewayRedisCloudConfigurationCloudAuthentication `json:"cloud_authentication,omitempty"`
+	CloudAuthentication *CloudAuthentication `json:"cloud_authentication,omitempty"`
 	// Cluster configuration for the Redis connection.
 	Cluster *AIGatewayRedisCloudConfigurationCluster `json:"cluster,omitempty"`
 	// An integer representing a timeout in milliseconds. Must be between 0 and 2^31-2.
@@ -768,7 +768,7 @@ func (a *AIGatewayRedisCloudConfiguration) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AIGatewayRedisCloudConfiguration) GetCloudAuthentication() *AIGatewayRedisCloudConfigurationCloudAuthentication {
+func (a *AIGatewayRedisCloudConfiguration) GetCloudAuthentication() *CloudAuthentication {
 	if a == nil {
 		return nil
 	}

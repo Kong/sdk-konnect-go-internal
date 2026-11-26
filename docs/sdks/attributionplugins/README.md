@@ -6,69 +6,11 @@ The attribution plugin turns request headers and identity claims into cost tags 
 
 ### Available Operations
 
-* [ListCostAttributionPlugins](#listcostattributionplugins) - List attribution plugin installations
 * [GetCostAttributionPlugin](#getcostattributionplugin) - Get an AI Gateway's attribution plugin
 * [UpsertCostAttributionPlugin](#upsertcostattributionplugin) - Install or replace an attribution plugin
 * [UpdateCostAttributionPlugin](#updatecostattributionplugin) - Update an AI Gateway's attribution plugin
 * [DeleteCostAttributionPlugin](#deletecostattributionplugin) - Remove an AI Gateway's attribution plugin
-
-## ListCostAttributionPlugins
-
-Returns a page of the attribution plugin installations on the organization's AI Gateways, sorted by `gateway_id` unless the request sets `sort`. An AI Gateway without the plugin has no entry.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-cost-attribution-plugins" method="get" path="/v1/ai-cost-management/attribution-plugins" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.AttributionPlugins.ListCostAttributionPlugins(ctx, operations.ListCostAttributionPluginsRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Object != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
-| `request`                                                                                                    | [operations.ListCostAttributionPluginsRequest](../../models/operations/listcostattributionpluginsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
-| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
-
-### Response
-
-**[*operations.ListCostAttributionPluginsResponse](../../models/operations/listcostattributionpluginsresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+* [ListCostAttributionPlugins](#listcostattributionplugins) - List attribution plugin installations
 
 ## GetCostAttributionPlugin
 
@@ -325,4 +267,62 @@ func main() {
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.ConflictError     | 409                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## ListCostAttributionPlugins
+
+Returns a page of the attribution plugin installations on the organization's AI Gateways, sorted by `gateway_id` unless the request sets `sort`. An AI Gateway without the plugin has no entry.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-cost-attribution-plugins" method="get" path="/v1/ai-cost-management/attribution-plugins" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AttributionPlugins.ListCostAttributionPlugins(ctx, operations.ListCostAttributionPluginsRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.ListCostAttributionPluginsRequest](../../models/operations/listcostattributionpluginsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+
+### Response
+
+**[*operations.ListCostAttributionPluginsResponse](../../models/operations/listcostattributionpluginsresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |

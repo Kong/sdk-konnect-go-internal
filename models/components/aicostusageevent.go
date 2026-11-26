@@ -57,27 +57,27 @@ func (e *AICostUsageEventType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// AICostUsageEventDatacontenttype - The media type of `data`. Always `application/json`. The event list doesn't return it.
-type AICostUsageEventDatacontenttype string
+// Datacontenttype - The media type of `data`. Always `application/json`. The event list doesn't return it.
+type Datacontenttype string
 
 const (
-	AICostUsageEventDatacontenttypeApplicationJSON AICostUsageEventDatacontenttype = "application/json"
+	DatacontenttypeApplicationJSON Datacontenttype = "application/json"
 )
 
-func (e AICostUsageEventDatacontenttype) ToPointer() *AICostUsageEventDatacontenttype {
+func (e Datacontenttype) ToPointer() *Datacontenttype {
 	return &e
 }
-func (e *AICostUsageEventDatacontenttype) UnmarshalJSON(data []byte) error {
+func (e *Datacontenttype) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "application/json":
-		*e = AICostUsageEventDatacontenttype(v)
+		*e = Datacontenttype(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AICostUsageEventDatacontenttype: %v", v)
+		return fmt.Errorf("invalid value for Datacontenttype: %v", v)
 	}
 }
 
@@ -528,8 +528,8 @@ func (p *Provenance) GetAdditionalProperties() map[string]string {
 	return p.AdditionalProperties
 }
 
-// AICostUsageEventData - The usage the event reports: `quantities`, `reported_cost`, `reported_cache_cost`, `context`, and `optimization`, plus the `provenance`, `tags`, `groups`, and `teams` that attribute it.
-type AICostUsageEventData struct {
+// Data - The usage the event reports: `quantities`, `reported_cost`, `reported_cache_cost`, `context`, and `optimization`, plus the `provenance`, `tags`, `groups`, `teams`, and `cost_center` that attribute it.
+type Data struct {
 	// The quantities the invocation used, keyed by kind. Each value is a count in the kind's unit, such as tokens or milliseconds.
 	//
 	// An omitted kind is unknown, not zero, and the object can be empty. A kind not listed here isn't accepted. The event list returns every kind and shows an unreported kind as `"0"`.
@@ -566,69 +566,80 @@ type AICostUsageEventData struct {
 	//
 	// At most 200 references, each listed once. A UUID is lowercase. The service sorts the references lexicographically.
 	Teams []string `json:"teams,omitempty"`
+	// The person's Kong Identity cost center at the time of the request, as the producer supplies it. The service doesn't verify it, and it keeps the value of the request after the person's cost center changes. A `cost-center` tag is an ordinary tag and doesn't fill `cost_center`.
+	//
+	// Every caller who can read the usage reads the value, whatever their Kong Identity permissions. It has 1 to 256 characters, none of them a control character, and keeps its text and case. An omitted value means the usage has no cost center.
+	CostCenter *string `json:"cost_center,omitempty"`
 }
 
-func (a *AICostUsageEventData) GetQuantities() Quantities {
-	if a == nil {
+func (d *Data) GetQuantities() Quantities {
+	if d == nil {
 		return Quantities{}
 	}
-	return a.Quantities
+	return d.Quantities
 }
 
-func (a *AICostUsageEventData) GetReportedCost() AICostMoney {
-	if a == nil {
+func (d *Data) GetReportedCost() AICostMoney {
+	if d == nil {
 		return AICostMoney{}
 	}
-	return a.ReportedCost
+	return d.ReportedCost
 }
 
-func (a *AICostUsageEventData) GetReportedCacheCost() AICostMoney {
-	if a == nil {
+func (d *Data) GetReportedCacheCost() AICostMoney {
+	if d == nil {
 		return AICostMoney{}
 	}
-	return a.ReportedCacheCost
+	return d.ReportedCacheCost
 }
 
-func (a *AICostUsageEventData) GetContext() Context {
-	if a == nil {
+func (d *Data) GetContext() Context {
+	if d == nil {
 		return Context{}
 	}
-	return a.Context
+	return d.Context
 }
 
-func (a *AICostUsageEventData) GetOptimization() *Optimization {
-	if a == nil {
+func (d *Data) GetOptimization() *Optimization {
+	if d == nil {
 		return nil
 	}
-	return a.Optimization
+	return d.Optimization
 }
 
-func (a *AICostUsageEventData) GetProvenance() Provenance {
-	if a == nil {
+func (d *Data) GetProvenance() Provenance {
+	if d == nil {
 		return Provenance{}
 	}
-	return a.Provenance
+	return d.Provenance
 }
 
-func (a *AICostUsageEventData) GetTags() map[string]string {
-	if a == nil {
+func (d *Data) GetTags() map[string]string {
+	if d == nil {
 		return map[string]string{}
 	}
-	return a.Tags
+	return d.Tags
 }
 
-func (a *AICostUsageEventData) GetGroups() []string {
-	if a == nil {
+func (d *Data) GetGroups() []string {
+	if d == nil {
 		return nil
 	}
-	return a.Groups
+	return d.Groups
 }
 
-func (a *AICostUsageEventData) GetTeams() []string {
-	if a == nil {
+func (d *Data) GetTeams() []string {
+	if d == nil {
 		return nil
 	}
-	return a.Teams
+	return d.Teams
+}
+
+func (d *Data) GetCostCenter() *string {
+	if d == nil {
+		return nil
+	}
+	return d.CostCenter
 }
 
 type AICostUsageEvent struct {
@@ -655,7 +666,7 @@ type AICostUsageEvent struct {
 	// It has at most 9 fractional-second digits. The event list returns it in UTC, at millisecond precision.
 	Time time.Time `json:"time"`
 	// The media type of `data`. Always `application/json`. The event list doesn't return it.
-	Datacontenttype *AICostUsageEventDatacontenttype `json:"datacontenttype,omitempty"`
+	Datacontenttype *Datacontenttype `json:"datacontenttype,omitempty"`
 	// The URI of the JSON Schema that `ai.usage.v1` events follow. The event list doesn't return it.
 	Dataschema *string `json:"dataschema,omitempty"`
 	// The W3C Trace Context `traceparent` of the model call, from the CloudEvents distributed tracing extension.
@@ -664,8 +675,8 @@ type AICostUsageEvent struct {
 	Traceparent *string `json:"traceparent,omitempty"`
 	// The W3C Trace Context `tracestate` that goes with `traceparent`.
 	Tracestate *string `json:"tracestate,omitempty"`
-	// The usage the event reports: `quantities`, `reported_cost`, `reported_cache_cost`, `context`, and `optimization`, plus the `provenance`, `tags`, `groups`, and `teams` that attribute it.
-	Data AICostUsageEventData `json:"data"`
+	// The usage the event reports: `quantities`, `reported_cost`, `reported_cache_cost`, `context`, and `optimization`, plus the `provenance`, `tags`, `groups`, `teams`, and `cost_center` that attribute it.
+	Data Data `json:"data"`
 }
 
 func (a AICostUsageEvent) MarshalJSON() ([]byte, error) {
@@ -721,7 +732,7 @@ func (a *AICostUsageEvent) GetTime() time.Time {
 	return a.Time
 }
 
-func (a *AICostUsageEvent) GetDatacontenttype() *AICostUsageEventDatacontenttype {
+func (a *AICostUsageEvent) GetDatacontenttype() *Datacontenttype {
 	if a == nil {
 		return nil
 	}
@@ -749,9 +760,9 @@ func (a *AICostUsageEvent) GetTracestate() *string {
 	return a.Tracestate
 }
 
-func (a *AICostUsageEvent) GetData() AICostUsageEventData {
+func (a *AICostUsageEvent) GetData() Data {
 	if a == nil {
-		return AICostUsageEventData{}
+		return Data{}
 	}
 	return a.Data
 }

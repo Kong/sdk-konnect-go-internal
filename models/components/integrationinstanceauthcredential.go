@@ -11,7 +11,7 @@ import (
 type IntegrationInstanceAuthCredentialType string
 
 const (
-	IntegrationInstanceAuthCredentialTypeOauth1                          IntegrationInstanceAuthCredentialType = "Oauth1"
+	IntegrationInstanceAuthCredentialTypeOauth                           IntegrationInstanceAuthCredentialType = "Oauth"
 	IntegrationInstanceAuthCredentialTypeGithubAppInstallation           IntegrationInstanceAuthCredentialType = "GithubAppInstallation"
 	IntegrationInstanceAuthCredentialTypeMultiKeyAuthCredential          IntegrationInstanceAuthCredentialType = "MultiKeyAuthCredential"
 	IntegrationInstanceAuthCredentialTypeAWSRoleDelegationAuthCredential IntegrationInstanceAuthCredentialType = "AWSRoleDelegationAuthCredential"
@@ -19,7 +19,7 @@ const (
 
 // IntegrationInstanceAuthCredential - Object containing metadata for an integration instance auth credential.
 type IntegrationInstanceAuthCredential struct {
-	Oauth1                          *Oauth1                          `queryParam:"inline" union:"member"`
+	Oauth                           *Oauth                           `queryParam:"inline" union:"member"`
 	GithubAppInstallation           *GithubAppInstallation           `queryParam:"inline" union:"member"`
 	MultiKeyAuthCredential          *MultiKeyAuthCredential          `queryParam:"inline" union:"member"`
 	AWSRoleDelegationAuthCredential *AWSRoleDelegationAuthCredential `queryParam:"inline" union:"member"`
@@ -27,12 +27,12 @@ type IntegrationInstanceAuthCredential struct {
 	Type IntegrationInstanceAuthCredentialType
 }
 
-func CreateIntegrationInstanceAuthCredentialOauth1(oauth1 Oauth1) IntegrationInstanceAuthCredential {
-	typ := IntegrationInstanceAuthCredentialTypeOauth1
+func CreateIntegrationInstanceAuthCredentialOauth(oauth Oauth) IntegrationInstanceAuthCredential {
+	typ := IntegrationInstanceAuthCredentialTypeOauth
 
 	return IntegrationInstanceAuthCredential{
-		Oauth1: &oauth1,
-		Type:   typ,
+		Oauth: &oauth,
+		Type:  typ,
 	}
 }
 
@@ -86,10 +86,10 @@ func (u *IntegrationInstanceAuthCredential) UnmarshalJSON(data []byte) (err erro
 		return nil
 	}
 
-	var oauth1 Oauth1 = Oauth1{}
-	if err := utils.UnmarshalJSON(data, &oauth1, "", true, nil); err == nil {
-		u.Oauth1 = &oauth1
-		u.Type = IntegrationInstanceAuthCredentialTypeOauth1
+	var oauth Oauth = Oauth{}
+	if err := utils.UnmarshalJSON(data, &oauth, "", true, nil); err == nil {
+		u.Oauth = &oauth
+		u.Type = IntegrationInstanceAuthCredentialTypeOauth
 		return nil
 	}
 
@@ -104,8 +104,8 @@ func (u *IntegrationInstanceAuthCredential) UnmarshalJSON(data []byte) (err erro
 }
 
 func (u IntegrationInstanceAuthCredential) MarshalJSON() ([]byte, error) {
-	if u.Oauth1 != nil {
-		return utils.MarshalJSON(u.Oauth1, "", true)
+	if u.Oauth != nil {
+		return utils.MarshalJSON(u.Oauth, "", true)
 	}
 
 	if u.GithubAppInstallation != nil {

@@ -1,8 +1,8 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: b55d4e033f865d83af9e158f6edbe5c8
-  docVersion: 3.21.1
+  docChecksum: f64992d76f997dd08b5b7cb47981d75c
+  docVersion: 3.21.6
   speakeasyVersion: 1.808.1
   generationVersion: 2.960.8
   releaseVersion: 0.7.0
@@ -23,7 +23,6 @@ features:
     deprecations: 2.81.3
     downloadStreams: 0.1.3
     envVarSecurityUsage: 0.3.2
-    errorUnions: 0.1.0
     flattening: 2.81.2
     globalSecurity: 2.82.15
     globalSecurityCallbacks: 0.1.0
@@ -61,11 +60,9 @@ trackedFiles:
   aigatewayconfigstores.go: {}
   aigatewayconsumergroups.go: {}
   aigatewayconsumers.go: {}
-  aigatewaycostmanagementtags.go: {}
   aigatewaycustompolicies.go: {}
   aigatewaydataplanecertificates.go: {}
   aigatewaydatastores.go: {}
-  aigatewaydebug.go: {}
   aigatewayidentityproviders.go: {}
   aigatewaymcpservers.go: {}
   aigatewaymodelproviders.go: {}
@@ -140,9 +137,6 @@ trackedFiles:
   authsettings.go:
     id: f2079b220862
     pristine_git_object: c4a0dde753e53ba6d7cce82f667d1e162fad9cdb
-  aws.go:
-    id: 2e917a802f1d
-    pristine_git_object: 4f193e5d20d084e1eee1486772fb0e6b33337642
   basicauthcredentials.go:
     id: acc787dfa2ff
     pristine_git_object: 65e66a0026b9a5133e34895bd57c075e4827dc2a
@@ -206,9 +200,6 @@ trackedFiles:
     id: fd31aa9c4af1
     pristine_git_object: 0e46dde1a329000d9e1946e5843461a948e5b3f2
   controlplanemappings.go: {}
-  controlplaneresourcequotas.go:
-    id: f611df9f8617
-    pristine_git_object: 6f8d7d6948c3f259a609810569c227f10d2fbdcc
   controlplanes.go:
     id: 386a6de3a24a
     pristine_git_object: f85405487769a6ec3f94cc108026fe6f6ea5c61e
@@ -229,9 +220,6 @@ trackedFiles:
     id: 0961cc7b048b
     pristine_git_object: c6ad627a7214226af209c722574147293919d677
   destinations.go: {}
-  deviceauthorizationgrant.go:
-    id: 9738ab3fd6c6
-    pristine_git_object: e4d4ece46d05497e3bc04508ad24b3daf7f98bca
   docs/models/components/accounttype.md: {}
   docs/models/components/acl.md:
     id: 6f393cba7b84
@@ -365,8 +353,10 @@ trackedFiles:
   docs/models/components/aicostexport1.md: {}
   docs/models/components/aicostexport2.md: {}
   docs/models/components/aicostexport2compression.md: {}
+  docs/models/components/aicostexport2dataset.md: {}
   docs/models/components/aicostexport2format.md: {}
   docs/models/components/aicostexport2schedule.md: {}
+  docs/models/components/aicostexport2schemaversion.md: {}
   docs/models/components/aicostexport2status.md: {}
   docs/models/components/aicostexportcompression.md: {}
   docs/models/components/aicostexportdataset.md: {}
@@ -378,16 +368,15 @@ trackedFiles:
   docs/models/components/aicostexportinput2compression.md: {}
   docs/models/components/aicostexportinput2dataset.md: {}
   docs/models/components/aicostexportinput2format.md: {}
+  docs/models/components/aicostexportinput2schemaversion.md: {}
   docs/models/components/aicostexportinputcompression.md: {}
   docs/models/components/aicostexportinputdataset.md: {}
   docs/models/components/aicostexportinputformat.md: {}
   docs/models/components/aicostexportinputschemaversion.md: {}
   docs/models/components/aicostexportschedule.md: {}
   docs/models/components/aicostexportschedule1.md: {}
-  docs/models/components/aicostexportschedule2.md: {}
+  docs/models/components/aicostexportschedule1format.md: {}
   docs/models/components/aicostexportschedule2compression.md: {}
-  docs/models/components/aicostexportschedule2dataset.md: {}
-  docs/models/components/aicostexportschedule2format.md: {}
   docs/models/components/aicostexportschedule2status.md: {}
   docs/models/components/aicostexportschedulecadence.md: {}
   docs/models/components/aicostexportschedulecompression.md: {}
@@ -408,6 +397,7 @@ trackedFiles:
   docs/models/components/aicostexportscheduleinputformat.md: {}
   docs/models/components/aicostexportscheduleinputschemaversion.md: {}
   docs/models/components/aicostexportscheduleinputstatus.md: {}
+  docs/models/components/aicostexportscheduleschemaversion.md: {}
   docs/models/components/aicostexportschedulestatus.md: {}
   docs/models/components/aicostexportschemaversion.md: {}
   docs/models/components/aicostexportstatus.md: {}
@@ -415,7 +405,6 @@ trackedFiles:
   docs/models/components/aicostfocusoptionsinput.md: {}
   docs/models/components/aicostfocusoptionsinputchargeperiod.md: {}
   docs/models/components/aicostfocusoptionsinputversion.md: {}
-  docs/models/components/aicostfocusoptionsversion.md: {}
   docs/models/components/aicostgrouplistfilter.md: {}
   docs/models/components/aicostlimitbudget.md: {}
   docs/models/components/aicostlimitbudgetinput.md: {}
@@ -427,7 +416,6 @@ trackedFiles:
   docs/models/components/aicostmoney.md: {}
   docs/models/components/aicostnotificationchannel.md: {}
   docs/models/components/aicostnotificationchannelsummary.md: {}
-  docs/models/components/aicostnotificationchannelsummarytype.md: {}
   docs/models/components/aicostnotificationdeliverydelivered.md: {}
   docs/models/components/aicostnotificationdeliverydeliveredstatus.md: {}
   docs/models/components/aicostnotificationdeliveryerrorreason.md: {}
@@ -452,7 +440,6 @@ trackedFiles:
   docs/models/components/aicostnotificationtesteventfailedkind.md: {}
   docs/models/components/aicostnotificationtesteventfailedstatus.md: {}
   docs/models/components/aicostnotificationtesteventpending.md: {}
-  docs/models/components/aicostnotificationtesteventpendingkind.md: {}
   docs/models/components/aicostnotificationtesteventpendingstatus.md: {}
   docs/models/components/aicostnotificationthreshold.md: {}
   docs/models/components/aicostnotificationthresholdevent.md: {}
@@ -472,8 +459,6 @@ trackedFiles:
   docs/models/components/aicostteamlistfilter.md: {}
   docs/models/components/aicosttimewindow.md: {}
   docs/models/components/aicostusageevent.md: {}
-  docs/models/components/aicostusageeventdata.md: {}
-  docs/models/components/aicostusageeventdatacontenttype.md: {}
   docs/models/components/aicostusageeventfieldvaluefilterparameters.md: {}
   docs/models/components/aicostusageeventtype.md: {}
   docs/models/components/aicostusagerequestmode.md: {}
@@ -496,7 +481,6 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategykeyauthprincipals.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponse.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseconfig.md: {}
-  docs/models/components/aigatewayauthstrategykeyauthresponseprincipals.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponsescope.md: {}
   docs/models/components/aigatewayauthstrategykeyauthscope.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnect.md: {}
@@ -547,11 +531,8 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectrefreshtokenparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectrequest.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponse.md: {}
-  docs/models/components/aigatewayauthstrategyopenidconnectresponseauthmethods.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseauthprovider.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsecache.md: {}
-  docs/models/components/aigatewayauthstrategyopenidconnectresponseclientalg.md: {}
-  docs/models/components/aigatewayauthstrategyopenidconnectresponseclientauth.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsecloudauthentication.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseclusternodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfig.md: {}
@@ -560,7 +541,6 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigclusternodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigsentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseconfigsentinelrole.md: {}
-  docs/models/components/aigatewayauthstrategyopenidconnectresponseconsumerby.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsegranttype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsemode.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprincipals.md: {}
@@ -569,7 +549,6 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesentinelrole.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsesource.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsetokenendpointauthmethod.md: {}
-  docs/models/components/aigatewayauthstrategyopenidconnectresponseupstreamheaders.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectrevocationendpointauthmethod.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectsentinelnodes.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectsentinelrole.md: {}
@@ -585,7 +564,6 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnecttokenheadersgrants.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectupstreamheaders.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectuserinfoaccept.md: {}
-  docs/models/components/aigatewayavailablepolicy.md: {}
   docs/models/components/aigatewayazureembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayazureembeddingsmodelconfigtype.md: {}
   docs/models/components/aigatewaybedrockembeddingsmodelconfig.md: {}
@@ -606,12 +584,10 @@ trackedFiles:
   docs/models/components/aigatewaycustompolicyinstalled.md: {}
   docs/models/components/aigatewaycustompolicystreaming.md: {}
   docs/models/components/aigatewaydataplaneclientcertificate.md: {}
-  docs/models/components/aigatewaydataplaneclientcertificatemetadata.md: {}
   docs/models/components/aigatewaydataplanenode.md: {}
   docs/models/components/aigatewaydataplanenodecompatibilityissue.md: {}
   docs/models/components/aigatewaydataplanenodecompatibilityissueaffectedresource.md: {}
   docs/models/components/aigatewaydataplanenodeconfigsync.md: {}
-  docs/models/components/aigatewaydataplanenodeconfigsyncstate.md: {}
   docs/models/components/aigatewaydataplanenodeerror.md: {}
   docs/models/components/aigatewaydataplanenodeerrordetail.md: {}
   docs/models/components/aigatewaydataplanenodeflattenederror.md: {}
@@ -630,26 +606,147 @@ trackedFiles:
   docs/models/components/aigatewaydenywhenacl.md: {}
   docs/models/components/aigatewayembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayexpectedconfigversion.md: {}
+  docs/models/components/aigatewayfailovercriteria.md: {}
   docs/models/components/aigatewaygeminiembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayhuggingfaceembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayid.md: {}
   docs/models/components/aigatewayidentityprovider.md: {}
   docs/models/components/aigatewayidentityproviderkeyauth.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthidentityrealms.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthprincipals.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthresponse.md: {}
   docs/models/components/aigatewayidentityproviderkeyauthresponseconfig.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponseidentityrealms.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponseprincipals.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthresponsescope.md: {}
+  docs/models/components/aigatewayidentityproviderkeyauthscope.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnect.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectactortoken.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectauthmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectauthorizationcookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectbearertokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectcache.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectclientalg.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectclientauth.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclientcredentialsparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclientjwk.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclustercacheredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclustercachestrategy.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconditions.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectconfigsentinelrole.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectconsumerby.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectdisablesession.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectdownstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectgranttype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectidtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectignoresignature.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectintrospectionaccept.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectintrospectionendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectjit.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginaction.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectloginredirectmode.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectlogintokens.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectlogoutmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectmapidentitiesfrom.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectpasswordparamtype.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectprincipals.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectproofofpossessiondpop.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectproofofpossessionmtls.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectprotectedresourcemetadata.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectpushedauthorizationrequestendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrefreshtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrequest.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponse.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseactortoken.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseauthmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseauthorizationcookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsebearertokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsecache.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclientalg.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclientauth.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclientcredentialsparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclientjwk.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsecloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclustercacheredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclustercachestrategy.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconditions.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponseconfig.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigauthprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigcloudauthentication.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigclusternodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconfigsentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseconsumerby.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsedisablesession.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsedownstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsegranttype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseidtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseignoresignature.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseintrospectionaccept.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseintrospectionendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsejit.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseloginaction.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseloginmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseloginredirectmode.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponselogintokens.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponselogoutmethods.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsemapidentitiesfrom.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsemode.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsepasswordparamtype.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectresponseprincipals.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseproofofpossessiondpop.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseproofofpossessionmtls.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseprotectedresourcemetadata.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseprovider.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsepushedauthorizationrequestendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseredis.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponserefreshtokenparamtype.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponserequest.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseresponsemode.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponserevocationendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesessionbind.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesessioncookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesessionrequestheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesessionresponseheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesessionstorage.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesource.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsesubjecttokenissuers.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsetokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsetokenexchange.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponsetokenheadersgrants.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseupstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectresponseuserinfoaccept.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectrevocationendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsentinelnodes.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsentinelrole.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionbind.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessioncookiesamesite.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionrequestheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionresponseheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsessionstorage.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsource.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectsubjecttokenissuers.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenendpointauthmethod.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenexchange.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnecttokenheadersgrants.md: {}
   docs/models/components/aigatewayidentityprovideropenidconnectupstreamheaders.md: {}
+  docs/models/components/aigatewayidentityprovideropenidconnectuserinfoaccept.md: {}
   docs/models/components/aigatewayloggingconfig.md: {}
   docs/models/components/aigatewaymcpacls.md: {}
   docs/models/components/aigatewaymcpallowacl.md: {}
@@ -700,7 +797,10 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverserverconfigbaseclient.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbaseoutput.md: {}
   docs/models/components/aigatewaymcpserverserverconfigbasesession.md: {}
-  docs/models/components/aigatewaymcpserverserverconfigbasestrategy.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfig.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigauth.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigauthoutput.md: {}
+  docs/models/components/aigatewaymcpserverupstreamconfigoutput.md: {}
   docs/models/components/aigatewaymcpserverupstreamserver.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfig.md: {}
   docs/models/components/aigatewaymcpserverupstreamserverconfiglogging.md: {}
@@ -729,7 +829,6 @@ trackedFiles:
   docs/models/components/aigatewaymcpserverwithupstreamconfigstrategy.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfig.md: {}
   docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfigoutput.md: {}
-  docs/models/components/aigatewaymcpserverwithupstreamnoproxyconfignoserverconfigprotocol.md: {}
   docs/models/components/aigatewaymcptoolaccess.md: {}
   docs/models/components/aigatewaymcptoolannotations.md: {}
   docs/models/components/aigatewaymcptoolparameter.md: {}
@@ -748,31 +847,13 @@ trackedFiles:
   docs/models/components/aigatewaymodelbalancerconfig.md: {}
   docs/models/components/aigatewaymodelbalancerconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerconsistenthashingconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentclassifier.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentconfigoutput.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentconfigversion.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerleastconnectionsconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerleastconnectionsconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestlatencyconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestlatencyconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerlowestusageconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestusageconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestusageconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerpriorityconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerpriorityconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerpriorityconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerroundrobinconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerroundrobinconfigfailovercriteria.md: {}
-  docs/models/components/aigatewaymodelbalancerroundrobinconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfig.md: {}
-  docs/models/components/aigatewaymodelbalancersemanticconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfigoutput.md: {}
-  docs/models/components/aigatewaymodelbalancersessionaffinity.md: {}
-  docs/models/components/aigatewaymodelbalancersessionaffinityoutput.md: {}
   docs/models/components/aigatewaymodeldatastoreref.md: {}
   docs/models/components/aigatewaymodelformat.md: {}
   docs/models/components/aigatewaymodelformattype.md: {}
@@ -780,7 +861,6 @@ trackedFiles:
   docs/models/components/aigatewaymodelmodelaigatewaymodelcapabilities.md: {}
   docs/models/components/aigatewaymodelmodelcapabilities.md: {}
   docs/models/components/aigatewaymodelmodelconfig.md: {}
-  docs/models/components/aigatewaymodelmodelconfigmodel.md: {}
   docs/models/components/aigatewaymodelmodelconfigoutput.md: {}
   docs/models/components/aigatewaymodelmodelconfigresponsestreaming.md: {}
   docs/models/components/aigatewaymodelprovider.md: {}
@@ -917,19 +997,12 @@ trackedFiles:
   docs/models/components/aigatewaymodelvectordbconfigredis.md: {}
   docs/models/components/aigatewaymodelvectordbconfigrediscloudauthentication.md: {}
   docs/models/components/aigatewaymodelvectordbconfigrediscloudauthenticationoutput.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigrediscluster.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisdistancemetric.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigrediskeepalive.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisnodes.md: {}
   docs/models/components/aigatewaymodelvectordbconfigredisoutput.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredisport.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredisrole.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredissentinel.md: {}
-  docs/models/components/aigatewaymodelvectordbconfigredissentinelnodes.md: {}
   docs/models/components/aigatewayollamaembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayopenaiembeddingsmodelconfig.md: {}
   docs/models/components/aigatewaypolicy.md: {}
-  docs/models/components/aigatewaypolicyschema.md: {}
   docs/models/components/aigatewayproxyconfig.md: {}
   docs/models/components/aigatewayproxyconfigaigatewayproxyconfigauth.md: {}
   docs/models/components/aigatewayproxyconfigauth.md: {}
@@ -941,7 +1014,6 @@ trackedFiles:
   docs/models/components/aigatewayredisazureauthenticationoutput.md: {}
   docs/models/components/aigatewayrediscloudconfiguration.md: {}
   docs/models/components/aigatewayrediscloudconfigurationcloudauthentication.md: {}
-  docs/models/components/aigatewayrediscloudconfigurationcloudauthenticationoutput.md: {}
   docs/models/components/aigatewayrediscloudconfigurationcluster.md: {}
   docs/models/components/aigatewayrediscloudconfigurationkeepalive.md: {}
   docs/models/components/aigatewayrediscloudconfigurationnodes.md: {}
@@ -953,19 +1025,10 @@ trackedFiles:
   docs/models/components/aigatewayredisgcpauthentication.md: {}
   docs/models/components/aigatewayredisgcpauthenticationoutput.md: {}
   docs/models/components/aigatewayrouteconfig.md: {}
-  docs/models/components/aigatewayruntimedefault.md: {}
-  docs/models/components/aigatewayruntimedefaultdeploymenttype.md: {}
   docs/models/components/aigateways.md: {}
   docs/models/components/aigatewaysadmin.md: {}
   docs/models/components/aigatewayscreator.md: {}
   docs/models/components/aigatewayservicetierfactor.md: {}
-  docs/models/components/aigatewaysessionaffinitystorage.md: {}
-  docs/models/components/aigatewaysessionaffinitystoragelocal.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageoutput.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageredis.md: {}
-  docs/models/components/aigatewaysessionaffinitystoragerediscloudauthentication.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageredisnodes.md: {}
-  docs/models/components/aigatewaysessionaffinitystorageredisoutput.md: {}
   docs/models/components/aigatewaysni.md: {}
   docs/models/components/aigatewaysviewer.md: {}
   docs/models/components/aigatewaytarget.md: {}
@@ -1016,9 +1079,6 @@ trackedFiles:
   docs/models/components/aigatewayupstreamconfigauth.md: {}
   docs/models/components/aigatewayupstreamconfigoutput.md: {}
   docs/models/components/aigatewayupstreamtarget.md: {}
-  docs/models/components/aigatewayvalidateconditionrequest.md: {}
-  docs/models/components/aigatewayvalidateexpressionrequest.md: {}
-  docs/models/components/aigatewayvalidateexpressionvaluerequest.md: {}
   docs/models/components/aigatewayvault.md: {}
   docs/models/components/aigatewayvaultawssecretsmanagervault.md: {}
   docs/models/components/aigatewayvaultazurekeyvault.md: {}
@@ -1115,6 +1175,7 @@ trackedFiles:
     pristine_git_object: ffffb0685560169b1e948daf94788fcd8eb771c6
   docs/models/components/apiid.md: {}
   docs/models/components/apiimage.md: {}
+  docs/models/components/apiimageimagetype.md: {}
   docs/models/components/apiimagestatus.md: {}
   docs/models/components/apiimplementation.md:
     id: f4af96e8bc5c
@@ -1174,7 +1235,6 @@ trackedFiles:
     id: 6237e2d99658
     pristine_git_object: db8d84dd8471acf78b16348396c121a961218481
   docs/models/components/apipackageimage.md: {}
-  docs/models/components/apipackageimageimagetype.md: {}
   docs/models/components/apipackageimagestatus.md: {}
   docs/models/components/apipackagejsonpatchitem.md:
     id: 610559dccf95
@@ -1199,8 +1259,6 @@ trackedFiles:
   docs/models/components/apipackageresponseschema.md:
     id: b5ea25055d24
     pristine_git_object: c7c526e55b0d8442e2174958b4af8fec8627bb7f
-  docs/models/components/apipackageresponseschemaicon.md: {}
-  docs/models/components/apipackageresponseschemaimages.md: {}
   docs/models/components/apiproducts.md:
     id: cfb854f655e8
     pristine_git_object: 783baade7446bd5fcfad1634397c7c7a4e9c3f95
@@ -1258,9 +1316,6 @@ trackedFiles:
   docs/models/components/apispecresponseapispectype.md:
     id: c869e5658fe9
     pristine_git_object: dfc055ec650d2d9ca6e66934d1f5a34c2ef4c573
-  docs/models/components/apispecresponsevalidationmessages.md:
-    id: f3483ad944ad
-    pristine_git_object: 7804a41a5a5225c114a305eb0b179af5947abbd0
   docs/models/components/apispectype.md:
     id: b694bbcac70a
     pristine_git_object: f7759aae5cd5863ead8e87e156842c38d9b8d789
@@ -1418,12 +1473,6 @@ trackedFiles:
     id: e1b20e065c07
     pristine_git_object: 1d145fc5bba27a3e01eab1762234a0c0d8d8ecdb
   docs/models/components/assignedroleentityregion.md: {}
-  docs/models/components/assignparameterizedrole.md:
-    id: 24ad0cda23fc
-    pristine_git_object: 35dcb8fa740646ff00c080cd270056111677cd53
-  docs/models/components/assignparameterizedroleentityregion.md:
-    id: 6309077b2473
-    pristine_git_object: 07b01d800c36c9fbbd940172348ca9208039dcf8
   docs/models/components/assignrole.md:
     id: 56cd7c893cf6
     pristine_git_object: 5f101024ebc920a34b17373250da5660d5ddb633
@@ -1438,22 +1487,12 @@ trackedFiles:
     id: 8dd0be8ca545
     pristine_git_object: b14cf230cb7c5584f4b0148cc66f913187700926
   docs/models/components/auth.md: {}
-  docs/models/components/auth0organization.md:
-    id: dd8bd968742f
-    pristine_git_object: 3b48cc2c694b825373dbd97230b0cad6894723a8
-  docs/models/components/auth0organizationscollection.md:
-    id: d0c5e4235620
-    pristine_git_object: 225972a16097461700782176ec0b1cfc8dbdd3cc
-  docs/models/components/auth0registration.md:
-    id: a7a63e271eee
-    pristine_git_object: 7ba91e3b31d0262a438d9982a9dabea7064ac3d5
   docs/models/components/authenticationsettings.md:
     id: f573e765ffa9
     pristine_git_object: 9e8ee17774b4e899e557550edb8be458fcb56cce
   docs/models/components/authgcpworkloadidentityfederation.md: {}
   docs/models/components/authgcpworkloadidentityfederationawsiam.md: {}
   docs/models/components/authgcpworkloadidentityfederationawsiamoutput.md: {}
-  docs/models/components/authgcpworkloadidentityfederationawsiamsource.md: {}
   docs/models/components/authgcpworkloadidentityfederationoutput.md: {}
   docs/models/components/authmethod.md: {}
   docs/models/components/authmethods.md: {}
@@ -1517,9 +1556,6 @@ trackedFiles:
   docs/models/components/awsprivatehostedzonetype.md:
     id: 7ad78bf4c749
     pristine_git_object: c5d21c0ef3e44d20426c78250f32352c63c14a5b
-  docs/models/components/awsresolvecustomerrequest.md:
-    id: 1dc6571468ee
-    pristine_git_object: c8c55810a3f031125292aa623610baebf3b585f6
   docs/models/components/awsresourceendpointattachmentconfig.md:
     id: 6699e0a6da00
     pristine_git_object: 50ced62dcd8549777b62485417407abfcec69df5
@@ -1653,6 +1689,7 @@ trackedFiles:
   docs/models/components/backendclusterreferencebyname.md: {}
   docs/models/components/backendclusterreferencemodify.md: {}
   docs/models/components/backendclustertls.md: {}
+  docs/models/components/badrequesterrorstatus.md: {}
   docs/models/components/balance.md: {}
   docs/models/components/barchart.md: {}
   docs/models/components/barcharttype.md: {}
@@ -2224,9 +2261,13 @@ trackedFiles:
   docs/models/components/catalogresourcefilterparametersconfig.md:
     id: 974ea739e3d4
     pristine_git_object: 980846dddbff9788bb35ed30f50bca1f9bc03343
+  docs/models/components/catalogresourcefilterparametersintegrationdata.md: {}
   docs/models/components/catalogresourcefilterparametersintegrationdisplayname.md:
     id: 4a5194bd8ac5
     pristine_git_object: 66a050e5acc02cd299eb2ec018b3cacf626184e7
+  docs/models/components/catalogresourcefilterparametersintegrationinstancedisplayname.md: {}
+  docs/models/components/catalogresourcefilterparametersintegrationinstanceid.md: {}
+  docs/models/components/catalogresourcefilterparametersintegrationinstancename.md: {}
   docs/models/components/catalogresourcefilterparametersintegrationname.md:
     id: 8a710e9b04b5
     pristine_git_object: 23f32e39c27c95b887f668d38b3fcd292d8972f0
@@ -2249,24 +2290,6 @@ trackedFiles:
   docs/models/components/catalogresourcereffilterparametersconfig.md:
     id: 11c183bac60b
     pristine_git_object: fcb5627cfedc0c8f842edf6a5939373ed2d4df99
-  docs/models/components/catalogresourcereffilterparametersintegrationdata.md:
-    id: 2a6e9c69ec02
-    pristine_git_object: 8bea6ab57289f27ab9a244060fbd3f2dc0f9facc
-  docs/models/components/catalogresourcereffilterparametersintegrationdisplayname.md:
-    id: b5cca94821b6
-    pristine_git_object: 85a53907d22bd2d876da691f3f4974b18055bd5e
-  docs/models/components/catalogresourcereffilterparametersintegrationinstancedisplayname.md:
-    id: da971082f4a5
-    pristine_git_object: bf4dc206d4ff58258064619f02bb7fe89a7d9296
-  docs/models/components/catalogresourcereffilterparametersintegrationinstanceid.md:
-    id: 0ef773dd4b65
-    pristine_git_object: cd7ad74713a25938693615117e34494f187bc55e
-  docs/models/components/catalogresourcereffilterparametersintegrationinstancename.md:
-    id: 32a46ae67b48
-    pristine_git_object: 1cd6435b4fc7b4367cd7152157e1f9b52e472860
-  docs/models/components/catalogresourcereffilterparametersintegrationname.md:
-    id: eef07b6d09f5
-    pristine_git_object: 68014c372716dc708ef3bb4af9f652c836bc5e29
   docs/models/components/catalogservice.md:
     id: 2e3e6f921d00
     pristine_git_object: 2d6fbd057ea70c304a4f68a01f7e895609a6e1fa
@@ -2407,6 +2430,7 @@ trackedFiles:
   docs/models/components/configurationdataplanegroupautoscalestatic.md:
     id: d87a11c281fd
     pristine_git_object: daac19ad7a604cdc8bb16b0c8042e6d2abe38761
+  docs/models/components/configurationdataplanegroupautoscalestatickind.md: {}
   docs/models/components/configurationdataplanegroupconfig.md:
     id: 95b7e520d49e
     pristine_git_object: abb9fa49cf5a64dc445ed244f7693c31574af9f0
@@ -2416,6 +2440,7 @@ trackedFiles:
   docs/models/components/configurationdataplanegroupstate.md:
     id: 2a1e514b71ec
     pristine_git_object: 605f7026ef3d9a1701352f9756b0c4cad9fa701c
+  docs/models/components/configurationdataplanegroupstatemetadata.md: {}
   docs/models/components/configurationfilterparameters.md:
     id: 9b03df8dc50a
     pristine_git_object: 50e8822f6410d9ceb097839cff64379d53425c51
@@ -2482,9 +2507,6 @@ trackedFiles:
     id: 6df8311c7bd8
     pristine_git_object: 28961a009652ebd2e947a705465cc688d23167ab
   docs/models/components/controlplaneconfig.md: {}
-  docs/models/components/controlplanedefaultresourcequota.md:
-    id: cabf97d5391a
-    pristine_git_object: 4a95a65fc99ed78542025fe1555c337c5d8a5c0b
   docs/models/components/controlplanefilterparameters.md:
     id: 6e473380d63e
     pristine_git_object: 3a86d3a5c7eafbfbac4226819dc823448775b6b3
@@ -2512,12 +2534,6 @@ trackedFiles:
   docs/models/components/controlplanereference.md:
     id: 63305c1b27e6
     pristine_git_object: 7033c07d988194f6f1fe2aed29a26aaa47d17c82
-  docs/models/components/controlplaneresourcequota.md:
-    id: 74347e1e8429
-    pristine_git_object: a4129151a05efbf276ec2318f3d67ba7d153f68d
-  docs/models/components/controlplaneresourcequotainput.md:
-    id: 5f5bd13c273b
-    pristine_git_object: ad6455bd6e43a456e2e104c475ce7002dd04b32c
   docs/models/components/controlplanes.md:
     id: b5335b14370c
     pristine_git_object: beb230e198190ccfcbd18bf027d06811bd3fe651
@@ -2527,10 +2543,6 @@ trackedFiles:
   docs/models/components/costbasis.md: {}
   docs/models/components/costbasismode.md: {}
   docs/models/components/costbasispagepaginatedresponse.md: {}
-  docs/models/components/costmanagementtags.md: {}
-  docs/models/components/costqualitytradeoff.md: {}
-  docs/models/components/costtagheader.md: {}
-  docs/models/components/costtagprefix.md: {}
   docs/models/components/counts.md: {}
   docs/models/components/createaddonconfig.md:
     id: a00a2578622c
@@ -2541,7 +2553,6 @@ trackedFiles:
   docs/models/components/createaddonrequest1.md: {}
   docs/models/components/createaddonrequesttheinstancetypeoftheaddonscanbesingleormultiple.md: {}
   docs/models/components/createaigatewayagentrequest.md: {}
-  docs/models/components/createaigatewayagentrequestconfig.md: {}
   docs/models/components/createaigatewayagentrequestlogging.md: {}
   docs/models/components/createaigatewayagentrequestprotocol.md: {}
   docs/models/components/createaigatewayagentrequesttype.md: {}
@@ -2578,7 +2589,6 @@ trackedFiles:
     pristine_git_object: 0dc4a3762c11e3cd13808152e40eec466f81939d
   docs/models/components/createapiregistrationformrequest.md: {}
   docs/models/components/createapiregistrationformrequeststatus.md: {}
-  docs/models/components/createapiregistrationformrequesttype.md: {}
   docs/models/components/createapirequest.md:
     id: 580cc0940738
     pristine_git_object: 1136648fffb78e02ca5882a7f80f0f6f6ec3ae58
@@ -2718,6 +2728,7 @@ trackedFiles:
   docs/models/components/createcreditadjustmentrequest.md: {}
   docs/models/components/createcreditgrantfilters.md: {}
   docs/models/components/createcreditgrantplanfilter.md: {}
+  docs/models/components/createcreditgrantplanfilterversion.md: {}
   docs/models/components/createcreditgrantrequest.md: {}
   docs/models/components/createcreditgrantrequestcostbasis.md: {}
   docs/models/components/createcreditgrantrequesttaxbehavior.md: {}
@@ -2771,8 +2782,8 @@ trackedFiles:
   docs/models/components/createdcrsettings.md: {}
   docs/models/components/createdefaultcontentrequest.md: {}
   docs/models/components/createdeveloperregistrationformrequest.md: {}
+  docs/models/components/createdeveloperregistrationformrequestname.md: {}
   docs/models/components/createdeveloperregistrationformrequeststatus.md: {}
-  docs/models/components/createdeveloperregistrationformrequesttype.md: {}
   docs/models/components/createdeveloperrequest.md: {}
   docs/models/components/createdeveloperrequestdeveloperstatus.md: {}
   docs/models/components/createdirectorybody.md: {}
@@ -2801,8 +2812,8 @@ trackedFiles:
     id: b3422911c541
     pristine_git_object: a40df54f2f0b404617be85d7b2c146beb1872608
   docs/models/components/creategroupbody.md: {}
-  docs/models/components/creategroupbodytype.md: {}
   docs/models/components/creategroupmembershipentrybody.md: {}
+  docs/models/components/creategrouptype.md: {}
   docs/models/components/createidentityprovider.md:
     id: 851b5ab1c3e8
     pristine_git_object: c45085d86473cdcfedf8eb7cd8019a37edaba9d5
@@ -2873,15 +2884,6 @@ trackedFiles:
   docs/models/components/createprivatednsrequest.md:
     id: 21b657da8d70
     pristine_git_object: aacab1b07f4a7e9d9c2226a6583801605915edbc
-  docs/models/components/createprovideraccountrequest.md:
-    id: 4059424fa710
-    pristine_git_object: 2a0aecf8b355914ae249384309a7b4bed604c2e0
-  docs/models/components/createresourceconfigurationrequest.md:
-    id: ff09aeace55f
-    pristine_git_object: 1bab649be219edcba157320f74dd449852ea403f
-  docs/models/components/createresourcequotarequest.md:
-    id: c795d44e7532
-    pristine_git_object: 3351cafdae66833c103d8f17313f1f51c60f20a5
   docs/models/components/createscope.md: {}
   docs/models/components/createscorecard.md:
     id: bf17dea4a233
@@ -2938,7 +2940,6 @@ trackedFiles:
   docs/models/components/criteriaevaluationerrorresult.md:
     id: c730d0e37ac5
     pristine_git_object: 35aba048618206b0ea99b18cdd978eff1108f837
-  docs/models/components/criteriaevaluationerrorresulterror.md: {}
   docs/models/components/criteriaevaluationerrorresultrelation.md:
     id: f3f01813834c
     pristine_git_object: a94e2b0b3aa4fa933272ce216c78dbadae44ad05
@@ -3048,28 +3049,16 @@ trackedFiles:
     pristine_git_object: 88063eb758be06c942321840030ad3b7e7549ea2
   docs/models/components/customformcheckboxfield.md: {}
   docs/models/components/customformcheckboxfieldinput.md: {}
-  docs/models/components/customformcheckboxfieldinputtype.md: {}
-  docs/models/components/customformcheckboxfieldtype.md: {}
   docs/models/components/customformcontentfield.md: {}
   docs/models/components/customformcontentfieldinput.md: {}
-  docs/models/components/customformcontentfieldinputtype.md: {}
-  docs/models/components/customformcontentfieldtype.md: {}
   docs/models/components/customformemailfield.md: {}
   docs/models/components/customformemailfieldinput.md: {}
-  docs/models/components/customformemailfieldinputtype.md: {}
-  docs/models/components/customformemailfieldtype.md: {}
   docs/models/components/customformfield.md: {}
   docs/models/components/customformfieldinput.md: {}
   docs/models/components/customformmultiselectfield.md: {}
   docs/models/components/customformmultiselectfieldinput.md: {}
-  docs/models/components/customformmultiselectfieldinputmode.md: {}
-  docs/models/components/customformmultiselectfieldinputtype.md: {}
-  docs/models/components/customformmultiselectfieldmode.md: {}
-  docs/models/components/customformmultiselectfieldtype.md: {}
   docs/models/components/customformnumberfield.md: {}
   docs/models/components/customformnumberfieldinput.md: {}
-  docs/models/components/customformnumberfieldinputtype.md: {}
-  docs/models/components/customformnumberfieldtype.md: {}
   docs/models/components/customformresponse.md: {}
   docs/models/components/customformselectfield.md: {}
   docs/models/components/customformselectfieldinput.md: {}
@@ -3077,24 +3066,15 @@ trackedFiles:
   docs/models/components/customformselectoptioninput.md: {}
   docs/models/components/customformsingleselectfield.md: {}
   docs/models/components/customformsingleselectfieldinput.md: {}
-  docs/models/components/customformsingleselectfieldinputtype.md: {}
-  docs/models/components/customformsingleselectfieldmode.md: {}
-  docs/models/components/customformsingleselectfieldtype.md: {}
   docs/models/components/customformstatus.md: {}
   docs/models/components/customformsubmitfield.md: {}
   docs/models/components/customformsubmitfieldinput.md: {}
   docs/models/components/customformsubmitfieldinputname.md: {}
-  docs/models/components/customformsubmitfieldinputtype.md: {}
   docs/models/components/customformsubmitfieldname.md: {}
-  docs/models/components/customformsubmitfieldtype.md: {}
   docs/models/components/customformtextareafield.md: {}
   docs/models/components/customformtextareafieldinput.md: {}
-  docs/models/components/customformtextareafieldinputtype.md: {}
-  docs/models/components/customformtextareafieldtype.md: {}
   docs/models/components/customformtextfield.md: {}
   docs/models/components/customformtextfieldinput.md: {}
-  docs/models/components/customformtextfieldinputtype.md: {}
-  docs/models/components/customformtextfieldtype.md: {}
   docs/models/components/customformtype.md: {}
   docs/models/components/customplan.md: {}
   docs/models/components/customplugin.md:
@@ -3310,23 +3290,6 @@ trackedFiles:
   docs/models/components/developerstatus.md:
     id: ba8786ec624c
     pristine_git_object: 62e5ce1ca3da8a2c2ef76490c637676e4fa4b59d
-  docs/models/components/deviceaccesstokenresponse.md:
-    id: 5bb6d84f0f8f
-    pristine_git_object: 62079d20cf367d8bf65a3b0426c9e0b86963564a
-  docs/models/components/deviceauthorizationgranttokenbadrequesterror.md: {}
-  docs/models/components/deviceauthorizationgranttokenerrordeviceauthorizationgranttokenbadrequesterror.md: {}
-  docs/models/components/deviceauthorizationresponse.md:
-    id: 56ba97a8ed6d
-    pristine_git_object: b71da31e78e26e45fa85619ebda99ea2c2963fa1
-  docs/models/components/deviceauthorizationuserrequest.md:
-    id: a27d9a8efd35
-    pristine_git_object: d7eebac17d7d525ea3f9363b1beaa5cff63bb675
-  docs/models/components/deviceauthorizationuserresponse.md:
-    id: 07e8ef666dce
-    pristine_git_object: 1d17e1bf881b1d65305137104c4defd51a869f3b
-  docs/models/components/deviceconfirmationrequest.md:
-    id: da13debc3c87
-    pristine_git_object: e86341146eb0ae5cb619d389d60a2b21ac2fc7f0
   docs/models/components/dimensions.md:
     id: 30df06acad8b
     pristine_git_object: bcd0e7cb6459eb0b0f02250320267f48a61cdd94
@@ -3421,7 +3384,6 @@ trackedFiles:
   docs/models/components/entitlementgrantpagepaginatedresponse.md: {}
   docs/models/components/entitlementpagepaginatedresponse.md: {}
   docs/models/components/entitlementtemplate.md: {}
-  docs/models/components/entitychecks.md: {}
   docs/models/components/entityregion.md:
     id: 10ab78d18276
     pristine_git_object: 6b5358662304dd7e2e7ee6b108220845425c575d
@@ -3460,7 +3422,6 @@ trackedFiles:
     pristine_git_object: f25d91f7082d615306c015a55cdb810af17582c2
   docs/models/components/eventgateway.md: {}
   docs/models/components/eventgatewayacloperation.md: {}
-  docs/models/components/eventgatewayacloperationname.md: {}
   docs/models/components/eventgatewayaclpolicyconfig.md: {}
   docs/models/components/eventgatewayaclresourcename.md: {}
   docs/models/components/eventgatewayaclrule.md: {}
@@ -3529,8 +3490,6 @@ trackedFiles:
   docs/models/components/eventgatewayoffsetcommitrule.md: {}
   docs/models/components/eventgatewayoffsetfetchrequestrules.md: {}
   docs/models/components/eventgatewayoffsetfetchrule.md: {}
-  docs/models/components/eventgatewayorgusage.md: {}
-  docs/models/components/eventgatewayorgusagecounts.md: {}
   docs/models/components/eventgatewayparsedrecorddecryptfieldsconfig.md: {}
   docs/models/components/eventgatewayparsedrecorddecryptfieldspolicy.md: {}
   docs/models/components/eventgatewayparsedrecorddecryptfieldspolicycreate.md: {}
@@ -3618,7 +3577,6 @@ trackedFiles:
   docs/models/components/externalinvoicing.md: {}
   docs/models/components/externalinvoicingtaxconfig.md: {}
   docs/models/components/externalreferences.md: {}
-  docs/models/components/failovercriteria.md: {}
   docs/models/components/failurereason.md: {}
   docs/models/components/feature.md: {}
   docs/models/components/featurecostqueryresult.md: {}
@@ -3638,7 +3596,6 @@ trackedFiles:
   docs/models/components/field.md:
     id: b7ec0207b40c
     pristine_git_object: 194faf021c1cac1aafe0ff0ddc227eeb0c08821a
-  docs/models/components/fields.md: {}
   docs/models/components/file.md: {}
   docs/models/components/files.md: {}
   docs/models/components/filterapplications.md: {}
@@ -3729,6 +3686,7 @@ trackedFiles:
     id: 0d4b484868c5
     pristine_git_object: 40840505d36a770908ca672087544c300f5448b2
   docs/models/components/getnodeconfigsync.md: {}
+  docs/models/components/getnodeitem.md: {}
   docs/models/components/getnoderesiliency.md: {}
   docs/models/components/getpartialschemaresponse.md:
     id: f7c0ad52e655
@@ -3785,6 +3743,7 @@ trackedFiles:
   docs/models/components/groupstatus.md:
     id: c111cfc84223
     pristine_git_object: 465a6810e858dafb7752fb8120a7cfbe43ce6fac
+  docs/models/components/groupstatusstate.md: {}
   docs/models/components/hasapisselector.md:
     id: 0b84eb21bde8
     pristine_git_object: 7233fb39835323aa05a687c244802ece0f4d9b9c
@@ -3835,6 +3794,7 @@ trackedFiles:
   docs/models/components/hashicorpvaultoauth2configprotocol.md: {}
   docs/models/components/hashicorpvaulttokenconfig.md: {}
   docs/models/components/hashicorpvaulttokenconfigoutput.md: {}
+  docs/models/components/hashicorpvaulttokenconfigprotocol.md: {}
   docs/models/components/hashon.md:
     id: 2b797db123c2
     pristine_git_object: 5ed6a7e5bf8ba27141355f08d97be3372ef81d5e
@@ -3891,6 +3851,7 @@ trackedFiles:
   docs/models/components/httpdestination.md: {}
   docs/models/components/httpdestinationcreatepayload.md: {}
   docs/models/components/httpdestinationcreatepayloadtype.md: {}
+  docs/models/components/httpdestinationtype.md: {}
   docs/models/components/httpdestinationupdatepayload.md: {}
   docs/models/components/httpdestinationupdatepayloadstate.md: {}
   docs/models/components/httpdestinationupdatepayloadtype.md: {}
@@ -3902,9 +3863,6 @@ trackedFiles:
     id: 737cf72591d3
     pristine_git_object: f8d43bc81083b47cfa93b09818fe3b9f2965caae
   docs/models/components/huggingface.md: {}
-  docs/models/components/icon.md:
-    id: 31a88c106b8e
-    pristine_git_object: 96b0e76add5c318abdf1da59571c022287ee5507
   docs/models/components/id.md:
     id: b2d33cd17b3d
     pristine_git_object: 2b374e783808a9767ca0ac70ffc71a19112a9fc3
@@ -3931,9 +3889,6 @@ trackedFiles:
   docs/models/components/idpteamgroupmappingscollection.md: {}
   docs/models/components/idtokenparamtype.md: {}
   docs/models/components/ignoresignature.md: {}
-  docs/models/components/images.md:
-    id: 32619843fb71
-    pristine_git_object: 8156de6a7fac565cb1cb0966b1a95e84f22399a2
   docs/models/components/imagetype.md: {}
   docs/models/components/imagetypeschema.md: {}
   docs/models/components/importprincipalsrequest.md: {}
@@ -3971,6 +3926,8 @@ trackedFiles:
   docs/models/components/integrationinstancefilterparameters.md:
     id: 054f0fc3c023
     pristine_git_object: 03d8f69c64072e3b19caf0db8119283f5b201f60
+  docs/models/components/integrationinstancefilterparametersintegrationdisplayname.md: {}
+  docs/models/components/integrationinstancefilterparametersintegrationname.md: {}
   docs/models/components/integrationinstanceid.md:
     id: d8106d1ea8b9
     pristine_git_object: b260fd19e4d3303bb844370ee1cf0e046285d9d7
@@ -3996,9 +3953,6 @@ trackedFiles:
   docs/models/components/integrationviewer.md: {}
   docs/models/components/internalerrorstatus.md: {}
   docs/models/components/internalservererrorstatus.md: {}
-  docs/models/components/internalusers.md:
-    id: 6e4f0c14c555
-    pristine_git_object: 0bf4407accdcd96b06c5e33f5ba8bb1ad6788790
   docs/models/components/introspectionaccept.md: {}
   docs/models/components/introspectionendpointauthmethod.md: {}
   docs/models/components/invalidparameterchoiceitem.md:
@@ -4198,7 +4152,6 @@ trackedFiles:
   docs/models/components/listaigatewayagentsresponse.md: {}
   docs/models/components/listaigatewayauthstrategiesresponse.md: {}
   docs/models/components/listaigatewayauthstrategyusageresponse.md: {}
-  docs/models/components/listaigatewayavailablepoliciesresponse.md: {}
   docs/models/components/listaigatewaycacertificatesresponse.md: {}
   docs/models/components/listaigatewaycertificatesresponse.md: {}
   docs/models/components/listaigatewayconfigstoresecretsresponse.md: {}
@@ -4216,8 +4169,6 @@ trackedFiles:
   docs/models/components/listaigatewaymodelprovidersresponse.md: {}
   docs/models/components/listaigatewaymodelsresponse.md: {}
   docs/models/components/listaigatewaypoliciesresponse.md: {}
-  docs/models/components/listaigatewaypolicyusageresponse.md: {}
-  docs/models/components/listaigatewayruntimeversionsresponse.md: {}
   docs/models/components/listaigatewaysnisresponse.md: {}
   docs/models/components/listaigatewaysresponse.md: {}
   docs/models/components/listaigatewayvaultsresponse.md: {}
@@ -4331,12 +4282,6 @@ trackedFiles:
     id: cd50432133cb
     pristine_git_object: 42d2fc34cdd4c7a43476be5030829f0b9ca9d582
   docs/models/components/listconnectedappsessionsresponse.md: {}
-  docs/models/components/listcontrolplanedefaultresourcequotasresponse.md:
-    id: 142fa2d03c6c
-    pristine_git_object: 834c7555b3db9dcbae0721a862aef33c19b75d4b
-  docs/models/components/listcontrolplaneresourcequotasresponse.md:
-    id: fbe6a4edebf5
-    pristine_git_object: 3263cea5d12788317532f44554b851363a51e71b
   docs/models/components/listcontrolplanesresponse.md:
     id: 34e9ad1dcde5
     pristine_git_object: 432573715dca0295ef12442d5a6aa310c91bce8a
@@ -4355,6 +4300,7 @@ trackedFiles:
     pristine_git_object: 0a0a897c0493266a706cecdd68a626318c17afac
   docs/models/components/listcurrenciesparamsfilter.md: {}
   docs/models/components/listcursormeta.md: {}
+  docs/models/components/listcursormeta2.md: {}
   docs/models/components/listcustomdomainsresponse.md:
     id: a1b91147014b
     pristine_git_object: 1d31fca1cae8cabedf2df069b67ee967ec5f252c
@@ -4422,7 +4368,6 @@ trackedFiles:
   docs/models/components/listeventgatewaynodesresponse.md: {}
   docs/models/components/listeventgatewaysresponse.md: {}
   docs/models/components/listeventgatewaystatickeysresponse.md: {}
-  docs/models/components/listeventgatewayusageresponse.md: {}
   docs/models/components/listeventsparamsfilter.md: {}
   docs/models/components/listeventsparamsfilterdatetimefieldfilter.md: {}
   docs/models/components/listeventsparamsfilterdatetimefieldfilterdatetimefieldequalsfilter.md: {}
@@ -4524,6 +4469,7 @@ trackedFiles:
   docs/models/components/listnodeseolpage.md:
     id: da38266d8e7f
     pristine_git_object: 6cec71dd75df6dcaf19e3da1b002a26b9f2afe91
+  docs/models/components/listnodesitems.md: {}
   docs/models/components/listnodespage.md:
     id: 83a41fa89152
     pristine_git_object: d98498d3815b39df844f95f293a9fee78d4a5e9a
@@ -4533,9 +4479,6 @@ trackedFiles:
   docs/models/components/listpluginschemas.md:
     id: 71397449d01f
     pristine_git_object: 5d9a4461dedcb36ec7f10cae27031e8233f2f86b
-  docs/models/components/listpluginschemasitems.md:
-    id: 715d88a55f5e
-    pristine_git_object: 36f753d0764e572413d2773572a99a10519c8ea1
   docs/models/components/listpluginschemaspage.md:
     id: 0deda48f63f4
     pristine_git_object: da65127ace4b8daeb6ff40be16b3f7fe4b7707f0
@@ -4581,8 +4524,6 @@ trackedFiles:
   docs/models/components/listrolesresponse.md:
     id: f2ace8c07a32
     pristine_git_object: af66a963392352402bb833925553ed0bc236ab3f
-  docs/models/components/listrolesresponseapiconsumer.md: {}
-  docs/models/components/listrolesresponseapiviewer.md: {}
   docs/models/components/listrolesresponsedescription.md:
     id: b902da56fa85
     pristine_git_object: a66a60a3cbb99cfc8f4b05fd35cc47a6d7c823f7
@@ -4592,10 +4533,6 @@ trackedFiles:
   docs/models/components/listrolesresponseroles.md:
     id: d1e623c90d5f
     pristine_git_object: a21177217d28720ce61db0d5a52b4e8af951f6f5
-  docs/models/components/listrolesresponseservices.md: {}
-  docs/models/components/listrolesresponseservicesdescription.md:
-    id: 3440a3e497e6
-    pristine_git_object: ffe9f648fe93661a439fe5a6357256bb2cb245f8
   docs/models/components/listrolesresponseservicesname.md:
     id: b37b6d37c54f
     pristine_git_object: 0636885b7630e105be9341ebc60417065136a551
@@ -4637,7 +4574,9 @@ trackedFiles:
   docs/models/components/llmcostoverridecreate.md: {}
   docs/models/components/llmcostoverridecreatepricing.md: {}
   docs/models/components/llmcostprice.md: {}
+  docs/models/components/llmcostpricemodel.md: {}
   docs/models/components/llmcostpriceprovider.md: {}
+  docs/models/components/llmcostpricesource.md: {}
   docs/models/components/llmfilters.md: {}
   docs/models/components/llmfiltersfield.md: {}
   docs/models/components/llmfiltersoperator.md: {}
@@ -4652,9 +4591,6 @@ trackedFiles:
   docs/models/components/loginredirectmode.md: {}
   docs/models/components/logintokens.md: {}
   docs/models/components/logoutmethods.md: {}
-  docs/models/components/logoutresponse.md:
-    id: 01e6ee913c16
-    pristine_git_object: fd4f36c0ed68cd0b9197964c1f85b53dd6592dfb
   docs/models/components/maintainer.md:
     id: b3db33ce705a
     pristine_git_object: 48b8c15f43c0f3f71b05d04c11bcf0f998fd4104
@@ -4672,9 +4608,6 @@ trackedFiles:
   docs/models/components/managedcacheaddondataplanegroupstate.md:
     id: 8c5af861b553
     pristine_git_object: a57e747caf46a610ad5be7517e138cdc505a9abf
-  docs/models/components/managedcacheaddondataplanegroupstatemetadata.md:
-    id: ccbfbcf1f807
-    pristine_git_object: 7a1d2cdd0a724fa89981aa771b7dd7149999a1aa
   docs/models/components/managedcachecapacityconfig.md:
     id: 4be31f2c4a0a
     pristine_git_object: cff04a61215d9aca89b030b9e8f3836685245884
@@ -4799,6 +4732,7 @@ trackedFiles:
   docs/models/components/meteraggregation.md: {}
   docs/models/components/metering.md: {}
   docs/models/components/meteringevent.md: {}
+  docs/models/components/meteringeventdatacontenttype.md: {}
   docs/models/components/meteringingestedevent.md: {}
   docs/models/components/meteringingestedeventdatacontenttype.md: {}
   docs/models/components/meteringingestedeventmeteringevent.md: {}
@@ -5013,6 +4947,7 @@ trackedFiles:
   docs/models/components/oauthconfig.md:
     id: e41f34a98d73
     pristine_git_object: 41c07705c5a81b24adc19259f3ad870d030bad23
+  docs/models/components/oauthconfig1.md: {}
   docs/models/components/oauthgranttype.md: {}
   docs/models/components/oidcidentityproviderbackchannellogout.md: {}
   docs/models/components/oidcidentityproviderclaimmappings.md:
@@ -5061,15 +4996,6 @@ trackedFiles:
     id: bf1075fe4c1e
     pristine_git_object: 0e1be018c7016003469b174ea2edd921a9d020ea
   docs/models/components/paginatemcpserversresponse.md: {}
-  docs/models/components/parameterizedassignedrole.md:
-    id: 846549d160e9
-    pristine_git_object: c91150ff2c15161edf449377a5434cc6f0505563
-  docs/models/components/parameterizedassignedrolescollection.md:
-    id: 78b794bf51b0
-    pristine_git_object: 574271ae6dedaede979d3e63b678f8f9a4e34720
-  docs/models/components/parameters.md:
-    id: 595559497d10
-    pristine_git_object: 3b152dc4274e168dc7181195770b0003f847dfcf
   docs/models/components/paramlocation.md: {}
   docs/models/components/params.md: {}
   docs/models/components/partial.md:
@@ -5169,9 +5095,6 @@ trackedFiles:
   docs/models/components/patchawstransitgatewayawstransitgateway.md: {}
   docs/models/components/patchazureprivatednsresolver.md: {}
   docs/models/components/patchcapabilitycontrols.md: {}
-  docs/models/components/patchcontrolplaneresourcequota.md:
-    id: e24c5ddee230
-    pristine_git_object: 4d230b8a7f89820fa3d9914544a3d0f721559db1
   docs/models/components/patchcustomportalemailtemplatepayload.md:
     id: 6a676f94511d
     pristine_git_object: 13eadc9612fedb0dfbb957a4e5ae469ae0f4ec6e
@@ -5192,12 +5115,6 @@ trackedFiles:
   docs/models/components/patchprivatednsrequest.md:
     id: 17f91c59b551
     pristine_git_object: b269d5bf05dd4289fae554e2ff562d836d6673e8
-  docs/models/components/patchresourceconfigurationrequest.md:
-    id: 4f12f24084ce
-    pristine_git_object: 12ce0d0e9cb569de77d055e669face5e0c2dcb92
-  docs/models/components/patchresourcequotarequest.md:
-    id: 52939bd1d4e1
-    pristine_git_object: 9e657b864b98bc37b87bfeb47a6bf489c6815f4e
   docs/models/components/patchskillrequest.md: {}
   docs/models/components/patchskillrequestsource.md: {}
   docs/models/components/patchteamgroupmappings.md:
@@ -5296,9 +5213,6 @@ trackedFiles:
   docs/models/components/pluginschemas.md:
     id: 116c28e77c49
     pristine_git_object: d48224d40e189a28c65b2e109066995226a29d61
-  docs/models/components/pluginschemasitem.md:
-    id: d734f9e78f09
-    pristine_git_object: b053b40bc30ae10a2015542e119676a35019e9d4
   docs/models/components/pluginservice.md:
     id: 4b3650d36277
     pristine_git_object: 2eab8963e53a0472c89f18aaffa51859b59105cf
@@ -5347,9 +5261,6 @@ trackedFiles:
   docs/models/components/portalassignedroleresponse.md:
     id: 2fc6a690dbac
     pristine_git_object: 80946bbc4ccf21741ffb3b27738a5c4c7b4ce49f
-  docs/models/components/portalassignedroleresponseentityregion.md:
-    id: f58f1f4401cd
-    pristine_git_object: d26f606261137d4c941e9f1dfc1a8bf0d823c924
   docs/models/components/portalassignrolerequest.md:
     id: 23705c88f966
     pristine_git_object: 000cf994379e239338b2f0b6d5757f808bd9d59e
@@ -5665,9 +5576,6 @@ trackedFiles:
     pristine_git_object: 36f8147303cdb0e4711fe1a9ffca37c4255fe1dd
   docs/models/components/resetcustomerentitlementusagerequest.md: {}
   docs/models/components/resiliency.md: {}
-  docs/models/components/resolvecustomerresponse.md:
-    id: 25ba81d71ac5
-    pristine_git_object: f5753fdfd6b34a7905b669757b113426c9accb7a
   docs/models/components/resolvedcostbasis.md: {}
   docs/models/components/resolvedpricing.md: {}
   docs/models/components/resource.md:
@@ -5726,9 +5634,8 @@ trackedFiles:
     id: 31df2184e8f2
     pristine_git_object: 773e69f9250a815f8c06ad8956c09a005cdd6f0c
   docs/models/components/rolesaddonid.md: {}
+  docs/models/components/rolesaddonsdescription.md: {}
   docs/models/components/rolesaddonsname.md: {}
-  docs/models/components/rolesaddonsroles.md: {}
-  docs/models/components/rolesaddonsrolesaddonviewername.md: {}
   docs/models/components/rolesaddonsrolesname.md: {}
   docs/models/components/rolesadmin.md:
     id: 8bc0aa7a4ec6
@@ -5738,7 +5645,9 @@ trackedFiles:
   docs/models/components/rolesagentsdescription.md: {}
   docs/models/components/rolesagentsname.md: {}
   docs/models/components/rolesagentspositionalids.md: {}
+  docs/models/components/rolesagentsroles.md: {}
   docs/models/components/rolesagentsrolesagentid.md: {}
+  docs/models/components/rolesagentsrolescreatorname.md: {}
   docs/models/components/rolesagentsrolesdescription.md: {}
   docs/models/components/rolesagentsrolesmaintainerdescription.md: {}
   docs/models/components/rolesagentsrolesmaintainername.md: {}
@@ -5776,6 +5685,7 @@ trackedFiles:
   docs/models/components/rolesaimodelsrolesmodelviewerpositionalids.md: {}
   docs/models/components/rolesaimodelsrolesname.md: {}
   docs/models/components/rolesaimodelsrolespositionalids.md: {}
+  docs/models/components/rolesapiconsumer.md: {}
   docs/models/components/rolesapiid.md: {}
   docs/models/components/rolesapiproductsdescription.md:
     id: 340c6d802fc1
@@ -5785,7 +5695,6 @@ trackedFiles:
     pristine_git_object: ca4cc9e10d894289881ecad0bc481c25c7e90084
   docs/models/components/rolesapiproductspositionalids.md: {}
   docs/models/components/rolesapiproductsroles.md: {}
-  docs/models/components/rolesapiproductsrolesadminserviceid.md: {}
   docs/models/components/rolesapiproductsrolesapplicationregistrationname.md:
     id: 65d4f4e36d90
     pristine_git_object: c8f8aeeb85e8ac4b92a447fc68d538282d6d76da
@@ -5803,6 +5712,7 @@ trackedFiles:
     id: 0ce56ac19267
     pristine_git_object: 6aedb288c89b5526e75d32966cd4ccf990e712aa
   docs/models/components/rolesapiproductsrolesdeployerpositionalids.md: {}
+  docs/models/components/rolesapiproductsrolesdeployerserviceid.md: {}
   docs/models/components/rolesapiproductsrolesdescription.md:
     id: d25f96ab4aad
     pristine_git_object: e58bc6fa3928337b43d4b08d31b6f802559c9431
@@ -5872,6 +5782,7 @@ trackedFiles:
   docs/models/components/rolesapisrolesviewername.md: {}
   docs/models/components/rolesapisrolesviewerpositionalids.md: {}
   docs/models/components/rolesapisviewer.md: {}
+  docs/models/components/rolesapiviewer.md: {}
   docs/models/components/rolesapplicationregistration.md:
     id: 7ee24c0183e9
     pristine_git_object: 6b27a3545d1fc3ee50d6d715a8a4ed16543ca566
@@ -6375,6 +6286,7 @@ trackedFiles:
   docs/models/components/rolesservicehubrolesserviceviewerserviceid.md: {}
   docs/models/components/rolesservicehubserviceid.md: {}
   docs/models/components/rolesserviceid.md: {}
+  docs/models/components/rolesservices.md: {}
   docs/models/components/rolesservicesdescription.md: {}
   docs/models/components/rolesservicesname.md: {}
   docs/models/components/rolesservicesroles.md: {}
@@ -6430,9 +6342,6 @@ trackedFiles:
     pristine_git_object: 6fa6feccd37277021604758e2536436e769529c6
   docs/models/components/saslawsiam.md: {}
   docs/models/components/schedule.md: {}
-  docs/models/components/schemaauth0registration.md:
-    id: 8af784bc594a
-    pristine_git_object: 7e3ed8d056f4cb062b202a6029d74ec57e0deef4
   docs/models/components/schemaregistry.md: {}
   docs/models/components/schemaregistryauthenticationbasic.md: {}
   docs/models/components/schemaregistryauthenticationbasicsensitivedataaware.md: {}
@@ -6457,7 +6366,6 @@ trackedFiles:
   docs/models/components/scheme.md: {}
   docs/models/components/scope.md: {}
   docs/models/components/scopelist.md: {}
-  docs/models/components/scopes.md: {}
   docs/models/components/scorecard.md:
     id: f98043f914b4
     pristine_git_object: 396d9419c4e66356d856b32fbef8caa448372df9
@@ -6842,6 +6750,7 @@ trackedFiles:
   docs/models/components/teammappingresponse.md:
     id: 31067da40bf7
     pristine_git_object: e02150250968c39c59bf5c190ef049c2fcc48f2a
+  docs/models/components/teammappingresponsedata.md: {}
   docs/models/components/teammappingresponsepage.md:
     id: 48dc059daf04
     pristine_git_object: 414853c84671797d0ed435a782c92afab363de6f
@@ -6951,7 +6860,6 @@ trackedFiles:
   docs/models/components/uimode.md: {}
   docs/models/components/ulidfieldfilter.md: {}
   docs/models/components/ulidfieldfilter2.md: {}
-  docs/models/components/unauthorizederrorstatus.md: {}
   docs/models/components/unhealthy.md:
     id: 93815dfa4196
     pristine_git_object: 8894ca4803096b250859e48398f78585f8b07be3
@@ -6999,7 +6907,6 @@ trackedFiles:
     pristine_git_object: 19fbe09e719a77411065165c841015bfa1b8c184
   docs/models/components/updateapiregistrationformrequest.md: {}
   docs/models/components/updateapiregistrationformrequeststatus.md: {}
-  docs/models/components/updateapiregistrationformrequesttype.md: {}
   docs/models/components/updateapirequest.md:
     id: 6fd2e312928b
     pristine_git_object: a76680d263b0bc4a85333120257ab6fb3b6ee555
@@ -7056,7 +6963,6 @@ trackedFiles:
   docs/models/components/updatecontrolplanerequestauthtype.md:
     id: 68bf84f46d12
     pristine_git_object: ce2c7c8d2329cedf464debdd4cd010e1eb6990f8
-  docs/models/components/updatecostmanagementtags.md: {}
   docs/models/components/updatecreditgrantexternalsettlementrequest.md: {}
   docs/models/components/updatedcrconfigauth0inrequest.md:
     id: 3c2907ab3083
@@ -7079,7 +6985,6 @@ trackedFiles:
   docs/models/components/updatedcrsettings.md: {}
   docs/models/components/updatedeveloperregistrationformrequest.md: {}
   docs/models/components/updatedeveloperregistrationformrequeststatus.md: {}
-  docs/models/components/updatedeveloperregistrationformrequesttype.md: {}
   docs/models/components/updatedeveloperrequest.md:
     id: 82915380918a
     pristine_git_object: cf2fb1c1a18f8eccac9164dfc63b2ef7192fb56e
@@ -7146,9 +7051,6 @@ trackedFiles:
   docs/models/components/updateoidcidentityproviderbackchannellogout.md: {}
   docs/models/components/updateoidcidentityproviderclaimmappings.md: {}
   docs/models/components/updateoidcidentityproviderconfig.md: {}
-  docs/models/components/updateorganization.md:
-    id: ec7b8bd39589
-    pristine_git_object: 3fa91310c1c70908fbad476e41e4bab759161ba1
   docs/models/components/updateorganizationdefaulttaxcodesrequest.md: {}
   docs/models/components/updateorganizationdefaulttaxcodesrequestcreditgranttaxcode.md: {}
   docs/models/components/updateorganizationdefaulttaxcodesrequestinvoicingtaxcode.md: {}
@@ -7225,6 +7127,7 @@ trackedFiles:
     id: efa076c19349
     pristine_git_object: 9a61d9cbc0149751d5e2bf706ee2eefe338d36ce
   docs/models/components/updatetlstrustbundlerequest.md: {}
+  docs/models/components/updatetokenendpointauthmethod.md: {}
   docs/models/components/updatetrustedidpbody.md: {}
   docs/models/components/updateuser.md:
     id: da376a24390c
@@ -7315,15 +7218,6 @@ trackedFiles:
     id: 2edc9f079d3a
     pristine_git_object: 2e6766f75d827fc7dc7d107f4bf36d5969470bfc
   docs/models/components/userinfoaccept.md: {}
-  docs/models/components/userorgids.md:
-    id: 412de0362d34
-    pristine_git_object: a67c9ebec2f4f9be210be9910409c9abc73bbb5a
-  docs/models/components/userpermissions.md:
-    id: eb8bb36da64d
-    pristine_git_object: 1b899b40e7276489a6053973b018bd406be37a2a
-  docs/models/components/userpermissionsdata.md:
-    id: 104882e23e78
-    pristine_git_object: 9e13be513b014af5fd41347b642e01fef92be313
   docs/models/components/users.md: {}
   docs/models/components/userteammembership.md: {}
   docs/models/components/userteammembershipcollection.md: {}
@@ -7336,12 +7230,10 @@ trackedFiles:
   docs/models/components/validateapispecsuccessresponse.md:
     id: f99fd7467681
     pristine_git_object: 332b3d7af033117e0f4af5af68a4bf60568d07f5
-  docs/models/components/validateconditionrequest.md: {}
+  docs/models/components/validateapispecsuccessresponsevalidationmessages.md: {}
   docs/models/components/validateentityresponse.md:
     id: ae9c3df469de
     pristine_git_object: 5329eb22f1e2e2846bc0d24ce9319ae6eb98fdf4
-  docs/models/components/validateexpressionbodyrequest.md: {}
-  docs/models/components/validateexpressionvaluerequest.md: {}
   docs/models/components/validationmessages.md:
     id: e027f9449da7
     pristine_git_object: c068222d5297dfea8e956d9b96b6debf79841ab4
@@ -7401,7 +7293,6 @@ trackedFiles:
   docs/models/components/virtualclusternamespaceidselector.md: {}
   docs/models/components/virtualclusternamespaceidselectorexactlist.md: {}
   docs/models/components/virtualclusternamespaceidselectorglob.md: {}
-  docs/models/components/virtualclusternamespacemode.md: {}
   docs/models/components/virtualclusternamespacetopicselector.md: {}
   docs/models/components/virtualclusternamespacetopicselectorexactlist.md: {}
   docs/models/components/virtualclusternamespacetopicselectorexactlistconflict.md: {}
@@ -7694,9 +7585,6 @@ trackedFiles:
   docs/models/operations/createcontextinterfacessourcemappingcapabilitycontrolsresponse.md: {}
   docs/models/operations/createcontextsourcerequestbody.md: {}
   docs/models/operations/createcontextsourceresponse.md: {}
-  docs/models/operations/createcontrolplaneresourcequotaresponse.md:
-    id: 2dc742e05f94
-    pristine_git_object: 63a5dbc8b281cb5b60cfab32183161f38f3187de
   docs/models/operations/createcontrolplaneresponse.md:
     id: 5f3e90b69647
     pristine_git_object: b3193a60398cd11685b33278a28489b21d3b091c
@@ -7994,18 +7882,9 @@ trackedFiles:
     id: 22432166955f
     pristine_git_object: f8e58512680773783b0a35ddfda7f6cd0bbb3603
   docs/models/operations/createproductcatalogaddonresponse.md: {}
-  docs/models/operations/createprovideraccountresponse.md:
-    id: 4d130d4f6871
-    pristine_git_object: a2cc538e0c0ea66906982039d7da1d556cfce631
-  docs/models/operations/createresourceconfigurationresponse.md:
-    id: b3d56c7c8501
-    pristine_git_object: 284041774a7fef310131aae9b2bd4b22eaafc893
   docs/models/operations/createresourcemappingresponse.md:
     id: e45ec0167417
     pristine_git_object: 5d61924b60afc850e6550988ec0d52f4258d9a40
-  docs/models/operations/createresourcequotaresponse.md:
-    id: 3509da9d0ee6
-    pristine_git_object: 72cf3f5803691d25aca9c12da1ef468c5b5e5835
   docs/models/operations/createrouterequest.md:
     id: f6d9165fad9f
     pristine_git_object: 8a9e4973745d7ba5185c2ad03d7ab17baaf42b82
@@ -8040,12 +7919,6 @@ trackedFiles:
     id: f3cd18d1bd25
     pristine_git_object: 6127fe18200e6f5a50f64d890a5021d9aacc2d39
   docs/models/operations/createsubscriptionresponse.md: {}
-  docs/models/operations/createsystemaccountsassignedrolesinternalrequest.md:
-    id: 96604e112d81
-    pristine_git_object: 67da147f73b7084d1d9aa2408dde4c669dcddb20
-  docs/models/operations/createsystemaccountsassignedrolesinternalresponse.md:
-    id: 7b9847c8eace
-    pristine_git_object: f0a3f6939b76066ff36e864e0e4872d5502ae095
   docs/models/operations/createtargetwithupstreamrequest.md:
     id: 1590e70e1f8b
     pristine_git_object: b35be91adacaa1e3f2d4ab1bd6bd31a89aea199e
@@ -8323,12 +8196,6 @@ trackedFiles:
   docs/models/operations/deletecontrolplanerequest.md:
     id: 113d9d0a6f44
     pristine_git_object: 1b38211bfffc0fc5123251db473265877d80e710
-  docs/models/operations/deletecontrolplaneresourcequotarequest.md:
-    id: 8850416ff647
-    pristine_git_object: 2e4e4ba759b182d198f0f9c12b37d9a38ec7ffde
-  docs/models/operations/deletecontrolplaneresourcequotaresponse.md:
-    id: 6d0a3ab1f290
-    pristine_git_object: 703352e668746381067836ade6a65693408a5297
   docs/models/operations/deletecontrolplaneresponse.md:
     id: e37c01c71150
     pristine_git_object: 54839593c793380a63a1b6451454f18f5b87d227
@@ -8680,12 +8547,6 @@ trackedFiles:
     pristine_git_object: 19e18652aac555c1baf461c60ed479cd8e62174e
   docs/models/operations/deleteproductcatalogaddonrequest.md: {}
   docs/models/operations/deleteproductcatalogaddonresponse.md: {}
-  docs/models/operations/deleteprovideraccountrequest.md:
-    id: 3cbb2d6c1baa
-    pristine_git_object: 334aaa9934a7df7db813f6b2a8c8d918f0b4793f
-  docs/models/operations/deleteprovideraccountresponse.md:
-    id: 5b726ab5df4f
-    pristine_git_object: 9af5153a9b1c0b912b17cf3c421ad2ab34239953
   docs/models/operations/deletepublicationrequest.md:
     id: 20b9fcaaf209
     pristine_git_object: 4a73ec61266ce7497ca12340ad92546fdf0bbd73
@@ -8792,9 +8653,6 @@ trackedFiles:
   docs/models/operations/deleteuserresponse.md:
     id: 0118267df7f2
     pristine_git_object: 51a0d6282704311c78c5a13e29feb2a483752f27
-  docs/models/operations/deleteusersmeresponse.md:
-    id: 668eab139eee
-    pristine_git_object: eee0214aeeb02e20f63868f6eee49e4b46c2c726
   docs/models/operations/deletevaultcredentialrequest.md: {}
   docs/models/operations/deletevaultcredentialresponse.md: {}
   docs/models/operations/deletevaultkeyrequest.md: {}
@@ -8980,8 +8838,6 @@ trackedFiles:
   docs/models/operations/getaigatewaydataplanecertificateresponse.md: {}
   docs/models/operations/getaigatewaydatastorerequest.md: {}
   docs/models/operations/getaigatewaydatastoreresponse.md: {}
-  docs/models/operations/getaigatewaydebugcpoutputrequest.md: {}
-  docs/models/operations/getaigatewaydebugcpoutputresponse.md: {}
   docs/models/operations/getaigatewayexpectedconfigversionrequest.md: {}
   docs/models/operations/getaigatewayexpectedconfigversionresponse.md: {}
   docs/models/operations/getaigatewayidentityproviderrequest.md: {}
@@ -8992,18 +8848,12 @@ trackedFiles:
   docs/models/operations/getaigatewaymodelproviderresponse.md: {}
   docs/models/operations/getaigatewaymodelrequest.md: {}
   docs/models/operations/getaigatewaymodelresponse.md: {}
-  docs/models/operations/getaigatewaynodeconfrequest.md: {}
-  docs/models/operations/getaigatewaynodeconfresponse.md: {}
   docs/models/operations/getaigatewaynoderequest.md: {}
   docs/models/operations/getaigatewaynoderesponse.md: {}
   docs/models/operations/getaigatewaypolicyrequest.md: {}
   docs/models/operations/getaigatewaypolicyresponse.md: {}
-  docs/models/operations/getaigatewaypolicyschemarequest.md: {}
-  docs/models/operations/getaigatewaypolicyschemaresponse.md: {}
   docs/models/operations/getaigatewayrequest.md: {}
   docs/models/operations/getaigatewayresponse.md: {}
-  docs/models/operations/getaigatewayruntimedefaultrequest.md: {}
-  docs/models/operations/getaigatewayruntimedefaultresponse.md: {}
   docs/models/operations/getaigatewaysniforcertificaterequest.md: {}
   docs/models/operations/getaigatewaysniforcertificateresponse.md: {}
   docs/models/operations/getaigatewaysnirequest.md: {}
@@ -9072,9 +8922,6 @@ trackedFiles:
     pristine_git_object: 934bad94bb0297698d2f0745c23d742022231403
   docs/models/operations/getapprequest.md: {}
   docs/models/operations/getappresponse.md: {}
-  docs/models/operations/getauth0organizationsinternalresponse.md:
-    id: ef681d447f97
-    pristine_git_object: 279233f7d5014bb5708bcc036e63516a3dc21cce
   docs/models/operations/getauthenticationsettingsresponse.md:
     id: 41b66a41bc89
     pristine_git_object: 51dda8f0e0c4c5428fda037febe317eb4c8b989d
@@ -9176,12 +9023,6 @@ trackedFiles:
   docs/models/operations/getcontrolplanerequest.md:
     id: fd77b4f71ce4
     pristine_git_object: e2bec5f3b52f6f26a00122e0628a71926c1208e1
-  docs/models/operations/getcontrolplaneresourcequotarequest.md:
-    id: ed756c87ebc6
-    pristine_git_object: 674e98794dde7af6c4febf65509fd77944f20487
-  docs/models/operations/getcontrolplaneresourcequotaresponse.md:
-    id: f27190714c6f
-    pristine_git_object: cd9cbdabe45731359c154568c296e30277eb4757
   docs/models/operations/getcontrolplaneresponse.md:
     id: dbe1bf31fe80
     pristine_git_object: 72918de6f69eb1783be3a863f87f935853b882c8
@@ -9214,7 +9055,6 @@ trackedFiles:
   docs/models/operations/getcostexportresponse.md: {}
   docs/models/operations/getcostexportschedulerequest.md: {}
   docs/models/operations/getcostexportscheduleresponse.md: {}
-  docs/models/operations/getcostmanagementtagsresponse.md: {}
   docs/models/operations/getcostnotificationchannelrequest.md: {}
   docs/models/operations/getcostnotificationchannelresponse.md: {}
   docs/models/operations/getcostnotificationeventrequest.md: {}
@@ -9410,6 +9250,7 @@ trackedFiles:
   docs/models/operations/getidentityproviderresponse.md:
     id: c76854e31dab
     pristine_git_object: 30b9981814942bc193ec1f8deb6ff98c399c341f
+  docs/models/operations/getidentityprovidersqueryparamfilter.md: {}
   docs/models/operations/getidentityprovidersrequest.md:
     id: 9e08552b1543
     pristine_git_object: 234d329310240e3895e91c48d91d540e5e6bd0d3
@@ -9538,8 +9379,6 @@ trackedFiles:
   docs/models/operations/getnodeseolresponse.md:
     id: 3383092a3fd7
     pristine_git_object: 8b075f9f14adcee1ba81d88bba8c62fa277ca2bc
-  docs/models/operations/getnodesnodeidconfrequest.md: {}
-  docs/models/operations/getnodesnodeidconfresponse.md: {}
   docs/models/operations/getnodesnodeidrequest.md:
     id: 2f52935b5f4b
     pristine_git_object: f6ce4b9d5b5322103d44734c3f51071c7b50c4d9
@@ -9823,15 +9662,6 @@ trackedFiles:
   docs/models/operations/getsystemaccountsaccountidteamsresponse.md:
     id: 92d4a8d91360
     pristine_git_object: 30a1268032a7f669f88ed980cd5d2e1796b260d1
-  docs/models/operations/getsystemaccountsassignedrolesinternalqueryparamfilter.md:
-    id: ee361dcbfa25
-    pristine_git_object: d71036070f415cc2966c8f21630fb9f1a41e8854
-  docs/models/operations/getsystemaccountsassignedrolesinternalrequest.md:
-    id: 31e57f86c012
-    pristine_git_object: f8e6b3f91a165977c93bdf8cf6797be89a75e518
-  docs/models/operations/getsystemaccountsassignedrolesinternalresponse.md:
-    id: f2037b8c816d
-    pristine_git_object: 0381937995f0f39fcb34fbe803ee292d7d2aaa99
   docs/models/operations/getsystemaccountsidaccesstokensidrequest.md:
     id: 86e66e8fac8f
     pristine_git_object: 4e4a00c8e0a195d454ebb59b7b6151740ebe0009
@@ -9906,21 +9736,6 @@ trackedFiles:
     pristine_git_object: 4a5d09c144a49944b1466ad63c18a320bdcf4a36
   docs/models/operations/getuserrolerequest.md: {}
   docs/models/operations/getuserroleresponse.md: {}
-  docs/models/operations/getusersinternalrequest.md:
-    id: 2523d4ed7d3b
-    pristine_git_object: fc15485e0baaf919c8d1e568ae62e5c04e2bbf4e
-  docs/models/operations/getusersinternalresponse.md:
-    id: fe0fa044e2e9
-    pristine_git_object: 3073ee9811bdc48507ddddaebc9b8248eca9bcee
-  docs/models/operations/getusersmepermissionsqueryparamfilter.md:
-    id: ff8156cb3cf4
-    pristine_git_object: a23783e771ab6a7e16bfcadbd647d2c11a98164e
-  docs/models/operations/getusersmepermissionsrequest.md:
-    id: b48df791f25e
-    pristine_git_object: b99d364d0c82470c1187cd7e7f720f76903e96fc
-  docs/models/operations/getusersmepermissionsresponse.md:
-    id: 4b08499f700a
-    pristine_git_object: fe1847fba2f2946b1463f7b12546059007cc1076
   docs/models/operations/getusersmeresponse.md:
     id: bcef4d69c6c3
     pristine_git_object: c6608a3f5efe2f24512fe6243e75414b043c5358
@@ -9979,8 +9794,6 @@ trackedFiles:
   docs/models/operations/listaigatewayauthstrategiesresponse.md: {}
   docs/models/operations/listaigatewayauthstrategyusagerequest.md: {}
   docs/models/operations/listaigatewayauthstrategyusageresponse.md: {}
-  docs/models/operations/listaigatewayavailablepoliciesrequest.md: {}
-  docs/models/operations/listaigatewayavailablepoliciesresponse.md: {}
   docs/models/operations/listaigatewaycacertificatesrequest.md: {}
   docs/models/operations/listaigatewaycacertificatesresponse.md: {}
   docs/models/operations/listaigatewaycertificatesrequest.md: {}
@@ -10019,9 +9832,6 @@ trackedFiles:
   docs/models/operations/listaigatewaynodesresponse.md: {}
   docs/models/operations/listaigatewaypoliciesrequest.md: {}
   docs/models/operations/listaigatewaypoliciesresponse.md: {}
-  docs/models/operations/listaigatewaypolicyusagerequest.md: {}
-  docs/models/operations/listaigatewaypolicyusageresponse.md: {}
-  docs/models/operations/listaigatewayruntimeversionsresponse.md: {}
   docs/models/operations/listaigatewaysnisforcertificaterequest.md: {}
   docs/models/operations/listaigatewaysnisforcertificateresponse.md: {}
   docs/models/operations/listaigatewaysnisrequest.md: {}
@@ -10123,7 +9933,6 @@ trackedFiles:
     pristine_git_object: d75848b0f6884fecc908be1aed8476124fc0d732
   docs/models/operations/listappsrequest.md: {}
   docs/models/operations/listappsresponse.md: {}
-  docs/models/operations/listauthserverclaimsqueryparamfilter.md: {}
   docs/models/operations/listauthserverclaimsrequest.md: {}
   docs/models/operations/listauthserverclaimsresponse.md: {}
   docs/models/operations/listauthserverclientsqueryparamfilter.md: {}
@@ -10135,7 +9944,6 @@ trackedFiles:
   docs/models/operations/listauthserverscopesqueryparamfilter.md: {}
   docs/models/operations/listauthserverscopesrequest.md: {}
   docs/models/operations/listauthserverscopesresponse.md: {}
-  docs/models/operations/listauthserversqueryparamfilter.md: {}
   docs/models/operations/listauthserversrequest.md: {}
   docs/models/operations/listauthserversresponse.md: {}
   docs/models/operations/listbasicauthrequest.md:
@@ -10286,14 +10094,8 @@ trackedFiles:
   docs/models/operations/listcontextinterfacesresponse.md: {}
   docs/models/operations/listcontextsourcesrequest.md: {}
   docs/models/operations/listcontextsourcesresponse.md: {}
-  docs/models/operations/listcontrolplanedefaultresourcequotasresponse.md:
-    id: 019fc6ed0400
-    pristine_git_object: 100b4ff017832045cb4e54b2773ae8f74a335a53
   docs/models/operations/listcontrolplanemappingsrequest.md: {}
   docs/models/operations/listcontrolplanemappingsresponse.md: {}
-  docs/models/operations/listcontrolplaneresourcequotaresponse.md:
-    id: 507b27192818
-    pristine_git_object: 49d1c33e16dec432560a6307781f592d5ac850e5
   docs/models/operations/listcontrolplanesrequest.md:
     id: 0474c577381a
     pristine_git_object: c73435047f8b5529a766adaad51ac4c97047a5d8
@@ -10306,7 +10108,6 @@ trackedFiles:
   docs/models/operations/listcostbasesrequest.md: {}
   docs/models/operations/listcostbasesresponse.md: {}
   docs/models/operations/listcostbudgetbalancesdata.md: {}
-  docs/models/operations/listcostbudgetbalancesmeta.md: {}
   docs/models/operations/listcostbudgetbalancespage.md: {}
   docs/models/operations/listcostbudgetbalancesrequest.md: {}
   docs/models/operations/listcostbudgetbalancesresponse.md: {}
@@ -10475,10 +10276,8 @@ trackedFiles:
   docs/models/operations/listeventgatewaysresponse.md: {}
   docs/models/operations/listeventgatewaystatickeysrequest.md: {}
   docs/models/operations/listeventgatewaystatickeysresponse.md: {}
-  docs/models/operations/listeventgatewaysusageresponse.md: {}
   docs/models/operations/listeventgatewaytlstrustbundlesrequest.md: {}
   docs/models/operations/listeventgatewaytlstrustbundlesresponse.md: {}
-  docs/models/operations/listeventgatewayversionsresponse.md: {}
   docs/models/operations/listeventgatewayvirtualclusterclusterlevelpoliciesrequest.md: {}
   docs/models/operations/listeventgatewayvirtualclusterclusterlevelpoliciesresponse.md: {}
   docs/models/operations/listeventgatewayvirtualclusterconsumepoliciesrequest.md: {}
@@ -10534,6 +10333,7 @@ trackedFiles:
   docs/models/operations/listidentitiesqueryparamtype.md: {}
   docs/models/operations/listidentitiesrequest.md: {}
   docs/models/operations/listidentitiesresponse.md: {}
+  docs/models/operations/listidpteamgroupmappingsqueryparamfilter.md: {}
   docs/models/operations/listidpteamgroupmappingsrequest.md: {}
   docs/models/operations/listidpteamgroupmappingsresponse.md: {}
   docs/models/operations/listintegrationinstancesrequest.md:
@@ -11103,9 +10903,6 @@ trackedFiles:
     pristine_git_object: f39c3904a3b265785ee70af558ee1ce5cb360fd3
   docs/models/operations/listworkspacesrequest.md: {}
   docs/models/operations/listworkspacesresponse.md: {}
-  docs/models/operations/logoutresponse.md:
-    id: 43252b6fb9a7
-    pristine_git_object: ebadc34c61fd28eb65eb8fb760c00e76d308c26f
   docs/models/operations/measures.md: {}
   docs/models/operations/message.md: {}
   docs/models/operations/meta.md: {}
@@ -11175,9 +10972,6 @@ trackedFiles:
   docs/models/operations/patcheventgatewayvirtualclusterproducepolicyresponse.md: {}
   docs/models/operations/patchmeshcontrolplanerequest.md: {}
   docs/models/operations/patchmeshcontrolplaneresponse.md: {}
-  docs/models/operations/patchoauthdeviceconfirmresponse.md:
-    id: 29d785c76d1b
-    pristine_git_object: 964e24c69e11a7a1257eb2d46522ab7e54a7e9e5
   docs/models/operations/patchportalconnectedappsrequest.md: {}
   docs/models/operations/patchportalconnectedappsresponse.md: {}
   docs/models/operations/patchsystemaccountsidaccesstokensidrequest.md:
@@ -11197,13 +10991,7 @@ trackedFiles:
     pristine_git_object: 3e971cce701af18da1f0c43f8ab5970d9af90eaf
   docs/models/operations/patchtrustedidprequest.md: {}
   docs/models/operations/patchtrustedidpresponse.md: {}
-  docs/models/operations/patchusersmeresponse.md:
-    id: 0b762c0b5aa1
-    pristine_git_object: f9b0c1df8095f2061dc9fb328c4a1faa876229ca
   docs/models/operations/period.md: {}
-  docs/models/operations/postauth0registerinternalresponse.md:
-    id: 7a070c1b8c0c
-    pristine_git_object: 8fd9695251a55b43ae2e6d2302894bc8c5bbe702
   docs/models/operations/postcontrolplanesidgroupmembershipsaddrequest.md:
     id: 2c2c52e51ed4
     pristine_git_object: ddd29bd80ce05e7baa0d67901f31c5d2cc7c818e
@@ -11218,21 +11006,6 @@ trackedFiles:
     pristine_git_object: 76a388520ba915d57f9e3a4f5c1a78cc42d84b52
   docs/models/operations/postmcpserverstatusrequest.md: {}
   docs/models/operations/postmcpserverstatusresponse.md: {}
-  docs/models/operations/postoauthdeviceauthorizerequestbody.md:
-    id: 4d300618b819
-    pristine_git_object: 71b801a616d322956e4fa2c2fa60d68357ebe410
-  docs/models/operations/postoauthdeviceauthorizeresponse.md:
-    id: 57be79408b30
-    pristine_git_object: ed4aaedae2386b9708df852f89fa0f49d8e758cb
-  docs/models/operations/postoauthdeviceauthorizeuserresponse.md:
-    id: a2cdabb936db
-    pristine_git_object: 89fc3473ba7f1a2772f55b59da8fedb296fdbd05
-  docs/models/operations/postoauthdevicetokenrequestbody.md:
-    id: 24f0409a5234
-    pristine_git_object: 19a09857a36031455cffa206e7456fa3e4f3c230
-  docs/models/operations/postoauthdevicetokenresponse.md:
-    id: 32b4adc9a002
-    pristine_git_object: 071c83b74e9bd1abde8437dbe255d488142db748
   docs/models/operations/postportalcustomemailtestsendrequest.md:
     id: 4486d623ff54
     pristine_git_object: 86600d914841c19dd66e1ed221cf15ce61dac6b5
@@ -11289,6 +11062,7 @@ trackedFiles:
   docs/models/operations/quantities.md: {}
   docs/models/operations/querycostusageeventsdata.md: {}
   docs/models/operations/querycostusageeventsmeasures.md: {}
+  docs/models/operations/querycostusageeventsmeta.md: {}
   docs/models/operations/querycostusageeventspage.md: {}
   docs/models/operations/querycostusageeventsrequestbody.md: {}
   docs/models/operations/querycostusageeventsresponse.md: {}
@@ -11307,9 +11081,6 @@ trackedFiles:
     id: 7177b5f612f0
     pristine_git_object: 6e4c131ef882504e5dfc731054e75cfd03419200
   docs/models/operations/queryparamtype.md: {}
-  docs/models/operations/refreshtokenresponse.md:
-    id: 04fab0f7d52e
-    pristine_git_object: 495b525ba7ef0d6ca85d935c6521e6165fd5263e
   docs/models/operations/removeaigatewayconsumerfromconsumergrouprequest.md: {}
   docs/models/operations/removeaigatewayconsumerfromconsumergroupresponse.md: {}
   docs/models/operations/removeallconsumersfromconsumergrouprequest.md:
@@ -11412,9 +11183,6 @@ trackedFiles:
   docs/models/operations/resenddestinationdeliveryresponse.md: {}
   docs/models/operations/resetcustomerentitlementusagerequest.md: {}
   docs/models/operations/resetcustomerentitlementusageresponse.md: {}
-  docs/models/operations/resolvecustomerresponse.md:
-    id: 6c1a1d304f52
-    pristine_git_object: 1de988efbaed62e793b0d4847867b9153ce43e10
   docs/models/operations/restoresubscriptionrequest.md: {}
   docs/models/operations/restoresubscriptionresponse.md: {}
   docs/models/operations/retryinvoicerequest.md: {}
@@ -11501,8 +11269,6 @@ trackedFiles:
   docs/models/operations/updateaigatewaypolicyresponse.md: {}
   docs/models/operations/updateaigatewayrequest.md: {}
   docs/models/operations/updateaigatewayresponse.md: {}
-  docs/models/operations/updateaigatewayruntimedefaultrequest.md: {}
-  docs/models/operations/updateaigatewayruntimedefaultresponse.md: {}
   docs/models/operations/updateaigatewaysniforcertificaterequest.md: {}
   docs/models/operations/updateaigatewaysniforcertificateresponse.md: {}
   docs/models/operations/updateaigatewaysnirequest.md: {}
@@ -11616,18 +11382,11 @@ trackedFiles:
   docs/models/operations/updatecontrolplanerequest.md:
     id: 39f2fa1ff4c2
     pristine_git_object: ba0ccf625ec3759b693b611bd2f2dbea73ac061b
-  docs/models/operations/updatecontrolplaneresourcequotarequest.md:
-    id: a1dcedce452e
-    pristine_git_object: c32d03de6278ee2a6f4689987838df3f610fec71
-  docs/models/operations/updatecontrolplaneresourcequotaresponse.md:
-    id: 2c0cc1d6fb6c
-    pristine_git_object: 858ea7a39949e0a4240d2509c60a68d77e2689ed
   docs/models/operations/updatecontrolplaneresponse.md:
     id: db28d2d5ac26
     pristine_git_object: d1b0b05681229dc44f2069239570516de5f6dacc
   docs/models/operations/updatecostattributionpluginrequest.md: {}
   docs/models/operations/updatecostattributionpluginresponse.md: {}
-  docs/models/operations/updatecostmanagementtagsresponse.md: {}
   docs/models/operations/updatecprequest.md: {}
   docs/models/operations/updatecpresponse.md: {}
   docs/models/operations/updatecreditgrantexternalsettlementrequest.md: {}
@@ -11748,9 +11507,6 @@ trackedFiles:
     id: 74a6a5eb7a73
     pristine_git_object: 1f73d4be97914a57d23ba5206b5cbdd888e43818
   docs/models/operations/updateorganizationdefaulttaxcodesresponse.md: {}
-  docs/models/operations/updateorganizationsmeresponse.md:
-    id: 472a83170c52
-    pristine_git_object: 3837ebb8326e39af6cedbbb092cd783a3bc36511
   docs/models/operations/updateorgsubscriptionrequest.md: {}
   docs/models/operations/updateorgsubscriptionresponse.md: {}
   docs/models/operations/updatepasswordrequest.md: {}
@@ -11867,18 +11623,6 @@ trackedFiles:
     pristine_git_object: c81fc2ded7c316aff319af53c789b11f628ee5dd
   docs/models/operations/updateproductcatalogaddonrequest.md: {}
   docs/models/operations/updateproductcatalogaddonresponse.md: {}
-  docs/models/operations/updateresourceconfigurationrequest.md:
-    id: efabc63036ba
-    pristine_git_object: 6e3b4f32a4ece47b7d394bc851900ac6b0b3bbc7
-  docs/models/operations/updateresourceconfigurationresponse.md:
-    id: 4134459e9445
-    pristine_git_object: 0bbfa977042d8477789eec2d7735bb2034618594
-  docs/models/operations/updateresourcequotarequest.md:
-    id: 8397911f9ea8
-    pristine_git_object: 638f84b38ab7950c279a9985654aa62ea0efddee
-  docs/models/operations/updateresourcequotaresponse.md:
-    id: e7dc7a9fba4c
-    pristine_git_object: 7f29a3de8ceaa0b885e93f5faa91006e9d715de9
   docs/models/operations/updateresourcerequest.md:
     id: e5c8d13e426c
     pristine_git_object: a3d347595ea2abe307792bb7f81574eeb385161c
@@ -12148,16 +11892,12 @@ trackedFiles:
   docs/models/operations/usersremoveroleresponse.md:
     id: 4040264434f4
     pristine_git_object: a7f720b03e922371150d932eae019410de3bfcd3
-  docs/models/operations/validateaigatewayexpressionrequest.md: {}
-  docs/models/operations/validateaigatewayexpressionresponse.md: {}
   docs/models/operations/validateentityschemarequest.md:
     id: eef7f8783056
     pristine_git_object: 7eab83ed25d0d604716eb87503cc31dfbbb779aa
   docs/models/operations/validateentityschemaresponse.md:
     id: 6ccf21f573e2
     pristine_git_object: 2a6e9c3030ec3989f2d88df19098fa472d09d66c
-  docs/models/operations/validateexpressionrequest.md: {}
-  docs/models/operations/validateexpressionresponse.md: {}
   docs/models/operations/validatespecificationresponse.md:
     id: a87bce55ed22
     pristine_git_object: e0ef6756b2629a3b7ee834eb0dcfaeca7e0e9e40
@@ -12180,18 +11920,6 @@ trackedFiles:
   docs/models/sdkerrors/conflicterror.md:
     id: 0fc6504dab18
     pristine_git_object: 1c3eaadd24748f8ee6724eec07e6695eb9d2352d
-  docs/models/sdkerrors/deviceauthorizationgrantauthorizebadrequest.md:
-    id: ea88ee16bd51
-    pristine_git_object: 51e5014091b3506e3c789cc4c4624721673a6548
-  docs/models/sdkerrors/deviceauthorizationgrantauthorizeerror.md:
-    id: c9c04ea7428c
-    pristine_git_object: 09de8a7f28fb529e4953e11727ab71dfaf5e94f4
-  docs/models/sdkerrors/deviceauthorizationgranttokenbadrequest.md:
-    id: 27947ae45725
-    pristine_git_object: 6eaff44b294d3c9163fb7c786e70cbe8f3f4b1ea
-  docs/models/sdkerrors/deviceauthorizationgranttokenerror.md:
-    id: 8ba001efddfc
-    pristine_git_object: cf0bae79bf466e871f97c96e9aab5d3ed88c7c77
   docs/models/sdkerrors/forbiddenerror.md:
     id: 7b3ef98cf0c0
     pristine_git_object: de4fab1437818b3f034c852486cc926c64c98ea4
@@ -12251,11 +11979,9 @@ trackedFiles:
   docs/sdks/aigatewayconfigstores/README.md: {}
   docs/sdks/aigatewayconsumergroups/README.md: {}
   docs/sdks/aigatewayconsumers/README.md: {}
-  docs/sdks/aigatewaycostmanagementtags/README.md: {}
   docs/sdks/aigatewaycustompolicies/README.md: {}
   docs/sdks/aigatewaydataplanecertificates/README.md: {}
   docs/sdks/aigatewaydatastores/README.md: {}
-  docs/sdks/aigatewaydebug/README.md: {}
   docs/sdks/aigatewayidentityproviders/README.md: {}
   docs/sdks/aigatewaymcpservers/README.md: {}
   docs/sdks/aigatewaymodelproviders/README.md: {}
@@ -12330,9 +12056,6 @@ trackedFiles:
   docs/sdks/authsettings/README.md:
     id: 20fde768547e
     pristine_git_object: 2fb1116a7baeefc6927aca23739a833ae2ac6593
-  docs/sdks/aws/README.md:
-    id: 3b6ba526cf74
-    pristine_git_object: 37f5b58674a0153e1ba383ab58bb8ddaaad46799
   docs/sdks/basicauthcredentials/README.md:
     id: 0c14cb4a2fe8
     pristine_git_object: 596eb0174643443bf7d002643b209c69413ae5b9
@@ -12396,9 +12119,6 @@ trackedFiles:
     id: f4ae443b8b63
     pristine_git_object: e193149ffba1db1abb8f0890732a94a40c32e690
   docs/sdks/controlplanemappings/README.md: {}
-  docs/sdks/controlplaneresourcequotas/README.md:
-    id: 04444f167129
-    pristine_git_object: 3f21b80bf7e992f14dade111822e2fd0f8b4de75
   docs/sdks/controlplanes/README.md:
     id: f14446d79a47
     pristine_git_object: 5922ece34a94bb7ce6dbcccad45c97ed63596631
@@ -12419,9 +12139,6 @@ trackedFiles:
     id: c0bc25e84456
     pristine_git_object: 1fbc696370fd1b3a809a89792efc282fde9857e7
   docs/sdks/destinations/README.md: {}
-  docs/sdks/deviceauthorizationgrant/README.md:
-    id: 4eeb21a5773e
-    pristine_git_object: 79b5f4937df85696272b69833c610a8534057f64
   docs/sdks/dpcertificates/README.md:
     id: 11955622e1bb
     pristine_git_object: 45b0980b27049d5758740fafc3c653a96382df09
@@ -12474,9 +12191,6 @@ trackedFiles:
   docs/sdks/kongprincipal/README.md: {}
   docs/sdks/kongprincipalcredential/README.md: {}
   docs/sdks/kongprincipalidentity/README.md: {}
-  docs/sdks/managedsystemaccountsroles/README.md:
-    id: 42b418e04bfd
-    pristine_git_object: 8cb1b76edaa5423c86512e49f89afe2dde1c0a1c
   docs/sdks/mcpserverruntime/README.md: {}
   docs/sdks/mcpservers/README.md: {}
   docs/sdks/me/README.md:
@@ -12579,9 +12293,6 @@ trackedFiles:
   docs/sdks/snis/README.md:
     id: cdea77b38bf9
     pristine_git_object: de790fa9ea11b00d89e0c71db0f44c6f5d3958b8
-  docs/sdks/ssoauth0/README.md:
-    id: 49a4890986f2
-    pristine_git_object: 2243b8e06943b0f7b3bf92ba23987cd720f1c0e1
   docs/sdks/systemaccounts/README.md:
     id: b4909efcb1fe
     pristine_git_object: 39f55d529328d83910021fc66a508ed67c3ffdf8
@@ -12720,9 +12431,6 @@ trackedFiles:
   kongprincipal.go: {}
   kongprincipalcredential.go: {}
   kongprincipalidentity.go: {}
-  managedsystemaccountsroles.go:
-    id: bb2b8075e954
-    pristine_git_object: 87d82e3fbc8ec3036a927dc89df15c87a347c704
   mcpserverruntime.go: {}
   mcpservers.go: {}
   me.go:
@@ -12822,7 +12530,6 @@ trackedFiles:
   models/components/aicostexportinput.go: {}
   models/components/aicostexportschedule.go: {}
   models/components/aicostexportscheduleinput.go: {}
-  models/components/aicostexportschemaversion.go: {}
   models/components/aicostfocusoptions.go: {}
   models/components/aicostfocusoptionsinput.go: {}
   models/components/aicostgrouplistfilter.go: {}
@@ -12876,7 +12583,6 @@ trackedFiles:
   models/components/aigatewayauthstrategykeyauthresponse.go: {}
   models/components/aigatewayauthstrategyopenidconnect.go: {}
   models/components/aigatewayauthstrategyopenidconnectresponse.go: {}
-  models/components/aigatewayavailablepolicy.go: {}
   models/components/aigatewayazureembeddingsmodelconfig.go: {}
   models/components/aigatewaybedrockembeddingsmodelconfig.go: {}
   models/components/aigatewaycacertificate.go: {}
@@ -12909,6 +12615,7 @@ trackedFiles:
   models/components/aigatewaydenywhenacl.go: {}
   models/components/aigatewayembeddingsmodelconfig.go: {}
   models/components/aigatewayexpectedconfigversion.go: {}
+  models/components/aigatewayfailovercriteria.go: {}
   models/components/aigatewaygeminiembeddingsmodelconfig.go: {}
   models/components/aigatewayhuggingfaceembeddingsmodelconfig.go: {}
   models/components/aigatewayidentityprovider.go: {}
@@ -12943,6 +12650,8 @@ trackedFiles:
   models/components/aigatewaymcpserverratelimiting.go: {}
   models/components/aigatewaymcpserverroutewithmatcher.go: {}
   models/components/aigatewaymcpserverserverconfigbaseoutput.go: {}
+  models/components/aigatewaymcpserverupstreamconfig.go: {}
+  models/components/aigatewaymcpserverupstreamconfigoutput.go: {}
   models/components/aigatewaymcpserverupstreamserver.go: {}
   models/components/aigatewaymcpserverupstreamserverconfigoutput.go: {}
   models/components/aigatewaymcpserverupstreamserverresponse.go: {}
@@ -12967,16 +12676,12 @@ trackedFiles:
   models/components/aigatewaymodelbalancerconfig.go: {}
   models/components/aigatewaymodelbalancerconfigoutput.go: {}
   models/components/aigatewaymodelbalancerconsistenthashingconfig.go: {}
-  models/components/aigatewaymodelbalancerintelligentclassifier.go: {}
-  models/components/aigatewaymodelbalancerintelligentconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerleastconnectionsconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerlowestlatencyconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerlowestusageconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerpriorityconfigoutput.go: {}
-  models/components/aigatewaymodelbalancerroundrobinconfigoutput.go: {}
+  models/components/aigatewaymodelbalancerleastconnectionsconfig.go: {}
+  models/components/aigatewaymodelbalancerlowestlatencyconfig.go: {}
+  models/components/aigatewaymodelbalancerlowestusageconfig.go: {}
+  models/components/aigatewaymodelbalancerpriorityconfig.go: {}
+  models/components/aigatewaymodelbalancerroundrobinconfig.go: {}
   models/components/aigatewaymodelbalancersemanticconfigoutput.go: {}
-  models/components/aigatewaymodelbalancersessionaffinity.go: {}
-  models/components/aigatewaymodelbalancersessionaffinityoutput.go: {}
   models/components/aigatewaymodeldatastoreref.go: {}
   models/components/aigatewaymodelformat.go: {}
   models/components/aigatewaymodelmodel.go: {}
@@ -13023,7 +12728,6 @@ trackedFiles:
   models/components/aigatewayollamaembeddingsmodelconfig.go: {}
   models/components/aigatewayopenaiembeddingsmodelconfig.go: {}
   models/components/aigatewaypolicy.go: {}
-  models/components/aigatewaypolicyschema.go: {}
   models/components/aigatewayproxyconfigoutput.go: {}
   models/components/aigatewayproxyurl.go: {}
   models/components/aigatewayredisawsauthentication.go: {}
@@ -13034,13 +12738,7 @@ trackedFiles:
   models/components/aigatewayredisgcpauthentication.go: {}
   models/components/aigatewayredisgcpauthenticationoutput.go: {}
   models/components/aigatewayrouteconfig.go: {}
-  models/components/aigatewayruntimedefault.go: {}
-  models/components/aigatewayruntimedefaultdeploymenttype.go: {}
   models/components/aigatewayservicetierfactor.go: {}
-  models/components/aigatewaysessionaffinitystorage.go: {}
-  models/components/aigatewaysessionaffinitystoragelocal.go: {}
-  models/components/aigatewaysessionaffinitystorageoutput.go: {}
-  models/components/aigatewaysessionaffinitystorageredisoutput.go: {}
   models/components/aigatewaysni.go: {}
   models/components/aigatewaytarget.go: {}
   models/components/aigatewaytargetanthropicconfig.go: {}
@@ -13083,9 +12781,6 @@ trackedFiles:
   models/components/aigatewayupstreamconfig.go: {}
   models/components/aigatewayupstreamconfigoutput.go: {}
   models/components/aigatewayupstreamtarget.go: {}
-  models/components/aigatewayvalidateconditionrequest.go: {}
-  models/components/aigatewayvalidateexpressionrequest.go: {}
-  models/components/aigatewayvalidateexpressionvaluerequest.go: {}
   models/components/aigatewayvault.go: {}
   models/components/aimodel.go: {}
   models/components/aimodelcreate.go: {}
@@ -13285,24 +12980,12 @@ trackedFiles:
   models/components/assignedrolecollection.go:
     id: 9d0ea233f721
     pristine_git_object: 7b97d450884ed25a52bb50b6d3ad3fc8b5c58cf6
-  models/components/assignparameterizedrole.go:
-    id: 438df7e0e3d2
-    pristine_git_object: af61296efaf3b687a8078cfafd029d7209641aa8
   models/components/assignrole.go:
     id: bbdf97f90d98
     pristine_git_object: b615e07ae538e184f001021c2a308ba5796f1af7
   models/components/attributesfieldfilter.go:
     id: 6868aaef69b9
     pristine_git_object: b9eb618816200dc1f3e28efe6c96c5d006f1a60f
-  models/components/auth0organization.go:
-    id: ead88374584c
-    pristine_git_object: a81ef1b34ba14a5c9a0341212540c2935faccc59
-  models/components/auth0organizationscollection.go:
-    id: 61f241fd42f7
-    pristine_git_object: 366a5b127de32429b0eb5d3edabde39045ac9a42
-  models/components/auth0registration.go:
-    id: 120edb702ace
-    pristine_git_object: 969b837686fa341e1654acf5c11af0b14ec88b2b
   models/components/authenticationsettings.go:
     id: f9b09653e90f
     pristine_git_object: fdeae73669c644820a95d9cb1d58b6ffa8bb2b37
@@ -13333,9 +13016,6 @@ trackedFiles:
   models/components/awsprivatehostedzoneresponse.go:
     id: d11b913ceb31
     pristine_git_object: 855e4cc24d830736a0b8b0458254295a9cfdc0e7
-  models/components/awsresolvecustomerrequest.go:
-    id: 9487a2bdeeef
-    pristine_git_object: 938d0054c65c47c807229996554c8952fff539a0
   models/components/awsresourceendpointattachmentconfig.go:
     id: 7d62460820f4
     pristine_git_object: ceb01d83135fbe80cb72e8d3ba4b6ee97e371c59
@@ -13732,9 +13412,6 @@ trackedFiles:
     id: 221b9f9b4e1a
     pristine_git_object: 89fd2a9848e60915f72d5dada5fec252569068cd
   models/components/controlplaneaddonownertype.go: {}
-  models/components/controlplanedefaultresourcequota.go:
-    id: c8ddbe197f3e
-    pristine_git_object: 7da5de25e46adbcd3ccdc7169b2197ece30a1e0b
   models/components/controlplanefilterparameters.go:
     id: 3645b2f99543
     pristine_git_object: c5340c1eb764b59eae8c14508bdd28f85a9167b8
@@ -13757,17 +13434,8 @@ trackedFiles:
   models/components/controlplanereference.go:
     id: a5f9fb872f62
     pristine_git_object: d163cb692426465ab60d5fb58fe06855e1072a5d
-  models/components/controlplaneresourcequota.go:
-    id: 60006921d771
-    pristine_git_object: a1564229c69031ee3f3a735a40423bf3fb77ba75
-  models/components/controlplaneresourcequotainput.go:
-    id: eb6dbcc54668
-    pristine_git_object: f49bde261c65eea5198578794c239c7498196af1
   models/components/controlplanesortquery.go: {}
   models/components/costbasispagepaginatedresponse.go: {}
-  models/components/costmanagementtags.go: {}
-  models/components/costtagheader.go: {}
-  models/components/costtagprefix.go: {}
   models/components/createaddonconfig.go:
     id: c746410d4eb0
     pristine_git_object: b083fcaac6afc018997450a9807a68d7ca0108a6
@@ -13937,6 +13605,7 @@ trackedFiles:
     pristine_git_object: 7cd23f7be05446a7b947f9cdb08c68b38f319d9d
   models/components/creategroupbody.go: {}
   models/components/creategroupmembershipentrybody.go: {}
+  models/components/creategrouptype.go: {}
   models/components/createidentityprovider.go:
     id: ff07134dc458
     pristine_git_object: ce0a62750ae538e8a4eca05071428640bd22972e
@@ -13992,15 +13661,6 @@ trackedFiles:
   models/components/createprivatednsrequest.go:
     id: b196005381de
     pristine_git_object: 70f74e5fcbbd677dba03533440b59c92fc349c1f
-  models/components/createprovideraccountrequest.go:
-    id: b98b421e1c76
-    pristine_git_object: 798515a83f21e213171bd0759996c0273a09649b
-  models/components/createresourceconfigurationrequest.go:
-    id: d6257d9aa253
-    pristine_git_object: e2f668e97bd5c608b4f872e7622bd5ce691e31a0
-  models/components/createresourcequotarequest.go:
-    id: dbb92f7a35b6
-    pristine_git_object: 9c09cbd1d844e2151931794cd2fc865b4ebc6c13
   models/components/createscope.go: {}
   models/components/createscorecard.go:
     id: 9b26f34ae4aa
@@ -14200,23 +13860,6 @@ trackedFiles:
   models/components/developerstatus.go:
     id: a1c22cc33293
     pristine_git_object: 036536b7a077e7d23fc44e3db5ef55bb378792ef
-  models/components/deviceaccesstokenresponse.go:
-    id: 0807b9bd84cb
-    pristine_git_object: 6e004df823a958167b5ceef33699a28165ddb89e
-  models/components/deviceauthorizationgrantauthorizebadrequest.go: {}
-  models/components/deviceauthorizationgranttokenbadrequest.go: {}
-  models/components/deviceauthorizationresponse.go:
-    id: 8b40895e0024
-    pristine_git_object: 316d83299920dc0153bdbd9432231c3e9f6e944a
-  models/components/deviceauthorizationuserrequest.go:
-    id: 27f37adeaffa
-    pristine_git_object: f198e7f11d9c429b5ae0903cb210deb13f8d7d53
-  models/components/deviceauthorizationuserresponse.go:
-    id: 0d64d29a91d3
-    pristine_git_object: c5659a6389adf8f5fe39e1d9a380d86599516d7d
-  models/components/deviceconfirmationrequest.go:
-    id: 57e6e08c7a25
-    pristine_git_object: c59e82644bec90bbc93811c4fe6337097e9aa0dc
   models/components/dnsrecord.go:
     id: f9ddc807ac98
     pristine_git_object: ac1ad1d1cfd2fa2e2416c2af7607bb7af714b6f2
@@ -14352,8 +13995,6 @@ trackedFiles:
   models/components/eventgatewayoffsetcommitrule.go: {}
   models/components/eventgatewayoffsetfetchrequestrules.go: {}
   models/components/eventgatewayoffsetfetchrule.go: {}
-  models/components/eventgatewayorgusage.go: {}
-  models/components/eventgatewayorgusagecounts.go: {}
   models/components/eventgatewayparsedrecorddecryptfieldsconfig.go: {}
   models/components/eventgatewayparsedrecorddecryptfieldspolicy.go: {}
   models/components/eventgatewayparsedrecorddecryptfieldspolicycreate.go: {}
@@ -14593,9 +14234,6 @@ trackedFiles:
     pristine_git_object: 6c7d44df452c877536e76285599d63a76f7fca89
   models/components/internalerror.go: {}
   models/components/internalservererror.go: {}
-  models/components/internalusers.go:
-    id: b5b6a0122165
-    pristine_git_object: 304b715f34eb1bc4dc4904cd0ec75ccf0e51bc97
   models/components/invalidparameterchoiceitem.go:
     id: 4285af026c6e
     pristine_git_object: ad15ee8ae31d967ba24d25b775c85e3a909e7c3e
@@ -14697,7 +14335,6 @@ trackedFiles:
   models/components/listaigatewayagentsresponse.go: {}
   models/components/listaigatewayauthstrategiesresponse.go: {}
   models/components/listaigatewayauthstrategyusageresponse.go: {}
-  models/components/listaigatewayavailablepoliciesresponse.go: {}
   models/components/listaigatewaycacertificatesresponse.go: {}
   models/components/listaigatewaycertificatesresponse.go: {}
   models/components/listaigatewayconfigstoresecretsresponse.go: {}
@@ -14715,8 +14352,6 @@ trackedFiles:
   models/components/listaigatewaymodelprovidersresponse.go: {}
   models/components/listaigatewaymodelsresponse.go: {}
   models/components/listaigatewaypoliciesresponse.go: {}
-  models/components/listaigatewaypolicyusageresponse.go: {}
-  models/components/listaigatewayruntimeversionsresponse.go: {}
   models/components/listaigatewaysnisresponse.go: {}
   models/components/listaigatewaysresponse.go: {}
   models/components/listaigatewayvaultsresponse.go: {}
@@ -14806,12 +14441,6 @@ trackedFiles:
     id: 29de1195c333
     pristine_git_object: 309385a45a425fe4aab91ba9651c5fc025c423f5
   models/components/listconnectedappsessionsresponse.go: {}
-  models/components/listcontrolplanedefaultresourcequotasresponse.go:
-    id: fadc1ec703c0
-    pristine_git_object: 7cc4d52a0c138b181a4f0686e235c6a31950d46d
-  models/components/listcontrolplaneresourcequotasresponse.go:
-    id: f8624d71f718
-    pristine_git_object: edb46844ab270c8719832b0df4e0ba2901fc446c
   models/components/listcontrolplanesresponse.go:
     id: 1fd62ec8a6c8
     pristine_git_object: f871b63aefcb6c63429a218b4cd0358d6c275443
@@ -14863,7 +14492,6 @@ trackedFiles:
   models/components/listeventgatewaynodesresponse.go: {}
   models/components/listeventgatewaysresponse.go: {}
   models/components/listeventgatewaystatickeysresponse.go: {}
-  models/components/listeventgatewayusageresponse.go: {}
   models/components/listeventsparamsfilter.go: {}
   models/components/listfeatureparamsfilter.go: {}
   models/components/listgrantsparamsfilter.go: {}
@@ -14978,9 +14606,6 @@ trackedFiles:
   models/components/llmfilters.go: {}
   models/components/llmmetrics.go: {}
   models/components/llmquery.go: {}
-  models/components/logoutresponse.go:
-    id: 48465c299ed5
-    pristine_git_object: 38a0f53d8bb9e82b79b2969e7314a4df9108e1f6
   models/components/managedcache.go: {}
   models/components/managedcacheaddonconfigresponse.go:
     id: 2114dd3e2ec4
@@ -15204,12 +14829,6 @@ trackedFiles:
     id: 594797cb6eb6
     pristine_git_object: 81f3dc931b15a81ad3819e9ef2da66e5151040e2
   models/components/paginatemcpserversresponse.go: {}
-  models/components/parameterizedassignedrole.go:
-    id: baf84c0b2346
-    pristine_git_object: c2eba4c0b3e1d0826472e2ba9a9539b18cea7ac1
-  models/components/parameterizedassignedrolescollection.go:
-    id: f27bb0b2a1b3
-    pristine_git_object: f35c8583dc950313356fde0e3a2f0bb76b3e25be
   models/components/partial.go:
     id: 9f11fe9c8c38
     pristine_git_object: 28e5061238149585260dfdd1684703995881b0eb
@@ -15234,9 +14853,6 @@ trackedFiles:
   models/components/patchapicapabilitycontrols.go: {}
   models/components/patchapicapabilitycontrolsdeny.go: {}
   models/components/patchcapabilitycontrols.go: {}
-  models/components/patchcontrolplaneresourcequota.go:
-    id: 3d12d6b78d86
-    pristine_git_object: d46fc97ec4d68a809f4334d5f5e351f93e5ce8a4
   models/components/patchcustomportalemailtemplatepayload.go:
     id: 34614769245b
     pristine_git_object: 2e9cb34b814589d68e10efc3792b4a7b8fc0a2d9
@@ -15256,12 +14872,6 @@ trackedFiles:
   models/components/patchprivatednsrequest.go:
     id: 33abeaabd917
     pristine_git_object: 4d9e4a80c423b409253dc7b955b388872c919992
-  models/components/patchresourceconfigurationrequest.go:
-    id: 96f44fe4cb97
-    pristine_git_object: 064ebd1e4745ca3518819ea70fa02144aab5b03a
-  models/components/patchresourcequotarequest.go:
-    id: d5e3c5ac810d
-    pristine_git_object: 0b9a3866ee2b0f86b6669f65053d838757c26a72
   models/components/patchskillrequest.go: {}
   models/components/patchteamgroupmappings.go:
     id: 835b19ae66ad
@@ -15528,9 +15138,6 @@ trackedFiles:
   models/components/requestsfiltertype.go: {}
   models/components/requestsfiltertypeempty.go: {}
   models/components/resetcustomerentitlementusagerequest.go: {}
-  models/components/resolvecustomerresponse.go:
-    id: ee33040defac
-    pristine_git_object: d92d03749b92a2484400b6a52aca91ed561d3094
   models/components/resourceconfiguration.go:
     id: 7f634a889fda
     pristine_git_object: 2ef1df4e51cef1c49983054b03e30e9955a4bc60
@@ -15567,9 +15174,6 @@ trackedFiles:
   models/components/samlidentityproviderconfiginput.go:
     id: afed6de324d0
     pristine_git_object: c58d641344f33ea1c88845ca2883909f71f73d60
-  models/components/schemaauth0registration.go:
-    id: a60d395e9285
-    pristine_git_object: 29c6560367df00abcd47b88ee99773ae97a6d618
   models/components/schemaregistry.go: {}
   models/components/schemaregistryauthenticationbasic.go: {}
   models/components/schemaregistryauthenticationbasicsensitivedataaware.go: {}
@@ -15894,7 +15498,6 @@ trackedFiles:
   models/components/updatecontrolplanerequest.go:
     id: 6723536669ec
     pristine_git_object: 06557bd7c0975008af7937cc52559bf744f4d593
-  models/components/updatecostmanagementtags.go: {}
   models/components/updatecreditgrantexternalsettlementrequest.go: {}
   models/components/updatedcrconfigauth0inrequest.go:
     id: bf45e8549aec
@@ -15952,9 +15555,6 @@ trackedFiles:
   models/components/updateoidcidentityproviderbackchannellogout.go: {}
   models/components/updateoidcidentityproviderclaimmappings.go: {}
   models/components/updateoidcidentityproviderconfig.go: {}
-  models/components/updateorganization.go:
-    id: 4e131f56614f
-    pristine_git_object: 37bbfaa43ce55ce432391d58586e4aee91ab8149
   models/components/updateorganizationdefaulttaxcodesrequest.go: {}
   models/components/updatepasswordbody.go: {}
   models/components/updateportal.go:
@@ -16010,6 +15610,7 @@ trackedFiles:
     id: 1a8b27465762
     pristine_git_object: 674e47dd457a81587b5830f0ff8a07d54171c741
   models/components/updatetlstrustbundlerequest.go: {}
+  models/components/updatetokenendpointauthmethod.go: {}
   models/components/updatetrustedidpbody.go: {}
   models/components/updateuser.go:
     id: c7e700fc4b91
@@ -16043,12 +15644,6 @@ trackedFiles:
   models/components/userconfigurationlistresponse.go:
     id: a84dda449694
     pristine_git_object: 1c921a21b3b575ce699fa652ef56d01c3cdbe0d7
-  models/components/userorgids.go:
-    id: cba2d1d2937f
-    pristine_git_object: 4443cbcbf9135b6bad5b5ca7a726803eae2a3e0d
-  models/components/userpermissions.go:
-    id: 1cd753bd9978
-    pristine_git_object: 1bb747b500fd6f8e6ec340875264b918e9fb0555
   models/components/userteammembership.go: {}
   models/components/userteammembershipcollection.go: {}
   models/components/uuidfieldfilter.go:
@@ -16060,12 +15655,9 @@ trackedFiles:
   models/components/validateapispecsuccessresponse.go:
     id: 86d92bc6606e
     pristine_git_object: e60a4b3ce2fff4317cf35dcb0636ecddc7ee2db2
-  models/components/validateconditionrequest.go: {}
   models/components/validateentityresponse.go:
     id: 740a28540660
     pristine_git_object: f733b84867e0e0506a1e44da6a5e7975d957665d
-  models/components/validateexpressionbodyrequest.go: {}
-  models/components/validateexpressionvaluerequest.go: {}
   models/components/vault.go:
     id: 43a6707830e1
     pristine_git_object: 09b9ea740f998c22f0b41bc50f76a2dda361f82c
@@ -16249,9 +15841,6 @@ trackedFiles:
   models/operations/createcontrolplane.go:
     id: 24d556fb1e4a
     pristine_git_object: e9195973a83f4a913a704a62c0ceb852057db5aa
-  models/operations/createcontrolplaneresourcequota.go:
-    id: 9dab9d2169bf
-    pristine_git_object: f2dd664a8598781ac9c8e2f52c2d0d5996aac6ac
   models/operations/createcostbasis.go: {}
   models/operations/createcostbudget.go: {}
   models/operations/createcostexport.go: {}
@@ -16414,18 +16003,9 @@ trackedFiles:
     id: 8b181bf1ec88
     pristine_git_object: 41bbe87cbb0529e0dcc39ef505b8e5960e8ca1c9
   models/operations/createproductcatalogaddon.go: {}
-  models/operations/createprovideraccount.go:
-    id: daf80a9e0f2d
-    pristine_git_object: 492d28f02da401266a83de02c69503f849a6bd24
-  models/operations/createresourceconfiguration.go:
-    id: 46516d181d1d
-    pristine_git_object: 258183ce2449c325b12d78a2950f0dcc1e3ab21b
   models/operations/createresourcemapping.go:
     id: 1fc823c5cb73
     pristine_git_object: 6e714aa2264f04ce025c79d8bf170cd687ae503f
-  models/operations/createresourcequota.go:
-    id: f41f560fbfb4
-    pristine_git_object: 9e29622d6a7cbc8a71c467fec78b94442c12dbd3
   models/operations/createroute.go:
     id: 04c59608e3f3
     pristine_git_object: 72eec948460ea698c91f856bc9a49a789eea7c6c
@@ -16445,9 +16025,6 @@ trackedFiles:
     id: 7148fafb4208
     pristine_git_object: 2da538b3dcaba682ed80b47e210a0fe696825852
   models/operations/createsubscription.go: {}
-  models/operations/createsystemaccountsassignedrolesinternal.go:
-    id: 1c1fdcde257b
-    pristine_git_object: 34271b2b58d66cc3be6f70cc58d9f3a461e2aec9
   models/operations/createtargetwithupstream.go:
     id: 98eeed851367
     pristine_git_object: a3823bcf490340812654d93ac9641ade57bba832
@@ -16589,9 +16166,6 @@ trackedFiles:
   models/operations/deletecontrolplane.go:
     id: 0750bb753c40
     pristine_git_object: c4314a14f00a3b955f504665294a37a8a9bfa492
-  models/operations/deletecontrolplaneresourcequota.go:
-    id: 7c44ed96d813
-    pristine_git_object: 45389e3e141fa8909c0be17a9db15a6e72c4cce0
   models/operations/deletecostattributionplugin.go: {}
   models/operations/deletecostbudget.go: {}
   models/operations/deletecostexport.go: {}
@@ -16764,9 +16338,6 @@ trackedFiles:
     id: 9e121219f87f
     pristine_git_object: 51cf2a906aa806876b69430a6ba2dc8a373c4faf
   models/operations/deleteproductcatalogaddon.go: {}
-  models/operations/deleteprovideraccount.go:
-    id: cd1f74d5031c
-    pristine_git_object: 70d6753a2e37d2fa830b330c9845e98988c247f1
   models/operations/deletepublication.go:
     id: 271418c3b848
     pristine_git_object: b2c403ca03edf57e2a9a638bf4cde8d2555b27bb
@@ -16820,9 +16391,6 @@ trackedFiles:
   models/operations/deleteuser.go:
     id: 6e23ce1ee8aa
     pristine_git_object: d53e20285adf00278f7acccac42febf4b96faf18
-  models/operations/deleteusersme.go:
-    id: d0cdec698bf9
-    pristine_git_object: 95b51063abf06adaff67698563c2fdb2ec4e1847
   models/operations/deletevault.go:
     id: f0e36e58d8e1
     pristine_git_object: 7d64abec114f99c4c95b90b3f06d585caab2541d
@@ -16910,17 +16478,13 @@ trackedFiles:
   models/operations/getaigatewaycustompolicy.go: {}
   models/operations/getaigatewaydataplanecertificate.go: {}
   models/operations/getaigatewaydatastore.go: {}
-  models/operations/getaigatewaydebugcpoutput.go: {}
   models/operations/getaigatewayexpectedconfigversion.go: {}
   models/operations/getaigatewayidentityprovider.go: {}
   models/operations/getaigatewaymcpserver.go: {}
   models/operations/getaigatewaymodel.go: {}
   models/operations/getaigatewaymodelprovider.go: {}
   models/operations/getaigatewaynode.go: {}
-  models/operations/getaigatewaynodeconf.go: {}
   models/operations/getaigatewaypolicy.go: {}
-  models/operations/getaigatewaypolicyschema.go: {}
-  models/operations/getaigatewayruntimedefault.go: {}
   models/operations/getaigatewaysni.go: {}
   models/operations/getaigatewaysniforcertificate.go: {}
   models/operations/getaigatewayvault.go: {}
@@ -16955,9 +16519,6 @@ trackedFiles:
   models/operations/getapplicationunscoped.go:
     id: 793883add5b4
     pristine_git_object: 26fb2820fab255bde0a2f29c6cccfd876ed93d66
-  models/operations/getauth0organizationsinternal.go:
-    id: 9dbe672a22ca
-    pristine_git_object: 2f6747ec9c16b97e3441ad7e6073bd3f85736958
   models/operations/getauthenticationsettings.go:
     id: e3a4bce122db
     pristine_git_object: 88958d08016bc9f10c32f492a6028fa073c5725d
@@ -17013,9 +16574,6 @@ trackedFiles:
     id: 4243cc3f0015
     pristine_git_object: 08ff99c937ae4959865eef1de6c70640ef4c55cf
   models/operations/getcontrolplanemapping.go: {}
-  models/operations/getcontrolplaneresourcequota.go:
-    id: a0c228fda839
-    pristine_git_object: 93a3b69448280648daac84979fc472b68fb6ed0a
   models/operations/getcontrolplanesidgroupmemberships.go:
     id: 4d65ccba253a
     pristine_git_object: f2f7f15db443bf40dbe8ad27159a7069b5561076
@@ -17030,7 +16588,6 @@ trackedFiles:
   models/operations/getcostbudgetbalance.go: {}
   models/operations/getcostexport.go: {}
   models/operations/getcostexportschedule.go: {}
-  models/operations/getcostmanagementtags.go: {}
   models/operations/getcostnotificationchannel.go: {}
   models/operations/getcostnotificationevent.go: {}
   models/operations/getcostnotificationrule.go: {}
@@ -17198,7 +16755,6 @@ trackedFiles:
   models/operations/getnodesnodeid.go:
     id: 665ae2e85750
     pristine_git_object: 81719a75c0dadc8701171be876bcc76ca0e8fb63
-  models/operations/getnodesnodeidconf.go: {}
   models/operations/getnotificationdetails.go:
     id: ec49ef37c0ec
     pristine_git_object: aa838707d38433a9a7197071147b94a20aeafffa
@@ -17338,9 +16894,6 @@ trackedFiles:
   models/operations/getsystemaccountsaccountidteams.go:
     id: 9202a5d1398a
     pristine_git_object: f61520641f739c0989f57f47093517a9679a7054
-  models/operations/getsystemaccountsassignedrolesinternal.go:
-    id: db966613625a
-    pristine_git_object: cce2e271cc94a97c1eff039101b84cc3ff51f5b0
   models/operations/getsystemaccountsid.go:
     id: 7e4ee946ff5b
     pristine_git_object: d80b683439a06f4f1f1e1d5a4f9b74cf6cd81b52
@@ -17372,15 +16925,9 @@ trackedFiles:
     id: d284e3af9c60
     pristine_git_object: 9c0e0081cad484cc693e96f6b8865b87287433ab
   models/operations/getuserrole.go: {}
-  models/operations/getusersinternal.go:
-    id: c8ebe3a3662d
-    pristine_git_object: f8df3960a76a6e468c90f278a70530ee62dfb9a1
   models/operations/getusersme.go:
     id: b33dd3d265ab
     pristine_git_object: 59326cff023f99770dc4445684e5b708e6b5dc71
-  models/operations/getusersmepermissions.go:
-    id: e8a0f478d573
-    pristine_git_object: c3bf4cd687416cf3649783813d9c90df73d54c55
   models/operations/getvault.go:
     id: 18d5ca3663ba
     pristine_git_object: 0bebb155d74e3d96562a5173650cbb094d72e3a5
@@ -17407,7 +16954,6 @@ trackedFiles:
   models/operations/listaigatewayagents.go: {}
   models/operations/listaigatewayauthstrategies.go: {}
   models/operations/listaigatewayauthstrategyusage.go: {}
-  models/operations/listaigatewayavailablepolicies.go: {}
   models/operations/listaigatewaycacertificates.go: {}
   models/operations/listaigatewaycertificates.go: {}
   models/operations/listaigatewayconfigstores.go: {}
@@ -17427,8 +16973,6 @@ trackedFiles:
   models/operations/listaigatewaymodels.go: {}
   models/operations/listaigatewaynodes.go: {}
   models/operations/listaigatewaypolicies.go: {}
-  models/operations/listaigatewaypolicyusage.go: {}
-  models/operations/listaigatewayruntimeversions.go: {}
   models/operations/listaigateways.go: {}
   models/operations/listaigatewaysnis.go: {}
   models/operations/listaigatewaysnisforcertificate.go: {}
@@ -17544,13 +17088,7 @@ trackedFiles:
   models/operations/listcontextinterfaceskills.go: {}
   models/operations/listcontextinterfacesourcemappings.go: {}
   models/operations/listcontextsources.go: {}
-  models/operations/listcontrolplanedefaultresourcequotas.go:
-    id: 7f7736b68bdc
-    pristine_git_object: d62ee4df66d297a4f119042f5e6f01134caf4962
   models/operations/listcontrolplanemappings.go: {}
-  models/operations/listcontrolplaneresourcequota.go:
-    id: 1f414ce837ce
-    pristine_git_object: 60bd0a806bb01e752dac952cac9cf7f60918222a
   models/operations/listcontrolplanes.go:
     id: b4e9da2dc24b
     pristine_git_object: 1907472a06007f093101278fcf8f95862445b21e
@@ -17631,9 +17169,7 @@ trackedFiles:
   models/operations/listeventgateways.go: {}
   models/operations/listeventgatewayschemaregistries.go: {}
   models/operations/listeventgatewaystatickeys.go: {}
-  models/operations/listeventgatewaysusage.go: {}
   models/operations/listeventgatewaytlstrustbundles.go: {}
-  models/operations/listeventgatewayversions.go: {}
   models/operations/listeventgatewayvirtualclusterclusterlevelpolicies.go: {}
   models/operations/listeventgatewayvirtualclusterconsumepolicies.go: {}
   models/operations/listeventgatewayvirtualclusterproducepolicies.go: {}
@@ -17887,9 +17423,6 @@ trackedFiles:
   models/operations/listvaultprovidercredentials.go: {}
   models/operations/listvaultproviders.go: {}
   models/operations/listworkspaces.go: {}
-  models/operations/logout.go:
-    id: 3eb41fddc621
-    pristine_git_object: b9f5367e83839c9632fed1610960434d4068d9b8
   models/operations/migratesubscription.go: {}
   models/operations/moveapidocument.go:
     id: c98241078e84
@@ -17923,9 +17456,6 @@ trackedFiles:
   models/operations/patcheventgatewayvirtualclusterconsumepolicy.go: {}
   models/operations/patcheventgatewayvirtualclusterproducepolicy.go: {}
   models/operations/patchmeshcontrolplane.go: {}
-  models/operations/patchoauthdeviceconfirm.go:
-    id: 2ec33e80f8dd
-    pristine_git_object: 9a8ad2a81190dd4c13153c35f402d772346c8437
   models/operations/patchportalconnectedapps.go: {}
   models/operations/patchsystemaccountsid.go:
     id: 40adcb549346
@@ -17937,12 +17467,6 @@ trackedFiles:
     id: d2f151590b7e
     pristine_git_object: edd55dfa2d0a7342418e8c2d284d886a5b3fd2ed
   models/operations/patchtrustedidp.go: {}
-  models/operations/patchusersme.go:
-    id: 9045ff451a6a
-    pristine_git_object: 24f9aa95c3cdf40321f2b45f70a11164caad8a1e
-  models/operations/postauth0registerinternal.go:
-    id: 97302ebc043f
-    pristine_git_object: 6c77693c0f6351f1a92767864aa5a5fea767743d
   models/operations/postcontrolplanesidgroupmembershipsadd.go:
     id: 4763d42e5fc6
     pristine_git_object: 7813df4f0b8a4334f0cd806941a741e4230b6f5c
@@ -17950,15 +17474,6 @@ trackedFiles:
     id: b30f403dc36c
     pristine_git_object: f2b5a2acc890cc6526136918eee6731e8f510e08
   models/operations/postmcpserverstatus.go: {}
-  models/operations/postoauthdeviceauthorize.go:
-    id: 8a050f996770
-    pristine_git_object: efc5b11d9949a357f88e9973dc0b69836588055c
-  models/operations/postoauthdeviceauthorizeuser.go:
-    id: 7a731e107065
-    pristine_git_object: e1c3005590023f5e4637bb433beb738c26a95b7d
-  models/operations/postoauthdevicetoken.go:
-    id: f3b48741891a
-    pristine_git_object: a9b01b364d889defe88e11ced7e64e3ac87c99b9
   models/operations/postportalcustomemailtestsend.go:
     id: 3fa27ad12a20
     pristine_git_object: 2290358abac5ddd3c20e5bdd7cbbd27fd39fe487
@@ -17990,9 +17505,6 @@ trackedFiles:
   models/operations/queryentitlementaccess.go: {}
   models/operations/queryfeaturecost.go: {}
   models/operations/querymeter.go: {}
-  models/operations/refreshtoken.go:
-    id: 0a1532dd8d5c
-    pristine_git_object: 1c80b7e8cefdfdead0923f5240bbb615735c3682
   models/operations/removeaigatewayconsumerfromconsumergroup.go: {}
   models/operations/removeallconsumersfromconsumergroup.go:
     id: 23984b4ba5ad
@@ -18043,9 +17555,6 @@ trackedFiles:
   models/operations/replacevaultprovider.go: {}
   models/operations/resenddestinationdelivery.go: {}
   models/operations/resetcustomerentitlementusage.go: {}
-  models/operations/resolvecustomer.go:
-    id: 59a4d09d4bd3
-    pristine_git_object: 744c9630acb11c4f7b94f857822febff867ecd47
   models/operations/restoresubscription.go: {}
   models/operations/retryinvoice.go: {}
   models/operations/revokepersonalaccesstoken.go:
@@ -18084,7 +17593,6 @@ trackedFiles:
   models/operations/updateaigatewaymodel.go: {}
   models/operations/updateaigatewaymodelprovider.go: {}
   models/operations/updateaigatewaypolicy.go: {}
-  models/operations/updateaigatewayruntimedefault.go: {}
   models/operations/updateaigatewaysni.go: {}
   models/operations/updateaigatewaysniforcertificate.go: {}
   models/operations/updateaigatewayvault.go: {}
@@ -18143,11 +17651,7 @@ trackedFiles:
   models/operations/updatecontrolplane.go:
     id: 53180247c70d
     pristine_git_object: eb791f730ca62853a6871b0b68da5cc8c5e2579d
-  models/operations/updatecontrolplaneresourcequota.go:
-    id: e74dbe9a56b6
-    pristine_git_object: ad6277d2d61b7f66276f9e769654d0ad1adada04
   models/operations/updatecostattributionplugin.go: {}
-  models/operations/updatecostmanagementtags.go: {}
   models/operations/updatecp.go: {}
   models/operations/updatecreditgrantexternalsettlement.go: {}
   models/operations/updatecustomerbilling.go: {}
@@ -18213,9 +17717,6 @@ trackedFiles:
     id: 915c917d271b
     pristine_git_object: 53916c0e5d054033720e81b13bdf6b6ef7bfc651
   models/operations/updateorganizationdefaulttaxcodes.go: {}
-  models/operations/updateorganizationsme.go:
-    id: 4788f00056ed
-    pristine_git_object: 837a0ca1d95a50c6bc44ead0b5682135325a70e3
   models/operations/updateorgsubscription.go: {}
   models/operations/updatepassword.go: {}
   models/operations/updatepersonalaccesstokendetails.go:
@@ -18277,12 +17778,6 @@ trackedFiles:
   models/operations/updateresource.go:
     id: 5fa80ade6cd7
     pristine_git_object: 63407e522de4a5abf8dc85b05cc908066f18c93b
-  models/operations/updateresourceconfiguration.go:
-    id: 855245774dab
-    pristine_git_object: 1c8ee3d22997e7d3ac7b81fab58c73bbec1c9083
-  models/operations/updateresourcequota.go:
-    id: 7687562d58e0
-    pristine_git_object: 296f7f6b14be51f75e4018c2077af332cd9b2629
   models/operations/updatescorecard.go:
     id: bee7ab312467
     pristine_git_object: 10b771758affc7c1b464fd4c44f2f5173e60cf86
@@ -18413,11 +17908,9 @@ trackedFiles:
   models/operations/usersremoverole.go:
     id: a0107d369dad
     pristine_git_object: fd585c67abb41c475d42c86fc196644ffb1601c2
-  models/operations/validateaigatewayexpression.go: {}
   models/operations/validateentityschema.go:
     id: f50aadd7dc56
     pristine_git_object: 10931330309951669d17b7e0b4f87035a713c564
-  models/operations/validateexpression.go: {}
   models/operations/validatespecification.go:
     id: f348d7bd5172
     pristine_git_object: 8c837d7cf66a79899acc5b87ecd59f13813df216
@@ -18435,12 +17928,6 @@ trackedFiles:
   models/sdkerrors/conflicterror.go:
     id: 1a181a3f2c4c
     pristine_git_object: e541dcb192408b41563bf2be1cf4f9862413e7db
-  models/sdkerrors/deviceauthorizationgrantauthorizebadrequest.go:
-    id: 47c4d178b40f
-    pristine_git_object: ca8b8ec8f06c7940d8f4181a465fd06024f94b4b
-  models/sdkerrors/deviceauthorizationgranttokenbadrequest.go:
-    id: 0dd87e66972f
-    pristine_git_object: 43e88f3a18c81908ce236f28f5a9c893c3b4f785
   models/sdkerrors/forbiddenerror.go:
     id: cc94e903c29e
     pristine_git_object: 46ef1c11f24120079b934b389d5973138859f225
@@ -18601,9 +18088,6 @@ trackedFiles:
   snis.go:
     id: 3f7c40d6e500
     pristine_git_object: bf3f97e0d03babed000c52febe27a23cb90209c1
-  ssoauth0.go:
-    id: 3c914f9559a7
-    pristine_git_object: 33880fcc0e21833872aebf733c15df17a1035514
   systemaccounts.go:
     id: 4c7cb237df09
     pristine_git_object: d88ca5bdc4217988427e95d9f46214b1c5895708
@@ -22997,7 +22481,7 @@ examples:
         application/json: {"name": "MyAPI", "slug": "my-api-v1", "labels": {"env": "test"}}
       responses:
         "201":
-          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPI", "version": null, "current_version_summary": {"id": "7710d5c4-d902-410b-992f-18b814155b53", "spec": {"type": "oas3"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}, "slug": "my-api-v1", "api_spec_ids": ["123e4567-e89b-12d3-a456-426614174000"], "portals": [], "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "images": {"icon": {"uri": "/apis/ebbac5b0-ac89-45c3-9d2e-c4542c657e79/images/icon/raw"}}}
+          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPI", "version": null, "current_version_summary": {"id": "7710d5c4-d902-410b-992f-18b814155b53", "spec": {"type": "oas3"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}, "slug": "my-api-v1", "api_spec_ids": ["123e4567-e89b-12d3-a456-426614174000"], "portals": [], "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -23053,7 +22537,7 @@ examples:
           apiId: "9f5061ce-78f6-4452-9108-ad7c02821fd5"
       responses:
         "200":
-          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPI", "version": "<value>", "current_version_summary": {"id": "7710d5c4-d902-410b-992f-18b814155b53", "spec": {"type": "oas3"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}, "slug": "my-api-v1", "api_spec_ids": ["123e4567-e89b-12d3-a456-426614174000"], "portals": [{"id": "25a2624c-49fc-4764-99e1-224ed819f200", "name": "My Portal", "display_name": "My Portal"}], "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "images": {"icon": {"uri": "/apis/ebbac5b0-ac89-45c3-9d2e-c4542c657e79/images/icon/raw"}}}
+          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPI", "version": "<value>", "current_version_summary": {"id": "7710d5c4-d902-410b-992f-18b814155b53", "spec": {"type": "oas3"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}, "slug": "my-api-v1", "api_spec_ids": ["123e4567-e89b-12d3-a456-426614174000"], "portals": [{"id": "25a2624c-49fc-4764-99e1-224ed819f200", "name": "My Portal", "display_name": "My Portal"}], "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -23071,7 +22555,7 @@ examples:
         application/json: {"name": "MyAPI", "slug": "my-api-v1", "labels": {"env": "test"}}
       responses:
         "200":
-          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPI", "version": null, "current_version_summary": {"id": "7710d5c4-d902-410b-992f-18b814155b53", "spec": {"type": "oas3"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}, "slug": "my-api-v1", "api_spec_ids": ["123e4567-e89b-12d3-a456-426614174000"], "portals": [], "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "images": {"icon": {"uri": "/apis/ebbac5b0-ac89-45c3-9d2e-c4542c657e79/images/icon/raw"}}}
+          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPI", "version": null, "current_version_summary": {"id": "7710d5c4-d902-410b-992f-18b814155b53", "spec": {"type": "oas3"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}, "slug": "my-api-v1", "api_spec_ids": ["123e4567-e89b-12d3-a456-426614174000"], "portals": [], "labels": {"env": "test"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -24071,10 +23555,10 @@ examples:
         path:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       requestBody:
-        application/json: {"enabled": true}
+        application/json: {"enabled": true, "include_principal_name": true}
       responses:
         "200":
-          application/json: {"enabled": true}
+          application/json: {"enabled": true, "include_principal_name": true}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "rule": "max", "maximum": 8, "source": "body", "reason": "must not have more than 8 characters"}]}
         "401":
@@ -24090,7 +23574,7 @@ examples:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       responses:
         "200":
-          application/json: {"enabled": true}
+          application/json: {"enabled": true, "include_principal_name": true}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -24118,7 +23602,7 @@ examples:
           portalId: "f32d905a-ed33-46a3-a093-d8f536af9a8a"
       responses:
         "200":
-          application/json: {"webhook_status": "active", "webhook_enabled": true, "last_attempt_at": "2023-03-21T09:29:14.52Z", "last_response_code": 401, "last_response_message": "Unauthenticated", "last_response_body": "{\"message\":\"Unauthenticated\"}"}
+          application/json: {"webhook_status": "active", "webhook_enabled": true, "last_attempt_at": "2023-03-21T09:29:14.52Z", "last_response_code": 401, "last_response_message": "Unauthenticated"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -26334,7 +25818,7 @@ examples:
         application/json: {"name": "MyAPIPackage", "slug": "my-api-package-v1", "labels": {"env": "test"}}
       responses:
         "201":
-          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPIPackage", "slug": "my-api-package-v1", "version": "<value>", "rate_limiting_config": {"limit": 574945, "duration": "minutes"}, "labels": {"env": "test"}, "attributes": "<value>", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "images": {"icon": {"uri": "/apis/ebbac5b0-ac89-45c3-9d2e-c4542c657e79/images/icon/raw"}}}
+          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPIPackage", "slug": "my-api-package-v1", "version": "<value>", "rate_limiting_config": {"limit": 574945, "duration": "minutes"}, "labels": {"env": "test"}, "attributes": "<value>", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -26350,7 +25834,7 @@ examples:
           packageId: "9f5061ce-78f6-4452-9108-ad7c02821fd5"
       responses:
         "200":
-          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPIPackage", "slug": "my-api-package-v1", "version": "<value>", "rate_limiting_config": {"limit": 459081, "duration": "minutes"}, "labels": {"env": "test"}, "attributes": "<value>", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "images": {"icon": {"uri": "/apis/ebbac5b0-ac89-45c3-9d2e-c4542c657e79/images/icon/raw"}}}
+          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPIPackage", "slug": "my-api-package-v1", "version": "<value>", "rate_limiting_config": {"limit": 459081, "duration": "minutes"}, "labels": {"env": "test"}, "attributes": "<value>", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -26366,7 +25850,7 @@ examples:
         application/json: {"name": "MyAPIPackage", "slug": "my-api-package-v1", "labels": {"env": "test"}}
       responses:
         "200":
-          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPIPackage", "slug": "my-api-package-v1", "version": "<value>", "rate_limiting_config": {"limit": 211729, "duration": "seconds"}, "labels": {"env": "test"}, "attributes": "<value>", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z", "images": {"icon": {"uri": "/apis/ebbac5b0-ac89-45c3-9d2e-c4542c657e79/images/icon/raw"}}}
+          application/json: {"id": "9f5061ce-78f6-4452-9108-ad7c02821fd5", "name": "MyAPIPackage", "slug": "my-api-package-v1", "version": "<value>", "rate_limiting_config": {"limit": 211729, "duration": "seconds"}, "labels": {"env": "test"}, "attributes": "<value>", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
         "401":
@@ -40357,7 +39841,7 @@ examples:
           page[number]: 1
       responses:
         "200":
-          application/json: {"meta": {"page": {"number": 1, "size": 10, "total": 100}}, "data": [{"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3", "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}]}
+          application/json: {"meta": {"page": {"number": 1, "size": 10, "total": 100}}, "data": [{"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}]}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -40365,10 +39849,10 @@ examples:
   create-cp:
     speakeasy-default-create-cp:
       requestBody:
-        application/json: {"name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3"}
+        application/json: {"name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}}
       responses:
         "201":
-          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3", "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
+          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -40382,7 +39866,7 @@ examples:
           cpId: "bf138ba2-c9b1-4229-b268-04d9d8a6410b"
       responses:
         "200":
-          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3", "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
+          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
         "401":
           application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
         "403":
@@ -40409,10 +39893,10 @@ examples:
         path:
           cpId: "bf138ba2-c9b1-4229-b268-04d9d8a6410b"
       requestBody:
-        application/json: {"name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3"}
+        application/json: {"name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}}
       responses:
         "200":
-          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3", "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
+          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -40427,10 +39911,10 @@ examples:
         path:
           cpId: "bf138ba2-c9b1-4229-b268-04d9d8a6410b"
       requestBody:
-        application/json: {"name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3"}
+        application/json: {"name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}}
       responses:
         "200":
-          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "version": "v3", "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
+          application/json: {"id": "d32d905a-ed33-46a3-a093-d8f536af9a8a", "name": "Test control plane", "description": "A control plane to handle traffic on development environment.", "labels": {"test": "true"}, "created_at": "2023-01-11T02:30:42.227Z", "updated_at": "2023-01-11T02:30:42.227Z"}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": []}
         "401":
@@ -41883,7 +41367,7 @@ examples:
           authServerId: "d32d905a-ed33-46a3-a093-d8f536af9a8a"
           clientId: "kYa9iQFU5xPDSIUH9z1z"
       requestBody:
-        application/json: {"token_endpoint_auth_method": "client_secret_post", "labels": {"env": "test"}}
+        application/json: {"labels": {"env": "test"}}
       responses:
         "200":
           application/json: {"id": "kYa9iQFU5xPDSIUH9z1z", "name": "<value>", "grant_types": [], "redirect_uris": ["https://innocent-laughter.com/", "https://responsible-hepatitis.com/", "https://probable-doing.name"], "access_token_duration": 300, "id_token_duration": 300, "allow_all_scopes": false, "allow_scopes": ["1151381e-6468-4e80-aca3-1fa1e37bcaec", "5f6653b8-cd33-49c5-9d51-7151820b7257"], "labels": {"env": "test"}, "response_types": [], "token_endpoint_auth_method": "client_secret_post", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -41967,7 +41451,7 @@ examples:
           clientId: "kYa9iQFU5xPDSIUH9z1z"
           clientSecretId: "07d05309-45cc-4b37-92fb-1524846deec3"
       requestBody:
-        application/json: {"enabled": true}
+        application/json: {}
       responses:
         "200":
           application/json: {"id": "2ee8bb2e-7c1f-495f-b733-61594ff8e2e5", "enabled": true, "secret": "YAzsyUlNZ5gNGeKS9H3VAdxVPzhPo4ae", "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -42080,7 +41564,7 @@ examples:
         path:
           directoryId: "a02c929f-dd3e-4154-9012-f54a9eb3a053"
       requestBody:
-        application/json: {"ttl_secs": 600, "negative_ttl_secs": 600, "labels": {"env": "test"}}
+        application/json: {"labels": {"env": "test"}}
       responses:
         "200":
           application/json: {"id": "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7", "name": "<value>", "description": "when storyboard plus woot yippee during unless hmph patroller", "allowed_control_planes": ["4c67edc0-99b0-487b-a0c4-035b315db2e4", "41534f28-b374-4d89-b2de-6898178b167f"], "allow_all_control_planes": false, "ttl_secs": 600, "negative_ttl_secs": 600, "labels": {"env": "test"}, "managed_by": {"owner": "terraform"}, "created_at": "2022-11-04T20:10:06.927Z", "updated_at": "2022-11-04T20:10:06.927Z"}
@@ -42182,7 +41666,7 @@ examples:
         multipart/form-data: {"file": "x-file: example.file", "dry_run": true}
       responses:
         "200":
-          application/json: {"counts": {"users": {"created": 761716, "updated": 662522, "unchanged": 211830, "inactive": 144332}, "teams": {"created": 35376, "deleted": 908083}, "memberships": {"added": 166464, "removed": 508273}}, "warnings": [{"type": "<value>", "detail": "<value>"}], "errors": []}
+          application/json: {"counts": {"users": {"created": 761716, "updated": 662522, "unchanged": 211830, "adopted": 733639, "inactive": 144332}, "teams": {"created": 35376, "deleted": 908083}, "memberships": {"added": 166464, "removed": 508273}}, "warnings": [{"type": "<value>", "detail": "<value>"}], "errors": []}
         "400":
           application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "name", "source": "body", "reason": "is a required field"}]}
         "401":

@@ -29,16 +29,16 @@ type CatalogIntegrationAuthorizationType string
 
 const (
 	CatalogIntegrationAuthorizationTypeCatalogIntegrationAuthorization1 CatalogIntegrationAuthorizationType = "CatalogIntegrationAuthorization_1"
-	CatalogIntegrationAuthorizationTypeOAuth                            CatalogIntegrationAuthorizationType = "OAuth"
-	CatalogIntegrationAuthorizationTypeMultiKeyAuth                     CatalogIntegrationAuthorizationType = "MultiKeyAuth"
+	CatalogIntegrationAuthorizationTypeOAuth1                           CatalogIntegrationAuthorizationType = "OAuth1"
+	CatalogIntegrationAuthorizationTypeMultiKeyAuth1                    CatalogIntegrationAuthorizationType = "MultiKeyAuth1"
 	CatalogIntegrationAuthorizationTypeGitHubAppInstallationAuth        CatalogIntegrationAuthorizationType = "GitHubAppInstallationAuth"
 )
 
 // CatalogIntegrationAuthorization - Defines the authorization strategy for an integration.
 type CatalogIntegrationAuthorization struct {
 	CatalogIntegrationAuthorization1 *CatalogIntegrationAuthorization1 `queryParam:"inline" union:"member"`
-	OAuth                            *OAuth                            `queryParam:"inline" union:"member"`
-	MultiKeyAuth                     *MultiKeyAuth                     `queryParam:"inline" union:"member"`
+	OAuth1                           *OAuth1                           `queryParam:"inline" union:"member"`
+	MultiKeyAuth1                    *MultiKeyAuth1                    `queryParam:"inline" union:"member"`
 	GitHubAppInstallationAuth        *GitHubAppInstallationAuth        `queryParam:"inline" union:"member"`
 
 	Type CatalogIntegrationAuthorizationType
@@ -53,21 +53,21 @@ func CreateCatalogIntegrationAuthorizationCatalogIntegrationAuthorization1(catal
 	}
 }
 
-func CreateCatalogIntegrationAuthorizationOAuth(oAuth OAuth) CatalogIntegrationAuthorization {
-	typ := CatalogIntegrationAuthorizationTypeOAuth
+func CreateCatalogIntegrationAuthorizationOAuth1(oAuth1 OAuth1) CatalogIntegrationAuthorization {
+	typ := CatalogIntegrationAuthorizationTypeOAuth1
 
 	return CatalogIntegrationAuthorization{
-		OAuth: &oAuth,
-		Type:  typ,
+		OAuth1: &oAuth1,
+		Type:   typ,
 	}
 }
 
-func CreateCatalogIntegrationAuthorizationMultiKeyAuth(multiKeyAuth MultiKeyAuth) CatalogIntegrationAuthorization {
-	typ := CatalogIntegrationAuthorizationTypeMultiKeyAuth
+func CreateCatalogIntegrationAuthorizationMultiKeyAuth1(multiKeyAuth1 MultiKeyAuth1) CatalogIntegrationAuthorization {
+	typ := CatalogIntegrationAuthorizationTypeMultiKeyAuth1
 
 	return CatalogIntegrationAuthorization{
-		MultiKeyAuth: &multiKeyAuth,
-		Type:         typ,
+		MultiKeyAuth1: &multiKeyAuth1,
+		Type:          typ,
 	}
 }
 
@@ -89,17 +89,17 @@ func (u *CatalogIntegrationAuthorization) UnmarshalJSON(data []byte) (err error)
 		}
 	}()
 
-	var oAuth OAuth = OAuth{}
-	if err := utils.UnmarshalJSON(data, &oAuth, "", true, nil); err == nil {
-		u.OAuth = &oAuth
-		u.Type = CatalogIntegrationAuthorizationTypeOAuth
+	var oAuth1 OAuth1 = OAuth1{}
+	if err := utils.UnmarshalJSON(data, &oAuth1, "", true, nil); err == nil {
+		u.OAuth1 = &oAuth1
+		u.Type = CatalogIntegrationAuthorizationTypeOAuth1
 		return nil
 	}
 
-	var multiKeyAuth MultiKeyAuth = MultiKeyAuth{}
-	if err := utils.UnmarshalJSON(data, &multiKeyAuth, "", true, nil); err == nil {
-		u.MultiKeyAuth = &multiKeyAuth
-		u.Type = CatalogIntegrationAuthorizationTypeMultiKeyAuth
+	var multiKeyAuth1 MultiKeyAuth1 = MultiKeyAuth1{}
+	if err := utils.UnmarshalJSON(data, &multiKeyAuth1, "", true, nil); err == nil {
+		u.MultiKeyAuth1 = &multiKeyAuth1
+		u.Type = CatalogIntegrationAuthorizationTypeMultiKeyAuth1
 		return nil
 	}
 
@@ -125,12 +125,12 @@ func (u CatalogIntegrationAuthorization) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.CatalogIntegrationAuthorization1, "", true)
 	}
 
-	if u.OAuth != nil {
-		return utils.MarshalJSON(u.OAuth, "", true)
+	if u.OAuth1 != nil {
+		return utils.MarshalJSON(u.OAuth1, "", true)
 	}
 
-	if u.MultiKeyAuth != nil {
-		return utils.MarshalJSON(u.MultiKeyAuth, "", true)
+	if u.MultiKeyAuth1 != nil {
+		return utils.MarshalJSON(u.MultiKeyAuth1, "", true)
 	}
 
 	if u.GitHubAppInstallationAuth != nil {

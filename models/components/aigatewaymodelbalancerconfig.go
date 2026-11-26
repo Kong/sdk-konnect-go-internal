@@ -13,7 +13,6 @@ type AIGatewayModelBalancerConfigType string
 
 const (
 	AIGatewayModelBalancerConfigTypeConsistentHashing AIGatewayModelBalancerConfigType = "consistent-hashing"
-	AIGatewayModelBalancerConfigTypeIntelligent       AIGatewayModelBalancerConfigType = "intelligent"
 	AIGatewayModelBalancerConfigTypeLeastConnections  AIGatewayModelBalancerConfigType = "least-connections"
 	AIGatewayModelBalancerConfigTypeLowestLatency     AIGatewayModelBalancerConfigType = "lowest-latency"
 	AIGatewayModelBalancerConfigTypeLowestUsage       AIGatewayModelBalancerConfigType = "lowest-usage"
@@ -25,7 +24,6 @@ const (
 // AIGatewayModelBalancerConfig - Configuration for a model's load balancer when multiple target models are configured.
 type AIGatewayModelBalancerConfig struct {
 	AIGatewayModelBalancerConsistentHashingConfig *AIGatewayModelBalancerConsistentHashingConfig `queryParam:"inline" union:"member"`
-	AIGatewayModelBalancerIntelligentConfig       *AIGatewayModelBalancerIntelligentConfig       `queryParam:"inline" union:"member"`
 	AIGatewayModelBalancerLeastConnectionsConfig  *AIGatewayModelBalancerLeastConnectionsConfig  `queryParam:"inline" union:"member"`
 	AIGatewayModelBalancerLowestLatencyConfig     *AIGatewayModelBalancerLowestLatencyConfig     `queryParam:"inline" union:"member"`
 	AIGatewayModelBalancerLowestUsageConfig       *AIGatewayModelBalancerLowestUsageConfig       `queryParam:"inline" union:"member"`
@@ -42,15 +40,6 @@ func CreateAIGatewayModelBalancerConfigConsistentHashing(consistentHashing AIGat
 	return AIGatewayModelBalancerConfig{
 		AIGatewayModelBalancerConsistentHashingConfig: &consistentHashing,
 		Type: typ,
-	}
-}
-
-func CreateAIGatewayModelBalancerConfigIntelligent(intelligent AIGatewayModelBalancerIntelligentConfig) AIGatewayModelBalancerConfig {
-	typ := AIGatewayModelBalancerConfigTypeIntelligent
-
-	return AIGatewayModelBalancerConfig{
-		AIGatewayModelBalancerIntelligentConfig: &intelligent,
-		Type:                                    typ,
 	}
 }
 
@@ -136,15 +125,6 @@ func (u *AIGatewayModelBalancerConfig) UnmarshalJSON(data []byte) (err error) {
 		u.AIGatewayModelBalancerConsistentHashingConfig = aiGatewayModelBalancerConsistentHashingConfig
 		u.Type = AIGatewayModelBalancerConfigTypeConsistentHashing
 		return nil
-	case "intelligent":
-		aiGatewayModelBalancerIntelligentConfig := new(AIGatewayModelBalancerIntelligentConfig)
-		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerIntelligentConfig, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Algorithm == intelligent) type AIGatewayModelBalancerIntelligentConfig within AIGatewayModelBalancerConfig: %w", string(data), err)
-		}
-
-		u.AIGatewayModelBalancerIntelligentConfig = aiGatewayModelBalancerIntelligentConfig
-		u.Type = AIGatewayModelBalancerConfigTypeIntelligent
-		return nil
 	case "least-connections":
 		aiGatewayModelBalancerLeastConnectionsConfig := new(AIGatewayModelBalancerLeastConnectionsConfig)
 		if err := utils.UnmarshalJSON(data, &aiGatewayModelBalancerLeastConnectionsConfig, "", true, nil); err != nil {
@@ -207,10 +187,6 @@ func (u *AIGatewayModelBalancerConfig) UnmarshalJSON(data []byte) (err error) {
 func (u AIGatewayModelBalancerConfig) MarshalJSON() ([]byte, error) {
 	if u.AIGatewayModelBalancerConsistentHashingConfig != nil {
 		return utils.MarshalJSON(u.AIGatewayModelBalancerConsistentHashingConfig, "", true)
-	}
-
-	if u.AIGatewayModelBalancerIntelligentConfig != nil {
-		return utils.MarshalJSON(u.AIGatewayModelBalancerIntelligentConfig, "", true)
 	}
 
 	if u.AIGatewayModelBalancerLeastConnectionsConfig != nil {

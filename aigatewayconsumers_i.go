@@ -17,6 +17,18 @@ type AIGatewayConsumersSDK interface {
 	// CreateAiGatewayConsumer - Create an AI Gateway Consumer
 	// Creates a new consumer for the AI Gateway.
 	CreateAiGatewayConsumer(ctx context.Context, gatewayID string, createAIGatewayConsumerRequest components.CreateAIGatewayConsumerRequest, opts ...operations.Option) (*operations.CreateAiGatewayConsumerResponse, error)
+	// ListAiGatewayConsumerCredentials - List AI Gateway Consumer Credentials
+	// Returns a list of all credentials for an AI Gateway consumer.
+	ListAiGatewayConsumerCredentials(ctx context.Context, request operations.ListAiGatewayConsumerCredentialsRequest, opts ...operations.Option) (*operations.ListAiGatewayConsumerCredentialsResponse, error)
+	// CreateAiGatewayConsumerCredential - Create an AI Gateway Consumer Credential
+	// Creates a new credential for an AI Gateway consumer.
+	CreateAiGatewayConsumerCredential(ctx context.Context, request operations.CreateAiGatewayConsumerCredentialRequest, opts ...operations.Option) (*operations.CreateAiGatewayConsumerCredentialResponse, error)
+	// GetAiGatewayConsumerCredential - Get an AI Gateway Consumer Credential
+	// Returns the details of a specific credential for an AI Gateway consumer.
+	GetAiGatewayConsumerCredential(ctx context.Context, request operations.GetAiGatewayConsumerCredentialRequest, opts ...operations.Option) (*operations.GetAiGatewayConsumerCredentialResponse, error)
+	// DeleteAiGatewayConsumerCredential - Delete an AI Gateway Consumer Credential
+	// Removes a specific credential for an AI Gateway consumer.
+	DeleteAiGatewayConsumerCredential(ctx context.Context, request operations.DeleteAiGatewayConsumerCredentialRequest, opts ...operations.Option) (*operations.DeleteAiGatewayConsumerCredentialResponse, error)
 	// GetAiGatewayConsumer - Get an AI Gateway Consumer
 	// Returns the details of a specific AI Gateway consumer.
 	GetAiGatewayConsumer(ctx context.Context, gatewayID string, consumerIDOrName string, opts ...operations.Option) (*operations.GetAiGatewayConsumerResponse, error)
@@ -32,16 +44,4 @@ type AIGatewayConsumersSDK interface {
 	// UpdateAiGatewayConsumerGroupsForConsumer - Updates Consumer Groups a Consumer belongs to
 	// Updates AI Gateway Consumer Groups a Consumer belongs to
 	UpdateAiGatewayConsumerGroupsForConsumer(ctx context.Context, request operations.UpdateAiGatewayConsumerGroupsForConsumerRequest, opts ...operations.Option) (*operations.UpdateAiGatewayConsumerGroupsForConsumerResponse, error)
-	// ListAiGatewayConsumerCredentials - List AI Gateway Consumer Credentials
-	// Returns a list of all credentials for an AI Gateway consumer.
-	ListAiGatewayConsumerCredentials(ctx context.Context, request operations.ListAiGatewayConsumerCredentialsRequest, opts ...operations.Option) (*operations.ListAiGatewayConsumerCredentialsResponse, error)
-	// CreateAiGatewayConsumerCredential - Create an AI Gateway Consumer Credential
-	// Creates a new credential for an AI Gateway consumer.
-	CreateAiGatewayConsumerCredential(ctx context.Context, request operations.CreateAiGatewayConsumerCredentialRequest, opts ...operations.Option) (*operations.CreateAiGatewayConsumerCredentialResponse, error)
-	// GetAiGatewayConsumerCredential - Get an AI Gateway Consumer Credential
-	// Returns the details of a specific credential for an AI Gateway consumer.
-	GetAiGatewayConsumerCredential(ctx context.Context, request operations.GetAiGatewayConsumerCredentialRequest, opts ...operations.Option) (*operations.GetAiGatewayConsumerCredentialResponse, error)
-	// DeleteAiGatewayConsumerCredential - Delete an AI Gateway Consumer Credential
-	// Removes a specific credential for an AI Gateway consumer.
-	DeleteAiGatewayConsumerCredential(ctx context.Context, request operations.DeleteAiGatewayConsumerCredentialRequest, opts ...operations.Option) (*operations.DeleteAiGatewayConsumerCredentialResponse, error)
 }

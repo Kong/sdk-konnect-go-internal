@@ -2,25 +2,25 @@
 
 package components
 
-// PortalAssignedRoleResponseEntityRegion - Region of the entity.
-type PortalAssignedRoleResponseEntityRegion string
+// EntityRegion - Region of the entity.
+type EntityRegion string
 
 const (
-	PortalAssignedRoleResponseEntityRegionUs       PortalAssignedRoleResponseEntityRegion = "us"
-	PortalAssignedRoleResponseEntityRegionEu       PortalAssignedRoleResponseEntityRegion = "eu"
-	PortalAssignedRoleResponseEntityRegionAu       PortalAssignedRoleResponseEntityRegion = "au"
-	PortalAssignedRoleResponseEntityRegionMe       PortalAssignedRoleResponseEntityRegion = "me"
-	PortalAssignedRoleResponseEntityRegionIn       PortalAssignedRoleResponseEntityRegion = "in"
-	PortalAssignedRoleResponseEntityRegionSg       PortalAssignedRoleResponseEntityRegion = "sg"
-	PortalAssignedRoleResponseEntityRegionWildcard PortalAssignedRoleResponseEntityRegion = "*"
+	EntityRegionUs       EntityRegion = "us"
+	EntityRegionEu       EntityRegion = "eu"
+	EntityRegionAu       EntityRegion = "au"
+	EntityRegionMe       EntityRegion = "me"
+	EntityRegionIn       EntityRegion = "in"
+	EntityRegionSg       EntityRegion = "sg"
+	EntityRegionWildcard EntityRegion = "*"
 )
 
-func (e PortalAssignedRoleResponseEntityRegion) ToPointer() *PortalAssignedRoleResponseEntityRegion {
+func (e EntityRegion) ToPointer() *EntityRegion {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *PortalAssignedRoleResponseEntityRegion) IsExact() bool {
+func (e *EntityRegion) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "us", "eu", "au", "me", "in", "sg", "*":
@@ -37,7 +37,7 @@ type PortalAssignedRoleResponse struct {
 	EntityID       string `json:"entity_id"`
 	EntityTypeName string `json:"entity_type_name"`
 	// Region of the entity.
-	EntityRegion PortalAssignedRoleResponseEntityRegion `json:"entity_region"`
+	EntityRegion EntityRegion `json:"entity_region"`
 }
 
 func (p *PortalAssignedRoleResponse) GetID() string {
@@ -68,9 +68,9 @@ func (p *PortalAssignedRoleResponse) GetEntityTypeName() string {
 	return p.EntityTypeName
 }
 
-func (p *PortalAssignedRoleResponse) GetEntityRegion() PortalAssignedRoleResponseEntityRegion {
+func (p *PortalAssignedRoleResponse) GetEntityRegion() EntityRegion {
 	if p == nil {
-		return PortalAssignedRoleResponseEntityRegion("")
+		return EntityRegion("")
 	}
 	return p.EntityRegion
 }

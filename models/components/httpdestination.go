@@ -9,26 +9,26 @@ import (
 	"time"
 )
 
-type Type string
+type HTTPDestinationType string
 
 const (
-	TypeHTTP Type = "http"
+	HTTPDestinationTypeHTTP HTTPDestinationType = "http"
 )
 
-func (e Type) ToPointer() *Type {
+func (e HTTPDestinationType) ToPointer() *HTTPDestinationType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *HTTPDestinationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "http":
-		*e = Type(v)
+		*e = HTTPDestinationType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for HTTPDestinationType: %v", v)
 	}
 }
 
@@ -36,8 +36,8 @@ type HTTPDestination struct {
 	// UUID v7 identifier of the destination.
 	ID string `json:"id"`
 	// Name of the destination.
-	Name string `json:"name"`
-	Type Type   `json:"type"`
+	Name string              `json:"name"`
+	Type HTTPDestinationType `json:"type"`
 	// Destination status. pending_verification means the destination is waiting for verification; enabled means it can receive notifications; disabled means it is paused; disabled_system means it was disabled automatically.
 	State DestinationState `json:"state"`
 	// Endpoint URL of the destination.
@@ -83,9 +83,9 @@ func (h *HTTPDestination) GetName() string {
 	return h.Name
 }
 
-func (h *HTTPDestination) GetType() Type {
+func (h *HTTPDestination) GetType() HTTPDestinationType {
 	if h == nil {
-		return Type("")
+		return HTTPDestinationType("")
 	}
 	return h.Type
 }

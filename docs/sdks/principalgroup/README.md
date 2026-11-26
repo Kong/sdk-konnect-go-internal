@@ -12,16 +12,16 @@ Groups organize principals, or other groups, within a directory for authorizatio
 * [GetGroup](#getgroup) - Get a Group
 * [ReplaceGroup](#replacegroup) - Replace a Group
 * [DeleteGroup](#deletegroup) - Delete a Group
-* [ListGroupMembership](#listgroupmembership) - List a Group's membership
-* [CreateGroupMembershipEntry](#creategroupmembershipentry) - Add a member to a Group
-* [BatchCreateGroupMembershipEntries](#batchcreategroupmembershipentries) - Add multiple members to a Group
-* [GetGroupMembershipEntry](#getgroupmembershipentry) - Get a Group membership entry
-* [DeleteGroupMembershipEntry](#deletegroupmembershipentry) - Remove a member from a Group
 * [CreateGroupKey](#creategroupkey) - Create a group API key
 * [ListGroupKeys](#listgroupkeys) - List all API keys for a group
 * [UpdateGroupKey](#updategroupkey) - Update a group API key
 * [GetGroupKey](#getgroupkey) - Get a group API key
 * [DeleteGroupKey](#deletegroupkey) - Delete an API key
+* [ListGroupMembership](#listgroupmembership) - List a Group's membership
+* [CreateGroupMembershipEntry](#creategroupmembershipentry) - Add a member to a Group
+* [GetGroupMembershipEntry](#getgroupmembershipentry) - Get a Group membership entry
+* [DeleteGroupMembershipEntry](#deletegroupmembershipentry) - Remove a member from a Group
+* [BatchCreateGroupMembershipEntries](#batchcreategroupmembershipentries) - Add multiple members to a Group
 
 ## CreateGroup
 
@@ -347,337 +347,6 @@ func main() {
 ### Response
 
 **[*operations.DeleteGroupResponse](../../models/operations/deletegroupresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ListGroupMembership
-
-Retrieves a paginated list of members (principals or groups) belonging to a group.
-Results can be filtered by membership entry id or by the member's display name.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="listGroupMembership" method="get" path="/v2/directories/{directoryId}/groups/{groupId}/membership" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.PrincipalGroup.ListGroupMembership(ctx, operations.ListGroupMembershipRequest{
-        DirectoryID: "01ebc09a-23b7-4795-bdd3-9e0ec59b3089",
-        GroupID: "af0e7099-9d3c-461f-8124-f7e674625ad3",
-        Page: &components.CursorPageParameters{
-            Size: sdkkonnectgo.Pointer[int64](10),
-            After: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-            Before: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListKongGroupMembership != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.ListGroupMembershipRequest](../../models/operations/listgroupmembershiprequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
-
-### Response
-
-**[*operations.ListGroupMembershipResponse](../../models/operations/listgroupmembershipresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## CreateGroupMembershipEntry
-
-Adds a single member, either a principal or another group, to a group's membership.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="createGroupMembershipEntry" method="post" path="/v2/directories/{directoryId}/groups/{groupId}/membership" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.PrincipalGroup.CreateGroupMembershipEntry(ctx, operations.CreateGroupMembershipEntryRequest{
-        DirectoryID: "5bd0e5c2-a2dc-4dbd-a623-64d8dca780bf",
-        GroupID: "abdaa2cb-9f3e-46ba-a3b6-89a1b8f72bf5",
-        CreateGroupMembershipEntryBody: components.CreateGroupMembershipEntryBody{
-            Member: components.KongGroupMemberInput{
-                ID: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7",
-                Type: components.KongGroupMembershipTypePrincipal,
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.KongGroupMembershipEntry != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
-| `request`                                                                                                    | [operations.CreateGroupMembershipEntryRequest](../../models/operations/creategroupmembershipentryrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
-| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
-
-### Response
-
-**[*operations.CreateGroupMembershipEntryResponse](../../models/operations/creategroupmembershipentryresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## BatchCreateGroupMembershipEntries
-
-Adds multiple members (principals or groups) to a group's membership in a single request.
-Either the entire batch is added or none of it is; body validation failures are reported per item.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="batchCreateGroupMembershipEntries" method="post" path="/v2/directories/{directoryId}/groups/{groupId}/membership/batch" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.PrincipalGroup.BatchCreateGroupMembershipEntries(ctx, operations.BatchCreateGroupMembershipEntriesRequest{
-        DirectoryID: "cab7822c-f085-40b1-afd8-5d11010c2ef7",
-        GroupID: "ac829613-3a6b-478f-be6f-7d6044e3700d",
-        BatchCreateGroupMembershipEntriesBody: components.BatchCreateGroupMembershipEntriesBody{
-            Data: []components.CreateGroupMembershipEntryBody{},
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.BatchKongGroupMembership != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
-| `request`                                                                                                                  | [operations.BatchCreateGroupMembershipEntriesRequest](../../models/operations/batchcreategroupmembershipentriesrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
-| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
-
-### Response
-
-**[*operations.BatchCreateGroupMembershipEntriesResponse](../../models/operations/batchcreategroupmembershipentriesresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## GetGroupMembershipEntry
-
-Retrieves a specific group membership entry by the member's ID.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="getGroupMembershipEntry" method="get" path="/v2/directories/{directoryId}/groups/{groupId}/membership/{groupMembershipId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.PrincipalGroup.GetGroupMembershipEntry(ctx, operations.GetGroupMembershipEntryRequest{
-        DirectoryID: "79d363ed-8811-4c51-a0f2-653d940aefad",
-        GroupID: "598187e3-9e72-4159-963e-fa44d3c9a936",
-        GroupMembershipID: "9716bc2e-781f-442a-b0e6-5d601345bc8a",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.KongGroupMembershipEntry != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.GetGroupMembershipEntryRequest](../../models/operations/getgroupmembershipentryrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
-
-### Response
-
-**[*operations.GetGroupMembershipEntryResponse](../../models/operations/getgroupmembershipentryresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## DeleteGroupMembershipEntry
-
-Removes a single member, either a principal or another group, from a group's membership.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="deleteGroupMembershipEntry" method="delete" path="/v2/directories/{directoryId}/groups/{groupId}/membership/{groupMembershipId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.PrincipalGroup.DeleteGroupMembershipEntry(ctx, operations.DeleteGroupMembershipEntryRequest{
-        DirectoryID: "83ad75ff-0914-4bab-b75d-d025007fcd5e",
-        GroupID: "9eddd515-0199-4661-af12-e7d8e98feec4",
-        GroupMembershipID: "59d2ae60-c871-41fb-a4d1-1df8921aabfb",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
-| `request`                                                                                                    | [operations.DeleteGroupMembershipEntryRequest](../../models/operations/deletegroupmembershipentryrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
-| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
-
-### Response
-
-**[*operations.DeleteGroupMembershipEntryResponse](../../models/operations/deletegroupmembershipentryresponse.md), error**
 
 ### Errors
 
@@ -1026,4 +695,335 @@ func main() {
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## ListGroupMembership
+
+Retrieves a paginated list of members (principals or groups) belonging to a group.
+Results can be filtered by membership entry id or by the member's display name.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listGroupMembership" method="get" path="/v2/directories/{directoryId}/groups/{groupId}/membership" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.PrincipalGroup.ListGroupMembership(ctx, operations.ListGroupMembershipRequest{
+        DirectoryID: "01ebc09a-23b7-4795-bdd3-9e0ec59b3089",
+        GroupID: "af0e7099-9d3c-461f-8124-f7e674625ad3",
+        Page: &components.CursorPageParameters{
+            Size: sdkkonnectgo.Pointer[int64](10),
+            After: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+            Before: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListKongGroupMembership != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.ListGroupMembershipRequest](../../models/operations/listgroupmembershiprequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+
+### Response
+
+**[*operations.ListGroupMembershipResponse](../../models/operations/listgroupmembershipresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## CreateGroupMembershipEntry
+
+Adds a single member, either a principal or another group, to a group's membership.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="createGroupMembershipEntry" method="post" path="/v2/directories/{directoryId}/groups/{groupId}/membership" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.PrincipalGroup.CreateGroupMembershipEntry(ctx, operations.CreateGroupMembershipEntryRequest{
+        DirectoryID: "5bd0e5c2-a2dc-4dbd-a623-64d8dca780bf",
+        GroupID: "abdaa2cb-9f3e-46ba-a3b6-89a1b8f72bf5",
+        CreateGroupMembershipEntryBody: components.CreateGroupMembershipEntryBody{
+            Member: components.KongGroupMemberInput{
+                ID: "5f9fd312-a987-4628-b4c5-bb4f4fddd5f7",
+                Type: components.KongGroupMembershipTypePrincipal,
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.KongGroupMembershipEntry != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.CreateGroupMembershipEntryRequest](../../models/operations/creategroupmembershipentryrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+
+### Response
+
+**[*operations.CreateGroupMembershipEntryResponse](../../models/operations/creategroupmembershipentryresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.ConflictError     | 409                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## GetGroupMembershipEntry
+
+Retrieves a specific group membership entry by the member's ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getGroupMembershipEntry" method="get" path="/v2/directories/{directoryId}/groups/{groupId}/membership/{groupMembershipId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.PrincipalGroup.GetGroupMembershipEntry(ctx, operations.GetGroupMembershipEntryRequest{
+        DirectoryID: "79d363ed-8811-4c51-a0f2-653d940aefad",
+        GroupID: "598187e3-9e72-4159-963e-fa44d3c9a936",
+        GroupMembershipID: "9716bc2e-781f-442a-b0e6-5d601345bc8a",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.KongGroupMembershipEntry != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetGroupMembershipEntryRequest](../../models/operations/getgroupmembershipentryrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+
+### Response
+
+**[*operations.GetGroupMembershipEntryResponse](../../models/operations/getgroupmembershipentryresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## DeleteGroupMembershipEntry
+
+Removes a single member, either a principal or another group, from a group's membership.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="deleteGroupMembershipEntry" method="delete" path="/v2/directories/{directoryId}/groups/{groupId}/membership/{groupMembershipId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.PrincipalGroup.DeleteGroupMembershipEntry(ctx, operations.DeleteGroupMembershipEntryRequest{
+        DirectoryID: "83ad75ff-0914-4bab-b75d-d025007fcd5e",
+        GroupID: "9eddd515-0199-4661-af12-e7d8e98feec4",
+        GroupMembershipID: "59d2ae60-c871-41fb-a4d1-1df8921aabfb",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.DeleteGroupMembershipEntryRequest](../../models/operations/deletegroupmembershipentryrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+
+### Response
+
+**[*operations.DeleteGroupMembershipEntryResponse](../../models/operations/deletegroupmembershipentryresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## BatchCreateGroupMembershipEntries
+
+Adds multiple members (principals or groups) to a group's membership in a single request.
+Either the entire batch is added or none of it is; body validation failures are reported per item.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="batchCreateGroupMembershipEntries" method="post" path="/v2/directories/{directoryId}/groups/{groupId}/membership/batch" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.PrincipalGroup.BatchCreateGroupMembershipEntries(ctx, operations.BatchCreateGroupMembershipEntriesRequest{
+        DirectoryID: "cab7822c-f085-40b1-afd8-5d11010c2ef7",
+        GroupID: "ac829613-3a6b-478f-be6f-7d6044e3700d",
+        BatchCreateGroupMembershipEntriesBody: components.BatchCreateGroupMembershipEntriesBody{
+            Data: []components.CreateGroupMembershipEntryBody{},
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.BatchKongGroupMembership != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
+| `request`                                                                                                                  | [operations.BatchCreateGroupMembershipEntriesRequest](../../models/operations/batchcreategroupmembershipentriesrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
+
+### Response
+
+**[*operations.BatchCreateGroupMembershipEntriesResponse](../../models/operations/batchcreategroupmembershipentriesresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |

@@ -318,36 +318,36 @@ func (l *ListCostBudgetBalancesPage) GetTotal() int64 {
 	return l.Total
 }
 
-// ListCostBudgetBalancesMeta - What every balance on the page shares: the time of the calculation, with the page links and the total.
-type ListCostBudgetBalancesMeta struct {
+// Meta - What every balance on the page shares: the time of the calculation, with the page links and the total.
+type Meta struct {
 	// The time the balances are calculated for, as an RFC 3339 timestamp in UTC. It selects each budget's window. Page links carry it, so every page uses the same windows unless a budget's window changes.
 	EvaluatedAt time.Time                  `json:"evaluated_at"`
 	Page        ListCostBudgetBalancesPage `json:"page"`
 }
 
-func (l ListCostBudgetBalancesMeta) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (m Meta) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
 }
 
-func (l *ListCostBudgetBalancesMeta) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+func (m *Meta) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListCostBudgetBalancesMeta) GetEvaluatedAt() time.Time {
-	if l == nil {
+func (m *Meta) GetEvaluatedAt() time.Time {
+	if m == nil {
 		return time.Time{}
 	}
-	return l.EvaluatedAt
+	return m.EvaluatedAt
 }
 
-func (l *ListCostBudgetBalancesMeta) GetPage() ListCostBudgetBalancesPage {
-	if l == nil {
+func (m *Meta) GetPage() ListCostBudgetBalancesPage {
+	if m == nil {
 		return ListCostBudgetBalancesPage{}
 	}
-	return l.Page
+	return m.Page
 }
 
 // ListCostBudgetBalancesResponseBody - A page of balances.
@@ -355,7 +355,7 @@ type ListCostBudgetBalancesResponseBody struct {
 	// The balances on this page, in `sort` order: one for each limit budget without `each`, and one for each derived budget of a limit budget with `each`. A value that an `eq` or `in` predicate on the `each` field selects appears even without usage, with zero spend.
 	Data []ListCostBudgetBalancesData `json:"data"`
 	// What every balance on the page shares: the time of the calculation, with the page links and the total.
-	Meta ListCostBudgetBalancesMeta `json:"meta"`
+	Meta Meta `json:"meta"`
 }
 
 func (l *ListCostBudgetBalancesResponseBody) GetData() []ListCostBudgetBalancesData {
@@ -365,9 +365,9 @@ func (l *ListCostBudgetBalancesResponseBody) GetData() []ListCostBudgetBalancesD
 	return l.Data
 }
 
-func (l *ListCostBudgetBalancesResponseBody) GetMeta() ListCostBudgetBalancesMeta {
+func (l *ListCostBudgetBalancesResponseBody) GetMeta() Meta {
 	if l == nil {
-		return ListCostBudgetBalancesMeta{}
+		return Meta{}
 	}
 	return l.Meta
 }

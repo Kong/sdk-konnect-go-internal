@@ -30,12 +30,12 @@ func newSkills(rootSDK *SDK, sdkConfig config.SDKConfiguration, hooks *hooks.Hoo
 	}
 }
 
-// ListMcpServerSkillsByControlPlane - List Skills by Control Plane
+// ListContextInterfaceSkills - List Skills
 // **Pre-release Endpoint**
 // This endpoint is currently in beta and is subject to change.
 //
-// Separate control-plane-scoped list endpoint for KO to enumerate skills at deploy time.
-func (s *Skills) ListMcpServerSkillsByControlPlane(ctx context.Context, request operations.ListMcpServerSkillsByControlPlaneRequest, opts ...operations.Option) (*operations.ListMcpServerSkillsByControlPlaneResponse, error) {
+// Returns a list of skills for the specified Context Interface.
+func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operations.ListContextInterfaceSkillsRequest, opts ...operations.Option) (*operations.ListContextInterfaceSkillsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -54,7 +54,7 @@ func (s *Skills) ListMcpServerSkillsByControlPlane(ctx context.Context, request 
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/context-interfaces/{interfaceId}/skills", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -64,7 +64,7 @@ func (s *Skills) ListMcpServerSkillsByControlPlane(ctx context.Context, request 
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "list-mcp-server-skills-by-control-plane",
+		OperationID:      "list-context-interface-skills",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -190,7 +190,7 @@ func (s *Skills) ListMcpServerSkillsByControlPlane(ctx context.Context, request 
 		}
 	}
 
-	res := &operations.ListMcpServerSkillsByControlPlaneResponse{
+	res := &operations.ListContextInterfaceSkillsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -330,12 +330,17 @@ func (s *Skills) ListMcpServerSkillsByControlPlane(ctx context.Context, request 
 
 }
 
-// GetMcpServerSkillContentsByControlPlane - Get Skill Contents by Control Plane
+// CreateContextInterfaceSkill - Create a Skill
 // **Pre-release Endpoint**
 // This endpoint is currently in beta and is subject to change.
 //
-// KO-only endpoint that redirects to a presigned S3 URL for the skill's SKILL.md file.
-func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, request operations.GetMcpServerSkillContentsByControlPlaneRequest, opts ...operations.Option) (*operations.GetMcpServerSkillContentsByControlPlaneResponse, error) {
+// Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
+func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID string, createSkillRequest components.CreateSkillRequest, opts ...operations.Option) (*operations.CreateContextInterfaceSkillResponse, error) {
+	request := operations.CreateContextInterfaceSkillRequest{
+		InterfaceID:        interfaceID,
+		CreateSkillRequest: createSkillRequest,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -354,7 +359,7 @@ func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, re
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills/{skillId}/contents", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/context-interfaces/{interfaceId}/skills", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -364,9 +369,13 @@ func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, re
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "get-mcp-server-skill-contents-by-control-plane",
+		OperationID:      "create-context-interface-skill",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CreateSkillRequest", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
 	}
 
 	timeout := o.Timeout
@@ -380,12 +389,15 @@ func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, re
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/problem+json")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -486,15 +498,34 @@ func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, re
 		}
 	}
 
-	res := &operations.GetMcpServerSkillContentsByControlPlaneResponse{
+	res := &operations.CreateContextInterfaceSkillResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
 	}
 
 	switch {
-	case httpRes.StatusCode == 302:
-		utils.DrainBody(httpRes)
+	case httpRes.StatusCode == 201:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out components.Skill
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Skill = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
@@ -570,6 +601,28 @@ func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, re
 			}
 
 			var out sdkerrors.NotFoundError
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
+			}
+
+			out.RawResponse = httpRes
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 409:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out sdkerrors.ConflictError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
@@ -1794,12 +1847,12 @@ func (s *Skills) GetContextInterfaceSkillContents(ctx context.Context, interface
 
 }
 
-// ListContextInterfaceSkills - List Skills
+// ListMcpServerSkillsByControlPlane - List Skills by Control Plane
 // **Pre-release Endpoint**
 // This endpoint is currently in beta and is subject to change.
 //
-// Returns a list of skills for the specified Context Interface.
-func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operations.ListContextInterfaceSkillsRequest, opts ...operations.Option) (*operations.ListContextInterfaceSkillsResponse, error) {
+// Separate control-plane-scoped list endpoint for KO to enumerate skills at deploy time.
+func (s *Skills) ListMcpServerSkillsByControlPlane(ctx context.Context, request operations.ListMcpServerSkillsByControlPlaneRequest, opts ...operations.Option) (*operations.ListMcpServerSkillsByControlPlaneResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1818,7 +1871,7 @@ func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operati
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/context-interfaces/{interfaceId}/skills", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1828,7 +1881,7 @@ func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operati
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "list-context-interface-skills",
+		OperationID:      "list-mcp-server-skills-by-control-plane",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -1954,7 +2007,7 @@ func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operati
 		}
 	}
 
-	res := &operations.ListContextInterfaceSkillsResponse{
+	res := &operations.ListMcpServerSkillsByControlPlaneResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
@@ -2094,17 +2147,12 @@ func (s *Skills) ListContextInterfaceSkills(ctx context.Context, request operati
 
 }
 
-// CreateContextInterfaceSkill - Create a Skill
+// GetMcpServerSkillContentsByControlPlane - Get Skill Contents by Control Plane
 // **Pre-release Endpoint**
 // This endpoint is currently in beta and is subject to change.
 //
-// Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
-func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID string, createSkillRequest components.CreateSkillRequest, opts ...operations.Option) (*operations.CreateContextInterfaceSkillResponse, error) {
-	request := operations.CreateContextInterfaceSkillRequest{
-		InterfaceID:        interfaceID,
-		CreateSkillRequest: createSkillRequest,
-	}
-
+// KO-only endpoint that redirects to a presigned S3 URL for the skill's SKILL.md file.
+func (s *Skills) GetMcpServerSkillContentsByControlPlane(ctx context.Context, request operations.GetMcpServerSkillContentsByControlPlaneRequest, opts ...operations.Option) (*operations.GetMcpServerSkillContentsByControlPlaneResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2123,7 +2171,7 @@ func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID st
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/context-interfaces/{interfaceId}/skills", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills/{skillId}/contents", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -2133,13 +2181,9 @@ func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID st
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "create-context-interface-skill",
+		OperationID:      "get-mcp-server-skill-contents-by-control-plane",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
-	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CreateSkillRequest", "json", `request:"mediaType=application/json"`)
-	if err != nil {
-		return nil, err
 	}
 
 	timeout := o.Timeout
@@ -2153,15 +2197,12 @@ func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID st
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "GET", opURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Accept", "application/problem+json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	if reqContentType != "" {
-		req.Header.Set("Content-Type", reqContentType)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -2262,34 +2303,15 @@ func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID st
 		}
 	}
 
-	res := &operations.CreateContextInterfaceSkillResponse{
+	res := &operations.GetMcpServerSkillContentsByControlPlaneResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: httpRes.Header.Get("Content-Type"),
 		RawResponse: httpRes,
 	}
 
 	switch {
-	case httpRes.StatusCode == 201:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out components.Skill
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
-			}
-
-			res.Skill = &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
+	case httpRes.StatusCode == 302:
+		utils.DrainBody(httpRes)
 	case httpRes.StatusCode == 400:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
@@ -2365,28 +2387,6 @@ func (s *Skills) CreateContextInterfaceSkill(ctx context.Context, interfaceID st
 			}
 
 			var out sdkerrors.NotFoundError
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
-			}
-
-			out.RawResponse = httpRes
-			return nil, &out
-		default:
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
-		}
-	case httpRes.StatusCode == 409:
-		switch {
-		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/problem+json`):
-			rawBody, err := utils.ConsumeRawBody(httpRes)
-			if err != nil {
-				return nil, err
-			}
-
-			var out sdkerrors.ConflictError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}

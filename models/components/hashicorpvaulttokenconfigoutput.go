@@ -29,20 +29,20 @@ func (e *Kv) IsExact() bool {
 	return false
 }
 
-// Protocol - The protocol to connect with.
-type Protocol string
+// HashiCorpVaultTokenConfigProtocol - The protocol to connect with.
+type HashiCorpVaultTokenConfigProtocol string
 
 const (
-	ProtocolHTTP  Protocol = "http"
-	ProtocolHTTPS Protocol = "https"
+	HashiCorpVaultTokenConfigProtocolHTTP  HashiCorpVaultTokenConfigProtocol = "http"
+	HashiCorpVaultTokenConfigProtocolHTTPS HashiCorpVaultTokenConfigProtocol = "https"
 )
 
-func (e Protocol) ToPointer() *Protocol {
+func (e HashiCorpVaultTokenConfigProtocol) ToPointer() *HashiCorpVaultTokenConfigProtocol {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Protocol) IsExact() bool {
+func (e *HashiCorpVaultTokenConfigProtocol) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "http", "https":
@@ -81,7 +81,7 @@ type HashiCorpVaultTokenConfigOutput struct {
 	// The secrets engine version.
 	Kv *Kv `default:"v1" json:"kv"`
 	// The protocol to connect with.
-	Protocol *Protocol `default:"https" json:"protocol"`
+	Protocol *HashiCorpVaultTokenConfigProtocol `default:"https" json:"protocol"`
 	// Whether to verify the TLS certificate of the vault when connecting.
 	SslVerify *bool `default:"true" json:"ssl_verify"`
 	// Namespace for the Vault. Vault Enterprise requires a namespace to connect successfully.
@@ -157,7 +157,7 @@ func (h *HashiCorpVaultTokenConfigOutput) GetKv() *Kv {
 	return h.Kv
 }
 
-func (h *HashiCorpVaultTokenConfigOutput) GetProtocol() *Protocol {
+func (h *HashiCorpVaultTokenConfigOutput) GetProtocol() *HashiCorpVaultTokenConfigProtocol {
 	if h == nil {
 		return nil
 	}
@@ -211,7 +211,7 @@ type HashiCorpVaultTokenConfig struct {
 	// The secrets engine version.
 	Kv *Kv `default:"v1" json:"kv"`
 	// The protocol to connect with.
-	Protocol *Protocol `default:"https" json:"protocol"`
+	Protocol *HashiCorpVaultTokenConfigProtocol `default:"https" json:"protocol"`
 	// Whether to verify the TLS certificate of the vault when connecting.
 	SslVerify *bool `default:"true" json:"ssl_verify"`
 	// Namespace for the Vault. Vault Enterprise requires a namespace to connect successfully.
@@ -289,7 +289,7 @@ func (h *HashiCorpVaultTokenConfig) GetKv() *Kv {
 	return h.Kv
 }
 
-func (h *HashiCorpVaultTokenConfig) GetProtocol() *Protocol {
+func (h *HashiCorpVaultTokenConfig) GetProtocol() *HashiCorpVaultTokenConfigProtocol {
 	if h == nil {
 		return nil
 	}

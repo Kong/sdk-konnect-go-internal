@@ -35,29 +35,29 @@ func (e *ManagedCacheAddOnDataPlaneGroupState) IsExact() bool {
 	return false
 }
 
-// ManagedCacheAddOnDataPlaneGroupStateMetadata - Metadata describing the state of the managed cache add-on in the data-plane group.
-type ManagedCacheAddOnDataPlaneGroupStateMetadata struct {
+// StateMetadata - Metadata describing the state of the managed cache add-on in the data-plane group.
+type StateMetadata struct {
 	// Reason why the managed cache add-on may be in an error state, reported from backing infrastructure.
 	//
 	ErrorReason *string `json:"error_reason,omitempty"`
 }
 
-func (m ManagedCacheAddOnDataPlaneGroupStateMetadata) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(m, "", false)
+func (s StateMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (m *ManagedCacheAddOnDataPlaneGroupStateMetadata) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+func (s *StateMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *ManagedCacheAddOnDataPlaneGroupStateMetadata) GetErrorReason() *string {
-	if m == nil {
+func (s *StateMetadata) GetErrorReason() *string {
+	if s == nil {
 		return nil
 	}
-	return m.ErrorReason
+	return s.ErrorReason
 }
 
 // ManagedCacheAddOnDataPlaneGroup - Object that describes a data-plane group where managed cache add-on is deployed.
@@ -79,7 +79,7 @@ type ManagedCacheAddOnDataPlaneGroup struct {
 	State ManagedCacheAddOnDataPlaneGroupState `json:"state"`
 	// Metadata describing the state of the managed cache add-on in the data-plane group.
 	//
-	StateMetadata ManagedCacheAddOnDataPlaneGroupStateMetadata `json:"state_metadata"`
+	StateMetadata StateMetadata `json:"state_metadata"`
 }
 
 func (m ManagedCacheAddOnDataPlaneGroup) MarshalJSON() ([]byte, error) {
@@ -128,9 +128,9 @@ func (m *ManagedCacheAddOnDataPlaneGroup) GetState() ManagedCacheAddOnDataPlaneG
 	return m.State
 }
 
-func (m *ManagedCacheAddOnDataPlaneGroup) GetStateMetadata() ManagedCacheAddOnDataPlaneGroupStateMetadata {
+func (m *ManagedCacheAddOnDataPlaneGroup) GetStateMetadata() StateMetadata {
 	if m == nil {
-		return ManagedCacheAddOnDataPlaneGroupStateMetadata{}
+		return StateMetadata{}
 	}
 	return m.StateMetadata
 }

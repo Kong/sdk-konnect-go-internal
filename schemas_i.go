@@ -5,15 +5,11 @@ package sdkkonnectgo
 import (
 	"context"
 
-	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 )
 
 // SchemasSDK is a generated interface.
 type SchemasSDK interface {
-	// ValidateExpression - Validate a CEL expression
-	// Validates a CEL expression for the `expressions` field or the `condition` field of a plugin. Send exactly one of `expression` or `condition`.
-	ValidateExpression(ctx context.Context, controlPlaneID string, validateExpressionBodyRequest components.ValidateExpressionBodyRequest, opts ...operations.Option) (*operations.ValidateExpressionResponse, error)
 	// ValidateEntitySchema - Validate entity schema
 	// Validate schema for an entity
 	ValidateEntitySchema(ctx context.Context, request operations.ValidateEntitySchemaRequest, opts ...operations.Option) (*operations.ValidateEntitySchemaResponse, error)

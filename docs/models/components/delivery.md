@@ -1,7 +1,5 @@
 # Delivery
 
-A single delivery.
-
 
 ## Fields
 

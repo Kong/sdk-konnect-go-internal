@@ -9,20 +9,20 @@ import (
 	"time"
 )
 
-// AICostExportSchedule2Format - The file format of each export's data files.
-type AICostExportSchedule2Format string
+// AICostExportScheduleFormat - The file format of each export's data files.
+type AICostExportScheduleFormat string
 
 const (
-	AICostExportSchedule2FormatParquet AICostExportSchedule2Format = "parquet"
-	AICostExportSchedule2FormatCsv     AICostExportSchedule2Format = "csv"
+	AICostExportScheduleFormatParquet AICostExportScheduleFormat = "parquet"
+	AICostExportScheduleFormatCsv     AICostExportScheduleFormat = "csv"
 )
 
-func (e AICostExportSchedule2Format) ToPointer() *AICostExportSchedule2Format {
+func (e AICostExportScheduleFormat) ToPointer() *AICostExportScheduleFormat {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AICostExportSchedule2Format) IsExact() bool {
+func (e *AICostExportScheduleFormat) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "parquet", "csv":
@@ -105,20 +105,20 @@ func (e *AICostExportSchedule2Status) IsExact() bool {
 	return false
 }
 
-// AICostExportSchedule2Dataset - The data that each export holds.
-type AICostExportSchedule2Dataset string
+// AICostExportScheduleDataset - The data that each export holds.
+type AICostExportScheduleDataset string
 
 const (
-	AICostExportSchedule2DatasetUsageEvents AICostExportSchedule2Dataset = "usage_events"
-	AICostExportSchedule2DatasetFocus       AICostExportSchedule2Dataset = "focus"
+	AICostExportScheduleDatasetUsageEvents AICostExportScheduleDataset = "usage_events"
+	AICostExportScheduleDatasetFocus       AICostExportScheduleDataset = "focus"
 )
 
-func (e AICostExportSchedule2Dataset) ToPointer() *AICostExportSchedule2Dataset {
+func (e AICostExportScheduleDataset) ToPointer() *AICostExportScheduleDataset {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AICostExportSchedule2Dataset) IsExact() bool {
+func (e *AICostExportScheduleDataset) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "usage_events", "focus":
@@ -128,9 +128,32 @@ func (e *AICostExportSchedule2Dataset) IsExact() bool {
 	return false
 }
 
-type AICostExportSchedule2 struct {
+// AICostExportScheduleSchemaVersion - The schema version of each export's data files within the dataset, which fixes their columns and values.
+type AICostExportScheduleSchemaVersion int64
+
+const (
+	AICostExportScheduleSchemaVersionOne AICostExportScheduleSchemaVersion = 1
+	AICostExportScheduleSchemaVersionTwo AICostExportScheduleSchemaVersion = 2
+)
+
+func (e AICostExportScheduleSchemaVersion) ToPointer() *AICostExportScheduleSchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AICostExportScheduleSchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
+	}
+	return false
+}
+
+type Two struct {
 	// The file format of each export's data files.
-	Format AICostExportSchedule2Format `json:"format"`
+	Format AICostExportScheduleFormat `json:"format"`
 	// How each export's data files are compressed.
 	Compression AICostExportSchedule2Compression `json:"compression"`
 	// Contains a unique identifier used for this resource.
@@ -150,9 +173,9 @@ type AICostExportSchedule2 struct {
 	// Whether the schedule creates exports.
 	Status AICostExportSchedule2Status `json:"status"`
 	// The data that each export holds.
-	Dataset AICostExportSchedule2Dataset `json:"dataset"`
+	Dataset AICostExportScheduleDataset `json:"dataset"`
 	// The schema version of each export's data files within the dataset, which fixes their columns and values.
-	SchemaVersion AICostExportSchemaVersion `json:"schema_version"`
+	SchemaVersion AICostExportScheduleSchemaVersion `json:"schema_version"`
 	// The FOCUS options of each export, with defaults applied.
 	//
 	// `null` unless `dataset` is `focus`.
@@ -173,146 +196,143 @@ type AICostExportSchedule2 struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func (a AICostExportSchedule2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(a, "", false)
+func (t Two) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
 }
 
-func (a *AICostExportSchedule2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"format", "compression", "id", "name", "cadence", "time_zone", "status", "dataset", "schema_version", "filters", "labels", "managed_by", "created_at", "updated_at"}); err != nil {
+func (t *Two) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"format", "compression", "id", "name", "cadence", "time_zone", "status", "dataset", "schema_version", "filters", "labels", "managed_by", "created_at", "updated_at"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *AICostExportSchedule2) GetFormat() AICostExportSchedule2Format {
-	if a == nil {
-		return AICostExportSchedule2Format("")
+func (t *Two) GetFormat() AICostExportScheduleFormat {
+	if t == nil {
+		return AICostExportScheduleFormat("")
 	}
-	return a.Format
+	return t.Format
 }
 
-func (a *AICostExportSchedule2) GetCompression() AICostExportSchedule2Compression {
-	if a == nil {
+func (t *Two) GetCompression() AICostExportSchedule2Compression {
+	if t == nil {
 		return AICostExportSchedule2Compression("")
 	}
-	return a.Compression
+	return t.Compression
 }
 
-func (a *AICostExportSchedule2) GetID() string {
-	if a == nil {
+func (t *Two) GetID() string {
+	if t == nil {
 		return ""
 	}
-	return a.ID
+	return t.ID
 }
 
-func (a *AICostExportSchedule2) GetName() string {
-	if a == nil {
+func (t *Two) GetName() string {
+	if t == nil {
 		return ""
 	}
-	return a.Name
+	return t.Name
 }
 
-func (a *AICostExportSchedule2) GetCadence() AICostExportScheduleCadence {
-	if a == nil {
+func (t *Two) GetCadence() AICostExportScheduleCadence {
+	if t == nil {
 		return AICostExportScheduleCadence("")
 	}
-	return a.Cadence
+	return t.Cadence
 }
 
-func (a *AICostExportSchedule2) GetTimeZone() string {
-	if a == nil {
+func (t *Two) GetTimeZone() string {
+	if t == nil {
 		return ""
 	}
-	return a.TimeZone
+	return t.TimeZone
 }
 
-func (a *AICostExportSchedule2) GetStatus() AICostExportSchedule2Status {
-	if a == nil {
+func (t *Two) GetStatus() AICostExportSchedule2Status {
+	if t == nil {
 		return AICostExportSchedule2Status("")
 	}
-	return a.Status
+	return t.Status
 }
 
-func (a *AICostExportSchedule2) GetDataset() AICostExportSchedule2Dataset {
-	if a == nil {
-		return AICostExportSchedule2Dataset("")
+func (t *Two) GetDataset() AICostExportScheduleDataset {
+	if t == nil {
+		return AICostExportScheduleDataset("")
 	}
-	return a.Dataset
+	return t.Dataset
 }
 
-func (a *AICostExportSchedule2) GetSchemaVersion() AICostExportSchemaVersion {
-	if a == nil {
-		return AICostExportSchemaVersion(0)
+func (t *Two) GetSchemaVersion() AICostExportScheduleSchemaVersion {
+	if t == nil {
+		return AICostExportScheduleSchemaVersion(0)
 	}
-	return a.SchemaVersion
+	return t.SchemaVersion
 }
 
-func (a *AICostExportSchedule2) GetFocus() *AICostFocusOptions {
-	if a == nil {
+func (t *Two) GetFocus() *AICostFocusOptions {
+	if t == nil {
 		return nil
 	}
-	return a.Focus
+	return t.Focus
 }
 
-func (a *AICostExportSchedule2) GetFilters() any {
-	if a == nil {
+func (t *Two) GetFilters() any {
+	if t == nil {
 		return nil
 	}
-	return a.Filters
+	return t.Filters
 }
 
-func (a *AICostExportSchedule2) GetLabels() map[string]string {
-	if a == nil {
+func (t *Two) GetLabels() map[string]string {
+	if t == nil {
 		return map[string]string{}
 	}
-	return a.Labels
+	return t.Labels
 }
 
-func (a *AICostExportSchedule2) GetManagedBy() map[string]string {
-	if a == nil {
+func (t *Two) GetManagedBy() map[string]string {
+	if t == nil {
 		return map[string]string{}
 	}
-	return a.ManagedBy
+	return t.ManagedBy
 }
 
-func (a *AICostExportSchedule2) GetNextRunAt() *time.Time {
-	if a == nil {
+func (t *Two) GetNextRunAt() *time.Time {
+	if t == nil {
 		return nil
 	}
-	return a.NextRunAt
+	return t.NextRunAt
 }
 
-func (a *AICostExportSchedule2) GetCreatedAt() time.Time {
-	if a == nil {
+func (t *Two) GetCreatedAt() time.Time {
+	if t == nil {
 		return time.Time{}
 	}
-	return a.CreatedAt
+	return t.CreatedAt
 }
 
-func (a *AICostExportSchedule2) GetUpdatedAt() time.Time {
-	if a == nil {
+func (t *Two) GetUpdatedAt() time.Time {
+	if t == nil {
 		return time.Time{}
 	}
-	return a.UpdatedAt
+	return t.UpdatedAt
 }
 
-// #region class-body-aicostexportschedule2
-// #endregion class-body-aicostexportschedule2
-
-// AICostExportScheduleFormat - The file format of each export's data files.
-type AICostExportScheduleFormat string
+// AICostExportSchedule1Format - The file format of each export's data files.
+type AICostExportSchedule1Format string
 
 const (
-	AICostExportScheduleFormatParquet AICostExportScheduleFormat = "parquet"
-	AICostExportScheduleFormatCsv     AICostExportScheduleFormat = "csv"
+	AICostExportSchedule1FormatParquet AICostExportSchedule1Format = "parquet"
+	AICostExportSchedule1FormatCsv     AICostExportSchedule1Format = "csv"
 )
 
-func (e AICostExportScheduleFormat) ToPointer() *AICostExportScheduleFormat {
+func (e AICostExportSchedule1Format) ToPointer() *AICostExportSchedule1Format {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AICostExportScheduleFormat) IsExact() bool {
+func (e *AICostExportSchedule1Format) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "parquet", "csv":
@@ -395,20 +415,20 @@ func (e *AICostExportScheduleStatus) IsExact() bool {
 	return false
 }
 
-// AICostExportScheduleDataset - The data that each export holds.
-type AICostExportScheduleDataset string
+// Dataset - The data that each export holds.
+type Dataset string
 
 const (
-	AICostExportScheduleDatasetUsageEvents AICostExportScheduleDataset = "usage_events"
-	AICostExportScheduleDatasetFocus       AICostExportScheduleDataset = "focus"
+	DatasetUsageEvents Dataset = "usage_events"
+	DatasetFocus       Dataset = "focus"
 )
 
-func (e AICostExportScheduleDataset) ToPointer() *AICostExportScheduleDataset {
+func (e Dataset) ToPointer() *Dataset {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AICostExportScheduleDataset) IsExact() bool {
+func (e *Dataset) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "usage_events", "focus":
@@ -418,9 +438,32 @@ func (e *AICostExportScheduleDataset) IsExact() bool {
 	return false
 }
 
+// SchemaVersion - The schema version of each export's data files within the dataset, which fixes their columns and values.
+type SchemaVersion int64
+
+const (
+	SchemaVersionOne SchemaVersion = 1
+	SchemaVersionTwo SchemaVersion = 2
+)
+
+func (e SchemaVersion) ToPointer() *SchemaVersion {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SchemaVersion) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case 1, 2:
+			return true
+		}
+	}
+	return false
+}
+
 type AICostExportSchedule1 struct {
 	// The file format of each export's data files.
-	Format AICostExportScheduleFormat `json:"format"`
+	Format AICostExportSchedule1Format `json:"format"`
 	// How each export's data files are compressed.
 	Compression AICostExportScheduleCompression `json:"compression"`
 	// Contains a unique identifier used for this resource.
@@ -440,9 +483,9 @@ type AICostExportSchedule1 struct {
 	// Whether the schedule creates exports.
 	Status AICostExportScheduleStatus `json:"status"`
 	// The data that each export holds.
-	Dataset AICostExportScheduleDataset `json:"dataset"`
+	Dataset Dataset `json:"dataset"`
 	// The schema version of each export's data files within the dataset, which fixes their columns and values.
-	SchemaVersion AICostExportSchemaVersion `json:"schema_version"`
+	SchemaVersion SchemaVersion `json:"schema_version"`
 	// The FOCUS options of each export, with defaults applied.
 	//
 	// `null` unless `dataset` is `focus`.
@@ -474,9 +517,9 @@ func (a *AICostExportSchedule1) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AICostExportSchedule1) GetFormat() AICostExportScheduleFormat {
+func (a *AICostExportSchedule1) GetFormat() AICostExportSchedule1Format {
 	if a == nil {
-		return AICostExportScheduleFormat("")
+		return AICostExportSchedule1Format("")
 	}
 	return a.Format
 }
@@ -523,16 +566,16 @@ func (a *AICostExportSchedule1) GetStatus() AICostExportScheduleStatus {
 	return a.Status
 }
 
-func (a *AICostExportSchedule1) GetDataset() AICostExportScheduleDataset {
+func (a *AICostExportSchedule1) GetDataset() Dataset {
 	if a == nil {
-		return AICostExportScheduleDataset("")
+		return Dataset("")
 	}
 	return a.Dataset
 }
 
-func (a *AICostExportSchedule1) GetSchemaVersion() AICostExportSchemaVersion {
+func (a *AICostExportSchedule1) GetSchemaVersion() SchemaVersion {
 	if a == nil {
-		return AICostExportSchemaVersion(0)
+		return SchemaVersion(0)
 	}
 	return a.SchemaVersion
 }
@@ -593,7 +636,7 @@ type AICostExportScheduleType string
 
 const (
 	AICostExportScheduleTypeAICostExportSchedule1 AICostExportScheduleType = "AICostExportSchedule_1"
-	AICostExportScheduleTypeAICostExportSchedule2 AICostExportScheduleType = "AICostExportSchedule_2"
+	AICostExportScheduleTypeTwo                   AICostExportScheduleType = "2"
 )
 
 // AICostExportSchedule - An export schedule exports the organization's usage period by period, such as month by month. An `active` schedule creates one export of each period as the period ends. Each export is an ordinary export whose `schedule` names the schedule: it's listed, downloaded, and expires like a one-time export. Its files follow the dataset's rule: one for each day for `usage_events`, and one for each calendar month for `focus`. Each export of a `daily` `usage_events` schedule or a `monthly` `focus` schedule therefore has one file.
@@ -604,7 +647,7 @@ const (
 // - When runs are late, for example after an outage, the schedule catches up on at most the 31 most recent periods that ended while it was `active`, and skips older ones.
 type AICostExportSchedule struct {
 	AICostExportSchedule1 *AICostExportSchedule1 `queryParam:"inline" union:"member"`
-	AICostExportSchedule2 *AICostExportSchedule2 `queryParam:"inline" union:"member"`
+	Two                   *Two                   `queryParam:"inline" union:"member"`
 
 	Type AICostExportScheduleType
 }
@@ -618,12 +661,12 @@ func CreateAICostExportScheduleAICostExportSchedule1(aiCostExportSchedule1 AICos
 	}
 }
 
-func CreateAICostExportScheduleAICostExportSchedule2(aiCostExportSchedule2 AICostExportSchedule2) AICostExportSchedule {
-	typ := AICostExportScheduleTypeAICostExportSchedule2
+func CreateAICostExportScheduleTwo(two Two) AICostExportSchedule {
+	typ := AICostExportScheduleTypeTwo
 
 	return AICostExportSchedule{
-		AICostExportSchedule2: &aiCostExportSchedule2,
-		Type:                  typ,
+		Two:  &two,
+		Type: typ,
 	}
 }
 
@@ -643,10 +686,10 @@ func (u *AICostExportSchedule) UnmarshalJSON(data []byte) (err error) {
 		return nil
 	}
 
-	var aiCostExportSchedule2 AICostExportSchedule2 = AICostExportSchedule2{}
-	if err := utils.UnmarshalJSON(data, &aiCostExportSchedule2, "", true, nil); err == nil {
-		u.AICostExportSchedule2 = &aiCostExportSchedule2
-		u.Type = AICostExportScheduleTypeAICostExportSchedule2
+	var two Two = Two{}
+	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
+		u.Two = &two
+		u.Type = AICostExportScheduleTypeTwo
 		return nil
 	}
 
@@ -658,8 +701,8 @@ func (u AICostExportSchedule) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.AICostExportSchedule1, "", true)
 	}
 
-	if u.AICostExportSchedule2 != nil {
-		return utils.MarshalJSON(u.AICostExportSchedule2, "", true)
+	if u.Two != nil {
+		return utils.MarshalJSON(u.Two, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type AICostExportSchedule: all fields are null")

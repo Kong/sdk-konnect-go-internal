@@ -6,19 +6,85 @@ Budgets set spending limits, or exemptions from them, for parts of the organizat
 
 ### Available Operations
 
+* [ListCostBudgetBalances](#listcostbudgetbalances) - List budget balances
 * [ListCostBudgets](#listcostbudgets) - List budgets
 * [CreateCostBudget](#createcostbudget) - Create a budget
 * [GetCostBudget](#getcostbudget) - Get a budget
 * [UpsertCostBudget](#upsertcostbudget) - Replace a budget's updatable fields
 * [DeleteCostBudget](#deletecostbudget) - Delete a budget
 * [GetCostBudgetBalance](#getcostbudgetbalance) - Get a budget's balance
-* [ListCostBudgetBalances](#listcostbudgetbalances) - List budget balances
 * [GetCostNotificationRule](#getcostnotificationrule) - Get a budget's notification rule
 * [UpsertCostNotificationRule](#upsertcostnotificationrule) - Create or replace a notification rule
 * [DeleteCostNotificationRule](#deletecostnotificationrule) - Delete a budget's notification rule
 * [ListCostNotificationRuleFirings](#listcostnotificationrulefirings) - List a notification rule's firings
 * [ListCostNotificationEvents](#listcostnotificationevents) - List notification events
 * [GetCostNotificationEvent](#getcostnotificationevent) - Get a notification event
+
+## ListCostBudgetBalances
+
+Returns a page of the balances of the organization's limit budgets, highest consumed share first unless the request sets `sort`. Exemptions have no balance.
+
+- A limit budget without `each` has one balance for its whole scope, with `value` set to `null`.
+- A limit budget with `each` has one balance for every value of the `each` field with usage in the budget window.
+- A value that an `eq` or `in` predicate on the `each` field selects has a balance even without usage.
+
+`filter[budget.id]` narrows the list to some budgets, and `filter[scope.subject]` and `filter[scope.group]` to the balances of one entity. `budget` is a reference unless the request sends `expand=budget`, which renders the full budget. For a caller whose access covers only particular principals or groups, the list holds the balances of the budgets that the budget list shows that caller. For a budget that the caller sees only through their own derived budget, it holds that one balance, even without usage.
+
+`evaluated_at` fixes every budget window for every page, unless a budget's window changes, but not the usage: usage that arrives while a client reads the pages can change the amounts. A zero limit has no consumed share, and its balances sort as the highest share.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-cost-budget-balances" method="get" path="/v1/ai-cost-management/budget-balances" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.Budgets.ListCostBudgetBalances(ctx, operations.ListCostBudgetBalancesRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.ListCostBudgetBalancesRequest](../../models/operations/listcostbudgetbalancesrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
+
+### Response
+
+**[*operations.ListCostBudgetBalancesResponse](../../models/operations/listcostbudgetbalancesresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListCostBudgets
 
@@ -438,72 +504,6 @@ func main() {
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ListCostBudgetBalances
-
-Returns a page of the balances of the organization's limit budgets, highest consumed share first unless the request sets `sort`. Exemptions have no balance.
-
-- A limit budget without `each` has one balance for its whole scope, with `value` set to `null`.
-- A limit budget with `each` has one balance for every value of the `each` field with usage in the budget window.
-- A value that an `eq` or `in` predicate on the `each` field selects has a balance even without usage.
-
-`filter[budget.id]` narrows the list to some budgets, and `filter[scope.subject]` and `filter[scope.group]` to the balances of one entity. `budget` is a reference unless the request sends `expand=budget`, which renders the full budget. For a caller whose access covers only particular principals or groups, the list holds the balances of the budgets that the budget list shows that caller. For a budget that the caller sees only through their own derived budget, it holds that one balance, even without usage.
-
-`evaluated_at` fixes every budget window for every page, unless a budget's window changes, but not the usage: usage that arrives while a client reads the pages can change the amounts. A zero limit has no consumed share, and its balances sort as the highest share.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-cost-budget-balances" method="get" path="/v1/ai-cost-management/budget-balances" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.Budgets.ListCostBudgetBalances(ctx, operations.ListCostBudgetBalancesRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.ListCostBudgetBalancesRequest](../../models/operations/listcostbudgetbalancesrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
-
-### Response
-
-**[*operations.ListCostBudgetBalancesResponse](../../models/operations/listcostbudgetbalancesresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetCostNotificationRule

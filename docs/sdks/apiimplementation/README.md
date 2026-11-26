@@ -4,10 +4,85 @@
 
 ### Available Operations
 
+* [ListAPIImplementations](#listapiimplementations) - List API Implementations
 * [CreateAPIImplementation](#createapiimplementation) - Create API Implementation
 * [FetchAPIImplementation](#fetchapiimplementation) - Get an API Implementation
 * [DeleteAPIImplementation](#deleteapiimplementation) - Delete API Implementation
-* [ListAPIImplementations](#listapiimplementations) - List API Implementations
+
+## ListAPIImplementations
+
+List gateway implementations for this API
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-api-implementations" method="get" path="/v3/api-implementations" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/types"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.APIImplementation.ListAPIImplementations(ctx, operations.ListAPIImplementationsRequest{
+        PageSize: sdkkonnectgo.Pointer[int64](10),
+        PageNumber: sdkkonnectgo.Pointer[int64](1),
+        Filter: &components.APIImplementationFilterParameters{
+            CreatedAt: sdkkonnectgo.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTEFilter(
+                components.DateTimeFieldLTEFilter{
+                    Lte: types.MustTimeFromString("2022-03-30T07:20:50Z"),
+                },
+            )),
+            UpdatedAt: sdkkonnectgo.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTFilter(
+                components.DateTimeFieldLTFilter{
+                    Lt: types.MustTimeFromString("2022-03-30T07:20:50Z"),
+                },
+            )),
+        },
+        Sort: sdkkonnectgo.Pointer("created_at desc"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListAPIImplementationsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [operations.ListAPIImplementationsRequest](../../models/operations/listapiimplementationsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
+
+### Response
+
+**[*operations.ListAPIImplementationsResponse](../../models/operations/listapiimplementationsresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreateAPIImplementation
 
@@ -200,81 +275,6 @@ func main() {
 ### Response
 
 **[*operations.DeleteAPIImplementationResponse](../../models/operations/deleteapiimplementationresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ListAPIImplementations
-
-List gateway implementations for this API
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-api-implementations" method="get" path="/v3/api-implementations" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/types"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.APIImplementation.ListAPIImplementations(ctx, operations.ListAPIImplementationsRequest{
-        PageSize: sdkkonnectgo.Pointer[int64](10),
-        PageNumber: sdkkonnectgo.Pointer[int64](1),
-        Filter: &components.APIImplementationFilterParameters{
-            CreatedAt: sdkkonnectgo.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTEFilter(
-                components.DateTimeFieldLTEFilter{
-                    Lte: types.MustTimeFromString("2022-03-30T07:20:50Z"),
-                },
-            )),
-            UpdatedAt: sdkkonnectgo.Pointer(components.CreateDateTimeFieldFilterDateTimeFieldLTFilter(
-                components.DateTimeFieldLTFilter{
-                    Lt: types.MustTimeFromString("2022-03-30T07:20:50Z"),
-                },
-            )),
-        },
-        Sort: sdkkonnectgo.Pointer("created_at desc"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListAPIImplementationsResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
-| `request`                                                                                            | [operations.ListAPIImplementationsRequest](../../models/operations/listapiimplementationsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
-| `opts`                                                                                               | [][operations.Option](../../models/operations/option.md)                                             | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
-
-### Response
-
-**[*operations.ListAPIImplementationsResponse](../../models/operations/listapiimplementationsresponse.md), error**
 
 ### Errors
 

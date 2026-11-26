@@ -5,22 +5,22 @@ Auth related config for connecting to a Cloud Provider's Redis instance.
 
 ## Supported Types
 
-### AIGatewayRedisAWSAuthentication
+### AIGatewayRedisAWSAuthenticationOutput
 
 ```go
-aiGatewayRedisCloudConfigurationCloudAuthentication := components.CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAws(components.AIGatewayRedisAWSAuthentication{/* values here */})
+aiGatewayRedisCloudConfigurationCloudAuthentication := components.CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAws(components.AIGatewayRedisAWSAuthenticationOutput{/* values here */})
 ```
 
-### AIGatewayRedisAzureAuthentication
+### AIGatewayRedisAzureAuthenticationOutput
 
 ```go
-aiGatewayRedisCloudConfigurationCloudAuthentication := components.CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAzure(components.AIGatewayRedisAzureAuthentication{/* values here */})
+aiGatewayRedisCloudConfigurationCloudAuthentication := components.CreateAIGatewayRedisCloudConfigurationCloudAuthenticationAzure(components.AIGatewayRedisAzureAuthenticationOutput{/* values here */})
 ```
 
-### AIGatewayRedisGCPAuthentication
+### AIGatewayRedisGCPAuthenticationOutput
 
 ```go
-aiGatewayRedisCloudConfigurationCloudAuthentication := components.CreateAIGatewayRedisCloudConfigurationCloudAuthenticationGcp(components.AIGatewayRedisGCPAuthentication{/* values here */})
+aiGatewayRedisCloudConfigurationCloudAuthentication := components.CreateAIGatewayRedisCloudConfigurationCloudAuthenticationGcp(components.AIGatewayRedisGCPAuthenticationOutput{/* values here */})
 ```
 
 ## Union Discrimination
@@ -30,10 +30,10 @@ Use the `Type` field to determine which variant is active, then access the corre
 ```go
 switch aiGatewayRedisCloudConfigurationCloudAuthentication.Type {
 	case components.AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAws:
-		// aiGatewayRedisCloudConfigurationCloudAuthentication.AIGatewayRedisAWSAuthentication is populated
+		// aiGatewayRedisCloudConfigurationCloudAuthentication.AIGatewayRedisAWSAuthenticationOutput is populated
 	case components.AIGatewayRedisCloudConfigurationCloudAuthenticationTypeAzure:
-		// aiGatewayRedisCloudConfigurationCloudAuthentication.AIGatewayRedisAzureAuthentication is populated
+		// aiGatewayRedisCloudConfigurationCloudAuthentication.AIGatewayRedisAzureAuthenticationOutput is populated
 	case components.AIGatewayRedisCloudConfigurationCloudAuthenticationTypeGcp:
-		// aiGatewayRedisCloudConfigurationCloudAuthentication.AIGatewayRedisGCPAuthentication is populated
+		// aiGatewayRedisCloudConfigurationCloudAuthentication.AIGatewayRedisGCPAuthenticationOutput is populated
 }
 ```

@@ -2,7 +2,7 @@
 
 package sdkkonnectgo
 
-// Generated from OpenAPI doc version 3.21.1 and generator version 2.960.8
+// Generated from OpenAPI doc version 3.21.6 and generator version 2.960.8
 
 import (
 	"context"
@@ -50,150 +50,81 @@ func Float64(f float64) *float64 { return &f }
 // Pointer provides a helper function to return a pointer to a type
 func Pointer[T any](v T) *T { return &v }
 
-// SDK - Konnect API - Go Internal SDK: The Konnect platform API
+// SDK - Konnect API - Go SDK: The Konnect platform API
 //
 // https://developer.konghq.com - Documentation for Kong Gateway and its APIs
 type SDK struct {
-	SDKVersion                   string
-	ControlPlanes                *ControlPlanes
-	ControlPlaneGroups           *ControlPlaneGroups
-	ControlPlaneResourceQuotas   *ControlPlaneResourceQuotas
-	Workspaces                   *Workspaces
-	SSOAuth0                     *SSOAuth0
-	Users                        *Users
-	DeviceAuthorizationGrant     *DeviceAuthorizationGrant
-	ImpersonationSettings        *ImpersonationSettings
-	AuthSettings                 *AuthSettings
-	Invites                      *Invites
-	Roles                        *Roles
-	Teams                        *Teams
-	TeamMembership               *TeamMembership
-	SystemAccounts               *SystemAccounts
-	SystemAccountsAccessTokens   *SystemAccountsAccessTokens
-	ManagedSystemAccountsRoles   *ManagedSystemAccountsRoles
-	SystemAccountsRoles          *SystemAccountsRoles
-	SystemAccountsTeamMembership *SystemAccountsTeamMembership
-	Me                           *Me
-	Authentication               *Authentication
-	Aws                          *Aws
-	PersonalAccessTokens         *PersonalAccessTokens
-	CloudGateways                *CloudGateways
-	// Operations related to notifications
-	Notifications *Notifications
-	// Operations related to org scoped notifications and their org subscriptions. The http channel of an org scoped notification is set up for the whole organization, and no user can switch it on or off. Only an org admin can use these operations. The routes exist only when http destinations are enabled.
-	OrgConfigurations *OrgConfigurations
-	// Operations related to http destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when http destinations are enabled.
-	Destinations *Destinations
-	// Dynamic Client Registration Providers are configurations representing an external Identity Provider whose clients (i.e. Applications) Konnect will be authorized to manage.
-	// For instance, they will be able to perform dynamic client registration (DCR) with the provider.
-	// The DCR provider provides credentials to each DCR-enabled application in Konnect that can be used to access Product Versions that the app is registered for.
+	SDKVersion string
+	// The attribution plugin turns request headers and identity claims into cost tags on an AI Gateway. These operations install, update, and remove it per AI Gateway, and list the installations.
+	AttributionPlugins *AttributionPlugins
+	// Budgets set spending limits, or exemptions from them, for parts of the organization's usage. These operations manage budgets and their notification rules, and read balances, firings, and notification events.
+	Budgets *Budgets
+	// Usage events record each call to an AI model. These operations report and list the events, total them, forecast the month's spend, and list the values seen in each field.
+	UsageEvents *UsageEvents
+	// Exports copy the organization's cost and usage data into files to download. These operations manage one-time exports and export schedules, and download the files.
+	Exports *Exports
+	// Notification channels are the email recipient lists and Slack incoming webhooks that budget alerts go to. These operations manage the channels and send test messages.
+	NotificationChannels *NotificationChannels
+	// API related to the management of Konnect AI Gateway resources.
+	AIGateways *AIGateways
+	// AI Agents registered with the AI Gateway.
+	AIGatewayAgents *AIGatewayAgents
+	// Auth strategies for authenticating clients accessing AI Gateway resources.
+	AIGatewayAuthStrategies *AIGatewayAuthStrategies
+	// API related to the management of AI Gateway CA Certificates.
+	AIGatewayCACertificates *AIGatewayCACertificates
+	// API related to the management of AI Gateway Certificates.
+	AIGatewayCertificates *AIGatewayCertificates
+	AIGatewaySNIs         *AIGatewaySNIs
+	// API related to the management of AI Gateway Config Stores.
+	AIGatewayConfigStores *AIGatewayConfigStores
+	// Consumer groups for applying rate-limiting and access policies to AI Gateway traffic.
+	AIGatewayConsumerGroups *AIGatewayConsumerGroups
+	// Individual consumers with credentials and group memberships for AI Gateway access control.
+	AIGatewayConsumers *AIGatewayConsumers
+	// Custom policies that let you bring your own Lua plugin schema and handler to the AI Gateway.
+	AIGatewayCustomPolicies *AIGatewayCustomPolicies
+	// API related to the management of AI Gateway DataPlane Certificates.
+	AIGatewayDataPlaneCertificates *AIGatewayDataPlaneCertificates
+	// Datastores that back AI Gateway policies and models, such as Redis and vector database connections.
+	AIGatewayDatastores *AIGatewayDatastores
+	// API related to the management of AI Gateway nodes.
+	AIGatewayNodes *AIGatewayNodes
+	// Deprecated in favor of AI Gateway Auth Strategies. Identity providers for authenticating users and accessing AI Gateway resources.
+	AIGatewayIdentityProviders *AIGatewayIdentityProviders
+	// MCP Servers that expose tools for AI Gateway integrations.
+	AIGatewayMCPServers *AIGatewayMCPServers
+	// Model providers that define the backend AI service connections for the AI Gateway.
+	AIGatewayModelProviders *AIGatewayModelProviders
+	// Models that define routing, capabilities, and backend targets for the AI Gateway.
+	AIGatewayModels *AIGatewayModels
+	// Policies that control security, rate-limiting, and guardrail behavior for the AI Gateway.
+	AIGatewayPolicies *AIGatewayPolicies
+	// API related to the management of AI Gateway vaults for storing secrets.
+	AIGatewayVaults *AIGatewayVaults
+	// Manage AI Models - a catalogable proxy for AI Gateway models
+	CatalogAIModels *CatalogAIModels
+	// Link an AI Model to an AI Gateway model.
+	CatalogAIModelImplementations *CatalogAIModelImplementations
+	// Manage an AI Model version's oas specification.
+	CatalogAIModelSpecs *CatalogAIModelSpecs
+	// Manage an AI Model's version.
+	CatalogAIModelVersions *CatalogAIModelVersions
+	// Service API mappings represent the link between Service and API entities.
+	// Once an API is mapped to a Service, a rich view of the linked APIs will be presented on the APIs tab of the Catalog Service.
+	// Similarly, Services mapped to an API will be listed on the API overview page under Catalog.
+	// An API may be mapped to multiple services, but it cannot be mapped to the same service twice.
+	// If a mapped API is unlinked from a Service, the mapping will be deleted.
 	//
-	DCRProviders *DCRProviders
-	// Application Auth Strategies are sets of plugin configurations that represent how the gateway will perform authentication and authorization for a Product Version.
-	// Called “Auth Strategy” for short in the context of portals/applications.
-	// The plugins are synced to any Gateway Service that is currently linked or becomes linked to the Product Version.
-	// The optional `principals` property controls application-principal behavior for V3 API Catalog portals and applications. It defaults to disabled when omitted.
-	//
-	AppAuthStrategies *AppAuthStrategies
-	// Connected Apps enable third-party applications to access Konnect APIs on behalf of an organization using OAuth 2.0. When enabled, a reserved auth server is created with predefined scopes.
-	ConnectedApps *ConnectedApps
+	CatalogServiceAPIMappings *CatalogServiceAPIMappings
 	// Auth Servers expose an OAuth 2.0 and OpenID Connect server interface for generating access tokens. The management API will give you the ability to create, configure and manage multiple Auth Servers per Konnect organization. Auth Servers are a regional Konnect entity.
 	AuthServer *AuthServer
 	// Claims are statements about the Client, included in tokens issued by the Auth Server. The management API will give you the ability to create, configure and manage multiple Claims per Auth Server, and include them in tokens based on the requested Scopes.
 	AuthServerClaims *AuthServerClaims
-	// Scopes define the extent of access that an access token grants to a Client. The management API will give you the ability to create, configure and manage multiple Scopes per Auth Server, and restrict their usage by Client.
-	AuthServerScopes *AuthServerScopes
 	// Clients represent the identity of machines, such as microservices, mobile apps, or scripts entity. The management API will give you the ability to create, configure and manage multiple Clients per Auth Server.
 	AuthServerClients *AuthServerClients
-	// Use a directory to group consumers around an identity, defined by organizational boundaries,
-	// such as a production directory or a development directory. Directories are connected to a
-	// [geographic region](https://docs.konghq.com/konnect/geo/) in Konnect. Centrally managed consumers defined in
-	// directories can be used across multiple control planes.
-	//
-	KongIdentityDirectories *KongIdentityDirectories
-	// Principals represent identities within a directory that can be authenticated and authorized.
-	// Each principal can have associated metadata and API keys for authentication purposes.
-	//
-	KongPrincipal *KongPrincipal
-	// Identities represent external authentication associations for a principal. Each identity links a principal
-	// to an external system such as an OIDC provider, an auth server client, a control plane consumer, or a custom identifier.
-	//
-	KongPrincipalIdentity *KongPrincipalIdentity
-	// Token vault credentials are the credentials that a principal has obtained by authorizing a token-vault provider. This resource is read-only: providers are authorized through the enrollment
-	// flow, not through this API, so only listing, retrieving, and de-authorizing (delete) are supported.
-	//
-	TokenVaultCredentials *TokenVaultCredentials
-	// Credentials are authentication secrets associated with principals. Supported credential types are
-	// API keys (system-generated or imported) and basic auth username/password pairs.
-	//
-	KongPrincipalCredential *KongPrincipalCredential
-	// Trusted IdPs configure the external identity providers a token-vault enabled directory trusts when
-	// validating tokens. A directory can trust several IdPs, each with a distinct issuer.
-	//
-	TrustedIDPs *TrustedIDPs
-	// Groups organize principals, or other groups, within a directory for authorization purposes.
-	//
-	PrincipalGroup *PrincipalGroup
-	// Vault providers configure credential providers for token-vault enabled directories.
-	//
-	TokenVaultProviders *TokenVaultProviders
-	// Vault keys are the public encryption keys used to protect token vault data for
-	// a token-vault enabled directory.
-	//
-	TokenVaultKeys          *TokenVaultKeys
-	API                     *API
-	APISpecification        *APISpecification
-	APIDocumentation        *APIDocumentation
-	APIVersion              *APIVersion
-	APIPublication          *APIPublication
-	APIImage                *APIImage
-	APIImplementation       *APIImplementation
-	APIOperations           *APIOperations
-	APIAttributes           *APIAttributes
-	APIPackages             *APIPackages
-	APIPackageDocumentation *APIPackageDocumentation
-	APIPackageOperations    *APIPackageOperations
-	APIPackageSpecification *APIPackageSpecification
-	APIPackageImage         *APIPackageImage
-	// APIs related to configuration of Konnect Developer Portals.
-	Portals *Portals
-	// APIs related to configuration of Konnect Developer Portals custom domains.
-	PortalCustomDomains *PortalCustomDomains
-	// APIs for managing static assets for Konnect Developer Portals.
-	Assets *Assets
-	// APIs related to customization of Konnect Developer Portals.
-	PortalCustomization *PortalCustomization
-	// APIs related to Konnect Developer Portal sidebar navigation configuration.
-	PortalNavigation *PortalNavigation
-	// APIs to configure Konnect Developer Portal integrations.
-	PortalIntegrations *PortalIntegrations
-	PortalPages        *PortalPages
-	// APIs related to Konnect Developer Portal Custom Snippets.
-	Snippets *Snippets
-	// APIs related to Konnect Developer Portal Custom Pages.
-	Pages *Pages
-	// APIs related to Konnect Developer Portal Applications.
-	Applications *Applications
-	// APIs related to Konnect Developer Portal AI Settings.
-	AISettings *AISettings
-	// APIs related to Konnect Developer Portal Application Registrations.
-	ApplicationRegistrations *ApplicationRegistrations
-	// APIs related to configuration of Konnect Developer Portal auth settings.
-	PortalAuthSettings *PortalAuthSettings
-	// APIs related to configuration of Konnect Developer Portal developer teams.
-	PortalTeams *PortalTeams
-	// APIs related to Konnect Developer Portal developer team membership.
-	PortalTeamMembership *PortalTeamMembership
-	// APIs related to Konnect Developer Portal developer team roles.
-	PortalTeamRoles *PortalTeamRoles
-	// APIs related to Konnect Developer Portal developers.
-	PortalDevelopers *PortalDevelopers
-	PortalAuditLogs  *PortalAuditLogs
-	// APIs related to Konnect Developer Portal Emails.
-	PortalEmails *PortalEmails
-	// APIs related to Konnect Portal IP Allow List.
-	PortalsIPAllowList *PortalsIPAllowList
-	PortalForms        *PortalForms
+	// Scopes define the extent of access that an access token grants to a Client. The management API will give you the ability to create, configure and manage multiple Scopes per Auth Server, and restrict their usage by Client.
+	AuthServerScopes *AuthServerScopes
 	// Create and maintain a centralized catalog of all services running in your organization.
 	// Add custom fields and map resources from across your organization to provide a 360-degree overview of your services.
 	//
@@ -211,12 +142,82 @@ type SDK struct {
 	// - `Incident Management Resources`: Alerts setup within your incident management platform to notify individuals regarding issues with the service
 	//
 	CatalogServices *CatalogServices
-	// Integrations are applications, either Konnect-internal or external, which extend the functionality of the Service Catalog.
-	// Install and authorize an integration to discover the resources across your organization which support your services.
-	// Map relevant resources to your services to provide a rich view of cataloged services.
-	// To set up and view a list of all the integrations we support please view our [documentation](https://developer.konghq.com/service-catalog/integrations/).
+	// Represents all the resources mapped to a specific service.
 	//
-	CatalogIntegrations *CatalogIntegrations
+	CatalogServiceResources *CatalogServiceResources
+	// A scorecard helps you evaluate services based on its criteria.
+	// Scorecards help you detect issues, like whether there are services in the catalog that don't have an on-call engineer assigned, or if you have GitHub repositories with stale pull requests that aren't getting reviewed or closed.
+	// From the scorecard, you can view details on either a per-service or per-criteria basis.
+	// Learn more about scorecards by visiting our [documentation](https://developer.konghq.com/service-catalog/scorecards/).
+	//
+	Scorecards *Scorecards
+	// Connected Apps enable third-party applications to access Konnect APIs on behalf of an organization using OAuth 2.0. When enabled, a reserved auth server is created with predefined scopes.
+	ConnectedApps                      *ConnectedApps
+	ContextInterfaces                  *ContextInterfaces
+	ContextSourceMappings              *ContextSourceMappings
+	ContextInterfaceCapabilityControls *ContextInterfaceCapabilityControls
+	ControlPlaneMappings               *ControlPlaneMappings
+	Skills                             *Skills
+	ContextSources                     *ContextSources
+	// Several criteria templates are provided to help ensure your services adhere to industry best practices.
+	// A criteria template is a collection of criteria grouped together to target various categories.
+	//
+	// Criteria may require a specific type of integration be installed and authorized.
+	// For example, criteria which evaluates the operation performance across incident management may require a integration related to incident management to be installed and authorized.
+	// Learn more about scorecards by visiting our [documentation](https://developer.konghq.com/service-catalog/scorecards/).
+	//
+	CriteriaTemplates *CriteriaTemplates
+	// Create an Event Gateway Control Plane, used to store Event Gateway configuration
+	//
+	EventGateways *EventGateways
+	// A backend cluster is an abstraction of a real Kafka cluster. It stores the connection and configuration details required for Kong Event Gateway to proxy traffic to Kafka.
+	//
+	// Multiple Kafka clusters can be proxied through a single Kong Event Gateway.
+	//
+	EventGatewayBackendClusters *EventGatewayBackendClusters
+	// DataPlane certificates control how your running Event Gateway instances connect to the Control Plane
+	//
+	EventGatewayDataPlaneCertificates *EventGatewayDataPlaneCertificates
+	// A listener represents hostname-port or IP-port combinations that connect to TCP sockets. Listeners need at least as many ports as backend brokers if you use port mapping in a Forward to Virtual Cluster policy. For SNI routing, you can route all brokers using a listener with only one port. Ports can be expressed as a single port or range. Addresses can be IPv4, IPv6, or hostnames.
+	//
+	// A listener can have policies that enforce TLS certificates and perform SNI routing. The listener runs at Layer 4 of the network stack. In Kong Event Gateway, listeners first take in the connection and then route the TCP connection to a virtual cluster based on conditions defined in listener policies.
+	//
+	EventGatewayListeners *EventGatewayListeners
+	// Policies control how Kafka protocol traffic is modified between the client and the backend cluster.
+	//
+	// Listener policies are routing policies that pass traffic to the virtual cluster.
+	//
+	EventGatewayListenerPolicies *EventGatewayListenerPolicies
+	EventGatewayNodes            *EventGatewayNodes
+	// Configure a schema registry that can be used to validate payloads when producing/consuming messages
+	//
+	EventGatewaySchemaRegistries *EventGatewaySchemaRegistries
+	// Static Keys are used by the Encrypt and Decrypt policies to encrypt data at rest
+	//
+	EventGatewayStaticKeys *EventGatewayStaticKeys
+	// A TLS trust bundle defines a set of trusted certificate authorities (CAs) used for client certificate
+	// verification during mutual TLS (mTLS). Trust bundles are referenced by TLS listener policies to
+	// determine which client certificates are accepted.
+	//
+	EventGatewayTLSTrustBundles *EventGatewayTLSTrustBundles
+	// Virtual clusters are the primary way clients interact with the Event Gateway proxy. They allow you to isolate clients from each other when connecting to the same backend cluster, and provide each client with modified view while still appearing as a standard Kafka cluster.
+	//
+	EventGatewayVirtualClusters *EventGatewayVirtualClusters
+	// Policies control how Kafka protocol traffic is modified between the client and the backend cluster.
+	//
+	// Cluster policies are transformation and validation policies that can be applied to Kafka messages.
+	//
+	EventGatewayVirtualClusterPolicies *EventGatewayVirtualClusterPolicies
+	// Consume policies operate on Kafka messages as they are read from a Kafka cluster.
+	//
+	// Transformations may be applied at consume time, but they are applied once per Consumer. Where possible, transofmrations should be applied as a Produce policy
+	//
+	EventGatewayVirtualClusterConsumePolicies *EventGatewayVirtualClusterConsumePolicies
+	// Produce policies operate on Kafka messages before they are written to the Kafka cluster.
+	//
+	// Where possible, apply transformations to the data using produce policies rather than consume policies for maximum efficiency.
+	//
+	EventGatewayVirtualClusterProducePolicies *EventGatewayVirtualClusterProducePolicies
 	// An integration instance represents a specific account of the integration which contains the resources used to manage and support your services.
 	// Some integrations provide configuration options to customize how it should behave once authorized (see the integration's manifest for details).
 	// Konnect-internal integrations are built-in and do not need to be installed.
@@ -228,6 +229,12 @@ type SDK struct {
 	// To set up and view a list of all the integrations we support, please view our [documentation](https://developer.konghq.com/service-catalog/integrations/).
 	//
 	IntegrationInstances *IntegrationInstances
+	// A integration instance may need to be provided with an auth config before authorizing the instance.
+	// Typically an auth config will be required when authorizing against a integration which is hosted within your organization.
+	// The integration instance's auth config will inform how the Service Catalog will authorize the integration instance.
+	// Note that updating the auth config for an instance which is already authorized will **remove the existing credential**, requiring you to re-authorize the instance.
+	//
+	IntegrationInstanceAuthConfig *IntegrationInstanceAuthConfig
 	// Represents the credentials use to authorize an integration instance.
 	// You will want to configure the integration instance settings and authorization configuration before authorizing the instance.
 	// This will inform the authorization process on how to reach and authorize the account.
@@ -235,12 +242,6 @@ type SDK struct {
 	// The integration instance's auth credentials can be removed or updated while retaining all resources which have already been discovered.
 	//
 	IntegrationInstanceAuthCredentials *IntegrationInstanceAuthCredentials
-	// A integration instance may need to be provided with an auth config before authorizing the instance.
-	// Typically an auth config will be required when authorizing against a integration which is hosted within your organization.
-	// The integration instance's auth config will inform how the Service Catalog will authorize the integration instance.
-	// Note that updating the auth config for an instance which is already authorized will **remove the existing credential**, requiring you to re-authorize the instance.
-	//
-	IntegrationInstanceAuthConfig *IntegrationInstanceAuthConfig
 	// Resources are entities discovered from integration instances and are intended to be mapped to the relevant services in the catalog.
 	// Once a resource has been mapped to a service, a rich view of this resource will be displayed when viewing your service.
 	//
@@ -252,210 +253,49 @@ type SDK struct {
 	// Resources which have not yet been hydrated may still be mapped to a Catalog Service.
 	//
 	CatalogResources *CatalogResources
-	// Represents all the services mapped to a specific resource.
+	// Integrations are applications, either Konnect-internal or external, which extend the functionality of the Service Catalog.
+	// Install and authorize an integration to discover the resources across your organization which support your services.
+	// Map relevant resources to your services to provide a rich view of cataloged services.
+	// To set up and view a list of all the integrations we support please view our [documentation](https://developer.konghq.com/service-catalog/integrations/).
 	//
-	CatalogResourceServices *CatalogResourceServices
+	CatalogIntegrations *CatalogIntegrations
+	SignalingAPIs       *SignalingAPIs
+	MCPServers          *MCPServers
+	MCPServerRuntime    *MCPServerRuntime
+	// Manage MCPs - a catalogable proxy for AI Gateway MCPs
+	CatalogMCPs *CatalogMCPs
+	// Link an MCP to an AI Gateway MCP.
+	CatalogMCPImplementations *CatalogMCPImplementations
+	// Manage an MCP's version.
+	CatalogMCPVersions *CatalogMCPVersions
+	Mesh               *Mesh
+	// Operations related to notifications
+	Notifications *Notifications
+	// Operations related to org scoped notifications and their org subscriptions. The webhook channel of an org scoped notification is set up for the whole organization, and no user can switch it on or off. Only an org admin can use these operations. The routes exist only when webhook destinations are enabled.
+	OrgConfigurations *OrgConfigurations
+	// Operations related to webhook destinations and their deliveries. Only an org admin can use these operations. The destination routes exist only when webhook destinations are enabled.
+	Destinations *Destinations
 	// Resource mappings represent the link between a resource and a service.
 	// Once a resource is mapped to a service, a rich view of the resource will be presented on the service page.
 	// A resource may be mapped to multiple services, but it cannot be mapped to the same service twice.
 	// If a resource mapped to a service is later archived, the resource mapping will be deleted.
 	//
 	CatalogResourceMappings *CatalogResourceMappings
-	// Represents all the resources mapped to a specific service.
+	// Represents all the services mapped to a specific resource.
 	//
-	CatalogServiceResources *CatalogServiceResources
-	// Several criteria templates are provided to help ensure your services adhere to industry best practices.
-	// A criteria template is a collection of criteria grouped together to target various categories.
+	CatalogResourceServices *CatalogResourceServices
+	// Application Auth Strategies are sets of plugin configurations that represent how the gateway will perform authentication and authorization for a Product Version.
+	// Called “Auth Strategy” for short in the context of portals/applications.
+	// The plugins are synced to any Gateway Service that is currently linked or becomes linked to the Product Version.
+	// The optional `principals` property controls application-principal behavior for V3 API Catalog portals and applications. It defaults to disabled when omitted.
 	//
-	// Criteria may require a specific type of integration be installed and authorized.
-	// For example, criteria which evaluates the operation performance across incident management may require a integration related to incident management to be installed and authorized.
-	// Learn more about scorecards by visiting our [documentation](https://developer.konghq.com/service-catalog/scorecards/).
-	//
-	CriteriaTemplates *CriteriaTemplates
-	// A scorecard helps you evaluate services based on its criteria.
-	// Scorecards help you detect issues, like whether there are services in the catalog that don't have an on-call engineer assigned, or if you have GitHub repositories with stale pull requests that aren't getting reviewed or closed.
-	// From the scorecard, you can view details on either a per-service or per-criteria basis.
-	// Learn more about scorecards by visiting our [documentation](https://developer.konghq.com/service-catalog/scorecards/).
-	//
-	Scorecards *Scorecards
-	// Service API mappings represent the link between Service and API entities.
-	// Once an API is mapped to a Service, a rich view of the linked APIs will be presented on the APIs tab of the Catalog Service.
-	// Similarly, Services mapped to an API will be listed on the API overview page under Catalog.
-	// An API may be mapped to multiple services, but it cannot be mapped to the same service twice.
-	// If a mapped API is unlinked from a Service, the mapping will be deleted.
-	//
-	CatalogServiceAPIMappings *CatalogServiceAPIMappings
-	// Create an Event Gateway Control Plane, used to store Event Gateway configuration
-	//
-	EventGateways *EventGateways
-	// A listener represents hostname-port or IP-port combinations that connect to TCP sockets. Listeners need at least as many ports as backend brokers if you use port mapping in a Forward to Virtual Cluster policy. For SNI routing, you can route all brokers using a listener with only one port. Ports can be expressed as a single port or range. Addresses can be IPv4, IPv6, or hostnames.
-	//
-	// A listener can have policies that enforce TLS certificates and perform SNI routing. The listener runs at Layer 4 of the network stack. In Kong Event Gateway, listeners first take in the connection and then route the TCP connection to a virtual cluster based on conditions defined in listener policies.
-	//
-	EventGatewayListeners *EventGatewayListeners
-	// Virtual clusters are the primary way clients interact with the Event Gateway proxy. They allow you to isolate clients from each other when connecting to the same backend cluster, and provide each client with modified view while still appearing as a standard Kafka cluster.
-	//
-	EventGatewayVirtualClusters *EventGatewayVirtualClusters
-	// A backend cluster is an abstraction of a real Kafka cluster. It stores the connection and configuration details required for Kong Event Gateway to proxy traffic to Kafka.
-	//
-	// Multiple Kafka clusters can be proxied through a single Kong Event Gateway.
-	//
-	EventGatewayBackendClusters *EventGatewayBackendClusters
-	// Configure a schema registry that can be used to validate payloads when producing/consuming messages
-	//
-	EventGatewaySchemaRegistries *EventGatewaySchemaRegistries
-	EventGatewayNodes            *EventGatewayNodes
-	// Policies control how Kafka protocol traffic is modified between the client and the backend cluster.
-	//
-	// Listener policies are routing policies that pass traffic to the virtual cluster.
-	//
-	EventGatewayListenerPolicies *EventGatewayListenerPolicies
-	// Consume policies operate on Kafka messages as they are read from a Kafka cluster.
-	//
-	// Transformations may be applied at consume time, but they are applied once per Consumer. Where possible, transofmrations should be applied as a Produce policy
-	//
-	EventGatewayVirtualClusterConsumePolicies *EventGatewayVirtualClusterConsumePolicies
-	// Produce policies operate on Kafka messages before they are written to the Kafka cluster.
-	//
-	// Where possible, apply transformations to the data using produce policies rather than consume policies for maximum efficiency.
-	//
-	EventGatewayVirtualClusterProducePolicies *EventGatewayVirtualClusterProducePolicies
-	// Policies control how Kafka protocol traffic is modified between the client and the backend cluster.
-	//
-	// Cluster policies are transformation and validation policies that can be applied to Kafka messages.
-	//
-	EventGatewayVirtualClusterPolicies *EventGatewayVirtualClusterPolicies
-	// DataPlane certificates control how your running Event Gateway instances connect to the Control Plane
-	//
-	EventGatewayDataPlaneCertificates *EventGatewayDataPlaneCertificates
-	// Static Keys are used by the Encrypt and Decrypt policies to encrypt data at rest
-	//
-	EventGatewayStaticKeys *EventGatewayStaticKeys
-	// A TLS trust bundle defines a set of trusted certificate authorities (CAs) used for client certificate
-	// verification during mutual TLS (mTLS). Trust bundles are referenced by TLS listener policies to
-	// determine which client certificates are accepted.
-	//
-	EventGatewayTLSTrustBundles *EventGatewayTLSTrustBundles
-	// Product catalog manages plans, add-ons, and their associations for subscription-based billing.
-	OpenMeterProductCatalog *OpenMeterProductCatalog
-	// Apps enable you to extend and customize billing and usage workflows by integrating with external systems and services. Apps can automate and enhance your billing ecosystem by supporting capabilities such as synchronizing usage data with third-party platforms, calculating taxes, generating and delivering invoices, handling payment collection, and other billing-related tasks.
-	OpenMeterApps *OpenMeterApps
-	// Billing settings manages the billing profiles and invoices for customers.
-	OpenMeterBillingSettings *OpenMeterBillingSettings
-	// Currencies and cost bases for customers.
-	OpenMeterCurrencies *OpenMeterCurrencies
-	// Customers are used to track usage of your product or service. Customers can be individuals or organizations that can subscribe to plans and have access to features.
-	OpenMeterCustomers *OpenMeterCustomers
-	// Entitlements are used to control access to features for customers.
-	OpenMeterEntitlements *OpenMeterEntitlements
-	// Organization-level default configuration.
-	OpenMeterDefaults *OpenMeterDefaults
-	// Metering events are used to track usage of your product or service. Events are processed asynchronously by the meters, so they may not be immediately available for querying.
-	MeteringEvents *MeteringEvents
-	// Features represent product capabilities backed by meters, with optional per-unit cost configuration.
-	OpenMeterFeatures *OpenMeterFeatures
-	// LLM cost database providing normalized pricing data for language models across providers. Prices are synced from multiple external sources and auto-confirmed when they agree.
-	OpenMeterLLMCost *OpenMeterLLMCost
-	// Meters specify how to aggregate events for billing and analytics purposes. Meters can be configured with multiple aggregation methods and groupings. Multiple meters can be created for the same event type, enabling flexible metering scenarios.
-	Meters *Meters
-	// Notification rules generate notification events, such as entitlement balance threshold crossings, and notification channels deliver them to external systems.
-	OpenMeterNotifications *OpenMeterNotifications
-	// Subscriptions are used to track usage of your product or service. Subscriptions can be individuals or organizations that can subscribe to plans and have access to features.
-	OpenMeterSubscriptions *OpenMeterSubscriptions
-	// Tax codes are used to calculate taxes for customers.
-	OpenMeterTax                       *OpenMeterTax
-	ContextInterfaces                  *ContextInterfaces
-	ContextSources                     *ContextSources
-	MCPServers                         *MCPServers
-	Skills                             *Skills
-	ContextSourceMappings              *ContextSourceMappings
-	ContextInterfaceCapabilityControls *ContextInterfaceCapabilityControls
-	ControlPlaneMappings               *ControlPlaneMappings
-	MCPServerRuntime                   *MCPServerRuntime
-	SignalingAPIs                      *SignalingAPIs
-	// API related to the management of Konnect AI Gateway resources.
-	AIGateways *AIGateways
-	// API related to the management of AI Gateway DataPlane Certificates.
-	AIGatewayDataPlaneCertificates *AIGatewayDataPlaneCertificates
-	// API related to the management of AI Gateway CA Certificates.
-	AIGatewayCACertificates *AIGatewayCACertificates
-	// API related to the management of AI Gateway Certificates.
-	AIGatewayCertificates *AIGatewayCertificates
-	AIGatewaySNIs         *AIGatewaySNIs
-	// API related to the management of AI Gateway nodes.
-	AIGatewayNodes *AIGatewayNodes
-	// AI Gateway debug endpoints.
-	AIGatewayDebug *AIGatewayDebug
-	// API related to the management of AI Gateway vaults for storing secrets.
-	AIGatewayVaults *AIGatewayVaults
-	// Policies that control security, rate-limiting, and guardrail behavior for the AI Gateway.
-	AIGatewayPolicies *AIGatewayPolicies
-	// Custom policies that let you bring your own Lua plugin schema and handler to the AI Gateway.
-	AIGatewayCustomPolicies *AIGatewayCustomPolicies
-	// Models that define routing, capabilities, and backend targets for the AI Gateway.
-	AIGatewayModels *AIGatewayModels
-	// AI Agents registered with the AI Gateway.
-	AIGatewayAgents *AIGatewayAgents
-	// Individual consumers with credentials and group memberships for AI Gateway access control.
-	AIGatewayConsumers *AIGatewayConsumers
-	// Consumer groups for applying rate-limiting and access policies to AI Gateway traffic.
-	AIGatewayConsumerGroups *AIGatewayConsumerGroups
-	// MCP Servers that expose tools for AI Gateway integrations.
-	AIGatewayMCPServers *AIGatewayMCPServers
-	// Model providers that define the backend AI service connections for the AI Gateway.
-	AIGatewayModelProviders *AIGatewayModelProviders
-	// Deprecated in favor of AI Gateway Auth Strategies. Identity providers for authenticating users and accessing AI Gateway resources.
-	AIGatewayIdentityProviders *AIGatewayIdentityProviders
-	// Auth strategies for authenticating clients accessing AI Gateway resources.
-	AIGatewayAuthStrategies *AIGatewayAuthStrategies
-	// API related to the management of AI Gateway Config Stores.
-	AIGatewayConfigStores *AIGatewayConfigStores
-	// Datastores that back AI Gateway policies and models, such as Redis and vector database connections.
-	AIGatewayDatastores *AIGatewayDatastores
-	// Configure which request headers are captured as cost tags on AI usage events. The configuration applies to the organization in the region the request is sent to.
-	AIGatewayCostManagementTags *AIGatewayCostManagementTags
-	Dashboards                  *Dashboards
-	Mesh                        *Mesh
-	// Manage AI Models - a catalogable proxy for AI Gateway models
-	CatalogAIModels *CatalogAIModels
-	// Manage an AI Model's version.
-	CatalogAIModelVersions *CatalogAIModelVersions
-	// Manage an AI Model version's oas specification.
-	CatalogAIModelSpecs *CatalogAIModelSpecs
-	// Link an AI Model to an AI Gateway model.
-	CatalogAIModelImplementations *CatalogAIModelImplementations
-	// Manage MCPs - a catalogable proxy for AI Gateway MCPs
-	CatalogMCPs *CatalogMCPs
-	// Manage an MCP's version.
-	CatalogMCPVersions *CatalogMCPVersions
-	// Link an MCP to an AI Gateway MCP.
-	CatalogMCPImplementations *CatalogMCPImplementations
-	// Usage events record each call to an AI model. These operations report and list the events, total them, forecast the month's spend, and list the values seen in each field.
-	UsageEvents *UsageEvents
-	// Budgets set spending limits, or exemptions from them, for parts of the organization's usage. These operations manage budgets and their notification rules, and read balances, firings, and notification events.
-	Budgets *Budgets
-	// Notification channels are the email recipient lists and Slack incoming webhooks that budget alerts go to. These operations manage the channels and send test messages.
-	NotificationChannels *NotificationChannels
-	// Exports copy the organization's cost and usage data into files to download. These operations manage one-time exports and export schedules, and download the files.
-	Exports *Exports
-	// The attribution plugin turns request headers and identity claims into cost tags on an AI Gateway. These operations install, update, and remove it per AI Gateway, and list the installations.
-	AttributionPlugins *AttributionPlugins
-	// DP Nodes
-	DPNodes *DPNodes
-	// DP Certificates
-	DPCertificates *DPCertificates
-	// Custom Plugin Schemas
-	CustomPluginSchemas *CustomPluginSchemas
-	// A target is an IP address or hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly.
-	// <br><br>
-	// To disable a target, post a new one with `weight=0`, or use the `DELETE` method to accomplish the same.
-	//
-	Targets *Targets
+	AppAuthStrategies *AppAuthStrategies
+	CloudGateways     *CloudGateways
+	ControlPlanes     *ControlPlanes
 	// Config Stores
 	ConfigStores *ConfigStores
 	// Config Store Secrets
 	ConfigStoreSecrets   *ConfigStoreSecrets
-	Schemas              *Schemas
 	ACLs                 *ACLs
 	BasicAuthCredentials *BasicAuthCredentials
 	// A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong Gateway to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service.
@@ -547,6 +387,11 @@ type SDK struct {
 	// An upstream also includes a [health checker](https://developer.konghq.com/gateway/traffic-control/health-checks-circuit-breakers/), which can enable and disable targets based on their ability or inability to serve requests.
 	// The configuration for the health checker is stored in the upstream object, and applies to all of its targets.
 	Upstreams *Upstreams
+	// A target is an IP address or hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly.
+	// <br><br>
+	// To disable a target, post a new one with `weight=0`, or use the `DELETE` method to accomplish the same.
+	//
+	Targets *Targets
 	// Vault objects are used to configure different vault connectors for [managing secrets](https://developer.konghq.com/gateway/secrets-management/).
 	// Configuring a vault lets you reference secrets from other entities.
 	// This allows for a proper separation of secrets and configuration and prevents secret sprawl.
@@ -561,6 +406,152 @@ type SDK struct {
 	CACertificates *CACertificates
 	ClonedPlugins  *ClonedPlugins
 	CustomPlugins  *CustomPlugins
+	// Custom Plugin Schemas
+	CustomPluginSchemas *CustomPluginSchemas
+	Schemas             *Schemas
+	Workspaces          *Workspaces
+	// DP Certificates
+	DPCertificates *DPCertificates
+	// DP Nodes
+	DPNodes            *DPNodes
+	ControlPlaneGroups *ControlPlaneGroups
+	// Vault providers configure credential providers for token-vault enabled directories.
+	//
+	TokenVaultProviders *TokenVaultProviders
+	Dashboards          *Dashboards
+	// Dynamic Client Registration Providers are configurations representing an external Identity Provider whose clients (i.e. Applications) Konnect will be authorized to manage.
+	// For instance, they will be able to perform dynamic client registration (DCR) with the provider.
+	// The DCR provider provides credentials to each DCR-enabled application in Konnect that can be used to access Product Versions that the app is registered for.
+	//
+	DCRProviders *DCRProviders
+	// Use a directory to group consumers around an identity, defined by organizational boundaries,
+	// such as a production directory or a development directory. Directories are connected to a
+	// [geographic region](https://docs.konghq.com/konnect/geo/) in Konnect. Centrally managed consumers defined in
+	// directories can be used across multiple control planes.
+	//
+	KongIdentityDirectories *KongIdentityDirectories
+	// Groups organize principals, or other groups, within a directory for authorization purposes.
+	//
+	PrincipalGroup *PrincipalGroup
+	// Principals represent identities within a directory that can be authenticated and authorized.
+	// Each principal can have associated metadata and API keys for authentication purposes.
+	//
+	KongPrincipal *KongPrincipal
+	// Credentials are authentication secrets associated with principals. Supported credential types are
+	// API keys (system-generated or imported) and basic auth username/password pairs.
+	//
+	KongPrincipalCredential *KongPrincipalCredential
+	// Identities represent external authentication associations for a principal. Each identity links a principal
+	// to an external system such as an OIDC provider, an auth server client, a control plane consumer, or a custom identifier.
+	//
+	KongPrincipalIdentity *KongPrincipalIdentity
+	// Token vault credentials are the credentials that a principal has obtained by authorizing a token-vault provider. This resource is read-only: providers are authorized through the enrollment
+	// flow, not through this API, so only listing, retrieving, and de-authorizing (delete) are supported.
+	//
+	TokenVaultCredentials *TokenVaultCredentials
+	// Trusted IdPs configure the external identity providers a token-vault enabled directory trusts when
+	// validating tokens. A directory can trust several IdPs, each with a distinct issuer.
+	//
+	TrustedIDPs *TrustedIDPs
+	// Vault keys are the public encryption keys used to protect token vault data for
+	// a token-vault enabled directory.
+	//
+	TokenVaultKeys          *TokenVaultKeys
+	APIAttributes           *APIAttributes
+	APIImplementation       *APIImplementation
+	APIPackages             *APIPackages
+	APIPublication          *APIPublication
+	APIPackageSpecification *APIPackageSpecification
+	APIPackageDocumentation *APIPackageDocumentation
+	APIPackageImage         *APIPackageImage
+	APIPackageOperations    *APIPackageOperations
+	API                     *API
+	APIDocumentation        *APIDocumentation
+	APIImage                *APIImage
+	APIOperations           *APIOperations
+	APISpecification        *APISpecification
+	APIVersion              *APIVersion
+	// APIs related to Konnect Developer Portal Applications.
+	Applications   *Applications
+	Authentication *Authentication
+	AuthSettings   *AuthSettings
+	Invites        *Invites
+	// Product catalog manages plans, add-ons, and their associations for subscription-based billing.
+	OpenMeterProductCatalog *OpenMeterProductCatalog
+	// Apps enable you to extend and customize billing and usage workflows by integrating with external systems and services. Apps can automate and enhance your billing ecosystem by supporting capabilities such as synchronizing usage data with third-party platforms, calculating taxes, generating and delivering invoices, handling payment collection, and other billing-related tasks.
+	OpenMeterApps *OpenMeterApps
+	// Billing settings manages the billing profiles and invoices for customers.
+	OpenMeterBillingSettings *OpenMeterBillingSettings
+	// Currencies and cost bases for customers.
+	OpenMeterCurrencies *OpenMeterCurrencies
+	// Customers are used to track usage of your product or service. Customers can be individuals or organizations that can subscribe to plans and have access to features.
+	OpenMeterCustomers *OpenMeterCustomers
+	// Entitlements are used to control access to features for customers.
+	OpenMeterEntitlements *OpenMeterEntitlements
+	// Organization-level default configuration.
+	OpenMeterDefaults *OpenMeterDefaults
+	// Metering events are used to track usage of your product or service. Events are processed asynchronously by the meters, so they may not be immediately available for querying.
+	MeteringEvents *MeteringEvents
+	// Features represent product capabilities backed by meters, with optional per-unit cost configuration.
+	OpenMeterFeatures *OpenMeterFeatures
+	// LLM cost database providing normalized pricing data for language models across providers. Prices are synced from multiple external sources and auto-confirmed when they agree.
+	OpenMeterLLMCost *OpenMeterLLMCost
+	// Meters specify how to aggregate events for billing and analytics purposes. Meters can be configured with multiple aggregation methods and groupings. Multiple meters can be created for the same event type, enabling flexible metering scenarios.
+	Meters *Meters
+	// Notification rules generate notification events, such as entitlement balance threshold crossings, and notification channels deliver them to external systems.
+	OpenMeterNotifications *OpenMeterNotifications
+	// Subscriptions are used to track usage of your product or service. Subscriptions can be individuals or organizations that can subscribe to plans and have access to features.
+	OpenMeterSubscriptions *OpenMeterSubscriptions
+	// Tax codes are used to calculate taxes for customers.
+	OpenMeterTax          *OpenMeterTax
+	ImpersonationSettings *ImpersonationSettings
+	Me                    *Me
+	// APIs related to Konnect Developer Portal developer team roles.
+	PortalTeamRoles *PortalTeamRoles
+	// APIs related to configuration of Konnect Developer Portals.
+	Portals *Portals
+	// APIs related to Konnect Developer Portal AI Settings.
+	AISettings *AISettings
+	// APIs related to Konnect Developer Portal Application Registrations.
+	ApplicationRegistrations *ApplicationRegistrations
+	// APIs for managing static assets for Konnect Developer Portals.
+	Assets          *Assets
+	PortalAuditLogs *PortalAuditLogs
+	// APIs related to configuration of Konnect Developer Portal auth settings.
+	PortalAuthSettings *PortalAuthSettings
+	// APIs related to configuration of Konnect Developer Portals custom domains.
+	PortalCustomDomains *PortalCustomDomains
+	// APIs related to customization of Konnect Developer Portals.
+	PortalCustomization *PortalCustomization
+	// APIs related to Konnect Developer Portal sidebar navigation configuration.
+	PortalNavigation *PortalNavigation
+	// APIs related to Konnect Developer Portal Custom Pages.
+	Pages *Pages
+	// APIs related to Konnect Developer Portal developers.
+	PortalDevelopers *PortalDevelopers
+	// APIs related to Konnect Developer Portal developer team membership.
+	PortalTeamMembership *PortalTeamMembership
+	// APIs related to Konnect Developer Portal Emails.
+	PortalEmails *PortalEmails
+	PortalForms  *PortalForms
+	// APIs to configure Konnect Developer Portal integrations.
+	PortalIntegrations *PortalIntegrations
+	// APIs related to Konnect Portal IP Allow List.
+	PortalsIPAllowList *PortalsIPAllowList
+	PortalPages        *PortalPages
+	// APIs related to Konnect Developer Portal Custom Snippets.
+	Snippets *Snippets
+	// APIs related to configuration of Konnect Developer Portal developer teams.
+	PortalTeams                  *PortalTeams
+	Roles                        *Roles
+	SystemAccounts               *SystemAccounts
+	SystemAccountsAccessTokens   *SystemAccountsAccessTokens
+	SystemAccountsRoles          *SystemAccountsRoles
+	SystemAccountsTeamMembership *SystemAccountsTeamMembership
+	Teams                        *Teams
+	TeamMembership               *TeamMembership
+	Users                        *Users
+	PersonalAccessTokens         *PersonalAccessTokens
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -638,10 +629,10 @@ func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		SDKVersion: "0.7.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.7.0 2.960.8 3.21.1 github.com/Kong/sdk-konnect-go",
+			UserAgent:         "speakeasy-sdk/go 0.7.0 2.960.8 3.21.6 github.com/Kong/sdk-konnect-go",
 			SDKVersion:        "0.7.0",
 			GenVersion:        "2.960.8",
-			OpenAPIDocVersion: "3.21.1",
+			OpenAPIDocVersion: "3.21.6",
 			ServerList:        ServerList,
 		},
 		hooks: hooks.New(),
@@ -662,173 +653,85 @@ func New(opts ...SDKOption) *SDK {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 
-	sdk.ControlPlanes = newControlPlanes(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ControlPlaneGroups = newControlPlaneGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ControlPlaneResourceQuotas = newControlPlaneResourceQuotas(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Workspaces = newWorkspaces(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SSOAuth0 = newSSOAuth0(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Users = newUsers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.DeviceAuthorizationGrant = newDeviceAuthorizationGrant(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ImpersonationSettings = newImpersonationSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AuthSettings = newAuthSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Invites = newInvites(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Roles = newRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Teams = newTeams(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.TeamMembership = newTeamMembership(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SystemAccounts = newSystemAccounts(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SystemAccountsAccessTokens = newSystemAccountsAccessTokens(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ManagedSystemAccountsRoles = newManagedSystemAccountsRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SystemAccountsRoles = newSystemAccountsRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SystemAccountsTeamMembership = newSystemAccountsTeamMembership(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Me = newMe(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Authentication = newAuthentication(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Aws = newAws(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PersonalAccessTokens = newPersonalAccessTokens(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CloudGateways = newCloudGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Notifications = newNotifications(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OrgConfigurations = newOrgConfigurations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Destinations = newDestinations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.DCRProviders = newDCRProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AppAuthStrategies = newAppAuthStrategies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ConnectedApps = newConnectedApps(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AuthServer = newAuthServer(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AuthServerClaims = newAuthServerClaims(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AuthServerScopes = newAuthServerScopes(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AuthServerClients = newAuthServerClients(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongIdentityDirectories = newKongIdentityDirectories(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongPrincipal = newKongPrincipal(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongPrincipalIdentity = newKongPrincipalIdentity(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.TokenVaultCredentials = newTokenVaultCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.KongPrincipalCredential = newKongPrincipalCredential(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.TrustedIDPs = newTrustedIDPs(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PrincipalGroup = newPrincipalGroup(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.TokenVaultProviders = newTokenVaultProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.TokenVaultKeys = newTokenVaultKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.API = newAPI(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APISpecification = newAPISpecification(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIDocumentation = newAPIDocumentation(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIVersion = newAPIVersion(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIPublication = newAPIPublication(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIImage = newAPIImage(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIImplementation = newAPIImplementation(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIOperations = newAPIOperations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIAttributes = newAPIAttributes(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIPackages = newAPIPackages(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIPackageDocumentation = newAPIPackageDocumentation(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIPackageOperations = newAPIPackageOperations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIPackageSpecification = newAPIPackageSpecification(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.APIPackageImage = newAPIPackageImage(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Portals = newPortals(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalCustomDomains = newPortalCustomDomains(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Assets = newAssets(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalCustomization = newPortalCustomization(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalNavigation = newPortalNavigation(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalIntegrations = newPortalIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalPages = newPortalPages(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Snippets = newSnippets(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Pages = newPages(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Applications = newApplications(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AISettings = newAISettings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ApplicationRegistrations = newApplicationRegistrations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalAuthSettings = newPortalAuthSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalTeams = newPortalTeams(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalTeamMembership = newPortalTeamMembership(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalTeamRoles = newPortalTeamRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalDevelopers = newPortalDevelopers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalAuditLogs = newPortalAuditLogs(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalEmails = newPortalEmails(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalsIPAllowList = newPortalsIPAllowList(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.PortalForms = newPortalForms(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogServices = newCatalogServices(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogIntegrations = newCatalogIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.IntegrationInstances = newIntegrationInstances(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.IntegrationInstanceAuthCredentials = newIntegrationInstanceAuthCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.IntegrationInstanceAuthConfig = newIntegrationInstanceAuthConfig(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogResources = newCatalogResources(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogResourceServices = newCatalogResourceServices(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogResourceMappings = newCatalogResourceMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogServiceResources = newCatalogServiceResources(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CriteriaTemplates = newCriteriaTemplates(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Scorecards = newScorecards(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogServiceAPIMappings = newCatalogServiceAPIMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGateways = newEventGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayListeners = newEventGatewayListeners(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayVirtualClusters = newEventGatewayVirtualClusters(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayBackendClusters = newEventGatewayBackendClusters(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewaySchemaRegistries = newEventGatewaySchemaRegistries(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayNodes = newEventGatewayNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayListenerPolicies = newEventGatewayListenerPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayVirtualClusterConsumePolicies = newEventGatewayVirtualClusterConsumePolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayVirtualClusterProducePolicies = newEventGatewayVirtualClusterProducePolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayVirtualClusterPolicies = newEventGatewayVirtualClusterPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayDataPlaneCertificates = newEventGatewayDataPlaneCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayStaticKeys = newEventGatewayStaticKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EventGatewayTLSTrustBundles = newEventGatewayTLSTrustBundles(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterProductCatalog = newOpenMeterProductCatalog(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterApps = newOpenMeterApps(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterBillingSettings = newOpenMeterBillingSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterCurrencies = newOpenMeterCurrencies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterCustomers = newOpenMeterCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterEntitlements = newOpenMeterEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterDefaults = newOpenMeterDefaults(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.MeteringEvents = newMeteringEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterFeatures = newOpenMeterFeatures(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterLLMCost = newOpenMeterLLMCost(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Meters = newMeters(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterNotifications = newOpenMeterNotifications(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterSubscriptions = newOpenMeterSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.OpenMeterTax = newOpenMeterTax(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ContextInterfaces = newContextInterfaces(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ContextSources = newContextSources(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.MCPServers = newMCPServers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Skills = newSkills(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ContextSourceMappings = newContextSourceMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ContextInterfaceCapabilityControls = newContextInterfaceCapabilityControls(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ControlPlaneMappings = newControlPlaneMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.MCPServerRuntime = newMCPServerRuntime(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SignalingAPIs = newSignalingAPIs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AttributionPlugins = newAttributionPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Budgets = newBudgets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.UsageEvents = newUsageEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Exports = newExports(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.NotificationChannels = newNotificationChannels(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGateways = newAIGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayDataPlaneCertificates = newAIGatewayDataPlaneCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayAgents = newAIGatewayAgents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayAuthStrategies = newAIGatewayAuthStrategies(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGatewayCACertificates = newAIGatewayCACertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGatewayCertificates = newAIGatewayCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGatewaySNIs = newAIGatewaySNIs(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayNodes = newAIGatewayNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayDebug = newAIGatewayDebug(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayVaults = newAIGatewayVaults(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayPolicies = newAIGatewayPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayCustomPolicies = newAIGatewayCustomPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayModels = newAIGatewayModels(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayAgents = newAIGatewayAgents(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayConsumers = newAIGatewayConsumers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayConfigStores = newAIGatewayConfigStores(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGatewayConsumerGroups = newAIGatewayConsumerGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayConsumers = newAIGatewayConsumers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayCustomPolicies = newAIGatewayCustomPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayDataPlaneCertificates = newAIGatewayDataPlaneCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayDatastores = newAIGatewayDatastores(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayNodes = newAIGatewayNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayIdentityProviders = newAIGatewayIdentityProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGatewayMCPServers = newAIGatewayMCPServers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AIGatewayModelProviders = newAIGatewayModelProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayIdentityProviders = newAIGatewayIdentityProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayAuthStrategies = newAIGatewayAuthStrategies(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayConfigStores = newAIGatewayConfigStores(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayDatastores = newAIGatewayDatastores(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AIGatewayCostManagementTags = newAIGatewayCostManagementTags(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Dashboards = newDashboards(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Mesh = newMesh(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayModels = newAIGatewayModels(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayPolicies = newAIGatewayPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AIGatewayVaults = newAIGatewayVaults(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogAIModels = newCatalogAIModels(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogAIModelVersions = newCatalogAIModelVersions(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogAIModelSpecs = newCatalogAIModelSpecs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogAIModelImplementations = newCatalogAIModelImplementations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogAIModelSpecs = newCatalogAIModelSpecs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogAIModelVersions = newCatalogAIModelVersions(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogServiceAPIMappings = newCatalogServiceAPIMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServer = newAuthServer(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerClaims = newAuthServerClaims(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerClients = newAuthServerClients(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthServerScopes = newAuthServerScopes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogServices = newCatalogServices(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogServiceResources = newCatalogServiceResources(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Scorecards = newScorecards(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ConnectedApps = newConnectedApps(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ContextInterfaces = newContextInterfaces(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ContextSourceMappings = newContextSourceMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ContextInterfaceCapabilityControls = newContextInterfaceCapabilityControls(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ControlPlaneMappings = newControlPlaneMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Skills = newSkills(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ContextSources = newContextSources(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CriteriaTemplates = newCriteriaTemplates(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGateways = newEventGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayBackendClusters = newEventGatewayBackendClusters(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayDataPlaneCertificates = newEventGatewayDataPlaneCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayListeners = newEventGatewayListeners(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayListenerPolicies = newEventGatewayListenerPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayNodes = newEventGatewayNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewaySchemaRegistries = newEventGatewaySchemaRegistries(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayStaticKeys = newEventGatewayStaticKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayTLSTrustBundles = newEventGatewayTLSTrustBundles(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayVirtualClusters = newEventGatewayVirtualClusters(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayVirtualClusterPolicies = newEventGatewayVirtualClusterPolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayVirtualClusterConsumePolicies = newEventGatewayVirtualClusterConsumePolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EventGatewayVirtualClusterProducePolicies = newEventGatewayVirtualClusterProducePolicies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.IntegrationInstances = newIntegrationInstances(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.IntegrationInstanceAuthConfig = newIntegrationInstanceAuthConfig(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.IntegrationInstanceAuthCredentials = newIntegrationInstanceAuthCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogResources = newCatalogResources(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogIntegrations = newCatalogIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.SignalingAPIs = newSignalingAPIs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.MCPServers = newMCPServers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.MCPServerRuntime = newMCPServerRuntime(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogMCPs = newCatalogMCPs(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CatalogMCPVersions = newCatalogMCPVersions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CatalogMCPImplementations = newCatalogMCPImplementations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.UsageEvents = newUsageEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Budgets = newBudgets(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.NotificationChannels = newNotificationChannels(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Exports = newExports(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.AttributionPlugins = newAttributionPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.DPNodes = newDPNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.DPCertificates = newDPCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CustomPluginSchemas = newCustomPluginSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Targets = newTargets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogMCPVersions = newCatalogMCPVersions(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Mesh = newMesh(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Notifications = newNotifications(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OrgConfigurations = newOrgConfigurations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Destinations = newDestinations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogResourceMappings = newCatalogResourceMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CatalogResourceServices = newCatalogResourceServices(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AppAuthStrategies = newAppAuthStrategies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CloudGateways = newCloudGateways(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ControlPlanes = newControlPlanes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ConfigStores = newConfigStores(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ConfigStoreSecrets = newConfigStoreSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Schemas = newSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ACLs = newACLs(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.BasicAuthCredentials = newBasicAuthCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Certificates = newCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -849,10 +752,91 @@ func New(opts ...SDKOption) *SDK {
 	sdk.Routes = newRoutes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Services = newServices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Upstreams = newUpstreams(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Targets = newTargets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Vaults = newVaults(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CACertificates = newCACertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ClonedPlugins = newClonedPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CustomPlugins = newCustomPlugins(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CustomPluginSchemas = newCustomPluginSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Schemas = newSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Workspaces = newWorkspaces(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.DPCertificates = newDPCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.DPNodes = newDPNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ControlPlaneGroups = newControlPlaneGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultProviders = newTokenVaultProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Dashboards = newDashboards(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.DCRProviders = newDCRProviders(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongIdentityDirectories = newKongIdentityDirectories(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PrincipalGroup = newPrincipalGroup(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipal = newKongPrincipal(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipalCredential = newKongPrincipalCredential(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.KongPrincipalIdentity = newKongPrincipalIdentity(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultCredentials = newTokenVaultCredentials(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TrustedIDPs = newTrustedIDPs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TokenVaultKeys = newTokenVaultKeys(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIAttributes = newAPIAttributes(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIImplementation = newAPIImplementation(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIPackages = newAPIPackages(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIPublication = newAPIPublication(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIPackageSpecification = newAPIPackageSpecification(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIPackageDocumentation = newAPIPackageDocumentation(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIPackageImage = newAPIPackageImage(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIPackageOperations = newAPIPackageOperations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.API = newAPI(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIDocumentation = newAPIDocumentation(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIImage = newAPIImage(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIOperations = newAPIOperations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APISpecification = newAPISpecification(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.APIVersion = newAPIVersion(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Applications = newApplications(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Authentication = newAuthentication(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AuthSettings = newAuthSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Invites = newInvites(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterProductCatalog = newOpenMeterProductCatalog(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterApps = newOpenMeterApps(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterBillingSettings = newOpenMeterBillingSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterCurrencies = newOpenMeterCurrencies(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterCustomers = newOpenMeterCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterEntitlements = newOpenMeterEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterDefaults = newOpenMeterDefaults(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.MeteringEvents = newMeteringEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterFeatures = newOpenMeterFeatures(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterLLMCost = newOpenMeterLLMCost(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Meters = newMeters(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterNotifications = newOpenMeterNotifications(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterSubscriptions = newOpenMeterSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.OpenMeterTax = newOpenMeterTax(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ImpersonationSettings = newImpersonationSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Me = newMe(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalTeamRoles = newPortalTeamRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Portals = newPortals(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AISettings = newAISettings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ApplicationRegistrations = newApplicationRegistrations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Assets = newAssets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalAuditLogs = newPortalAuditLogs(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalAuthSettings = newPortalAuthSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalCustomDomains = newPortalCustomDomains(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalCustomization = newPortalCustomization(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalNavigation = newPortalNavigation(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Pages = newPages(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalDevelopers = newPortalDevelopers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalTeamMembership = newPortalTeamMembership(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalEmails = newPortalEmails(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalForms = newPortalForms(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalIntegrations = newPortalIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalsIPAllowList = newPortalsIPAllowList(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalPages = newPortalPages(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Snippets = newSnippets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PortalTeams = newPortalTeams(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Roles = newRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.SystemAccounts = newSystemAccounts(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.SystemAccountsAccessTokens = newSystemAccountsAccessTokens(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.SystemAccountsRoles = newSystemAccountsRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.SystemAccountsTeamMembership = newSystemAccountsTeamMembership(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Teams = newTeams(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.TeamMembership = newTeamMembership(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Users = newUsers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PersonalAccessTokens = newPersonalAccessTokens(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk
 }

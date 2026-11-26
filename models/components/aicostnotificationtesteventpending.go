@@ -9,27 +9,27 @@ import (
 	"time"
 )
 
-// AICostNotificationTestEventPendingKind - Always `test` for a channel test.
-type AICostNotificationTestEventPendingKind string
+// Kind - Always `test` for a channel test.
+type Kind string
 
 const (
-	AICostNotificationTestEventPendingKindTest AICostNotificationTestEventPendingKind = "test"
+	KindTest Kind = "test"
 )
 
-func (e AICostNotificationTestEventPendingKind) ToPointer() *AICostNotificationTestEventPendingKind {
+func (e Kind) ToPointer() *Kind {
 	return &e
 }
-func (e *AICostNotificationTestEventPendingKind) UnmarshalJSON(data []byte) error {
+func (e *Kind) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "test":
-		*e = AICostNotificationTestEventPendingKind(v)
+		*e = Kind(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AICostNotificationTestEventPendingKind: %v", v)
+		return fmt.Errorf("invalid value for Kind: %v", v)
 	}
 }
 
@@ -60,7 +60,7 @@ func (e *AICostNotificationTestEventPendingStatus) UnmarshalJSON(data []byte) er
 // AICostNotificationTestEventPending - A test message to one channel, still in progress.
 type AICostNotificationTestEventPending struct {
 	// Always `test` for a channel test.
-	Kind AICostNotificationTestEventPendingKind `json:"kind"`
+	Kind Kind `json:"kind"`
 	// Contains a unique identifier used for this resource.
 	ID string `json:"id"`
 	// The channel the test message goes to.
@@ -87,9 +87,9 @@ func (a *AICostNotificationTestEventPending) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AICostNotificationTestEventPending) GetKind() AICostNotificationTestEventPendingKind {
+func (a *AICostNotificationTestEventPending) GetKind() Kind {
 	if a == nil {
-		return AICostNotificationTestEventPendingKind("")
+		return Kind("")
 	}
 	return a.Kind
 }

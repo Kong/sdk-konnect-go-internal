@@ -39,9 +39,6 @@ type CustomFormField struct {
 func CreateCustomFormFieldContent(content CustomFormContentField) CustomFormField {
 	typ := CustomFormFieldTypeContent
 
-	typStr := CustomFormContentFieldType(typ)
-	content.Type = typStr
-
 	return CustomFormField{
 		CustomFormContentField: &content,
 		Type:                   typ,
@@ -50,9 +47,6 @@ func CreateCustomFormFieldContent(content CustomFormContentField) CustomFormFiel
 
 func CreateCustomFormFieldText(text CustomFormTextField) CustomFormField {
 	typ := CustomFormFieldTypeText
-
-	typStr := CustomFormTextFieldType(typ)
-	text.Type = typStr
 
 	return CustomFormField{
 		CustomFormTextField: &text,
@@ -63,9 +57,6 @@ func CreateCustomFormFieldText(text CustomFormTextField) CustomFormField {
 func CreateCustomFormFieldEmail(email CustomFormEmailField) CustomFormField {
 	typ := CustomFormFieldTypeEmail
 
-	typStr := CustomFormEmailFieldType(typ)
-	email.Type = typStr
-
 	return CustomFormField{
 		CustomFormEmailField: &email,
 		Type:                 typ,
@@ -75,9 +66,6 @@ func CreateCustomFormFieldEmail(email CustomFormEmailField) CustomFormField {
 func CreateCustomFormFieldNumber(number CustomFormNumberField) CustomFormField {
 	typ := CustomFormFieldTypeNumber
 
-	typStr := CustomFormNumberFieldType(typ)
-	number.Type = typStr
-
 	return CustomFormField{
 		CustomFormNumberField: &number,
 		Type:                  typ,
@@ -86,9 +74,6 @@ func CreateCustomFormFieldNumber(number CustomFormNumberField) CustomFormField {
 
 func CreateCustomFormFieldTextarea(textarea CustomFormTextareaField) CustomFormField {
 	typ := CustomFormFieldTypeTextarea
-
-	typStr := CustomFormTextareaFieldType(typ)
-	textarea.Type = typStr
 
 	return CustomFormField{
 		CustomFormTextareaField: &textarea,
@@ -108,9 +93,6 @@ func CreateCustomFormFieldSelect(selectT CustomFormSelectField) CustomFormField 
 func CreateCustomFormFieldCheckbox(checkbox CustomFormCheckboxField) CustomFormField {
 	typ := CustomFormFieldTypeCheckbox
 
-	typStr := CustomFormCheckboxFieldType(typ)
-	checkbox.Type = typStr
-
 	return CustomFormField{
 		CustomFormCheckboxField: &checkbox,
 		Type:                    typ,
@@ -119,9 +101,6 @@ func CreateCustomFormFieldCheckbox(checkbox CustomFormCheckboxField) CustomFormF
 
 func CreateCustomFormFieldSubmit(submit CustomFormSubmitField) CustomFormField {
 	typ := CustomFormFieldTypeSubmit
-
-	typStr := CustomFormSubmitFieldType(typ)
-	submit.Type = typStr
 
 	return CustomFormField{
 		CustomFormSubmitField: &submit,

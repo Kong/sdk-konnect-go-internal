@@ -1,8 +1,0 @@
-# AIGatewayModelModelConfigModel
-
-
-## Fields
-
-| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `NameHeader`                                                            | `*bool`                                                                 | :heavy_minus_sign:                                                      | Display the model name selected in the X-Kong-LLM-Model response header |

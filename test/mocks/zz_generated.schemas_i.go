@@ -7,7 +7,6 @@ package mocks
 import (
 	"context"
 
-	"github.com/Kong/sdk-konnect-go/models/components"
 	"github.com/Kong/sdk-konnect-go/models/operations"
 	mock "github.com/stretchr/testify/mock"
 )
@@ -216,95 +215,6 @@ func (_c *MockSchemasSDK_ValidateEntitySchema_Call) Return(validateEntitySchemaR
 }
 
 func (_c *MockSchemasSDK_ValidateEntitySchema_Call) RunAndReturn(run func(ctx context.Context, request operations.ValidateEntitySchemaRequest, opts ...operations.Option) (*operations.ValidateEntitySchemaResponse, error)) *MockSchemasSDK_ValidateEntitySchema_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// ValidateExpression provides a mock function for the type MockSchemasSDK
-func (_mock *MockSchemasSDK) ValidateExpression(ctx context.Context, controlPlaneID string, validateExpressionBodyRequest components.ValidateExpressionBodyRequest, opts ...operations.Option) (*operations.ValidateExpressionResponse, error) {
-	var tmpRet mock.Arguments
-	if len(opts) > 0 {
-		tmpRet = _mock.Called(ctx, controlPlaneID, validateExpressionBodyRequest, opts)
-	} else {
-		tmpRet = _mock.Called(ctx, controlPlaneID, validateExpressionBodyRequest)
-	}
-	ret := tmpRet
-
-	if len(ret) == 0 {
-		panic("no return value specified for ValidateExpression")
-	}
-
-	var r0 *operations.ValidateExpressionResponse
-	var r1 error
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.ValidateExpressionBodyRequest, ...operations.Option) (*operations.ValidateExpressionResponse, error)); ok {
-		return returnFunc(ctx, controlPlaneID, validateExpressionBodyRequest, opts...)
-	}
-	if returnFunc, ok := ret.Get(0).(func(context.Context, string, components.ValidateExpressionBodyRequest, ...operations.Option) *operations.ValidateExpressionResponse); ok {
-		r0 = returnFunc(ctx, controlPlaneID, validateExpressionBodyRequest, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*operations.ValidateExpressionResponse)
-		}
-	}
-	if returnFunc, ok := ret.Get(1).(func(context.Context, string, components.ValidateExpressionBodyRequest, ...operations.Option) error); ok {
-		r1 = returnFunc(ctx, controlPlaneID, validateExpressionBodyRequest, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-	return r0, r1
-}
-
-// MockSchemasSDK_ValidateExpression_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'ValidateExpression'
-type MockSchemasSDK_ValidateExpression_Call struct {
-	*mock.Call
-}
-
-// ValidateExpression is a helper method to define mock.On call
-//   - ctx context.Context
-//   - controlPlaneID string
-//   - validateExpressionBodyRequest components.ValidateExpressionBodyRequest
-//   - opts ...operations.Option
-func (_e *MockSchemasSDK_Expecter) ValidateExpression(ctx any, controlPlaneID any, validateExpressionBodyRequest any, opts ...any) *MockSchemasSDK_ValidateExpression_Call {
-	return &MockSchemasSDK_ValidateExpression_Call{Call: _e.mock.On("ValidateExpression",
-		append([]any{ctx, controlPlaneID, validateExpressionBodyRequest}, opts...)...)}
-}
-
-func (_c *MockSchemasSDK_ValidateExpression_Call) Run(run func(ctx context.Context, controlPlaneID string, validateExpressionBodyRequest components.ValidateExpressionBodyRequest, opts ...operations.Option)) *MockSchemasSDK_ValidateExpression_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		var arg0 context.Context
-		if args[0] != nil {
-			arg0 = args[0].(context.Context)
-		}
-		var arg1 string
-		if args[1] != nil {
-			arg1 = args[1].(string)
-		}
-		var arg2 components.ValidateExpressionBodyRequest
-		if args[2] != nil {
-			arg2 = args[2].(components.ValidateExpressionBodyRequest)
-		}
-		var arg3 []operations.Option
-		var variadicArgs []operations.Option
-		if len(args) > 3 {
-			variadicArgs = args[3].([]operations.Option)
-		}
-		arg3 = variadicArgs
-		run(
-			arg0,
-			arg1,
-			arg2,
-			arg3...,
-		)
-	})
-	return _c
-}
-
-func (_c *MockSchemasSDK_ValidateExpression_Call) Return(validateExpressionResponse *operations.ValidateExpressionResponse, err error) *MockSchemasSDK_ValidateExpression_Call {
-	_c.Call.Return(validateExpressionResponse, err)
-	return _c
-}
-
-func (_c *MockSchemasSDK_ValidateExpression_Call) RunAndReturn(run func(ctx context.Context, controlPlaneID string, validateExpressionBodyRequest components.ValidateExpressionBodyRequest, opts ...operations.Option) (*operations.ValidateExpressionResponse, error)) *MockSchemasSDK_ValidateExpression_Call {
 	_c.Call.Return(run)
 	return _c
 }

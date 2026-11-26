@@ -16,10 +16,10 @@ An export schedule exports the organization's usage period by period, such as mo
 aiCostExportSchedule := components.CreateAICostExportScheduleAICostExportSchedule1(components.AICostExportSchedule1{/* values here */})
 ```
 
-### AICostExportSchedule2
+### Two
 
 ```go
-aiCostExportSchedule := components.CreateAICostExportScheduleAICostExportSchedule2(components.AICostExportSchedule2{/* values here */})
+aiCostExportSchedule := components.CreateAICostExportScheduleTwo(components.Two{/* values here */})
 ```
 
 ## Union Discrimination
@@ -30,7 +30,7 @@ Use the `Type` field to determine which variant is active, then access the corre
 switch aiCostExportSchedule.Type {
 	case components.AICostExportScheduleTypeAICostExportSchedule1:
 		// aiCostExportSchedule.AICostExportSchedule1 is populated
-	case components.AICostExportScheduleTypeAICostExportSchedule2:
-		// aiCostExportSchedule.AICostExportSchedule2 is populated
+	case components.AICostExportScheduleTypeTwo:
+		// aiCostExportSchedule.Two is populated
 }
 ```

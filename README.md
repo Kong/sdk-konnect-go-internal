@@ -53,7 +53,7 @@ versions of the SDK as needed without the need for changing any code in their pr
 <!-- Start Summary [summary] -->
 ## Summary
 
-Konnect API - Go Internal SDK: The Konnect platform API
+Konnect API - Go SDK: The Konnect platform API
 
 For more information about the API: [Documentation for Kong Gateway and its APIs](https://developer.konghq.com)
 <!-- End Summary [summary] -->
@@ -96,7 +96,6 @@ import (
 	"context"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
 	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -109,29 +108,12 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
-	})
+	res, err := s.AttributionPlugins.GetCostAttributionPlugin(ctx, "527bc328-6950-4662-a473-78dd7a5beb84")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListControlPlanesResponse != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.AICostAttributionPlugin != nil {
+		// handle response
 	}
 }
 
@@ -150,7 +132,6 @@ This SDK supports the following security schemes globally:
 | `PersonalAccessToken`      | http | HTTP Bearer |
 | `SystemAccountAccessToken` | http | HTTP Bearer |
 | `KonnectAccessToken`       | http | HTTP Bearer |
-| `ClientToken`              | http | HTTP Bearer |
 | `ServiceAccessToken`       | http | HTTP Bearer |
 
 You can set the security parameters through the `WithSecurity` option when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
@@ -161,7 +142,6 @@ import (
 	"context"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
 	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -174,29 +154,12 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
-	})
+	res, err := s.AttributionPlugins.GetCostAttributionPlugin(ctx, "527bc328-6950-4662-a473-78dd7a5beb84")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListControlPlanesResponse != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.AICostAttributionPlugin != nil {
+		// handle response
 	}
 }
 
@@ -269,31 +232,26 @@ func main() {
 
 * [ListAiGatewayConsumerGroups](docs/sdks/aigatewayconsumergroups/README.md#listaigatewayconsumergroups) - List AI Gateway Consumer Groups
 * [CreateAiGatewayConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#createaigatewayconsumergroup) - Create an AI Gateway Consumer Group
-* [GetAiGatewayConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#getaigatewayconsumergroup) - Get an AI Gateway Consumer Group
-* [UpdateAiGatewayConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#updateaigatewayconsumergroup) - Update an AI Gateway Consumer Group
-* [DeleteAiGatewayConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#deleteaigatewayconsumergroup) - Delete an AI Gateway Consumer Group
 * [ListAiGatewayConsumersInConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#listaigatewayconsumersinconsumergroup) - List AI Gateway Consumers in a Consumer Group
 * [AddAiGatewayConsumerToConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#addaigatewayconsumertoconsumergroup) - Add a Consumer to a Consumer Group
 * [RemoveAiGatewayConsumerFromConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#removeaigatewayconsumerfromconsumergroup) - Remove a Consumer from a Consumer Group
+* [GetAiGatewayConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#getaigatewayconsumergroup) - Get an AI Gateway Consumer Group
+* [UpdateAiGatewayConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#updateaigatewayconsumergroup) - Update an AI Gateway Consumer Group
+* [DeleteAiGatewayConsumerGroup](docs/sdks/aigatewayconsumergroups/README.md#deleteaigatewayconsumergroup) - Delete an AI Gateway Consumer Group
 
 ### [AIGatewayConsumers](docs/sdks/aigatewayconsumers/README.md)
 
 * [ListAiGatewayConsumers](docs/sdks/aigatewayconsumers/README.md#listaigatewayconsumers) - List AI Gateway Consumers
 * [CreateAiGatewayConsumer](docs/sdks/aigatewayconsumers/README.md#createaigatewayconsumer) - Create an AI Gateway Consumer
+* [ListAiGatewayConsumerCredentials](docs/sdks/aigatewayconsumers/README.md#listaigatewayconsumercredentials) - List AI Gateway Consumer Credentials
+* [CreateAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#createaigatewayconsumercredential) - Create an AI Gateway Consumer Credential
+* [GetAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#getaigatewayconsumercredential) - Get an AI Gateway Consumer Credential
+* [DeleteAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#deleteaigatewayconsumercredential) - Delete an AI Gateway Consumer Credential
 * [GetAiGatewayConsumer](docs/sdks/aigatewayconsumers/README.md#getaigatewayconsumer) - Get an AI Gateway Consumer
 * [UpdateAiGatewayConsumer](docs/sdks/aigatewayconsumers/README.md#updateaigatewayconsumer) - Update an AI Gateway Consumer
 * [DeleteAiGatewayConsumer](docs/sdks/aigatewayconsumers/README.md#deleteaigatewayconsumer) - Delete an AI Gateway Consumer
 * [ListAiGatewayConsumerGroupsForConsumer](docs/sdks/aigatewayconsumers/README.md#listaigatewayconsumergroupsforconsumer) - List Consumer Groups a Consumer belongs to
 * [UpdateAiGatewayConsumerGroupsForConsumer](docs/sdks/aigatewayconsumers/README.md#updateaigatewayconsumergroupsforconsumer) - Updates Consumer Groups a Consumer belongs to
-* [ListAiGatewayConsumerCredentials](docs/sdks/aigatewayconsumers/README.md#listaigatewayconsumercredentials) - List AI Gateway Consumer Credentials
-* [CreateAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#createaigatewayconsumercredential) - Create an AI Gateway Consumer Credential
-* [GetAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#getaigatewayconsumercredential) - Get an AI Gateway Consumer Credential
-* [DeleteAiGatewayConsumerCredential](docs/sdks/aigatewayconsumers/README.md#deleteaigatewayconsumercredential) - Delete an AI Gateway Consumer Credential
-
-### [AIGatewayCostManagementTags](docs/sdks/aigatewaycostmanagementtags/README.md)
-
-* [GetCostManagementTags](docs/sdks/aigatewaycostmanagementtags/README.md#getcostmanagementtags) - Get cost management tags
-* [UpdateCostManagementTags](docs/sdks/aigatewaycostmanagementtags/README.md#updatecostmanagementtags) - Update cost management tags
 
 ### [AIGatewayCustomPolicies](docs/sdks/aigatewaycustompolicies/README.md)
 
@@ -318,10 +276,6 @@ func main() {
 * [UpdateAiGatewayDatastore](docs/sdks/aigatewaydatastores/README.md#updateaigatewaydatastore) - Update an AI Gateway Datastore
 * [DeleteAiGatewayDatastore](docs/sdks/aigatewaydatastores/README.md#deleteaigatewaydatastore) - Delete an AI Gateway Datastore
 * [ListAiGatewayDatastoreUsage](docs/sdks/aigatewaydatastores/README.md#listaigatewaydatastoreusage) - List AI Gateway Datastore Usage
-
-### [AIGatewayDebug](docs/sdks/aigatewaydebug/README.md)
-
-* [GetAiGatewayDebugCpOutput](docs/sdks/aigatewaydebug/README.md#getaigatewaydebugcpoutput) - Get the CP config output for an AI Gateway
 
 ### [~~AIGatewayIdentityProviders~~](docs/sdks/aigatewayidentityproviders/README.md)
 
@@ -360,19 +314,14 @@ func main() {
 * [GetAiGatewayExpectedConfigVersion](docs/sdks/aigatewaynodes/README.md#getaigatewayexpectedconfigversion) - Get the Expected Config Version
 * [ListAiGatewayNodes](docs/sdks/aigatewaynodes/README.md#listaigatewaynodes) - List Nodes
 * [GetAiGatewayNode](docs/sdks/aigatewaynodes/README.md#getaigatewaynode) - Get a Node
-* [GetAiGatewayNodeConf](docs/sdks/aigatewaynodes/README.md#getaigatewaynodeconf) - Get a Node Process Conf
 
 ### [AIGatewayPolicies](docs/sdks/aigatewaypolicies/README.md)
 
-* [ListAiGatewayAvailablePolicies](docs/sdks/aigatewaypolicies/README.md#listaigatewayavailablepolicies) - List AI Gateway Available Policies
-* [GetAiGatewayPolicySchema](docs/sdks/aigatewaypolicies/README.md#getaigatewaypolicyschema) - Get an AI Gateway Policy Schema
-* [ValidateAiGatewayExpression](docs/sdks/aigatewaypolicies/README.md#validateaigatewayexpression) - Validate an AI Gateway CEL Expression
 * [ListAiGatewayPolicies](docs/sdks/aigatewaypolicies/README.md#listaigatewaypolicies) - List AI Gateway Policies
 * [CreateAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#createaigatewaypolicy) - Create an AI Gateway Policy
 * [GetAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#getaigatewaypolicy) - Get an AI Gateway Policy
 * [UpdateAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#updateaigatewaypolicy) - Update an AI Gateway Policy
 * [DeleteAiGatewayPolicy](docs/sdks/aigatewaypolicies/README.md#deleteaigatewaypolicy) - Delete an AI Gateway Policy
-* [ListAiGatewayPolicyUsage](docs/sdks/aigatewaypolicies/README.md#listaigatewaypolicyusage) - List AI Gateway Policy Usage
 
 ### [AIGatewaySNIs](docs/sdks/aigatewaysnis/README.md)
 
@@ -399,9 +348,6 @@ func main() {
 
 * [ListAiGateways](docs/sdks/aigateways/README.md#listaigateways) - List AI Gateways
 * [CreateAiGateway](docs/sdks/aigateways/README.md#createaigateway) - Create an AI Gateway
-* [ListAiGatewayRuntimeVersions](docs/sdks/aigateways/README.md#listaigatewayruntimeversions) - List AI Gateway Runtime Versions
-* [GetAiGatewayRuntimeDefault](docs/sdks/aigateways/README.md#getaigatewayruntimedefault) - Get an AI Gateway Runtime Default
-* [UpdateAiGatewayRuntimeDefault](docs/sdks/aigateways/README.md#updateaigatewayruntimedefault) - Update an AI Gateway Runtime Default
 * [GetAiGateway](docs/sdks/aigateways/README.md#getaigateway) - Get an AI Gateway
 * [UpdateAiGateway](docs/sdks/aigateways/README.md#updateaigateway) - Update an AI Gateway
 * [PatchAiGateway](docs/sdks/aigateways/README.md#patchaigateway) - Patch an AI Gateway
@@ -444,10 +390,10 @@ func main() {
 
 ### [APIImplementation](docs/sdks/apiimplementation/README.md)
 
+* [ListAPIImplementations](docs/sdks/apiimplementation/README.md#listapiimplementations) - List API Implementations
 * [CreateAPIImplementation](docs/sdks/apiimplementation/README.md#createapiimplementation) - Create API Implementation
 * [FetchAPIImplementation](docs/sdks/apiimplementation/README.md#fetchapiimplementation) - Get an API Implementation
 * [DeleteAPIImplementation](docs/sdks/apiimplementation/README.md#deleteapiimplementation) - Delete API Implementation
-* [ListAPIImplementations](docs/sdks/apiimplementation/README.md#listapiimplementations) - List API Implementations
 
 ### [APIOperations](docs/sdks/apioperations/README.md)
 
@@ -479,10 +425,10 @@ func main() {
 
 ### [APIPackageSpecification](docs/sdks/apipackagespecification/README.md)
 
+* [GetAPIPackageComputedSpecification](docs/sdks/apipackagespecification/README.md#getapipackagecomputedspecification) - Get the API package computed specification
 * [UpdateAPIPackageCurrentSpecification](docs/sdks/apipackagespecification/README.md#updateapipackagecurrentspecification) - Update API package current specification
 * [GetAPIPackageCurrentSpecification](docs/sdks/apipackagespecification/README.md#getapipackagecurrentspecification) - Get the API package current specification
 * [DeleteAPIPackageCurrentSpecification](docs/sdks/apipackagespecification/README.md#deleteapipackagecurrentspecification) - Delete API Package current Specification
-* [GetAPIPackageComputedSpecification](docs/sdks/apipackagespecification/README.md#getapipackagecomputedspecification) - Get the API package computed specification
 
 ### [APIPackages](docs/sdks/apipackages/README.md)
 
@@ -494,23 +440,23 @@ func main() {
 
 ### [APIPublication](docs/sdks/apipublication/README.md)
 
-* [PublishAPIToPortal](docs/sdks/apipublication/README.md#publishapitoportal) - Publish API
-* [FetchPublication](docs/sdks/apipublication/README.md#fetchpublication) - Get a Publication
-* [DeletePublication](docs/sdks/apipublication/README.md#deletepublication) - Delete Publication
-* [ListAPIPublications](docs/sdks/apipublication/README.md#listapipublications) - List Publications
-* [ListPortalAPIPublications](docs/sdks/apipublication/README.md#listportalapipublications) - List Portal API Publications
 * [PublishAPIPackageToPortal](docs/sdks/apipublication/README.md#publishapipackagetoportal) - Publish API Package
 * [FetchAPIPackagePublication](docs/sdks/apipublication/README.md#fetchapipackagepublication) - Get an API Package Publication
 * [DeleteAPIPackagePublication](docs/sdks/apipublication/README.md#deleteapipackagepublication) - Delete API Package Publication
+* [ListAPIPublications](docs/sdks/apipublication/README.md#listapipublications) - List Publications
+* [PublishAPIToPortal](docs/sdks/apipublication/README.md#publishapitoportal) - Publish API
+* [FetchPublication](docs/sdks/apipublication/README.md#fetchpublication) - Get a Publication
+* [DeletePublication](docs/sdks/apipublication/README.md#deletepublication) - Delete Publication
+* [ListPortalAPIPublications](docs/sdks/apipublication/README.md#listportalapipublications) - List Portal API Publications
 
 ### [APISpecification](docs/sdks/apispecification/README.md)
 
-* [ValidateSpecification](docs/sdks/apispecification/README.md#validatespecification) - Validate API Specification
 * [~~CreateAPISpec~~](docs/sdks/apispecification/README.md#createapispec) - Create API Specification :warning: **Deprecated**
 * [~~ListAPISpecs~~](docs/sdks/apispecification/README.md#listapispecs) - List API Specifications :warning: **Deprecated**
 * [~~FetchAPISpec~~](docs/sdks/apispecification/README.md#fetchapispec) - Get API Specification :warning: **Deprecated**
 * [~~UpdateAPISpec~~](docs/sdks/apispecification/README.md#updateapispec) - Update API Specification :warning: **Deprecated**
 * [~~DeleteAPISpec~~](docs/sdks/apispecification/README.md#deleteapispec) - Delete API Specification :warning: **Deprecated**
+* [ValidateSpecification](docs/sdks/apispecification/README.md#validatespecification) - Validate API Specification
 
 ### [APIVersion](docs/sdks/apiversion/README.md)
 
@@ -552,31 +498,31 @@ func main() {
 
 ### [Applications](docs/sdks/applications/README.md)
 
+* [GetApplicationUnscoped](docs/sdks/applications/README.md#getapplicationunscoped) - Get an Application
 * [CreateApplication](docs/sdks/applications/README.md#createapplication) - Create Application
 * [ListApplications](docs/sdks/applications/README.md#listapplications) - List Applications
 * [GetApplication](docs/sdks/applications/README.md#getapplication) - Get an Application by Portal
 * [UpdateApplication](docs/sdks/applications/README.md#updateapplication) - Update Application
 * [DeleteApplication](docs/sdks/applications/README.md#deleteapplication) - Delete Application by Portal
-* [ListDevelopersByApplication](docs/sdks/applications/README.md#listdevelopersbyapplication) - List Developers by Application
-* [GetApplicationUnscoped](docs/sdks/applications/README.md#getapplicationunscoped) - Get an Application
 * [ListCredentialsByApplication](docs/sdks/applications/README.md#listcredentialsbyapplication) - List Credentials by Application
+* [ListDevelopersByApplication](docs/sdks/applications/README.md#listdevelopersbyapplication) - List Developers by Application
 
 ### [Assets](docs/sdks/assets/README.md)
 
-* [GetPortalAssetLogo](docs/sdks/assets/README.md#getportalassetlogo) - Get Logo
-* [ReplacePortalAssetLogo](docs/sdks/assets/README.md#replaceportalassetlogo) - Replace Logo
-* [GetPortalAssetLogoRaw](docs/sdks/assets/README.md#getportalassetlogoraw) - Get Logo (Raw)
 * [GetPortalAssetFavicon](docs/sdks/assets/README.md#getportalassetfavicon) - Get Favicon
 * [ReplacePortalAssetFavicon](docs/sdks/assets/README.md#replaceportalassetfavicon) - Replace Favicon
 * [GetPortalAssetFaviconRaw](docs/sdks/assets/README.md#getportalassetfaviconraw) - Get Favicon (Raw)
+* [GetPortalAssetLogo](docs/sdks/assets/README.md#getportalassetlogo) - Get Logo
+* [ReplacePortalAssetLogo](docs/sdks/assets/README.md#replaceportalassetlogo) - Replace Logo
+* [GetPortalAssetLogoRaw](docs/sdks/assets/README.md#getportalassetlogoraw) - Get Logo (Raw)
 
 ### [AttributionPlugins](docs/sdks/attributionplugins/README.md)
 
-* [ListCostAttributionPlugins](docs/sdks/attributionplugins/README.md#listcostattributionplugins) - List attribution plugin installations
 * [GetCostAttributionPlugin](docs/sdks/attributionplugins/README.md#getcostattributionplugin) - Get an AI Gateway's attribution plugin
 * [UpsertCostAttributionPlugin](docs/sdks/attributionplugins/README.md#upsertcostattributionplugin) - Install or replace an attribution plugin
 * [UpdateCostAttributionPlugin](docs/sdks/attributionplugins/README.md#updatecostattributionplugin) - Update an AI Gateway's attribution plugin
 * [DeleteCostAttributionPlugin](docs/sdks/attributionplugins/README.md#deletecostattributionplugin) - Remove an AI Gateway's attribution plugin
+* [ListCostAttributionPlugins](docs/sdks/attributionplugins/README.md#listcostattributionplugins) - List attribution plugin installations
 
 ### [AuthServer](docs/sdks/authserver/README.md)
 
@@ -625,6 +571,12 @@ func main() {
 
 * [GetAuthenticationSettings](docs/sdks/authsettings/README.md#getauthenticationsettings) - Get Auth Settings
 * [UpdateAuthenticationSettings](docs/sdks/authsettings/README.md#updateauthenticationsettings) - Update Auth Settings
+* [GetIdpConfiguration](docs/sdks/authsettings/README.md#getidpconfiguration) - Get the IdP Configuration
+* [UpdateIdpConfiguration](docs/sdks/authsettings/README.md#updateidpconfiguration) - Update IdP Configuration
+* [GetTeamGroupMappings](docs/sdks/authsettings/README.md#getteamgroupmappings) - Get a Team Group Mappings
+* [PatchTeamGroupMappings](docs/sdks/authsettings/README.md#patchteamgroupmappings) - Patch Mappings by Team ID
+* [UpdateIdpTeamMappings](docs/sdks/authsettings/README.md#updateidpteammappings) - Update Team Mappings
+* [GetIdpTeamMappings](docs/sdks/authsettings/README.md#getidpteammappings) - Get a Team Mapping
 * [GetIdentityProviders](docs/sdks/authsettings/README.md#getidentityproviders) - List Identity Providers
 * [CreateIdentityProvider](docs/sdks/authsettings/README.md#createidentityprovider) - Create Identity Provider
 * [GetIdentityProvider](docs/sdks/authsettings/README.md#getidentityprovider) - Get Identity Provider
@@ -634,22 +586,10 @@ func main() {
 * [CreateIdpTeamGroupMapping](docs/sdks/authsettings/README.md#createidpteamgroupmapping) - Create Team Group Mapping
 * [GetIdpTeamGroupMapping](docs/sdks/authsettings/README.md#getidpteamgroupmapping) - Get Team Group Mapping
 * [DeleteIdpTeamGroupMapping](docs/sdks/authsettings/README.md#deleteidpteamgroupmapping) - Delete Team Group Mapping
-* [GetIdpConfiguration](docs/sdks/authsettings/README.md#getidpconfiguration) - Get the IdP Configuration
-* [UpdateIdpConfiguration](docs/sdks/authsettings/README.md#updateidpconfiguration) - Update IdP Configuration
-* [UpdateIdpTeamMappings](docs/sdks/authsettings/README.md#updateidpteammappings) - Update Team Mappings
-* [GetIdpTeamMappings](docs/sdks/authsettings/README.md#getidpteammappings) - Get a Team Mapping
-* [GetTeamGroupMappings](docs/sdks/authsettings/README.md#getteamgroupmappings) - Get a Team Group Mappings
-* [PatchTeamGroupMappings](docs/sdks/authsettings/README.md#patchteamgroupmappings) - Patch Mappings by Team ID
 
 ### [Authentication](docs/sdks/authentication/README.md)
 
-* [RefreshToken](docs/sdks/authentication/README.md#refreshtoken) - Refresh Token
-* [Logout](docs/sdks/authentication/README.md#logout) - Log Out
 * [AuthenticateSso](docs/sdks/authentication/README.md#authenticatesso) - SSO Callback
-
-### [Aws](docs/sdks/aws/README.md)
-
-* [ResolveCustomer](docs/sdks/aws/README.md#resolvecustomer) - Resolves an AWS Customer
 
 ### [BasicAuthCredentials](docs/sdks/basicauthcredentials/README.md)
 
@@ -663,13 +603,13 @@ func main() {
 
 ### [Budgets](docs/sdks/budgets/README.md)
 
+* [ListCostBudgetBalances](docs/sdks/budgets/README.md#listcostbudgetbalances) - List budget balances
 * [ListCostBudgets](docs/sdks/budgets/README.md#listcostbudgets) - List budgets
 * [CreateCostBudget](docs/sdks/budgets/README.md#createcostbudget) - Create a budget
 * [GetCostBudget](docs/sdks/budgets/README.md#getcostbudget) - Get a budget
 * [UpsertCostBudget](docs/sdks/budgets/README.md#upsertcostbudget) - Replace a budget's updatable fields
 * [DeleteCostBudget](docs/sdks/budgets/README.md#deletecostbudget) - Delete a budget
 * [GetCostBudgetBalance](docs/sdks/budgets/README.md#getcostbudgetbalance) - Get a budget's balance
-* [ListCostBudgetBalances](docs/sdks/budgets/README.md#listcostbudgetbalances) - List budget balances
 * [GetCostNotificationRule](docs/sdks/budgets/README.md#getcostnotificationrule) - Get a budget's notification rule
 * [UpsertCostNotificationRule](docs/sdks/budgets/README.md#upsertcostnotificationrule) - Create or replace a notification rule
 * [DeleteCostNotificationRule](docs/sdks/budgets/README.md#deletecostnotificationrule) - Delete a budget's notification rule
@@ -694,10 +634,10 @@ func main() {
 
 ### [CatalogAIModelSpecs](docs/sdks/catalogaimodelspecs/README.md)
 
+* [GetAiModelSpec](docs/sdks/catalogaimodelspecs/README.md#getaimodelspec) - Get AI Model spec
 * [GetAiModelVersionSpec](docs/sdks/catalogaimodelspecs/README.md#getaimodelversionspec) - Get AI Model version spec
 * [UpsertAiModelVersionSpec](docs/sdks/catalogaimodelspecs/README.md#upsertaimodelversionspec) - Upsert AI Model version spec
 * [DeleteAiModelVersionSpec](docs/sdks/catalogaimodelspecs/README.md#deleteaimodelversionspec) - Delete AI Model version spec
-* [GetAiModelSpec](docs/sdks/catalogaimodelspecs/README.md#getaimodelspec) - Get AI Model spec
 
 ### [CatalogAIModelVersions](docs/sdks/catalogaimodelversions/README.md)
 
@@ -759,17 +699,17 @@ func main() {
 
 ### [CatalogResources](docs/sdks/catalogresources/README.md)
 
+* [UpdateResource](docs/sdks/catalogresources/README.md#updateresource) - Update Resource
 * [ListResources](docs/sdks/catalogresources/README.md#listresources) - List Resources
 * [FetchResource](docs/sdks/catalogresources/README.md#fetchresource) - Get a Resource
-* [UpdateResource](docs/sdks/catalogresources/README.md#updateresource) - Update Resource
 
 ### [CatalogServiceAPIMappings](docs/sdks/catalogserviceapimappings/README.md)
 
+* [ListServiceMappingsForAPI](docs/sdks/catalogserviceapimappings/README.md#listservicemappingsforapi) - List Service Mappings for an API
 * [ListCatalogServiceAPIMappings](docs/sdks/catalogserviceapimappings/README.md#listcatalogserviceapimappings) - List API Mappings for a Service
 * [CreateCatalogServiceAPIMapping](docs/sdks/catalogserviceapimappings/README.md#createcatalogserviceapimapping) - Create API Mapping for a Service
 * [GetCatalogServiceAPIMapping](docs/sdks/catalogserviceapimappings/README.md#getcatalogserviceapimapping) - Get API Mapping for a Service
 * [DeleteCatalogServiceAPIMapping](docs/sdks/catalogserviceapimappings/README.md#deletecatalogserviceapimapping) - Delete API Mapping for a Service
-* [ListServiceMappingsForAPI](docs/sdks/catalogserviceapimappings/README.md#listservicemappingsforapi) - List Service Mappings for an API
 
 ### [CatalogServiceResources](docs/sdks/catalogserviceresources/README.md)
 
@@ -801,50 +741,44 @@ func main() {
 
 ### [CloudGateways](docs/sdks/cloudgateways/README.md)
 
-* [GetAvailabilityJSON](docs/sdks/cloudgateways/README.md#getavailabilityjson) - Get Resource Availability JSON
-* [ListConfigurations](docs/sdks/cloudgateways/README.md#listconfigurations) - List Configurations
-* [CreateConfiguration](docs/sdks/cloudgateways/README.md#createconfiguration) - Create Configuration
-* [GetConfiguration](docs/sdks/cloudgateways/README.md#getconfiguration) - Get Configuration
-* [ListNetworks](docs/sdks/cloudgateways/README.md#listnetworks) - List Networks
-* [CreateNetwork](docs/sdks/cloudgateways/README.md#createnetwork) - Create Network
-* [GetNetwork](docs/sdks/cloudgateways/README.md#getnetwork) - Get Network
-* [UpdateNetwork](docs/sdks/cloudgateways/README.md#updatenetwork) - Update Network
-* [DeleteNetwork](docs/sdks/cloudgateways/README.md#deletenetwork) - Delete Network
-* [ListTransitGateways](docs/sdks/cloudgateways/README.md#listtransitgateways) - List Transit Gateways
-* [CreateTransitGateway](docs/sdks/cloudgateways/README.md#createtransitgateway) - Create Transit Gateway
-* [GetTransitGateway](docs/sdks/cloudgateways/README.md#gettransitgateway) - Get Transit Gateway
-* [UpdateTransitGateway](docs/sdks/cloudgateways/README.md#updatetransitgateway) - Update Transit Gateway
-* [DeleteTransitGateway](docs/sdks/cloudgateways/README.md#deletetransitgateway) - Delete Transit Gateway
-* [ListPrivateDNS](docs/sdks/cloudgateways/README.md#listprivatedns) - List Private DNS
-* [CreatePrivateDNS](docs/sdks/cloudgateways/README.md#createprivatedns) - Create Private DNS
-* [GetPrivateDNS](docs/sdks/cloudgateways/README.md#getprivatedns) - Get Private DNS
-* [UpdatePrivateDNS](docs/sdks/cloudgateways/README.md#updateprivatedns) - Update Private DNS
-* [DeletePrivateDNS](docs/sdks/cloudgateways/README.md#deleteprivatedns) - Delete Private DNS
-* [ListNetworkConfigurations](docs/sdks/cloudgateways/README.md#listnetworkconfigurations) - List Network Configuration References
-* [ListProviderAccounts](docs/sdks/cloudgateways/README.md#listprovideraccounts) - List Provider Accounts
-* [CreateProviderAccount](docs/sdks/cloudgateways/README.md#createprovideraccount) - Create Provider Account
-* [GetProviderAccount](docs/sdks/cloudgateways/README.md#getprovideraccount) - Get Provider Account
-* [DeleteProviderAccount](docs/sdks/cloudgateways/README.md#deleteprovideraccount) - Delete Provider Account
-* [ListCustomDomains](docs/sdks/cloudgateways/README.md#listcustomdomains) - List Custom Domains
-* [CreateCustomDomains](docs/sdks/cloudgateways/README.md#createcustomdomains) - Create Custom Domain
-* [GetCustomDomain](docs/sdks/cloudgateways/README.md#getcustomdomain) - Get Custom Domain
-* [DeleteCustomDomain](docs/sdks/cloudgateways/README.md#deletecustomdomain) - Delete Custom Domain
-* [GetCustomDomainOnlineStatus](docs/sdks/cloudgateways/README.md#getcustomdomainonlinestatus) - Get Custom Domain Online Status
-* [ListDefaultResourceQuotas](docs/sdks/cloudgateways/README.md#listdefaultresourcequotas) - List Default Resource Quotas
-* [ListResourceQuotas](docs/sdks/cloudgateways/README.md#listresourcequotas) - List Resource Quotas
-* [CreateResourceQuota](docs/sdks/cloudgateways/README.md#createresourcequota) - Create Resource Quota
-* [GetResourceQuota](docs/sdks/cloudgateways/README.md#getresourcequota) - Get Resource Quota
-* [UpdateResourceQuota](docs/sdks/cloudgateways/README.md#updateresourcequota) - Update Resource Quota
-* [ListDefaultResourceConfigurations](docs/sdks/cloudgateways/README.md#listdefaultresourceconfigurations) - List Default Resource Configurations
-* [ListResourceConfigurations](docs/sdks/cloudgateways/README.md#listresourceconfigurations) - List Resource Configurations
-* [CreateResourceConfiguration](docs/sdks/cloudgateways/README.md#createresourceconfiguration) - Create Resource Configuration
-* [GetResourceConfiguration](docs/sdks/cloudgateways/README.md#getresourceconfiguration) - Get Resource Configuration
-* [UpdateResourceConfiguration](docs/sdks/cloudgateways/README.md#updateresourceconfiguration) - Update Resource Configuration
 * [CreateAddOn](docs/sdks/cloudgateways/README.md#createaddon) - Create Add-On
 * [ListAddOns](docs/sdks/cloudgateways/README.md#listaddons) - List Add-Ons
 * [GetAddOn](docs/sdks/cloudgateways/README.md#getaddon) - Get Add-On
 * [DeleteAddOn](docs/sdks/cloudgateways/README.md#deleteaddon) - Delete Add-On
 * [UpdateAddOn](docs/sdks/cloudgateways/README.md#updateaddon) - Update Add-On
+* [GetAvailabilityJSON](docs/sdks/cloudgateways/README.md#getavailabilityjson) - Get Resource Availability JSON
+* [ListConfigurations](docs/sdks/cloudgateways/README.md#listconfigurations) - List Configurations
+* [CreateConfiguration](docs/sdks/cloudgateways/README.md#createconfiguration) - Create Configuration
+* [GetConfiguration](docs/sdks/cloudgateways/README.md#getconfiguration) - Get Configuration
+* [ListCustomDomains](docs/sdks/cloudgateways/README.md#listcustomdomains) - List Custom Domains
+* [CreateCustomDomains](docs/sdks/cloudgateways/README.md#createcustomdomains) - Create Custom Domain
+* [GetCustomDomain](docs/sdks/cloudgateways/README.md#getcustomdomain) - Get Custom Domain
+* [DeleteCustomDomain](docs/sdks/cloudgateways/README.md#deletecustomdomain) - Delete Custom Domain
+* [GetCustomDomainOnlineStatus](docs/sdks/cloudgateways/README.md#getcustomdomainonlinestatus) - Get Custom Domain Online Status
+* [ListDefaultResourceConfigurations](docs/sdks/cloudgateways/README.md#listdefaultresourceconfigurations) - List Default Resource Configurations
+* [ListDefaultResourceQuotas](docs/sdks/cloudgateways/README.md#listdefaultresourcequotas) - List Default Resource Quotas
+* [ListNetworks](docs/sdks/cloudgateways/README.md#listnetworks) - List Networks
+* [CreateNetwork](docs/sdks/cloudgateways/README.md#createnetwork) - Create Network
+* [GetNetwork](docs/sdks/cloudgateways/README.md#getnetwork) - Get Network
+* [UpdateNetwork](docs/sdks/cloudgateways/README.md#updatenetwork) - Update Network
+* [DeleteNetwork](docs/sdks/cloudgateways/README.md#deletenetwork) - Delete Network
+* [ListNetworkConfigurations](docs/sdks/cloudgateways/README.md#listnetworkconfigurations) - List Network Configuration References
+* [ListPrivateDNS](docs/sdks/cloudgateways/README.md#listprivatedns) - List Private DNS
+* [CreatePrivateDNS](docs/sdks/cloudgateways/README.md#createprivatedns) - Create Private DNS
+* [GetPrivateDNS](docs/sdks/cloudgateways/README.md#getprivatedns) - Get Private DNS
+* [UpdatePrivateDNS](docs/sdks/cloudgateways/README.md#updateprivatedns) - Update Private DNS
+* [DeletePrivateDNS](docs/sdks/cloudgateways/README.md#deleteprivatedns) - Delete Private DNS
+* [ListTransitGateways](docs/sdks/cloudgateways/README.md#listtransitgateways) - List Transit Gateways
+* [CreateTransitGateway](docs/sdks/cloudgateways/README.md#createtransitgateway) - Create Transit Gateway
+* [GetTransitGateway](docs/sdks/cloudgateways/README.md#gettransitgateway) - Get Transit Gateway
+* [UpdateTransitGateway](docs/sdks/cloudgateways/README.md#updatetransitgateway) - Update Transit Gateway
+* [DeleteTransitGateway](docs/sdks/cloudgateways/README.md#deletetransitgateway) - Delete Transit Gateway
+* [ListProviderAccounts](docs/sdks/cloudgateways/README.md#listprovideraccounts) - List Provider Accounts
+* [GetProviderAccount](docs/sdks/cloudgateways/README.md#getprovideraccount) - Get Provider Account
+* [ListResourceConfigurations](docs/sdks/cloudgateways/README.md#listresourceconfigurations) - List Resource Configurations
+* [GetResourceConfiguration](docs/sdks/cloudgateways/README.md#getresourceconfiguration) - Get Resource Configuration
+* [ListResourceQuotas](docs/sdks/cloudgateways/README.md#listresourcequotas) - List Resource Quotas
+* [GetResourceQuota](docs/sdks/cloudgateways/README.md#getresourcequota) - Get Resource Quota
 
 ### [ConfigStoreSecrets](docs/sdks/configstoresecrets/README.md)
 
@@ -864,11 +798,11 @@ func main() {
 
 ### [ConnectedApps](docs/sdks/connectedapps/README.md)
 
+* [ListPortalConnectedAppSessions](docs/sdks/connectedapps/README.md#listportalconnectedappsessions) - List caller's Portal Connected App sessions
+* [RevokePortalConnectedAppSession](docs/sdks/connectedapps/README.md#revokeportalconnectedappsession) - Revoke one of caller's Portal App sessions
 * [PatchPortalConnectedApps](docs/sdks/connectedapps/README.md#patchportalconnectedapps) - Patch Portal Connected Apps configuration
 * [ListPortalConnectedAppSessionsAdmin](docs/sdks/connectedapps/README.md#listportalconnectedappsessionsadmin) - List Portal Connected App sessions
 * [RevokePortalConnectedAppSessionAdmin](docs/sdks/connectedapps/README.md#revokeportalconnectedappsessionadmin) - Revoke a Portal Connected App session
-* [ListPortalConnectedAppSessions](docs/sdks/connectedapps/README.md#listportalconnectedappsessions) - List caller's Portal Connected App sessions
-* [RevokePortalConnectedAppSession](docs/sdks/connectedapps/README.md#revokeportalconnectedappsession) - Revoke one of caller's Portal App sessions
 
 ### [ConsumerGroups](docs/sdks/consumergroups/README.md)
 
@@ -927,11 +861,11 @@ func main() {
 
 ### [ControlPlaneGroups](docs/sdks/controlplanegroups/README.md)
 
+* [GetControlPlanesIDGroupMemberStatus](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupmemberstatus) - Get Control Plane Group Member Status
 * [GetControlPlanesIDGroupMemberships](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupmemberships) - List Control Plane Group Memberships
 * [PutControlPlanesIDGroupMemberships](docs/sdks/controlplanegroups/README.md#putcontrolplanesidgroupmemberships) - Upsert Control Plane Group Members
 * [PostControlPlanesIDGroupMembershipsAdd](docs/sdks/controlplanegroups/README.md#postcontrolplanesidgroupmembershipsadd) - Add Control Plane Group Members
 * [PostControlPlanesIDGroupMembershipsRemove](docs/sdks/controlplanegroups/README.md#postcontrolplanesidgroupmembershipsremove) - Remove Control Plane Group Members
-* [GetControlPlanesIDGroupMemberStatus](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupmemberstatus) - Get Control Plane Group Member Status
 * [GetControlPlanesIDGroupStatus](docs/sdks/controlplanegroups/README.md#getcontrolplanesidgroupstatus) - Get Control Plane Group Status
 
 ### [ControlPlaneMappings](docs/sdks/controlplanemappings/README.md)
@@ -941,15 +875,6 @@ func main() {
 * [GetControlPlaneMapping](docs/sdks/controlplanemappings/README.md#getcontrolplanemapping) - Get Context Interface Control Plane Mapping
 * [PatchContextInterfaceControlPlaneMapping](docs/sdks/controlplanemappings/README.md#patchcontextinterfacecontrolplanemapping) - Patch Context Interface Control Plane Mapping
 * [DeleteContextInterfaceControlPlaneMapping](docs/sdks/controlplanemappings/README.md#deletecontextinterfacecontrolplanemapping) - Delete Context Interface CP Mapping
-
-### [ControlPlaneResourceQuotas](docs/sdks/controlplaneresourcequotas/README.md)
-
-* [ListControlPlaneDefaultResourceQuotas](docs/sdks/controlplaneresourcequotas/README.md#listcontrolplanedefaultresourcequotas) - List Default Quotas
-* [ListControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#listcontrolplaneresourcequota) - List Quota Overrides
-* [CreateControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#createcontrolplaneresourcequota) - Create a control plane resource quota
-* [GetControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#getcontrolplaneresourcequota) - Get Control Plane Resource Quota
-* [UpdateControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#updatecontrolplaneresourcequota) - Update Resource Quota
-* [DeleteControlPlaneResourceQuota](docs/sdks/controlplaneresourcequotas/README.md#deletecontrolplaneresourcequota) - Delete the control plane resource quota
 
 ### [ControlPlanes](docs/sdks/controlplanes/README.md)
 
@@ -1008,24 +933,17 @@ func main() {
 
 ### [Destinations](docs/sdks/destinations/README.md)
 
+* [ListDeliveries](docs/sdks/destinations/README.md#listdeliveries) - List delivery history
 * [ListDestinations](docs/sdks/destinations/README.md#listdestinations) - List destinations
 * [CreateDestination](docs/sdks/destinations/README.md#createdestination) - Create a destination
 * [GetDestination](docs/sdks/destinations/README.md#getdestination) - Get a destination
 * [UpdateDestination](docs/sdks/destinations/README.md#updatedestination) - Update a destination
 * [DeleteDestination](docs/sdks/destinations/README.md#deletedestination) - Delete a destination
-* [TestDestination](docs/sdks/destinations/README.md#testdestination) - Test a destination
-* [RotateDestinationSecret](docs/sdks/destinations/README.md#rotatedestinationsecret) - Rotate the destination signing secret
 * [GetDestinationDelivery](docs/sdks/destinations/README.md#getdestinationdelivery) - Get a delivery and its attempts
 * [ResendDestinationDelivery](docs/sdks/destinations/README.md#resenddestinationdelivery) - Resend a delivery
+* [RotateDestinationSecret](docs/sdks/destinations/README.md#rotatedestinationsecret) - Rotate the destination signing secret
 * [ListDestinationSubscriptions](docs/sdks/destinations/README.md#listdestinationsubscriptions) - List destination subscriptions
-* [ListDeliveries](docs/sdks/destinations/README.md#listdeliveries) - List delivery history
-
-### [DeviceAuthorizationGrant](docs/sdks/deviceauthorizationgrant/README.md)
-
-* [PostOauthDeviceAuthorize](docs/sdks/deviceauthorizationgrant/README.md#postoauthdeviceauthorize) - Device authorization request
-* [PostOauthDeviceToken](docs/sdks/deviceauthorizationgrant/README.md#postoauthdevicetoken) - Device access token request
-* [PostOauthDeviceAuthorizeUser](docs/sdks/deviceauthorizationgrant/README.md#postoauthdeviceauthorizeuser) - User device authorization request
-* [PatchOauthDeviceConfirm](docs/sdks/deviceauthorizationgrant/README.md#patchoauthdeviceconfirm) - Device confirmation request
+* [TestDestination](docs/sdks/destinations/README.md#testdestination) - Test a destination
 
 ### [DPCertificates](docs/sdks/dpcertificates/README.md)
 
@@ -1040,10 +958,9 @@ func main() {
 * [GetExpectedConfigHash](docs/sdks/dpnodes/README.md#getexpectedconfighash) - Get an Expected Config Hash
 * [GetExpectedConfigVersion](docs/sdks/dpnodes/README.md#getexpectedconfigversion) - Get an Expected Config Version
 * [ListDataplaneNodes](docs/sdks/dpnodes/README.md#listdataplanenodes) - List Data Plane Node Records
-* [GetNodesEol](docs/sdks/dpnodes/README.md#getnodeseol) - List End-of-Life Data Plane Node Records
 * [GetNodesNodeID](docs/sdks/dpnodes/README.md#getnodesnodeid) - Get a Data Plane Node Record
 * [DeleteNodesNodeID](docs/sdks/dpnodes/README.md#deletenodesnodeid) - Delete Data Plane Node Record
-* [GetNodesNodeIDConf](docs/sdks/dpnodes/README.md#getnodesnodeidconf) - Get a Data Plane Node Process Conf
+* [GetNodesEol](docs/sdks/dpnodes/README.md#getnodeseol) - List End-of-Life Data Plane Node Records
 
 ### [EventGatewayBackendClusters](docs/sdks/eventgatewaybackendclusters/README.md)
 
@@ -1085,8 +1002,8 @@ func main() {
 
 * [ListEventGatewayNodes](docs/sdks/eventgatewaynodes/README.md#listeventgatewaynodes) - List Nodes
 * [GetEventGatewayNode](docs/sdks/eventgatewaynodes/README.md#geteventgatewaynode) - Get a Node
-* [GetEventGatewayNodeStatus](docs/sdks/eventgatewaynodes/README.md#geteventgatewaynodestatus) - Get Node Status
 * [ListEventGatewayNodeErrors](docs/sdks/eventgatewaynodes/README.md#listeventgatewaynodeerrors) - List Node Errors
+* [GetEventGatewayNodeStatus](docs/sdks/eventgatewaynodes/README.md#geteventgatewaynodestatus) - Get Node Status
 
 ### [EventGatewaySchemaRegistries](docs/sdks/eventgatewayschemaregistries/README.md)
 
@@ -1157,8 +1074,6 @@ func main() {
 
 ### [EventGateways](docs/sdks/eventgateways/README.md)
 
-* [ListEventGatewaysUsage](docs/sdks/eventgateways/README.md#listeventgatewaysusage) - Get Event Gateways Usage
-* [ListEventGatewayVersions](docs/sdks/eventgateways/README.md#listeventgatewayversions) - List Event Gateway API Versions
 * [ListEventGateways](docs/sdks/eventgateways/README.md#listeventgateways) - List all Event Gateways
 * [CreateEventGateway](docs/sdks/eventgateways/README.md#createeventgateway) - Create Event Gateway
 * [GetEventGateway](docs/sdks/eventgateways/README.md#geteventgateway) - Get an Event Gateway
@@ -1168,16 +1083,16 @@ func main() {
 
 ### [Exports](docs/sdks/exports/README.md)
 
-* [ListCostExports](docs/sdks/exports/README.md#listcostexports) - List exports
-* [CreateCostExport](docs/sdks/exports/README.md#createcostexport) - Create an export
-* [GetCostExport](docs/sdks/exports/README.md#getcostexport) - Get an export
-* [DeleteCostExport](docs/sdks/exports/README.md#deletecostexport) - Delete an export
-* [CreateCostExportDownload](docs/sdks/exports/README.md#createcostexportdownload) - Download an export file
 * [ListCostExportSchedules](docs/sdks/exports/README.md#listcostexportschedules) - List export schedules
 * [CreateCostExportSchedule](docs/sdks/exports/README.md#createcostexportschedule) - Create an export schedule
 * [GetCostExportSchedule](docs/sdks/exports/README.md#getcostexportschedule) - Get an export schedule
 * [UpsertCostExportSchedule](docs/sdks/exports/README.md#upsertcostexportschedule) - Replace an export schedule
 * [DeleteCostExportSchedule](docs/sdks/exports/README.md#deletecostexportschedule) - Delete an export schedule
+* [ListCostExports](docs/sdks/exports/README.md#listcostexports) - List exports
+* [CreateCostExport](docs/sdks/exports/README.md#createcostexport) - Create an export
+* [GetCostExport](docs/sdks/exports/README.md#getcostexport) - Get an export
+* [DeleteCostExport](docs/sdks/exports/README.md#deletecostexport) - Delete an export
+* [CreateCostExportDownload](docs/sdks/exports/README.md#createcostexportdownload) - Download an export file
 
 ### [GraphQLCostDecorations](docs/sdks/graphqlcostdecorations/README.md)
 
@@ -1270,9 +1185,9 @@ func main() {
 
 ### [KongPrincipal](docs/sdks/kongprincipal/README.md)
 
+* [ImportOrgChart](docs/sdks/kongprincipal/README.md#importorgchart) - Import user principals from a canonical CSV
 * [CreatePrincipal](docs/sdks/kongprincipal/README.md#createprincipal) - Create a Principal in a Directory
 * [ListPrincipals](docs/sdks/kongprincipal/README.md#listprincipals) - List all the Principals of a Directory
-* [ImportOrgChart](docs/sdks/kongprincipal/README.md#importorgchart) - Import user principals from a canonical CSV
 * [UpdatePrincipal](docs/sdks/kongprincipal/README.md#updateprincipal) - Update a Principal
 * [ReplacePrincipal](docs/sdks/kongprincipal/README.md#replaceprincipal) - Replace a Principal
 * [GetPrincipal](docs/sdks/kongprincipal/README.md#getprincipal) - Get a Principal
@@ -1281,6 +1196,11 @@ func main() {
 
 ### [KongPrincipalCredential](docs/sdks/kongprincipalcredential/README.md)
 
+* [CreatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#createprincipalkey) - Create a principal API key
+* [ListPrincipalKeys](docs/sdks/kongprincipalcredential/README.md#listprincipalkeys) - List all API keys for a principal
+* [UpdatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#updateprincipalkey) - Update a principal API key
+* [GetIdentityKey](docs/sdks/kongprincipalcredential/README.md#getidentitykey) - Get a principal API key
+* [DeletePrincipalKey](docs/sdks/kongprincipalcredential/README.md#deleteprincipalkey) - Delete an API key
 * [ListPrincipalBasicAuths](docs/sdks/kongprincipalcredential/README.md#listprincipalbasicauths) - List all basic auth credentials
 * [CreatePrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#createprincipalbasicauth) - Create a basic auth credential
 * [GetPrincipalBasicAuth](docs/sdks/kongprincipalcredential/README.md#getprincipalbasicauth) - Get a basic auth credential
@@ -1294,11 +1214,6 @@ func main() {
 * [UpdatePassword](docs/sdks/kongprincipalcredential/README.md#updatepassword) - Update a password
 * [ReplacePassword](docs/sdks/kongprincipalcredential/README.md#replacepassword) - Replace a password
 * [DeletePassword](docs/sdks/kongprincipalcredential/README.md#deletepassword) - Delete a password
-* [CreatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#createprincipalkey) - Create a principal API key
-* [ListPrincipalKeys](docs/sdks/kongprincipalcredential/README.md#listprincipalkeys) - List all API keys for a principal
-* [UpdatePrincipalKey](docs/sdks/kongprincipalcredential/README.md#updateprincipalkey) - Update a principal API key
-* [GetIdentityKey](docs/sdks/kongprincipalcredential/README.md#getidentitykey) - Get a principal API key
-* [DeletePrincipalKey](docs/sdks/kongprincipalcredential/README.md#deleteprincipalkey) - Delete an API key
 
 ### [KongPrincipalIdentity](docs/sdks/kongprincipalidentity/README.md)
 
@@ -1309,32 +1224,23 @@ func main() {
 * [UpdateIdentity](docs/sdks/kongprincipalidentity/README.md#updateidentity) - Update an identity
 * [DeleteIdentity](docs/sdks/kongprincipalidentity/README.md#deleteidentity) - Delete an identity
 
-### [ManagedSystemAccountsRoles](docs/sdks/managedsystemaccountsroles/README.md)
-
-* [GetSystemAccountsAssignedRolesInternal](docs/sdks/managedsystemaccountsroles/README.md#getsystemaccountsassignedrolesinternal) - List Roles (Internal)
-* [CreateSystemAccountsAssignedRolesInternal](docs/sdks/managedsystemaccountsroles/README.md#createsystemaccountsassignedrolesinternal) - Assign a role to a managed System Account
-
 ### [MCPServerRuntime](docs/sdks/mcpserverruntime/README.md)
 
 * [GetMcpServerRuntimeConfig](docs/sdks/mcpserverruntime/README.md#getmcpserverruntimeconfig) - Get MCP Server Runtime Configuration
 
 ### [MCPServers](docs/sdks/mcpservers/README.md)
 
-* [GetMcpServerSignals](docs/sdks/mcpservers/README.md#getmcpserversignals) - Get MCP Server Signals
 * [ListMcpServersByControlPlane](docs/sdks/mcpservers/README.md#listmcpserversbycontrolplane) - List MCP Servers by Control Plane
 * [GetMcpServerByControlPlane](docs/sdks/mcpservers/README.md#getmcpserverbycontrolplane) - Get MCP Server by Control Plane
+* [GetMcpServerCode](docs/sdks/mcpservers/README.md#getmcpservercode) - Get generated Python code for the MCP Server
 * [GetMcpServerKongEntities](docs/sdks/mcpservers/README.md#getmcpserverkongentities) - Get Kong entities for the MCP Server Gateway
 * [PostMcpServerStatus](docs/sdks/mcpservers/README.md#postmcpserverstatus) - Report MCP Server deployment status
-* [GetMcpServerCode](docs/sdks/mcpservers/README.md#getmcpservercode) - Get generated Python code for the MCP Server
+* [GetMcpServerSignals](docs/sdks/mcpservers/README.md#getmcpserversignals) - Get MCP Server Signals
 
 ### [Me](docs/sdks/me/README.md)
 
-* [GetUsersMe](docs/sdks/me/README.md#getusersme) - Get My User Account
-* [DeleteUsersMe](docs/sdks/me/README.md#deleteusersme) - Delete My User Account
-* [PatchUsersMe](docs/sdks/me/README.md#patchusersme) - Update My User Account
-* [GetUsersMePermissions](docs/sdks/me/README.md#getusersmepermissions) - Get My Permissions
 * [GetOrganizationsMe](docs/sdks/me/README.md#getorganizationsme) - Get My Organization
-* [UpdateOrganizationsMe](docs/sdks/me/README.md#updateorganizationsme) - Update My Organization
+* [GetUsersMe](docs/sdks/me/README.md#getusersme) - Get My User Account
 
 ### [Mesh](docs/sdks/mesh/README.md)
 
@@ -1380,23 +1286,23 @@ func main() {
 
 ### [Notifications](docs/sdks/notifications/README.md)
 
-* [ListNotifications](docs/sdks/notifications/README.md#listnotifications) - List available notifications
-* [GetNotificationDetails](docs/sdks/notifications/README.md#getnotificationdetails) - Get notification details
-* [UpdateNotification](docs/sdks/notifications/README.md#updatenotification) - Update notification
-* [DeleteNotification](docs/sdks/notifications/README.md#deletenotification) - Delete notification
-* [BulkNotifications](docs/sdks/notifications/README.md#bulknotifications) - Mark a list of notifications to a status
 * [ListUserConfigurations](docs/sdks/notifications/README.md#listuserconfigurations) - List available user configurations
 * [ListEventSubscriptions](docs/sdks/notifications/README.md#listeventsubscriptions) - List event subscriptions
 * [CreateEventSubscription](docs/sdks/notifications/README.md#createeventsubscription) - Create a new subscription for an event
 * [GetEventSubscription](docs/sdks/notifications/README.md#geteventsubscription) - Get subscription for an event
 * [UpdateEventSubscription](docs/sdks/notifications/README.md#updateeventsubscription) - Update subscription for an event
 * [DeleteEventSubscription](docs/sdks/notifications/README.md#deleteeventsubscription) - Delete subscription associated with event
+* [ListNotifications](docs/sdks/notifications/README.md#listnotifications) - List available notifications
+* [GetNotificationDetails](docs/sdks/notifications/README.md#getnotificationdetails) - Get notification details
+* [UpdateNotification](docs/sdks/notifications/README.md#updatenotification) - Update notification
+* [DeleteNotification](docs/sdks/notifications/README.md#deletenotification) - Delete notification
+* [BulkNotifications](docs/sdks/notifications/README.md#bulknotifications) - Mark a list of notifications to a status
 
 ### [OpenMeterApps](docs/sdks/openmeterapps/README.md)
 
 * [ListAppCatalog](docs/sdks/openmeterapps/README.md#listappcatalog) - List app catalog
-* [InstallApp](docs/sdks/openmeterapps/README.md#installapp) - Install app from the catalog
 * [GetAppCatalogItem](docs/sdks/openmeterapps/README.md#getappcatalogitem) - Get app catalog item by type
+* [InstallApp](docs/sdks/openmeterapps/README.md#installapp) - Install app from the catalog
 * [ListApps](docs/sdks/openmeterapps/README.md#listapps) - List apps
 * [GetApp](docs/sdks/openmeterapps/README.md#getapp) - Get app
 * [UninstallApp](docs/sdks/openmeterapps/README.md#uninstallapp) - Uninstall app
@@ -1658,25 +1564,25 @@ func main() {
 
 ### [PortalEmails](docs/sdks/portalemails/README.md)
 
-* [ListEmailDomains](docs/sdks/portalemails/README.md#listemaildomains) - List email domains
-* [CreateEmailDomain](docs/sdks/portalemails/README.md#createemaildomain) - Create an email domain
-* [GetEmailDomain](docs/sdks/portalemails/README.md#getemaildomain) - Get an email domain
-* [DeleteEmailDomain](docs/sdks/portalemails/README.md#deleteemaildomain) - Delete an email domain
-* [~~GetEmailDelivery~~](docs/sdks/portalemails/README.md#getemaildelivery) - Get the email delivery for the portal :warning: **Deprecated**
-* [~~UpdateEmailDelivery~~](docs/sdks/portalemails/README.md#updateemaildelivery) - Setup the email delivery for a portal :warning: **Deprecated**
-* [~~DeleteEmailDelivery~~](docs/sdks/portalemails/README.md#deleteemaildelivery) - Delete email delivery :warning: **Deprecated**
 * [GetEmailConfig](docs/sdks/portalemails/README.md#getemailconfig) - Get the email config for the portal
 * [CreatePortalEmailConfig](docs/sdks/portalemails/README.md#createportalemailconfig) - Create the email config for a portal
 * [UpdatePortalEmailConfig](docs/sdks/portalemails/README.md#updateportalemailconfig) - Setup the email config for a portal
 * [DeletePortalEmailConfig](docs/sdks/portalemails/README.md#deleteportalemailconfig) - Delete portal email config
-* [ListDefaultEmailTemplates](docs/sdks/portalemails/README.md#listdefaultemailtemplates) - List default email templates
-* [ListEmailTemplateVariables](docs/sdks/portalemails/README.md#listemailtemplatevariables) - List email template variables
-* [GetDefaultEmailTemplate](docs/sdks/portalemails/README.md#getdefaultemailtemplate) - Get default email template
+* [~~GetEmailDelivery~~](docs/sdks/portalemails/README.md#getemaildelivery) - Get the email delivery for the portal :warning: **Deprecated**
+* [~~UpdateEmailDelivery~~](docs/sdks/portalemails/README.md#updateemaildelivery) - Setup the email delivery for a portal :warning: **Deprecated**
+* [~~DeleteEmailDelivery~~](docs/sdks/portalemails/README.md#deleteemaildelivery) - Delete email delivery :warning: **Deprecated**
 * [ListPortalCustomEmailTemplates](docs/sdks/portalemails/README.md#listportalcustomemailtemplates) - List custom email templates for a portal
 * [GetPortalCustomEmailTemplate](docs/sdks/portalemails/README.md#getportalcustomemailtemplate) - Get custom email template used in a portal
 * [UpdatePortalCustomEmailTemplate](docs/sdks/portalemails/README.md#updateportalcustomemailtemplate) - Update custom email template for a portal
 * [DeletePortalCustomEmailTemplate](docs/sdks/portalemails/README.md#deleteportalcustomemailtemplate) - Delete custom email template
 * [PostPortalCustomEmailTestSend](docs/sdks/portalemails/README.md#postportalcustomemailtestsend) - Send Test Email
+* [ListEmailDomains](docs/sdks/portalemails/README.md#listemaildomains) - List email domains
+* [CreateEmailDomain](docs/sdks/portalemails/README.md#createemaildomain) - Create an email domain
+* [GetEmailDomain](docs/sdks/portalemails/README.md#getemaildomain) - Get an email domain
+* [DeleteEmailDomain](docs/sdks/portalemails/README.md#deleteemaildomain) - Delete an email domain
+* [ListDefaultEmailTemplates](docs/sdks/portalemails/README.md#listdefaultemailtemplates) - List default email templates
+* [GetDefaultEmailTemplate](docs/sdks/portalemails/README.md#getdefaultemailtemplate) - Get default email template
+* [ListEmailTemplateVariables](docs/sdks/portalemails/README.md#listemailtemplatevariables) - List email template variables
 
 ### [PortalForms](docs/sdks/portalforms/README.md)
 
@@ -1711,17 +1617,17 @@ func main() {
 
 ### [PortalTeamMembership](docs/sdks/portalteammembership/README.md)
 
+* [ListPortalDeveloperTeams](docs/sdks/portalteammembership/README.md#listportaldeveloperteams) - List Developer Teams
 * [ListPortalTeamDevelopers](docs/sdks/portalteammembership/README.md#listportalteamdevelopers) - List Team Developers
 * [AddDeveloperToPortalTeam](docs/sdks/portalteammembership/README.md#adddevelopertoportalteam) - Add Developer to Team
 * [RemoveDeveloperFromPortalTeam](docs/sdks/portalteammembership/README.md#removedeveloperfromportalteam) - Remove Developer from Team
-* [ListPortalDeveloperTeams](docs/sdks/portalteammembership/README.md#listportaldeveloperteams) - List Developer Teams
 
 ### [PortalTeamRoles](docs/sdks/portalteamroles/README.md)
 
+* [ListPortalRoles](docs/sdks/portalteamroles/README.md#listportalroles) - List Portal Roles
 * [ListPortalTeamRoles](docs/sdks/portalteamroles/README.md#listportalteamroles) - List Team Roles
 * [AssignRoleToPortalTeams](docs/sdks/portalteamroles/README.md#assignroletoportalteams) - Assign Role
 * [RemoveRoleFromPortalTeam](docs/sdks/portalteamroles/README.md#removerolefromportalteam) - Remove Role
-* [ListPortalRoles](docs/sdks/portalteamroles/README.md#listportalroles) - List Portal Roles
 
 ### [PortalTeams](docs/sdks/portalteams/README.md)
 
@@ -1755,16 +1661,16 @@ func main() {
 * [GetGroup](docs/sdks/principalgroup/README.md#getgroup) - Get a Group
 * [ReplaceGroup](docs/sdks/principalgroup/README.md#replacegroup) - Replace a Group
 * [DeleteGroup](docs/sdks/principalgroup/README.md#deletegroup) - Delete a Group
-* [ListGroupMembership](docs/sdks/principalgroup/README.md#listgroupmembership) - List a Group's membership
-* [CreateGroupMembershipEntry](docs/sdks/principalgroup/README.md#creategroupmembershipentry) - Add a member to a Group
-* [BatchCreateGroupMembershipEntries](docs/sdks/principalgroup/README.md#batchcreategroupmembershipentries) - Add multiple members to a Group
-* [GetGroupMembershipEntry](docs/sdks/principalgroup/README.md#getgroupmembershipentry) - Get a Group membership entry
-* [DeleteGroupMembershipEntry](docs/sdks/principalgroup/README.md#deletegroupmembershipentry) - Remove a member from a Group
 * [CreateGroupKey](docs/sdks/principalgroup/README.md#creategroupkey) - Create a group API key
 * [ListGroupKeys](docs/sdks/principalgroup/README.md#listgroupkeys) - List all API keys for a group
 * [UpdateGroupKey](docs/sdks/principalgroup/README.md#updategroupkey) - Update a group API key
 * [GetGroupKey](docs/sdks/principalgroup/README.md#getgroupkey) - Get a group API key
 * [DeleteGroupKey](docs/sdks/principalgroup/README.md#deletegroupkey) - Delete an API key
+* [ListGroupMembership](docs/sdks/principalgroup/README.md#listgroupmembership) - List a Group's membership
+* [CreateGroupMembershipEntry](docs/sdks/principalgroup/README.md#creategroupmembershipentry) - Add a member to a Group
+* [GetGroupMembershipEntry](docs/sdks/principalgroup/README.md#getgroupmembershipentry) - Get a Group membership entry
+* [DeleteGroupMembershipEntry](docs/sdks/principalgroup/README.md#deletegroupmembershipentry) - Remove a member from a Group
+* [BatchCreateGroupMembershipEntries](docs/sdks/principalgroup/README.md#batchcreategroupmembershipentries) - Add multiple members to a Group
 
 ### [Roles](docs/sdks/roles/README.md)
 
@@ -1793,12 +1699,13 @@ func main() {
 
 ### [Schemas](docs/sdks/schemas/README.md)
 
-* [ValidateExpression](docs/sdks/schemas/README.md#validateexpression) - Validate a CEL expression
 * [ValidateEntitySchema](docs/sdks/schemas/README.md#validateentityschema) - Validate entity schema
 * [FetchPartialSchema](docs/sdks/schemas/README.md#fetchpartialschema) - Get partial schema
 
 ### [Scorecards](docs/sdks/scorecards/README.md)
 
+* [ListCatalogServiceScorecards](docs/sdks/scorecards/README.md#listcatalogservicescorecards) - List Catalog Service Scorecards
+* [FetchCatalogServiceScorecard](docs/sdks/scorecards/README.md#fetchcatalogservicescorecard) - Get a Catalog Service Scorecard
 * [ListScorecardTemplates](docs/sdks/scorecards/README.md#listscorecardtemplates) - List Scorecard Templates
 * [CreateScorecard](docs/sdks/scorecards/README.md#createscorecard) - Create Scorecard
 * [ListScorecards](docs/sdks/scorecards/README.md#listscorecards) - List Scorecards
@@ -1808,8 +1715,6 @@ func main() {
 * [ListScorecardServices](docs/sdks/scorecards/README.md#listscorecardservices) - List Scorecard Services
 * [ListScorecardCriteria](docs/sdks/scorecards/README.md#listscorecardcriteria) - List Scorecard Criteria
 * [ListScorecardCriteriaServices](docs/sdks/scorecards/README.md#listscorecardcriteriaservices) - List Scorecard Criteria Services
-* [ListCatalogServiceScorecards](docs/sdks/scorecards/README.md#listcatalogservicescorecards) - List Catalog Service Scorecards
-* [FetchCatalogServiceScorecard](docs/sdks/scorecards/README.md#fetchcatalogservicescorecard) - Get a Catalog Service Scorecard
 
 ### [Services](docs/sdks/services/README.md)
 
@@ -1825,14 +1730,14 @@ func main() {
 
 ### [Skills](docs/sdks/skills/README.md)
 
-* [ListMcpServerSkillsByControlPlane](docs/sdks/skills/README.md#listmcpserverskillsbycontrolplane) - List Skills by Control Plane
-* [GetMcpServerSkillContentsByControlPlane](docs/sdks/skills/README.md#getmcpserverskillcontentsbycontrolplane) - Get Skill Contents by Control Plane
+* [ListContextInterfaceSkills](docs/sdks/skills/README.md#listcontextinterfaceskills) - List Skills
+* [CreateContextInterfaceSkill](docs/sdks/skills/README.md#createcontextinterfaceskill) - Create a Skill
 * [GetContextInterfaceSkill](docs/sdks/skills/README.md#getcontextinterfaceskill) - Get a Skill
 * [PatchContextInterfaceSkill](docs/sdks/skills/README.md#patchcontextinterfaceskill) - Update a Skill
 * [DeleteContextInterfaceSkill](docs/sdks/skills/README.md#deletecontextinterfaceskill) - Delete a Skill
 * [GetContextInterfaceSkillContents](docs/sdks/skills/README.md#getcontextinterfaceskillcontents) - Get Skill Contents
-* [ListContextInterfaceSkills](docs/sdks/skills/README.md#listcontextinterfaceskills) - List Skills
-* [CreateContextInterfaceSkill](docs/sdks/skills/README.md#createcontextinterfaceskill) - Create a Skill
+* [ListMcpServerSkillsByControlPlane](docs/sdks/skills/README.md#listmcpserverskillsbycontrolplane) - List Skills by Control Plane
+* [GetMcpServerSkillContentsByControlPlane](docs/sdks/skills/README.md#getmcpserverskillcontentsbycontrolplane) - Get Skill Contents by Control Plane
 
 ### [Snippets](docs/sdks/snippets/README.md)
 
@@ -1854,11 +1759,6 @@ func main() {
 * [DeleteSni](docs/sdks/snis/README.md#deletesni) - Delete an SNI in a workspace
 * [GetSni](docs/sdks/snis/README.md#getsni) - Get an SNI in a workspace
 * [UpsertSni](docs/sdks/snis/README.md#upsertsni) - Upsert a SNI in a workspace
-
-### [SSOAuth0](docs/sdks/ssoauth0/README.md)
-
-* [PostAuth0RegisterInternal](docs/sdks/ssoauth0/README.md#postauth0registerinternal) - Create Organization (Internal)
-* [GetAuth0OrganizationsInternal](docs/sdks/ssoauth0/README.md#getauth0organizationsinternal) - List Organizations (Internal)
 
 ### [SystemAccounts](docs/sdks/systemaccounts/README.md)
 
@@ -1885,19 +1785,19 @@ func main() {
 
 ### [SystemAccountsTeamMembership](docs/sdks/systemaccountsteammembership/README.md)
 
+* [GetSystemAccountsAccountIDTeams](docs/sdks/systemaccountsteammembership/README.md#getsystemaccountsaccountidteams) - List Teams for a System Account
 * [GetTeamsTeamIDSystemAccounts](docs/sdks/systemaccountsteammembership/README.md#getteamsteamidsystemaccounts) - List System Accounts on a Team
 * [PostTeamsTeamIDSystemAccounts](docs/sdks/systemaccountsteammembership/README.md#postteamsteamidsystemaccounts) - Add System Account to a Team
 * [DeleteTeamsTeamIDSystemAccountsAccountID](docs/sdks/systemaccountsteammembership/README.md#deleteteamsteamidsystemaccountsaccountid) - Remove System Account From Team
-* [GetSystemAccountsAccountIDTeams](docs/sdks/systemaccountsteammembership/README.md#getsystemaccountsaccountidteams) - List Teams for a System Account
 
 ### [Targets](docs/sdks/targets/README.md)
 
-* [ListTargets](docs/sdks/targets/README.md#listtargets) - List all targets for a control plane
 * [ListTargetWithUpstream](docs/sdks/targets/README.md#listtargetwithupstream) - List all Targets associated with an Upstream in a workspace
 * [CreateTargetWithUpstream](docs/sdks/targets/README.md#createtargetwithupstream) - Create a new Target associated with an Upstream in a workspace
 * [DeleteTargetWithUpstream](docs/sdks/targets/README.md#deletetargetwithupstream) - Delete a a Target associated with an Upstream in a workspace
 * [GetTargetWithUpstream](docs/sdks/targets/README.md#gettargetwithupstream) - Get a Target associated with an Upstream in a workspace
 * [UpsertTargetWithUpstream](docs/sdks/targets/README.md#upserttargetwithupstream) - Upsert a Target associated with an Upstream in a workspace
+* [ListTargets](docs/sdks/targets/README.md#listtargets) - List all targets for a control plane
 
 ### [TeamMembership](docs/sdks/teammembership/README.md)
 
@@ -1930,6 +1830,8 @@ func main() {
 
 ### [TokenVaultProviders](docs/sdks/tokenvaultproviders/README.md)
 
+* [ListCredentialProviderTemplates](docs/sdks/tokenvaultproviders/README.md#listcredentialprovidertemplates) - List credential provider templates
+* [GetCredentialProviderTemplate](docs/sdks/tokenvaultproviders/README.md#getcredentialprovidertemplate) - Get a credential provider template
 * [CreateVaultProvider](docs/sdks/tokenvaultproviders/README.md#createvaultprovider) - Create a vault provider
 * [ListVaultProviders](docs/sdks/tokenvaultproviders/README.md#listvaultproviders) - List vault providers
 * [GetVaultProvider](docs/sdks/tokenvaultproviders/README.md#getvaultprovider) - Get a vault provider
@@ -1941,8 +1843,6 @@ func main() {
 * [GetVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#getvaultprovidercredential) - Get a specific credential
 * [UpdateVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#updatevaultprovidercredential) - Update a shared credential's value
 * [DeleteVaultProviderCredential](docs/sdks/tokenvaultproviders/README.md#deletevaultprovidercredential) - Delete a specific provider credential
-* [ListCredentialProviderTemplates](docs/sdks/tokenvaultproviders/README.md#listcredentialprovidertemplates) - List credential provider templates
-* [GetCredentialProviderTemplate](docs/sdks/tokenvaultproviders/README.md#getcredentialprovidertemplate) - Get a credential provider template
 
 ### [TrustedIdPs](docs/sdks/trustedidps/README.md)
 
@@ -1967,12 +1867,11 @@ func main() {
 * [ListCostUsageEvents](docs/sdks/usageevents/README.md#listcostusageevents) - List usage events
 * [CreateCostUsageEvents](docs/sdks/usageevents/README.md#createcostusageevents) - Report usage events
 * [ListCostUsageFieldValues](docs/sdks/usageevents/README.md#listcostusagefieldvalues) - List observed usage event field values
-* [QueryCostUsageEvents](docs/sdks/usageevents/README.md#querycostusageevents) - Query usage events
 * [ForecastCostUsageEvents](docs/sdks/usageevents/README.md#forecastcostusageevents) - Get the monthly spend forecast
+* [QueryCostUsageEvents](docs/sdks/usageevents/README.md#querycostusageevents) - Query usage events
 
 ### [Users](docs/sdks/users/README.md)
 
-* [GetUsersInternal](docs/sdks/users/README.md#getusersinternal) - List Users (Internal)
 * [ListUsers](docs/sdks/users/README.md#listusers) - List Users
 * [GetUser](docs/sdks/users/README.md#getuser) - Get a User
 * [UpdateUser](docs/sdks/users/README.md#updateuser) - Update User
@@ -2025,16 +1924,14 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
+	res, err := s.Mesh.ListMeshControlPlanes(ctx, operations.ListMeshControlPlanesRequest{
+		PageSize:   sdkkonnectgo.Pointer[int64](10),
+		PageNumber: sdkkonnectgo.Pointer[int64](1),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListControlPlanesResponse != nil {
+	if res.ListMeshControlPlanesResponse != nil {
 		for {
 			// handle items
 
@@ -2067,7 +1964,6 @@ import (
 	"context"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
 	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"github.com/Kong/sdk-konnect-go/retry"
 	"log"
 	"models/operations"
@@ -2082,12 +1978,7 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
-	}, operations.WithRetries(
+	res, err := s.AttributionPlugins.GetCostAttributionPlugin(ctx, "527bc328-6950-4662-a473-78dd7a5beb84", operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
 			Backoff: &retry.BackoffStrategy{
@@ -2101,20 +1992,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListControlPlanesResponse != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.AICostAttributionPlugin != nil {
+		// handle response
 	}
 }
 
@@ -2128,7 +2007,6 @@ import (
 	"context"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
 	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"github.com/Kong/sdk-konnect-go/retry"
 	"log"
 )
@@ -2153,29 +2031,12 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
-	})
+	res, err := s.AttributionPlugins.GetCostAttributionPlugin(ctx, "527bc328-6950-4662-a473-78dd7a5beb84")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListControlPlanesResponse != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.AICostAttributionPlugin != nil {
+		// handle response
 	}
 }
 
@@ -2189,16 +2050,14 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `ListControlPlanes` function may return the following errors:
+For example, the `GetCostAttributionPlugin` function may return the following errors:
 
-| Error Type                   | Status Code | Content Type             |
-| ---------------------------- | ----------- | ------------------------ |
-| sdkerrors.BadRequestError    | 400         | application/problem+json |
-| sdkerrors.UnauthorizedError  | 401         | application/problem+json |
-| sdkerrors.ForbiddenError     | 403         | application/problem+json |
-| sdkerrors.InternalError      | 500         | application/problem+json |
-| sdkerrors.ServiceUnavailable | 503         | application/problem+json |
-| sdkerrors.SDKError           | 4XX, 5XX    | \*/\*                    |
+| Error Type                  | Status Code | Content Type             |
+| --------------------------- | ----------- | ------------------------ |
+| sdkerrors.UnauthorizedError | 401         | application/problem+json |
+| sdkerrors.ForbiddenError    | 403         | application/problem+json |
+| sdkerrors.NotFoundError     | 404         | application/problem+json |
+| sdkerrors.SDKError          | 4XX, 5XX    | \*/\*                    |
 
 ### Example
 
@@ -2210,7 +2069,6 @@ import (
 	"errors"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
 	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"github.com/Kong/sdk-konnect-go/models/sdkerrors"
 	"log"
 )
@@ -2224,19 +2082,8 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
-	})
+	res, err := s.AttributionPlugins.GetCostAttributionPlugin(ctx, "527bc328-6950-4662-a473-78dd7a5beb84")
 	if err != nil {
-
-		var e *sdkerrors.BadRequestError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
 
 		var e *sdkerrors.UnauthorizedError
 		if errors.As(err, &e) {
@@ -2250,13 +2097,7 @@ func main() {
 			log.Fatal(e.Error())
 		}
 
-		var e *sdkerrors.InternalError
-		if errors.As(err, &e) {
-			// handle error
-			log.Fatal(e.Error())
-		}
-
-		var e *sdkerrors.ServiceUnavailable
+		var e *sdkerrors.NotFoundError
 		if errors.As(err, &e) {
 			// handle error
 			log.Fatal(e.Error())
@@ -2296,7 +2137,6 @@ import (
 	"context"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
 	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -2310,29 +2150,12 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
-	})
+	res, err := s.AttributionPlugins.GetCostAttributionPlugin(ctx, "527bc328-6950-4662-a473-78dd7a5beb84")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListControlPlanesResponse != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.AICostAttributionPlugin != nil {
+		// handle response
 	}
 }
 
@@ -2348,7 +2171,6 @@ import (
 	"context"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
 	"github.com/Kong/sdk-konnect-go/models/components"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -2362,29 +2184,12 @@ func main() {
 		}),
 	)
 
-	res, err := s.ControlPlanes.ListControlPlanes(ctx, operations.ListControlPlanesRequest{
-		PageSize:     sdkkonnectgo.Pointer[int64](10),
-		PageNumber:   sdkkonnectgo.Pointer[int64](1),
-		FilterLabels: sdkkonnectgo.Pointer("key:value,existCheck"),
-		Sort:         components.ControlPlaneSortQueryCreatedAtDesc.ToPointer(),
-	})
+	res, err := s.AttributionPlugins.GetCostAttributionPlugin(ctx, "527bc328-6950-4662-a473-78dd7a5beb84")
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListControlPlanesResponse != nil {
-		for {
-			// handle items
-
-			res, err = res.Next()
-
-			if err != nil {
-				// handle error
-			}
-
-			if res == nil {
-				break
-			}
-		}
+	if res.AICostAttributionPlugin != nil {
+		// handle response
 	}
 }
 
@@ -2413,12 +2218,35 @@ func main() {
 		}),
 	)
 
-	res, err := s.SSOAuth0.PostAuth0RegisterInternal(ctx, nil, operations.WithServerURL("https://global.api.konghq.com/"))
+	res, err := s.CloudGateways.CreateAddOn(ctx, components.CreateAddOnRequest{
+		Name: "my-add-on",
+		Owner: components.CreateAddOnOwnerControlPlaneAddOnOwner(
+			components.ControlPlaneAddOnOwner{
+				ControlPlaneID:  "123e4567-e89b-12d3-a456-426614174000",
+				ControlPlaneGeo: components.ControlPlaneGeoMe,
+			},
+		),
+		Config: components.CreateCreateAddOnConfigManagedCache(
+			components.ManagedCache{
+				CapacityConfig: components.CreateManagedCacheCapacityConfigTiered(
+					components.Tiered{
+						Tier: components.TierFourxlarge,
+					},
+				),
+			},
+		),
+	}, operations.WithServerURL("https://global.api.konghq.com/"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Auth0Registration != nil {
-		// handle response
+	if res.AddOnResponse != nil {
+		switch res.AddOnResponse.Owner.Type {
+		case components.AddOnOwnerTypeControlPlaneAddOnOwner:
+			// res.AddOnResponse.Owner.ControlPlaneAddOnOwner is populated
+		case components.AddOnOwnerTypeControlPlaneGroupAddOnOwner:
+			// res.AddOnResponse.Owner.ControlPlaneGroupAddOnOwner is populated
+		}
+
 	}
 }
 

@@ -4,25 +4,25 @@
 
 ### Available Operations
 
-* [ListMcpServerSkillsByControlPlane](#listmcpserverskillsbycontrolplane) - List Skills by Control Plane
-* [GetMcpServerSkillContentsByControlPlane](#getmcpserverskillcontentsbycontrolplane) - Get Skill Contents by Control Plane
+* [ListContextInterfaceSkills](#listcontextinterfaceskills) - List Skills
+* [CreateContextInterfaceSkill](#createcontextinterfaceskill) - Create a Skill
 * [GetContextInterfaceSkill](#getcontextinterfaceskill) - Get a Skill
 * [PatchContextInterfaceSkill](#patchcontextinterfaceskill) - Update a Skill
 * [DeleteContextInterfaceSkill](#deletecontextinterfaceskill) - Delete a Skill
 * [GetContextInterfaceSkillContents](#getcontextinterfaceskillcontents) - Get Skill Contents
-* [ListContextInterfaceSkills](#listcontextinterfaceskills) - List Skills
-* [CreateContextInterfaceSkill](#createcontextinterfaceskill) - Create a Skill
+* [ListMcpServerSkillsByControlPlane](#listmcpserverskillsbycontrolplane) - List Skills by Control Plane
+* [GetMcpServerSkillContentsByControlPlane](#getmcpserverskillcontentsbycontrolplane) - Get Skill Contents by Control Plane
 
-## ListMcpServerSkillsByControlPlane
+## ListContextInterfaceSkills
 
 **Pre-release Endpoint**
 This endpoint is currently in beta and is subject to change.
 
-Separate control-plane-scoped list endpoint for KO to enumerate skills at deploy time.
+Returns a list of skills for the specified Context Interface.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-mcp-server-skills-by-control-plane" method="get" path="/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills" -->
+<!-- UsageSnippet language="go" operationID="list-context-interface-skills" method="get" path="/v1/context-interfaces/{interfaceId}/skills" -->
 ```go
 package main
 
@@ -43,9 +43,8 @@ func main() {
         }),
     )
 
-    res, err := s.Skills.ListMcpServerSkillsByControlPlane(ctx, operations.ListMcpServerSkillsByControlPlaneRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        McpServerID: "85bf863b-78d5-4b8f-a114-c9609f990798",
+    res, err := s.Skills.ListContextInterfaceSkills(ctx, operations.ListContextInterfaceSkillsRequest{
+        InterfaceID: "72fe3c27-ab46-4ad5-9698-e8870e4b55af",
         PageSize: sdkkonnectgo.Pointer[int64](10),
         PageNumber: sdkkonnectgo.Pointer[int64](1),
         Sort: sdkkonnectgo.Pointer("created_at desc"),
@@ -61,15 +60,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
-| `request`                                                                                                                  | [operations.ListMcpServerSkillsByControlPlaneRequest](../../models/operations/listmcpserverskillsbycontrolplanerequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
-| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.ListContextInterfaceSkillsRequest](../../models/operations/listcontextinterfaceskillsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 ### Response
 
-**[*operations.ListMcpServerSkillsByControlPlaneResponse](../../models/operations/listmcpserverskillsbycontrolplaneresponse.md), error**
+**[*operations.ListContextInterfaceSkillsResponse](../../models/operations/listcontextinterfaceskillsresponse.md), error**
 
 ### Errors
 
@@ -81,16 +80,16 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## GetMcpServerSkillContentsByControlPlane
+## CreateContextInterfaceSkill
 
 **Pre-release Endpoint**
 This endpoint is currently in beta and is subject to change.
 
-KO-only endpoint that redirects to a presigned S3 URL for the skill's SKILL.md file.
+Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-mcp-server-skill-contents-by-control-plane" method="get" path="/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills/{skillId}/contents" -->
+<!-- UsageSnippet language="go" operationID="create-context-interface-skill" method="post" path="/v1/context-interfaces/{interfaceId}/skills" -->
 ```go
 package main
 
@@ -98,7 +97,6 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -111,31 +109,46 @@ func main() {
         }),
     )
 
-    res, err := s.Skills.GetMcpServerSkillContentsByControlPlane(ctx, operations.GetMcpServerSkillContentsByControlPlaneRequest{
-        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
-        McpServerID: "5bae9b81-0da6-4ba2-ba78-bb99f822149e",
-        SkillID: "8bb561d4-55c6-493f-8f2c-145ac063fea3",
+    res, err := s.Skills.CreateContextInterfaceSkill(ctx, "cc5067fd-3514-4974-bc56-7c504711542c", components.CreateSkillRequest{
+        DisplayName: "PDF Processing",
+        Description: "Extract and summarize content from PDF documents",
+        Source: components.CreateSkillSourcePayloadRaw(
+            components.RawSkillSourcePayload{
+                Type: components.RawSkillSourcePayloadTypeRaw,
+                Config: components.RawSkillSourceConfigPayload{
+                    Contents: "---\nname: pdf-processing\ndescription: Extract and summarize content from PDF documents\n---\n# PDF Processing\n...",
+                },
+            },
+        ),
+        Labels: map[string]string{
+            "env": "test",
+        },
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
-        // handle response
+    if res.Skill != nil {
+        switch res.Skill.Source.Type {
+            case components.SkillSourceTypeRaw:
+                // res.Skill.Source.RawSkillSource is populated
+        }
+
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                  | :heavy_check_mark:                                                                                                                     | The context to use for the request.                                                                                                    |
-| `request`                                                                                                                              | [operations.GetMcpServerSkillContentsByControlPlaneRequest](../../models/operations/getmcpserverskillcontentsbycontrolplanerequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
-| `opts`                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                               | :heavy_minus_sign:                                                                                                                     | The options for this request.                                                                                                          |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `interfaceID`                                                                  | `string`                                                                       | :heavy_check_mark:                                                             | The ID of the Context Interface.                                               |
+| `createSkillRequest`                                                           | [components.CreateSkillRequest](../../models/components/createskillrequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*operations.GetMcpServerSkillContentsByControlPlaneResponse](../../models/operations/getmcpserverskillcontentsbycontrolplaneresponse.md), error**
+**[*operations.CreateContextInterfaceSkillResponse](../../models/operations/createcontextinterfaceskillresponse.md), error**
 
 ### Errors
 
@@ -145,6 +158,7 @@ func main() {
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## GetContextInterfaceSkill
@@ -419,16 +433,16 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## ListContextInterfaceSkills
+## ListMcpServerSkillsByControlPlane
 
 **Pre-release Endpoint**
 This endpoint is currently in beta and is subject to change.
 
-Returns a list of skills for the specified Context Interface.
+Separate control-plane-scoped list endpoint for KO to enumerate skills at deploy time.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="list-context-interface-skills" method="get" path="/v1/context-interfaces/{interfaceId}/skills" -->
+<!-- UsageSnippet language="go" operationID="list-mcp-server-skills-by-control-plane" method="get" path="/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills" -->
 ```go
 package main
 
@@ -449,8 +463,9 @@ func main() {
         }),
     )
 
-    res, err := s.Skills.ListContextInterfaceSkills(ctx, operations.ListContextInterfaceSkillsRequest{
-        InterfaceID: "72fe3c27-ab46-4ad5-9698-e8870e4b55af",
+    res, err := s.Skills.ListMcpServerSkillsByControlPlane(ctx, operations.ListMcpServerSkillsByControlPlaneRequest{
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        McpServerID: "85bf863b-78d5-4b8f-a114-c9609f990798",
         PageSize: sdkkonnectgo.Pointer[int64](10),
         PageNumber: sdkkonnectgo.Pointer[int64](1),
         Sort: sdkkonnectgo.Pointer("created_at desc"),
@@ -466,15 +481,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
-| `request`                                                                                                    | [operations.ListContextInterfaceSkillsRequest](../../models/operations/listcontextinterfaceskillsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
-| `opts`                                                                                                       | [][operations.Option](../../models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
+| `request`                                                                                                                  | [operations.ListMcpServerSkillsByControlPlaneRequest](../../models/operations/listmcpserverskillsbycontrolplanerequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
 
 ### Response
 
-**[*operations.ListContextInterfaceSkillsResponse](../../models/operations/listcontextinterfaceskillsresponse.md), error**
+**[*operations.ListMcpServerSkillsByControlPlaneResponse](../../models/operations/listmcpserverskillsbycontrolplaneresponse.md), error**
 
 ### Errors
 
@@ -486,16 +501,16 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## CreateContextInterfaceSkill
+## GetMcpServerSkillContentsByControlPlane
 
 **Pre-release Endpoint**
 This endpoint is currently in beta and is subject to change.
 
-Create a skill for the specified Context Interface. The `source` determines where the skill's content comes from.
+KO-only endpoint that redirects to a presigned S3 URL for the skill's SKILL.md file.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="create-context-interface-skill" method="post" path="/v1/context-interfaces/{interfaceId}/skills" -->
+<!-- UsageSnippet language="go" operationID="get-mcp-server-skill-contents-by-control-plane" method="get" path="/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/skills/{skillId}/contents" -->
 ```go
 package main
 
@@ -503,6 +518,7 @@ import(
 	"context"
 	"github.com/Kong/sdk-konnect-go/models/components"
 	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
 	"log"
 )
 
@@ -515,46 +531,31 @@ func main() {
         }),
     )
 
-    res, err := s.Skills.CreateContextInterfaceSkill(ctx, "cc5067fd-3514-4974-bc56-7c504711542c", components.CreateSkillRequest{
-        DisplayName: "PDF Processing",
-        Description: "Extract and summarize content from PDF documents",
-        Source: components.CreateSkillSourcePayloadRaw(
-            components.RawSkillSourcePayload{
-                Type: components.RawSkillSourcePayloadTypeRaw,
-                Config: components.RawSkillSourceConfigPayload{
-                    Contents: "---\nname: pdf-processing\ndescription: Extract and summarize content from PDF documents\n---\n# PDF Processing\n...",
-                },
-            },
-        ),
-        Labels: map[string]string{
-            "env": "test",
-        },
+    res, err := s.Skills.GetMcpServerSkillContentsByControlPlane(ctx, operations.GetMcpServerSkillContentsByControlPlaneRequest{
+        ControlPlaneID: "9524ec7d-36d9-465d-a8c5-83a3c9390458",
+        McpServerID: "5bae9b81-0da6-4ba2-ba78-bb99f822149e",
+        SkillID: "8bb561d4-55c6-493f-8f2c-145ac063fea3",
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.Skill != nil {
-        switch res.Skill.Source.Type {
-            case components.SkillSourceTypeRaw:
-                // res.Skill.Source.RawSkillSource is populated
-        }
-
+    if res != nil {
+        // handle response
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `interfaceID`                                                                  | `string`                                                                       | :heavy_check_mark:                                                             | The ID of the Context Interface.                                               |
-| `createSkillRequest`                                                           | [components.CreateSkillRequest](../../models/components/createskillrequest.md) | :heavy_check_mark:                                                             | N/A                                                                            |
-| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                                                  | :heavy_check_mark:                                                                                                                     | The context to use for the request.                                                                                                    |
+| `request`                                                                                                                              | [operations.GetMcpServerSkillContentsByControlPlaneRequest](../../models/operations/getmcpserverskillcontentsbycontrolplanerequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
+| `opts`                                                                                                                                 | [][operations.Option](../../models/operations/option.md)                                                                               | :heavy_minus_sign:                                                                                                                     | The options for this request.                                                                                                          |
 
 ### Response
 
-**[*operations.CreateContextInterfaceSkillResponse](../../models/operations/createcontextinterfaceskillresponse.md), error**
+**[*operations.GetMcpServerSkillContentsByControlPlaneResponse](../../models/operations/getmcpserverskillcontentsbycontrolplaneresponse.md), error**
 
 ### Errors
 
@@ -564,5 +565,4 @@ func main() {
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |

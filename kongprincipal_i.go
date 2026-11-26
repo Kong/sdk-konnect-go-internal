@@ -11,14 +11,6 @@ import (
 
 // KongPrincipalSDK is a generated interface.
 type KongPrincipalSDK interface {
-	// CreatePrincipal - Create a Principal in a Directory
-	// Creates a new principal identity within the specified directory.
-	// Principals can be configured with metadata and labels for organizational purposes.
-	CreatePrincipal(ctx context.Context, directoryID string, createPrincipalBody components.CreatePrincipalBody, opts ...operations.Option) (*operations.CreatePrincipalResponse, error)
-	// ListPrincipals - List all the Principals of a Directory
-	// Retrieves a paginated list of all principals within the specified directory.
-	// Results can be sorted by display_name, created_at, or updated_at.
-	ListPrincipals(ctx context.Context, request operations.ListPrincipalsRequest, opts ...operations.Option) (*operations.ListPrincipalsResponse, error)
 	// ImportOrgChart - Import user principals from a canonical CSV
 	// Imports user principals in bulk from a canonical CSV file. Each row
 	// creates one user principal — tagged hris_import, stamped with the
@@ -30,6 +22,14 @@ type KongPrincipalSDK interface {
 	// validated in full before anything is written; the response is a
 	// report of counts and per-row errors, never the created rows.
 	ImportOrgChart(ctx context.Context, directoryID string, importPrincipalsRequest components.ImportPrincipalsRequest, opts ...operations.Option) (*operations.ImportOrgChartResponse, error)
+	// CreatePrincipal - Create a Principal in a Directory
+	// Creates a new principal identity within the specified directory.
+	// Principals can be configured with metadata and labels for organizational purposes.
+	CreatePrincipal(ctx context.Context, directoryID string, createPrincipalBody components.CreatePrincipalBody, opts ...operations.Option) (*operations.CreatePrincipalResponse, error)
+	// ListPrincipals - List all the Principals of a Directory
+	// Retrieves a paginated list of all principals within the specified directory.
+	// Results can be sorted by display_name, created_at, or updated_at.
+	ListPrincipals(ctx context.Context, request operations.ListPrincipalsRequest, opts ...operations.Option) (*operations.ListPrincipalsResponse, error)
 	// UpdatePrincipal - Update a Principal
 	// Partially updates an existing principal by modifying only the provided fields.
 	// Unspecified fields will retain their current values.

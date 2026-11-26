@@ -118,7 +118,7 @@ func main() {
                             Action: components.ActionAllow,
                             Operations: []components.EventGatewayACLOperation{
                                 components.EventGatewayACLOperation{
-                                    Name: components.EventGatewayACLOperationNameRead,
+                                    Name: components.NameRead,
                                 },
                             },
                             ResourceNames: components.CreateResourceNamesArrayOfEventGatewayACLResourceName(

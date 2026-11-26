@@ -11,26 +11,26 @@ var ListIdpTeamGroupMappingsServerList = []string{
 	"https://global.api.konghq.com/",
 }
 
-// QueryParamFilter - Filter mappings by team ID or group name.
-type QueryParamFilter struct {
+// ListIdpTeamGroupMappingsQueryParamFilter - Filter mappings by team ID or group name.
+type ListIdpTeamGroupMappingsQueryParamFilter struct {
 	// Filters on the given string field value by exact match.
 	TeamID *components.StringFieldEqualsFilter `queryParam:"name=team_id"`
 	// Filters on the given string field value by exact match.
 	Group *components.StringFieldEqualsFilter `queryParam:"name=group"`
 }
 
-func (q *QueryParamFilter) GetTeamID() *components.StringFieldEqualsFilter {
-	if q == nil {
+func (l *ListIdpTeamGroupMappingsQueryParamFilter) GetTeamID() *components.StringFieldEqualsFilter {
+	if l == nil {
 		return nil
 	}
-	return q.TeamID
+	return l.TeamID
 }
 
-func (q *QueryParamFilter) GetGroup() *components.StringFieldEqualsFilter {
-	if q == nil {
+func (l *ListIdpTeamGroupMappingsQueryParamFilter) GetGroup() *components.StringFieldEqualsFilter {
+	if l == nil {
 		return nil
 	}
-	return q.Group
+	return l.Group
 }
 
 type ListIdpTeamGroupMappingsRequest struct {
@@ -43,7 +43,7 @@ type ListIdpTeamGroupMappingsRequest struct {
 	// Request the next page of data, starting with the item before this parameter.
 	PageBefore *string `queryParam:"style=form,explode=true,name=page[before]"`
 	// Filter mappings by team ID or group name.
-	Filter *QueryParamFilter `queryParam:"style=deepObject,explode=true,name=filter"`
+	Filter *ListIdpTeamGroupMappingsQueryParamFilter `queryParam:"style=deepObject,explode=true,name=filter"`
 }
 
 func (l *ListIdpTeamGroupMappingsRequest) GetIdpID() string {
@@ -74,7 +74,7 @@ func (l *ListIdpTeamGroupMappingsRequest) GetPageBefore() *string {
 	return l.PageBefore
 }
 
-func (l *ListIdpTeamGroupMappingsRequest) GetFilter() *QueryParamFilter {
+func (l *ListIdpTeamGroupMappingsRequest) GetFilter() *ListIdpTeamGroupMappingsQueryParamFilter {
 	if l == nil {
 		return nil
 	}

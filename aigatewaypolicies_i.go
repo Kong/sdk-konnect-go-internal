@@ -11,15 +11,6 @@ import (
 
 // AIGatewayPoliciesSDK is a generated interface.
 type AIGatewayPoliciesSDK interface {
-	// ListAiGatewayAvailablePolicies - List AI Gateway Available Policies
-	// Returns a list of available policies for the AI Gateway.
-	ListAiGatewayAvailablePolicies(ctx context.Context, gatewayID string, opts ...operations.Option) (*operations.ListAiGatewayAvailablePoliciesResponse, error)
-	// GetAiGatewayPolicySchema - Get an AI Gateway Policy Schema
-	// Returns the details of a specific AI Gateway policy schema using the schema name.
-	GetAiGatewayPolicySchema(ctx context.Context, gatewayID string, policySchemaName string, opts ...operations.Option) (*operations.GetAiGatewayPolicySchemaResponse, error)
-	// ValidateAiGatewayExpression - Validate an AI Gateway CEL Expression
-	// Validates a CEL expression for the `expressions` field or the `condition` field of a policy. Send exactly one of `expression` or `condition`.
-	ValidateAiGatewayExpression(ctx context.Context, gatewayID string, aiGatewayValidateExpressionRequest components.AIGatewayValidateExpressionRequest, opts ...operations.Option) (*operations.ValidateAiGatewayExpressionResponse, error)
 	// ListAiGatewayPolicies - List AI Gateway Policies
 	// Returns a list of policies configured for the AI Gateway.
 	ListAiGatewayPolicies(ctx context.Context, request operations.ListAiGatewayPoliciesRequest, opts ...operations.Option) (*operations.ListAiGatewayPoliciesResponse, error)
@@ -35,8 +26,4 @@ type AIGatewayPoliciesSDK interface {
 	// DeleteAiGatewayPolicy - Delete an AI Gateway Policy
 	// Removes a specific AI Gateway policy.
 	DeleteAiGatewayPolicy(ctx context.Context, gatewayID string, policyIDOrName string, opts ...operations.Option) (*operations.DeleteAiGatewayPolicyResponse, error)
-	// ListAiGatewayPolicyUsage - List AI Gateway Policy Usage
-	// Returns a response containing the usage by entity of a specific AI Gateway policy.
-	// The response is limited to only return the first N records per entity type.
-	ListAiGatewayPolicyUsage(ctx context.Context, gatewayID string, policyID string, opts ...operations.Option) (*operations.ListAiGatewayPolicyUsageResponse, error)
 }

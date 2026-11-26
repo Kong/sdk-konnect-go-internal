@@ -11,6 +11,9 @@ import (
 
 // ApplicationsSDK is a generated interface.
 type ApplicationsSDK interface {
+	// GetApplicationUnscoped - Get an Application
+	// Returns the configuration of a single application in any portal. If an application is linked to a DCR Provider, the `dcr_provider.id` and `client_id` can be used to correlate it. An application manages a set of credentials and registrations for specific APIs.
+	GetApplicationUnscoped(ctx context.Context, applicationID string, opts ...operations.Option) (*operations.GetApplicationUnscopedResponse, error)
 	// CreateApplication - Create Application
 	// Creates a new application for this portal. The application must be assigned to a developer or a team. An application can be registered for various APIs, issuing credentials for API access. If using DCR, an application will be linked to an Identity Provider's application by its `client_id`.
 	CreateApplication(ctx context.Context, portalID string, createApplicationRequest components.CreateApplicationRequest, opts ...operations.Option) (*operations.CreateApplicationResponse, error)
@@ -26,13 +29,10 @@ type ApplicationsSDK interface {
 	// DeleteApplication - Delete Application by Portal
 	// Delete a single application in this portal, along with its registrations and credentials.
 	DeleteApplication(ctx context.Context, portalID string, applicationID string, opts ...operations.Option) (*operations.DeleteApplicationResponse, error)
-	// ListDevelopersByApplication - List Developers by Application
-	// Lists each developer that can access the given application for this portal.
-	ListDevelopersByApplication(ctx context.Context, request operations.ListDevelopersByApplicationRequest, opts ...operations.Option) (*operations.ListDevelopersByApplicationResponse, error)
-	// GetApplicationUnscoped - Get an Application
-	// Returns the configuration of a single application in any portal. If an application is linked to a DCR Provider, the `dcr_provider.id` and `client_id` can be used to correlate it. An application manages a set of credentials and registrations for specific APIs.
-	GetApplicationUnscoped(ctx context.Context, applicationID string, opts ...operations.Option) (*operations.GetApplicationUnscopedResponse, error)
 	// ListCredentialsByApplication - List Credentials by Application
 	// Lists all credentials for an application. This endpoint returns both API key credentials and DCR credentials, depending on the auth strategy the application uses: - For DCR applications: Credential information is retrieved from the identity provider using provider-specific APIs - For Key-Auth applications: Returns information about credentials Basic information about the credential is returned, but not the credential secret itself.
 	ListCredentialsByApplication(ctx context.Context, request operations.ListCredentialsByApplicationRequest, opts ...operations.Option) (*operations.ListCredentialsByApplicationResponse, error)
+	// ListDevelopersByApplication - List Developers by Application
+	// Lists each developer that can access the given application for this portal.
+	ListDevelopersByApplication(ctx context.Context, request operations.ListDevelopersByApplicationRequest, opts ...operations.Option) (*operations.ListDevelopersByApplicationResponse, error)
 }

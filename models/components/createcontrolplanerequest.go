@@ -11,7 +11,6 @@ const (
 	CreateControlPlaneRequestClusterTypeClusterTypeControlPlaneGroup     CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_CONTROL_PLANE_GROUP"
 	CreateControlPlaneRequestClusterTypeClusterTypeServerless            CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_SERVERLESS"
 	CreateControlPlaneRequestClusterTypeClusterTypeKafkaNativeEventProxy CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY"
-	CreateControlPlaneRequestClusterTypeClusterTypeCloudAPIGateway       CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_CLOUD_API_GATEWAY"
 	CreateControlPlaneRequestClusterTypeClusterTypeServerlessV1          CreateControlPlaneRequestClusterType = "CLUSTER_TYPE_SERVERLESS_V1"
 )
 
@@ -23,7 +22,7 @@ func (e CreateControlPlaneRequestClusterType) ToPointer() *CreateControlPlaneReq
 func (e *CreateControlPlaneRequestClusterType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "CLUSTER_TYPE_CONTROL_PLANE", "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER", "CLUSTER_TYPE_CONTROL_PLANE_GROUP", "CLUSTER_TYPE_SERVERLESS", "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY", "CLUSTER_TYPE_CLOUD_API_GATEWAY", "CLUSTER_TYPE_SERVERLESS_V1":
+		case "CLUSTER_TYPE_CONTROL_PLANE", "CLUSTER_TYPE_K8S_INGRESS_CONTROLLER", "CLUSTER_TYPE_CONTROL_PLANE_GROUP", "CLUSTER_TYPE_SERVERLESS", "CLUSTER_TYPE_KAFKA_NATIVE_EVENT_PROXY", "CLUSTER_TYPE_SERVERLESS_V1":
 			return true
 		}
 	}

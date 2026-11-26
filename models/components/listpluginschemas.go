@@ -2,7 +2,7 @@
 
 package components
 
-type ListPluginSchemasItems struct {
+type Items struct {
 	// The custom plugin schema; `jq -Rs '.' schema.lua`.
 	LuaSchema *string `json:"lua_schema,omitempty"`
 	// The custom plugin name determined by the custom plugin schema.
@@ -13,32 +13,32 @@ type ListPluginSchemasItems struct {
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
 }
 
-func (l *ListPluginSchemasItems) GetLuaSchema() *string {
-	if l == nil {
+func (i *Items) GetLuaSchema() *string {
+	if i == nil {
 		return nil
 	}
-	return l.LuaSchema
+	return i.LuaSchema
 }
 
-func (l *ListPluginSchemasItems) GetName() *string {
-	if l == nil {
+func (i *Items) GetName() *string {
+	if i == nil {
 		return nil
 	}
-	return l.Name
+	return i.Name
 }
 
-func (l *ListPluginSchemasItems) GetCreatedAt() *int64 {
-	if l == nil {
+func (i *Items) GetCreatedAt() *int64 {
+	if i == nil {
 		return nil
 	}
-	return l.CreatedAt
+	return i.CreatedAt
 }
 
-func (l *ListPluginSchemasItems) GetUpdatedAt() *int64 {
-	if l == nil {
+func (i *Items) GetUpdatedAt() *int64 {
+	if i == nil {
 		return nil
 	}
-	return l.UpdatedAt
+	return i.UpdatedAt
 }
 
 type ListPluginSchemasPage struct {
@@ -54,11 +54,11 @@ func (l *ListPluginSchemasPage) GetTotalCount() *int64 {
 
 // ListPluginSchemas - A paginated list response for a collection of custom plugin schemas.
 type ListPluginSchemas struct {
-	Items []ListPluginSchemasItems `json:"items,omitempty"`
-	Page  *ListPluginSchemasPage   `json:"page,omitempty"`
+	Items []Items                `json:"items,omitempty"`
+	Page  *ListPluginSchemasPage `json:"page,omitempty"`
 }
 
-func (l *ListPluginSchemas) GetItems() []ListPluginSchemasItems {
+func (l *ListPluginSchemas) GetItems() []Items {
 	if l == nil {
 		return nil
 	}

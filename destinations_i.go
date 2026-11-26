@@ -11,12 +11,15 @@ import (
 
 // DestinationsSDK is a generated interface.
 type DestinationsSDK interface {
+	// ListDeliveries - List delivery history
+	// List the deliveries for all destinations in this organization. To filter to a specific destination, use `filter[destination_id][eq]`
+	ListDeliveries(ctx context.Context, request operations.ListDeliveriesRequest, opts ...operations.Option) (*operations.ListDeliveriesResponse, error)
 	// ListDestinations - List destinations
 	// Returns the organization's destinations, with the newest destinations first. Use the event type filter to list destinations with an enabled subscription for a specific event type.
 	ListDestinations(ctx context.Context, request operations.ListDestinationsRequest, opts ...operations.Option) (*operations.ListDestinationsResponse, error)
 	// CreateDestination - Create a destination
-	// Creates an HTTP destination for organization event notifications. You can create up to 50 destinations for an organization.
-	// The response includes the signing secret. Save it when you create the destination; later responses do not include it.
+	// Creates a destination for organization event notifications. You can create up to 50 destinations for an organization.
+	// For an HTTP destination, the response includes the signing secret. Save it when you create the destination; later responses do not include it.
 	CreateDestination(ctx context.Context, request components.DestinationCreatePayload, opts ...operations.Option) (*operations.CreateDestinationResponse, error)
 	// GetDestination - Get a destination
 	// Show a destination's details. Does not return sensitive keys such as signing secret.
@@ -29,13 +32,6 @@ type DestinationsSDK interface {
 	// If this leaves a subscription with no destinations, that subscription is also deleted.
 	// This action also deletes the destination's signing keys and delivery history. You cannot undo this action.
 	DeleteDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.DeleteDestinationResponse, error)
-	// TestDestination - Test a destination
-	// Trigger a test delivery to a destination. The test outcome is returned in the "Delivery history" endpoint.
-	// Tests may be triggered every 5 seconds.
-	TestDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.TestDestinationResponse, error)
-	// RotateDestinationSecret - Rotate the destination signing secret
-	// Creates a new signing secret for the HTTP destination. The response includes the new secret only once. The previous secret remains valid for 24 hours so you can update your integration.
-	RotateDestinationSecret(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.RotateDestinationSecretResponse, error)
 	// GetDestinationDelivery - Get a delivery and its attempts
 	// Show a notification's delivery status, including information about each delivery attempt.
 	GetDestinationDelivery(ctx context.Context, destinationID string, deliveryID string, opts ...operations.Option) (*operations.GetDestinationDeliveryResponse, error)
@@ -43,10 +39,14 @@ type DestinationsSDK interface {
 	// Trigger a redelivery of a failed notification. The redelivery has a new delivery ID in the "Delivery history" endpoint.
 	// The payload is identical to the original delivery, including the `event_id` which can be used to deduplicate notifications.
 	ResendDestinationDelivery(ctx context.Context, destinationID string, deliveryID string, opts ...operations.Option) (*operations.ResendDestinationDeliveryResponse, error)
+	// RotateDestinationSecret - Rotate the destination signing secret
+	// Creates a new signing secret for the HTTP destination. The response includes the new secret only once. The previous secret remains valid for 24 hours so you can update your integration.
+	RotateDestinationSecret(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.RotateDestinationSecretResponse, error)
 	// ListDestinationSubscriptions - List destination subscriptions
 	// Returns the organization's subscriptions that use this destination.
 	ListDestinationSubscriptions(ctx context.Context, request operations.ListDestinationSubscriptionsRequest, opts ...operations.Option) (*operations.ListDestinationSubscriptionsResponse, error)
-	// ListDeliveries - List delivery history
-	// List the deliveries for all destinations in this organization. To filter to a specific destination, use `filter[destination_id][eq]`
-	ListDeliveries(ctx context.Context, request operations.ListDeliveriesRequest, opts ...operations.Option) (*operations.ListDeliveriesResponse, error)
+	// TestDestination - Test a destination
+	// Trigger a test delivery to a destination. The test outcome is returned in the "Delivery history" endpoint.
+	// Tests may be triggered every 5 seconds.
+	TestDestination(ctx context.Context, destinationID string, opts ...operations.Option) (*operations.TestDestinationResponse, error)
 }

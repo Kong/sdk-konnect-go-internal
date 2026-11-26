@@ -11,9 +11,6 @@ import (
 
 // UsersSDK is a generated interface.
 type UsersSDK interface {
-	// GetUsersInternal - List Users (Internal)
-	// The response contains user ids and (non-deleted, non-deleting) organization ids for users associated with provided auth0 user subject.
-	GetUsersInternal(ctx context.Context, aid *string, opts ...operations.Option) (*operations.GetUsersInternalResponse, error)
 	// ListUsers - List Users
 	// Returns a paginated list of user objects.
 	ListUsers(ctx context.Context, request operations.ListUsersRequest, opts ...operations.Option) (*operations.ListUsersResponse, error)

@@ -2,7 +2,7 @@
 
 package components
 
-type PluginSchemasItem struct {
+type Item struct {
 	// The custom plugin schema; `jq -Rs '.' schema.lua`.
 	LuaSchema *string `json:"lua_schema,omitempty"`
 	// The custom plugin name determined by the custom plugin schema.
@@ -13,40 +13,40 @@ type PluginSchemasItem struct {
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
 }
 
-func (p *PluginSchemasItem) GetLuaSchema() *string {
-	if p == nil {
+func (i *Item) GetLuaSchema() *string {
+	if i == nil {
 		return nil
 	}
-	return p.LuaSchema
+	return i.LuaSchema
 }
 
-func (p *PluginSchemasItem) GetName() *string {
-	if p == nil {
+func (i *Item) GetName() *string {
+	if i == nil {
 		return nil
 	}
-	return p.Name
+	return i.Name
 }
 
-func (p *PluginSchemasItem) GetCreatedAt() *int64 {
-	if p == nil {
+func (i *Item) GetCreatedAt() *int64 {
+	if i == nil {
 		return nil
 	}
-	return p.CreatedAt
+	return i.CreatedAt
 }
 
-func (p *PluginSchemasItem) GetUpdatedAt() *int64 {
-	if p == nil {
+func (i *Item) GetUpdatedAt() *int64 {
+	if i == nil {
 		return nil
 	}
-	return p.UpdatedAt
+	return i.UpdatedAt
 }
 
 // PluginSchemas - A response for a single custom plugin schema.
 type PluginSchemas struct {
-	Item *PluginSchemasItem `json:"item,omitempty"`
+	Item *Item `json:"item,omitempty"`
 }
 
-func (p *PluginSchemas) GetItem() *PluginSchemasItem {
+func (p *PluginSchemas) GetItem() *Item {
 	if p == nil {
 		return nil
 	}

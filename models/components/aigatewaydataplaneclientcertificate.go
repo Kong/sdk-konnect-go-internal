@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-// AIGatewayDataPlaneClientCertificateMetadata - Metadata extracted from the certificate.
-type AIGatewayDataPlaneClientCertificateMetadata struct {
+// Metadata extracted from the certificate.
+type Metadata struct {
 	// The certificate subject.
 	Subject *string `json:"subject,omitempty"`
 	// The certificate issuer.
@@ -35,81 +35,81 @@ type AIGatewayDataPlaneClientCertificateMetadata struct {
 	IsCa *bool `json:"is_ca,omitempty"`
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetSubject() *string {
-	if a == nil {
+func (m *Metadata) GetSubject() *string {
+	if m == nil {
 		return nil
 	}
-	return a.Subject
+	return m.Subject
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetIssuer() *string {
-	if a == nil {
+func (m *Metadata) GetIssuer() *string {
+	if m == nil {
 		return nil
 	}
-	return a.Issuer
+	return m.Issuer
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetSanNames() []string {
-	if a == nil {
+func (m *Metadata) GetSanNames() []string {
+	if m == nil {
 		return nil
 	}
-	return a.SanNames
+	return m.SanNames
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetExpiry() *int64 {
-	if a == nil {
+func (m *Metadata) GetExpiry() *int64 {
+	if m == nil {
 		return nil
 	}
-	return a.Expiry
+	return m.Expiry
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetKeyUsages() []string {
-	if a == nil {
+func (m *Metadata) GetKeyUsages() []string {
+	if m == nil {
 		return nil
 	}
-	return a.KeyUsages
+	return m.KeyUsages
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetSnis() []string {
-	if a == nil {
+func (m *Metadata) GetSnis() []string {
+	if m == nil {
 		return nil
 	}
-	return a.Snis
+	return m.Snis
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetDNSNames() []string {
-	if a == nil {
+func (m *Metadata) GetDNSNames() []string {
+	if m == nil {
 		return nil
 	}
-	return a.DNSNames
+	return m.DNSNames
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetEmailAddresses() []string {
-	if a == nil {
+func (m *Metadata) GetEmailAddresses() []string {
+	if m == nil {
 		return nil
 	}
-	return a.EmailAddresses
+	return m.EmailAddresses
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetIPAddresses() []string {
-	if a == nil {
+func (m *Metadata) GetIPAddresses() []string {
+	if m == nil {
 		return nil
 	}
-	return a.IPAddresses
+	return m.IPAddresses
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetUris() []string {
-	if a == nil {
+func (m *Metadata) GetUris() []string {
+	if m == nil {
 		return nil
 	}
-	return a.Uris
+	return m.Uris
 }
 
-func (a *AIGatewayDataPlaneClientCertificateMetadata) GetIsCa() *bool {
-	if a == nil {
+func (m *Metadata) GetIsCa() *bool {
+	if m == nil {
 		return nil
 	}
-	return a.IsCa
+	return m.IsCa
 }
 
 type AIGatewayDataPlaneClientCertificate struct {
@@ -142,7 +142,7 @@ type AIGatewayDataPlaneClientCertificate struct {
 	// An immutable read-only flag to identify resource managed by Konnect services.
 	KonnectManaged *bool `json:"konnect_managed,omitempty"`
 	// Metadata extracted from the certificate.
-	Metadata *AIGatewayDataPlaneClientCertificateMetadata `json:"metadata,omitempty"`
+	Metadata *Metadata `json:"metadata,omitempty"`
 }
 
 func (a AIGatewayDataPlaneClientCertificate) MarshalJSON() ([]byte, error) {
@@ -219,7 +219,7 @@ func (a *AIGatewayDataPlaneClientCertificate) GetKonnectManaged() *bool {
 	return a.KonnectManaged
 }
 
-func (a *AIGatewayDataPlaneClientCertificate) GetMetadata() *AIGatewayDataPlaneClientCertificateMetadata {
+func (a *AIGatewayDataPlaneClientCertificate) GetMetadata() *Metadata {
 	if a == nil {
 		return nil
 	}

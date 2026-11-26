@@ -33,5 +33,5 @@ type KongIdentityDirectoriesSDK interface {
 	// DeleteDirectory - Delete a Directory
 	// Deletes a directory and optionally all its associated resources (principals, keys, etc.).
 	// Use the force parameter to control deletion behavior when dependencies exist.
-	DeleteDirectory(ctx context.Context, directoryID string, forceDestroy *operations.QueryParamForce, opts ...operations.Option) (*operations.DeleteDirectoryResponse, error)
+	DeleteDirectory(ctx context.Context, directoryID string, forceDestroy *operations.DeleteDirectoryQueryParamForce, opts ...operations.Option) (*operations.DeleteDirectoryResponse, error)
 }

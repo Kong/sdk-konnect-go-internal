@@ -15,12 +15,10 @@ type MeshControlPlane struct {
 	Name        string  `json:"name"`
 	Description *string `json:"description,omitempty"`
 	// Labels to facilitate tagged search on control planes. Keys must be of length 1-63 characters.
-	Labels   map[string]*string        `json:"labels,omitempty"`
-	Features []MeshControlPlaneFeature `json:"features,omitempty"`
-	// The version of the control plane. Setting it propagates the change to the global control plane, and is the only way to move a control plane between versions. A version only moves forward - once a control plane runs a newer version, setting an older one is rejected. Omitting the field falls back to the default, so a create lands on the default version and a whole-record update of a control plane that already runs a newer version is rejected.
-	Version   *string   `default:"v2" json:"version"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	Labels    map[string]*string        `json:"labels,omitempty"`
+	Features  []MeshControlPlaneFeature `json:"features,omitempty"`
+	CreatedAt time.Time                 `json:"created_at"`
+	UpdatedAt time.Time                 `json:"updated_at"`
 }
 
 func (m MeshControlPlane) MarshalJSON() ([]byte, error) {
@@ -67,13 +65,6 @@ func (m *MeshControlPlane) GetFeatures() []MeshControlPlaneFeature {
 		return nil
 	}
 	return m.Features
-}
-
-func (m *MeshControlPlane) GetVersion() *string {
-	if m == nil {
-		return nil
-	}
-	return m.Version
 }
 
 func (m *MeshControlPlane) GetCreatedAt() time.Time {

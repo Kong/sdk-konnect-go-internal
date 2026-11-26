@@ -115,7 +115,6 @@ func main() {
         Labels: map[string]*string{
             "test": sdkkonnectgo.Pointer("true"),
         },
-        Version: sdkkonnectgo.Pointer("v3"),
     })
     if err != nil {
         log.Fatal(err)
@@ -294,7 +293,6 @@ func main() {
         Labels: map[string]string{
             "test": "true",
         },
-        Version: sdkkonnectgo.Pointer("v3"),
     })
     if err != nil {
         log.Fatal(err)
@@ -360,7 +358,6 @@ func main() {
         Labels: map[string]*string{
             "test": sdkkonnectgo.Pointer("true"),
         },
-        Version: sdkkonnectgo.Pointer("v3"),
     })
     if err != nil {
         log.Fatal(err)

@@ -17,18 +17,18 @@ type OpenMeterAppsSDK interface {
 	//
 	// List available apps.
 	ListAppCatalog(ctx context.Context, page *components.PagePaginationQuery, opts ...operations.Option) (*operations.ListAppCatalogResponse, error)
-	// InstallApp - Install app from the catalog
-	// **Pre-release Endpoint**
-	// This endpoint is currently in beta and is subject to change.
-	//
-	// Install an app from the catalog.
-	InstallApp(ctx context.Context, request components.BillingInstallAppRequest, opts ...operations.Option) (*operations.InstallAppResponse, error)
 	// GetAppCatalogItem - Get app catalog item by type
 	// **Pre-release Endpoint**
 	// This endpoint is currently in beta and is subject to change.
 	//
 	// Get an app catalog item by type.
 	GetAppCatalogItem(ctx context.Context, appType components.BillingAppType, opts ...operations.Option) (*operations.GetAppCatalogItemResponse, error)
+	// InstallApp - Install app from the catalog
+	// **Pre-release Endpoint**
+	// This endpoint is currently in beta and is subject to change.
+	//
+	// Install an app from the catalog.
+	InstallApp(ctx context.Context, request components.BillingInstallAppRequest, opts ...operations.Option) (*operations.InstallAppResponse, error)
 	// ListApps - List apps
 	// List installed apps.
 	ListApps(ctx context.Context, request operations.ListAppsRequest, opts ...operations.Option) (*operations.ListAppsResponse, error)

@@ -11,12 +11,12 @@ import (
 	"github.com/Kong/sdk-konnect-go/models/components"
 )
 
-value := components.StatusFourHundred
+value := components.StatusFourHundredAndOne
 ```
 
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `StatusFourHundred` | 400                 |
+| Name                      | Value                     |
+| ------------------------- | ------------------------- |
+| `StatusFourHundredAndOne` | 401                       |

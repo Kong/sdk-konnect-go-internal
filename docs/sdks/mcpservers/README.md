@@ -4,114 +4,12 @@
 
 ### Available Operations
 
-* [GetMcpServerSignals](#getmcpserversignals) - Get MCP Server Signals
 * [ListMcpServersByControlPlane](#listmcpserversbycontrolplane) - List MCP Servers by Control Plane
 * [GetMcpServerByControlPlane](#getmcpserverbycontrolplane) - Get MCP Server by Control Plane
+* [GetMcpServerCode](#getmcpservercode) - Get generated Python code for the MCP Server
 * [GetMcpServerKongEntities](#getmcpserverkongentities) - Get Kong entities for the MCP Server Gateway
 * [PostMcpServerStatus](#postmcpserverstatus) - Report MCP Server deployment status
-* [GetMcpServerCode](#getmcpservercode) - Get generated Python code for the MCP Server
-
-## GetMcpServerSignals
-
-**Pre-release Endpoint**
-This endpoint is currently in beta and is subject to change.
-
-Client-initiated signals fetch with long-polling capabilities.
-The client supplies `capabilities` as a deepObject query parameter:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  - Keys are capability names (e.g. `mcp`)
-  - Values contain the capability request fields (`version`)
-
-Example:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  GET /mcp-cp/{controlPlaneId}/signals?capabilities[mcp][version]=5
-
-The CP responds with a JSON payload containing zero or more signals that the client should process.
-If no signals are available, the CP responds with HTTP 304 Not Modified.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-mcp-server-signals" method="get" path="/v1/mcp-cp/{controlPlaneId}/signals" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.MCPServers.GetMcpServerSignals(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", &components.MCPCapabilitiesMap{
-        Mcp: &components.MCPCapabilityRequest{
-            Version: "5",
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.MCPServerSignals != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     | Example                                                                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                                           | :heavy_check_mark:                                                                                                                              | The context to use for the request.                                                                                                             |                                                                                                                                                 |
-| `controlPlaneID`                                                                                                                                | `string`                                                                                                                                        | :heavy_check_mark:                                                                                                                              | The UUID of your control plane. This variable is available in the Konnect manager.                                                              | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                                                                                            |
-| `capabilities`                                                                                                                                  | [*components.MCPCapabilitiesMap](../../models/components/mcpcapabilitiesmap.md)                                                                 | :heavy_minus_sign:                                                                                                                              | Capability requests as a deepObject map.<br/>- Keys are capability names (e.g. `mcp`).<br/>- Values contain the capability request fields (`version`).<br/> | {<br/>"mcp": {<br/>"version": "5"<br/>}<br/>}                                                                                                   |
-| `opts`                                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                                        | :heavy_minus_sign:                                                                                                                              | The options for this request.                                                                                                                   |                                                                                                                                                 |
-
-### Response
-
-**[*operations.GetMcpServerSignalsResponse](../../models/operations/getmcpserversignalsresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+* [GetMcpServerSignals](#getmcpserversignals) - Get MCP Server Signals
 
 ## ListMcpServersByControlPlane
 
@@ -229,6 +127,68 @@ func main() {
 ### Response
 
 **[*operations.GetMcpServerByControlPlaneResponse](../../models/operations/getmcpserverbycontrolplaneresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## GetMcpServerCode
+
+**Pre-release Endpoint**
+This endpoint is currently in beta and is subject to change.
+
+Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="get-mcp-server-code" method="get" path="/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/code" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.MCPServers.GetMcpServerCode(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", "c561f6dd-36f0-404e-882e-b647d9b67032")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.MCPServerCodeResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
+| `controlPlaneID`                                                                   | `string`                                                                           | :heavy_check_mark:                                                                 | The UUID of your control plane. This variable is available in the Konnect manager. | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                               |
+| `mcpServerID`                                                                      | `string`                                                                           | :heavy_check_mark:                                                                 | The ID of the MCP server.                                                          |                                                                                    |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+
+### Response
+
+**[*operations.GetMcpServerCodeResponse](../../models/operations/getmcpservercoderesponse.md), error**
 
 ### Errors
 
@@ -383,16 +343,53 @@ func main() {
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
-## GetMcpServerCode
+## GetMcpServerSignals
 
 **Pre-release Endpoint**
 This endpoint is currently in beta and is subject to change.
 
-Generates MCP server Python code from the OpenAPI specifications associated with the MCP server.
+Client-initiated signals fetch with long-polling capabilities.
+The client supplies `capabilities` as a deepObject query parameter:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  - Keys are capability names (e.g. `mcp`)
+  - Values contain the capability request fields (`version`)
+
+Example:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  GET /mcp-cp/{controlPlaneId}/signals?capabilities[mcp][version]=5
+
+The CP responds with a JSON payload containing zero or more signals that the client should process.
+If no signals are available, the CP responds with HTTP 304 Not Modified.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="get-mcp-server-code" method="get" path="/v1/mcp-cp/{controlPlaneId}/mcp-servers/{mcpServerId}/code" -->
+<!-- UsageSnippet language="go" operationID="get-mcp-server-signals" method="get" path="/v1/mcp-cp/{controlPlaneId}/signals" -->
 ```go
 package main
 
@@ -412,11 +409,15 @@ func main() {
         }),
     )
 
-    res, err := s.MCPServers.GetMcpServerCode(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", "c561f6dd-36f0-404e-882e-b647d9b67032")
+    res, err := s.MCPServers.GetMcpServerSignals(ctx, "9524ec7d-36d9-465d-a8c5-83a3c9390458", &components.MCPCapabilitiesMap{
+        Mcp: &components.MCPCapabilityRequest{
+            Version: "5",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
-    if res.MCPServerCodeResponse != nil {
+    if res.MCPServerSignals != nil {
         // handle response
     }
 }
@@ -424,16 +425,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
-| `controlPlaneID`                                                                   | `string`                                                                           | :heavy_check_mark:                                                                 | The UUID of your control plane. This variable is available in the Konnect manager. | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                               |
-| `mcpServerID`                                                                      | `string`                                                                           | :heavy_check_mark:                                                                 | The ID of the MCP server.                                                          |                                                                                    |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+| Parameter                                                                                                                                       | Type                                                                                                                                            | Required                                                                                                                                        | Description                                                                                                                                     | Example                                                                                                                                         |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                                                           | :heavy_check_mark:                                                                                                                              | The context to use for the request.                                                                                                             |                                                                                                                                                 |
+| `controlPlaneID`                                                                                                                                | `string`                                                                                                                                        | :heavy_check_mark:                                                                                                                              | The UUID of your control plane. This variable is available in the Konnect manager.                                                              | 9524ec7d-36d9-465d-a8c5-83a3c9390458                                                                                                            |
+| `capabilities`                                                                                                                                  | [*components.MCPCapabilitiesMap](../../models/components/mcpcapabilitiesmap.md)                                                                 | :heavy_minus_sign:                                                                                                                              | Capability requests as a deepObject map.<br/>- Keys are capability names (e.g. `mcp`).<br/>- Values contain the capability request fields (`version`).<br/> | {<br/>"mcp": {<br/>"version": "5"<br/>}<br/>}                                                                                                   |
+| `opts`                                                                                                                                          | [][operations.Option](../../models/operations/option.md)                                                                                        | :heavy_minus_sign:                                                                                                                              | The options for this request.                                                                                                                   |                                                                                                                                                 |
 
 ### Response
 
-**[*operations.GetMcpServerCodeResponse](../../models/operations/getmcpservercoderesponse.md), error**
+**[*operations.GetMcpServerSignalsResponse](../../models/operations/getmcpserversignalsresponse.md), error**
 
 ### Errors
 
@@ -442,5 +443,4 @@ func main() {
 | sdkerrors.BadRequestError   | 400                         | application/problem+json    |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
 | sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |

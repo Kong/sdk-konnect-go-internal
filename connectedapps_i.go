@@ -11,6 +11,12 @@ import (
 
 // ConnectedAppsSDK is a generated interface.
 type ConnectedAppsSDK interface {
+	// ListPortalConnectedAppSessions - List caller's Portal Connected App sessions
+	// Returns the authenticated caller's active Portal Connected App sessions (active refresh tokens). Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
+	ListPortalConnectedAppSessions(ctx context.Context, request operations.ListPortalConnectedAppSessionsRequest, opts ...operations.Option) (*operations.ListPortalConnectedAppSessionsResponse, error)
+	// RevokePortalConnectedAppSession - Revoke one of caller's Portal App sessions
+	// Revokes a single active Portal Connected App session (refresh token) owned by the authenticated caller. Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
+	RevokePortalConnectedAppSession(ctx context.Context, sessionID string, opts ...operations.Option) (*operations.RevokePortalConnectedAppSessionResponse, error)
 	// PatchPortalConnectedApps - Patch Portal Connected Apps configuration
 	// Partially updates the given portal's Connected Apps configuration. Only fields present in the request body are changed. Setting `enabled` enables or disables Connected Apps for this portal (same effect as POST /connected-apps; enabling for the first time requires default_url to also be set); omitting it patches dcr and/or default_url on the already-enabled auth server, which returns 404 if Connected Apps has not been enabled yet for this portal. The portal id is immutable and always taken from the path.
 	PatchPortalConnectedApps(ctx context.Context, portalID string, patchPortalConnectedApps components.PatchPortalConnectedApps, opts ...operations.Option) (*operations.PatchPortalConnectedAppsResponse, error)
@@ -20,10 +26,4 @@ type ConnectedAppsSDK interface {
 	// RevokePortalConnectedAppSessionAdmin - Revoke a Portal Connected App session
 	// Revokes a single active Portal Connected App session (refresh token) for the given portal, regardless of which developer owns it.
 	RevokePortalConnectedAppSessionAdmin(ctx context.Context, portalID string, sessionID string, opts ...operations.Option) (*operations.RevokePortalConnectedAppSessionAdminResponse, error)
-	// ListPortalConnectedAppSessions - List caller's Portal Connected App sessions
-	// Returns the authenticated caller's active Portal Connected App sessions (active refresh tokens). Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
-	ListPortalConnectedAppSessions(ctx context.Context, request operations.ListPortalConnectedAppSessionsRequest, opts ...operations.Option) (*operations.ListPortalConnectedAppSessionsResponse, error)
-	// RevokePortalConnectedAppSession - Revoke one of caller's Portal App sessions
-	// Revokes a single active Portal Connected App session (refresh token) owned by the authenticated caller. Restricted to developer principals carrying a portal_id claim. Authenticated but not authorized.
-	RevokePortalConnectedAppSession(ctx context.Context, sessionID string, opts ...operations.Option) (*operations.RevokePortalConnectedAppSessionResponse, error)
 }

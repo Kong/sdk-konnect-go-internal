@@ -11,15 +11,6 @@ import (
 
 // AssetsSDK is a generated interface.
 type AssetsSDK interface {
-	// GetPortalAssetLogo - Get Logo
-	// Returns the logo of the portal.
-	GetPortalAssetLogo(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalAssetLogoResponse, error)
-	// ReplacePortalAssetLogo - Replace Logo
-	// Replaces the logo of the portal.
-	ReplacePortalAssetLogo(ctx context.Context, portalID string, replacePortalImageAsset *components.ReplacePortalImageAsset, opts ...operations.Option) (*operations.ReplacePortalAssetLogoResponse, error)
-	// GetPortalAssetLogoRaw - Get Logo (Raw)
-	// Returns the raw logo of the portal.
-	GetPortalAssetLogoRaw(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalAssetLogoRawResponse, error)
 	// GetPortalAssetFavicon - Get Favicon
 	// Returns the favicon of the portal.
 	GetPortalAssetFavicon(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalAssetFaviconResponse, error)
@@ -29,4 +20,13 @@ type AssetsSDK interface {
 	// GetPortalAssetFaviconRaw - Get Favicon (Raw)
 	// Returns the raw favicon of the portal.
 	GetPortalAssetFaviconRaw(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalAssetFaviconRawResponse, error)
+	// GetPortalAssetLogo - Get Logo
+	// Returns the logo of the portal.
+	GetPortalAssetLogo(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalAssetLogoResponse, error)
+	// ReplacePortalAssetLogo - Replace Logo
+	// Replaces the logo of the portal.
+	ReplacePortalAssetLogo(ctx context.Context, portalID string, replacePortalImageAsset *components.ReplacePortalImageAsset, opts ...operations.Option) (*operations.ReplacePortalAssetLogoResponse, error)
+	// GetPortalAssetLogoRaw - Get Logo (Raw)
+	// Returns the raw logo of the portal.
+	GetPortalAssetLogoRaw(ctx context.Context, portalID string, opts ...operations.Option) (*operations.GetPortalAssetLogoRawResponse, error)
 }

@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-// ListAuthServersQueryParamFilter - Filter auth servers returned in the response.
-type ListAuthServersQueryParamFilter struct {
+// Filter auth servers returned in the response.
+type Filter struct {
 	// Filter using **one** of the following operators: `eq`, `contains`
 	Name *components.LegacyStringFieldFilter `queryParam:"name=name"`
 	// Filter using **one** of the following operators: `eq`, `contains`
@@ -21,39 +21,39 @@ type ListAuthServersQueryParamFilter struct {
 	Labels *components.StringFieldEqualsFilter `queryParam:"name=labels"`
 }
 
-func (l *ListAuthServersQueryParamFilter) GetName() *components.LegacyStringFieldFilter {
-	if l == nil {
+func (f *Filter) GetName() *components.LegacyStringFieldFilter {
+	if f == nil {
 		return nil
 	}
-	return l.Name
+	return f.Name
 }
 
-func (l *ListAuthServersQueryParamFilter) GetDescription() *components.LegacyStringFieldFilter {
-	if l == nil {
+func (f *Filter) GetDescription() *components.LegacyStringFieldFilter {
+	if f == nil {
 		return nil
 	}
-	return l.Description
+	return f.Description
 }
 
-func (l *ListAuthServersQueryParamFilter) GetAudience() *components.LegacyStringFieldFilter {
-	if l == nil {
+func (f *Filter) GetAudience() *components.LegacyStringFieldFilter {
+	if f == nil {
 		return nil
 	}
-	return l.Audience
+	return f.Audience
 }
 
-func (l *ListAuthServersQueryParamFilter) GetID() *components.StringFieldEqualsFilter {
-	if l == nil {
+func (f *Filter) GetID() *components.StringFieldEqualsFilter {
+	if f == nil {
 		return nil
 	}
-	return l.ID
+	return f.ID
 }
 
-func (l *ListAuthServersQueryParamFilter) GetLabels() *components.StringFieldEqualsFilter {
-	if l == nil {
+func (f *Filter) GetLabels() *components.StringFieldEqualsFilter {
+	if f == nil {
 		return nil
 	}
-	return l.Labels
+	return f.Labels
 }
 
 type ListAuthServersRequest struct {
@@ -69,7 +69,7 @@ type ListAuthServersRequest struct {
 	//
 	Sort *string `queryParam:"style=form,explode=true,name=sort"`
 	// Filter auth servers returned in the response.
-	Filter *ListAuthServersQueryParamFilter `queryParam:"style=deepObject,explode=true,name=filter"`
+	Filter *Filter `queryParam:"style=deepObject,explode=true,name=filter"`
 }
 
 func (l *ListAuthServersRequest) GetPageSize() *int64 {
@@ -93,7 +93,7 @@ func (l *ListAuthServersRequest) GetSort() *string {
 	return l.Sort
 }
 
-func (l *ListAuthServersRequest) GetFilter() *ListAuthServersQueryParamFilter {
+func (l *ListAuthServersRequest) GetFilter() *Filter {
 	if l == nil {
 		return nil
 	}

@@ -37,22 +37,22 @@ func (l *Logging) GetAudits() *bool {
 	return l.Audits
 }
 
-// AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol - The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+// Protocol - The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
 //
 // **Requires a minimum runtime version of `2.4`**.
-type AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol string
+type Protocol string
 
 const (
-	AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocolHTTP  AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol = "http"
-	AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocolHTTPS AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol = "https"
+	ProtocolHTTP  Protocol = "http"
+	ProtocolHTTPS Protocol = "https"
 )
 
-func (e AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol) ToPointer() *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol {
+func (e Protocol) ToPointer() *Protocol {
 	return &e
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol) IsExact() bool {
+func (e *Protocol) IsExact() bool {
 	if e != nil {
 		switch *e {
 		case "http", "https":
@@ -89,13 +89,16 @@ type AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput struct {
 	// The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
 	//
 	// **Requires a minimum runtime version of `2.4`**.
-	Protocol *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol `json:"protocol,omitempty"`
+	Protocol *Protocol `json:"protocol,omitempty"`
 	// The path prefix of requests sent to the `targets`. Only valid with `targets`.
 	//
 	// **Requires a minimum runtime version of `2.4`**.
 	Path *string `json:"path,omitempty"`
 	// Configuration applied when proxying to the upstream service, including authentication.
-	Upstream *AIGatewayUpstreamConfigOutput `json:"upstream,omitempty"`
+	// Applies to `conversion-listener`, `conversion-only`, and `upstream-server` MCP Servers.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Upstream *AIGatewayMCPServerUpstreamConfigOutput `json:"upstream,omitempty"`
 	// Client certificates used for mutual TLS (mTLS) authentication with the upstream MCP server,
 	// referenced by name. Each entry must be the `name` of an existing AI Certificate on the same
 	// AI Gateway.
@@ -200,7 +203,7 @@ func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetBal
 	return nil
 }
 
-func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetProtocol() *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol {
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetProtocol() *Protocol {
 	if a == nil {
 		return nil
 	}
@@ -214,7 +217,7 @@ func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetPat
 	return a.Path
 }
 
-func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetUpstream() *AIGatewayUpstreamConfigOutput {
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigOutput) GetUpstream() *AIGatewayMCPServerUpstreamConfigOutput {
 	if a == nil {
 		return nil
 	}
@@ -262,13 +265,16 @@ type AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig struct {
 	// The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
 	//
 	// **Requires a minimum runtime version of `2.4`**.
-	Protocol *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol `json:"protocol,omitempty"`
+	Protocol *Protocol `json:"protocol,omitempty"`
 	// The path prefix of requests sent to the `targets`. Only valid with `targets`.
 	//
 	// **Requires a minimum runtime version of `2.4`**.
 	Path *string `json:"path,omitempty"`
 	// Configuration applied when proxying to the upstream service, including authentication.
-	Upstream *AIGatewayUpstreamConfig `json:"upstream,omitempty"`
+	// Applies to `conversion-listener`, `conversion-only`, and `upstream-server` MCP Servers.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	Upstream *AIGatewayMCPServerUpstreamConfig `json:"upstream,omitempty"`
 	// Client certificates used for mutual TLS (mTLS) authentication with the upstream MCP server,
 	// referenced by name. Each entry must be the `name` of an existing AI Certificate on the same
 	// AI Gateway.
@@ -373,7 +379,7 @@ func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetBalancerR
 	return nil
 }
 
-func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetProtocol() *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfigProtocol {
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetProtocol() *Protocol {
 	if a == nil {
 		return nil
 	}
@@ -387,7 +393,7 @@ func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetPath() *s
 	return a.Path
 }
 
-func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetUpstream() *AIGatewayUpstreamConfig {
+func (a *AIGatewayMCPServerWithUpstreamNoProxyConfigNoServerConfig) GetUpstream() *AIGatewayMCPServerUpstreamConfig {
 	if a == nil {
 		return nil
 	}

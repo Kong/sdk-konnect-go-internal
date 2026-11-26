@@ -46,32 +46,32 @@ func (m *Meta) GetPage() *TeamMappingResponsePage {
 	return m.Page
 }
 
-type Data struct {
+type TeamMappingResponseData struct {
 	// Group names.
 	Group *string `json:"group,omitempty"`
 	// Team ID's that belong to the specified group.
 	TeamIds []string `json:"team_ids,omitempty"`
 }
 
-func (d *Data) GetGroup() *string {
-	if d == nil {
+func (t *TeamMappingResponseData) GetGroup() *string {
+	if t == nil {
 		return nil
 	}
-	return d.Group
+	return t.Group
 }
 
-func (d *Data) GetTeamIds() []string {
-	if d == nil {
+func (t *TeamMappingResponseData) GetTeamIds() []string {
+	if t == nil {
 		return nil
 	}
-	return d.TeamIds
+	return t.TeamIds
 }
 
 // TeamMappingResponse - A paginated list response for a collection of team mappings.
 type TeamMappingResponse struct {
 	// Contains pagination data.
-	Meta *Meta  `json:"meta,omitempty"`
-	Data []Data `json:"data,omitempty"`
+	Meta *Meta                     `json:"meta,omitempty"`
+	Data []TeamMappingResponseData `json:"data,omitempty"`
 }
 
 func (t *TeamMappingResponse) GetMeta() *Meta {
@@ -81,7 +81,7 @@ func (t *TeamMappingResponse) GetMeta() *Meta {
 	return t.Meta
 }
 
-func (t *TeamMappingResponse) GetData() []Data {
+func (t *TeamMappingResponse) GetData() []TeamMappingResponseData {
 	if t == nil {
 		return nil
 	}

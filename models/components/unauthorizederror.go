@@ -7,27 +7,27 @@ import (
 	"fmt"
 )
 
-// UnauthorizedErrorStatus - The HTTP status code of the error. Useful when passing the response
+// Status - The HTTP status code of the error. Useful when passing the response
 // body to child properties in a frontend UI. Must be returned as an integer.
-type UnauthorizedErrorStatus int64
+type Status int64
 
 const (
-	UnauthorizedErrorStatusFourHundredAndOne UnauthorizedErrorStatus = 401
+	StatusFourHundredAndOne Status = 401
 )
 
-func (e UnauthorizedErrorStatus) ToPointer() *UnauthorizedErrorStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
-func (e *UnauthorizedErrorStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case 401:
-		*e = UnauthorizedErrorStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UnauthorizedErrorStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }

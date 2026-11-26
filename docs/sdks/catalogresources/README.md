@@ -15,9 +15,74 @@ Resources which have not yet been hydrated may still be mapped to a Catalog Serv
 
 ### Available Operations
 
+* [UpdateResource](#updateresource) - Update Resource
 * [ListResources](#listresources) - List Resources
 * [FetchResource](#fetchresource) - Get a Resource
-* [UpdateResource](#updateresource) - Update Resource
+
+## UpdateResource
+
+Updates a resource.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="update-resource" method="patch" path="/v1/integration-instances/{integrationInstanceId}/resources/{resourceId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.CatalogResources.UpdateResource(ctx, operations.UpdateResourceRequest{
+        IntegrationInstanceID: "3f51fa25-310a-421d-bd1a-007f859021a3",
+        ResourceID: "AflTNLY0tTQhv2my",
+        UpdateCatalogResource: components.UpdateCatalogResource{
+            Archived: sdkkonnectgo.Pointer(false),
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CatalogResource != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.UpdateResourceRequest](../../models/operations/updateresourcerequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*operations.UpdateResourceResponse](../../models/operations/updateresourceresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListResources
 
@@ -152,71 +217,6 @@ func main() {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## UpdateResource
-
-Updates a resource.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="update-resource" method="patch" path="/v1/integration-instances/{integrationInstanceId}/resources/{resourceId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.CatalogResources.UpdateResource(ctx, operations.UpdateResourceRequest{
-        IntegrationInstanceID: "3f51fa25-310a-421d-bd1a-007f859021a3",
-        ResourceID: "AflTNLY0tTQhv2my",
-        UpdateCatalogResource: components.UpdateCatalogResource{
-            Archived: sdkkonnectgo.Pointer(false),
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.CatalogResource != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.UpdateResourceRequest](../../models/operations/updateresourcerequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
-
-### Response
-
-**[*operations.UpdateResourceResponse](../../models/operations/updateresourceresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
 | sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
 | sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
 | sdkerrors.NotFoundError     | 404                         | application/problem+json    |

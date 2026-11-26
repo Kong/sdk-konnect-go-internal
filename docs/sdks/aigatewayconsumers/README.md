@@ -8,15 +8,15 @@ Individual consumers with credentials and group memberships for AI Gateway acces
 
 * [ListAiGatewayConsumers](#listaigatewayconsumers) - List AI Gateway Consumers
 * [CreateAiGatewayConsumer](#createaigatewayconsumer) - Create an AI Gateway Consumer
+* [ListAiGatewayConsumerCredentials](#listaigatewayconsumercredentials) - List AI Gateway Consumer Credentials
+* [CreateAiGatewayConsumerCredential](#createaigatewayconsumercredential) - Create an AI Gateway Consumer Credential
+* [GetAiGatewayConsumerCredential](#getaigatewayconsumercredential) - Get an AI Gateway Consumer Credential
+* [DeleteAiGatewayConsumerCredential](#deleteaigatewayconsumercredential) - Delete an AI Gateway Consumer Credential
 * [GetAiGatewayConsumer](#getaigatewayconsumer) - Get an AI Gateway Consumer
 * [UpdateAiGatewayConsumer](#updateaigatewayconsumer) - Update an AI Gateway Consumer
 * [DeleteAiGatewayConsumer](#deleteaigatewayconsumer) - Delete an AI Gateway Consumer
 * [ListAiGatewayConsumerGroupsForConsumer](#listaigatewayconsumergroupsforconsumer) - List Consumer Groups a Consumer belongs to
 * [UpdateAiGatewayConsumerGroupsForConsumer](#updateaigatewayconsumergroupsforconsumer) - Updates Consumer Groups a Consumer belongs to
-* [ListAiGatewayConsumerCredentials](#listaigatewayconsumercredentials) - List AI Gateway Consumer Credentials
-* [CreateAiGatewayConsumerCredential](#createaigatewayconsumercredential) - Create an AI Gateway Consumer Credential
-* [GetAiGatewayConsumerCredential](#getaigatewayconsumercredential) - Get an AI Gateway Consumer Credential
-* [DeleteAiGatewayConsumerCredential](#deleteaigatewayconsumercredential) - Delete an AI Gateway Consumer Credential
 
 ## ListAiGatewayConsumers
 
@@ -149,6 +149,272 @@ func main() {
 | sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
 | sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.ConflictError        | 409                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## ListAiGatewayConsumerCredentials
+
+Returns a list of all credentials for an AI Gateway consumer.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-ai-gateway-consumer-credentials" method="get" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGatewayConsumers.ListAiGatewayConsumerCredentials(ctx, operations.ListAiGatewayConsumerCredentialsRequest{
+        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        PageSize: sdkkonnectgo.Pointer[int64](10),
+        PageAfter: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListAIGatewayConsumerCredentialsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
+| `request`                                                                                                                | [operations.ListAiGatewayConsumerCredentialsRequest](../../models/operations/listaigatewayconsumercredentialsrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
+| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
+
+### Response
+
+**[*operations.ListAiGatewayConsumerCredentialsResponse](../../models/operations/listaigatewayconsumercredentialsresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
+| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## CreateAiGatewayConsumerCredential
+
+Creates a new credential for an AI Gateway consumer.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="create-ai-gateway-consumer-credential" method="post" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGatewayConsumers.CreateAiGatewayConsumerCredential(ctx, operations.CreateAiGatewayConsumerCredentialRequest{
+        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        CreateAIGatewayConsumerCredentialRequest: components.CreateAIGatewayConsumerCredentialRequest{
+            DisplayName: "Greg's Dev Key",
+            Name: "gregs-dev-key",
+            Labels: map[string]string{
+                "category": "finance",
+            },
+            ManagedBy: map[string]string{
+                "owner": "terraform",
+            },
+            Type: components.CreateAIGatewayConsumerCredentialRequestTypeAPIKey,
+            TTL: sdkkonnectgo.Pointer[int64](86400),
+            APIKey: sdkkonnectgo.Pointer("sk-387788hd3xnej"),
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.AIGatewayConsumerCredentialWithKey != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
+| `request`                                                                                                                  | [operations.CreateAiGatewayConsumerCredentialRequest](../../models/operations/createaigatewayconsumercredentialrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
+
+### Response
+
+**[*operations.CreateAiGatewayConsumerCredentialResponse](../../models/operations/createaigatewayconsumercredentialresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.BadRequestError      | 400                            | application/problem+json       |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
+| sdkerrors.ConflictError        | 409                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## GetAiGatewayConsumerCredential
+
+Returns the details of a specific credential for an AI Gateway consumer.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="get-ai-gateway-consumer-credential" method="get" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials/{credentialId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGatewayConsumers.GetAiGatewayConsumerCredential(ctx, operations.GetAiGatewayConsumerCredentialRequest{
+        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        CredentialID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.AIGatewayConsumerCredential != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
+| `request`                                                                                                            | [operations.GetAiGatewayConsumerCredentialRequest](../../models/operations/getaigatewayconsumercredentialrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
+| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
+
+### Response
+
+**[*operations.GetAiGatewayConsumerCredentialResponse](../../models/operations/getaigatewayconsumercredentialresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
+| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
+| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
+| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
+
+## DeleteAiGatewayConsumerCredential
+
+Removes a specific credential for an AI Gateway consumer.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="delete-ai-gateway-consumer-credential" method="delete" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials/{credentialId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.AIGatewayConsumers.DeleteAiGatewayConsumerCredential(ctx, operations.DeleteAiGatewayConsumerCredentialRequest{
+        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+        CredentialID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
+| `request`                                                                                                                  | [operations.DeleteAiGatewayConsumerCredentialRequest](../../models/operations/deleteaigatewayconsumercredentialrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
+| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
+
+### Response
+
+**[*operations.DeleteAiGatewayConsumerCredentialResponse](../../models/operations/deleteaigatewayconsumercredentialresponse.md), error**
+
+### Errors
+
+| Error Type                     | Status Code                    | Content Type                   |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
+| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
+| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
 | sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
 | sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
 
@@ -467,272 +733,6 @@ func main() {
 | Error Type                     | Status Code                    | Content Type                   |
 | ------------------------------ | ------------------------------ | ------------------------------ |
 | sdkerrors.BadRequestError      | 400                            | application/problem+json       |
-| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
-| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
-| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
-| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
-| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
-
-## ListAiGatewayConsumerCredentials
-
-Returns a list of all credentials for an AI Gateway consumer.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-ai-gateway-consumer-credentials" method="get" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.AIGatewayConsumers.ListAiGatewayConsumerCredentials(ctx, operations.ListAiGatewayConsumerCredentialsRequest{
-        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        PageSize: sdkkonnectgo.Pointer[int64](10),
-        PageAfter: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListAIGatewayConsumerCredentialsResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                                    | :heavy_check_mark:                                                                                                       | The context to use for the request.                                                                                      |
-| `request`                                                                                                                | [operations.ListAiGatewayConsumerCredentialsRequest](../../models/operations/listaigatewayconsumercredentialsrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
-| `opts`                                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
-
-### Response
-
-**[*operations.ListAiGatewayConsumerCredentialsResponse](../../models/operations/listaigatewayconsumercredentialsresponse.md), error**
-
-### Errors
-
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
-| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
-| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
-| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
-| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
-
-## CreateAiGatewayConsumerCredential
-
-Creates a new credential for an AI Gateway consumer.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="create-ai-gateway-consumer-credential" method="post" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.AIGatewayConsumers.CreateAiGatewayConsumerCredential(ctx, operations.CreateAiGatewayConsumerCredentialRequest{
-        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        CreateAIGatewayConsumerCredentialRequest: components.CreateAIGatewayConsumerCredentialRequest{
-            DisplayName: "Greg's Dev Key",
-            Name: "gregs-dev-key",
-            Labels: map[string]string{
-                "category": "finance",
-            },
-            ManagedBy: map[string]string{
-                "owner": "terraform",
-            },
-            Type: components.CreateAIGatewayConsumerCredentialRequestTypeAPIKey,
-            TTL: sdkkonnectgo.Pointer[int64](86400),
-            APIKey: sdkkonnectgo.Pointer("sk-387788hd3xnej"),
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.AIGatewayConsumerCredentialWithKey != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
-| `request`                                                                                                                  | [operations.CreateAiGatewayConsumerCredentialRequest](../../models/operations/createaigatewayconsumercredentialrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
-| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
-
-### Response
-
-**[*operations.CreateAiGatewayConsumerCredentialResponse](../../models/operations/createaigatewayconsumercredentialresponse.md), error**
-
-### Errors
-
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| sdkerrors.BadRequestError      | 400                            | application/problem+json       |
-| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
-| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
-| sdkerrors.ConflictError        | 409                            | application/problem+json       |
-| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
-| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
-
-## GetAiGatewayConsumerCredential
-
-Returns the details of a specific credential for an AI Gateway consumer.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-ai-gateway-consumer-credential" method="get" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials/{credentialId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.AIGatewayConsumers.GetAiGatewayConsumerCredential(ctx, operations.GetAiGatewayConsumerCredentialRequest{
-        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        CredentialID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.AIGatewayConsumerCredential != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
-| `request`                                                                                                            | [operations.GetAiGatewayConsumerCredentialRequest](../../models/operations/getaigatewayconsumercredentialrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-| `opts`                                                                                                               | [][operations.Option](../../models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
-
-### Response
-
-**[*operations.GetAiGatewayConsumerCredentialResponse](../../models/operations/getaigatewayconsumercredentialresponse.md), error**
-
-### Errors
-
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
-| sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
-| sdkerrors.NotFoundError        | 404                            | application/problem+json       |
-| sdkerrors.TooManyRequestsError | 429                            | application/problem+json       |
-| sdkerrors.SDKError             | 4XX, 5XX                       | \*/\*                          |
-
-## DeleteAiGatewayConsumerCredential
-
-Removes a specific credential for an AI Gateway consumer.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="delete-ai-gateway-consumer-credential" method="delete" path="/v1/ai-gateways/{gatewayId}/consumers/{consumerId}/credentials/{credentialId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.AIGatewayConsumers.DeleteAiGatewayConsumerCredential(ctx, operations.DeleteAiGatewayConsumerCredentialRequest{
-        GatewayID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        ConsumerID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-        CredentialID: "bf138ba2-c9b1-4229-b268-04d9d8a6410b",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                                      | :heavy_check_mark:                                                                                                         | The context to use for the request.                                                                                        |
-| `request`                                                                                                                  | [operations.DeleteAiGatewayConsumerCredentialRequest](../../models/operations/deleteaigatewayconsumercredentialrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
-| `opts`                                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                                   | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
-
-### Response
-
-**[*operations.DeleteAiGatewayConsumerCredentialResponse](../../models/operations/deleteaigatewayconsumercredentialresponse.md), error**
-
-### Errors
-
-| Error Type                     | Status Code                    | Content Type                   |
-| ------------------------------ | ------------------------------ | ------------------------------ |
 | sdkerrors.UnauthorizedError    | 401                            | application/problem+json       |
 | sdkerrors.ForbiddenError       | 403                            | application/problem+json       |
 | sdkerrors.NotFoundError        | 404                            | application/problem+json       |

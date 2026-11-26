@@ -86,8 +86,8 @@ func (c *CreateAIGatewayAgentRequestLogging) GetMaxPayloadSize() *int64 {
 	return c.MaxPayloadSize
 }
 
-// CreateAIGatewayAgentRequestConfig - Configuration for the agent. The structure varies depending on the agent type.
-type CreateAIGatewayAgentRequestConfig struct {
+// Config - Configuration for the agent. The structure varies depending on the agent type.
+type Config struct {
 	// Helper field to set protocol, host, port and path of the upstream A2A Agent using a URL.
 	// This is the same as a Kong Gateway Service URL: ${scheme}://${host}:${port}/${path}
 	//
@@ -143,123 +143,123 @@ type CreateAIGatewayAgentRequestConfig struct {
 	CaCertificates []string `json:"ca_certificates,omitempty"`
 }
 
-func (c CreateAIGatewayAgentRequestConfig) MarshalJSON() ([]byte, error) {
+func (c Config) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(c, "", false)
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) UnmarshalJSON(data []byte) error {
+func (c *Config) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetURL() *string {
+func (c *Config) GetURL() *string {
 	if c == nil {
 		return nil
 	}
 	return c.URL
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetTargets() []AIGatewayUpstreamTarget {
+func (c *Config) GetTargets() []AIGatewayUpstreamTarget {
 	if c == nil {
 		return nil
 	}
 	return c.Targets
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetBalancer() *AIGatewayUpstreamBalancerConfig {
+func (c *Config) GetBalancer() *AIGatewayUpstreamBalancerConfig {
 	if c == nil {
 		return nil
 	}
 	return c.Balancer
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetBalancerConsistentHashing() *AIGatewayUpstreamBalancerConsistentHashingConfig {
+func (c *Config) GetBalancerConsistentHashing() *AIGatewayUpstreamBalancerConsistentHashingConfig {
 	if v := c.GetBalancer(); v != nil {
 		return v.AIGatewayUpstreamBalancerConsistentHashingConfig
 	}
 	return nil
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetBalancerLeastConnections() *AIGatewayUpstreamBalancerLeastConnectionsConfig {
+func (c *Config) GetBalancerLeastConnections() *AIGatewayUpstreamBalancerLeastConnectionsConfig {
 	if v := c.GetBalancer(); v != nil {
 		return v.AIGatewayUpstreamBalancerLeastConnectionsConfig
 	}
 	return nil
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetBalancerLowestLatency() *AIGatewayUpstreamBalancerLowestLatencyConfig {
+func (c *Config) GetBalancerLowestLatency() *AIGatewayUpstreamBalancerLowestLatencyConfig {
 	if v := c.GetBalancer(); v != nil {
 		return v.AIGatewayUpstreamBalancerLowestLatencyConfig
 	}
 	return nil
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetBalancerRoundRobin() *AIGatewayUpstreamBalancerRoundRobinConfig {
+func (c *Config) GetBalancerRoundRobin() *AIGatewayUpstreamBalancerRoundRobinConfig {
 	if v := c.GetBalancer(); v != nil {
 		return v.AIGatewayUpstreamBalancerRoundRobinConfig
 	}
 	return nil
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetProtocol() *CreateAIGatewayAgentRequestProtocol {
+func (c *Config) GetProtocol() *CreateAIGatewayAgentRequestProtocol {
 	if c == nil {
 		return nil
 	}
 	return c.Protocol
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetPath() *string {
+func (c *Config) GetPath() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Path
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetUpstream() *AIGatewayUpstreamConfig {
+func (c *Config) GetUpstream() *AIGatewayUpstreamConfig {
 	if c == nil {
 		return nil
 	}
 	return c.Upstream
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetRoute() *AIGatewayRouteConfig {
+func (c *Config) GetRoute() *AIGatewayRouteConfig {
 	if c == nil {
 		return nil
 	}
 	return c.Route
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetProxy() *AIGatewayProxyConfig {
+func (c *Config) GetProxy() *AIGatewayProxyConfig {
 	if c == nil {
 		return nil
 	}
 	return c.Proxy
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetMaxRequestBodySize() *int64 {
+func (c *Config) GetMaxRequestBodySize() *int64 {
 	if c == nil {
 		return nil
 	}
 	return c.MaxRequestBodySize
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetLogging() *CreateAIGatewayAgentRequestLogging {
+func (c *Config) GetLogging() *CreateAIGatewayAgentRequestLogging {
 	if c == nil {
 		return nil
 	}
 	return c.Logging
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetCertificates() []string {
+func (c *Config) GetCertificates() []string {
 	if c == nil {
 		return nil
 	}
 	return c.Certificates
 }
 
-func (c *CreateAIGatewayAgentRequestConfig) GetCaCertificates() []string {
+func (c *Config) GetCaCertificates() []string {
 	if c == nil {
 		return nil
 	}
@@ -280,7 +280,7 @@ type CreateAIGatewayAgentRequest struct {
 	// Access control configuration for an agent.
 	Access *AIGatewayAgentAccess `json:"access,omitempty"`
 	// Configuration for the agent. The structure varies depending on the agent type.
-	Config CreateAIGatewayAgentRequestConfig `json:"config"`
+	Config Config `json:"config"`
 	// Public labels store information about an entity that can be used for filtering a list of objects.
 	//
 	// Public labels are intended to store **PUBLIC** metadata.
@@ -350,9 +350,9 @@ func (c *CreateAIGatewayAgentRequest) GetAccess() *AIGatewayAgentAccess {
 	return c.Access
 }
 
-func (c *CreateAIGatewayAgentRequest) GetConfig() CreateAIGatewayAgentRequestConfig {
+func (c *CreateAIGatewayAgentRequest) GetConfig() Config {
 	if c == nil {
-		return CreateAIGatewayAgentRequestConfig{}
+		return Config{}
 	}
 	return c.Config
 }

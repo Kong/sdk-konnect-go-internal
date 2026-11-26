@@ -1,6 +1,8 @@
 # Protocol
 
-The protocol to connect with.
+The protocol used to reach the `targets`. Only valid with `targets`. If unset, the gateway uses `https`.
+
+**Requires a minimum runtime version of `2.4`**.
 
 ## Example Usage
 

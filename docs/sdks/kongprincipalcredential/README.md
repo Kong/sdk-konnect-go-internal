@@ -8,6 +8,11 @@ API keys (system-generated or imported) and basic auth username/password pairs.
 
 ### Available Operations
 
+* [CreatePrincipalKey](#createprincipalkey) - Create a principal API key
+* [ListPrincipalKeys](#listprincipalkeys) - List all API keys for a principal
+* [UpdatePrincipalKey](#updateprincipalkey) - Update a principal API key
+* [GetIdentityKey](#getidentitykey) - Get a principal API key
+* [DeletePrincipalKey](#deleteprincipalkey) - Delete an API key
 * [ListPrincipalBasicAuths](#listprincipalbasicauths) - List all basic auth credentials
 * [CreatePrincipalBasicAuth](#createprincipalbasicauth) - Create a basic auth credential
 * [GetPrincipalBasicAuth](#getprincipalbasicauth) - Get a basic auth credential
@@ -21,11 +26,343 @@ API keys (system-generated or imported) and basic auth username/password pairs.
 * [UpdatePassword](#updatepassword) - Update a password
 * [ReplacePassword](#replacepassword) - Replace a password
 * [DeletePassword](#deletepassword) - Delete a password
-* [CreatePrincipalKey](#createprincipalkey) - Create a principal API key
-* [ListPrincipalKeys](#listprincipalkeys) - List all API keys for a principal
-* [UpdatePrincipalKey](#updateprincipalkey) - Update a principal API key
-* [GetIdentityKey](#getidentitykey) - Get a principal API key
-* [DeletePrincipalKey](#deleteprincipalkey) - Delete an API key
+
+## CreatePrincipalKey
+
+Creates a new API key for the specified principal.
+Keys can be system-generated (v1) or imported with a custom secret, and may have an optional expiration date.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="create-principal-key" method="post" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.KongPrincipalCredential.CreatePrincipalKey(ctx, operations.CreatePrincipalKeyRequest{
+        DirectoryID: "57aa00d4-42e1-46f2-926d-eb1796773a80",
+        PrincipalID: "28de680e-3db1-46f0-8de7-5f8b89b8f80b",
+        CreatePrincipalKeyBody: components.CreateCreatePrincipalKeyBodyV1(
+            components.CreatePrincipalKeyBodyv1{},
+        ),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.KongPrincipalKeyWithSecret != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.CreatePrincipalKeyRequest](../../models/operations/createprincipalkeyrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+### Response
+
+**[*operations.CreatePrincipalKeyResponse](../../models/operations/createprincipalkeyresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.ConflictError     | 409                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## ListPrincipalKeys
+
+Retrieves a paginated list of all API keys associated with the specified principal.
+Results can be sorted by created_at, updated_at, or name.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="list-principal-keys" method="get" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.KongPrincipalCredential.ListPrincipalKeys(ctx, operations.ListPrincipalKeysRequest{
+        DirectoryID: "bdc010b0-3c43-4209-ab61-d9ce1f2288a8",
+        PrincipalID: "e2c75760-eef8-472a-b3e2-09ce52c960e8",
+        Page: &components.CursorPageParameters{
+            Size: sdkkonnectgo.Pointer[int64](10),
+            After: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+            Before: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+        },
+        Sort: sdkkonnectgo.Pointer("created_at desc"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListKongPrincipalKeys != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.ListPrincipalKeysRequest](../../models/operations/listprincipalkeysrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+
+### Response
+
+**[*operations.ListPrincipalKeysResponse](../../models/operations/listprincipalkeysresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## UpdatePrincipalKey
+
+Partially updates an existing API key's metadata.
+Note: The key secret cannot be modified after creation.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="update-principal-key" method="patch" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys/{apiKeyId}" -->
+```go
+package main
+
+import (
+	"github.com/Kong/sdk-konnect-go/optionalnullable"
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/types"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.KongPrincipalCredential.UpdatePrincipalKey(ctx, operations.UpdatePrincipalKeyRequest{
+        DirectoryID: "bf6936e8-ee51-4b26-9dc9-8d20cff07624",
+        PrincipalID: "7136f099-1c3b-48b2-aad2-a4532ad54772",
+        APIKeyID: "4ae93307-c032-4675-bc67-60797bf74224",
+        UpdatePrincipalKeyBody: components.UpdatePrincipalKeyBody{
+            ExpiresAt: optionalnullable.From(types.MustNewTimeFromString("2022-11-04T20:10:06.927Z")),
+            ManagedBy: map[string]*string{
+                "owner": sdkkonnectgo.Pointer("terraform"),
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.KongPrincipalKey != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.UpdatePrincipalKeyRequest](../../models/operations/updateprincipalkeyrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+### Response
+
+**[*operations.UpdatePrincipalKeyResponse](../../models/operations/updateprincipalkeyresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.ConflictError     | 409                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## GetIdentityKey
+
+Retrieves detailed information about a specific API key.
+Note: The key secret is not returned; it is only available when the key is first created.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="get-identity-key" method="get" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys/{apiKeyId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.KongPrincipalCredential.GetIdentityKey(ctx, operations.GetIdentityKeyRequest{
+        DirectoryID: "7c7d4c1f-cb90-4d73-bfcb-8e406c603393",
+        PrincipalID: "6a668bb0-6965-499f-8d5a-404632e44cf6",
+        APIKeyID: "1608ff96-7d46-4d00-8e0b-e5a25940678e",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.KongPrincipalKey != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.GetIdentityKeyRequest](../../models/operations/getidentitykeyrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*operations.GetIdentityKeyResponse](../../models/operations/getidentitykeyresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## DeletePrincipalKey
+
+Permanently deletes an API key, immediately revoking its access.
+This operation cannot be undone.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="delete-principal-key" method="delete" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys/{apiKeyId}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"github.com/Kong/sdk-konnect-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.KongPrincipalCredential.DeletePrincipalKey(ctx, operations.DeletePrincipalKeyRequest{
+        DirectoryID: "57944b92-3e96-4fd5-9b2e-4ed2c7086dab",
+        PrincipalID: "6f4cc144-7623-42a7-8571-31b4226cefd0",
+        APIKeyID: "89e8482a-9f51-4f1f-a6c1-b80fe7cf18bf",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [operations.DeletePrincipalKeyRequest](../../models/operations/deleteprincipalkeyrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+
+### Response
+
+**[*operations.DeletePrincipalKeyResponse](../../models/operations/deleteprincipalkeyresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## ListPrincipalBasicAuths
 
@@ -899,343 +1236,6 @@ func main() {
 ### Response
 
 **[*operations.DeletePasswordResponse](../../models/operations/deletepasswordresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## CreatePrincipalKey
-
-Creates a new API key for the specified principal.
-Keys can be system-generated (v1) or imported with a custom secret, and may have an optional expiration date.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="create-principal-key" method="post" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.KongPrincipalCredential.CreatePrincipalKey(ctx, operations.CreatePrincipalKeyRequest{
-        DirectoryID: "57aa00d4-42e1-46f2-926d-eb1796773a80",
-        PrincipalID: "28de680e-3db1-46f0-8de7-5f8b89b8f80b",
-        CreatePrincipalKeyBody: components.CreateCreatePrincipalKeyBodyV1(
-            components.CreatePrincipalKeyBodyv1{},
-        ),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.KongPrincipalKeyWithSecret != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.CreatePrincipalKeyRequest](../../models/operations/createprincipalkeyrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
-
-### Response
-
-**[*operations.CreatePrincipalKeyResponse](../../models/operations/createprincipalkeyresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ListPrincipalKeys
-
-Retrieves a paginated list of all API keys associated with the specified principal.
-Results can be sorted by created_at, updated_at, or name.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="list-principal-keys" method="get" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.KongPrincipalCredential.ListPrincipalKeys(ctx, operations.ListPrincipalKeysRequest{
-        DirectoryID: "bdc010b0-3c43-4209-ab61-d9ce1f2288a8",
-        PrincipalID: "e2c75760-eef8-472a-b3e2-09ce52c960e8",
-        Page: &components.CursorPageParameters{
-            Size: sdkkonnectgo.Pointer[int64](10),
-            After: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-            Before: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-        },
-        Sort: sdkkonnectgo.Pointer("created_at desc"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListKongPrincipalKeys != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.ListPrincipalKeysRequest](../../models/operations/listprincipalkeysrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
-
-### Response
-
-**[*operations.ListPrincipalKeysResponse](../../models/operations/listprincipalkeysresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## UpdatePrincipalKey
-
-Partially updates an existing API key's metadata.
-Note: The key secret cannot be modified after creation.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="update-principal-key" method="patch" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys/{apiKeyId}" -->
-```go
-package main
-
-import (
-	"github.com/Kong/sdk-konnect-go/optionalnullable"
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/types"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.KongPrincipalCredential.UpdatePrincipalKey(ctx, operations.UpdatePrincipalKeyRequest{
-        DirectoryID: "bf6936e8-ee51-4b26-9dc9-8d20cff07624",
-        PrincipalID: "7136f099-1c3b-48b2-aad2-a4532ad54772",
-        APIKeyID: "4ae93307-c032-4675-bc67-60797bf74224",
-        UpdatePrincipalKeyBody: components.UpdatePrincipalKeyBody{
-            ExpiresAt: optionalnullable.From(types.MustNewTimeFromString("2022-11-04T20:10:06.927Z")),
-            ManagedBy: map[string]*string{
-                "owner": sdkkonnectgo.Pointer("terraform"),
-            },
-        },
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.KongPrincipalKey != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.UpdatePrincipalKeyRequest](../../models/operations/updateprincipalkeyrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
-
-### Response
-
-**[*operations.UpdatePrincipalKeyResponse](../../models/operations/updateprincipalkeyresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.BadRequestError   | 400                         | application/problem+json    |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.ConflictError     | 409                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## GetIdentityKey
-
-Retrieves detailed information about a specific API key.
-Note: The key secret is not returned; it is only available when the key is first created.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="get-identity-key" method="get" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys/{apiKeyId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.KongPrincipalCredential.GetIdentityKey(ctx, operations.GetIdentityKeyRequest{
-        DirectoryID: "7c7d4c1f-cb90-4d73-bfcb-8e406c603393",
-        PrincipalID: "6a668bb0-6965-499f-8d5a-404632e44cf6",
-        APIKeyID: "1608ff96-7d46-4d00-8e0b-e5a25940678e",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.KongPrincipalKey != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetIdentityKeyRequest](../../models/operations/getidentitykeyrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
-
-### Response
-
-**[*operations.GetIdentityKeyResponse](../../models/operations/getidentitykeyresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## DeletePrincipalKey
-
-Permanently deletes an API key, immediately revoking its access.
-This operation cannot be undone.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="delete-principal-key" method="delete" path="/v2/directories/{directoryId}/principals/{principalId}/api-keys/{apiKeyId}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"github.com/Kong/sdk-konnect-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.KongPrincipalCredential.DeletePrincipalKey(ctx, operations.DeletePrincipalKeyRequest{
-        DirectoryID: "57944b92-3e96-4fd5-9b2e-4ed2c7086dab",
-        PrincipalID: "6f4cc144-7623-42a7-8571-31b4226cefd0",
-        APIKeyID: "89e8482a-9f51-4f1f-a6c1-b80fe7cf18bf",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.DeletePrincipalKeyRequest](../../models/operations/deleteprincipalkeyrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
-
-### Response
-
-**[*operations.DeletePrincipalKeyResponse](../../models/operations/deleteprincipalkeyresponse.md), error**
 
 ### Errors
 

@@ -25,7 +25,7 @@ type AuthGCPWorkloadIdentityFederation struct {
 func CreateAuthGCPWorkloadIdentityFederationAwsIam(awsIam AuthGCPWorkloadIdentityFederationAwsIam) AuthGCPWorkloadIdentityFederation {
 	typ := AuthGCPWorkloadIdentityFederationTypeAwsIam
 
-	typStr := AuthGCPWorkloadIdentityFederationAwsIamSource(typ)
+	typStr := Source(typ)
 	awsIam.Source = typStr
 
 	return AuthGCPWorkloadIdentityFederation{

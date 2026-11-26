@@ -7,6 +7,8 @@ Vault providers configure credential providers for token-vault enabled directori
 
 ### Available Operations
 
+* [ListCredentialProviderTemplates](#listcredentialprovidertemplates) - List credential provider templates
+* [GetCredentialProviderTemplate](#getcredentialprovidertemplate) - Get a credential provider template
 * [CreateVaultProvider](#createvaultprovider) - Create a vault provider
 * [ListVaultProviders](#listvaultproviders) - List vault providers
 * [GetVaultProvider](#getvaultprovider) - Get a vault provider
@@ -18,8 +20,125 @@ Vault providers configure credential providers for token-vault enabled directori
 * [GetVaultProviderCredential](#getvaultprovidercredential) - Get a specific credential
 * [UpdateVaultProviderCredential](#updatevaultprovidercredential) - Update a shared credential's value
 * [DeleteVaultProviderCredential](#deletevaultprovidercredential) - Delete a specific provider credential
-* [ListCredentialProviderTemplates](#listcredentialprovidertemplates) - List credential provider templates
-* [GetCredentialProviderTemplate](#getcredentialprovidertemplate) - Get a credential provider template
+
+## ListCredentialProviderTemplates
+
+Returns a paginated list of vault credential provider templates available to base a provider on.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listCredentialProviderTemplates" method="get" path="/v2/credential-provider-templates" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.TokenVaultProviders.ListCredentialProviderTemplates(ctx, &components.CursorPageParameters{
+        Size: sdkkonnectgo.Pointer[int64](10),
+        After: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+        Before: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListCredentialProviderTemplates != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `ctx`                                                                               | [context.Context](https://pkg.go.dev/context#Context)                               | :heavy_check_mark:                                                                  | The context to use for the request.                                                 |
+| `page`                                                                              | [*components.CursorPageParameters](../../models/components/cursorpageparameters.md) | :heavy_minus_sign:                                                                  | Determines which page of the collection to retrieve.                                |
+| `opts`                                                                              | [][operations.Option](../../models/operations/option.md)                            | :heavy_minus_sign:                                                                  | The options for this request.                                                       |
+
+### Response
+
+**[*operations.ListCredentialProviderTemplatesResponse](../../models/operations/listcredentialprovidertemplatesresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
+
+## GetCredentialProviderTemplate
+
+Retrieves a single vault credential provider template by its name.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getCredentialProviderTemplate" method="get" path="/v2/credential-provider-templates/{credentialProviderTemplateName}" -->
+```go
+package main
+
+import(
+	"context"
+	"github.com/Kong/sdk-konnect-go/models/components"
+	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := sdkkonnectgo.New(
+        sdkkonnectgo.WithSecurity(components.Security{
+            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
+        }),
+    )
+
+    res, err := s.TokenVaultProviders.GetCredentialProviderTemplate(ctx, components.ProviderTemplateNameGithub)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CredentialProviderTemplate != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
+| `credentialProviderTemplateName`                                                   | [components.ProviderTemplateName](../../models/components/providertemplatename.md) | :heavy_check_mark:                                                                 | Name of the vault credential provider template                                     | github                                                                             |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
+
+### Response
+
+**[*operations.GetCredentialProviderTemplateResponse](../../models/operations/getcredentialprovidertemplateresponse.md), error**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
+| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
+| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
+| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
 
 ## CreateVaultProvider
 
@@ -735,125 +854,6 @@ func main() {
 ### Response
 
 **[*operations.DeleteVaultProviderCredentialResponse](../../models/operations/deletevaultprovidercredentialresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## ListCredentialProviderTemplates
-
-Returns a paginated list of vault credential provider templates available to base a provider on.
-
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="listCredentialProviderTemplates" method="get" path="/v2/credential-provider-templates" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.TokenVaultProviders.ListCredentialProviderTemplates(ctx, &components.CursorPageParameters{
-        Size: sdkkonnectgo.Pointer[int64](10),
-        After: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-        Before: sdkkonnectgo.Pointer("ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.ListCredentialProviderTemplates != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `ctx`                                                                               | [context.Context](https://pkg.go.dev/context#Context)                               | :heavy_check_mark:                                                                  | The context to use for the request.                                                 |
-| `page`                                                                              | [*components.CursorPageParameters](../../models/components/cursorpageparameters.md) | :heavy_minus_sign:                                                                  | Determines which page of the collection to retrieve.                                |
-| `opts`                                                                              | [][operations.Option](../../models/operations/option.md)                            | :heavy_minus_sign:                                                                  | The options for this request.                                                       |
-
-### Response
-
-**[*operations.ListCredentialProviderTemplatesResponse](../../models/operations/listcredentialprovidertemplatesresponse.md), error**
-
-### Errors
-
-| Error Type                  | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.UnauthorizedError | 401                         | application/problem+json    |
-| sdkerrors.ForbiddenError    | 403                         | application/problem+json    |
-| sdkerrors.NotFoundError     | 404                         | application/problem+json    |
-| sdkerrors.SDKError          | 4XX, 5XX                    | \*/\*                       |
-
-## GetCredentialProviderTemplate
-
-Retrieves a single vault credential provider template by its name.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="getCredentialProviderTemplate" method="get" path="/v2/credential-provider-templates/{credentialProviderTemplateName}" -->
-```go
-package main
-
-import(
-	"context"
-	"github.com/Kong/sdk-konnect-go/models/components"
-	sdkkonnectgo "github.com/Kong/sdk-konnect-go"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := sdkkonnectgo.New(
-        sdkkonnectgo.WithSecurity(components.Security{
-            PersonalAccessToken: sdkkonnectgo.Pointer("<YOUR_BEARER_TOKEN_HERE>"),
-        }),
-    )
-
-    res, err := s.TokenVaultProviders.GetCredentialProviderTemplate(ctx, components.ProviderTemplateNameGithub)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.CredentialProviderTemplate != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |                                                                                    |
-| `credentialProviderTemplateName`                                                   | [components.ProviderTemplateName](../../models/components/providertemplatename.md) | :heavy_check_mark:                                                                 | Name of the vault credential provider template                                     | github                                                                             |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |                                                                                    |
-
-### Response
-
-**[*operations.GetCredentialProviderTemplateResponse](../../models/operations/getcredentialprovidertemplateresponse.md), error**
 
 ### Errors
 

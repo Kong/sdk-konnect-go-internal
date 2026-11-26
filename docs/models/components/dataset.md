@@ -1,6 +1,6 @@
 # Dataset
 
-The data the export holds.
+The data that each export holds.
 
 ## Example Usage
 

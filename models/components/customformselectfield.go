@@ -30,9 +30,6 @@ type CustomFormSelectField struct {
 func CreateCustomFormSelectFieldSingleSelect(singleSelect CustomFormSingleSelectField) CustomFormSelectField {
 	typ := CustomFormSelectFieldTypeSingleSelect
 
-	typStr := CustomFormSingleSelectFieldMode(typ)
-	singleSelect.Mode = typStr
-
 	return CustomFormSelectField{
 		CustomFormSingleSelectField: &singleSelect,
 		Type:                        typ,
@@ -41,9 +38,6 @@ func CreateCustomFormSelectFieldSingleSelect(singleSelect CustomFormSingleSelect
 
 func CreateCustomFormSelectFieldMultiSelect(multiSelect CustomFormMultiSelectField) CustomFormSelectField {
 	typ := CustomFormSelectFieldTypeMultiSelect
-
-	typStr := CustomFormMultiSelectFieldMode(typ)
-	multiSelect.Mode = typStr
 
 	return CustomFormSelectField{
 		CustomFormMultiSelectField: &multiSelect,

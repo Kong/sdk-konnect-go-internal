@@ -76,7 +76,7 @@ func (g *GetNodeCompatibilityStatus) GetIssues() []NodeCompatibilityIssue {
 	return g.Issues
 }
 
-type Item struct {
+type GetNodeItem struct {
 	ID                  *string                     `json:"id,omitempty"`
 	Version             *string                     `json:"version,omitempty"`
 	Hostname            *string                     `json:"hostname,omitempty"`
@@ -90,89 +90,89 @@ type Item struct {
 	CompatibilityStatus *GetNodeCompatibilityStatus `json:"compatibility_status,omitempty"`
 }
 
-func (i *Item) GetID() *string {
-	if i == nil {
+func (g *GetNodeItem) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return i.ID
+	return g.ID
 }
 
-func (i *Item) GetVersion() *string {
-	if i == nil {
+func (g *GetNodeItem) GetVersion() *string {
+	if g == nil {
 		return nil
 	}
-	return i.Version
+	return g.Version
 }
 
-func (i *Item) GetHostname() *string {
-	if i == nil {
+func (g *GetNodeItem) GetHostname() *string {
+	if g == nil {
 		return nil
 	}
-	return i.Hostname
+	return g.Hostname
 }
 
-func (i *Item) GetLastPing() *int64 {
-	if i == nil {
+func (g *GetNodeItem) GetLastPing() *int64 {
+	if g == nil {
 		return nil
 	}
-	return i.LastPing
+	return g.LastPing
 }
 
-func (i *Item) GetType() *string {
-	if i == nil {
+func (g *GetNodeItem) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return i.Type
+	return g.Type
 }
 
-func (i *Item) GetCreatedAt() *int64 {
-	if i == nil {
+func (g *GetNodeItem) GetCreatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return i.CreatedAt
+	return g.CreatedAt
 }
 
-func (i *Item) GetUpdatedAt() *int64 {
-	if i == nil {
+func (g *GetNodeItem) GetUpdatedAt() *int64 {
+	if g == nil {
 		return nil
 	}
-	return i.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (i *Item) GetConfigHash() *string {
-	if i == nil {
+func (g *GetNodeItem) GetConfigHash() *string {
+	if g == nil {
 		return nil
 	}
-	return i.ConfigHash
+	return g.ConfigHash
 }
 
-func (i *Item) GetConfigSync() *GetNodeConfigSync {
-	if i == nil {
+func (g *GetNodeItem) GetConfigSync() *GetNodeConfigSync {
+	if g == nil {
 		return nil
 	}
-	return i.ConfigSync
+	return g.ConfigSync
 }
 
-func (i *Item) GetErrors() []NodeError {
-	if i == nil {
+func (g *GetNodeItem) GetErrors() []NodeError {
+	if g == nil {
 		return nil
 	}
-	return i.Errors
+	return g.Errors
 }
 
-func (i *Item) GetCompatibilityStatus() *GetNodeCompatibilityStatus {
-	if i == nil {
+func (g *GetNodeItem) GetCompatibilityStatus() *GetNodeCompatibilityStatus {
+	if g == nil {
 		return nil
 	}
-	return i.CompatibilityStatus
+	return g.CompatibilityStatus
 }
 
 // GetNode - Example response
 type GetNode struct {
-	Item *Item `json:"item,omitempty"`
+	Item *GetNodeItem `json:"item,omitempty"`
 }
 
-func (g *GetNode) GetItem() *Item {
+func (g *GetNode) GetItem() *GetNodeItem {
 	if g == nil {
 		return nil
 	}
