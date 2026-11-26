@@ -1,7 +1,7 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 94d8d4f04fcd966c57e448343b6a576d
+  docChecksum: 929dbb1a2d4433340f6b65035caca8da
   docVersion: 3.21.6
   speakeasyVersion: 1.812.1
   generationVersion: 2.968.17
@@ -501,6 +501,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategykeyauthresponseconfig.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseidentityrealms.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseprincipals.md: {}
+  docs/models/components/aigatewayauthstrategykeyauthresponseprincipalscache.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponsescope.md: {}
   docs/models/components/aigatewayauthstrategykeyauthscope.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnect.md: {}
@@ -542,6 +543,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectmapidentitiesfrom.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectpasswordparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectprincipals.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectprincipalscache.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectproofofpossessiondpop.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectproofofpossessionmtls.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectprotectedresourcemetadata.md: {}
@@ -590,6 +592,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectresponsemode.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsepasswordparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprincipals.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseprincipalscache.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessiondpop.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessionmtls.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprotectedresourcemetadata.md: {}
@@ -5590,6 +5593,7 @@ trackedFiles:
   docs/models/components/principal.md: {}
   docs/models/components/principaladmin.md: {}
   docs/models/components/principals.md: {}
+  docs/models/components/principalscache.md: {}
   docs/models/components/principalviewer.md: {}
   docs/models/components/privatednsattachmentconfig.md:
     id: 9a002b53b4ad
