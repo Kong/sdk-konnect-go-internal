@@ -117055,6 +117055,17 @@ components:
           type: string
           format: uri
           description: The upstream URL for the model endpoint.
+        upstream_base_url:
+          type: string
+          format: uri
+          description: >-
+            Base URL used instead of the default Typesafe endpoint. The gateway
+            appends the forwarded request path to this base URL. Mutually
+            exclusive with `upstream_url`.
+
+
+            **Requires a minimum runtime version of `2.4`**.
+          x-min-runtime-version: '2.4'
     GCPModelConfig:
       type: object
       description: Configuration for a model hosted on Google Cloud Project.
@@ -162055,7 +162066,7 @@ x-input-schemas:
     version: 0.11.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.4.3
+    version: 2.4.4
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
