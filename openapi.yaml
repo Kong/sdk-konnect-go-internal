@@ -128793,7 +128793,26 @@ components:
         managed_by:
           $ref: '#/components/schemas/ManagedBy'
         datastores:
-          $ref: '#/components/schemas/AIGatewayTokenVaultDatastores'
+          type: array
+          minItems: 1
+          maxItems: 2
+          x-min-runtime-version: '2.3'
+          description: >-
+            The Datastores this auth strategy references. At most one datastore
+            of each supported type
+
+            can be specified (`token-vault` or `redis-ee`). A `token-vault`
+            Datastore holds the credential
+
+            storage and is required when `token_vault` is set.
+
+
+            **Requires a minimum runtime version of `2.3`**.
+          items:
+            $ref: '#/components/schemas/AIGatewayDatastoreRef'
+          example:
+            - name: vault-konnect-prod
+            - name: shared-redis
         type:
           type: string
           const: key-auth
@@ -128904,6 +128923,22 @@ components:
                 (and try to authenticate) on `OPTIONS` preflight requests. If
                 set to `false`, then `OPTIONS` requests are always allowed.
               type: boolean
+            principals_cache:
+              type: object
+              additionalProperties: false
+              x-min-runtime-version: '2.4'
+              description: |-
+                Shared Redis cache for Kong Identity principal lookups.
+
+                **Requires a minimum runtime version of `2.4`**.
+              properties:
+                pepper:
+                  type: string
+                  writeOnly: true
+                  x-encrypted: true
+                  description: >
+                    The secret key for the HMAC-SHA256 that names the entries in
+                    the shared principal cache.
           type: object
           description: |
             Configuration for the key-auth auth strategy.
@@ -128936,7 +128971,26 @@ components:
         managed_by:
           $ref: '#/components/schemas/ManagedBy'
         datastores:
-          $ref: '#/components/schemas/AIGatewayTokenVaultDatastores'
+          type: array
+          minItems: 1
+          maxItems: 2
+          x-min-runtime-version: '2.3'
+          description: >-
+            The Datastores this auth strategy references. At most one datastore
+            of each supported type
+
+            can be specified (`token-vault` or `redis-ee`). A `token-vault`
+            Datastore holds the credential
+
+            storage and is required when `token_vault` is set.
+
+
+            **Requires a minimum runtime version of `2.3`**.
+          items:
+            $ref: '#/components/schemas/AIGatewayDatastoreRef'
+          example:
+            - name: vault-konnect-prod
+            - name: shared-redis
         type:
           type: string
           const: openid-connect
@@ -131778,6 +131832,22 @@ components:
                 type: string
               default:
                 - sub
+            principals_cache:
+              type: object
+              additionalProperties: false
+              x-min-runtime-version: '2.4'
+              description: |-
+                Shared Redis cache for Kong Identity principal lookups.
+
+                **Requires a minimum runtime version of `2.4`**.
+              properties:
+                pepper:
+                  type: string
+                  writeOnly: true
+                  x-encrypted: true
+                  description: >
+                    The secret key for the HMAC-SHA256 that names the entries in
+                    the shared principal cache.
           required:
             - issuer
             - cache_tokens_salt
@@ -136871,7 +136941,26 @@ components:
         managed_by:
           $ref: '#/components/schemas/ManagedBy'
         datastores:
-          $ref: '#/components/schemas/AIGatewayTokenVaultDatastores'
+          type: array
+          minItems: 1
+          maxItems: 2
+          x-min-runtime-version: '2.3'
+          description: >-
+            The Datastores this auth strategy references. At most one datastore
+            of each supported type
+
+            can be specified (`token-vault` or `redis-ee`). A `token-vault`
+            Datastore holds the credential
+
+            storage and is required when `token_vault` is set.
+
+
+            **Requires a minimum runtime version of `2.3`**.
+          items:
+            $ref: '#/components/schemas/AIGatewayDatastoreRef'
+          example:
+            - name: vault-konnect-prod
+            - name: shared-redis
         type:
           type: string
           const: key-auth
@@ -136982,6 +137071,22 @@ components:
                 (and try to authenticate) on `OPTIONS` preflight requests. If
                 set to `false`, then `OPTIONS` requests are always allowed.
               type: boolean
+            principals_cache:
+              type: object
+              additionalProperties: false
+              x-min-runtime-version: '2.4'
+              description: |-
+                Shared Redis cache for Kong Identity principal lookups.
+
+                **Requires a minimum runtime version of `2.4`**.
+              properties:
+                pepper:
+                  type: string
+                  writeOnly: true
+                  x-encrypted: true
+                  description: >
+                    The secret key for the HMAC-SHA256 that names the entries in
+                    the shared principal cache.
           type: object
           description: |
             Configuration for the key-auth auth strategy.
@@ -137023,7 +137128,26 @@ components:
         managed_by:
           $ref: '#/components/schemas/ManagedBy'
         datastores:
-          $ref: '#/components/schemas/AIGatewayTokenVaultDatastores'
+          type: array
+          minItems: 1
+          maxItems: 2
+          x-min-runtime-version: '2.3'
+          description: >-
+            The Datastores this auth strategy references. At most one datastore
+            of each supported type
+
+            can be specified (`token-vault` or `redis-ee`). A `token-vault`
+            Datastore holds the credential
+
+            storage and is required when `token_vault` is set.
+
+
+            **Requires a minimum runtime version of `2.3`**.
+          items:
+            $ref: '#/components/schemas/AIGatewayDatastoreRef'
+          example:
+            - name: vault-konnect-prod
+            - name: shared-redis
         type:
           type: string
           const: openid-connect
@@ -139865,6 +139989,22 @@ components:
                 type: string
               default:
                 - sub
+            principals_cache:
+              type: object
+              additionalProperties: false
+              x-min-runtime-version: '2.4'
+              description: |-
+                Shared Redis cache for Kong Identity principal lookups.
+
+                **Requires a minimum runtime version of `2.4`**.
+              properties:
+                pepper:
+                  type: string
+                  writeOnly: true
+                  x-encrypted: true
+                  description: >
+                    The secret key for the HMAC-SHA256 that names the entries in
+                    the shared principal cache.
           required:
             - issuer
             - cache_tokens_salt
@@ -162066,7 +162206,7 @@ x-input-schemas:
     version: 0.11.0
     path: src/konnect/definitions/ai-cost-management/v1/openapi.yaml
   - title: Konnect AI Gateway
-    version: 2.4.5
+    version: 2.4.6
     path: src/konnect/definitions/ai-gateways/v2/openapi.yaml
   - title: Konnect Analytics Dashboards
     version: 2.4.0
