@@ -17,6 +17,13 @@ const (
 func (e PlatformRelativeTimeRangeType) ToPointer() *PlatformRelativeTimeRangeType {
 	return &e
 }
+
+// PlatformRelativeTimeRangeTypeValues returns every known PlatformRelativeTimeRangeType value in schema order.
+func PlatformRelativeTimeRangeTypeValues() []PlatformRelativeTimeRangeType {
+	return []PlatformRelativeTimeRangeType{
+		PlatformRelativeTimeRangeTypeRelative,
+	}
+}
 func (e *PlatformRelativeTimeRangeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -57,6 +64,28 @@ const (
 
 func (e PlatformRelativeTimeRangeTimeRange) ToPointer() *PlatformRelativeTimeRangeTimeRange {
 	return &e
+}
+
+// PlatformRelativeTimeRangeTimeRangeValues returns every known PlatformRelativeTimeRangeTimeRange value in schema order.
+func PlatformRelativeTimeRangeTimeRangeValues() []PlatformRelativeTimeRangeTimeRange {
+	return []PlatformRelativeTimeRangeTimeRange{
+		PlatformRelativeTimeRangeTimeRangeFifteenm,
+		PlatformRelativeTimeRangeTimeRangeOneh,
+		PlatformRelativeTimeRangeTimeRangeSixh,
+		PlatformRelativeTimeRangeTimeRangeTwelveh,
+		PlatformRelativeTimeRangeTimeRangeTwentyFourh,
+		PlatformRelativeTimeRangeTimeRangeSevend,
+		PlatformRelativeTimeRangeTimeRangeThirtyd,
+		PlatformRelativeTimeRangeTimeRangeNinetyd,
+		PlatformRelativeTimeRangeTimeRangeOneHundredAndEightyd,
+		PlatformRelativeTimeRangeTimeRangeThreeHundredAndSixtyFived,
+		PlatformRelativeTimeRangeTimeRangeCurrentWeek,
+		PlatformRelativeTimeRangeTimeRangeCurrentMonth,
+		PlatformRelativeTimeRangeTimeRangeCurrentQuarter,
+		PlatformRelativeTimeRangeTimeRangePreviousWeek,
+		PlatformRelativeTimeRangeTimeRangePreviousMonth,
+		PlatformRelativeTimeRangeTimeRangePreviousQuarter,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

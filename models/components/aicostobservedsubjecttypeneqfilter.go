@@ -19,6 +19,15 @@ func (e Neq) ToPointer() *Neq {
 	return &e
 }
 
+// NeqValues returns every known Neq value in schema order.
+func NeqValues() []Neq {
+	return []Neq{
+		NeqPrincipal,
+		NeqConsumer,
+		NeqOidc,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *Neq) IsExact() bool {
 	if e != nil {

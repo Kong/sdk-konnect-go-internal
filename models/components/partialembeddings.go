@@ -18,6 +18,14 @@ func (e ParamLocation) ToPointer() *ParamLocation {
 	return &e
 }
 
+// ParamLocationValues returns every known ParamLocation value in schema order.
+func ParamLocationValues() []ParamLocation {
+	return []ParamLocation{
+		ParamLocationBody,
+		ParamLocationQuery,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *ParamLocation) IsExact() bool {
 	if e != nil {
@@ -467,6 +475,19 @@ const (
 
 func (e PartialEmbeddingsProvider) ToPointer() *PartialEmbeddingsProvider {
 	return &e
+}
+
+// PartialEmbeddingsProviderValues returns every known PartialEmbeddingsProvider value in schema order.
+func PartialEmbeddingsProviderValues() []PartialEmbeddingsProvider {
+	return []PartialEmbeddingsProvider{
+		PartialEmbeddingsProviderAzure,
+		PartialEmbeddingsProviderBedrock,
+		PartialEmbeddingsProviderGemini,
+		PartialEmbeddingsProviderHuggingface,
+		PartialEmbeddingsProviderMistral,
+		PartialEmbeddingsProviderOllama,
+		PartialEmbeddingsProviderOpenai,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

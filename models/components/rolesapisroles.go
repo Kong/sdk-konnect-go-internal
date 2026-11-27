@@ -16,6 +16,13 @@ const (
 func (e RolesName) ToPointer() *RolesName {
 	return &e
 }
+
+// RolesNameValues returns every known RolesName value in schema order.
+func RolesNameValues() []RolesName {
+	return []RolesName{
+		RolesNameAddOns,
+	}
+}
 func (e *RolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -38,6 +45,13 @@ const (
 
 func (e AddOnID) ToPointer() *AddOnID {
 	return &e
+}
+
+// AddOnIDValues returns every known AddOnID value in schema order.
+func AddOnIDValues() []AddOnID {
+	return []AddOnID{
+		AddOnIDTheAddOnID,
+	}
 }
 func (e *AddOnID) UnmarshalJSON(data []byte) error {
 	var v string
@@ -73,6 +87,13 @@ const (
 func (e RolesAddOnsName) ToPointer() *RolesAddOnsName {
 	return &e
 }
+
+// RolesAddOnsNameValues returns every known RolesAddOnsName value in schema order.
+func RolesAddOnsNameValues() []RolesAddOnsName {
+	return []RolesAddOnsName{
+		RolesAddOnsNameAddOnAdmin,
+	}
+}
 func (e *RolesAddOnsName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -95,6 +116,13 @@ const (
 
 func (e Description) ToPointer() *Description {
 	return &e
+}
+
+// DescriptionValues returns every known Description value in schema order.
+func DescriptionValues() []Description {
+	return []Description{
+		DescriptionAccessToAllReadAndWritePermissionsRelatedToAddOns,
+	}
 }
 func (e *Description) UnmarshalJSON(data []byte) error {
 	var v string
@@ -147,6 +175,13 @@ const (
 func (e RolesAddOnID) ToPointer() *RolesAddOnID {
 	return &e
 }
+
+// RolesAddOnIDValues returns every known RolesAddOnID value in schema order.
+func RolesAddOnIDValues() []RolesAddOnID {
+	return []RolesAddOnID{
+		RolesAddOnIDTheAddOnID,
+	}
+}
 func (e *RolesAddOnID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -181,6 +216,13 @@ const (
 func (e RolesAddOnsRolesName) ToPointer() *RolesAddOnsRolesName {
 	return &e
 }
+
+// RolesAddOnsRolesNameValues returns every known RolesAddOnsRolesName value in schema order.
+func RolesAddOnsRolesNameValues() []RolesAddOnsRolesName {
+	return []RolesAddOnsRolesName{
+		RolesAddOnsRolesNameAddOnViewer,
+	}
+}
 func (e *RolesAddOnsRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -203,6 +245,13 @@ const (
 
 func (e RolesDescription) ToPointer() *RolesDescription {
 	return &e
+}
+
+// RolesDescriptionValues returns every known RolesDescription value in schema order.
+func RolesDescriptionValues() []RolesDescription {
+	return []RolesDescription{
+		RolesDescriptionAccessToReadOnlyPermissionsToAddOns,
+	}
 }
 func (e *RolesDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -293,6 +342,13 @@ const (
 func (e RolesAgentsName) ToPointer() *RolesAgentsName {
 	return &e
 }
+
+// RolesAgentsNameValues returns every known RolesAgentsName value in schema order.
+func RolesAgentsNameValues() []RolesAgentsName {
+	return []RolesAgentsName{
+		RolesAgentsNameAgents,
+	}
+}
 func (e *RolesAgentsName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -315,6 +371,13 @@ const (
 
 func (e AgentID) ToPointer() *AgentID {
 	return &e
+}
+
+// AgentIDValues returns every known AgentID value in schema order.
+func AgentIDValues() []AgentID {
+	return []AgentID{
+		AgentIDTheAgentID,
+	}
 }
 func (e *AgentID) UnmarshalJSON(data []byte) error {
 	var v string
@@ -350,6 +413,13 @@ const (
 func (e RolesAgentsRolesName) ToPointer() *RolesAgentsRolesName {
 	return &e
 }
+
+// RolesAgentsRolesNameValues returns every known RolesAgentsRolesName value in schema order.
+func RolesAgentsRolesNameValues() []RolesAgentsRolesName {
+	return []RolesAgentsRolesName{
+		RolesAgentsRolesNameAdmin,
+	}
+}
 func (e *RolesAgentsRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -372,6 +442,13 @@ const (
 
 func (e RolesAgentsDescription) ToPointer() *RolesAgentsDescription {
 	return &e
+}
+
+// RolesAgentsDescriptionValues returns every known RolesAgentsDescription value in schema order.
+func RolesAgentsDescriptionValues() []RolesAgentsDescription {
+	return []RolesAgentsDescription{
+		RolesAgentsDescriptionAdminOfAnExistingAgentProvidingAbilityToReadAndEditTheRegisteredAgentCardAndDeleteTheAgent,
+	}
 }
 func (e *RolesAgentsDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -424,6 +501,13 @@ const (
 func (e RolesAgentID) ToPointer() *RolesAgentID {
 	return &e
 }
+
+// RolesAgentIDValues returns every known RolesAgentID value in schema order.
+func RolesAgentIDValues() []RolesAgentID {
+	return []RolesAgentID{
+		RolesAgentIDTheAgentID,
+	}
+}
 func (e *RolesAgentID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -458,6 +542,13 @@ const (
 func (e RolesAgentsRolesCreatorName) ToPointer() *RolesAgentsRolesCreatorName {
 	return &e
 }
+
+// RolesAgentsRolesCreatorNameValues returns every known RolesAgentsRolesCreatorName value in schema order.
+func RolesAgentsRolesCreatorNameValues() []RolesAgentsRolesCreatorName {
+	return []RolesAgentsRolesCreatorName{
+		RolesAgentsRolesCreatorNameCreator,
+	}
+}
 func (e *RolesAgentsRolesCreatorName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -480,6 +571,13 @@ const (
 
 func (e RolesAgentsRolesDescription) ToPointer() *RolesAgentsRolesDescription {
 	return &e
+}
+
+// RolesAgentsRolesDescriptionValues returns every known RolesAgentsRolesDescription value in schema order.
+func RolesAgentsRolesDescriptionValues() []RolesAgentsRolesDescription {
+	return []RolesAgentsRolesDescription{
+		RolesAgentsRolesDescriptionAccessToCreateNewAgentsInKonnectTheCreatorBecomesAnAdminOfTheAgentTheyCreate,
+	}
 }
 func (e *RolesAgentsRolesDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -532,6 +630,13 @@ const (
 func (e RolesAgentsAgentID) ToPointer() *RolesAgentsAgentID {
 	return &e
 }
+
+// RolesAgentsAgentIDValues returns every known RolesAgentsAgentID value in schema order.
+func RolesAgentsAgentIDValues() []RolesAgentsAgentID {
+	return []RolesAgentsAgentID{
+		RolesAgentsAgentIDTheAgentID,
+	}
+}
 func (e *RolesAgentsAgentID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -566,6 +671,13 @@ const (
 func (e RolesAgentsRolesMaintainerName) ToPointer() *RolesAgentsRolesMaintainerName {
 	return &e
 }
+
+// RolesAgentsRolesMaintainerNameValues returns every known RolesAgentsRolesMaintainerName value in schema order.
+func RolesAgentsRolesMaintainerNameValues() []RolesAgentsRolesMaintainerName {
+	return []RolesAgentsRolesMaintainerName{
+		RolesAgentsRolesMaintainerNameMaintainer,
+	}
+}
 func (e *RolesAgentsRolesMaintainerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -588,6 +700,13 @@ const (
 
 func (e RolesAgentsRolesMaintainerDescription) ToPointer() *RolesAgentsRolesMaintainerDescription {
 	return &e
+}
+
+// RolesAgentsRolesMaintainerDescriptionValues returns every known RolesAgentsRolesMaintainerDescription value in schema order.
+func RolesAgentsRolesMaintainerDescriptionValues() []RolesAgentsRolesMaintainerDescription {
+	return []RolesAgentsRolesMaintainerDescription{
+		RolesAgentsRolesMaintainerDescriptionAccessToReadAndEditTheRegisteredAgentCardOfAnAgent,
+	}
 }
 func (e *RolesAgentsRolesMaintainerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -640,6 +759,13 @@ const (
 func (e RolesAgentsRolesAgentID) ToPointer() *RolesAgentsRolesAgentID {
 	return &e
 }
+
+// RolesAgentsRolesAgentIDValues returns every known RolesAgentsRolesAgentID value in schema order.
+func RolesAgentsRolesAgentIDValues() []RolesAgentsRolesAgentID {
+	return []RolesAgentsRolesAgentID{
+		RolesAgentsRolesAgentIDTheAgentID,
+	}
+}
 func (e *RolesAgentsRolesAgentID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -674,6 +800,13 @@ const (
 func (e RolesAgentsRolesViewerName) ToPointer() *RolesAgentsRolesViewerName {
 	return &e
 }
+
+// RolesAgentsRolesViewerNameValues returns every known RolesAgentsRolesViewerName value in schema order.
+func RolesAgentsRolesViewerNameValues() []RolesAgentsRolesViewerName {
+	return []RolesAgentsRolesViewerName{
+		RolesAgentsRolesViewerNameViewer,
+	}
+}
 func (e *RolesAgentsRolesViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -696,6 +829,13 @@ const (
 
 func (e RolesAgentsRolesViewerDescription) ToPointer() *RolesAgentsRolesViewerDescription {
 	return &e
+}
+
+// RolesAgentsRolesViewerDescriptionValues returns every known RolesAgentsRolesViewerDescription value in schema order.
+func RolesAgentsRolesViewerDescriptionValues() []RolesAgentsRolesViewerDescription {
+	return []RolesAgentsRolesViewerDescription{
+		RolesAgentsRolesViewerDescriptionReadOnlyAccessToAnAgent,
+	}
 }
 func (e *RolesAgentsRolesViewerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -802,6 +942,13 @@ const (
 func (e RolesAiGatewaysName) ToPointer() *RolesAiGatewaysName {
 	return &e
 }
+
+// RolesAiGatewaysNameValues returns every known RolesAiGatewaysName value in schema order.
+func RolesAiGatewaysNameValues() []RolesAiGatewaysName {
+	return []RolesAiGatewaysName{
+		RolesAiGatewaysNameAiGateways,
+	}
+}
 func (e *RolesAiGatewaysName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -824,6 +971,13 @@ const (
 
 func (e AiGatewayID) ToPointer() *AiGatewayID {
 	return &e
+}
+
+// AiGatewayIDValues returns every known AiGatewayID value in schema order.
+func AiGatewayIDValues() []AiGatewayID {
+	return []AiGatewayID{
+		AiGatewayIDTheAiGatewayID,
+	}
 }
 func (e *AiGatewayID) UnmarshalJSON(data []byte) error {
 	var v string
@@ -859,6 +1013,13 @@ const (
 func (e RolesAiGatewaysRolesName) ToPointer() *RolesAiGatewaysRolesName {
 	return &e
 }
+
+// RolesAiGatewaysRolesNameValues returns every known RolesAiGatewaysRolesName value in schema order.
+func RolesAiGatewaysRolesNameValues() []RolesAiGatewaysRolesName {
+	return []RolesAiGatewaysRolesName{
+		RolesAiGatewaysRolesNameAiGatewaysAdmin,
+	}
+}
 func (e *RolesAiGatewaysRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -881,6 +1042,13 @@ const (
 
 func (e RolesAiGatewaysDescription) ToPointer() *RolesAiGatewaysDescription {
 	return &e
+}
+
+// RolesAiGatewaysDescriptionValues returns every known RolesAiGatewaysDescription value in schema order.
+func RolesAiGatewaysDescriptionValues() []RolesAiGatewaysDescription {
+	return []RolesAiGatewaysDescription{
+		RolesAiGatewaysDescriptionOwnerOfAnExistingAiGatewayTheOwnersHaveAllWriteAccessRelatedToAnAiGatewayAndItsConfiguration,
+	}
 }
 func (e *RolesAiGatewaysDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -933,6 +1101,13 @@ const (
 func (e RolesAiGatewayID) ToPointer() *RolesAiGatewayID {
 	return &e
 }
+
+// RolesAiGatewayIDValues returns every known RolesAiGatewayID value in schema order.
+func RolesAiGatewayIDValues() []RolesAiGatewayID {
+	return []RolesAiGatewayID{
+		RolesAiGatewayIDTheAiGatewayID,
+	}
+}
 func (e *RolesAiGatewayID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -967,6 +1142,13 @@ const (
 func (e RolesAiGatewaysRolesAiGatewaysCreatorName) ToPointer() *RolesAiGatewaysRolesAiGatewaysCreatorName {
 	return &e
 }
+
+// RolesAiGatewaysRolesAiGatewaysCreatorNameValues returns every known RolesAiGatewaysRolesAiGatewaysCreatorName value in schema order.
+func RolesAiGatewaysRolesAiGatewaysCreatorNameValues() []RolesAiGatewaysRolesAiGatewaysCreatorName {
+	return []RolesAiGatewaysRolesAiGatewaysCreatorName{
+		RolesAiGatewaysRolesAiGatewaysCreatorNameAiGatewaysCreator,
+	}
+}
 func (e *RolesAiGatewaysRolesAiGatewaysCreatorName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -989,6 +1171,13 @@ const (
 
 func (e RolesAiGatewaysRolesDescription) ToPointer() *RolesAiGatewaysRolesDescription {
 	return &e
+}
+
+// RolesAiGatewaysRolesDescriptionValues returns every known RolesAiGatewaysRolesDescription value in schema order.
+func RolesAiGatewaysRolesDescriptionValues() []RolesAiGatewaysRolesDescription {
+	return []RolesAiGatewaysRolesDescription{
+		RolesAiGatewaysRolesDescriptionAccessToCreateANewAiGatewayTheCreatorBecomesTheOwnerOfTheAiGatewayTheyCreateGainingAdminAccessToTheNewAiGatewayThisRoleDoesNotGrantAccessToExistingAiGatewaysOrTheirConfigurations,
+	}
 }
 func (e *RolesAiGatewaysRolesDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1041,6 +1230,13 @@ const (
 func (e RolesAiGatewaysAiGatewayID) ToPointer() *RolesAiGatewaysAiGatewayID {
 	return &e
 }
+
+// RolesAiGatewaysAiGatewayIDValues returns every known RolesAiGatewaysAiGatewayID value in schema order.
+func RolesAiGatewaysAiGatewayIDValues() []RolesAiGatewaysAiGatewayID {
+	return []RolesAiGatewaysAiGatewayID{
+		RolesAiGatewaysAiGatewayIDTheAiGatewayID,
+	}
+}
 func (e *RolesAiGatewaysAiGatewayID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1075,6 +1271,13 @@ const (
 func (e RolesAiGatewaysRolesAiGatewaysViewerName) ToPointer() *RolesAiGatewaysRolesAiGatewaysViewerName {
 	return &e
 }
+
+// RolesAiGatewaysRolesAiGatewaysViewerNameValues returns every known RolesAiGatewaysRolesAiGatewaysViewerName value in schema order.
+func RolesAiGatewaysRolesAiGatewaysViewerNameValues() []RolesAiGatewaysRolesAiGatewaysViewerName {
+	return []RolesAiGatewaysRolesAiGatewaysViewerName{
+		RolesAiGatewaysRolesAiGatewaysViewerNameAiGatewaysViewer,
+	}
+}
 func (e *RolesAiGatewaysRolesAiGatewaysViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1097,6 +1300,13 @@ const (
 
 func (e RolesAiGatewaysRolesAiGatewaysViewerDescription) ToPointer() *RolesAiGatewaysRolesAiGatewaysViewerDescription {
 	return &e
+}
+
+// RolesAiGatewaysRolesAiGatewaysViewerDescriptionValues returns every known RolesAiGatewaysRolesAiGatewaysViewerDescription value in schema order.
+func RolesAiGatewaysRolesAiGatewaysViewerDescriptionValues() []RolesAiGatewaysRolesAiGatewaysViewerDescription {
+	return []RolesAiGatewaysRolesAiGatewaysViewerDescription{
+		RolesAiGatewaysRolesAiGatewaysViewerDescriptionReadOnlyAccessToAllTheConfigurationsOfAnAiGateway,
+	}
 }
 func (e *RolesAiGatewaysRolesAiGatewaysViewerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1195,6 +1405,13 @@ const (
 func (e RolesAiModelsName) ToPointer() *RolesAiModelsName {
 	return &e
 }
+
+// RolesAiModelsNameValues returns every known RolesAiModelsName value in schema order.
+func RolesAiModelsNameValues() []RolesAiModelsName {
+	return []RolesAiModelsName{
+		RolesAiModelsNameAiModels,
+	}
+}
 func (e *RolesAiModelsName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1217,6 +1434,13 @@ const (
 
 func (e AiModelID) ToPointer() *AiModelID {
 	return &e
+}
+
+// AiModelIDValues returns every known AiModelID value in schema order.
+func AiModelIDValues() []AiModelID {
+	return []AiModelID{
+		AiModelIDTheAiModelID,
+	}
 }
 func (e *AiModelID) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1252,6 +1476,13 @@ const (
 func (e RolesAiModelsRolesName) ToPointer() *RolesAiModelsRolesName {
 	return &e
 }
+
+// RolesAiModelsRolesNameValues returns every known RolesAiModelsRolesName value in schema order.
+func RolesAiModelsRolesNameValues() []RolesAiModelsRolesName {
+	return []RolesAiModelsRolesName{
+		RolesAiModelsRolesNameModelAdmin,
+	}
+}
 func (e *RolesAiModelsRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1274,6 +1505,13 @@ const (
 
 func (e RolesAiModelsDescription) ToPointer() *RolesAiModelsDescription {
 	return &e
+}
+
+// RolesAiModelsDescriptionValues returns every known RolesAiModelsDescription value in schema order.
+func RolesAiModelsDescriptionValues() []RolesAiModelsDescription {
+	return []RolesAiModelsDescription{
+		RolesAiModelsDescriptionAdminOfAnExistingAiModelProvidingAbilityToReadAndEditConfigurationAndDeleteTheAiModel,
+	}
 }
 func (e *RolesAiModelsDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1326,6 +1564,13 @@ const (
 func (e RolesAiModelsRolesModelCreatorName) ToPointer() *RolesAiModelsRolesModelCreatorName {
 	return &e
 }
+
+// RolesAiModelsRolesModelCreatorNameValues returns every known RolesAiModelsRolesModelCreatorName value in schema order.
+func RolesAiModelsRolesModelCreatorNameValues() []RolesAiModelsRolesModelCreatorName {
+	return []RolesAiModelsRolesModelCreatorName{
+		RolesAiModelsRolesModelCreatorNameModelCreator,
+	}
+}
 func (e *RolesAiModelsRolesModelCreatorName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1348,6 +1593,13 @@ const (
 
 func (e RolesAiModelsRolesDescription) ToPointer() *RolesAiModelsRolesDescription {
 	return &e
+}
+
+// RolesAiModelsRolesDescriptionValues returns every known RolesAiModelsRolesDescription value in schema order.
+func RolesAiModelsRolesDescriptionValues() []RolesAiModelsRolesDescription {
+	return []RolesAiModelsRolesDescription{
+		RolesAiModelsRolesDescriptionAccessToCreateNewAiModelsInKonnectTheCreatorBecomesAnAdminOfTheAiModelTheyCreate,
+	}
 }
 func (e *RolesAiModelsRolesDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1391,6 +1643,13 @@ const (
 func (e RolesAiModelID) ToPointer() *RolesAiModelID {
 	return &e
 }
+
+// RolesAiModelIDValues returns every known RolesAiModelID value in schema order.
+func RolesAiModelIDValues() []RolesAiModelID {
+	return []RolesAiModelID{
+		RolesAiModelIDTheAiModelID,
+	}
+}
 func (e *RolesAiModelID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1425,6 +1684,13 @@ const (
 func (e RolesAiModelsRolesModelMaintainerName) ToPointer() *RolesAiModelsRolesModelMaintainerName {
 	return &e
 }
+
+// RolesAiModelsRolesModelMaintainerNameValues returns every known RolesAiModelsRolesModelMaintainerName value in schema order.
+func RolesAiModelsRolesModelMaintainerNameValues() []RolesAiModelsRolesModelMaintainerName {
+	return []RolesAiModelsRolesModelMaintainerName{
+		RolesAiModelsRolesModelMaintainerNameModelMaintainer,
+	}
+}
 func (e *RolesAiModelsRolesModelMaintainerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1447,6 +1713,13 @@ const (
 
 func (e RolesAiModelsRolesModelMaintainerDescription) ToPointer() *RolesAiModelsRolesModelMaintainerDescription {
 	return &e
+}
+
+// RolesAiModelsRolesModelMaintainerDescriptionValues returns every known RolesAiModelsRolesModelMaintainerDescription value in schema order.
+func RolesAiModelsRolesModelMaintainerDescriptionValues() []RolesAiModelsRolesModelMaintainerDescription {
+	return []RolesAiModelsRolesModelMaintainerDescription{
+		RolesAiModelsRolesModelMaintainerDescriptionAccessToReadAndEditConfigurationOfAnAiModel,
+	}
 }
 func (e *RolesAiModelsRolesModelMaintainerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1499,6 +1772,13 @@ const (
 func (e RolesAiModelsAiModelID) ToPointer() *RolesAiModelsAiModelID {
 	return &e
 }
+
+// RolesAiModelsAiModelIDValues returns every known RolesAiModelsAiModelID value in schema order.
+func RolesAiModelsAiModelIDValues() []RolesAiModelsAiModelID {
+	return []RolesAiModelsAiModelID{
+		RolesAiModelsAiModelIDTheAiModelID,
+	}
+}
 func (e *RolesAiModelsAiModelID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1533,6 +1813,13 @@ const (
 func (e RolesAiModelsRolesModelViewerName) ToPointer() *RolesAiModelsRolesModelViewerName {
 	return &e
 }
+
+// RolesAiModelsRolesModelViewerNameValues returns every known RolesAiModelsRolesModelViewerName value in schema order.
+func RolesAiModelsRolesModelViewerNameValues() []RolesAiModelsRolesModelViewerName {
+	return []RolesAiModelsRolesModelViewerName{
+		RolesAiModelsRolesModelViewerNameModelViewer,
+	}
+}
 func (e *RolesAiModelsRolesModelViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1555,6 +1842,13 @@ const (
 
 func (e RolesAiModelsRolesModelViewerDescription) ToPointer() *RolesAiModelsRolesModelViewerDescription {
 	return &e
+}
+
+// RolesAiModelsRolesModelViewerDescriptionValues returns every known RolesAiModelsRolesModelViewerDescription value in schema order.
+func RolesAiModelsRolesModelViewerDescriptionValues() []RolesAiModelsRolesModelViewerDescription {
+	return []RolesAiModelsRolesModelViewerDescription{
+		RolesAiModelsRolesModelViewerDescriptionReadOnlyAccessToAnAiModelConfiguration,
+	}
 }
 func (e *RolesAiModelsRolesModelViewerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1661,6 +1955,13 @@ const (
 func (e RolesAPIProductsName) ToPointer() *RolesAPIProductsName {
 	return &e
 }
+
+// RolesAPIProductsNameValues returns every known RolesAPIProductsName value in schema order.
+func RolesAPIProductsNameValues() []RolesAPIProductsName {
+	return []RolesAPIProductsName{
+		RolesAPIProductsNameAPIProducts,
+	}
+}
 func (e *RolesAPIProductsName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1683,6 +1984,13 @@ const (
 
 func (e RolesAPIProductsRolesAdminServiceID) ToPointer() *RolesAPIProductsRolesAdminServiceID {
 	return &e
+}
+
+// RolesAPIProductsRolesAdminServiceIDValues returns every known RolesAPIProductsRolesAdminServiceID value in schema order.
+func RolesAPIProductsRolesAdminServiceIDValues() []RolesAPIProductsRolesAdminServiceID {
+	return []RolesAPIProductsRolesAdminServiceID{
+		RolesAPIProductsRolesAdminServiceIDTheServiceID,
+	}
 }
 func (e *RolesAPIProductsRolesAdminServiceID) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1718,6 +2026,13 @@ const (
 func (e RolesAPIProductsRolesName) ToPointer() *RolesAPIProductsRolesName {
 	return &e
 }
+
+// RolesAPIProductsRolesNameValues returns every known RolesAPIProductsRolesName value in schema order.
+func RolesAPIProductsRolesNameValues() []RolesAPIProductsRolesName {
+	return []RolesAPIProductsRolesName{
+		RolesAPIProductsRolesNameAdmin,
+	}
+}
 func (e *RolesAPIProductsRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1740,6 +2055,13 @@ const (
 
 func (e RolesAPIProductsDescription) ToPointer() *RolesAPIProductsDescription {
 	return &e
+}
+
+// RolesAPIProductsDescriptionValues returns every known RolesAPIProductsDescription value in schema order.
+func RolesAPIProductsDescriptionValues() []RolesAPIProductsDescription {
+	return []RolesAPIProductsDescription{
+		RolesAPIProductsDescriptionThisRoleGrantsFullWriteAccessToAnAPIProductAndItsVersions,
+	}
 }
 func (e *RolesAPIProductsDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1792,6 +2114,13 @@ const (
 func (e RolesServiceID) ToPointer() *RolesServiceID {
 	return &e
 }
+
+// RolesServiceIDValues returns every known RolesServiceID value in schema order.
+func RolesServiceIDValues() []RolesServiceID {
+	return []RolesServiceID{
+		RolesServiceIDTheServiceID,
+	}
+}
 func (e *RolesServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1826,6 +2155,13 @@ const (
 func (e RolesAPIProductsRolesApplicationRegistrationName) ToPointer() *RolesAPIProductsRolesApplicationRegistrationName {
 	return &e
 }
+
+// RolesAPIProductsRolesApplicationRegistrationNameValues returns every known RolesAPIProductsRolesApplicationRegistrationName value in schema order.
+func RolesAPIProductsRolesApplicationRegistrationNameValues() []RolesAPIProductsRolesApplicationRegistrationName {
+	return []RolesAPIProductsRolesApplicationRegistrationName{
+		RolesAPIProductsRolesApplicationRegistrationNameApplicationRegistration,
+	}
+}
 func (e *RolesAPIProductsRolesApplicationRegistrationName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1848,6 +2184,13 @@ const (
 
 func (e RolesAPIProductsRolesDescription) ToPointer() *RolesAPIProductsRolesDescription {
 	return &e
+}
+
+// RolesAPIProductsRolesDescriptionValues returns every known RolesAPIProductsRolesDescription value in schema order.
+func RolesAPIProductsRolesDescriptionValues() []RolesAPIProductsRolesDescription {
+	return []RolesAPIProductsRolesDescription{
+		RolesAPIProductsRolesDescriptionThisRoleGrantsPermissionToEnableAndDisableApplicationRegistrationOnAnAPIProduct,
+	}
 }
 func (e *RolesAPIProductsRolesDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1900,6 +2243,13 @@ const (
 func (e RolesAPIProductsServiceID) ToPointer() *RolesAPIProductsServiceID {
 	return &e
 }
+
+// RolesAPIProductsServiceIDValues returns every known RolesAPIProductsServiceID value in schema order.
+func RolesAPIProductsServiceIDValues() []RolesAPIProductsServiceID {
+	return []RolesAPIProductsServiceID{
+		RolesAPIProductsServiceIDTheServiceID,
+	}
+}
 func (e *RolesAPIProductsServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1934,6 +2284,13 @@ const (
 func (e RolesAPIProductsRolesCreatorName) ToPointer() *RolesAPIProductsRolesCreatorName {
 	return &e
 }
+
+// RolesAPIProductsRolesCreatorNameValues returns every known RolesAPIProductsRolesCreatorName value in schema order.
+func RolesAPIProductsRolesCreatorNameValues() []RolesAPIProductsRolesCreatorName {
+	return []RolesAPIProductsRolesCreatorName{
+		RolesAPIProductsRolesCreatorNameCreator,
+	}
+}
 func (e *RolesAPIProductsRolesCreatorName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -1956,6 +2313,13 @@ const (
 
 func (e RolesAPIProductsRolesCreatorDescription) ToPointer() *RolesAPIProductsRolesCreatorDescription {
 	return &e
+}
+
+// RolesAPIProductsRolesCreatorDescriptionValues returns every known RolesAPIProductsRolesCreatorDescription value in schema order.
+func RolesAPIProductsRolesCreatorDescriptionValues() []RolesAPIProductsRolesCreatorDescription {
+	return []RolesAPIProductsRolesCreatorDescription{
+		RolesAPIProductsRolesCreatorDescriptionThisAccessIsRequiredToCreateAPIProductsThisAccessIsNotForCreatingSubEntitiesSuchAsVersionsAPISpecsEtc,
+	}
 }
 func (e *RolesAPIProductsRolesCreatorDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2008,6 +2372,13 @@ const (
 func (e RolesAPIProductsRolesServiceID) ToPointer() *RolesAPIProductsRolesServiceID {
 	return &e
 }
+
+// RolesAPIProductsRolesServiceIDValues returns every known RolesAPIProductsRolesServiceID value in schema order.
+func RolesAPIProductsRolesServiceIDValues() []RolesAPIProductsRolesServiceID {
+	return []RolesAPIProductsRolesServiceID{
+		RolesAPIProductsRolesServiceIDTheServiceID,
+	}
+}
 func (e *RolesAPIProductsRolesServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2042,6 +2413,13 @@ const (
 func (e RolesAPIProductsRolesDeployerName) ToPointer() *RolesAPIProductsRolesDeployerName {
 	return &e
 }
+
+// RolesAPIProductsRolesDeployerNameValues returns every known RolesAPIProductsRolesDeployerName value in schema order.
+func RolesAPIProductsRolesDeployerNameValues() []RolesAPIProductsRolesDeployerName {
+	return []RolesAPIProductsRolesDeployerName{
+		RolesAPIProductsRolesDeployerNameDeployer,
+	}
+}
 func (e *RolesAPIProductsRolesDeployerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2064,6 +2442,13 @@ const (
 
 func (e RolesAPIProductsRolesDeployerDescription) ToPointer() *RolesAPIProductsRolesDeployerDescription {
 	return &e
+}
+
+// RolesAPIProductsRolesDeployerDescriptionValues returns every known RolesAPIProductsRolesDeployerDescription value in schema order.
+func RolesAPIProductsRolesDeployerDescriptionValues() []RolesAPIProductsRolesDeployerDescription {
+	return []RolesAPIProductsRolesDeployerDescription{
+		RolesAPIProductsRolesDeployerDescriptionThisRoleGrantsPermissionToDeployAndRemoveAnAPIProductFromAControlPlane,
+	}
 }
 func (e *RolesAPIProductsRolesDeployerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2116,6 +2501,13 @@ const (
 func (e RolesAPIProductsRolesMaintainerServiceID) ToPointer() *RolesAPIProductsRolesMaintainerServiceID {
 	return &e
 }
+
+// RolesAPIProductsRolesMaintainerServiceIDValues returns every known RolesAPIProductsRolesMaintainerServiceID value in schema order.
+func RolesAPIProductsRolesMaintainerServiceIDValues() []RolesAPIProductsRolesMaintainerServiceID {
+	return []RolesAPIProductsRolesMaintainerServiceID{
+		RolesAPIProductsRolesMaintainerServiceIDTheServiceID,
+	}
+}
 func (e *RolesAPIProductsRolesMaintainerServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2150,6 +2542,13 @@ const (
 func (e RolesAPIProductsRolesMaintainerName) ToPointer() *RolesAPIProductsRolesMaintainerName {
 	return &e
 }
+
+// RolesAPIProductsRolesMaintainerNameValues returns every known RolesAPIProductsRolesMaintainerName value in schema order.
+func RolesAPIProductsRolesMaintainerNameValues() []RolesAPIProductsRolesMaintainerName {
+	return []RolesAPIProductsRolesMaintainerName{
+		RolesAPIProductsRolesMaintainerNameMaintainer,
+	}
+}
 func (e *RolesAPIProductsRolesMaintainerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2172,6 +2571,13 @@ const (
 
 func (e RolesAPIProductsRolesMaintainerDescription) ToPointer() *RolesAPIProductsRolesMaintainerDescription {
 	return &e
+}
+
+// RolesAPIProductsRolesMaintainerDescriptionValues returns every known RolesAPIProductsRolesMaintainerDescription value in schema order.
+func RolesAPIProductsRolesMaintainerDescriptionValues() []RolesAPIProductsRolesMaintainerDescription {
+	return []RolesAPIProductsRolesMaintainerDescription{
+		RolesAPIProductsRolesMaintainerDescriptionThisRoleGrantsAllWritePermissionToManageAnAPIProductAndToAdministerPlugins,
+	}
 }
 func (e *RolesAPIProductsRolesMaintainerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2224,6 +2630,13 @@ const (
 func (e RolesAPIProductsRolesPluginsAdminServiceID) ToPointer() *RolesAPIProductsRolesPluginsAdminServiceID {
 	return &e
 }
+
+// RolesAPIProductsRolesPluginsAdminServiceIDValues returns every known RolesAPIProductsRolesPluginsAdminServiceID value in schema order.
+func RolesAPIProductsRolesPluginsAdminServiceIDValues() []RolesAPIProductsRolesPluginsAdminServiceID {
+	return []RolesAPIProductsRolesPluginsAdminServiceID{
+		RolesAPIProductsRolesPluginsAdminServiceIDTheServiceID,
+	}
+}
 func (e *RolesAPIProductsRolesPluginsAdminServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2258,6 +2671,13 @@ const (
 func (e RolesAPIProductsRolesPluginsAdminName) ToPointer() *RolesAPIProductsRolesPluginsAdminName {
 	return &e
 }
+
+// RolesAPIProductsRolesPluginsAdminNameValues returns every known RolesAPIProductsRolesPluginsAdminName value in schema order.
+func RolesAPIProductsRolesPluginsAdminNameValues() []RolesAPIProductsRolesPluginsAdminName {
+	return []RolesAPIProductsRolesPluginsAdminName{
+		RolesAPIProductsRolesPluginsAdminNamePluginsAdmin,
+	}
+}
 func (e *RolesAPIProductsRolesPluginsAdminName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2280,6 +2700,13 @@ const (
 
 func (e RolesAPIProductsRolesPluginsAdminDescription) ToPointer() *RolesAPIProductsRolesPluginsAdminDescription {
 	return &e
+}
+
+// RolesAPIProductsRolesPluginsAdminDescriptionValues returns every known RolesAPIProductsRolesPluginsAdminDescription value in schema order.
+func RolesAPIProductsRolesPluginsAdminDescriptionValues() []RolesAPIProductsRolesPluginsAdminDescription {
+	return []RolesAPIProductsRolesPluginsAdminDescription{
+		RolesAPIProductsRolesPluginsAdminDescriptionThisRoleGrantsFullWritePermissionToAdministerPlugins,
+	}
 }
 func (e *RolesAPIProductsRolesPluginsAdminDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2332,6 +2759,13 @@ const (
 func (e RolesAPIProductsRolesPublisherServiceID) ToPointer() *RolesAPIProductsRolesPublisherServiceID {
 	return &e
 }
+
+// RolesAPIProductsRolesPublisherServiceIDValues returns every known RolesAPIProductsRolesPublisherServiceID value in schema order.
+func RolesAPIProductsRolesPublisherServiceIDValues() []RolesAPIProductsRolesPublisherServiceID {
+	return []RolesAPIProductsRolesPublisherServiceID{
+		RolesAPIProductsRolesPublisherServiceIDTheServiceID,
+	}
+}
 func (e *RolesAPIProductsRolesPublisherServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2366,6 +2800,13 @@ const (
 func (e RolesAPIProductsRolesPublisherName) ToPointer() *RolesAPIProductsRolesPublisherName {
 	return &e
 }
+
+// RolesAPIProductsRolesPublisherNameValues returns every known RolesAPIProductsRolesPublisherName value in schema order.
+func RolesAPIProductsRolesPublisherNameValues() []RolesAPIProductsRolesPublisherName {
+	return []RolesAPIProductsRolesPublisherName{
+		RolesAPIProductsRolesPublisherNamePublisher,
+	}
+}
 func (e *RolesAPIProductsRolesPublisherName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2388,6 +2829,13 @@ const (
 
 func (e RolesAPIProductsRolesPublisherDescription) ToPointer() *RolesAPIProductsRolesPublisherDescription {
 	return &e
+}
+
+// RolesAPIProductsRolesPublisherDescriptionValues returns every known RolesAPIProductsRolesPublisherDescription value in schema order.
+func RolesAPIProductsRolesPublisherDescriptionValues() []RolesAPIProductsRolesPublisherDescription {
+	return []RolesAPIProductsRolesPublisherDescription{
+		RolesAPIProductsRolesPublisherDescriptionThisRoleGrantsPermissionToPublishAnAPIProductToOneOrMorePortals,
+	}
 }
 func (e *RolesAPIProductsRolesPublisherDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2440,6 +2888,13 @@ const (
 func (e RolesAPIProductsRolesViewerServiceID) ToPointer() *RolesAPIProductsRolesViewerServiceID {
 	return &e
 }
+
+// RolesAPIProductsRolesViewerServiceIDValues returns every known RolesAPIProductsRolesViewerServiceID value in schema order.
+func RolesAPIProductsRolesViewerServiceIDValues() []RolesAPIProductsRolesViewerServiceID {
+	return []RolesAPIProductsRolesViewerServiceID{
+		RolesAPIProductsRolesViewerServiceIDTheServiceID,
+	}
+}
 func (e *RolesAPIProductsRolesViewerServiceID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2474,6 +2929,13 @@ const (
 func (e RolesAPIProductsRolesViewerName) ToPointer() *RolesAPIProductsRolesViewerName {
 	return &e
 }
+
+// RolesAPIProductsRolesViewerNameValues returns every known RolesAPIProductsRolesViewerName value in schema order.
+func RolesAPIProductsRolesViewerNameValues() []RolesAPIProductsRolesViewerName {
+	return []RolesAPIProductsRolesViewerName{
+		RolesAPIProductsRolesViewerNameViewer,
+	}
+}
 func (e *RolesAPIProductsRolesViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2496,6 +2958,13 @@ const (
 
 func (e RolesAPIProductsRolesViewerDescription) ToPointer() *RolesAPIProductsRolesViewerDescription {
 	return &e
+}
+
+// RolesAPIProductsRolesViewerDescriptionValues returns every known RolesAPIProductsRolesViewerDescription value in schema order.
+func RolesAPIProductsRolesViewerDescriptionValues() []RolesAPIProductsRolesViewerDescription {
+	return []RolesAPIProductsRolesViewerDescription{
+		RolesAPIProductsRolesViewerDescriptionViewerHasReadOnlyAccessToAnAPIProductAndItsSubEntities,
+	}
 }
 func (e *RolesAPIProductsRolesViewerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2634,6 +3103,13 @@ const (
 func (e RolesApisName) ToPointer() *RolesApisName {
 	return &e
 }
+
+// RolesApisNameValues returns every known RolesApisName value in schema order.
+func RolesApisNameValues() []RolesApisName {
+	return []RolesApisName{
+		RolesApisNameApIs,
+	}
+}
 func (e *RolesApisName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2656,6 +3132,13 @@ const (
 
 func (e APIID) ToPointer() *APIID {
 	return &e
+}
+
+// APIIDValues returns every known APIID value in schema order.
+func APIIDValues() []APIID {
+	return []APIID{
+		APIIDTheAPIID,
+	}
 }
 func (e *APIID) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2691,6 +3174,13 @@ const (
 func (e RolesApisRolesName) ToPointer() *RolesApisRolesName {
 	return &e
 }
+
+// RolesApisRolesNameValues returns every known RolesApisRolesName value in schema order.
+func RolesApisRolesNameValues() []RolesApisRolesName {
+	return []RolesApisRolesName{
+		RolesApisRolesNameAdmin,
+	}
+}
 func (e *RolesApisRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2713,6 +3203,13 @@ const (
 
 func (e RolesApisDescription) ToPointer() *RolesApisDescription {
 	return &e
+}
+
+// RolesApisDescriptionValues returns every known RolesApisDescription value in schema order.
+func RolesApisDescriptionValues() []RolesApisDescription {
+	return []RolesApisDescription{
+		RolesApisDescriptionAdminOfAnExistingAPIProvidingAbilityToReadAndEditConfigurationViewAPIAnalyticsAndDeleteTheAPI,
+	}
 }
 func (e *RolesApisDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2765,6 +3262,13 @@ const (
 func (e RolesAPIID) ToPointer() *RolesAPIID {
 	return &e
 }
+
+// RolesAPIIDValues returns every known RolesAPIID value in schema order.
+func RolesAPIIDValues() []RolesAPIID {
+	return []RolesAPIID{
+		RolesAPIIDTheAPIID,
+	}
+}
 func (e *RolesAPIID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2799,6 +3303,13 @@ const (
 func (e RolesApisRolesCreatorName) ToPointer() *RolesApisRolesCreatorName {
 	return &e
 }
+
+// RolesApisRolesCreatorNameValues returns every known RolesApisRolesCreatorName value in schema order.
+func RolesApisRolesCreatorNameValues() []RolesApisRolesCreatorName {
+	return []RolesApisRolesCreatorName{
+		RolesApisRolesCreatorNameCreator,
+	}
+}
 func (e *RolesApisRolesCreatorName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2821,6 +3332,13 @@ const (
 
 func (e RolesApisRolesDescription) ToPointer() *RolesApisRolesDescription {
 	return &e
+}
+
+// RolesApisRolesDescriptionValues returns every known RolesApisRolesDescription value in schema order.
+func RolesApisRolesDescriptionValues() []RolesApisRolesDescription {
+	return []RolesApisRolesDescription{
+		RolesApisRolesDescriptionAccessToCreateNewAPIInKonnectTheCreatorBecomesAnAdminOfTheAPITheyCreate,
+	}
 }
 func (e *RolesApisRolesDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2873,6 +3391,13 @@ const (
 func (e RolesApisAPIID) ToPointer() *RolesApisAPIID {
 	return &e
 }
+
+// RolesApisAPIIDValues returns every known RolesApisAPIID value in schema order.
+func RolesApisAPIIDValues() []RolesApisAPIID {
+	return []RolesApisAPIID{
+		RolesApisAPIIDTheAPIID,
+	}
+}
 func (e *RolesApisAPIID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2907,6 +3432,13 @@ const (
 func (e RolesApisRolesMaintainerName) ToPointer() *RolesApisRolesMaintainerName {
 	return &e
 }
+
+// RolesApisRolesMaintainerNameValues returns every known RolesApisRolesMaintainerName value in schema order.
+func RolesApisRolesMaintainerNameValues() []RolesApisRolesMaintainerName {
+	return []RolesApisRolesMaintainerName{
+		RolesApisRolesMaintainerNameMaintainer,
+	}
+}
 func (e *RolesApisRolesMaintainerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2929,6 +3461,13 @@ const (
 
 func (e RolesApisRolesMaintainerDescription) ToPointer() *RolesApisRolesMaintainerDescription {
 	return &e
+}
+
+// RolesApisRolesMaintainerDescriptionValues returns every known RolesApisRolesMaintainerDescription value in schema order.
+func RolesApisRolesMaintainerDescriptionValues() []RolesApisRolesMaintainerDescription {
+	return []RolesApisRolesMaintainerDescription{
+		RolesApisRolesMaintainerDescriptionAccessToReadAndEditConfigurationOfAnAPIAndViewAnalyticsOfAnAPI,
+	}
 }
 func (e *RolesApisRolesMaintainerDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2981,6 +3520,13 @@ const (
 func (e RolesApisRolesAPIID) ToPointer() *RolesApisRolesAPIID {
 	return &e
 }
+
+// RolesApisRolesAPIIDValues returns every known RolesApisRolesAPIID value in schema order.
+func RolesApisRolesAPIIDValues() []RolesApisRolesAPIID {
+	return []RolesApisRolesAPIID{
+		RolesApisRolesAPIIDTheAPIID,
+	}
+}
 func (e *RolesApisRolesAPIID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3015,6 +3561,13 @@ const (
 func (e RolesApisRolesPublisherName) ToPointer() *RolesApisRolesPublisherName {
 	return &e
 }
+
+// RolesApisRolesPublisherNameValues returns every known RolesApisRolesPublisherName value in schema order.
+func RolesApisRolesPublisherNameValues() []RolesApisRolesPublisherName {
+	return []RolesApisRolesPublisherName{
+		RolesApisRolesPublisherNamePublisher,
+	}
+}
 func (e *RolesApisRolesPublisherName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3037,6 +3590,13 @@ const (
 
 func (e RolesApisRolesPublisherDescription) ToPointer() *RolesApisRolesPublisherDescription {
 	return &e
+}
+
+// RolesApisRolesPublisherDescriptionValues returns every known RolesApisRolesPublisherDescription value in schema order.
+func RolesApisRolesPublisherDescriptionValues() []RolesApisRolesPublisherDescription {
+	return []RolesApisRolesPublisherDescription{
+		RolesApisRolesPublisherDescriptionAccessToPublishAnAPIToVisiblePortals,
+	}
 }
 func (e *RolesApisRolesPublisherDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -3089,6 +3649,13 @@ const (
 func (e RolesApisRolesRegistrationApproverAPIID) ToPointer() *RolesApisRolesRegistrationApproverAPIID {
 	return &e
 }
+
+// RolesApisRolesRegistrationApproverAPIIDValues returns every known RolesApisRolesRegistrationApproverAPIID value in schema order.
+func RolesApisRolesRegistrationApproverAPIIDValues() []RolesApisRolesRegistrationApproverAPIID {
+	return []RolesApisRolesRegistrationApproverAPIID{
+		RolesApisRolesRegistrationApproverAPIIDTheAPIID,
+	}
+}
 func (e *RolesApisRolesRegistrationApproverAPIID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3123,6 +3690,13 @@ const (
 func (e RolesApisRolesRegistrationApproverName) ToPointer() *RolesApisRolesRegistrationApproverName {
 	return &e
 }
+
+// RolesApisRolesRegistrationApproverNameValues returns every known RolesApisRolesRegistrationApproverName value in schema order.
+func RolesApisRolesRegistrationApproverNameValues() []RolesApisRolesRegistrationApproverName {
+	return []RolesApisRolesRegistrationApproverName{
+		RolesApisRolesRegistrationApproverNameRegistrationApprover,
+	}
+}
 func (e *RolesApisRolesRegistrationApproverName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3145,6 +3719,13 @@ const (
 
 func (e RolesApisRolesRegistrationApproverDescription) ToPointer() *RolesApisRolesRegistrationApproverDescription {
 	return &e
+}
+
+// RolesApisRolesRegistrationApproverDescriptionValues returns every known RolesApisRolesRegistrationApproverDescription value in schema order.
+func RolesApisRolesRegistrationApproverDescriptionValues() []RolesApisRolesRegistrationApproverDescription {
+	return []RolesApisRolesRegistrationApproverDescription{
+		RolesApisRolesRegistrationApproverDescriptionAccessToApproveAnAPIRegistrationRequest,
+	}
 }
 func (e *RolesApisRolesRegistrationApproverDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -3197,6 +3778,13 @@ const (
 func (e RolesApisRolesViewerAPIID) ToPointer() *RolesApisRolesViewerAPIID {
 	return &e
 }
+
+// RolesApisRolesViewerAPIIDValues returns every known RolesApisRolesViewerAPIID value in schema order.
+func RolesApisRolesViewerAPIIDValues() []RolesApisRolesViewerAPIID {
+	return []RolesApisRolesViewerAPIID{
+		RolesApisRolesViewerAPIIDTheAPIID,
+	}
+}
 func (e *RolesApisRolesViewerAPIID) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3231,6 +3819,13 @@ const (
 func (e RolesApisRolesViewerName) ToPointer() *RolesApisRolesViewerName {
 	return &e
 }
+
+// RolesApisRolesViewerNameValues returns every known RolesApisRolesViewerName value in schema order.
+func RolesApisRolesViewerNameValues() []RolesApisRolesViewerName {
+	return []RolesApisRolesViewerName{
+		RolesApisRolesViewerNameViewer,
+	}
+}
 func (e *RolesApisRolesViewerName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -3253,6 +3848,13 @@ const (
 
 func (e RolesApisRolesViewerDescription) ToPointer() *RolesApisRolesViewerDescription {
 	return &e
+}
+
+// RolesApisRolesViewerDescriptionValues returns every known RolesApisRolesViewerDescription value in schema order.
+func RolesApisRolesViewerDescriptionValues() []RolesApisRolesViewerDescription {
+	return []RolesApisRolesViewerDescription{
+		RolesApisRolesViewerDescriptionReadOnlyAccessToAnAPIConfigurationAndAnalytics,
+	}
 }
 func (e *RolesApisRolesViewerDescription) UnmarshalJSON(data []byte) error {
 	var v string

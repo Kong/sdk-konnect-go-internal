@@ -21,6 +21,14 @@ func (e Purpose) ToPointer() *Purpose {
 	return &e
 }
 
+// PurposeValues returns every known Purpose value in schema order.
+func PurposeValues() []Purpose {
+	return []Purpose{
+		PurposeSemanticBalancer,
+		PurposeSessionAffinity,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *Purpose) IsExact() bool {
 	if e != nil {

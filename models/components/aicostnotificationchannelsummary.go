@@ -18,6 +18,14 @@ func (e AICostNotificationChannelSummaryType) ToPointer() *AICostNotificationCha
 	return &e
 }
 
+// AICostNotificationChannelSummaryTypeValues returns every known AICostNotificationChannelSummaryType value in schema order.
+func AICostNotificationChannelSummaryTypeValues() []AICostNotificationChannelSummaryType {
+	return []AICostNotificationChannelSummaryType{
+		AICostNotificationChannelSummaryTypeEmail,
+		AICostNotificationChannelSummaryTypeSlack,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AICostNotificationChannelSummaryType) IsExact() bool {
 	if e != nil {

@@ -18,6 +18,14 @@ func (e HashiCorpVaultGcpGCEConfigKv) ToPointer() *HashiCorpVaultGcpGCEConfigKv 
 	return &e
 }
 
+// HashiCorpVaultGcpGCEConfigKvValues returns every known HashiCorpVaultGcpGCEConfigKv value in schema order.
+func HashiCorpVaultGcpGCEConfigKvValues() []HashiCorpVaultGcpGCEConfigKv {
+	return []HashiCorpVaultGcpGCEConfigKv{
+		HashiCorpVaultGcpGCEConfigKvV1,
+		HashiCorpVaultGcpGCEConfigKvV2,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *HashiCorpVaultGcpGCEConfigKv) IsExact() bool {
 	if e != nil {
@@ -39,6 +47,14 @@ const (
 
 func (e HashiCorpVaultGcpGCEConfigProtocol) ToPointer() *HashiCorpVaultGcpGCEConfigProtocol {
 	return &e
+}
+
+// HashiCorpVaultGcpGCEConfigProtocolValues returns every known HashiCorpVaultGcpGCEConfigProtocol value in schema order.
+func HashiCorpVaultGcpGCEConfigProtocolValues() []HashiCorpVaultGcpGCEConfigProtocol {
+	return []HashiCorpVaultGcpGCEConfigProtocol{
+		HashiCorpVaultGcpGCEConfigProtocolHTTP,
+		HashiCorpVaultGcpGCEConfigProtocolHTTPS,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

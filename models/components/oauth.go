@@ -21,6 +21,16 @@ func (e OverridableConfig) ToPointer() *OverridableConfig {
 	return &e
 }
 
+// OverridableConfigValues returns every known OverridableConfig value in schema order.
+func OverridableConfigValues() []OverridableConfig {
+	return []OverridableConfig{
+		OverridableConfigClientID,
+		OverridableConfigClientSecret,
+		OverridableConfigAuthorizationEndpoint,
+		OverridableConfigTokenEndpoint,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *OverridableConfig) IsExact() bool {
 	if e != nil {
@@ -42,6 +52,13 @@ const (
 
 func (e OAuthGrantType) ToPointer() *OAuthGrantType {
 	return &e
+}
+
+// OAuthGrantTypeValues returns every known OAuthGrantType value in schema order.
+func OAuthGrantTypeValues() []OAuthGrantType {
+	return []OAuthGrantType{
+		OAuthGrantTypeAuthorizationCode,
+	}
 }
 func (e *OAuthGrantType) UnmarshalJSON(data []byte) error {
 	var v string

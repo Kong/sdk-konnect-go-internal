@@ -18,6 +18,14 @@ func (e AICostFocusOptionsVersion) ToPointer() *AICostFocusOptionsVersion {
 	return &e
 }
 
+// AICostFocusOptionsVersionValues returns every known AICostFocusOptionsVersion value in schema order.
+func AICostFocusOptionsVersionValues() []AICostFocusOptionsVersion {
+	return []AICostFocusOptionsVersion{
+		AICostFocusOptionsVersionOneDot3,
+		AICostFocusOptionsVersionOneDot4,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AICostFocusOptionsVersion) IsExact() bool {
 	if e != nil {
@@ -39,6 +47,14 @@ const (
 
 func (e ChargePeriod) ToPointer() *ChargePeriod {
 	return &e
+}
+
+// ChargePeriodValues returns every known ChargePeriod value in schema order.
+func ChargePeriodValues() []ChargePeriod {
+	return []ChargePeriod{
+		ChargePeriodDay,
+		ChargePeriodHour,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

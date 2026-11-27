@@ -53,6 +53,17 @@ func (e HTTPSRedirectStatusCode) ToPointer() *HTTPSRedirectStatusCode {
 	return &e
 }
 
+// HTTPSRedirectStatusCodeValues returns every known HTTPSRedirectStatusCode value in schema order.
+func HTTPSRedirectStatusCodeValues() []HTTPSRedirectStatusCode {
+	return []HTTPSRedirectStatusCode{
+		HTTPSRedirectStatusCodeThreeHundredAndOne,
+		HTTPSRedirectStatusCodeThreeHundredAndTwo,
+		HTTPSRedirectStatusCodeThreeHundredAndSeven,
+		HTTPSRedirectStatusCodeThreeHundredAndEight,
+		HTTPSRedirectStatusCodeFourHundredAndTwentySix,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *HTTPSRedirectStatusCode) IsExact() bool {
 	if e != nil {
@@ -74,6 +85,14 @@ const (
 
 func (e PathHandling) ToPointer() *PathHandling {
 	return &e
+}
+
+// PathHandlingValues returns every known PathHandling value in schema order.
+func PathHandlingValues() []PathHandling {
+	return []PathHandling{
+		PathHandlingV0,
+		PathHandlingV1,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -105,6 +124,22 @@ const (
 
 func (e RouteJSONProtocols) ToPointer() *RouteJSONProtocols {
 	return &e
+}
+
+// RouteJSONProtocolsValues returns every known RouteJSONProtocols value in schema order.
+func RouteJSONProtocolsValues() []RouteJSONProtocols {
+	return []RouteJSONProtocols{
+		RouteJSONProtocolsGrpc,
+		RouteJSONProtocolsGrpcs,
+		RouteJSONProtocolsHTTP,
+		RouteJSONProtocolsHTTPS,
+		RouteJSONProtocolsTCP,
+		RouteJSONProtocolsTLS,
+		RouteJSONProtocolsTLSPassthrough,
+		RouteJSONProtocolsUDP,
+		RouteJSONProtocolsWs,
+		RouteJSONProtocolsWss,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

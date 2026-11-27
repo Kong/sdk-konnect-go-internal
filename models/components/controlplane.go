@@ -24,6 +24,19 @@ func (e ControlPlaneClusterType) ToPointer() *ControlPlaneClusterType {
 	return &e
 }
 
+// ControlPlaneClusterTypeValues returns every known ControlPlaneClusterType value in schema order.
+func ControlPlaneClusterTypeValues() []ControlPlaneClusterType {
+	return []ControlPlaneClusterType{
+		ControlPlaneClusterTypeClusterTypeControlPlane,
+		ControlPlaneClusterTypeClusterTypeK8SIngressController,
+		ControlPlaneClusterTypeClusterTypeControlPlaneGroup,
+		ControlPlaneClusterTypeClusterTypeServerless,
+		ControlPlaneClusterTypeClusterTypeKafkaNativeEventProxy,
+		ControlPlaneClusterTypeClusterTypeCloudAPIGateway,
+		ControlPlaneClusterTypeClusterTypeServerlessV1,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *ControlPlaneClusterType) IsExact() bool {
 	if e != nil {
@@ -45,6 +58,14 @@ const (
 
 func (e ControlPlaneAuthType) ToPointer() *ControlPlaneAuthType {
 	return &e
+}
+
+// ControlPlaneAuthTypeValues returns every known ControlPlaneAuthType value in schema order.
+func ControlPlaneAuthTypeValues() []ControlPlaneAuthType {
+	return []ControlPlaneAuthType{
+		ControlPlaneAuthTypePinnedClientCerts,
+		ControlPlaneAuthTypePkiClientCerts,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

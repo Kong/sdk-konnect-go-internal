@@ -41,6 +41,18 @@ func (e Error) ToPointer() *Error {
 	return &e
 }
 
+// ErrorValues returns every known Error value in schema order.
+func ErrorValues() []Error {
+	return []Error{
+		ErrorInvalidRequest,
+		ErrorInvalidClient,
+		ErrorInvalidGrant,
+		ErrorUnauthorizedClient,
+		ErrorUnsupportedGrantType,
+		ErrorInvalidScope,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *Error) IsExact() bool {
 	if e != nil {

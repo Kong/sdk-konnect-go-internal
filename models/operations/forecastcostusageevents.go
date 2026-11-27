@@ -31,6 +31,16 @@ func (e Method) ToPointer() *Method {
 	return &e
 }
 
+// MethodValues returns every known Method value in schema order.
+func MethodValues() []Method {
+	return []Method{
+		MethodAuto,
+		MethodWeeklySeasonal,
+		MethodLinearRegression,
+		MethodExponentialSmoothing,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *Method) IsExact() bool {
 	if e != nil {
@@ -138,6 +148,15 @@ func (e ForecastCostUsageEventsMethod) ToPointer() *ForecastCostUsageEventsMetho
 	return &e
 }
 
+// ForecastCostUsageEventsMethodValues returns every known ForecastCostUsageEventsMethod value in schema order.
+func ForecastCostUsageEventsMethodValues() []ForecastCostUsageEventsMethod {
+	return []ForecastCostUsageEventsMethod{
+		ForecastCostUsageEventsMethodWeeklySeasonal,
+		ForecastCostUsageEventsMethodLinearRegression,
+		ForecastCostUsageEventsMethodExponentialSmoothing,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *ForecastCostUsageEventsMethod) IsExact() bool {
 	if e != nil {
@@ -159,6 +178,14 @@ const (
 
 func (e Status) ToPointer() *Status {
 	return &e
+}
+
+// StatusValues returns every known Status value in schema order.
+func StatusValues() []Status {
+	return []Status{
+		StatusReady,
+		StatusInsufficientHistory,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

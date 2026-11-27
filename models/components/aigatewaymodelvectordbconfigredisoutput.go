@@ -21,6 +21,14 @@ func (e AIGatewayModelVectorDBConfigRedisDistanceMetric) ToPointer() *AIGatewayM
 	return &e
 }
 
+// AIGatewayModelVectorDBConfigRedisDistanceMetricValues returns every known AIGatewayModelVectorDBConfigRedisDistanceMetric value in schema order.
+func AIGatewayModelVectorDBConfigRedisDistanceMetricValues() []AIGatewayModelVectorDBConfigRedisDistanceMetric {
+	return []AIGatewayModelVectorDBConfigRedisDistanceMetric{
+		AIGatewayModelVectorDBConfigRedisDistanceMetricCosine,
+		AIGatewayModelVectorDBConfigRedisDistanceMetricEuclidean,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayModelVectorDBConfigRedisDistanceMetric) IsExact() bool {
 	if e != nil {
@@ -356,6 +364,15 @@ const (
 
 func (e Role) ToPointer() *Role {
 	return &e
+}
+
+// RoleValues returns every known Role value in schema order.
+func RoleValues() []Role {
+	return []Role{
+		RoleAny,
+		RoleMaster,
+		RoleSlave,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

@@ -17,6 +17,13 @@ const (
 func (e Kind) ToPointer() *Kind {
 	return &e
 }
+
+// KindValues returns every known Kind value in schema order.
+func KindValues() []Kind {
+	return []Kind{
+		KindStatic,
+	}
+}
 func (e *Kind) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

@@ -17,6 +17,13 @@ const (
 func (e EqualWebIntegrationType) ToPointer() *EqualWebIntegrationType {
 	return &e
 }
+
+// EqualWebIntegrationTypeValues returns every known EqualWebIntegrationType value in schema order.
+func EqualWebIntegrationTypeValues() []EqualWebIntegrationType {
+	return []EqualWebIntegrationType{
+		EqualWebIntegrationTypeAccessibility,
+	}
+}
 func (e *EqualWebIntegrationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

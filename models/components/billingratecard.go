@@ -208,6 +208,14 @@ func (e ConversionOperation) ToPointer() *ConversionOperation {
 	return &e
 }
 
+// ConversionOperationValues returns every known ConversionOperation value in schema order.
+func ConversionOperationValues() []ConversionOperation {
+	return []ConversionOperation{
+		ConversionOperationDivide,
+		ConversionOperationMultiply,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *ConversionOperation) IsExact() bool {
 	if e != nil {
@@ -234,6 +242,16 @@ const (
 
 func (e RoundingMode) ToPointer() *RoundingMode {
 	return &e
+}
+
+// RoundingModeValues returns every known RoundingMode value in schema order.
+func RoundingModeValues() []RoundingMode {
+	return []RoundingMode{
+		RoundingModeCeiling,
+		RoundingModeFloor,
+		RoundingModeHalfUp,
+		RoundingModeNone,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -341,6 +359,14 @@ func (e PaymentTerm) ToPointer() *PaymentTerm {
 	return &e
 }
 
+// PaymentTermValues returns every known PaymentTerm value in schema order.
+func PaymentTermValues() []PaymentTerm {
+	return []PaymentTerm{
+		PaymentTermInAdvance,
+		PaymentTermInArrears,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *PaymentTerm) IsExact() bool {
 	if e != nil {
@@ -414,6 +440,14 @@ const (
 
 func (e TaxBehavior) ToPointer() *TaxBehavior {
 	return &e
+}
+
+// TaxBehaviorValues returns every known TaxBehavior value in schema order.
+func TaxBehaviorValues() []TaxBehavior {
+	return []TaxBehavior{
+		TaxBehaviorInclusive,
+		TaxBehaviorExclusive,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

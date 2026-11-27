@@ -18,6 +18,14 @@ func (e UpdateAIGatewayAgentRequestType) ToPointer() *UpdateAIGatewayAgentReques
 	return &e
 }
 
+// UpdateAIGatewayAgentRequestTypeValues returns every known UpdateAIGatewayAgentRequestType value in schema order.
+func UpdateAIGatewayAgentRequestTypeValues() []UpdateAIGatewayAgentRequestType {
+	return []UpdateAIGatewayAgentRequestType{
+		UpdateAIGatewayAgentRequestTypeA2a,
+		UpdateAIGatewayAgentRequestTypeHTTP,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *UpdateAIGatewayAgentRequestType) IsExact() bool {
 	if e != nil {
@@ -41,6 +49,14 @@ const (
 
 func (e UpdateAIGatewayAgentRequestProtocol) ToPointer() *UpdateAIGatewayAgentRequestProtocol {
 	return &e
+}
+
+// UpdateAIGatewayAgentRequestProtocolValues returns every known UpdateAIGatewayAgentRequestProtocol value in schema order.
+func UpdateAIGatewayAgentRequestProtocolValues() []UpdateAIGatewayAgentRequestProtocol {
+	return []UpdateAIGatewayAgentRequestProtocol{
+		UpdateAIGatewayAgentRequestProtocolHTTP,
+		UpdateAIGatewayAgentRequestProtocolHTTPS,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

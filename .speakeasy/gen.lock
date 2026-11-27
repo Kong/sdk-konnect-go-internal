@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: 1e8ddf31137c5b6cc1b60f5fbe9dc0a0
+  docChecksum: c1fa4462c2c45ad74f7f2a2ff02e4d28
   docVersion: 3.21.6
-  speakeasyVersion: 1.812.1
-  generationVersion: 2.968.17
+  speakeasyVersion: 1.813.0
+  generationVersion: 2.969.4
   releaseVersion: 0.10.0
   configChecksum: d3c936a4fb96561ef29851c19d422123
 persistentEdits:
@@ -2631,6 +2631,7 @@ trackedFiles:
   docs/models/components/controlplanesortquery.md: {}
   docs/models/components/controlplanetype.md: {}
   docs/models/components/conversionoperation.md: {}
+  docs/models/components/coreentityavailableplugins.md: {}
   docs/models/components/costbasis.md: {}
   docs/models/components/costbasismode.md: {}
   docs/models/components/costbasispagepaginatedresponse.md: {}
@@ -10229,6 +10230,8 @@ trackedFiles:
   docs/models/operations/listauthserversqueryparamfilter.md: {}
   docs/models/operations/listauthserversrequest.md: {}
   docs/models/operations/listauthserversresponse.md: {}
+  docs/models/operations/listavailablepluginsrequest.md: {}
+  docs/models/operations/listavailablepluginsresponse.md: {}
   docs/models/operations/listbasicauthrequest.md:
     id: dd62aa4a40d3
     pristine_git_object: d1dcc0b7af7ec90e800a3e450974c3b63bb2cc2e
@@ -12611,6 +12614,7 @@ trackedFiles:
   docs/sdks/plugins/README.md:
     id: f8fac123dae9
     pristine_git_object: 28dfb6631411eb71622fec98d6696c907c2f4b3c
+  docs/sdks/pluginservice/README.md: {}
   docs/sdks/portalauditlogs/README.md:
     id: 924e6cb9415f
     pristine_git_object: fee9476fa0b4cc9ecb40407dbb63335700c69e0f
@@ -13862,6 +13866,7 @@ trackedFiles:
     id: eb6dbcc54668
     pristine_git_object: f49bde261c65eea5198578794c239c7498196af1
   models/components/controlplanesortquery.go: {}
+  models/components/coreentityavailableplugins.go: {}
   models/components/costbasispagepaginatedresponse.go: {}
   models/components/costmanagementtags.go: {}
   models/components/costtagheader.go: {}
@@ -17583,6 +17588,7 @@ trackedFiles:
   models/operations/listauthserverclienttokens.go: {}
   models/operations/listauthservers.go: {}
   models/operations/listauthserverscopes.go: {}
+  models/operations/listavailableplugins.go: {}
   models/operations/listbasicauth.go:
     id: 956645aaf7cb
     pristine_git_object: 317759d239059bd9551c71a537e583409e3ccd26
@@ -18635,6 +18641,7 @@ trackedFiles:
   plugins.go:
     id: acdf5ead447c
     pristine_git_object: 2749e81cf486d1196311fa84f2c745da9f165ba7
+  pluginservice.go: {}
   portalauditlogs.go:
     id: f82459f6803b
     pristine_git_object: f60f899e5eae186388adab72b104cdecce255a64
@@ -44211,6 +44218,20 @@ examples:
           application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
         "404":
           application/problem+json: {"status": 404, "title": "Not Found", "type": "https://httpstatuses.com/404", "instance": "kong:trace:1234567890", "detail": "Not found"}
+  list-available-plugins:
+    speakeasy-default-list-available-plugins:
+      parameters:
+        path:
+          controlPlaneId: "9524ec7d-36d9-465d-a8c5-83a3c9390458"
+      responses:
+        "200":
+          application/json: {"names": ["<value 1>", "<value 2>", "<value 3>"]}
+        "400":
+          application/problem+json: {"status": 400, "title": "<value>", "instance": "<value>", "detail": "<value>", "invalid_parameters": [{"field": "to", "rule": "max_time", "maximum": "2026-10-31T23:59:59Z", "source": "body", "reason": "must be no later than 2026-10-31T23:59:59Z"}]}
+        "401":
+          application/problem+json: {"status": 401, "title": "Unauthorized", "type": "https://httpstatuses.com/401", "instance": "kong:trace:1234567890", "detail": "Invalid credentials"}
+        "403":
+          application/problem+json: {"status": 403, "title": "Forbidden", "type": "https://httpstatuses.com/403", "instance": "kong:trace:1234567890", "detail": "Forbidden"}
 examplesVersion: 1.0.2
 generatedTests: {}
 generatedFiles:

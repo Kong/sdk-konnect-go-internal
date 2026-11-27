@@ -19,6 +19,13 @@ const (
 func (e AICostNotificationDeliveryPendingStatus) ToPointer() *AICostNotificationDeliveryPendingStatus {
 	return &e
 }
+
+// AICostNotificationDeliveryPendingStatusValues returns every known AICostNotificationDeliveryPendingStatus value in schema order.
+func AICostNotificationDeliveryPendingStatusValues() []AICostNotificationDeliveryPendingStatus {
+	return []AICostNotificationDeliveryPendingStatus{
+		AICostNotificationDeliveryPendingStatusPending,
+	}
+}
 func (e *AICostNotificationDeliveryPendingStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

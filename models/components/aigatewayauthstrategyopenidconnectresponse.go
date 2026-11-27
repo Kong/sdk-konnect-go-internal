@@ -25,6 +25,21 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseAuthMethods) ToPointer() *AIGa
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseAuthMethods value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsValues() []AIGatewayAuthStrategyOpenIDConnectResponseAuthMethods {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseAuthMethods{
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsAuthorizationCode,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsBearer,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsClientCredentials,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsIntrospection,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsKongOauth2,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsPassword,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsRefreshToken,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsSession,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthMethodsUserinfo,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseAuthMethods) IsExact() bool {
 	if e != nil {
@@ -50,6 +65,16 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite) T
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteValues() []AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite{
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteDefault,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteLax,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteNone,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSiteStrict,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseAuthorizationCookieSameSite) IsExact() bool {
 	if e != nil {
@@ -72,6 +97,16 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeValues() []AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamType{
+		AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeBody,
+		AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeCookie,
+		AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeHeader,
+		AIGatewayAuthStrategyOpenIDConnectResponseBearerTokenParamTypeQuery,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -107,6 +142,25 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseClientAlg) ToPointer() *AIGate
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseClientAlgValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseClientAlg value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseClientAlgValues() []AIGatewayAuthStrategyOpenIDConnectResponseClientAlg {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseClientAlg{
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgEs256,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgEs384,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgEs512,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgEdDsa,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgHs256,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgHs384,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgHs512,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgPs256,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgPs384,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgPs512,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgRs256,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgRs384,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAlgRs512,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseClientAlg) IsExact() bool {
 	if e != nil {
@@ -134,6 +188,19 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseClientAuth) ToPointer() *AIGat
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseClientAuthValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseClientAuth value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseClientAuthValues() []AIGatewayAuthStrategyOpenIDConnectResponseClientAuth {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseClientAuth{
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAuthClientSecretBasic,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAuthClientSecretJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAuthClientSecretPost,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAuthNone,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAuthPrivateKeyJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAuthSelfSignedTLSClientAuth,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientAuthTLSClientAuth,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseClientAuth) IsExact() bool {
 	if e != nil {
@@ -155,6 +222,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeValues() []AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamType{
+		AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeBody,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeHeader,
+		AIGatewayAuthStrategyOpenIDConnectResponseClientCredentialsParamTypeQuery,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -395,6 +471,15 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider) ToPointer() *AIG
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderValues() []AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider{
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderAws,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderAzure,
+		AIGatewayAuthStrategyOpenIDConnectResponseAuthProviderGcp,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseAuthProvider) IsExact() bool {
 	if e != nil {
@@ -604,6 +689,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseSentinelRoleValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseSentinelRoleValues() []AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseSentinelRole{
+		AIGatewayAuthStrategyOpenIDConnectResponseSentinelRoleAny,
+		AIGatewayAuthStrategyOpenIDConnectResponseSentinelRoleMaster,
+		AIGatewayAuthStrategyOpenIDConnectResponseSentinelRoleSlave,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -841,6 +935,14 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy) ToPointe
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategyValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategyValues() []AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy{
+		AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategyOff,
+		AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategyRedis,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseClusterCacheStrategy) IsExact() bool {
 	if e != nil {
@@ -862,6 +964,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseConsumerByValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseConsumerByValues() []AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseConsumerBy{
+		AIGatewayAuthStrategyOpenIDConnectResponseConsumerByCustomID,
+		AIGatewayAuthStrategyOpenIDConnectResponseConsumerByID,
+		AIGatewayAuthStrategyOpenIDConnectResponseConsumerByUsername,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -891,6 +1002,21 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseDisableSession) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseDisableSession {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseDisableSession value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionValues() []AIGatewayAuthStrategyOpenIDConnectResponseDisableSession {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseDisableSession{
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionAuthorizationCode,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionBearer,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionClientCredentials,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionIntrospection,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionKongOauth2,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionPassword,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionRefreshToken,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionSession,
+		AIGatewayAuthStrategyOpenIDConnectResponseDisableSessionUserinfo,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -948,6 +1074,15 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType) ToPointer() 
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeValues() []AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType{
+		AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeBody,
+		AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeHeader,
+		AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamTypeQuery,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseIDTokenParamType) IsExact() bool {
 	if e != nil {
@@ -975,6 +1110,19 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature) ToPointer() *
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureValues() []AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature{
+		AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureAuthorizationCode,
+		AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureClientCredentials,
+		AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureIntrospection,
+		AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignaturePassword,
+		AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureRefreshToken,
+		AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureSession,
+		AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignatureUserinfo,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseIgnoreSignature) IsExact() bool {
 	if e != nil {
@@ -997,6 +1145,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptValues() []AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAccept{
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptApplicationJSON,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptApplicationJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionAcceptApplicationTokenIntrospectionPlusJwt,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1027,6 +1184,19 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMetho
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodValues() []AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod{
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodClientSecretBasic,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodClientSecretJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodClientSecretPost,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodNone,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodPrivateKeyJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodSelfSignedTLSClientAuth,
+		AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethodTLSClientAuth,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseIntrospectionEndpointAuthMethod) IsExact() bool {
 	if e != nil {
@@ -1049,6 +1219,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginAction) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseLoginAction {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseLoginActionValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseLoginAction value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseLoginActionValues() []AIGatewayAuthStrategyOpenIDConnectResponseLoginAction {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseLoginAction{
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginActionRedirect,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginActionResponse,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginActionUpstream,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1080,6 +1259,21 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods) ToPointer() *AIG
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsValues() []AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods{
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsAuthorizationCode,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsBearer,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsClientCredentials,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsIntrospection,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsKongOauth2,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsPassword,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsRefreshToken,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsSession,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginMethodsUserinfo,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseLoginMethods) IsExact() bool {
 	if e != nil {
@@ -1101,6 +1295,14 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectModeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectModeValues() []AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectMode{
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectModeFragment,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginRedirectModeQuery,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1128,6 +1330,17 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens) ToPointer() *AIGa
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensValues() []AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens{
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensAccessToken,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensIDToken,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensIntrospection,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensRefreshToken,
+		AIGatewayAuthStrategyOpenIDConnectResponseLoginTokensTokens,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseLoginTokens) IsExact() bool {
 	if e != nil {
@@ -1151,6 +1364,15 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods) ToPointer() *AI
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsValues() []AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods{
+		AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsDelete,
+		AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsGet,
+		AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethodsPost,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseLogoutMethods) IsExact() bool {
 	if e != nil {
@@ -1172,6 +1394,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeValues() []AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType {
+	return []AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamType{
+		AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeBody,
+		AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeHeader,
+		AIGatewayAuthStrategyOpenIDConnectResponsePasswordParamTypeQuery,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1322,6 +1553,15 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop) ToPoint
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopValues() []AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop{
+		AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopOff,
+		AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopOptional,
+		AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpopStrict,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionDpop) IsExact() bool {
 	if e != nil {
@@ -1344,6 +1584,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsValues() []AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtls{
+		AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsOff,
+		AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsOptional,
+		AIGatewayAuthStrategyOpenIDConnectResponseProofOfPossessionMtlsStrict,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1427,6 +1676,19 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndp
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodValues returns every known AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodValues() []AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod {
+	return []AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod{
+		AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodClientSecretBasic,
+		AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodClientSecretJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodClientSecretPost,
+		AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodNone,
+		AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodPrivateKeyJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodSelfSignedTLSClientAuth,
+		AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethodTLSClientAuth,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponsePushedAuthorizationRequestEndpointAuthMethod) IsExact() bool {
 	if e != nil {
@@ -1449,6 +1711,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderValues() []AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProvider{
+		AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderAws,
+		AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderAzure,
+		AIGatewayAuthStrategyOpenIDConnectResponseConfigAuthProviderGcp,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1660,6 +1931,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleValues() []AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRole{
+		AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleAny,
+		AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleMaster,
+		AIGatewayAuthStrategyOpenIDConnectResponseConfigSentinelRoleSlave,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1915,6 +2195,15 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType) ToPoint
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeValues() []AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType{
+		AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeBody,
+		AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeHeader,
+		AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamTypeQuery,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseRefreshTokenParamType) IsExact() bool {
 	if e != nil {
@@ -1941,6 +2230,19 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseResponseMode) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseResponseMode {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseResponseModeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseResponseMode value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseResponseModeValues() []AIGatewayAuthStrategyOpenIDConnectResponseResponseMode {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseResponseMode{
+		AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFormPost,
+		AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFormPostJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFragment,
+		AIGatewayAuthStrategyOpenIDConnectResponseResponseModeFragmentJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseResponseModeJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseResponseModeQuery,
+		AIGatewayAuthStrategyOpenIDConnectResponseResponseModeQueryJwt,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1971,6 +2273,19 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod) 
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodValues() []AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod{
+		AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodClientSecretBasic,
+		AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodClientSecretJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodClientSecretPost,
+		AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodNone,
+		AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodPrivateKeyJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodSelfSignedTLSClientAuth,
+		AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethodTLSClientAuth,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseRevocationEndpointAuthMethod) IsExact() bool {
 	if e != nil {
@@ -1992,6 +2307,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionBind) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionBind {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseSessionBindValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseSessionBind value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseSessionBindValues() []AIGatewayAuthStrategyOpenIDConnectResponseSessionBind {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseSessionBind{
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionBindIP,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionBindScheme,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionBindUserAgent,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -2017,6 +2341,16 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteValues() []AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSite{
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteDefault,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteLax,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteNone,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionCookieSameSiteStrict,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -2046,6 +2380,19 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders) ToPoint
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersValues() []AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders{
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersAbsoluteTimeout,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersAudience,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersID,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersIdlingTimeout,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersRollingTimeout,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersSubject,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeadersTimeout,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseSessionRequestHeaders) IsExact() bool {
 	if e != nil {
@@ -2073,6 +2420,19 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders) ToPoin
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersValues() []AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders{
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersAbsoluteTimeout,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersAudience,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersID,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersIdlingTimeout,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersRollingTimeout,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersSubject,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeadersTimeout,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseSessionResponseHeaders) IsExact() bool {
 	if e != nil {
@@ -2096,6 +2456,16 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageValues() []AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseSessionStorage{
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageCookie,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageMemcache,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageMemcached,
+		AIGatewayAuthStrategyOpenIDConnectResponseSessionStorageRedis,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -2124,6 +2494,19 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethod) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethod {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethod value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodValues() []AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethod {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethod{
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodClientSecretBasic,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodClientSecretJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodClientSecretPost,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodNone,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodPrivateKeyJwt,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodSelfSignedTLSClientAuth,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenEndpointAuthMethodTLSClientAuth,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -2184,6 +2567,14 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseGrantType) ToPointer() *AIGate
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseGrantTypeValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseGrantType value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseGrantTypeValues() []AIGatewayAuthStrategyOpenIDConnectResponseGrantType {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseGrantType{
+		AIGatewayAuthStrategyOpenIDConnectResponseGrantTypeJwtBearer,
+		AIGatewayAuthStrategyOpenIDConnectResponseGrantTypeTokenExchange,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseGrantType) IsExact() bool {
 	if e != nil {
@@ -2207,6 +2598,14 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFromValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFromValues() []AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFrom{
+		AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFromExchangedTokens,
+		AIGatewayAuthStrategyOpenIDConnectResponseMapIdentitiesFromSubjectToken,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -2234,6 +2633,14 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseProvider) ToPointer() *AIGatew
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseProviderValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseProvider value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseProviderValues() []AIGatewayAuthStrategyOpenIDConnectResponseProvider {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseProvider{
+		AIGatewayAuthStrategyOpenIDConnectResponseProviderMicrosoft,
+		AIGatewayAuthStrategyOpenIDConnectResponseProviderStandard,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseProvider) IsExact() bool {
 	if e != nil {
@@ -2256,6 +2663,15 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseSource) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseSource {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseSourceValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseSource value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseSourceValues() []AIGatewayAuthStrategyOpenIDConnectResponseSource {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseSource{
+		AIGatewayAuthStrategyOpenIDConnectResponseSourceConfig,
+		AIGatewayAuthStrategyOpenIDConnectResponseSourceHeader,
+		AIGatewayAuthStrategyOpenIDConnectResponseSourceNone,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -2654,6 +3070,16 @@ func (e AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants) ToPointer(
 	return &e
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsValues() []AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants{
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsAuthorizationCode,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsClientCredentials,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsPassword,
+		AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrantsRefreshToken,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAuthStrategyOpenIDConnectResponseTokenHeadersGrants) IsExact() bool {
 	if e != nil {
@@ -2707,6 +3133,14 @@ const (
 
 func (e AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept) ToPointer() *AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept {
 	return &e
+}
+
+// AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAcceptValues returns every known AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept value in schema order.
+func AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAcceptValues() []AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept {
+	return []AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept{
+		AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAcceptApplicationJSON,
+		AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAcceptApplicationJwt,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

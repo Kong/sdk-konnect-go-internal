@@ -18,6 +18,13 @@ const (
 func (e AIGatewayModelBalancerIntelligentConfigVersion) ToPointer() *AIGatewayModelBalancerIntelligentConfigVersion {
 	return &e
 }
+
+// AIGatewayModelBalancerIntelligentConfigVersionValues returns every known AIGatewayModelBalancerIntelligentConfigVersion value in schema order.
+func AIGatewayModelBalancerIntelligentConfigVersionValues() []AIGatewayModelBalancerIntelligentConfigVersion {
+	return []AIGatewayModelBalancerIntelligentConfigVersion{
+		AIGatewayModelBalancerIntelligentConfigVersionV1,
+	}
+}
 func (e *AIGatewayModelBalancerIntelligentConfigVersion) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -43,6 +50,15 @@ const (
 
 func (e CostQualityTradeoff) ToPointer() *CostQualityTradeoff {
 	return &e
+}
+
+// CostQualityTradeoffValues returns every known CostQualityTradeoff value in schema order.
+func CostQualityTradeoffValues() []CostQualityTradeoff {
+	return []CostQualityTradeoff{
+		CostQualityTradeoffBalanced,
+		CostQualityTradeoffCost,
+		CostQualityTradeoffQuality,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

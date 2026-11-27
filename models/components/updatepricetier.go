@@ -18,6 +18,13 @@ const (
 func (e UpdatePriceTierType) ToPointer() *UpdatePriceTierType {
 	return &e
 }
+
+// UpdatePriceTierTypeValues returns every known UpdatePriceTierType value in schema order.
+func UpdatePriceTierTypeValues() []UpdatePriceTierType {
+	return []UpdatePriceTierType{
+		UpdatePriceTierTypeFlat,
+	}
+}
 func (e *UpdatePriceTierType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -74,6 +81,13 @@ const (
 
 func (e UpdatePriceTierUnitPriceType) ToPointer() *UpdatePriceTierUnitPriceType {
 	return &e
+}
+
+// UpdatePriceTierUnitPriceTypeValues returns every known UpdatePriceTierUnitPriceType value in schema order.
+func UpdatePriceTierUnitPriceTypeValues() []UpdatePriceTierUnitPriceType {
+	return []UpdatePriceTierUnitPriceType{
+		UpdatePriceTierUnitPriceTypeUnit,
+	}
 }
 func (e *UpdatePriceTierUnitPriceType) UnmarshalJSON(data []byte) error {
 	var v string

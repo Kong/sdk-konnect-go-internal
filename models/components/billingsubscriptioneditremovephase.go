@@ -18,6 +18,13 @@ const (
 func (e BillingSubscriptionEditRemovePhaseType) ToPointer() *BillingSubscriptionEditRemovePhaseType {
 	return &e
 }
+
+// BillingSubscriptionEditRemovePhaseTypeValues returns every known BillingSubscriptionEditRemovePhaseType value in schema order.
+func BillingSubscriptionEditRemovePhaseTypeValues() []BillingSubscriptionEditRemovePhaseType {
+	return []BillingSubscriptionEditRemovePhaseType{
+		BillingSubscriptionEditRemovePhaseTypeRemovePhase,
+	}
+}
 func (e *BillingSubscriptionEditRemovePhaseType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -42,6 +49,14 @@ const (
 
 func (e Shift) ToPointer() *Shift {
 	return &e
+}
+
+// ShiftValues returns every known Shift value in schema order.
+func ShiftValues() []Shift {
+	return []Shift{
+		ShiftNext,
+		ShiftPrev,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

@@ -19,6 +19,19 @@ func (e ParameterizedAssignedRoleEntityRegion) ToPointer() *ParameterizedAssigne
 	return &e
 }
 
+// ParameterizedAssignedRoleEntityRegionValues returns every known ParameterizedAssignedRoleEntityRegion value in schema order.
+func ParameterizedAssignedRoleEntityRegionValues() []ParameterizedAssignedRoleEntityRegion {
+	return []ParameterizedAssignedRoleEntityRegion{
+		ParameterizedAssignedRoleEntityRegionUs,
+		ParameterizedAssignedRoleEntityRegionEu,
+		ParameterizedAssignedRoleEntityRegionAu,
+		ParameterizedAssignedRoleEntityRegionMe,
+		ParameterizedAssignedRoleEntityRegionIn,
+		ParameterizedAssignedRoleEntityRegionSg,
+		ParameterizedAssignedRoleEntityRegionWildcard,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *ParameterizedAssignedRoleEntityRegion) IsExact() bool {
 	if e != nil {

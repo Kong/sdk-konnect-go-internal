@@ -19,6 +19,14 @@ func (e TheInstanceTypeOfTheAddOnsCanBeSingleOrMultiple) ToPointer() *TheInstanc
 	return &e
 }
 
+// TheInstanceTypeOfTheAddOnsCanBeSingleOrMultipleValues returns every known TheInstanceTypeOfTheAddOnsCanBeSingleOrMultiple value in schema order.
+func TheInstanceTypeOfTheAddOnsCanBeSingleOrMultipleValues() []TheInstanceTypeOfTheAddOnsCanBeSingleOrMultiple {
+	return []TheInstanceTypeOfTheAddOnsCanBeSingleOrMultiple{
+		TheInstanceTypeOfTheAddOnsCanBeSingleOrMultipleSingle,
+		TheInstanceTypeOfTheAddOnsCanBeSingleOrMultipleMultiple,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *TheInstanceTypeOfTheAddOnsCanBeSingleOrMultiple) IsExact() bool {
 	if e != nil {
@@ -46,6 +54,15 @@ const (
 
 func (e AddonStatus) ToPointer() *AddonStatus {
 	return &e
+}
+
+// AddonStatusValues returns every known AddonStatus value in schema order.
+func AddonStatusValues() []AddonStatus {
+	return []AddonStatus{
+		AddonStatusDraft,
+		AddonStatusActive,
+		AddonStatusArchived,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

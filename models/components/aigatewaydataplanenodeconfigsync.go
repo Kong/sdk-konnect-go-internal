@@ -16,6 +16,16 @@ func (e AIGatewayDataPlaneNodeConfigSyncState) ToPointer() *AIGatewayDataPlaneNo
 	return &e
 }
 
+// AIGatewayDataPlaneNodeConfigSyncStateValues returns every known AIGatewayDataPlaneNodeConfigSyncState value in schema order.
+func AIGatewayDataPlaneNodeConfigSyncStateValues() []AIGatewayDataPlaneNodeConfigSyncState {
+	return []AIGatewayDataPlaneNodeConfigSyncState{
+		AIGatewayDataPlaneNodeConfigSyncStateStateUnspecified,
+		AIGatewayDataPlaneNodeConfigSyncStateStateInSync,
+		AIGatewayDataPlaneNodeConfigSyncStateStatePending,
+		AIGatewayDataPlaneNodeConfigSyncStateStateResiliency,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayDataPlaneNodeConfigSyncState) IsExact() bool {
 	if e != nil {

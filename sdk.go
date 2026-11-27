@@ -2,7 +2,7 @@
 
 package sdkkonnectgo
 
-// Generated from OpenAPI doc version 3.21.6 and generator version 2.968.17
+// Generated from OpenAPI doc version 3.21.6 and generator version 2.969.4
 
 import (
 	"context"
@@ -446,6 +446,7 @@ type SDK struct {
 	DPCertificates *DPCertificates
 	// Custom Plugin Schemas
 	CustomPluginSchemas *CustomPluginSchemas
+	PluginService       *PluginService
 	// A target is an IP address or hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly.
 	// <br><br>
 	// To disable a target, post a new one with `weight=0`, or use the `DELETE` method to accomplish the same.
@@ -624,9 +625,9 @@ func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		SDKVersion: "0.10.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 0.10.0 2.968.17 3.21.6 github.com/Kong/sdk-konnect-go",
+			UserAgent:         "speakeasy-sdk/go 0.10.0 2.969.4 3.21.6 github.com/Kong/sdk-konnect-go",
 			SDKVersion:        "0.10.0",
-			GenVersion:        "2.968.17",
+			GenVersion:        "2.969.4",
 			OpenAPIDocVersion: "3.21.6",
 			ServerList:        ServerList,
 		},
@@ -811,6 +812,7 @@ func New(opts ...SDKOption) *SDK {
 	sdk.DPNodes = newDPNodes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.DPCertificates = newDPCertificates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CustomPluginSchemas = newCustomPluginSchemas(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PluginService = newPluginService(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Targets = newTargets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ConfigStores = newConfigStores(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ConfigStoreSecrets = newConfigStoreSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)

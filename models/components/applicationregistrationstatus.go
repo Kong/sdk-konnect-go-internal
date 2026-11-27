@@ -17,6 +17,16 @@ func (e ApplicationRegistrationStatus) ToPointer() *ApplicationRegistrationStatu
 	return &e
 }
 
+// ApplicationRegistrationStatusValues returns every known ApplicationRegistrationStatus value in schema order.
+func ApplicationRegistrationStatusValues() []ApplicationRegistrationStatus {
+	return []ApplicationRegistrationStatus{
+		ApplicationRegistrationStatusApproved,
+		ApplicationRegistrationStatusPending,
+		ApplicationRegistrationStatusRevoked,
+		ApplicationRegistrationStatusRejected,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *ApplicationRegistrationStatus) IsExact() bool {
 	if e != nil {

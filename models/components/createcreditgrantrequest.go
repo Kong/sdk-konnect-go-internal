@@ -23,6 +23,15 @@ func (e CreditFundingMethod) ToPointer() *CreditFundingMethod {
 	return &e
 }
 
+// CreditFundingMethodValues returns every known CreditFundingMethod value in schema order.
+func CreditFundingMethodValues() []CreditFundingMethod {
+	return []CreditFundingMethod{
+		CreditFundingMethodNone,
+		CreditFundingMethodInvoice,
+		CreditFundingMethodExternal,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *CreditFundingMethod) IsExact() bool {
 	if e != nil {
@@ -174,6 +183,13 @@ const (
 func (e CreditAvailabilityPolicy) ToPointer() *CreditAvailabilityPolicy {
 	return &e
 }
+
+// CreditAvailabilityPolicyValues returns every known CreditAvailabilityPolicy value in schema order.
+func CreditAvailabilityPolicyValues() []CreditAvailabilityPolicy {
+	return []CreditAvailabilityPolicy{
+		CreditAvailabilityPolicyOnCreation,
+	}
+}
 func (e *CreditAvailabilityPolicy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -298,6 +314,14 @@ const (
 
 func (e CreateCreditGrantRequestTaxBehavior) ToPointer() *CreateCreditGrantRequestTaxBehavior {
 	return &e
+}
+
+// CreateCreditGrantRequestTaxBehaviorValues returns every known CreateCreditGrantRequestTaxBehavior value in schema order.
+func CreateCreditGrantRequestTaxBehaviorValues() []CreateCreditGrantRequestTaxBehavior {
+	return []CreateCreditGrantRequestTaxBehavior{
+		CreateCreditGrantRequestTaxBehaviorInclusive,
+		CreateCreditGrantRequestTaxBehaviorExclusive,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

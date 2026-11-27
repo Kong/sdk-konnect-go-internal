@@ -18,6 +18,14 @@ func (e CreateAIGatewayAgentRequestType) ToPointer() *CreateAIGatewayAgentReques
 	return &e
 }
 
+// CreateAIGatewayAgentRequestTypeValues returns every known CreateAIGatewayAgentRequestType value in schema order.
+func CreateAIGatewayAgentRequestTypeValues() []CreateAIGatewayAgentRequestType {
+	return []CreateAIGatewayAgentRequestType{
+		CreateAIGatewayAgentRequestTypeA2a,
+		CreateAIGatewayAgentRequestTypeHTTP,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *CreateAIGatewayAgentRequestType) IsExact() bool {
 	if e != nil {
@@ -41,6 +49,14 @@ const (
 
 func (e CreateAIGatewayAgentRequestProtocol) ToPointer() *CreateAIGatewayAgentRequestProtocol {
 	return &e
+}
+
+// CreateAIGatewayAgentRequestProtocolValues returns every known CreateAIGatewayAgentRequestProtocol value in schema order.
+func CreateAIGatewayAgentRequestProtocolValues() []CreateAIGatewayAgentRequestProtocol {
+	return []CreateAIGatewayAgentRequestProtocol{
+		CreateAIGatewayAgentRequestProtocolHTTP,
+		CreateAIGatewayAgentRequestProtocolHTTPS,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

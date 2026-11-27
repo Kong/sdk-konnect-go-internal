@@ -17,6 +17,13 @@ const (
 func (e AzureKeyVaultType) ToPointer() *AzureKeyVaultType {
 	return &e
 }
+
+// AzureKeyVaultTypeValues returns every known AzureKeyVaultType value in schema order.
+func AzureKeyVaultTypeValues() []AzureKeyVaultType {
+	return []AzureKeyVaultType{
+		AzureKeyVaultTypeSecrets,
+	}
+}
 func (e *AzureKeyVaultType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

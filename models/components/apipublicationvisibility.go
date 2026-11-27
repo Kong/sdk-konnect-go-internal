@@ -17,6 +17,14 @@ func (e APIPublicationVisibility) ToPointer() *APIPublicationVisibility {
 	return &e
 }
 
+// APIPublicationVisibilityValues returns every known APIPublicationVisibility value in schema order.
+func APIPublicationVisibilityValues() []APIPublicationVisibility {
+	return []APIPublicationVisibility{
+		APIPublicationVisibilityPublic,
+		APIPublicationVisibilityPrivate,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *APIPublicationVisibility) IsExact() bool {
 	if e != nil {
