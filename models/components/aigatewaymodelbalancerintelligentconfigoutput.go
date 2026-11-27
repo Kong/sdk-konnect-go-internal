@@ -8,72 +8,6 @@ import (
 	"github.com/Kong/sdk-konnect-go/internal/utils"
 )
 
-// AIGatewayModelBalancerIntelligentConfigFailoverCriteria - **`http_400` requires a minimum runtime version of `2.3`**.
-//
-// **`http_401` requires a minimum runtime version of `2.3`**.
-//
-// **`http_402` requires a minimum runtime version of `2.3`**.
-//
-// **`http_405` requires a minimum runtime version of `2.3`**.
-//
-// **`http_408` requires a minimum runtime version of `2.3`**.
-//
-// **`http_409` requires a minimum runtime version of `2.3`**.
-//
-// **`http_413` requires a minimum runtime version of `2.3`**.
-//
-// **`http_415` requires a minimum runtime version of `2.3`**.
-//
-// **`http_422` requires a minimum runtime version of `2.3`**.
-//
-// **`http_522` requires a minimum runtime version of `2.3`**.
-//
-// **`http_529` requires a minimum runtime version of `2.3`**.
-//
-// **`http_5xx` requires a minimum runtime version of `2.3`**.
-type AIGatewayModelBalancerIntelligentConfigFailoverCriteria string
-
-const (
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaError         AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "error"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp400       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_400"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp401       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_401"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp402       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_402"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp403       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_403"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp404       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_404"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp405       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_405"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp408       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_408"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp409       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_409"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp413       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_413"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp415       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_415"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp422       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_422"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp429       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_429"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp500       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_500"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp502       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_502"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp503       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_503"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp504       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_504"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp522       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_522"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp529       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_529"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaHttp5xx       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "http_5xx"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaInvalidHeader AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "invalid_header"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaNonIdempotent AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "non_idempotent"
-	AIGatewayModelBalancerIntelligentConfigFailoverCriteriaTimeout       AIGatewayModelBalancerIntelligentConfigFailoverCriteria = "timeout"
-)
-
-func (e AIGatewayModelBalancerIntelligentConfigFailoverCriteria) ToPointer() *AIGatewayModelBalancerIntelligentConfigFailoverCriteria {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AIGatewayModelBalancerIntelligentConfigFailoverCriteria) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "error", "http_400", "http_401", "http_402", "http_403", "http_404", "http_405", "http_408", "http_409", "http_413", "http_415", "http_422", "http_429", "http_500", "http_502", "http_503", "http_504", "http_522", "http_529", "http_5xx", "invalid_header", "non_idempotent", "timeout":
-			return true
-		}
-	}
-	return false
-}
-
 // AIGatewayModelBalancerIntelligentConfigVersion - The version of the intelligent balancing algorithm.
 type AIGatewayModelBalancerIntelligentConfigVersion string
 
@@ -133,7 +67,7 @@ type AIGatewayModelBalancerIntelligentConfigOutput struct {
 	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
 	FailTimeout *int64 `default:"10000" json:"fail_timeout"`
 	// Specifies in which cases an upstream response should be failover to the next target. Each option in the array is equivalent to the function of https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-	FailoverCriteria []AIGatewayModelBalancerIntelligentConfigFailoverCriteria `json:"failover_criteria,omitempty"`
+	FailoverCriteria []AIGatewayFailoverCriteria `json:"failover_criteria,omitempty"`
 	// Number of unsuccessful attempts to communicate with a target that should occur in the duration defined by `fail_timeout` before the target is considered unavailable. The zero value disables the circuit breaker. What is considered an unsuccessful attempt is defined by `failover_criteria`. Note the cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, while the cases of `http_403` and `http_404` are never considered unsuccessful attempts.
 	MaxFails    *int64 `default:"0" json:"max_fails"`
 	ReadTimeout *int64 `default:"60000" json:"read_timeout"`
@@ -181,7 +115,7 @@ func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailTimeout() *int64 
 	return a.FailTimeout
 }
 
-func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailoverCriteria() []AIGatewayModelBalancerIntelligentConfigFailoverCriteria {
+func (a *AIGatewayModelBalancerIntelligentConfigOutput) GetFailoverCriteria() []AIGatewayFailoverCriteria {
 	if a == nil {
 		return nil
 	}
@@ -263,7 +197,7 @@ type AIGatewayModelBalancerIntelligentConfig struct {
 	// The period of time (in milliseconds) the target will be considered unavailable after the number of unsuccessful attempts reaches `max_fails`.
 	FailTimeout *int64 `default:"10000" json:"fail_timeout"`
 	// Specifies in which cases an upstream response should be failover to the next target. Each option in the array is equivalent to the function of https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream
-	FailoverCriteria []AIGatewayModelBalancerIntelligentConfigFailoverCriteria `json:"failover_criteria,omitempty"`
+	FailoverCriteria []AIGatewayFailoverCriteria `json:"failover_criteria,omitempty"`
 	// Number of unsuccessful attempts to communicate with a target that should occur in the duration defined by `fail_timeout` before the target is considered unavailable. The zero value disables the circuit breaker. What is considered an unsuccessful attempt is defined by `failover_criteria`. Note the cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, while the cases of `http_403` and `http_404` are never considered unsuccessful attempts.
 	MaxFails    *int64 `default:"0" json:"max_fails"`
 	ReadTimeout *int64 `default:"60000" json:"read_timeout"`
@@ -311,7 +245,7 @@ func (a *AIGatewayModelBalancerIntelligentConfig) GetFailTimeout() *int64 {
 	return a.FailTimeout
 }
 
-func (a *AIGatewayModelBalancerIntelligentConfig) GetFailoverCriteria() []AIGatewayModelBalancerIntelligentConfigFailoverCriteria {
+func (a *AIGatewayModelBalancerIntelligentConfig) GetFailoverCriteria() []AIGatewayFailoverCriteria {
 	if a == nil {
 		return nil
 	}

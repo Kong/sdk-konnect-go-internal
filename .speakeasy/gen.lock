@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b81e5def-5b1e-4753-ae7c-0efccc2e6f61
 management:
-  docChecksum: ab5509b4c36560185863f38c2836aa84
+  docChecksum: 1e8ddf31137c5b6cc1b60f5fbe9dc0a0
   docVersion: 3.21.6
-  speakeasyVersion: 1.811.0
-  generationVersion: 2.968.1
-  releaseVersion: 0.9.0
-  configChecksum: a61b6b3e5cf2c147f0fe824751868364
+  speakeasyVersion: 1.812.1
+  generationVersion: 2.968.17
+  releaseVersion: 0.10.0
+  configChecksum: d3c936a4fb96561ef29851c19d422123
 persistentEdits:
   generation_id: 13c2163a-60e6-4c35-b896-a9ea41a6dd75
   pristine_commit_hash: 14753c7fba454bec4419143dc7ad13be13ff031f
@@ -501,6 +501,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategykeyauthresponseconfig.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseidentityrealms.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponseprincipals.md: {}
+  docs/models/components/aigatewayauthstrategykeyauthresponseprincipalscache.md: {}
   docs/models/components/aigatewayauthstrategykeyauthresponsescope.md: {}
   docs/models/components/aigatewayauthstrategykeyauthscope.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnect.md: {}
@@ -542,6 +543,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectmapidentitiesfrom.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectpasswordparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectprincipals.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectprincipalscache.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectproofofpossessiondpop.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectproofofpossessionmtls.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectprotectedresourcemetadata.md: {}
@@ -590,6 +592,7 @@ trackedFiles:
   docs/models/components/aigatewayauthstrategyopenidconnectresponsemode.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponsepasswordparamtype.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprincipals.md: {}
+  docs/models/components/aigatewayauthstrategyopenidconnectresponseprincipalscache.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessiondpop.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseproofofpossessionmtls.md: {}
   docs/models/components/aigatewayauthstrategyopenidconnectresponseprotectedresourcemetadata.md: {}
@@ -674,6 +677,7 @@ trackedFiles:
   docs/models/components/aigatewaydenywhenacl.md: {}
   docs/models/components/aigatewayembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayexpectedconfigversion.md: {}
+  docs/models/components/aigatewayfailovercriteria.md: {}
   docs/models/components/aigatewaygeminiembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayhuggingfaceembeddingsmodelconfig.md: {}
   docs/models/components/aigatewayid.md: {}
@@ -881,21 +885,14 @@ trackedFiles:
   docs/models/components/aigatewaymodelbalancerintelligentclassifiercustomoutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentclassifieroutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerintelligentconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigoutput.md: {}
   docs/models/components/aigatewaymodelbalancerintelligentconfigversion.md: {}
   docs/models/components/aigatewaymodelbalancerleastconnectionsconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerleastconnectionsconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerlowestlatencyconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestlatencyconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerlowestusageconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerlowestusageconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerpriorityconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerpriorityconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancerroundrobinconfig.md: {}
-  docs/models/components/aigatewaymodelbalancerroundrobinconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfig.md: {}
-  docs/models/components/aigatewaymodelbalancersemanticconfigfailovercriteria.md: {}
   docs/models/components/aigatewaymodelbalancersemanticconfigoutput.md: {}
   docs/models/components/aigatewaymodeldatastoreref.md: {}
   docs/models/components/aigatewaymodelformat.md: {}
@@ -3707,7 +3704,6 @@ trackedFiles:
   docs/models/components/externalinvoicing.md: {}
   docs/models/components/externalinvoicingtaxconfig.md: {}
   docs/models/components/externalreferences.md: {}
-  docs/models/components/failovercriteria.md: {}
   docs/models/components/failurereason.md: {}
   docs/models/components/feature.md: {}
   docs/models/components/featurecostqueryresult.md: {}
@@ -5597,6 +5593,7 @@ trackedFiles:
   docs/models/components/principal.md: {}
   docs/models/components/principaladmin.md: {}
   docs/models/components/principals.md: {}
+  docs/models/components/principalscache.md: {}
   docs/models/components/principalviewer.md: {}
   docs/models/components/privatednsattachmentconfig.md:
     id: 9a002b53b4ad
@@ -13002,6 +12999,7 @@ trackedFiles:
   models/components/aigatewaydenywhenacl.go: {}
   models/components/aigatewayembeddingsmodelconfig.go: {}
   models/components/aigatewayexpectedconfigversion.go: {}
+  models/components/aigatewayfailovercriteria.go: {}
   models/components/aigatewaygeminiembeddingsmodelconfig.go: {}
   models/components/aigatewayhuggingfaceembeddingsmodelconfig.go: {}
   models/components/aigatewayidentityprovider.go: {}

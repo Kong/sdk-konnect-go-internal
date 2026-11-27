@@ -108,6 +108,33 @@ func (a *AIGatewayAuthStrategyKeyAuthPrincipals) GetErrorOnMiss() *bool {
 	return a.ErrorOnMiss
 }
 
+// PrincipalsCache - Shared Redis cache for Kong Identity principal lookups.
+//
+// **Requires a minimum runtime version of `2.4`**.
+type PrincipalsCache struct {
+	// The secret key for the HMAC-SHA256 that names the entries in the shared principal cache.
+	//
+	Pepper *string `json:"pepper,omitempty"`
+}
+
+func (p PrincipalsCache) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PrincipalsCache) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PrincipalsCache) GetPepper() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Pepper
+}
+
 // AIGatewayAuthStrategyKeyAuthConfig - Configuration for the key-auth auth strategy.
 type AIGatewayAuthStrategyKeyAuthConfig struct {
 	// An optional boolean value telling the plugin to show or hide the credential from the upstream service. If `true`, the plugin strips the credential from the request.
@@ -127,6 +154,10 @@ type AIGatewayAuthStrategyKeyAuthConfig struct {
 	Realm *string `json:"realm,omitempty"`
 	// A boolean value that indicates whether the plugin should run (and try to authenticate) on `OPTIONS` preflight requests. If set to `false`, then `OPTIONS` requests are always allowed.
 	RunOnPreflight *bool `default:"true" json:"run_on_preflight"`
+	// Shared Redis cache for Kong Identity principal lookups.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	PrincipalsCache *PrincipalsCache `json:"principals_cache,omitempty"`
 }
 
 func (a AIGatewayAuthStrategyKeyAuthConfig) MarshalJSON() ([]byte, error) {
@@ -203,6 +234,13 @@ func (a *AIGatewayAuthStrategyKeyAuthConfig) GetRunOnPreflight() *bool {
 	return a.RunOnPreflight
 }
 
+func (a *AIGatewayAuthStrategyKeyAuthConfig) GetPrincipalsCache() *PrincipalsCache {
+	if a == nil {
+		return nil
+	}
+	return a.PrincipalsCache
+}
+
 // AIGatewayAuthStrategyKeyAuth - Configuration for an auth strategy.
 type AIGatewayAuthStrategyKeyAuth struct {
 	// The display name for this auth strategy instance.
@@ -223,10 +261,9 @@ type AIGatewayAuthStrategyKeyAuth struct {
 	// Keys and values must not contain spaces or control characters.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
-	// The Token Vault Datastore holding this entity's credential storage: the directory credentials
-	// are written to, and the encryption keys that seal them. Required when `token_vault` is set
-	// (on an auth strategy, when its credential manager is enabled), and the referenced Datastore
-	// must have type `token-vault`. Only one Datastore can be referenced.
+	// The Datastores this auth strategy references. At most one datastore of each supported type
+	// can be specified (`token-vault` or `redis-ee`). A `token-vault` Datastore holds the credential
+	// storage and is required when `token_vault` is set.
 	//
 	// **Requires a minimum runtime version of `2.3`**.
 	Datastores []AIGatewayDatastoreRef `json:"datastores,omitempty"`

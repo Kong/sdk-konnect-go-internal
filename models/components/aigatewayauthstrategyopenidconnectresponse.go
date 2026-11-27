@@ -2720,6 +2720,23 @@ func (e *AIGatewayAuthStrategyOpenIDConnectResponseUserinfoAccept) IsExact() boo
 	return false
 }
 
+// AIGatewayAuthStrategyOpenIDConnectResponsePrincipalsCache - Shared Redis cache for Kong Identity principal lookups.
+//
+// **Requires a minimum runtime version of `2.4`**.
+type AIGatewayAuthStrategyOpenIDConnectResponsePrincipalsCache struct {
+}
+
+func (a AIGatewayAuthStrategyOpenIDConnectResponsePrincipalsCache) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AIGatewayAuthStrategyOpenIDConnectResponsePrincipalsCache) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // AIGatewayAuthStrategyOpenIDConnectResponseConfig - Configuration for the OpenID Connect auth strategy.
 type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	// An optional string (consumer UUID or username) value that functions as an “anonymous” consumer if authentication fails. If empty (default null), requests that fail authentication will return a `4xx` HTTP status code. This value must refer to the consumer `id` or `username` attribute, and **not** its `custom_id`.
@@ -3190,6 +3207,10 @@ type AIGatewayAuthStrategyOpenIDConnectResponseConfig struct {
 	VerifySignature *bool `default:"true" json:"verify_signature"`
 	// Claim path used to derive virtual credentials when consumer mapping is not used.
 	CredentialClaim []string `json:"credential_claim,omitempty"`
+	// Shared Redis cache for Kong Identity principal lookups.
+	//
+	// **Requires a minimum runtime version of `2.4`**.
+	PrincipalsCache *AIGatewayAuthStrategyOpenIDConnectResponsePrincipalsCache `json:"principals_cache,omitempty"`
 }
 
 func (a AIGatewayAuthStrategyOpenIDConnectResponseConfig) MarshalJSON() ([]byte, error) {
@@ -4820,6 +4841,13 @@ func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetCredentialClaim() 
 	return a.CredentialClaim
 }
 
+func (a *AIGatewayAuthStrategyOpenIDConnectResponseConfig) GetPrincipalsCache() *AIGatewayAuthStrategyOpenIDConnectResponsePrincipalsCache {
+	if a == nil {
+		return nil
+	}
+	return a.PrincipalsCache
+}
+
 // AIGatewayAuthStrategyOpenIDConnectResponse - Configuration for an auth strategy.
 type AIGatewayAuthStrategyOpenIDConnectResponse struct {
 	// The display name for this auth strategy instance.
@@ -4840,10 +4868,9 @@ type AIGatewayAuthStrategyOpenIDConnectResponse struct {
 	// Keys and values must not contain spaces or control characters.
 	//
 	ManagedBy map[string]string `json:"managed_by,omitempty"`
-	// The Token Vault Datastore holding this entity's credential storage: the directory credentials
-	// are written to, and the encryption keys that seal them. Required when `token_vault` is set
-	// (on an auth strategy, when its credential manager is enabled), and the referenced Datastore
-	// must have type `token-vault`. Only one Datastore can be referenced.
+	// The Datastores this auth strategy references. At most one datastore of each supported type
+	// can be specified (`token-vault` or `redis-ee`). A `token-vault` Datastore holds the credential
+	// storage and is required when `token_vault` is set.
 	//
 	// **Requires a minimum runtime version of `2.3`**.
 	Datastores []AIGatewayDatastoreRef `json:"datastores,omitempty"`
