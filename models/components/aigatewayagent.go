@@ -19,6 +19,14 @@ func (e AIGatewayAgentType) ToPointer() *AIGatewayAgentType {
 	return &e
 }
 
+// AIGatewayAgentTypeValues returns every known AIGatewayAgentType value in schema order.
+func AIGatewayAgentTypeValues() []AIGatewayAgentType {
+	return []AIGatewayAgentType{
+		AIGatewayAgentTypeA2a,
+		AIGatewayAgentTypeHTTP,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayAgentType) IsExact() bool {
 	if e != nil {
@@ -42,6 +50,14 @@ const (
 
 func (e AIGatewayAgentProtocol) ToPointer() *AIGatewayAgentProtocol {
 	return &e
+}
+
+// AIGatewayAgentProtocolValues returns every known AIGatewayAgentProtocol value in schema order.
+func AIGatewayAgentProtocolValues() []AIGatewayAgentProtocol {
+	return []AIGatewayAgentProtocol{
+		AIGatewayAgentProtocolHTTP,
+		AIGatewayAgentProtocolHTTPS,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

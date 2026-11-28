@@ -1564,6 +1564,10 @@ func main() {
 * [UpsertPluginWithService](docs/sdks/plugins/README.md#upsertpluginwithservice) - Upsert a Plugin associated with a Service in a workspace
 * [FetchPluginSchema](docs/sdks/plugins/README.md#fetchpluginschema) - Get plugin schema
 
+### [PluginService](docs/sdks/pluginservice/README.md)
+
+* [ListAvailablePlugins](docs/sdks/pluginservice/README.md#listavailableplugins) - List all available plugin names for a control plane
+
 ### [PortalAuditLogs](docs/sdks/portalauditlogs/README.md)
 
 * [UpdatePortalAuditLogReplayJob](docs/sdks/portalauditlogs/README.md#updateportalauditlogreplayjob) - Update Portal Audit Log Replay Job

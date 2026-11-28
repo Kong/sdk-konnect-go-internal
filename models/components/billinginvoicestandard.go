@@ -532,6 +532,13 @@ const (
 func (e BillingInvoiceStandardType) ToPointer() *BillingInvoiceStandardType {
 	return &e
 }
+
+// BillingInvoiceStandardTypeValues returns every known BillingInvoiceStandardType value in schema order.
+func BillingInvoiceStandardTypeValues() []BillingInvoiceStandardType {
+	return []BillingInvoiceStandardType{
+		BillingInvoiceStandardTypeStandard,
+	}
+}
 func (e *BillingInvoiceStandardType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -562,6 +569,20 @@ const (
 
 func (e BillingInvoiceStandardStatus) ToPointer() *BillingInvoiceStandardStatus {
 	return &e
+}
+
+// BillingInvoiceStandardStatusValues returns every known BillingInvoiceStandardStatus value in schema order.
+func BillingInvoiceStandardStatusValues() []BillingInvoiceStandardStatus {
+	return []BillingInvoiceStandardStatus{
+		BillingInvoiceStandardStatusDraft,
+		BillingInvoiceStandardStatusIssuing,
+		BillingInvoiceStandardStatusIssued,
+		BillingInvoiceStandardStatusPaymentProcessing,
+		BillingInvoiceStandardStatusOverdue,
+		BillingInvoiceStandardStatusPaid,
+		BillingInvoiceStandardStatusUncollectible,
+		BillingInvoiceStandardStatusVoided,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

@@ -19,6 +19,13 @@ const (
 func (e Specversion) ToPointer() *Specversion {
 	return &e
 }
+
+// SpecversionValues returns every known Specversion value in schema order.
+func SpecversionValues() []Specversion {
+	return []Specversion{
+		SpecversionOneDot0,
+	}
+}
 func (e *Specversion) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -43,6 +50,13 @@ const (
 func (e AICostUsageEventType) ToPointer() *AICostUsageEventType {
 	return &e
 }
+
+// AICostUsageEventTypeValues returns every known AICostUsageEventType value in schema order.
+func AICostUsageEventTypeValues() []AICostUsageEventType {
+	return []AICostUsageEventType{
+		AICostUsageEventTypeAiUsageV1,
+	}
+}
 func (e *AICostUsageEventType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -66,6 +80,13 @@ const (
 
 func (e AICostUsageEventDatacontenttype) ToPointer() *AICostUsageEventDatacontenttype {
 	return &e
+}
+
+// AICostUsageEventDatacontenttypeValues returns every known AICostUsageEventDatacontenttype value in schema order.
+func AICostUsageEventDatacontenttypeValues() []AICostUsageEventDatacontenttype {
+	return []AICostUsageEventDatacontenttype{
+		AICostUsageEventDatacontenttypeApplicationJSON,
+	}
 }
 func (e *AICostUsageEventDatacontenttype) UnmarshalJSON(data []byte) error {
 	var v string

@@ -14,6 +14,14 @@ func (e AIGatewayRuntimeDefaultDeploymentType) ToPointer() *AIGatewayRuntimeDefa
 	return &e
 }
 
+// AIGatewayRuntimeDefaultDeploymentTypeValues returns every known AIGatewayRuntimeDefaultDeploymentType value in schema order.
+func AIGatewayRuntimeDefaultDeploymentTypeValues() []AIGatewayRuntimeDefaultDeploymentType {
+	return []AIGatewayRuntimeDefaultDeploymentType{
+		AIGatewayRuntimeDefaultDeploymentTypeManaged,
+		AIGatewayRuntimeDefaultDeploymentTypeServerless,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayRuntimeDefaultDeploymentType) IsExact() bool {
 	if e != nil {

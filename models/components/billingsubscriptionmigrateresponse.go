@@ -52,6 +52,14 @@ func (e BillingSubscriptionMigrateResponseCostBasisMode) ToPointer() *BillingSub
 	return &e
 }
 
+// BillingSubscriptionMigrateResponseCostBasisModeValues returns every known BillingSubscriptionMigrateResponseCostBasisMode value in schema order.
+func BillingSubscriptionMigrateResponseCostBasisModeValues() []BillingSubscriptionMigrateResponseCostBasisMode {
+	return []BillingSubscriptionMigrateResponseCostBasisMode{
+		BillingSubscriptionMigrateResponseCostBasisModeDynamic,
+		BillingSubscriptionMigrateResponseCostBasisModePinned,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingSubscriptionMigrateResponseCostBasisMode) IsExact() bool {
 	if e != nil {
@@ -73,6 +81,14 @@ const (
 
 func (e BillingSubscriptionMigrateResponseMode) ToPointer() *BillingSubscriptionMigrateResponseMode {
 	return &e
+}
+
+// BillingSubscriptionMigrateResponseModeValues returns every known BillingSubscriptionMigrateResponseMode value in schema order.
+func BillingSubscriptionMigrateResponseModeValues() []BillingSubscriptionMigrateResponseMode {
+	return []BillingSubscriptionMigrateResponseMode{
+		BillingSubscriptionMigrateResponseModeNoProration,
+		BillingSubscriptionMigrateResponseModeProratePrices,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -122,6 +138,16 @@ func (e BillingSubscriptionMigrateResponseStatus) ToPointer() *BillingSubscripti
 	return &e
 }
 
+// BillingSubscriptionMigrateResponseStatusValues returns every known BillingSubscriptionMigrateResponseStatus value in schema order.
+func BillingSubscriptionMigrateResponseStatusValues() []BillingSubscriptionMigrateResponseStatus {
+	return []BillingSubscriptionMigrateResponseStatus{
+		BillingSubscriptionMigrateResponseStatusActive,
+		BillingSubscriptionMigrateResponseStatusInactive,
+		BillingSubscriptionMigrateResponseStatusCanceled,
+		BillingSubscriptionMigrateResponseStatusScheduled,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingSubscriptionMigrateResponseStatus) IsExact() bool {
 	if e != nil {
@@ -149,6 +175,14 @@ const (
 
 func (e BillingSubscriptionMigrateResponseSettlementMode) ToPointer() *BillingSubscriptionMigrateResponseSettlementMode {
 	return &e
+}
+
+// BillingSubscriptionMigrateResponseSettlementModeValues returns every known BillingSubscriptionMigrateResponseSettlementMode value in schema order.
+func BillingSubscriptionMigrateResponseSettlementModeValues() []BillingSubscriptionMigrateResponseSettlementMode {
+	return []BillingSubscriptionMigrateResponseSettlementMode{
+		BillingSubscriptionMigrateResponseSettlementModeCreditThenInvoice,
+		BillingSubscriptionMigrateResponseSettlementModeCreditOnly,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -428,6 +462,14 @@ func (e BillingSubscriptionMigrateResponseNextCostBasisMode) ToPointer() *Billin
 	return &e
 }
 
+// BillingSubscriptionMigrateResponseNextCostBasisModeValues returns every known BillingSubscriptionMigrateResponseNextCostBasisMode value in schema order.
+func BillingSubscriptionMigrateResponseNextCostBasisModeValues() []BillingSubscriptionMigrateResponseNextCostBasisMode {
+	return []BillingSubscriptionMigrateResponseNextCostBasisMode{
+		BillingSubscriptionMigrateResponseNextCostBasisModeDynamic,
+		BillingSubscriptionMigrateResponseNextCostBasisModePinned,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingSubscriptionMigrateResponseNextCostBasisMode) IsExact() bool {
 	if e != nil {
@@ -449,6 +491,14 @@ const (
 
 func (e BillingSubscriptionMigrateResponseNextMode) ToPointer() *BillingSubscriptionMigrateResponseNextMode {
 	return &e
+}
+
+// BillingSubscriptionMigrateResponseNextModeValues returns every known BillingSubscriptionMigrateResponseNextMode value in schema order.
+func BillingSubscriptionMigrateResponseNextModeValues() []BillingSubscriptionMigrateResponseNextMode {
+	return []BillingSubscriptionMigrateResponseNextMode{
+		BillingSubscriptionMigrateResponseNextModeNoProration,
+		BillingSubscriptionMigrateResponseNextModeProratePrices,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -498,6 +548,16 @@ func (e BillingSubscriptionMigrateResponseNextStatus) ToPointer() *BillingSubscr
 	return &e
 }
 
+// BillingSubscriptionMigrateResponseNextStatusValues returns every known BillingSubscriptionMigrateResponseNextStatus value in schema order.
+func BillingSubscriptionMigrateResponseNextStatusValues() []BillingSubscriptionMigrateResponseNextStatus {
+	return []BillingSubscriptionMigrateResponseNextStatus{
+		BillingSubscriptionMigrateResponseNextStatusActive,
+		BillingSubscriptionMigrateResponseNextStatusInactive,
+		BillingSubscriptionMigrateResponseNextStatusCanceled,
+		BillingSubscriptionMigrateResponseNextStatusScheduled,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingSubscriptionMigrateResponseNextStatus) IsExact() bool {
 	if e != nil {
@@ -525,6 +585,14 @@ const (
 
 func (e BillingSubscriptionMigrateResponseNextSettlementMode) ToPointer() *BillingSubscriptionMigrateResponseNextSettlementMode {
 	return &e
+}
+
+// BillingSubscriptionMigrateResponseNextSettlementModeValues returns every known BillingSubscriptionMigrateResponseNextSettlementMode value in schema order.
+func BillingSubscriptionMigrateResponseNextSettlementModeValues() []BillingSubscriptionMigrateResponseNextSettlementMode {
+	return []BillingSubscriptionMigrateResponseNextSettlementMode{
+		BillingSubscriptionMigrateResponseNextSettlementModeCreditThenInvoice,
+		BillingSubscriptionMigrateResponseNextSettlementModeCreditOnly,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

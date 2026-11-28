@@ -14,6 +14,14 @@ func (e CatalogIntegrationVisibility) ToPointer() *CatalogIntegrationVisibility 
 	return &e
 }
 
+// CatalogIntegrationVisibilityValues returns every known CatalogIntegrationVisibility value in schema order.
+func CatalogIntegrationVisibilityValues() []CatalogIntegrationVisibility {
+	return []CatalogIntegrationVisibility{
+		CatalogIntegrationVisibilityPublic,
+		CatalogIntegrationVisibilityPrivate,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *CatalogIntegrationVisibility) IsExact() bool {
 	if e != nil {

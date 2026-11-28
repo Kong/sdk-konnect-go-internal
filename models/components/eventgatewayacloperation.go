@@ -25,6 +25,22 @@ func (e EventGatewayACLOperationName) ToPointer() *EventGatewayACLOperationName 
 	return &e
 }
 
+// EventGatewayACLOperationNameValues returns every known EventGatewayACLOperationName value in schema order.
+func EventGatewayACLOperationNameValues() []EventGatewayACLOperationName {
+	return []EventGatewayACLOperationName{
+		EventGatewayACLOperationNameAll,
+		EventGatewayACLOperationNameAlter,
+		EventGatewayACLOperationNameAlterConfigs,
+		EventGatewayACLOperationNameCreate,
+		EventGatewayACLOperationNameDelete,
+		EventGatewayACLOperationNameDescribe,
+		EventGatewayACLOperationNameDescribeConfigs,
+		EventGatewayACLOperationNameIdempotentWrite,
+		EventGatewayACLOperationNameRead,
+		EventGatewayACLOperationNameWrite,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *EventGatewayACLOperationName) IsExact() bool {
 	if e != nil {

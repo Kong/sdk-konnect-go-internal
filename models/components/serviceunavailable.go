@@ -17,6 +17,13 @@ const (
 func (e ServiceUnavailableStatus) ToPointer() *ServiceUnavailableStatus {
 	return &e
 }
+
+// ServiceUnavailableStatusValues returns every known ServiceUnavailableStatus value in schema order.
+func ServiceUnavailableStatusValues() []ServiceUnavailableStatus {
+	return []ServiceUnavailableStatus{
+		ServiceUnavailableStatusFiveHundredAndThree,
+	}
+}
 func (e *ServiceUnavailableStatus) UnmarshalJSON(data []byte) error {
 	var v int
 	if err := json.Unmarshal(data, &v); err != nil {

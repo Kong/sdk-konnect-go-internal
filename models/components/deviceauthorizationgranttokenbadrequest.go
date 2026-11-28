@@ -29,6 +29,16 @@ func (e DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadReques
 	return &e
 }
 
+// DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestErrorValues returns every known DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestError value in schema order.
+func DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestErrorValues() []DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestError {
+	return []DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestError{
+		DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestErrorAuthorizationPending,
+		DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestErrorSlowDown,
+		DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestErrorAccessDenied,
+		DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestErrorExpiredToken,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *DeviceAuthorizationGrantTokenErrorDeviceAuthorizationGrantTokenBadRequestError) IsExact() bool {
 	if e != nil {
@@ -77,6 +87,18 @@ const (
 
 func (e DeviceAuthorizationGrantTokenBadRequestError) ToPointer() *DeviceAuthorizationGrantTokenBadRequestError {
 	return &e
+}
+
+// DeviceAuthorizationGrantTokenBadRequestErrorValues returns every known DeviceAuthorizationGrantTokenBadRequestError value in schema order.
+func DeviceAuthorizationGrantTokenBadRequestErrorValues() []DeviceAuthorizationGrantTokenBadRequestError {
+	return []DeviceAuthorizationGrantTokenBadRequestError{
+		DeviceAuthorizationGrantTokenBadRequestErrorInvalidRequest,
+		DeviceAuthorizationGrantTokenBadRequestErrorInvalidClient,
+		DeviceAuthorizationGrantTokenBadRequestErrorInvalidGrant,
+		DeviceAuthorizationGrantTokenBadRequestErrorUnauthorizedClient,
+		DeviceAuthorizationGrantTokenBadRequestErrorUnsupportedGrantType,
+		DeviceAuthorizationGrantTokenBadRequestErrorInvalidScope,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

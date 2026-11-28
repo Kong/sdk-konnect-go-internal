@@ -18,6 +18,13 @@ const (
 func (e AuthGCPWorkloadIdentityFederationAwsIamSource) ToPointer() *AuthGCPWorkloadIdentityFederationAwsIamSource {
 	return &e
 }
+
+// AuthGCPWorkloadIdentityFederationAwsIamSourceValues returns every known AuthGCPWorkloadIdentityFederationAwsIamSource value in schema order.
+func AuthGCPWorkloadIdentityFederationAwsIamSourceValues() []AuthGCPWorkloadIdentityFederationAwsIamSource {
+	return []AuthGCPWorkloadIdentityFederationAwsIamSource{
+		AuthGCPWorkloadIdentityFederationAwsIamSourceAwsIam,
+	}
+}
 func (e *AuthGCPWorkloadIdentityFederationAwsIamSource) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

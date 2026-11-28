@@ -22,6 +22,16 @@ func (e EventGatewayACLRuleResourceType) ToPointer() *EventGatewayACLRuleResourc
 	return &e
 }
 
+// EventGatewayACLRuleResourceTypeValues returns every known EventGatewayACLRuleResourceType value in schema order.
+func EventGatewayACLRuleResourceTypeValues() []EventGatewayACLRuleResourceType {
+	return []EventGatewayACLRuleResourceType{
+		EventGatewayACLRuleResourceTypeTopic,
+		EventGatewayACLRuleResourceTypeGroup,
+		EventGatewayACLRuleResourceTypeTransactionalID,
+		EventGatewayACLRuleResourceTypeCluster,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *EventGatewayACLRuleResourceType) IsExact() bool {
 	if e != nil {
@@ -43,6 +53,14 @@ const (
 
 func (e Action) ToPointer() *Action {
 	return &e
+}
+
+// ActionValues returns every known Action value in schema order.
+func ActionValues() []Action {
+	return []Action{
+		ActionAllow,
+		ActionDeny,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

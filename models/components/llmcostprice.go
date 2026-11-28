@@ -112,6 +112,14 @@ func (e Source) ToPointer() *Source {
 	return &e
 }
 
+// SourceValues returns every known Source value in schema order.
+func SourceValues() []Source {
+	return []Source{
+		SourceManual,
+		SourceSystem,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *Source) IsExact() bool {
 	if e != nil {

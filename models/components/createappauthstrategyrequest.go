@@ -18,6 +18,13 @@ const (
 func (e AppAuthStrategyOpenIDConnectRequestStrategyType) ToPointer() *AppAuthStrategyOpenIDConnectRequestStrategyType {
 	return &e
 }
+
+// AppAuthStrategyOpenIDConnectRequestStrategyTypeValues returns every known AppAuthStrategyOpenIDConnectRequestStrategyType value in schema order.
+func AppAuthStrategyOpenIDConnectRequestStrategyTypeValues() []AppAuthStrategyOpenIDConnectRequestStrategyType {
+	return []AppAuthStrategyOpenIDConnectRequestStrategyType{
+		AppAuthStrategyOpenIDConnectRequestStrategyTypeOpenidConnect,
+	}
+}
 func (e *AppAuthStrategyOpenIDConnectRequestStrategyType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -151,6 +158,13 @@ const (
 
 func (e StrategyType) ToPointer() *StrategyType {
 	return &e
+}
+
+// StrategyTypeValues returns every known StrategyType value in schema order.
+func StrategyTypeValues() []StrategyType {
+	return []StrategyType{
+		StrategyTypeKeyAuth,
+	}
 }
 func (e *StrategyType) UnmarshalJSON(data []byte) error {
 	var v string

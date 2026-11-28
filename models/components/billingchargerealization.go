@@ -386,6 +386,13 @@ const (
 func (e InvoiceType) ToPointer() *InvoiceType {
 	return &e
 }
+
+// InvoiceTypeValues returns every known InvoiceType value in schema order.
+func InvoiceTypeValues() []InvoiceType {
+	return []InvoiceType{
+		InvoiceTypeStandard,
+	}
+}
 func (e *InvoiceType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -416,6 +423,20 @@ const (
 
 func (e InvoiceStatus) ToPointer() *InvoiceStatus {
 	return &e
+}
+
+// InvoiceStatusValues returns every known InvoiceStatus value in schema order.
+func InvoiceStatusValues() []InvoiceStatus {
+	return []InvoiceStatus{
+		InvoiceStatusDraft,
+		InvoiceStatusIssuing,
+		InvoiceStatusIssued,
+		InvoiceStatusPaymentProcessing,
+		InvoiceStatusOverdue,
+		InvoiceStatusPaid,
+		InvoiceStatusUncollectible,
+		InvoiceStatusVoided,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1361,6 +1382,16 @@ func (e BillingChargeRealizationType) ToPointer() *BillingChargeRealizationType 
 	return &e
 }
 
+// BillingChargeRealizationTypeValues returns every known BillingChargeRealizationType value in schema order.
+func BillingChargeRealizationTypeValues() []BillingChargeRealizationType {
+	return []BillingChargeRealizationType{
+		BillingChargeRealizationTypeFinalRealization,
+		BillingChargeRealizationTypePartialInvoice,
+		BillingChargeRealizationTypeOutstanding,
+		BillingChargeRealizationTypeVoided,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingChargeRealizationType) IsExact() bool {
 	if e != nil {
@@ -1419,6 +1450,14 @@ const (
 
 func (e BillingChargeRealizationStatus) ToPointer() *BillingChargeRealizationStatus {
 	return &e
+}
+
+// BillingChargeRealizationStatusValues returns every known BillingChargeRealizationStatus value in schema order.
+func BillingChargeRealizationStatusValues() []BillingChargeRealizationStatus {
+	return []BillingChargeRealizationStatus{
+		BillingChargeRealizationStatusAuthorized,
+		BillingChargeRealizationStatusSettled,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

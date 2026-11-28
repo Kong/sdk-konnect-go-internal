@@ -23,6 +23,23 @@ func (e Category) ToPointer() *Category {
 	return &e
 }
 
+// CategoryValues returns every known Category value in schema order.
+func CategoryValues() []Category {
+	return []Category{
+		CategorySourceCodeManagement,
+		CategoryIncidentManagement,
+		CategoryObservability,
+		CategoryCodeQuality,
+		CategoryIssueTracking,
+		CategoryCommunications,
+		CategoryFeatureManagement,
+		CategorySecurityVulnerability,
+		CategoryDocumentation,
+		CategoryCatalogManagement,
+		CategoryGatewayConfiguration,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *Category) IsExact() bool {
 	if e != nil {
@@ -48,6 +65,16 @@ const (
 
 func (e RequiredIntegrationCapability) ToPointer() *RequiredIntegrationCapability {
 	return &e
+}
+
+// RequiredIntegrationCapabilityValues returns every known RequiredIntegrationCapability value in schema order.
+func RequiredIntegrationCapabilityValues() []RequiredIntegrationCapability {
+	return []RequiredIntegrationCapability{
+		RequiredIntegrationCapabilityOnCallProvider,
+		RequiredIntegrationCapabilityIncidentProvider,
+		RequiredIntegrationCapabilityPullRequestProvider,
+		RequiredIntegrationCapabilityWorkflowProvider,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

@@ -17,6 +17,14 @@ func (e BillingEntitlementMeasureUsageFromPreset) ToPointer() *BillingEntitlemen
 	return &e
 }
 
+// BillingEntitlementMeasureUsageFromPresetValues returns every known BillingEntitlementMeasureUsageFromPreset value in schema order.
+func BillingEntitlementMeasureUsageFromPresetValues() []BillingEntitlementMeasureUsageFromPreset {
+	return []BillingEntitlementMeasureUsageFromPreset{
+		BillingEntitlementMeasureUsageFromPresetCurrentPeriodStart,
+		BillingEntitlementMeasureUsageFromPresetNow,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingEntitlementMeasureUsageFromPreset) IsExact() bool {
 	if e != nil {

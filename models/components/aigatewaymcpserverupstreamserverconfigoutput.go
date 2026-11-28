@@ -51,6 +51,14 @@ func (e AIGatewayMCPServerUpstreamServerConfigProtocol) ToPointer() *AIGatewayMC
 	return &e
 }
 
+// AIGatewayMCPServerUpstreamServerConfigProtocolValues returns every known AIGatewayMCPServerUpstreamServerConfigProtocol value in schema order.
+func AIGatewayMCPServerUpstreamServerConfigProtocolValues() []AIGatewayMCPServerUpstreamServerConfigProtocol {
+	return []AIGatewayMCPServerUpstreamServerConfigProtocol{
+		AIGatewayMCPServerUpstreamServerConfigProtocolHTTP,
+		AIGatewayMCPServerUpstreamServerConfigProtocolHTTPS,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayMCPServerUpstreamServerConfigProtocol) IsExact() bool {
 	if e != nil {

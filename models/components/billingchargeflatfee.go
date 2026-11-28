@@ -20,6 +20,13 @@ const (
 func (e BillingChargeFlatFeeType) ToPointer() *BillingChargeFlatFeeType {
 	return &e
 }
+
+// BillingChargeFlatFeeTypeValues returns every known BillingChargeFlatFeeType value in schema order.
+func BillingChargeFlatFeeTypeValues() []BillingChargeFlatFeeType {
+	return []BillingChargeFlatFeeType{
+		BillingChargeFlatFeeTypeFlatFee,
+	}
+}
 func (e *BillingChargeFlatFeeType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -381,6 +388,14 @@ func (e BillingChargeFlatFeeLifecycleController) ToPointer() *BillingChargeFlatF
 	return &e
 }
 
+// BillingChargeFlatFeeLifecycleControllerValues returns every known BillingChargeFlatFeeLifecycleController value in schema order.
+func BillingChargeFlatFeeLifecycleControllerValues() []BillingChargeFlatFeeLifecycleController {
+	return []BillingChargeFlatFeeLifecycleController{
+		BillingChargeFlatFeeLifecycleControllerSystem,
+		BillingChargeFlatFeeLifecycleControllerManual,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingChargeFlatFeeLifecycleController) IsExact() bool {
 	if e != nil {
@@ -551,6 +566,14 @@ func (e BillingSubscriptionSubscriptionCostBasisMode) ToPointer() *BillingSubscr
 	return &e
 }
 
+// BillingSubscriptionSubscriptionCostBasisModeValues returns every known BillingSubscriptionSubscriptionCostBasisMode value in schema order.
+func BillingSubscriptionSubscriptionCostBasisModeValues() []BillingSubscriptionSubscriptionCostBasisMode {
+	return []BillingSubscriptionSubscriptionCostBasisMode{
+		BillingSubscriptionSubscriptionCostBasisModeDynamic,
+		BillingSubscriptionSubscriptionCostBasisModePinned,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingSubscriptionSubscriptionCostBasisMode) IsExact() bool {
 	if e != nil {
@@ -572,6 +595,14 @@ const (
 
 func (e SubscriptionMode) ToPointer() *SubscriptionMode {
 	return &e
+}
+
+// SubscriptionModeValues returns every known SubscriptionMode value in schema order.
+func SubscriptionModeValues() []SubscriptionMode {
+	return []SubscriptionMode{
+		SubscriptionModeNoProration,
+		SubscriptionModeProratePrices,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -632,6 +663,16 @@ func (e SubscriptionStatus) ToPointer() *SubscriptionStatus {
 	return &e
 }
 
+// SubscriptionStatusValues returns every known SubscriptionStatus value in schema order.
+func SubscriptionStatusValues() []SubscriptionStatus {
+	return []SubscriptionStatus{
+		SubscriptionStatusActive,
+		SubscriptionStatusInactive,
+		SubscriptionStatusCanceled,
+		SubscriptionStatusScheduled,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *SubscriptionStatus) IsExact() bool {
 	if e != nil {
@@ -659,6 +700,14 @@ const (
 
 func (e SubscriptionSettlementMode) ToPointer() *SubscriptionSettlementMode {
 	return &e
+}
+
+// SubscriptionSettlementModeValues returns every known SubscriptionSettlementMode value in schema order.
+func SubscriptionSettlementModeValues() []SubscriptionSettlementMode {
+	return []SubscriptionSettlementMode{
+		SubscriptionSettlementModeCreditThenInvoice,
+		SubscriptionSettlementModeCreditOnly,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1092,6 +1141,16 @@ func (e BillingChargeFlatFeeStatus) ToPointer() *BillingChargeFlatFeeStatus {
 	return &e
 }
 
+// BillingChargeFlatFeeStatusValues returns every known BillingChargeFlatFeeStatus value in schema order.
+func BillingChargeFlatFeeStatusValues() []BillingChargeFlatFeeStatus {
+	return []BillingChargeFlatFeeStatus{
+		BillingChargeFlatFeeStatusCreated,
+		BillingChargeFlatFeeStatusActive,
+		BillingChargeFlatFeeStatusFinal,
+		BillingChargeFlatFeeStatusDeleted,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingChargeFlatFeeStatus) IsExact() bool {
 	if e != nil {
@@ -1226,6 +1285,14 @@ func (e SettlementMode) ToPointer() *SettlementMode {
 	return &e
 }
 
+// SettlementModeValues returns every known SettlementMode value in schema order.
+func SettlementModeValues() []SettlementMode {
+	return []SettlementMode{
+		SettlementModeCreditThenInvoice,
+		SettlementModeCreditOnly,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *SettlementMode) IsExact() bool {
 	if e != nil {
@@ -1250,6 +1317,14 @@ const (
 
 func (e BillingChargeFlatFeeTaxBehavior) ToPointer() *BillingChargeFlatFeeTaxBehavior {
 	return &e
+}
+
+// BillingChargeFlatFeeTaxBehaviorValues returns every known BillingChargeFlatFeeTaxBehavior value in schema order.
+func BillingChargeFlatFeeTaxBehaviorValues() []BillingChargeFlatFeeTaxBehavior {
+	return []BillingChargeFlatFeeTaxBehavior{
+		BillingChargeFlatFeeTaxBehaviorInclusive,
+		BillingChargeFlatFeeTaxBehaviorExclusive,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1426,6 +1501,14 @@ const (
 
 func (e BillingChargeFlatFeePaymentTerm) ToPointer() *BillingChargeFlatFeePaymentTerm {
 	return &e
+}
+
+// BillingChargeFlatFeePaymentTermValues returns every known BillingChargeFlatFeePaymentTerm value in schema order.
+func BillingChargeFlatFeePaymentTermValues() []BillingChargeFlatFeePaymentTerm {
+	return []BillingChargeFlatFeePaymentTerm{
+		BillingChargeFlatFeePaymentTermInAdvance,
+		BillingChargeFlatFeePaymentTermInArrears,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -1828,6 +1911,14 @@ func (e ProrationMode) ToPointer() *ProrationMode {
 	return &e
 }
 
+// ProrationModeValues returns every known ProrationMode value in schema order.
+func ProrationModeValues() []ProrationMode {
+	return []ProrationMode{
+		ProrationModeNoProration,
+		ProrationModeProratePrices,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *ProrationMode) IsExact() bool {
 	if e != nil {
@@ -1905,6 +1996,13 @@ const (
 
 func (e BillingChargeFlatFeePriceType) ToPointer() *BillingChargeFlatFeePriceType {
 	return &e
+}
+
+// BillingChargeFlatFeePriceTypeValues returns every known BillingChargeFlatFeePriceType value in schema order.
+func BillingChargeFlatFeePriceTypeValues() []BillingChargeFlatFeePriceType {
+	return []BillingChargeFlatFeePriceType{
+		BillingChargeFlatFeePriceTypeFlat,
+	}
 }
 func (e *BillingChargeFlatFeePriceType) UnmarshalJSON(data []byte) error {
 	var v string
@@ -2076,6 +2174,14 @@ func (e BillingChargeFlatFeeSystemIntentPaymentTerm) ToPointer() *BillingChargeF
 	return &e
 }
 
+// BillingChargeFlatFeeSystemIntentPaymentTermValues returns every known BillingChargeFlatFeeSystemIntentPaymentTerm value in schema order.
+func BillingChargeFlatFeeSystemIntentPaymentTermValues() []BillingChargeFlatFeeSystemIntentPaymentTerm {
+	return []BillingChargeFlatFeeSystemIntentPaymentTerm{
+		BillingChargeFlatFeeSystemIntentPaymentTermInAdvance,
+		BillingChargeFlatFeeSystemIntentPaymentTermInArrears,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *BillingChargeFlatFeeSystemIntentPaymentTerm) IsExact() bool {
 	if e != nil {
@@ -2121,6 +2227,14 @@ const (
 
 func (e BillingChargeFlatFeeProrationMode) ToPointer() *BillingChargeFlatFeeProrationMode {
 	return &e
+}
+
+// BillingChargeFlatFeeProrationModeValues returns every known BillingChargeFlatFeeProrationMode value in schema order.
+func BillingChargeFlatFeeProrationModeValues() []BillingChargeFlatFeeProrationMode {
+	return []BillingChargeFlatFeeProrationMode{
+		BillingChargeFlatFeeProrationModeNoProration,
+		BillingChargeFlatFeeProrationModeProratePrices,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

@@ -20,6 +20,14 @@ const (
 func (e DeleteConfigStoreQueryParamForce) ToPointer() *DeleteConfigStoreQueryParamForce {
 	return &e
 }
+
+// DeleteConfigStoreQueryParamForceValues returns every known DeleteConfigStoreQueryParamForce value in schema order.
+func DeleteConfigStoreQueryParamForceValues() []DeleteConfigStoreQueryParamForce {
+	return []DeleteConfigStoreQueryParamForce{
+		DeleteConfigStoreQueryParamForceTrue,
+		DeleteConfigStoreQueryParamForceFalse,
+	}
+}
 func (e *DeleteConfigStoreQueryParamForce) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

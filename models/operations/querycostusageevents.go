@@ -30,6 +30,16 @@ func (e Granularity) ToPointer() *Granularity {
 	return &e
 }
 
+// GranularityValues returns every known Granularity value in schema order.
+func GranularityValues() []Granularity {
+	return []Granularity{
+		GranularityPt1H,
+		GranularityP1D,
+		GranularityP1W,
+		GranularityP1M,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *Granularity) IsExact() bool {
 	if e != nil {
@@ -76,6 +86,40 @@ const (
 
 func (e Measures) ToPointer() *Measures {
 	return &e
+}
+
+// MeasuresValues returns every known Measures value in schema order.
+func MeasuresValues() []Measures {
+	return []Measures{
+		MeasuresEvents,
+		MeasuresUnpricedEvents,
+		MeasuresReportedCost,
+		MeasuresReportedCacheCost,
+		MeasuresInputTokens,
+		MeasuresInputTextTokens,
+		MeasuresInputAudioTokens,
+		MeasuresInputImageTokens,
+		MeasuresInputCacheReadTokens,
+		MeasuresInputCacheReadTextTokens,
+		MeasuresInputCacheReadAudioTokens,
+		MeasuresInputCacheReadImageTokens,
+		MeasuresInputCacheReadVideoTokens,
+		MeasuresInputCacheWriteTokens,
+		MeasuresInputCacheWriteTextTokens,
+		MeasuresInputCacheWriteAudioTokens,
+		MeasuresInputCacheWriteImageTokens,
+		MeasuresInputCacheWriteVideoTokens,
+		MeasuresOutputTokens,
+		MeasuresOutputTextTokens,
+		MeasuresOutputAudioTokens,
+		MeasuresOutputReasoningTokens,
+		MeasuresAcceptedPredictionTokens,
+		MeasuresRejectedPredictionTokens,
+		MeasuresRealtimeAudioMs,
+		MeasuresReportedTotalTokens,
+		MeasuresTotalInputTokens,
+		MeasuresSubjects,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
@@ -303,6 +347,14 @@ const (
 
 func (e Direction) ToPointer() *Direction {
 	return &e
+}
+
+// DirectionValues returns every known Direction value in schema order.
+func DirectionValues() []Direction {
+	return []Direction{
+		DirectionAsc,
+		DirectionDesc,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

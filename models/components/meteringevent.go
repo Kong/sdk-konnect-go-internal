@@ -20,6 +20,13 @@ const (
 func (e Datacontenttype) ToPointer() *Datacontenttype {
 	return &e
 }
+
+// DatacontenttypeValues returns every known Datacontenttype value in schema order.
+func DatacontenttypeValues() []Datacontenttype {
+	return []Datacontenttype{
+		DatacontenttypeApplicationJSON,
+	}
+}
 func (e *Datacontenttype) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

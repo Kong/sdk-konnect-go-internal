@@ -16,6 +16,13 @@ const (
 func (e ListRolesResponseName) ToPointer() *ListRolesResponseName {
 	return &e
 }
+
+// ListRolesResponseNameValues returns every known ListRolesResponseName value in schema order.
+func ListRolesResponseNameValues() []ListRolesResponseName {
+	return []ListRolesResponseName{
+		ListRolesResponseNameServices,
+	}
+}
 func (e *ListRolesResponseName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -39,6 +46,13 @@ const (
 func (e ListRolesResponseServicesName) ToPointer() *ListRolesResponseServicesName {
 	return &e
 }
+
+// ListRolesResponseServicesNameValues returns every known ListRolesResponseServicesName value in schema order.
+func ListRolesResponseServicesNameValues() []ListRolesResponseServicesName {
+	return []ListRolesResponseServicesName{
+		ListRolesResponseServicesNameAPIViewer,
+	}
+}
 func (e *ListRolesResponseServicesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -61,6 +75,13 @@ const (
 
 func (e ListRolesResponseDescription) ToPointer() *ListRolesResponseDescription {
 	return &e
+}
+
+// ListRolesResponseDescriptionValues returns every known ListRolesResponseDescription value in schema order.
+func ListRolesResponseDescriptionValues() []ListRolesResponseDescription {
+	return []ListRolesResponseDescription{
+		ListRolesResponseDescriptionAPIViewersHaveReadOnlyAccessToTheDocumentationOfAServiceInAPortal,
+	}
 }
 func (e *ListRolesResponseDescription) UnmarshalJSON(data []byte) error {
 	var v string
@@ -104,6 +125,13 @@ const (
 func (e ListRolesResponseServicesRolesName) ToPointer() *ListRolesResponseServicesRolesName {
 	return &e
 }
+
+// ListRolesResponseServicesRolesNameValues returns every known ListRolesResponseServicesRolesName value in schema order.
+func ListRolesResponseServicesRolesNameValues() []ListRolesResponseServicesRolesName {
+	return []ListRolesResponseServicesRolesName{
+		ListRolesResponseServicesRolesNameAPIConsumer,
+	}
+}
 func (e *ListRolesResponseServicesRolesName) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -126,6 +154,13 @@ const (
 
 func (e ListRolesResponseServicesDescription) ToPointer() *ListRolesResponseServicesDescription {
 	return &e
+}
+
+// ListRolesResponseServicesDescriptionValues returns every known ListRolesResponseServicesDescription value in schema order.
+func ListRolesResponseServicesDescriptionValues() []ListRolesResponseServicesDescription {
+	return []ListRolesResponseServicesDescription{
+		ListRolesResponseServicesDescriptionAPIConsumersCanMakeCallsToTheGivenService,
+	}
 }
 func (e *ListRolesResponseServicesDescription) UnmarshalJSON(data []byte) error {
 	var v string

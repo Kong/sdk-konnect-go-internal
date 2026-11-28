@@ -51,6 +51,14 @@ func (e AIGatewayMCPServerConversionListenerProtocol) ToPointer() *AIGatewayMCPS
 	return &e
 }
 
+// AIGatewayMCPServerConversionListenerProtocolValues returns every known AIGatewayMCPServerConversionListenerProtocol value in schema order.
+func AIGatewayMCPServerConversionListenerProtocolValues() []AIGatewayMCPServerConversionListenerProtocol {
+	return []AIGatewayMCPServerConversionListenerProtocol{
+		AIGatewayMCPServerConversionListenerProtocolHTTP,
+		AIGatewayMCPServerConversionListenerProtocolHTTPS,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayMCPServerConversionListenerProtocol) IsExact() bool {
 	if e != nil {
@@ -73,6 +81,16 @@ const (
 
 func (e AIGatewayMCPServerConversionListenerAllowedVersions) ToPointer() *AIGatewayMCPServerConversionListenerAllowedVersions {
 	return &e
+}
+
+// AIGatewayMCPServerConversionListenerAllowedVersionsValues returns every known AIGatewayMCPServerConversionListenerAllowedVersions value in schema order.
+func AIGatewayMCPServerConversionListenerAllowedVersionsValues() []AIGatewayMCPServerConversionListenerAllowedVersions {
+	return []AIGatewayMCPServerConversionListenerAllowedVersions{
+		AIGatewayMCPServerConversionListenerAllowedVersionsTwoThousandAndTwentySixMinus07Minus28,
+		AIGatewayMCPServerConversionListenerAllowedVersionsTwoThousandAndTwentyFiveMinus11Minus25,
+		AIGatewayMCPServerConversionListenerAllowedVersionsTwoThousandAndTwentyFiveMinus06Minus18,
+		AIGatewayMCPServerConversionListenerAllowedVersionsTwoThousandAndTwentyFiveMinus03Minus26,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.

@@ -3893,6 +3893,14 @@ func (e AIGatewayModelProviderAzureAIGatewayModelProviderService) ToPointer() *A
 	return &e
 }
 
+// AIGatewayModelProviderAzureAIGatewayModelProviderServiceValues returns every known AIGatewayModelProviderAzureAIGatewayModelProviderService value in schema order.
+func AIGatewayModelProviderAzureAIGatewayModelProviderServiceValues() []AIGatewayModelProviderAzureAIGatewayModelProviderService {
+	return []AIGatewayModelProviderAzureAIGatewayModelProviderService{
+		AIGatewayModelProviderAzureAIGatewayModelProviderServiceAzureOpenai,
+		AIGatewayModelProviderAzureAIGatewayModelProviderServiceAzureFoundry,
+	}
+}
+
 // IsExact returns true if the value matches a known enum value, false otherwise.
 func (e *AIGatewayModelProviderAzureAIGatewayModelProviderService) IsExact() bool {
 	if e != nil {

@@ -17,6 +17,13 @@ const (
 func (e AuthStrategyKeyAuthCredentialType) ToPointer() *AuthStrategyKeyAuthCredentialType {
 	return &e
 }
+
+// AuthStrategyKeyAuthCredentialTypeValues returns every known AuthStrategyKeyAuthCredentialType value in schema order.
+func AuthStrategyKeyAuthCredentialTypeValues() []AuthStrategyKeyAuthCredentialType {
+	return []AuthStrategyKeyAuthCredentialType{
+		AuthStrategyKeyAuthCredentialTypeKeyAuth,
+	}
+}
 func (e *AuthStrategyKeyAuthCredentialType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -41,6 +48,15 @@ const (
 
 func (e AuthStrategyKeyAuthUnit) ToPointer() *AuthStrategyKeyAuthUnit {
 	return &e
+}
+
+// AuthStrategyKeyAuthUnitValues returns every known AuthStrategyKeyAuthUnit value in schema order.
+func AuthStrategyKeyAuthUnitValues() []AuthStrategyKeyAuthUnit {
+	return []AuthStrategyKeyAuthUnit{
+		AuthStrategyKeyAuthUnitDays,
+		AuthStrategyKeyAuthUnitWeeks,
+		AuthStrategyKeyAuthUnitYears,
+	}
 }
 
 // IsExact returns true if the value matches a known enum value, false otherwise.
